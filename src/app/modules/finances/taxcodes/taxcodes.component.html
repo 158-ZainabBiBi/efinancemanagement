@@ -1,0 +1,37 @@
+<div class="collapse-card-h container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card-primary card">
+                <div class="card-header">
+                    <div class="align-items-center row">
+                        <div class="col">
+                            <a href="javascript:void" aria-controls="collapse-customerinfo1" aria-expanded="true"
+                                class="card-title">Tax Codes
+                            </a>
+                        </div>
+                        <div class="col-auto">
+                            <button (click)="addNew()" class="btn btn-secondary btn-sm">
+                                <i class="fas fa-plus fa-fw"></i> Add New
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <app-taxcode #taxcodes [view]=2 (edit)="edit($event)"></app-taxcode>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div aria-labelledby="exampleModalLabel" class="modal fade show" id="add" role="dialog" tabindex="-1">
+    <app-taxcode #addtaxcode [view]=3 (cancel)="cancel()"></app-taxcode>
+</div>
+
+<div aria-labelledby="exampleModalLabel" class="modal fade show" id="edit" role="dialog" tabindex="-1">
+    <app-taxcode #edittaxcode [view]=4 (cancel)="cancel()"></app-taxcode>
+</div>

@@ -1,0 +1,27 @@
+<div *ngIf="view==1" class="form-group">
+    <label class="custom-label form-label"> Student Instance
+        <span style="color: red;" [hidden]="disabled" *ngIf="iscompulsory==true">*</span>
+    </label>
+    <div class="row">
+        <div class="col-md-10" *ngIf="disabled==true">
+            <ng-select [(ngModel)]="studentinstanceID" [disabled]="disabled" name="studentinstanceID">
+                <ng-option *ngFor="let studentinstance of studentinstancesAll" [value]="studentinstance.studentinstance_ID">
+                    {{ studentinstance.registration_NO }} - {{ studentinstance.student_RN }}
+                </ng-option>
+            </ng-select>
+        </div>
+        <div class="col-md-10" *ngIf="disabled==false">
+            <ng-select [(ngModel)]="studentinstanceID" [disabled]="disabled" name="studentinstanceID">
+                <ng-option *ngFor="let studentinstance of studentinstances" [value]="studentinstance.studentinstance_ID">
+                    {{ studentinstance.registration_NO }} - {{ studentinstance.student_RN }}
+
+                </ng-option>
+            </ng-select>
+        </div>
+        <div class="col-md-2">
+            <button type="button" class="btn btn-light ml-2" [hidden]="disabled" (click)="studentinstanceGet()">
+                <i class="fa fa-refresh" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+</div>

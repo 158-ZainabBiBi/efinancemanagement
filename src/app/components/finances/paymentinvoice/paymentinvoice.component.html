@@ -1,0 +1,330 @@
+<div *ngIf="view==1" class="form-group">
+    <label class="custom-label form-label">Student Payment
+        <span style="color: red;" [hidden]="disabled" *ngIf="iscompulsory==true">*</span>
+    </label>
+    <div class="row">
+        <div class="col-md-10">
+            <ng-select [(ngModel)]="paymentinvoiceID" [disabled]="disabled" name="paymentinvoiceID">
+                <ng-option *ngFor="let paymentinvoice of paymentinvoices"
+                    [value]="paymentinvoice.paymentinvoice_ID" [disabled]="disabled">
+                    {{ paymentinvoice.paymentinvoice_NUMBER }}
+
+                </ng-option>
+            </ng-select>
+        </div>
+        <div class="col-md-2">
+            <button type="button" class="btn btn-light ml-2" [hidden]="disabled" (click)="paymentinvoiceGet()">
+                <i class="fa fa-refresh" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+  </div>
+
+  <div *ngIf="view==2" class="form-group">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="outer-div">
+                <div class="grid-wrapper">
+                    <dx-data-grid #grid id="gridContainer" [dataSource]="paymentinvoicesAll"
+                        keyExpr="paymentinvoice_ID" [showColumnLines]="true" [showRowLines]="true"
+                        [showBorders]="true" [rowAlternationEnabled]="true" [allowColumnResizing]="true"
+                        [columnMinWidth]="30" [columnAutoWidth]="true" [remoteOperations]="true" height="600"
+                        width="100%" (onToolbarPreparing)="onToolbarPreparing($event)">
+                        <dxo-filter-row [visible]="true"></dxo-filter-row>
+                        <dxo-header-filter [visible]="true"></dxo-header-filter>
+                        <dxo-search-panel [visible]="true"></dxo-search-panel>
+                        <dxo-group-panel [visible]="false"></dxo-group-panel>
+                        <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
+                        <dxo-scrolling mode="virtual"></dxo-scrolling>
+                        <dxo-sorting mode="multiple"></dxo-sorting>
+                        <dxo-selection mode="single"></dxo-selection>
+                        <dxi-column [width]="75" [allowFiltering]="false" [allowSorting]="false" alignment="center"
+                            cellTemplate="cellTemplate"> </dxi-column>
+                        <dxi-column [width]="200" dataField="studentinstance.student_RN" caption="Student RN"
+                            cssClass="myClass" alignment="center"></dxi-column>
+                        <dxi-column dataField="person_DETAIL" caption="Student Name" cssClass="myClass"
+                            alignment="left"></dxi-column>
+                        <dxi-column dataField="paymentinvoice_NUMBER" caption="Invoice Number" cssClass="myClass"
+                            alignment="center">
+                        </dxi-column>
+                        <dxi-column dataField="paymentinvoice_DATE" caption="Invoice Date" cssClass="myClass"
+                            alignment="center">
+                        </dxi-column>
+                        <dxi-column dataField="paymentinvoice_AMOUNT" caption="Payment Amount" cssClass="myClass"
+                            alignment="center">
+                        </dxi-column>
+                        <dxi-column dataField="paymentinvoicestatus.description" caption="Payment Status" cssClass="myClass"
+                            alignment="center">
+                        </dxi-column>
+                        <dxi-column dataField="account_DETAIL" caption="Account"
+                            cssClass="myClass" alignment="left">
+                        </dxi-column>
+                        <dxi-column dataField="paymentinvoicemethod.description" caption="Payment Method" cssClass="myClass"
+                            alignment="center">
+                        </dxi-column>
+                        <dxi-column [width]="160" dataField="intake.intake_DESC" caption="Intake" cssClass="myClass"
+                            alignment="center"></dxi-column>
+                        <dxi-column dataField="course.course_TITLE" caption="Program" cssClass="myClass"></dxi-column>
+                        <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass"
+                            alignment="center"></dxi-column>
+
+                        <div *dxTemplate="let data of 'cellTemplate'">
+                            <a href="javascript:void" class="" (click)="update(data)">
+                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                        </div>
+  <!--
+                        <dxo-master-detail [enabled]="true" template="detail"></dxo-master-detail>
+                        <div *dxTemplate="let invoicedetail of 'detail'">
+                            <div class="master-detail-caption">{{
+                                "Invoice Detail:"
+                                }}</div>
+                            <app-paymentinvoicedetail [view]="2" [paymentinvoiceID]="invoicedetail.key">
+                            </app-paymentinvoicedetail>
+                        </div>
+  -->
+                    </dx-data-grid>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+
+  <div *ngIf="view==22" class="form-group">
+    <div class="outer-div">
+        <div class="grid-wrapper">
+            <dx-data-grid #grid id="gridContainer" [dataSource]="paymentinvoicesAll" keyExpr="paymentinvoice_ID"
+                [showColumnLines]="true" [showRowLines]="true" [showBorders]="true" [rowAlternationEnabled]="true"
+                [allowColumnResizing]="true" [columnMinWidth]="30" [columnAutoWidth]="true" [remoteOperations]="true"
+                height="600" width="100%" (onToolbarPreparing)="onToolbarPreparingAdvanced($event)">
+                <dxo-filter-row [visible]="true"></dxo-filter-row>
+                <dxo-header-filter [visible]="true"></dxo-header-filter>
+                <dxo-search-panel [visible]="true"></dxo-search-panel>
+                <dxo-group-panel [visible]="false"></dxo-group-panel>
+                <dxo-grouping #expand [autoExpandAll]="false"></dxo-grouping>
+                <dxo-scrolling mode="virtual"></dxo-scrolling>
+                <dxo-sorting mode="multiple"></dxo-sorting>
+                <dxo-selection mode="single"></dxo-selection>
+                <dxi-column [width]="75" [allowFiltering]="false" [allowSorting]="false" alignment="center"
+                    cellTemplate="cellTemplate"> </dxi-column>
+                <dxi-column [width]="200" dataField="studentinstance.student_RN" caption="Student RN"
+                    cssClass="myClass" alignment="center"></dxi-column>
+                <dxi-column dataField="person_DETAIL" caption="Student Name" cssClass="myClass"
+                    alignment="left"></dxi-column>
+                <dxi-column dataField="paymentinvoice_NUMBER" caption="Invoice Number" cssClass="myClass"
+                    alignment="center">
+                </dxi-column>
+                <dxi-column dataField="paymentinvoice_DATE" caption="Invoice Date" cssClass="myClass"
+                    alignment="center">
+                </dxi-column>
+                <dxi-column dataField="paymentinvoice_AMOUNT" caption="Payment Amount" cssClass="myClass"
+                    alignment="center">
+                </dxi-column>
+                <dxi-column dataField="paymentinvoicestatus.description" caption="Payment Status" cssClass="myClass"
+                    alignment="center">
+                </dxi-column>
+                <dxi-column dataField="account_DETAIL" caption="Account"
+                    cssClass="myClass" alignment="left">
+                </dxi-column>
+                <dxi-column dataField="paymentinvoicemethod.description" caption="Payment Method" cssClass="myClass"
+                    alignment="center">
+                </dxi-column>
+                <dxi-column [width]="160" dataField="intake.intake_DESC" caption="Intake" cssClass="myClass"
+                    alignment="center"></dxi-column>
+                <dxi-column dataField="course.course_TITLE" caption="Program" cssClass="myClass"></dxi-column>
+                <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass"
+                    alignment="center"></dxi-column>
+
+                <div *dxTemplate="let data of 'cellTemplate'">
+                    <a href="javascript:void" class="" (click)="update(data)">
+                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                </div>
+  <!--
+                        <dxo-master-detail [enabled]="true" template="detail"></dxo-master-detail>
+                        <div *dxTemplate="let invoicedetail of 'detail'">
+                            <div class="master-detail-caption">{{
+                                "Invoice Detail:"
+                                }}</div>
+                            <app-paymentinvoicedetail [view]="2" [paymentinvoiceID]="invoicedetail.key">
+                            </app-paymentinvoicedetail>
+                        </div>
+  -->
+            </dx-data-grid>
+        </div>
+    </div>
+  </div>
+
+  <div *ngIf="view==3" class="form-group">
+    <form action="" class="form" (ngSubmit)="f.form.valid && paymentinvoiceAdd(paymentinvoice)" #f="ngForm" novalidate>
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">
+                        <i class="fa fa-plus" aria-hidden="true"></i> Add New Payment Invoice
+                    </h5>
+                    <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                        <span aria-hidden="true"> ×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <app-studentinstance #addstudentinstance [view]="1"></app-studentinstance>
+                        </div>
+                        <div class="col-md-6">
+                            <app-payment #addpayment [view]="1"></app-payment>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label"> Payment Invoice Amount <span style="color:red">*</span></label>
+                                <input type="text" class="form-control" name="paymentinvoice_AMOUNT" [(ngModel)]="paymentinvoice.paymentinvoice_AMOUNT"
+                                    maxlength="50" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" [disabled]="f.invalid">
+                        <i class="fa fa-plus" aria-hidden="true"></i> Add
+                    </button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </form>
+  </div>
+
+  <div *ngIf="view==4" class="form-group">
+    <form action="" class="form" (ngSubmit)="f.form.valid && paymentinvoiceUpdate(paymentinvoice)" #f="ngForm" novalidate>
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">
+                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit Payment Invoice
+                    </h5>
+                    <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                        <span aria-hidden="true"> ×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <app-studentinstance #editstudentinstance [view]="1"></app-studentinstance>
+                        </div>
+                        <div class="col-md-6">
+                            <app-payment #editpayment [view]="1"></app-payment>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label"> Payment Invoice Amount <span style="color:red">*</span></label>
+                                <input type="text" class="form-control" name="paymentinvoice_AMOUNT" [(ngModel)]="paymentinvoice.paymentinvoice_AMOUNT"
+                                    maxlength="50" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="checkbox">
+                                    <label class="control-label">
+                                        <input type="checkbox" [checked]="paymentinvoice.isactive"
+                                            [(ngModel)]="paymentinvoice.isactive" name="isactive">
+                                        Active
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" [disabled]="f.invalid">
+                        <i class="fa fa-plus" aria-hidden="true"></i> Update
+                    </button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </form>
+  </div>
+
+  <div *ngIf="view==5" class="form-group">
+    <div class="card-primary card">
+        <div class="card-header">
+            <div class="align-items-center row">
+                <div class="col" *ngIf="paymentinvoice.paymentinvoice_ID==0">
+                    <a href="javascript:void" aria-controls="collapse-paymentinvoiceinfo1" aria-expanded="true"
+                        class="card-title">Add New Payment Invoice
+                    </a>
+                </div>
+                <div class="col" *ngIf="paymentinvoice.paymentinvoice_ID!=0 && disabled==false">
+                    <a href="javascript:void" aria-controls="collapse-paymentinvoiceinfo1" aria-expanded="true"
+                        class="card-title">Edit Payment Invoice
+                    </a>
+                </div>
+                <div class="col" *ngIf="paymentinvoice.paymentinvoice_ID!=0 && disabled==true">
+                    <a href="javascript:void" aria-controls="collapse-paymentinvoiceinfo1" aria-expanded="true"
+                        class="card-title">Payment Invoice Detail
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <app-payment #payment [view]="1" [iscompulsory]=true [disabled]="disabled" [paymentID]="paymentinvoice.payment_ID"></app-payment>
+                        </div>
+                        <div class="col-md-6">
+                            <app-studentinstance #studentinstance [view]="1" [studentinstanceID]="paymentinvoice.studentinstance_ID" [iscompulsory]=true [disabled]="disabled"></app-studentinstance>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label"> Payment Invoice Amount <span style="color:red">*</span></label>
+                                <input type="text" class="form-control" name="paymentinvoice_AMOUNT" [disabled]="disabled" [(ngModel)]="paymentinvoice.paymentinvoice_AMOUNT" maxlength="50" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12" *ngIf="paymentinvoice.paymentinvoice_ID!=0">
+                            <div class="form-group">
+                                <div class="checkbox">
+                                    <label class="control-label">
+                                        <input type="checkbox" [checked]="paymentinvoice.isactive"
+                                            [(ngModel)]="paymentinvoice.isactive" [disabled]="disabled" name="isactive">
+                                        Active
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button *ngIf="paymentinvoice.paymentinvoice_ID!=0 && disabled==true" (click)="editView()" id="cancel"
+                                class="btn btn-primary" style="float: right;"> Edit
+                            </button>
+                            <button *ngIf="disabled==false" type="button" (click)='paymentinvoiceCancel()'
+                                style="float: right;" class="btn btn-light" data-dismiss="modal"> Cancel
+                            </button>
+                            <button *ngIf="paymentinvoice.paymentinvoice_ID!=0 && disabled==false" type="button" data-dismiss="modal"
+                                style=" margin-right: 10px; float: right;" (click)='paymentinvoiceUpdate(paymentinvoice)'
+                                class="btn btn-primary">
+                                Update
+                            </button>
+                            <button *ngIf="paymentinvoice.paymentinvoice_ID==0" type="button" data-dismiss="modal"
+                                style=" margin-right: 10px; float: right;" (click)='paymentinvoiceAdd(paymentinvoice)'
+                                class="btn btn-primary">
+                                Save
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>

@@ -1,0 +1,26 @@
+<div class="form-group">
+    <label class="custom-label form-label">Payment Status
+        <span style="color: red;" [hidden]="disabled" *ngIf="iscompulsory==true">*</span>
+    </label>
+    <div class="row">
+        <div class="col-md-10" *ngIf="disabled==true">
+            <ng-select [(ngModel)]="paymentstatusID" [disabled]="disabled" name="paymentstatusID" maxlength="50">
+                <ng-option *ngFor="let paymentstatus of paymentstatusesAll" [value]="paymentstatus.id" [disabled]="disabled">
+                    {{ paymentstatus.description }}
+                </ng-option>
+            </ng-select>
+        </div>
+        <div class="col-md-10" *ngIf="disabled==false">
+            <ng-select [(ngModel)]="paymentstatusID" [disabled]="disabled" name="paymentstatusID" maxlength="50">
+                <ng-option *ngFor="let paymentstatus of paymentstatuses" [value]="paymentstatus.id" [disabled]="disabled">
+                   {{ paymentstatus.description }}
+                </ng-option>
+            </ng-select>
+        </div>
+        <div class="col-md-2">
+            <button type="button" class="btn btn-light ml-2" [hidden]="disabled" (click)="paymentstatusGet()">
+                <i class="fa fa-refresh" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+  </div>
