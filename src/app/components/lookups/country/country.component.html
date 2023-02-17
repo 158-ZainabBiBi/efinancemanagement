@@ -1,0 +1,26 @@
+<div class="form-group">
+  <label class="custom-label form-label">Country
+      <span style="color: red;" [hidden]="disabled" *ngIf="iscompulsory==true">*</span>
+  </label>
+  <div class="row">
+      <div class="col-md-10" *ngIf="disabled==true">
+          <ng-select [(ngModel)]="countryID" [disabled]="disabled" name="countryID" maxlength="50">
+              <ng-option *ngFor="let country of countriesAll" [value]="country.id" [disabled]="disabled">
+                  {{ country.code }} - {{ country.description }}
+              </ng-option>
+          </ng-select>
+      </div>
+      <div class="col-md-10" *ngIf="disabled==false">
+          <ng-select [(ngModel)]="countryID" [disabled]="disabled" name="countryID" maxlength="50">
+              <ng-option *ngFor="let country of countries" [value]="country.id" [disabled]="disabled">
+                  {{ country.code }} - {{ country.description }}
+              </ng-option>
+          </ng-select>
+      </div>
+      <div class="col-md-2">
+          <button type="button" class="btn btn-light ml-2" [hidden]="disabled" (click)="countryGet()">
+              <i class="fa fa-refresh" aria-hidden="true"></i>
+          </button>
+      </div>
+  </div>
+</div>

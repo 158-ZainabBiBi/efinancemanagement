@@ -27,23 +27,42 @@ import { HomeComponent } from './home.component';
 import { HomeRoutingModule } from './home-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
-import { StudentinstanceComponent } from 'src/app/components/students/studentinstance/studentinstance.component';
+import { CustomerComponent } from '../../components/customers/customer/customer.component';
+import { ProductComponent } from '../../components/products/product/product.component';
 
-import { AccountComponent } from '../../components/finances/account/account.component';
-import { AccounttypeComponent } from '../../components/finances/accounttype/accounttype.component';
-import { TaxcodeComponent } from '../../components/finances/taxcode/taxcode.component';
-import { PaymentComponent } from '../../components/finances/payment/payment.component';
-import { PaymentinvoiceComponent } from '../../components/finances/paymentinvoice/paymentinvoice.component';
+import { AccountComponent } from '../../components/accounts/account/account.component';
+import { AccounttypeComponent } from '../../components/accounts/accounttype/accounttype.component';
+import { ApprovalreturnauthComponent } from '../../components/accounts/approvalreturnauth/approvalreturnauth.component';
+import { CreditcardtransactionComponent } from '../../components/accounts/creditcardtransaction/creditcardtransaction.component';
+import { CurrencyComponent } from '../../components/accounts/currency/currency.component';
+import { CurrencyexchangerateComponent } from '../../components/accounts/currencyexchangerate/currencyexchangerate.component';
+import { CustomerrefundComponent } from '../../components/accounts/customerrefund/customerrefund.component';
+import { ExpensecategoryComponent } from '../../components/accounts/expensecategory/expensecategory.component';
+import { RecievereturnauthComponent } from '../../components/accounts/recievereturnauth/recievereturnauth.component';
+import { ReturnauthComponent } from '../../components/accounts/returnauth/returnauth.component';
 
 import { GeneralratetypeComponent } from '../../components/lookups/generalratetype/generalratetype.component';
 import { CashflowratetypeComponent } from '../../components/lookups/cashflowratetype/cashflowratetype.component';
-import { PaymentmethodComponent } from '../../components/lookups/paymentmethod/paymentmethod.component';
-import { PaymentstatusComponent } from '../../components/lookups/paymentstatus/paymentstatus.component';
 
-import { AccountsComponent } from '../finances/accounts/accounts.component';
-import { AccounttypesComponent } from '../finances/accounttypes/accounttypes.component';
-import { TaxcodesComponent } from '../finances/taxcodes/taxcodes.component';
-import { PaymentsComponent } from '../finances/payments/payments.component';
+import { ReturnstatusComponent } from'../../components/lookups/returnstatus/returnstatus.component';
+import { SaleordertypeComponent } from'../../components/lookups/saleordertype/saleordertype.component';
+import { CardtypeComponent } from'../../components/lookups/cardtype/cardtype.component';
+import { CountryComponent } from'../../components/lookups/country/country.component';
+import { PostingperiodComponent } from'../../components/lookups/postingperiod/postingperiod.component';
+import { RefundmethodComponent } from'../../components/lookups/refundmethod/refundmethod.component';
+import { CurrencysymbolreplacementComponent } from'../../components/lookups/currencysymbolreplacement/currencysymbolreplacement.component';
+
+
+import { AccountsComponent } from '../accounts/accounts/accounts.component';
+import { AccounttypesComponent } from '../accounts/accounttypes/accounttypes.component';
+import { ApprovalreturnauthsComponent } from '../accounts/approvalreturnauths/approvalreturnauths.component';
+import { CreditcardtransactionsComponent } from '../accounts/creditcardtransactions/creditcardtransactions.component';
+import { CurrenciesComponent } from '../accounts/currencies/currencies.component';
+import { CurrencyexchangeratesComponent } from '../accounts/currencyexchangerates/currencyexchangerates.component';
+import { CustomerrefundsComponent } from '../accounts/customerrefunds/customerrefunds.component';
+import { ExpensecategoriesComponent } from '../accounts/expensecategories/expensecategories.component';
+import { RecievereturnauthsComponent } from '../accounts/recievereturnauths/recievereturnauths.component';
+import { ReturnauthsComponent } from '../accounts/returnauths/returnauths.component';
 
 @NgModule({
   imports: [
@@ -73,23 +92,40 @@ import { PaymentsComponent } from '../finances/payments/payments.component';
     HomeComponent,
     DashboardComponent,
 
-    StudentinstanceComponent,
+    CustomerComponent,
+    ProductComponent,
 
     AccountComponent,
     AccounttypeComponent,
-    TaxcodeComponent,
-    PaymentComponent,
-    PaymentinvoiceComponent,
+    ApprovalreturnauthComponent,
+    CreditcardtransactionComponent,
+    CurrencyComponent,
+    CurrencyexchangerateComponent,
+    CustomerrefundComponent,
+    ExpensecategoryComponent,
+    RecievereturnauthComponent,
+    ReturnauthComponent,
 
     GeneralratetypeComponent,
     CashflowratetypeComponent,
-    PaymentmethodComponent,
-    PaymentstatusComponent,
+    ReturnstatusComponent,
+    SaleordertypeComponent,
+    CardtypeComponent,
+    CountryComponent,
+    PostingperiodComponent,
+    RefundmethodComponent,
+    CurrencysymbolreplacementComponent,
 
     AccountsComponent,
     AccounttypesComponent,
-    TaxcodesComponent,
-    PaymentsComponent,
+    ApprovalreturnauthsComponent,
+    CreditcardtransactionsComponent,
+    CurrenciesComponent,
+    CurrencyexchangeratesComponent,
+    CustomerrefundsComponent,
+    ExpensecategoriesComponent,
+    RecievereturnauthsComponent,
+    ReturnauthsComponent
   ],
 })
 export class HomeModule {

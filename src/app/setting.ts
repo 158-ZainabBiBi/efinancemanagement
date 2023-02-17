@@ -12,8 +12,9 @@ export const setting = {
 
 
   service_NAME: "LOOKUP",
-  studentservice_NAME: "STUDENT",
-  financeservice_NAME: 'FINANCE',
+  accountservice_NAME: 'ACCOUNT',
+  customerservice_NAME: 'CUSTOMER',
+  productservice_NAME: 'PRODUCT',
 
   isHash: '/#',
   redirctPath: '',
