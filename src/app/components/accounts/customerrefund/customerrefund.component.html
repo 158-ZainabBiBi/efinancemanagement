@@ -1,1 +1,182 @@
-<p>customerrefund works!</p>
+<div *ngIf="view==1" class="form-group">
+    <label class="custom-label form-label"> Customer Refund
+        <span style="color: red;" [hidden]="disabled" ngIf="iscompulsory==true"></span>
+    </label>
+    <div class="row">
+        <div class="col-md-10" *ngIf="disabled==true">
+            <ng-select [(ngModel)]="customerrefundID" [disabled]="disabled" name="customerrefundID">
+                <ng-option *ngFor="let customerrefund of customerrefundsAll" [value]="customerrefund.customerrefund_ID">
+                    {{ customerrefund.customerrefund_DATE }}
+                </ng-option>
+            </ng-select>
+        </div>
+        <div class="col-md-10" *ngIf="disabled==false">
+            <ng-select [(ngModel)]="customerrefundID" [disabled]="disabled" name="customerrefundID">
+                <ng-option *ngFor="let customerrefund of customerrefunds" [value]="customerrefund.customerrefund_ID">
+                    {{ customerrefund.customerrefund_DATE }}
+                </ng-option>
+            </ng-select>
+        </div>
+        <div class="col-md-2">
+            <button type="button" class="btn btn-light ml-2" [hidden]="disabled" (click)="customerrefundGet()">
+                <i class="fa fa-refresh" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+</div>
+<div *ngIf="view==11" class="form-group">
+    <label class="custom-label form-label"> Customer Refund
+        <span style="color: red;" [hidden]="disabled" ngIf="iscompulsory==true"></span>
+    </label>
+    <div class="row">
+        <div class="col-md-10" *ngIf="disabled==true">
+            <ng-select [(ngModel)]="customerrefundID" [disabled]="disabled" name="customerrefundID">
+                <ng-option *ngFor="let customerrefund of customerrefundsAll" [value]="customerrefund.customerrefund_ID">
+                    {{ customerrefund.customerrefund_DATE }}
+                </ng-option>
+            </ng-select>
+        </div>
+        <div class="col-md-10" *ngIf="disabled==false">
+            <ng-select [(ngModel)]="customerrefundID" [disabled]="disabled" name="customerrefundID">
+                <ng-option *ngFor="let customerrefund of customerrefunds" [value]="customerrefund.customerrefund_ID">
+                    {{ customerrefund.customerrefund_DATE }}
+                </ng-option>
+            </ng-select>
+        </div>
+        <div class="col-md-2">
+            <button type="button" class="btn btn-light ml-2" [hidden]="disabled"
+                (click)="customerrefundAdvancedSearch(customerrefundID)">
+                <i class="fa fa-refresh" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+</div>
+<div *ngIf="view==2" class="form-group">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="outer-div">
+                <div class="grid-wrapper">
+                    <dx-data-grid #grid id="gridContainer" [dataSource]="customerrefundsAll" keyExpr="customerrefund_ID"
+                        [showColumnLines]="true" [showRowLines]="true" [showBorders]="true"
+                        [rowAlternationEnabled]="true" [allowColumnResizing]="true" [columnMinWidth]="30"
+                        [columnAutoWidth]="true" [remoteOperations]="true" height="600" width="100%"
+                        (onToolbarPreparing)="onToolbarPreparing($event)">
+                        <dxo-filter-row [visible]="true"></dxo-filter-row>
+                        <dxo-header-filter [visible]="true"></dxo-header-filter>
+                        <dxo-search-panel [visible]="true"></dxo-search-panel>
+                        <dxo-group-panel [visible]="false"></dxo-group-panel>
+                        <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
+                        <dxo-scrolling mode="virtual"></dxo-scrolling>
+                        <dxo-sorting mode="multiple"></dxo-sorting>
+                        <dxo-selection mode="single"></dxo-selection>
+                        <dxi-column [width]="75" [allowFiltering]="false" [allowSorting]="false" alignment="center"
+                            cellTemplate="cellTemplate"></dxi-column>
+
+                        <dxi-column dataField="customer.customer_ID" caption=" Customer" cssClass="myClass"
+                            alignment="left" [allowEditing]="false"></dxi-column>
+                        <dxi-column dataField="account.account_ID" caption="Account" cssClass="myClass" alignment="left"
+                            [allowEditing]="false"></dxi-column>
+                        <dxi-column dataField="currency.currency_ID" caption="Currency" cssClass="myClass"
+                            alignment="left" [allowEditing]="false"></dxi-column>
+                        <dxi-column [width]="200" dataField="postingperiod_ID.description" caption="Posting Period"
+                            cssClass="myClass" alignment="center" [allowEditing]="false"></dxi-column>
+                        <dxi-column [width]="200" dataField="refundmethod_ID.description" caption="Refund Method"
+                            cssClass="myClass" alignment="center" [allowEditing]="false"></dxi-column>
+
+                        <dxi-column dataField="customerrefund_CODE" caption="Code" cssClass="myClass"
+                            alignment="left"></dxi-column>
+                        <dxi-column dataField="customerrefund_DATE" caption="Date" cssClass="myClass"
+                            alignment="left"></dxi-column>
+                        <dxi-column dataField="customer_BALANCE" caption="Balance" cssClass="myClass"
+                            alignment="left"></dxi-column>
+                        <dxi-column dataField="customerrefund_AMOUNT" caption="Amount" cssClass="myClass"
+                            alignment="left"></dxi-column>
+                        <dxi-column dataField="exchange_RATE" caption="Rate" cssClass="myClass"
+                            alignment="left"></dxi-column>
+                        <dxi-column dataField="check_NUMBER" caption="Number" cssClass="myClass"
+                            alignment="left"></dxi-column>
+                        <dxi-column dataField="creditcard_NUMBER" caption="Number" cssClass="myClass"
+                            alignment="left"></dxi-column>
+                        <dxi-column dataField="expire_DATE" caption="Date" cssClass="myClass"
+                            alignment="left"></dxi-column>
+                        <dxi-column dataField="name_ONCARD" caption="Oncard" cssClass="myClass"
+                            alignment="left"></dxi-column>
+                        <dxi-column dataField="card_STREET" caption="Street" cssClass="myClass"
+                            alignment="left"></dxi-column>
+                        <dxi-column dataField="card_ZIPCODE" caption="Zipcode" cssClass="myClass"
+                            alignment="left"></dxi-column>
+
+                        <dxi-column [width]="100" dataField="isapproved" caption="Approved" cssClass="myClass"
+                            alignment="center"></dxi-column>
+                        <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass"
+                            alignment="center"></dxi-column>
+
+                        <div *dxTemplate="let data of 'cellTemplate'">
+                            <a href="javascript:void" class="" (click)="update(data)">
+                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                        </div>
+                    </dx-data-grid>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="view==22" class="form-group">
+    <div class="outer-div">
+        <div class="grid-wrapper">
+            <dx-data-grid #grid id="gridContainer" [dataSource]="customerrefundsAll" keyExpr="customerrefund_ID"
+                [showColumnLines]="true" [showRowLines]="true" [showBorders]="true" [rowAlternationEnabled]="true"
+                [allowColumnResizing]="true" [columnMinWidth]="30" [columnAutoWidth]="true" [remoteOperations]="true"
+                height="600" width="100%" (onToolbarPreparing)="onToolbarPreparingAdvanced($event)">
+                <dxo-filter-row [visible]="true"></dxo-filter-row>
+                <dxo-header-filter [visible]="true"></dxo-header-filter>
+                <dxo-search-panel [visible]="true"></dxo-search-panel>
+                <dxo-group-panel [visible]="false"></dxo-group-panel>
+                <dxo-grouping #expand [autoExpandAll]="false"></dxo-grouping>
+                <dxo-scrolling mode="virtual"></dxo-scrolling>
+                <dxo-sorting mode="multiple"></dxo-sorting>
+                <dxo-selection mode="single"></dxo-selection>
+                <dxi-column [width]="75" [allowFiltering]="false" [allowSorting]="false" alignment="center"
+                    cellTemplate="cellTemplate"></dxi-column>
+
+                <dxi-column dataField="customer.customer_ID" caption=" Customer" cssClass="myClass" alignment="left"
+                    [allowEditing]="false"></dxi-column>
+                <dxi-column dataField="account.account_ID" caption="Account" cssClass="myClass" alignment="left"
+                    [allowEditing]="false"></dxi-column>
+                <dxi-column dataField="currency.currency_ID" caption="Currency" cssClass="myClass" alignment="left"
+                    [allowEditing]="false"></dxi-column>
+                <dxi-column [width]="200" dataField="postingperiod_ID.description" caption="Posting Period"
+                    cssClass="myClass" alignment="center" [allowEditing]="false"></dxi-column>
+                <dxi-column [width]="200" dataField="refundmethod_ID.description" caption="Refund Method"
+                    cssClass="myClass" alignment="center" [allowEditing]="false"></dxi-column>
+
+                <dxi-column dataField="customerrefund_CODE" caption="Code" cssClass="myClass"
+                    alignment="left"></dxi-column>
+                <dxi-column dataField="customerrefund_DATE" caption="Date" cssClass="myClass"
+                    alignment="left"></dxi-column>
+                <dxi-column dataField="customer_BALANCE" caption="Balance" cssClass="myClass"
+                    alignment="left"></dxi-column>
+                <dxi-column dataField="customerrefund_AMOUNT" caption="Amount" cssClass="myClass"
+                    alignment="left"></dxi-column>
+                <dxi-column dataField="exchange_RATE" caption="Rate" cssClass="myClass" alignment="left"></dxi-column>
+                <dxi-column dataField="check_NUMBER" caption="Number" cssClass="myClass" alignment="left"></dxi-column>
+                <dxi-column dataField="creditcard_NUMBER" caption="Number" cssClass="myClass"
+                    alignment="left"></dxi-column>
+                <dxi-column dataField="expire_DATE" caption="Date" cssClass="myClass" alignment="left"></dxi-column>
+                <dxi-column dataField="name_ONCARD" caption="Oncard" cssClass="myClass" alignment="left"></dxi-column>
+                <dxi-column dataField="card_STREET" caption="Street" cssClass="myClass" alignment="left"></dxi-column>
+                <dxi-column dataField="card_ZIPCODE" caption="Zipcode" cssClass="myClass" alignment="left"></dxi-column>
+
+                <dxi-column [width]="100" dataField="isapproved" caption="Approved" cssClass="myClass"
+                    alignment="center"></dxi-column>
+                <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass"
+                    alignment="center"></dxi-column>
+
+                <div *dxTemplate="let data of 'cellTemplate'">
+                    <a href="javascript:void" class="" (click)="update(data)">
+                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                </div>
+            </dx-data-grid>
+        </div>
+    </div>
+</div>

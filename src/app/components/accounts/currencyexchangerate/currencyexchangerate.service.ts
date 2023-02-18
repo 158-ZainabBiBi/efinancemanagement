@@ -74,7 +74,7 @@ export class CurrencyexchangerateService {
     }
     return this._HttpCallServieService_.api(postData);
   }
-
+  
   search(data) {
     var postData = {
       service_NAME: setting.accountservice_NAME,

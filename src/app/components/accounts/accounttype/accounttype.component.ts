@@ -299,4 +299,4 @@ export class AccounttypeComponent implements OnInit {
   //   })
   // }
 
-}
+} 
