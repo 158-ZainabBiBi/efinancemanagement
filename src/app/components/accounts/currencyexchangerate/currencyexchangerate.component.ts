@@ -1,11 +1,10 @@
 import { Component, OnInit, Input, Output, ViewChild, EventEmitter } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-
 import { OnFailService } from '../../../services/on-fail.service';
+
 import { Router } from '@angular/router';
 import { CurrencyComponent } from '../currency/currency.component';
 import { CurrencyexchangerateService } from './currencyexchangerate.service';
-
 
 @Component({
   selector: 'app-currencyexchangerate',
@@ -73,7 +72,7 @@ export class CurrencyexchangerateComponent implements OnInit {
       this.currencyexchangerateAdvancedSearch(this.currencyID);
     } else if (this.view == 11 && this.currencyID && this.disabled == true) {
       this.currencyexchangerateAdvancedSearchAll(this.currencyID);
-      
+
     } else if (this.view == 11 || this.view == 1 ) {
       this.currencyexchangerateID = null;
       this.currencyexchangeratesAll = null;
@@ -95,13 +94,13 @@ export class CurrencyexchangerateComponent implements OnInit {
 
   cancelView() {
     this.cancel.next();
-  } 
+  }
 
   currencyexchangerateCancel() {
     console.log(this.currencyexchangerate);
     this.disabled = true;
     if (this.currencyexchangerate.currencyexchangerate_ID == 0) {
-      this.router.navigate(["/home/currencyexchangerates"], {});
+      this.router.navigate(["/home/currencyexchangerate"], {});
     }
   }
 
@@ -211,8 +210,8 @@ export class CurrencyexchangerateComponent implements OnInit {
     currencyexchangerate.isactive = "Y";
     if(this.view == 5){
        currencyexchangerate.currency_ID = this.currency.currencyID;
-     
-    } else { 
+
+    } else {
        currencyexchangerate.currency_ID = this.addcurrency.currencyID;
     }
     this.currencyexchangerateservice.add(currencyexchangerate).subscribe(response => {
@@ -236,10 +235,10 @@ export class CurrencyexchangerateComponent implements OnInit {
   currencyexchangerateUpdate(currencyexchangerate) {
     if(this.view == 5){
        currencyexchangerate.currency_ID = this.currency.currencyID;
-    } else { 
+    } else {
        currencyexchangerate.currency_ID = this.editcurrency.currencyID;
     }
-    
+
     if (currencyexchangerate.isactive == true) {
       currencyexchangerate.isactive = "Y";
     } else {

@@ -12,7 +12,7 @@ import { AccounttypeService } from '../accounttype/accounttype.service';
   styleUrls: ['./accounttype.component.css']
 })
 export class AccounttypeComponent implements OnInit {
- 
+
   @Input()
   view: number = 1;
   @Input()
@@ -23,7 +23,7 @@ export class AccounttypeComponent implements OnInit {
   all: boolean = false;
   @Input()
   accounttypeID = null;
-  
+
   @Output() edit = new EventEmitter();
   @Output() cancel = new EventEmitter();
   @Output() show = new EventEmitter();
@@ -37,7 +37,7 @@ export class AccounttypeComponent implements OnInit {
       accounttype_DESCRIPTION: "",
       isactive:true,
   }
- 
+
   constructor(
     private accounttypeservice: AccounttypeService,
     private toastrservice: ToastrService,
@@ -58,8 +58,8 @@ export class AccounttypeComponent implements OnInit {
 
     if (this.accounttypeID != 0 && !this.accounttypeID && Number(window.sessionStorage.getItem('accounttype'))>0) {
       this.accounttypeID = Number(window.sessionStorage.getItem('accounttype'));
-    }  
-    
+    }
+
     if (this.view == 5 && this.accounttypeID) {
       window.sessionStorage.setItem("accounttype", this.accounttypeID);
       this.accounttypeGetOne(this.accounttypeID);
@@ -118,7 +118,7 @@ export class AccounttypeComponent implements OnInit {
   accounttypeCancel() {
     this.disabled = true;
     if (this.accounttype.accounttype_ID==0) {
-      this.router.navigate(["/home/accounttype "], {});
+      this.router.navigate(["/home/accounttype"], {});
     }
   }
 
@@ -299,4 +299,4 @@ export class AccounttypeComponent implements OnInit {
   //   })
   // }
 
-} 
+}

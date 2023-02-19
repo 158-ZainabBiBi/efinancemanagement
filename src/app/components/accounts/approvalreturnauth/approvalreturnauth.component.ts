@@ -3,7 +3,7 @@ import { ToastrService } from 'ngx-toastr';
 
 import { OnFailService } from '../../../services/on-fail.service';
 import { Router } from '@angular/router';
-import { ApprovalcurrencyService } from './approvalreturnauth.service';
+import { ApprovalreturnauthService } from './approvalreturnauth.service';
 import { ReturnauthComponent } from '../returnauth/returnauth.component';
 import { CurrencyComponent } from '../currency/currency.component';
 
@@ -20,8 +20,6 @@ export class ApprovalreturnauthComponent implements OnInit {
   @ViewChild("currency") currency: CurrencyComponent;
   @ViewChild("addcurrency") addcurrency: CurrencyComponent;
   @ViewChild("editcurrency") editcurrency: CurrencyComponent;
-
-
 
   @Input()
   view: number = 1;
@@ -48,14 +46,14 @@ export class ApprovalreturnauthComponent implements OnInit {
     approvalreturnauth_ID: 0,
     returnauth_ID: 0,
     currency_ID: 0,
-    approvalreturnauth_AMOUNT: "",
+    approvalreturnauth_AMOUNT: null,
     approvalreturnauth_DATE: "",
     isapproved: true,
     isactive: true,
   }
 
   constructor(
-    private approvalreturnauthservice: ApprovalcurrencyService,
+    private approvalreturnauthservice: ApprovalreturnauthService,
     private toastrservice: ToastrService,
     private onfailservice: OnFailService,
     private router: Router,
@@ -70,8 +68,8 @@ export class ApprovalreturnauthComponent implements OnInit {
       this.approvalreturnauthGetAll();
     } else if (this.view == 2 && this.approvalreturnauthsAll == null) {
       this.approvalreturnauthGetAll();
-    } else if (this.view == 22 && (this.currencyID != null)) {
-      this.approvalreturnauthAdvancedSearchAll(this.currencyID);
+    } else if (this.view == 22 && (this.returnauthID != null)) {
+      this.approvalreturnauthAdvancedSearchAll(this.returnauthID, 0);
     }
 
     if (this.approvalreturnauthID != 0 && !this.approvalreturnauthID && Number(window.sessionStorage.getItem('approvalreturnauth')) > 0) {
@@ -80,10 +78,10 @@ export class ApprovalreturnauthComponent implements OnInit {
     if (this.view == 5 && this.approvalreturnauthID) {
       window.sessionStorage.setItem("approvalreturnauth", this.approvalreturnauthID);
       this.approvalreturnauthGetOne(this.approvalreturnauthID);
-    } if (this.view == 11 && this.currencyID && this.disabled == false) {
-      this.approvalreturnauthAdvancedSearch(this.currencyID);
-    } else if (this.view == 11 && this.currencyID && this.disabled == true) {
-      this.approvalreturnauthAdvancedSearchAll(this.currencyID);
+    } if (this.view == 11 && this.returnauthID && this.disabled == false) {
+      this.approvalreturnauthAdvancedSearch(this.returnauthID, 0);
+    } else if (this.view == 11 && this.returnauthID && this.disabled == true) {
+      this.approvalreturnauthAdvancedSearchAll(this.returnauthID, 0);
 
     } else if (this.view == 11 || this.view == 1) {
       this.approvalreturnauthID = null;
@@ -112,7 +110,7 @@ export class ApprovalreturnauthComponent implements OnInit {
     console.log(this.approvalreturnauth);
     this.disabled = true;
     if (this.approvalreturnauth.approvalreturnauth_ID == 0) {
-      this.router.navigate(["/home/approvalreturnauths"], {});
+      this.router.navigate(["/home/approvalreturnauth"], {});
     }
   }
 
@@ -138,7 +136,7 @@ export class ApprovalreturnauthComponent implements OnInit {
         options: {
           width: 136,
           text: 'Refresh',
-          onClick: this.approvalreturnauthAdvancedSearchAll.bind(this, this.currencyID),
+          onClick: this.approvalreturnauthAdvancedSearchAll.bind(this, this.returnauthID),
         },
       }
     );
@@ -149,7 +147,7 @@ export class ApprovalreturnauthComponent implements OnInit {
       approvalreturnauth_ID: 0,
       returnauth_ID: 0,
       currency_ID: 0,
-      approvalreturnauth_AMOUNT: "",
+      approvalreturnauth_AMOUNT: null,
       approvalreturnauth_DATE: "",
       isapproved: true,
       isactive: true,
@@ -317,10 +315,12 @@ export class ApprovalreturnauthComponent implements OnInit {
     })
   }
 
-  approvalreturnauthAdvancedSearch(currencyID) {
+  approvalreturnauthAdvancedSearch(returnauthID, currencyID) {
     this.currencyID = currencyID;
+    this.returnauthID = returnauthID;
     var search = {
-      currency_ID: currencyID
+      currency_ID: currencyID,
+      returnauth_ID: returnauthID
     }
     this.approvalreturnauthservice.advancedSearch(search).subscribe(response => {
       if (response) {
@@ -335,10 +335,12 @@ export class ApprovalreturnauthComponent implements OnInit {
     })
   }
 
-  approvalreturnauthAdvancedSearchAll(currencyID) {
+  approvalreturnauthAdvancedSearchAll(returnauthID, currencyID) {
     this.currencyID = currencyID;
+    this.returnauthID = returnauthID;
     var search = {
-      currency_ID: currencyID
+      currency_ID: currencyID,
+      returnauth_ID: returnauthID
     }
     this.approvalreturnauthservice.advancedSearchAll(search).subscribe(response => {
       if (response) {

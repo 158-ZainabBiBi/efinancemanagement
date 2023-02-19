@@ -5,8 +5,7 @@ import { setting } from '../../../setting';
 @Injectable({
   providedIn: 'root'
 })
-export class ApprovalcurrencyService {
-
+export class ApprovalreturnauthService {
 
   constructor(
     private _HttpCallServieService_: HttpCallServieService
@@ -17,7 +16,7 @@ export class ApprovalcurrencyService {
     var postData = {
       service_NAME: setting.accountservice_NAME,
       request_TYPE: "GET",
-      request_URI: "approvalcurrency",
+      request_URI: "approvalreturnauth",
       request_BODY: ""
     }
     return this._HttpCallServieService_.api(postData);
@@ -27,7 +26,7 @@ export class ApprovalcurrencyService {
     var postData = {
       service_NAME: setting.accountservice_NAME,
       request_TYPE: "GET",
-      request_URI: "approvalcurrency/all",
+      request_URI: "approvalreturnauth/all",
       request_BODY: ""
     }
     return this._HttpCallServieService_.api(postData);
@@ -38,7 +37,7 @@ export class ApprovalcurrencyService {
     var postData = {
       service_NAME: setting.accountservice_NAME,
       request_TYPE: "GET",
-      request_URI: "approvalcurrency/" + id,
+      request_URI: "approvalreturnauth/" + id,
       request_BODY: ""
     }
     return this._HttpCallServieService_.api(postData);
@@ -48,7 +47,7 @@ export class ApprovalcurrencyService {
     var postData = {
       service_NAME: setting.accountservice_NAME,
       request_TYPE: "POST",
-      request_URI: "approvalcurrency",
+      request_URI: "approvalreturnauth",
       request_BODY: JSON.stringify(data)
     }
     return this._HttpCallServieService_.api(postData);
@@ -58,7 +57,7 @@ export class ApprovalcurrencyService {
     var postData = {
       service_NAME: setting.accountservice_NAME,
       request_TYPE: "PUT",
-      request_URI: "approvalcurrency/" + id,
+      request_URI: "approvalreturnauth/" + id,
       request_BODY: JSON.stringify(data)
 
     }
@@ -69,7 +68,7 @@ export class ApprovalcurrencyService {
     var postData = {
       service_NAME: setting.accountservice_NAME,
       request_TYPE: "DELETE",
-      request_URI: "approvalcurrency/" + id,
+      request_URI: "approvalreturnauth/" + id,
       request_BODY: ""
     }
     return this._HttpCallServieService_.api(postData);
@@ -79,7 +78,7 @@ export class ApprovalcurrencyService {
     var postData = {
       service_NAME: setting.accountservice_NAME,
       request_TYPE: "POST",
-      request_URI: "approvalcurrency/search",
+      request_URI: "approvalreturnauth/search",
       request_BODY: JSON.stringify(data)
 
     }
@@ -90,7 +89,7 @@ export class ApprovalcurrencyService {
     var postData = {
       service_NAME: setting.accountservice_NAME,
       request_TYPE: "POST",
-      request_URI: "approvalcurrency/search/all",
+      request_URI: "approvalreturnauth/search/all",
       request_BODY: JSON.stringify(data)
     }
     return this._HttpCallServieService_.api(postData);
@@ -100,7 +99,7 @@ export class ApprovalcurrencyService {
     var postData = {
       service_NAME: setting.accountservice_NAME,
       request_TYPE: "POST",
-      request_URI: "approvalcurrency/advancedsearch",
+      request_URI: "approvalreturnauth/advancedsearch",
       request_BODY: JSON.stringify(data)
     }
     return this._HttpCallServieService_.api(postData);
@@ -110,7 +109,7 @@ export class ApprovalcurrencyService {
     var postData = {
       service_NAME: setting.accountservice_NAME,
       request_TYPE: "POST",
-      request_URI: "approvalcurrency/advancedsearch/all",
+      request_URI: "approvalreturnauth/advancedsearch/all",
       request_BODY: JSON.stringify(data)
     }
     return this._HttpCallServieService_.api(postData);

@@ -7,7 +7,6 @@ import { setting } from '../../../setting';
 })
 export class CreditcardtransactionService {
 
-
   constructor(
     private _HttpCallServieService_: HttpCallServieService
   ) { }

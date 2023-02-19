@@ -6,14 +6,14 @@
         <div class="col-md-10" *ngIf="disabled==true">
             <ng-select [(ngModel)]="returnauthID" [disabled]="disabled" name="returnauthID">
                 <ng-option *ngFor="let returnauth of returnauthsAll" [value]="returnauth.returnauth_ID">
-                    {{ returnauth.exchange_RATE }}
+                    {{ returnauth.returnauth_CODE }} - {{ returnauth.returnauth_DATE }}
                 </ng-option>
             </ng-select>
         </div>
         <div class="col-md-10" *ngIf="disabled==false">
             <ng-select [(ngModel)]="returnauthID" [disabled]="disabled" name="returnauthID">
                 <ng-option *ngFor="let returnauth of returnauths" [value]="returnauth.returnauth_ID">
-                    {{ returnauth.exchange_RATE }}
+                    {{ returnauth.returnauth_CODE }} - {{ returnauth.returnauth_DATE }}
                 </ng-option>
             </ng-select>
         </div>
@@ -32,20 +32,20 @@
         <div class="col-md-10" *ngIf="disabled==true">
             <ng-select [(ngModel)]="returnauthID" [disabled]="disabled" name="returnauthID">
                 <ng-option *ngFor="let returnauth of returnauthsAll" [value]="returnauth.returnauth_ID">
-                    {{ returnauth.exchange_RATE }}
+                    {{ returnauth.returnauth_CODE }} - {{ returnauth.returnauth_DATE }}
                 </ng-option>
             </ng-select>
         </div>
         <div class="col-md-10" *ngIf="disabled==false">
             <ng-select [(ngModel)]="returnauthID" [disabled]="disabled" name="returnauthID">
                 <ng-option *ngFor="let returnauth of returnauths" [value]="returnauth.returnauth_ID">
-                    {{ returnauth.exchange_RATE }}
+                    {{ returnauth.returnauth_CODE }} - {{ returnauth.returnauth_DATE }}
                 </ng-option>
             </ng-select>
         </div>
         <div class="col-md-2">
             <button type="button" class="btn btn-light ml-2" [hidden]="disabled"
-                (click)="returnauthAdvancedSearch(returnauthID)">
+                (click)="returnauthAdvancedSearch(currencyID, customerID, productID, customerrefundID)">
                 <i class="fa fa-refresh" aria-hidden="true"></i>
             </button>
         </div>
@@ -72,25 +72,25 @@
                         <dxi-column [width]="75" [allowFiltering]="false" [allowSorting]="false" alignment="center"
                             cellTemplate="cellTemplate"></dxi-column>
 
-                        <dxi-column dataField="customer.customer_ID" caption="Customer" cssClass="myClass"
-                            alignment="left" [allowEditing]="false"></dxi-column>
-                        <dxi-column dataField="customerrefund.customerrefund_ID" caption="Customer Refund"
-                            cssClass="myClass" alignment="left" [allowEditing]="false"></dxi-column>
-                        <dxi-column dataField="currency.currency_ID" caption="Currency" cssClass="myClass"
-                            alignment="left" [allowEditing]="false"></dxi-column>
-                        <dxi-column dataField="product.product_ID" caption="Product" cssClass="myClass" alignment="left"
-                            [allowEditing]="false"></dxi-column>
+                        <dxi-column dataField="customer.customer_NAME" caption="Customer" cssClass="myClass"
+                            alignment="left" ></dxi-column>
+                        <dxi-column dataField="customerrefund.customerrefund_AMOUNT" caption="Refund"
+                            cssClass="myClass" alignment="left" ></dxi-column>
+                        <dxi-column dataField="currency.exchange_RATE" caption="Currency" cssClass="myClass"
+                            alignment="left" ></dxi-column>
+                        <dxi-column dataField="product.product_NAME" caption="Product" cssClass="myClass" alignment="left"
+                            ></dxi-column>
                         <dxi-column [width]="200" dataField="returnstatus_ID.description" caption="Return Status"
-                            cssClass="myClass" alignment="center" [allowEditing]="false"></dxi-column>
+                            cssClass="myClass" alignment="center" ></dxi-column>
                         <dxi-column [width]="200" dataField="saleordertype_ID.description" caption="Saleor Dertype"
-                            cssClass="myClass" alignment="center" [allowEditing]="false"></dxi-column>
+                            cssClass="myClass" alignment="center" ></dxi-column>
                         <dxi-column dataField="returnauth_CODE" caption="Code" cssClass="myClass"
                             alignment="left"></dxi-column>
-                        <dxi-column dataField="returnauth_DATE" caption="Date" cssClass="myClass"
+                        <dxi-column dataField="returnauth_DATE" caption="Auth Date" cssClass="myClass"
                             alignment="left"></dxi-column>
-                        <dxi-column dataField="delivery_DATE" caption="Date" cssClass="myClass"
+                        <dxi-column dataField="delivery_DATE" caption="Delivery Date" cssClass="myClass"
                             alignment="left"></dxi-column>
-                        <dxi-column dataField="exchange_RATE" caption="Rate" cssClass="myClass"
+                        <dxi-column dataField="exchange_RATE" caption="Exchange Rate" cssClass="myClass"
                             alignment="left"></dxi-column>
                         <dxi-column dataField="rate" caption="Rate" cssClass="myClass" alignment="left"></dxi-column>
                         <dxi-column dataField="discount" caption="Discount " cssClass="myClass"
@@ -125,25 +125,29 @@
                 <dxo-selection mode="single"></dxo-selection>
                 <dxi-column [width]="75" [allowFiltering]="false" [allowSorting]="false" alignment="center"
                     cellTemplate="cellTemplate"></dxi-column>
-                <dxi-column dataField="customer.customer_ID" caption="Customer" cssClass="myClass" alignment="left"
-                    [allowEditing]="false"></dxi-column>
-                <dxi-column dataField="customerrefund.customerrefund_ID" caption="Customer Refund" cssClass="myClass"
-                    alignment="left" [allowEditing]="false"></dxi-column>
-                <dxi-column dataField="currency.currency_ID" caption="Currency" cssClass="myClass" alignment="left"
-                    [allowEditing]="false"></dxi-column>
-                <dxi-column dataField="product.product_ID" caption="Product" cssClass="myClass" alignment="left"
-                    [allowEditing]="false"></dxi-column>
+                    <dxi-column dataField="customer.customer_NAME" caption="Customer" cssClass="myClass"
+                    alignment="left" ></dxi-column>
+                <dxi-column dataField="customerrefund.customerrefund_AMOUNT" caption="Refund"
+                    cssClass="myClass" alignment="left" ></dxi-column>
+                <dxi-column dataField="currency.exchange_RATE" caption="Currency" cssClass="myClass"
+                    alignment="left" ></dxi-column>
+                <dxi-column dataField="product.product_NAME" caption="Product" cssClass="myClass" alignment="left"
+                    ></dxi-column>
                 <dxi-column [width]="200" dataField="returnstatus_ID.description" caption="Return Status"
-                    cssClass="myClass" alignment="center" [allowEditing]="false"></dxi-column>
+                    cssClass="myClass" alignment="center" ></dxi-column>
                 <dxi-column [width]="200" dataField="saleordertype_ID.description" caption="Saleor Dertype"
-                    cssClass="myClass" alignment="center" [allowEditing]="false"></dxi-column>
-                <dxi-column dataField="returnauth_CODE" caption="Code" cssClass="myClass" alignment="left"></dxi-column>
-                <dxi-column dataField="returnauth_DATE" caption="Date" cssClass="myClass" alignment="left"></dxi-column>
-                <dxi-column dataField="delivery_DATE" caption="Date" cssClass="myClass" alignment="left"></dxi-column>
-                <dxi-column dataField="exchange_RATE" caption="Rate" cssClass="myClass" alignment="left"></dxi-column>
+                    cssClass="myClass" alignment="center" ></dxi-column>
+                <dxi-column dataField="returnauth_CODE" caption="Code" cssClass="myClass"
+                    alignment="left"></dxi-column>
+                <dxi-column dataField="returnauth_DATE" caption="Auth Date" cssClass="myClass"
+                    alignment="left"></dxi-column>
+                <dxi-column dataField="delivery_DATE" caption="Delivery Date" cssClass="myClass"
+                    alignment="left"></dxi-column>
+                <dxi-column dataField="exchange_RATE" caption="Exchange Rate" cssClass="myClass"
+                    alignment="left"></dxi-column>
                 <dxi-column dataField="rate" caption="Rate" cssClass="myClass" alignment="left"></dxi-column>
-                <dxi-column dataField="discount" caption="Discount " cssClass="myClass" alignment="left"></dxi-column>
-
+                <dxi-column dataField="discount" caption="Discount " cssClass="myClass"
+                    alignment="left"></dxi-column>
                 <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass"
                     alignment="center"></dxi-column>
 
@@ -168,26 +172,27 @@
                     </button>
                 </div>
                 <div class="modal-body">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <app-customer #addcustomer [view]="1" ></app-customer>
+                    </div>
+                    <div class="col-md-6">
+                        <app-customerrefund #addcustomerrefund [view]="1"></app-customerrefund>
+                    </div>
+                  </div>
                     <div class="row">
-                        <div class="col-md-4">
-                            <app-customer #addcustomer [view]="1" [iscompulsory]="true"></app-customer>
-                        </div>
-                        <div class="col-md-4">
-                            <app-customerrefund #addcustomerrefund [view]="1"
-                                [iscompulsory]="true"></app-customerrefund>
-                        </div>
-                        <div class="col-md-4">
-                            <app-currency #addcurrency [view]="1" [iscompulsory]="true"></app-currency>
+                      <div class="col-md-6">
+                        <app-product #addproduct [view]="1" ></app-product>
+                      </div>
+                        <div class="col-md-6">
+                            <app-currency #addcurrency [view]="1" ></app-currency>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4">
-                            <app-product #addproduct [view]="1" [iscompulsory]="true"></app-product>
-                        </div>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <app-returnstatus #addreturnstatus></app-returnstatus>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <app-saleordertype #addsaleordertype></app-saleordertype>
                         </div>
                     </div>
@@ -201,15 +206,15 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label class="control-label"> Date <span style="color:red">*</span></label>
-                                <input type="text" class="form-control" name="returnauth_DATE"
+                                <label class="control-label">Auth Date <span style="color:red">*</span></label>
+                                <input type="date" class="form-control" name="returnauth_DATE"
                                     [(ngModel)]="returnauth.returnauth_DATE" maxlength="50" required>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label class="control-label"> Date <span style="color:red">*</span></label>
-                                <input type="text" class="form-control" name="delivery_DATE"
+                                <label class="control-label">Delivery Date <span style="color:red">*</span></label>
+                                <input type="date" class="form-control" name="delivery_DATE"
                                     [(ngModel)]="returnauth.delivery_DATE" maxlength="50" required>
                             </div>
                         </div>
@@ -217,7 +222,7 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label class="control-label"> Rate <span style="color:red">*</span></label>
+                                <label class="control-label">Exchange Rate <span style="color:red">*</span></label>
                                 <input type="text" class="form-control" name="exchange_RATE"
                                     [(ngModel)]="returnauth.exchange_RATE" maxlength="50" required>
                             </div>
@@ -262,31 +267,33 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <app-customer #editcustomer [view]="1" [customerID]="returnauth.customer_ID"
-                                [iscompulsory]="true"></app-customer>
+                                ></app-customer>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <app-customerrefund #editcustomerrefund [view]="1"
                                 [customerrefundID]="returnauth.customerrefund_ID"
-                                [iscompulsory]="true"></app-customerrefund>
-                        </div>
-                        <div class="col-md-4">
-                            <app-currency #editcurrency [view]="1" [currencyID]="returnauth.currency_ID"
-                                [iscompulsory]="true"></app-currency>
+                                ></app-customerrefund>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4">
-                            <app-product #editproduct [view]="1" [productID]="returnauth.product_ID"
-                                [iscompulsory]="true"></app-product>
-                        </div>
-                        <div class="col-md-4">
-                            <app-returnstatus #editreturnstatus [iscompulsory]="true"
+                      <div class="col-md-6">
+                          <app-currency #editcurrency [view]="1" [currencyID]="returnauth.currency_ID"
+                              ></app-currency>
+                      </div>
+                      <div class="col-md-6">
+                        <app-product #editproduct [view]="1" [productID]="returnauth.product_ID"
+                            ></app-product>
+                      </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <app-returnstatus #editreturnstatus
                                 [returnstatusID]="returnauth.returnstatus_ID"></app-returnstatus>
                         </div>
-                        <div class="col-md-4">
-                            <app-saleordertype #editsaleordertype [iscompulsory]="true"
+                        <div class="col-md-6">
+                            <app-saleordertype #editsaleordertype
                                 [saleordertypeID]="returnauth.saleordertype_ID"></app-saleordertype>
                         </div>
                     </div>
@@ -300,15 +307,15 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label class="control-label"> Date <span style="color:red">*</span></label>
-                                <input type="text" class="form-control" name="returnauth_DATE"
+                                <label class="control-label"> Auth Date <span style="color:red">*</span></label>
+                                <input type="date" class="form-control" name="returnauth_DATE"
                                     [(ngModel)]="returnauth.returnauth_DATE" maxlength="50" required>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label class="control-label"> Date <span style="color:red">*</span></label>
-                                <input type="text" class="form-control" name="delivery_DATE"
+                                <label class="control-label">Delivery Date <span style="color:red">*</span></label>
+                                <input type="date" class="form-control" name="delivery_DATE"
                                     [(ngModel)]="returnauth.delivery_DATE" maxlength="50" required>
                             </div>
                         </div>
@@ -316,7 +323,7 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label class="control-label"> Rate <span style="color:red">*</span></label>
+                                <label class="control-label">Exchange Rate <span style="color:red">*</span></label>
                                 <input type="text" class="form-control" name="exchange_RATE"
                                     [(ngModel)]="returnauth.exchange_RATE" maxlength="50" required>
                             </div>
@@ -387,31 +394,31 @@
 
                     <div class="row">
                         <div class="col-md-4">
-                            <app-customer #customer [view]="1" [customerID]="returnauth.customer_ID" [view]="1"
-                                [disabled]="disabled" [iscompulsory]="true"></app-customer>
+                            <app-customer #customer [view]="1" [customerID]="returnauth.customer_ID"
+                                [disabled]="disabled" ></app-customer>
                         </div>
                         <div class="col-md-4">
                             <app-customerrefund #customerrefund [view]="1"
-                                [customerrefundID]="returnauth.customerrefund_ID" [view]="1" [disabled]="disabled"
-                                [iscompulsory]="true"> </app-customerrefund>
+                                [customerrefundID]="returnauth.customerrefund_ID" [disabled]="disabled"
+                                > </app-customerrefund>
                         </div>
                         <div class="col-md-4">
-                            <app-currency #currency [view]="1" [currencyID]="returnauth.currency_ID" [view]="1"
-                                [disabled]="disabled" [iscompulsory]="true"></app-currency>
+                            <app-currency #currency [view]="1" [currencyID]="returnauth.currency_ID"
+                                [disabled]="disabled" ></app-currency>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4">
-                            <app-product #product [view]="1" [productID]="returnauth.product_ID" [view]="1"
-                                [disabled]="disabled" [iscompulsory]="true"></app-product>
+                            <app-product #product [view]="1" [productID]="returnauth.product_ID"
+                                [disabled]="disabled" ></app-product>
                         </div>
                         <div class="col-md-4">
                             <app-returnstatus #returnstatus [returnstatusID]="returnauth.returnstatus_ID"
-                                [disabled]="disabled" [iscompulsory]="true"></app-returnstatus>
+                                [disabled]="disabled" ></app-returnstatus>
                         </div>
                         <div class="col-md-4">
                             <app-saleordertype #saleordertype [saleordertypeID]="returnauth.saleordertype_ID"
-                                [disabled]="disabled" [iscompulsory]="true"></app-saleordertype>
+                                [disabled]="disabled" ></app-saleordertype>
                         </div>
                     </div>
                     <div class="row">
@@ -425,16 +432,16 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label class="control-label">Date<span style="color:red">*</span></label>
-                                <input type="text" class="form-control" name="returnauth_DATE"
+                                <label class="control-label">Auth Date<span style="color:red">*</span></label>
+                                <input type="date" class="form-control" name="returnauth_DATE"
                                     [(ngModel)]="returnauth.returnauth_DATE" [disabled]="disabled" maxlength="50"
                                     required>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label class="control-label">Date<span style="color:red">*</span></label>
-                                <input type="text" class="form-control" name="delivery_DATE"
+                                <label class="control-label">Delivery Date<span style="color:red">*</span></label>
+                                <input type="date" class="form-control" name="delivery_DATE"
                                     [(ngModel)]="returnauth.delivery_DATE" [disabled]="disabled" maxlength="50"
                                     required>
                             </div>
@@ -443,7 +450,7 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label class="control-label"> Rate <span style="color:red">*</span></label>
+                                <label class="control-label">Exchange Rate <span style="color:red">*</span></label>
                                 <input type="text" class="form-control" name="exchange_RATE"
                                     [(ngModel)]="returnauth.exchange_RATE" [disabled]="disabled" maxlength="50"
                                     required>

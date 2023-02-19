@@ -20,7 +20,7 @@ export class CreditcardtransactionComponent implements OnInit {
   @ViewChild("cardtype") cardtype: CardtypeComponent;
   @ViewChild("addcardtype") addcardtype: CardtypeComponent;
   @ViewChild("editcardtype") editcardtype: CardtypeComponent;
-  
+
   @Input()
   view: number = 1;
   @Input()
@@ -33,8 +33,6 @@ export class CreditcardtransactionComponent implements OnInit {
   creditcardtransactionID = null;
   @Input()
   customerID = null;
-  @Input()
-  cardtypeID = null;
 
   @Output() show = new EventEmitter();
   @Output() edit = new EventEmitter();
@@ -47,7 +45,7 @@ export class CreditcardtransactionComponent implements OnInit {
     cardtype_ID: 0,
     customer_ID: 0,
     transaction_DATE: "",
-    transaction_AMOUNT: "",
+    transaction_AMOUNT: null,
     transaction_STATUS: "",
     name_ONCARD: "",
     card_NUMBER: "",
@@ -85,7 +83,7 @@ export class CreditcardtransactionComponent implements OnInit {
       this.creditcardtransactionAdvancedSearch(this.customerID);
     } else if (this.view == 11 && this.customerID && this.disabled == true) {
       this.creditcardtransactionAdvancedSearchAll(this.customerID);
-      
+
     } else if (this.view == 11 || this.view == 1 ) {
       this.creditcardtransactionID = null;
       this.creditcardtransactionsAll = null;
@@ -107,13 +105,13 @@ export class CreditcardtransactionComponent implements OnInit {
 
   cancelView() {
     this.cancel.next();
-  } 
+  }
 
   creditcardtransactionCancel() {
     console.log(this.creditcardtransaction);
     this.disabled = true;
     if (this.creditcardtransaction.creditcardtransaction_ID == 0) {
-      this.router.navigate(["/home/creditcardtransactions"], {});
+      this.router.navigate(["/home/creditcardtransaction"], {});
     }
   }
 
@@ -148,15 +146,15 @@ export class CreditcardtransactionComponent implements OnInit {
   add() {
     this.creditcardtransaction = {
       creditcardtransaction_ID: 0,
-    cardtype_ID: 0,
-    customer_ID: 0,
-    transaction_DATE: "",
-    transaction_AMOUNT: "",
-    transaction_STATUS: "",
-    name_ONCARD: "",
-    card_NUMBER: "",
-    authcode: "",
-    isactive: true,
+      cardtype_ID: 0,
+      customer_ID: 0,
+      transaction_DATE: "",
+      transaction_AMOUNT: null,
+      transaction_STATUS: "",
+      name_ONCARD: "",
+      card_NUMBER: "",
+      authcode: "",
+      isactive: true,
     };
   }
   setcreditcardtransaction(response){
@@ -230,8 +228,8 @@ export class CreditcardtransactionComponent implements OnInit {
     if(this.view == 5){
       creditcardtransaction.customer_ID = this.customer.customerID;
      creditcardtransaction.cardtype_ID = this.cardtype.cardtypeID;
-     
-    } else { 
+
+    } else {
        creditcardtransaction.customer_ID = this.addcustomer.customerID;
       creditcardtransaction.cardtype_ID = this.addcardtype.cardtypeID;
     }
@@ -257,11 +255,11 @@ export class CreditcardtransactionComponent implements OnInit {
     if(this.view == 5){
       creditcardtransaction.customer_ID = this.customer.customerID;
        creditcardtransaction.cardtype_ID = this.cardtype.cardtypeID;
-    } else { 
+    } else {
       creditcardtransaction.customer_ID = this.editcustomer.customerID;
       creditcardtransaction.cardtype_ID = this.editcardtype.cardtypeID;
     }
-    
+
     if (creditcardtransaction.isactive == true) {
       creditcardtransaction.isactive = "Y";
     } else {

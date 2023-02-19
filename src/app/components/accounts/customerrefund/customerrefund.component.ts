@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, Output, ViewChild, EventEmitter } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-
 import { OnFailService } from '../../../services/on-fail.service';
 import { Router } from '@angular/router';
+
 import { CurrencyComponent } from '../currency/currency.component';
 import { CustomerrefundService } from './customerrefund.service';
 import { CustomerComponent } from '../../customers/customer/customer.component';
@@ -16,7 +16,7 @@ import { PostingperiodComponent } from '../../lookups/postingperiod/postingperio
   styleUrls: ['./customerrefund.component.css']
 })
 export class CustomerrefundComponent implements OnInit {
-  @ViewChild(" customer") customer: CustomerComponent;
+  @ViewChild("customer") customer: CustomerComponent;
   @ViewChild("addcustomer") addcustomer: CustomerComponent;
   @ViewChild("editcustomer") editcustomer: CustomerComponent;
 
@@ -24,7 +24,7 @@ export class CustomerrefundComponent implements OnInit {
   @ViewChild("addcurrency") addcurrency: CurrencyComponent;
   @ViewChild("editcurrency") editcurrency: CurrencyComponent;
 
-  @ViewChild(" account") account: AccountComponent;
+  @ViewChild("account") account: AccountComponent;
   @ViewChild("addaccount") addaccount: AccountComponent;
   @ViewChild("editaccount") editaccount: AccountComponent;
 
@@ -52,10 +52,6 @@ export class CustomerrefundComponent implements OnInit {
   accountID = null;
   @Input()
   currencyID = null;
-  @Input()
-  postingperiodID = null;
-  @Input()
-  refundmethodID = null;
 
   @Output() show = new EventEmitter();
   @Output() edit = new EventEmitter();
@@ -101,8 +97,8 @@ export class CustomerrefundComponent implements OnInit {
       this.customerrefundGetAll();
     } else if (this.view == 2 && this.customerrefundsAll == null) {
       this.customerrefundGetAll();
-    } else if (this.view == 22 && (this.currencyID != null)) {
-      this.customerrefundAdvancedSearchAll(this.currencyID);
+    } else if (this.view == 22 && (this.accountID != null)) {
+      this.customerrefundAdvancedSearchAll(this.accountID, 0, 0);
     }
 
     if (this.customerrefundID != 0 && !this.customerrefundID && Number(window.sessionStorage.getItem('customerrefund')) > 0) {
@@ -111,10 +107,10 @@ export class CustomerrefundComponent implements OnInit {
     if (this.view == 5 && this.customerrefundID) {
       window.sessionStorage.setItem("customerrefund", this.customerrefundID);
       this.customerrefundGetOne(this.customerrefundID);
-    } if (this.view == 11 && this.currencyID && this.disabled == false) {
-      this.customerrefundAdvancedSearch(this.currencyID);
-    } else if (this.view == 11 && this.currencyID && this.disabled == true) {
-      this.customerrefundAdvancedSearchAll(this.currencyID);
+    } if (this.view == 11 && this.accountID && this.disabled == false) {
+      this.customerrefundAdvancedSearch(this.accountID, 0, 0);
+    } else if (this.view == 11 && this.accountID && this.disabled == true) {
+      this.customerrefundAdvancedSearchAll(this.accountID, 0, 0);
 
     } else if (this.view == 11 || this.view == 1) {
       this.customerrefundID = null;
@@ -143,7 +139,7 @@ export class CustomerrefundComponent implements OnInit {
     console.log(this.customerrefund);
     this.disabled = true;
     if (this.customerrefund.customerrefund_ID == 0) {
-      this.router.navigate(["/home/customerrefunds"], {});
+      this.router.navigate(["/home/customerrefund"], {});
     }
   }
 
@@ -169,7 +165,7 @@ export class CustomerrefundComponent implements OnInit {
         options: {
           width: 136,
           text: 'Refresh',
-          onClick: this.customerrefundAdvancedSearchAll.bind(this, this.currencyID),
+          onClick: this.customerrefundAdvancedSearchAll.bind(this, this.accountID),
         },
       }
     );
@@ -375,10 +371,14 @@ export class CustomerrefundComponent implements OnInit {
     })
   }
 
-  customerrefundAdvancedSearch(currencyID) {
+  customerrefundAdvancedSearch(currencyID, accountID, customerID) {
     this.currencyID = currencyID;
+    this.accountID = accountID;
+    this.customerID = customerID;
     var search = {
-      currency_ID: currencyID
+      currency_ID: currencyID,
+      account_ID: accountID,
+      customer_ID: customerID
     }
     this.customerrefundservice.advancedSearch(search).subscribe(response => {
       if (response) {
@@ -393,10 +393,14 @@ export class CustomerrefundComponent implements OnInit {
     })
   }
 
-  customerrefundAdvancedSearchAll(currencyID) {
+  customerrefundAdvancedSearchAll(currencyID, accountID, customerID) {
     this.currencyID = currencyID;
+    this.accountID = accountID;
+    this.customerID = customerID;
     var search = {
-      currency_ID: currencyID
+      currency_ID: currencyID,
+      account_ID: accountID,
+      customer_ID: customerID
     }
     this.customerrefundservice.advancedSearchAll(search).subscribe(response => {
       if (response) {

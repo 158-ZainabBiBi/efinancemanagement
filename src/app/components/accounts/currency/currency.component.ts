@@ -1,12 +1,11 @@
 import { Component, OnInit, Input, Output, ViewChild, EventEmitter } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-
 import { OnFailService } from '../../../services/on-fail.service';
 import { Router } from '@angular/router';
+
 import { CountryComponent } from '../../lookups/country/country.component';
 import { CurrencyService } from './currency.service';
 import { CurrencysymbolreplacementComponent } from '../../lookups/currencysymbolreplacement/currencysymbolreplacement.component';
-
 
 @Component({
   selector: 'app-currency',
@@ -17,7 +16,7 @@ export class CurrencyComponent implements OnInit {
   @ViewChild("country") country: CountryComponent;
   @ViewChild("addcountry") addcountry: CountryComponent;
   @ViewChild("editcountry") editcountry:CountryComponent;
-  
+
   @ViewChild("currencysymbolreplacement") currencysymbolreplacement: CurrencysymbolreplacementComponent;
   @ViewChild("addcurrencysymbolreplacement") addcurrencysymbolreplacement: CurrencysymbolreplacementComponent;
   @ViewChild("editcurrencysymbolreplacement") editcurrencysymbolreplacement: CurrencysymbolreplacementComponent;
@@ -39,14 +38,14 @@ export class CurrencyComponent implements OnInit {
   @Output() edit = new EventEmitter();
   @Output() cancel = new EventEmitter();
 
-  currencys = [];
-  currencysAll = [];
+  currencies = [];
+  currenciesAll = [];
   currency = {
     currency_ID: 0,
     country_ID: 0,
     currencysymbolreplacement_ID: 0,
-    ico_CODE: "",
-    exchange_RATE: "",
+    iso_CODE: "",
+    exchange_RATE: null,
     currency_FORMAT: "",
     currency_SYMBOL: "",
     isactive: true,
@@ -60,13 +59,13 @@ export class CurrencyComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.currencys = JSON.parse(window.sessionStorage.getItem('currencys'));
-    this.currencysAll = JSON.parse(window.sessionStorage.getItem('currencysAll'));
-    if (this.view == 1 && this.currencys == null) {
+    this.currencies = JSON.parse(window.sessionStorage.getItem('currencies'));
+    this.currenciesAll = JSON.parse(window.sessionStorage.getItem('currenciesAll'));
+    if (this.view == 1 && this.currencies == null) {
       this.currencyGet();
-    }else if (this.view == 1 && this.disabled == true && this.currencysAll == null) {
+    }else if (this.view == 1 && this.disabled == true && this.currenciesAll == null) {
         this.currencyGetAll();
-    } else if (this. view == 2 && this.currencysAll == null) {
+    } else if (this. view == 2 && this.currenciesAll == null) {
       this.currencyGetAll();
     } else if (this. view == 22 && (this.countryID != null )) {
       this.currencyAdvancedSearchAll(this.countryID);
@@ -82,11 +81,11 @@ export class CurrencyComponent implements OnInit {
       this.currencyAdvancedSearch(this.countryID);
     } else if (this.view == 11 && this.countryID && this.disabled == true) {
       this.currencyAdvancedSearchAll(this.countryID);
-      
+
     } else if (this.view == 11 || this.view == 1 ) {
       this.currencyID = null;
-      this.currencysAll = null;
-      this.currencys = null;
+      this.currenciesAll = null;
+      this.currencies = null;
     }
 
     if (this.currencyID == 0) {
@@ -104,13 +103,13 @@ export class CurrencyComponent implements OnInit {
 
   cancelView() {
     this.cancel.next();
-  } 
+  }
 
   currencyCancel() {
     console.log(this.currency);
     this.disabled = true;
     if (this.currency.currency_ID == 0) {
-      this.router.navigate(["/home/currencys"], {});
+      this.router.navigate(["/home/currency"], {});
     }
   }
 
@@ -147,8 +146,8 @@ export class CurrencyComponent implements OnInit {
       currency_ID: 0,
       country_ID: 0,
       currencysymbolreplacement_ID: 0,
-      ico_CODE: "",
-      exchange_RATE: "",
+      iso_CODE: "",
+      exchange_RATE: null,
       currency_FORMAT: "",
       currency_SYMBOL: "",
       isactive: true,
@@ -168,13 +167,13 @@ export class CurrencyComponent implements OnInit {
     this.edit.next(row);
   }
 
-  setcurrencys(response) {
+  setcurrencies(response) {
     if ((this.view == 1 || this.view == 11)  && this.disabled == false) {
-      this.currencys = response;
-      window.sessionStorage.setItem("currencys", JSON.stringify(this.currencys));
+      this.currencies = response;
+      window.sessionStorage.setItem("currencies", JSON.stringify(this.currencies));
     } else {
-      this.currencysAll = response;
-      window.sessionStorage.setItem("currencysAll", JSON.stringify(this.currencysAll));
+      this.currenciesAll = response;
+      window.sessionStorage.setItem("currenciesAll", JSON.stringify(this.currenciesAll));
     }
     this.cancel.next();
   }
@@ -185,7 +184,7 @@ export class CurrencyComponent implements OnInit {
           if (response.error && response.status) {
             this.toastrservice.warning("Message", " " + response.message);
           } else{
-            this.setcurrencys(this.currencyservice.getAllDetail(response));
+            this.setcurrencies(this.currencyservice.getAllDetail(response));
           }
         }
       }, error => {
@@ -200,7 +199,7 @@ export class CurrencyComponent implements OnInit {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else{
-          this.setcurrencys(this.currencyservice.getAllDetail(response));
+          this.setcurrencies(this.currencyservice.getAllDetail(response));
         }
       }
     }, error => {
@@ -225,8 +224,8 @@ export class CurrencyComponent implements OnInit {
     if(this.view == 5){
       currency.country_ID = this.country.countryID;
       currency.currencysymbolreplacement_ID = this.currencysymbolreplacement.currencysymbolreplacementID;
-     
-    } else { 
+
+    } else {
        currency.country_ID = this.addcountry.countryID;
       currency.currencysymbolreplacement_ID = this.addcurrencysymbolreplacement.currencysymbolreplacementID;
     }
@@ -252,11 +251,11 @@ export class CurrencyComponent implements OnInit {
     if(this.view == 5){
       currency.country_ID = this.country.countryID;
        currency.currencysymbolreplacement_ID = this.currencysymbolreplacement.currencysymbolreplacementID;
-    } else { 
+    } else {
       currency.country_ID = this.editcountry.countryID;
        currency.currencysymbolreplacement_ID = this.editcurrencysymbolreplacement.currencysymbolreplacementID;
     }
-    
+
     if (currency.isactive == true) {
       currency.isactive = "Y";
     } else {
@@ -291,7 +290,7 @@ export class CurrencyComponent implements OnInit {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else{
-          this.setcurrencys(this.currencyservice.getAllDetail(response));
+          this.setcurrencies(this.currencyservice.getAllDetail(response));
         }
       }
     }, error => {
@@ -308,7 +307,7 @@ export class CurrencyComponent implements OnInit {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else{
-          this.setcurrencys(this.currencyservice.getAllDetail(response));
+          this.setcurrencies(this.currencyservice.getAllDetail(response));
         }
       }
     }, error => {
@@ -326,7 +325,7 @@ export class CurrencyComponent implements OnInit {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else{
-          this.setcurrencys(this.currencyservice.getAllDetail(response));
+          this.setcurrencies(this.currencyservice.getAllDetail(response));
         }
       }
     }, error => {
@@ -344,7 +343,7 @@ export class CurrencyComponent implements OnInit {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else{
-          this.setcurrencys(this.currencyservice.getAllDetail(response));
+          this.setcurrencies(this.currencyservice.getAllDetail(response));
         }
       }
     }, error => {
