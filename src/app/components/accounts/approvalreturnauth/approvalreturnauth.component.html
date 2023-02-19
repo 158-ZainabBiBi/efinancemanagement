@@ -301,16 +301,18 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <app-returnauth #returnauth [view]="1" [returnauthID]="approvalreturnauth.returnauth_ID"
-                                [disabled]="disabled" ></app-returnauth>
-                        </div>
-                        <div class="col-md-6">
-                            <app-currency #currency [view]="1" [currencyID]="approvalreturnauth.currency_ID"
-                                [disabled]="disabled" ></app-currency>
-                        </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                          <app-returnauth #returnauth [disabled]="disabled" [returnauthID]="approvalreturnauth.returnauth_ID"></app-returnauth>
+                      </div>
                     </div>
+                      <div class="col-md-6">
+                          <div class="form-group">
+                              <app-currency #currency [disabled]="disabled" [currencyID]="approvalreturnauth.currency_ID"></app-currency>
+                          </div>
+                      </div>
+                  </div>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">

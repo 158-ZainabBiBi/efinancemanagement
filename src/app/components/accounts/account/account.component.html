@@ -361,7 +361,7 @@
                   <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                           <app-accounttype #addaccounttype [view]="1" [disabled]="disabled" [accounttypeID]="account.accounttype_ID"></app-accounttype>
+                           <app-accounttype #accounttype [view]="1" [disabled]="disabled" [accounttypeID]="account.accounttype_ID"></app-accounttype>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -391,7 +391,7 @@
                                     [(ngModel)]="account.account_NAME" name="account_NAME">
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                           <div class="form-group">
                               <label class="control-label form-label">Date
                                   <span style="color: red;">*</span>
@@ -404,12 +404,12 @@
                     <div class="row">
                       <div class="col-md-6">
                         <div class="form-group">
-                            <app-cashflowratetype #addcashflowratetype [disabled]="disabled" [cashflowratetypeID]="account.cashflowratetype_ID"></app-cashflowratetype>
+                            <app-cashflowratetype #cashflowratetype [disabled]="disabled" [cashflowratetypeID]="account.cashflowratetype_ID"></app-cashflowratetype>
                         </div>
                       </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <app-generalratetype #addgeneralratetype [disabled]="disabled" [generalratetypeID]="account.generalratetype_ID"></app-generalratetype>
+                                <app-generalratetype #generalratetype [disabled]="disabled" [generalratetypeID]="account.generalratetype_ID"></app-generalratetype>
                             </div>
                         </div>
                     </div>

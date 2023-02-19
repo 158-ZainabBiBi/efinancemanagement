@@ -2,10 +2,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { OnFailService } from '../../../services/on-fail.service';
 
-import { RouterLinkWithHref } from '@angular/router';
-import { AccountComponent } from '../../../components/accounts/account/account.component';
+import { AccountComponent } from '../../../components/accounts/account/account.component'
 import { AccountService } from '../../../components/accounts/account/account.service';
-import { AccounttypeComponent } from '../../../components/accounts/accounttype/accounttype.component';
+import { Router, RouterLinkWithHref } from '@angular/router';
 
 declare var $: any;
 
@@ -19,28 +18,28 @@ export class AccountsComponent implements OnInit {
   @ViewChild("addaccount") addaccount: AccountComponent;
   @ViewChild("editaccount") editaccount: AccountComponent;
 
-  @ViewChild("accounttypes") accounttypes: AccounttypeComponent;
-  @ViewChild("addaccounttype") addaccounttype: AccounttypeComponent;
-  @ViewChild("editaccounttype") editaccounttype: AccounttypeComponent;
-
   constructor(
     private accountservice: AccountService,
     private toastrservice: ToastrService,
     private onfailservice: OnFailService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
   }
 
+  show(row) {
+    this.router.navigate(["/home/account"], { queryParams: { account: row.data.account_ID } });
+  }
+
   view() {
   }
 
-  addNewAccount() {
-    this.addaccount.add();
-    $("#addaccount").modal("show");
+  addNew() {
+    this.router.navigate(["/home/account"], {});
   }
 
-  editAccount(row) {
+  edit(row) {
     this.editaccount.account = {
       account_ID: row.data.account_ID,
       account_NAME:row.data.account_NAME,
@@ -52,7 +51,6 @@ export class AccountsComponent implements OnInit {
       bankaccount_NUMBER:row.data.bankaccount_NUMBER,
       cashflowratetype_ID:row.data.cashflowratetype,
       generalratetype_ID:row.data.generalratetype,
-
       isactive: row.data.isactive
     };
     if (row.data.isactive=="Y") {
@@ -60,16 +58,11 @@ export class AccountsComponent implements OnInit {
     } else {
       this.editaccount.account.isactive = false;
     }
-    $("#editaccount").modal("show");
+    $("#edit").modal("show");
   }
 
-  cancelAccount() {
-    $("#addaccount").modal("hide");
-    $("#editaccount").modal("hide");
-  }
-
-  addNewAccounttype() {
-    this.addaccounttype.add();
-    $("#addaccounttype").modal("show");
+  cancel() {
+    $("#add").modal("hide");
+    $("#edit").modal("hide");
   }
 }

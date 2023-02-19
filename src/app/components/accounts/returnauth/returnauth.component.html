@@ -24,6 +24,7 @@
         </div>
     </div>
 </div>
+
 <div *ngIf="view==11" class="form-group">
     <label class="custom-label form-label">Return Auth
         <span style="color: red;" [hidden]="disabled" ngIf="iscompulsory==true"></span>
@@ -51,6 +52,7 @@
         </div>
     </div>
 </div>
+
 <div *ngIf="view==2" class="form-group">
     <div class="row">
         <div class="col-lg-12">
@@ -82,7 +84,7 @@
                             ></dxi-column>
                         <dxi-column [width]="200" dataField="returnstatus_ID.description" caption="Return Status"
                             cssClass="myClass" alignment="center" ></dxi-column>
-                        <dxi-column [width]="200" dataField="saleordertype_ID.description" caption="Saleor Dertype"
+                        <dxi-column [width]="200" dataField="saleordertype_ID.description" caption="Sale Order Type"
                             cssClass="myClass" alignment="center" ></dxi-column>
                         <dxi-column dataField="returnauth_CODE" caption="Code" cssClass="myClass"
                             alignment="left"></dxi-column>
@@ -108,6 +110,7 @@
         </div>
     </div>
 </div>
+
 <div *ngIf="view==22" class="form-group">
     <div class="outer-div">
         <div class="grid-wrapper">
@@ -135,7 +138,7 @@
                     ></dxi-column>
                 <dxi-column [width]="200" dataField="returnstatus_ID.description" caption="Return Status"
                     cssClass="myClass" alignment="center" ></dxi-column>
-                <dxi-column [width]="200" dataField="saleordertype_ID.description" caption="Saleor Dertype"
+                <dxi-column [width]="200" dataField="saleordertype_ID.description" caption="Sale Order Type"
                     cssClass="myClass" alignment="center" ></dxi-column>
                 <dxi-column dataField="returnauth_CODE" caption="Code" cssClass="myClass"
                     alignment="left"></dxi-column>
@@ -159,6 +162,7 @@
         </div>
     </div>
 </div>
+
 <div *ngIf="view==3" class="form-group">
     <form action="" class="form" (ngSubmit)="f.form.valid && returnauthAdd(returnauth)" #f="ngForm" novalidate>
         <div class="modal-dialog modal-xl" role="document">
@@ -253,6 +257,7 @@
         </div>
     </form>
 </div>
+
 <div *ngIf="view==4" class="form-group">
     <form action="" class="form" (ngSubmit)="f.form.valid && returnauthUpdate(returnauth)" #f="ngForm" novalidate>
         <div class="modal-dialog modal-xl" role="document">
@@ -367,145 +372,144 @@
         </div>
     </form>
 </div>
-<div *ngIf="view==5" class="form-group">
-    <div class="card-primary card">
-        <div class="card-header">
-            <div class="align-items-center row">
-                <div class="col" *ngIf="returnauth.returnauth_ID==0">
-                    <a href="javascript:void" aria-controls="collapse-returnauthinfo1" aria-expanded="true"
-                        class="card-title">Add New Return Auth
-                    </a>
-                </div>
-                <div class="col" *ngIf="returnauth.returnauth_ID!=0 && disabled==false">
-                    <a href="javascript:void" aria-controls="collapse-returnauthinfo1" aria-expanded="true"
-                        class="card-title">Edit Return Auth
-                    </a>
-                </div>
-                <div class="col" *ngIf="returnauth.returnauth_ID!=0 && disabled==true">
-                    <a href="javascript:void" aria-controls="collapse-returnauthinfo1" aria-expanded="true"
-                        class="card-title">Return Auth Detail
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="card-body">
-            <div class="row">
-                <div class="col-lg-12">
 
-                    <div class="row">
-                        <div class="col-md-4">
-                            <app-customer #customer [view]="1" [customerID]="returnauth.customer_ID"
-                                [disabled]="disabled" ></app-customer>
-                        </div>
-                        <div class="col-md-4">
-                            <app-customerrefund #customerrefund [view]="1"
-                                [customerrefundID]="returnauth.customerrefund_ID" [disabled]="disabled"
-                                > </app-customerrefund>
-                        </div>
-                        <div class="col-md-4">
-                            <app-currency #currency [view]="1" [currencyID]="returnauth.currency_ID"
-                                [disabled]="disabled" ></app-currency>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <app-product #product [view]="1" [productID]="returnauth.product_ID"
-                                [disabled]="disabled" ></app-product>
-                        </div>
-                        <div class="col-md-4">
-                            <app-returnstatus #returnstatus [returnstatusID]="returnauth.returnstatus_ID"
-                                [disabled]="disabled" ></app-returnstatus>
-                        </div>
-                        <div class="col-md-4">
-                            <app-saleordertype #saleordertype [saleordertypeID]="returnauth.saleordertype_ID"
-                                [disabled]="disabled" ></app-saleordertype>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label class="control-label"> COde <span style="color:red">*</span></label>
-                                <input type="text" class="form-control" name="returnauth_CODE"
-                                    [(ngModel)]="returnauth.returnauth_CODE" [disabled]="disabled" maxlength="50"
-                                    required>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label class="control-label">Auth Date<span style="color:red">*</span></label>
-                                <input type="date" class="form-control" name="returnauth_DATE"
-                                    [(ngModel)]="returnauth.returnauth_DATE" [disabled]="disabled" maxlength="50"
-                                    required>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label class="control-label">Delivery Date<span style="color:red">*</span></label>
-                                <input type="date" class="form-control" name="delivery_DATE"
-                                    [(ngModel)]="returnauth.delivery_DATE" [disabled]="disabled" maxlength="50"
-                                    required>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label class="control-label">Exchange Rate <span style="color:red">*</span></label>
-                                <input type="text" class="form-control" name="exchange_RATE"
-                                    [(ngModel)]="returnauth.exchange_RATE" [disabled]="disabled" maxlength="50"
-                                    required>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label class="control-label"> Rate <span style="color:red">*</span></label>
-                                <input type="text" class="form-control" name="rate" [(ngModel)]="returnauth.rate"
-                                    [disabled]="disabled" maxlength="50" required>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label class="control-label"> Discount <span style="color:red">*</span></label>
-                                <input type="text" class="form-control" name="discount"
-                                    [(ngModel)]="returnauth.discount" [disabled]="disabled" maxlength="50" required>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6" *ngIf="returnauth.returnauth_ID!=0">
-                            <div class="form-group">
-                                <div class="checkbox">
-                                    <label class="control-label">
-                                        <input type="checkbox" [checked]="returnauth.isactive"
-                                            [(ngModel)]="returnauth.isactive" [disabled]="disabled" name="isactive">
-                                        Active
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <button *ngIf="returnauth.returnauth_ID!=0 && disabled==true" (click)="editView()"
-                                id="cancel" class="btn btn-primary" style="float: right;"> Edit
-                            </button>
-                            <button *ngIf="disabled==false" type="button" (click)='returnauthCancel()'
-                                style="float: right;" class="btn btn-light" data-dismiss="modal"> Cancel
-                            </button>
-                            <button *ngIf="returnauth.returnauth_ID!=0 && disabled==false" type="button"
-                                data-dismiss="modal" style=" margin-right: 10px; float: right;"
-                                (click)='returnauthUpdate(returnauth)' class="btn btn-primary">
-                                Update
-                            </button>
-                            <button *ngIf="returnauth.returnauth_ID==0" type="button" data-dismiss="modal"
-                                style=" margin-right: 10px; float: right;" (click)='returnauthAdd(returnauth)'
-                                class="btn btn-primary">
-                                Save
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<div *ngIf="view==5" class="form-group">
+  <div class="card-primary card">
+      <div class="card-header">
+          <div class="align-items-center row">
+              <div class="col" *ngIf="returnauth.returnauth_ID==0">
+                  <a href="javascript:void" aria-controls="collapse-returnauthinfo1" aria-expanded="true"
+                      class="card-title">Add New Return Auth
+                  </a>
+              </div>
+              <div class="col" *ngIf="returnauth.returnauth_ID!=0 && disabled==false">
+                  <a href="javascript:void" aria-controls="collapse-returnauthinfo1" aria-expanded="true"
+                      class="card-title">Edit Return Auth
+                  </a>
+              </div>
+              <div class="col" *ngIf="returnauth.returnauth_ID!=0 && disabled==true">
+                  <a href="javascript:void" aria-controls="collapse-returnauthinfo1" aria-expanded="true"
+                      class="card-title">Return Auth
+                  </a>
+              </div>
+          </div>
+      </div>
+      <div class="card-body">
+          <div class="row">
+              <div class="col-lg-12">
+                  <div class="row">
+                      <div class="col-md-4">
+                          <app-customer #customer [view]="1" [customerID]="returnauth.customer_ID"
+                          [disabled]="disabled" ></app-customer>
+                      </div>
+                      <div class="col-md-4">
+                          <app-customerrefund #customerrefund [view]="1" [customerrefundID]="returnauth.customerrefund_ID"
+                          [disabled]="disabled" ></app-customerrefund>
+                      </div>
+                      <div class="col-md-4">
+                          <app-currency #currency [view]="1" [currencyID]="returnauth.currency_ID" [disabled]="disabled"></app-currency>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-md-4">
+                          <app-product #product [view]="1" [productID]="returnauth.product_ID"
+                              [disabled]="disabled" ></app-product>
+                      </div>
+                      <div class="col-md-4">
+                          <app-returnstatus #returnstatus [returnstatusID]="returnauth.returnstatus_ID"
+                              [disabled]="disabled" ></app-returnstatus>
+                      </div>
+                      <div class="col-md-4">
+                          <app-saleordertype #saleordertype [saleordertypeID]="returnauth.saleordertype_ID"
+                              [disabled]="disabled" ></app-saleordertype>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-md-4">
+                          <div class="form-group">
+                              <label class="control-label"> COde <span style="color:red">*</span></label>
+                              <input type="text" class="form-control" name="returnauth_CODE"
+                                  [(ngModel)]="returnauth.returnauth_CODE" [disabled]="disabled" maxlength="50"
+                                  required>
+                          </div>
+                      </div>
+                      <div class="col-md-4">
+                          <div class="form-group">
+                              <label class="control-label">Auth Date<span style="color:red">*</span></label>
+                              <input type="date" class="form-control" name="returnauth_DATE"
+                                  [(ngModel)]="returnauth.returnauth_DATE" [disabled]="disabled" maxlength="50"
+                                  required>
+                          </div>
+                      </div>
+                      <div class="col-md-4">
+                          <div class="form-group">
+                              <label class="control-label">Delivery Date<span style="color:red">*</span></label>
+                              <input type="date" class="form-control" name="delivery_DATE"
+                                  [(ngModel)]="returnauth.delivery_DATE" [disabled]="disabled" maxlength="50"
+                                  required>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-md-4">
+                          <div class="form-group">
+                              <label class="control-label">Exchange Rate <span style="color:red">*</span></label>
+                              <input type="text" class="form-control" name="exchange_RATE"
+                                  [(ngModel)]="returnauth.exchange_RATE" [disabled]="disabled" maxlength="50"
+                                  required>
+                          </div>
+                      </div>
+                      <div class="col-md-4">
+                          <div class="form-group">
+                              <label class="control-label"> Rate <span style="color:red">*</span></label>
+                              <input type="text" class="form-control" name="rate" [(ngModel)]="returnauth.rate"
+                                  [disabled]="disabled" maxlength="50" required>
+                          </div>
+                      </div>
+                      <div class="col-md-4">
+                          <div class="form-group">
+                              <label class="control-label"> Discount <span style="color:red">*</span></label>
+                              <input type="text" class="form-control" name="discount"
+                                  [(ngModel)]="returnauth.discount" [disabled]="disabled" maxlength="50" required>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-md-6" *ngIf="returnauth.returnauth_ID!=0">
+                          <div class="form-group">
+                              <div class="checkbox">
+                                  <label class="control-label">
+                                      <input type="checkbox" [checked]="returnauth.isactive"
+                                          [(ngModel)]="returnauth.isactive" [disabled]="disabled"
+                                          name="isactive">
+                                      Active
+                                  </label>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-md-12">
+                          <button *ngIf="returnauth.returnauth_ID!=0 && disabled==true"
+                              (click)="editView()" id="cancel" class="btn btn-primary" style="float: right;"> Edit
+                          </button>
+                          <button *ngIf="disabled==false" type="button" (click)='returnauthCancel()'
+                              style="float: right;" class="btn btn-light" data-dismiss="modal"> Cancel
+                          </button>
+                          <button *ngIf="returnauth.returnauth_ID!=0 && disabled==false" type="button"
+                              data-dismiss="modal" style=" margin-right: 10px; float: right;"
+                              (click)='returnauthUpdate(returnauth)' class="btn btn-primary">
+                              Update
+                          </button>
+                          <button *ngIf="returnauth.returnauth_ID==0" type="button"
+                              data-dismiss="modal" style=" margin-right: 10px; float: right;"
+                              (click)='returnauthAdd(returnauth)' class="btn btn-primary">
+                              Save
+                          </button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
 </div>

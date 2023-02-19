@@ -52,7 +52,6 @@ import { PostingperiodComponent } from'../../components/lookups/postingperiod/po
 import { RefundmethodComponent } from'../../components/lookups/refundmethod/refundmethod.component';
 import { CurrencysymbolreplacementComponent } from'../../components/lookups/currencysymbolreplacement/currencysymbolreplacement.component';
 
-
 import { AccountsComponent } from '../accounts/accounts/accounts.component';
 import { AccounttypesComponent } from '../accounts/accounttypes/accounttypes.component';
 import { ApprovalreturnauthsComponent } from '../accounts/approvalreturnauths/approvalreturnauths.component';
@@ -63,6 +62,17 @@ import { CustomerrefundsComponent } from '../accounts/customerrefunds/customerre
 import { ExpensecategoriesComponent } from '../accounts/expensecategories/expensecategories.component';
 import { RecievereturnauthsComponent } from '../accounts/recievereturnauths/recievereturnauths.component';
 import { ReturnauthsComponent } from '../accounts/returnauths/returnauths.component';
+
+import { ViewaccountComponent } from '../accounts/accounts/viewaccount/viewaccount.component';
+import { ViewaccounttypeComponent } from '../accounts/accounttypes/viewaccounttype/viewaccounttype.component';
+import { ViewapprovalComponent } from '../accounts/approvalreturnauths/viewapproval/viewapproval.component';
+import { ViewrecieveComponent } from '../accounts/recievereturnauths/viewrecieve/viewrecieve.component';
+import { ViewreturnComponent } from '../accounts/returnauths/viewreturn/viewreturn.component';
+import { ViewcurrencyComponent } from '../accounts/currencies/viewcurrency/viewcurrency.component';
+import { ViewexchangerateComponent } from '../accounts/currencyexchangerates/viewexchangerate/viewexchangerate.component';
+import { ViewtransactionComponent } from '../accounts/creditcardtransactions/viewtransaction/viewtransaction.component';
+import { ViewrefundComponent } from '../accounts/customerrefunds/viewrefund/viewrefund.component';
+import { ViewexpenseComponent } from '../accounts/expensecategories/viewexpense/viewexpense.component';
 
 @NgModule({
   imports: [
@@ -125,7 +135,18 @@ import { ReturnauthsComponent } from '../accounts/returnauths/returnauths.compon
     CustomerrefundsComponent,
     ExpensecategoriesComponent,
     RecievereturnauthsComponent,
-    ReturnauthsComponent
+    ReturnauthsComponent,
+
+    ViewaccountComponent,
+    ViewaccounttypeComponent,
+    ViewapprovalComponent,
+    ViewrecieveComponent,
+    ViewreturnComponent,
+    ViewcurrencyComponent,
+    ViewexchangerateComponent,
+    ViewtransactionComponent,
+    ViewrefundComponent,
+    ViewexpenseComponent
   ],
 })
 export class HomeModule {
