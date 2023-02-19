@@ -3,9 +3,9 @@ import { ToastrService } from 'ngx-toastr';
 import { OnFailService } from '../../../services/on-fail.service';
 import { Router } from '@angular/router';
 
+import { ReturnauthService } from './returnauth.service';
 import { CurrencyComponent } from '../currency/currency.component';
 import { CustomerComponent } from '../../customers/customer/customer.component';
-import { ReturnauthService } from './returnauth.service';
 import { ProductComponent } from '../../products/product/product.component';
 import { ReturnstatusComponent } from '../../lookups/returnstatus/returnstatus.component';
 import { SaleordertypeComponent } from '../../lookups/saleordertype/saleordertype.component';
@@ -17,6 +17,10 @@ import { CustomerrefundComponent } from '../customerrefund/customerrefund.compon
   styleUrls: ['./returnauth.component.css']
 })
 export class ReturnauthComponent implements OnInit {
+  @ViewChild("customerrefund") customerrefund: CustomerrefundComponent;
+  @ViewChild("addcustomerrefund") addcustomerrefund: CustomerrefundComponent;
+  @ViewChild("editcustomerrefund") editcustomerrefund: CustomerrefundComponent;
+
   @ViewChild("customer") customer: CustomerComponent;
   @ViewChild("addcustomer") addcustomer: CustomerComponent;
   @ViewChild("editcustomer") editcustomer: CustomerComponent;
@@ -28,10 +32,6 @@ export class ReturnauthComponent implements OnInit {
   @ViewChild("product") product: ProductComponent;
   @ViewChild("addproduct") addproduct: ProductComponent;
   @ViewChild("editproduct") editproduct: ProductComponent;
-
-  @ViewChild("customerrefund") customerrefund: CustomerrefundComponent;
-  @ViewChild("addcustomerrefund") addcustomerrefund: CustomerrefundComponent;
-  @ViewChild("editcustomerrefund") editcustomerrefund: CustomerrefundComponent;
 
   @ViewChild("returnstatus") returnstatus: ReturnstatusComponent;
   @ViewChild("addreturnstatus") addreturnstatus: ReturnstatusComponent;
@@ -52,13 +52,13 @@ export class ReturnauthComponent implements OnInit {
   @Input()
   returnauthID = null;
   @Input()
-  customerID = null;
+  customerrefundID = null;
   @Input()
   currencyID = null;
   @Input()
-  productID  = null;
+  customerID = null;
   @Input()
-  customerrefundID  = null;
+  productID = null;
 
   @Output() show = new EventEmitter();
   @Output() edit = new EventEmitter();
@@ -68,8 +68,8 @@ export class ReturnauthComponent implements OnInit {
   returnauthsAll = [];
   returnauth = {
     returnauth_ID: 0,
-    customer_ID: 0,
     customerrefund_ID: 0,
+    customer_ID: 0,
     currency_ID: 0,
     product_ID: 0,
     returnstatus_ID: 0,
@@ -82,6 +82,7 @@ export class ReturnauthComponent implements OnInit {
     discount: null,
     isactive: true,
   }
+
   constructor(
     private returnauthservice: ReturnauthService,
     private toastrservice: ToastrService,
@@ -94,26 +95,26 @@ export class ReturnauthComponent implements OnInit {
     this.returnauthsAll = JSON.parse(window.sessionStorage.getItem('returnauthsAll'));
     if (this.view == 1 && this.returnauths == null) {
       this.returnauthGet();
-    } else if (this.view == 1 && this.disabled == true && this.returnauthsAll == null) {
+    }else if (this.view == 1 && this.disabled == true && this.returnauthsAll == null) {
+        this.returnauthGetAll();
+    } else if (this. view == 2 && this.returnauthsAll == null) {
       this.returnauthGetAll();
-    } else if (this.view == 2 && this.returnauthsAll == null) {
-      this.returnauthGetAll();
-    } else if (this.view == 22 && (this.customerID != null)) {
-      this.returnauthAdvancedSearchAll(this.customerID,0,0,0);
+    } else if (this. view == 22 && (this.customerrefundID != null )) {
+      this.returnauthAdvancedSearchAll(this.customerrefundID,0,0,0);
     }
 
-    if (this.returnauthID != 0 && !this.returnauthID && Number(window.sessionStorage.getItem('returnauth')) > 0) {
+    if (this.returnauthID != 0 && !this.returnauthID && Number(window.sessionStorage.getItem('returnauth'))>0) {
       this.returnauthID = Number(window.sessionStorage.getItem('returnauth'));
     }
     if (this.view == 5 && this.returnauthID) {
       window.sessionStorage.setItem("returnauth", this.returnauthID);
       this.returnauthGetOne(this.returnauthID);
-    } if (this.view == 11 && this.customerID && this.disabled == false) {
-      this.returnauthAdvancedSearch(this.customerID,0,0,0);
-    } else if (this.view == 11 && this.customerID && this.disabled == true) {
-      this.returnauthAdvancedSearchAll(this.customerID,0,0,0);
+    } if (this.view == 11 && this.customerrefundID && this.disabled == false) {
+      this.returnauthAdvancedSearch(this.customerrefundID,0,0,0);
+    } else if (this.view == 11 && this.customerrefundID && this.disabled == true) {
+      this.returnauthAdvancedSearchAll(this.customerrefundID,0,0,0);
 
-    } else if (this.view == 11 || this.view == 1) {
+    } else if (this.view == 11 || this.view == 1 ) {
       this.returnauthID = null;
       this.returnauthsAll = null;
       this.returnauths = null;
@@ -166,7 +167,7 @@ export class ReturnauthComponent implements OnInit {
         options: {
           width: 136,
           text: 'Refresh',
-          onClick: this.returnauthAdvancedSearchAll.bind(this, this.customerID),
+          onClick: this.returnauthAdvancedSearchAll.bind(this, this.customerrefundID),
         },
       }
     );
@@ -175,8 +176,8 @@ export class ReturnauthComponent implements OnInit {
   add() {
     this.returnauth = {
       returnauth_ID: 0,
-      customer_ID: 0,
       customerrefund_ID: 0,
+      customer_ID: 0,
       currency_ID: 0,
       product_ID: 0,
       returnstatus_ID: 0,

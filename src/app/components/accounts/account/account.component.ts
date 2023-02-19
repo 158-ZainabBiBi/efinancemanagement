@@ -71,26 +71,26 @@ export class AccountComponent implements OnInit {
     this.accountsAll = JSON.parse(window.sessionStorage.getItem('accountsAll'));
     if (this.view == 1 && this.accounts == null) {
       this.accountGet();
-    } else if (this.view == 1 && this.disabled == true && this.accountsAll == null) {
+    }else if (this.view == 1 && this.disabled == true && this.accountsAll == null) {
+        this.accountGetAll();
+    } else if (this. view == 2 && this.accountsAll == null) {
       this.accountGetAll();
-    } else if (this.view == 2 && this.accountsAll == null) {
-      this.accountGetAll();
-    } else if (this.view == 22 && (this.accountID != null)) {
-      this.accountAdvancedSearchAll(this.accountID);
+    } else if (this. view == 22 && (this.accounttypeID != null )) {
+      this.accountAdvancedSearchAll(this.accounttypeID);
     }
 
-    if (this.accountID != 0 && !this.accountID && Number(window.sessionStorage.getItem('account')) > 0) {
+    if (this.accountID != 0 && !this.accountID && Number(window.sessionStorage.getItem('account'))>0) {
       this.accountID = Number(window.sessionStorage.getItem('account'));
     }
     if (this.view == 5 && this.accountID) {
       window.sessionStorage.setItem("account", this.accountID);
       this.accountGetOne(this.accountID);
-    } if (this.view == 11 && this.accountID && this.disabled == false) {
-      this.accountAdvancedSearch(this.accountID);
-    } else if (this.view == 11 && this.accountID && this.disabled == true) {
-      this.accountAdvancedSearchAll(this.accountID);
+    } if (this.view == 11 && this.accounttypeID && this.disabled == false) {
+      this.accountAdvancedSearch(this.accounttypeID);
+    } else if (this.view == 11 && this.accounttypeID && this.disabled == true) {
+      this.accountAdvancedSearchAll(this.accounttypeID);
 
-    } else if (this.view == 11 || this.view == 1) {
+    } else if (this.view == 11 || this.view == 1 ) {
       this.accountID = null;
       this.accountsAll = null;
       this.accounts = null;
