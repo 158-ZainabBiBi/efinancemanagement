@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { OnFailService } from '../../../services/on-fail.service';
+import { RouterLinkWithHref } from '@angular/router';
 
-import { CurrencyComponent } from '../../../components/accounts/currency/currency.component'
-import { CurrencyService } from '../../../components/accounts/currency/currency.service';
-import { Router, RouterLinkWithHref } from '@angular/router';
+import { CurrencyComponent } from 'src/app/components/accounts/currency/currency.component';
+import { CurrencyService } from 'src/app/components/accounts/currency/currency.service';
 
 declare var $: any;
 
@@ -22,21 +22,17 @@ export class CurrenciesComponent implements OnInit {
     private currencieservice: CurrencyService,
     private toastrservice: ToastrService,
     private onfailservice: OnFailService,
-    private router: Router,
   ) { }
 
   ngOnInit(): void {
-  }
-
-  show(row) {
-    this.router.navigate(["/home/currency"], { queryParams: { currency: row.data.currency_ID } });
   }
 
   view() {
   }
 
   addNew() {
-    this.router.navigate(["/home/currency"], {});
+    this.addcurrency.add();
+    $("#add").modal("show");
   }
 
   edit(row) {
@@ -62,4 +58,5 @@ export class CurrenciesComponent implements OnInit {
     $("#add").modal("hide");
     $("#edit").modal("hide");
   }
+
 }

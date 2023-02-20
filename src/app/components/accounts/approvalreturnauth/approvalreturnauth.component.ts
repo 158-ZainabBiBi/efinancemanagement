@@ -1,11 +1,11 @@
 import { Component, OnInit, Input, Output, ViewChild, EventEmitter } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
-
-import { OnFailService } from '../../../services/on-fail.service';
 import { Router } from '@angular/router';
-import { ApprovalreturnauthService } from './approvalreturnauth.service';
-import { ReturnauthComponent } from '../returnauth/returnauth.component';
+import { ToastrService } from 'ngx-toastr';
+import { OnFailService } from '../../../services/on-fail.service';
+
 import { CurrencyComponent } from '../currency/currency.component';
+import { ReturnauthComponent } from '../returnauth/returnauth.component';
+import { ApprovalreturnauthService } from './approvalreturnauth.service';
 
 @Component({
   selector: 'app-approvalreturnauth',
@@ -30,15 +30,16 @@ export class ApprovalreturnauthComponent implements OnInit {
   @Input()
   all: boolean = false;
   @Input()
-  approvalreturnauthID = null;
-  @Input()
   returnauthID = null;
   @Input()
   currencyID = null;
+  @Input()
+  approvalreturnauthID = null;
 
-  @Output() show = new EventEmitter();
   @Output() edit = new EventEmitter();
   @Output() cancel = new EventEmitter();
+  @Output() show = new EventEmitter();
+
 
   approvalreturnauths = [];
   approvalreturnauthsAll = [];
@@ -49,68 +50,47 @@ export class ApprovalreturnauthComponent implements OnInit {
     approvalreturnauth_AMOUNT: null,
     approvalreturnauth_DATE: "",
     isapproved: true,
-    isactive: true,
+    isactive: true
   }
 
   constructor(
     private approvalreturnauthservice: ApprovalreturnauthService,
     private toastrservice: ToastrService,
     private onfailservice: OnFailService,
-    private router: Router,
+    private router : Router,
   ) { }
 
   ngOnInit(): void {
     this.approvalreturnauths = JSON.parse(window.sessionStorage.getItem('approvalreturnauths'));
     this.approvalreturnauthsAll = JSON.parse(window.sessionStorage.getItem('approvalreturnauthsAll'));
-    if (this.view == 1 && this.approvalreturnauths == null) {
+    if (this.view == 1 && this.disabled == false && this.approvalreturnauths == null) {
       this.approvalreturnauthGet();
     } else if (this.view == 1 && this.disabled == true && this.approvalreturnauthsAll == null) {
       this.approvalreturnauthGetAll();
-    } else if (this.view == 2 && this.approvalreturnauthsAll == null) {
+    } else if (this. view == 2 && this.approvalreturnauthsAll == null) {
       this.approvalreturnauthGetAll();
-    } else if (this.view == 22 && (this.returnauthID != null)) {
-      this.approvalreturnauthAdvancedSearchAll(this.returnauthID, 0);
     }
 
-    if (this.approvalreturnauthID != 0 && !this.approvalreturnauthID && Number(window.sessionStorage.getItem('approvalreturnauth')) > 0) {
+    if (this.approvalreturnauthID != 0 && !this.approvalreturnauthID && Number(window.sessionStorage.getItem('approvalreturnauth'))>0) {
       this.approvalreturnauthID = Number(window.sessionStorage.getItem('approvalreturnauth'));
+    }  else if (this. view == 22 && (this.returnauthID != null )) {
+      this.approvalreturnauthAdvancedSearchAll(this.returnauthID);
     }
+
     if (this.view == 5 && this.approvalreturnauthID) {
       window.sessionStorage.setItem("approvalreturnauth", this.approvalreturnauthID);
       this.approvalreturnauthGetOne(this.approvalreturnauthID);
-    } if (this.view == 11 && this.returnauthID && this.disabled == false) {
-      this.approvalreturnauthAdvancedSearch(this.returnauthID, 0);
-    } else if (this.view == 11 && this.returnauthID && this.disabled == true) {
-      this.approvalreturnauthAdvancedSearchAll(this.returnauthID, 0);
+    }
 
-    } else if (this.view == 11 || this.view == 1) {
+    if (this.view == 11 && this.returnauthID && this.disabled == false) {
+      this.approvalreturnauthAdvancedSearch(this.returnauthID);
+    } else if (this.view == 11 && this.returnauthID && this.disabled == true) {
+      this.approvalreturnauthAdvancedSearchAll(this.returnauthID);
+
+    } else if (this.view == 11|| this.view == 1) {
       this.approvalreturnauthID = null;
       this.approvalreturnauthsAll = null;
       this.approvalreturnauths = null;
-    }
-
-    if (this.approvalreturnauthID == 0) {
-      this.approvalreturnauthID = null;
-    }
-  }
-
-  showView(row) {
-    this.show.next(row);
-  }
-
-  editView() {
-    this.disabled = false;
-  }
-
-  cancelView() {
-    this.cancel.next();
-  }
-
-  approvalreturnauthCancel() {
-    console.log(this.approvalreturnauth);
-    this.disabled = true;
-    if (this.approvalreturnauth.approvalreturnauth_ID == 0) {
-      this.router.navigate(["/home/approvalreturnauth"], {});
     }
   }
 
@@ -129,6 +109,7 @@ export class ApprovalreturnauthComponent implements OnInit {
   }
 
   onToolbarPreparingAdvanced(e) {
+    console.log("onToolbarPreparingAdvanced");
     e.toolbarOptions.items.unshift(
       {
         location: 'after',
@@ -150,25 +131,48 @@ export class ApprovalreturnauthComponent implements OnInit {
       approvalreturnauth_AMOUNT: null,
       approvalreturnauth_DATE: "",
       isapproved: true,
-      isactive: true,
+      isactive: true
     };
-  }
-  setapprovalreturnauth(response) {
-    if (response.isactive == "Y") {
-      response.isactive = true;
-    } else {
-      response.isactive = false;
-    }
-    this.approvalreturnauth = response;
-    this.disabled = true;
   }
 
   update(row) {
     this.edit.next(row);
   }
 
-  setapprovalreturnauths(response) {
-    if ((this.view == 1 || this.view == 11) && this.disabled == false) {
+  editView() {
+    this.disabled = false;
+  }
+
+  showView(row) {
+    this.show.next(row);
+  }
+
+  cancelView() {
+    this.cancel.next();
+  }
+
+  approvalreturnauthEdit(){
+    this.disabled = false;
+  }
+
+  approvalreturnauthCancel() {
+    this.disabled = true;
+    if (this.approvalreturnauth.approvalreturnauth_ID==0) {
+      this.router.navigate(["/home/approvalreturnauths"], {});
+    }
+  }
+
+  setApprovalreturnauth(response) {
+    if (response.isactive == "Y") {
+      response.isactive = true;
+    } else {
+      response.isactive = false;
+    }
+    this.approvalreturnauth = response;
+  }
+
+  setApprovalreturnauths(response) {
+    if ((this.view == 1 || this.view == 11)  && this.disabled == false) {
       this.approvalreturnauths = response;
       window.sessionStorage.setItem("approvalreturnauths", JSON.stringify(this.approvalreturnauths));
     } else {
@@ -183,52 +187,55 @@ export class ApprovalreturnauthComponent implements OnInit {
       if (response) {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
-        } else {
-          this.setapprovalreturnauths(this.approvalreturnauthservice.getAllDetail(response));
+        } else{
+          this.setApprovalreturnauths(this.approvalreturnauthservice.getAllDetail(response));
         }
       }
     }, error => {
       this.onfailservice.onFail(error);
     })
   }
-
 
   approvalreturnauthGetAll() {
     this.approvalreturnauthservice.getAll().subscribe(response => {
       if (response) {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
-        } else {
-          this.setapprovalreturnauths(this.approvalreturnauthservice.getAllDetail(response));
+        } else{
+          this.setApprovalreturnauths(this.approvalreturnauthservice.getAllDetail(response));
         }
       }
     }, error => {
       this.onfailservice.onFail(error);
     })
   }
+
   approvalreturnauthGetOne(id) {
+    this.disabled = true;
     this.approvalreturnauthservice.getOne(id).subscribe(response => {
       if (response) {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
-        } else {
-          this.setapprovalreturnauth(this.approvalreturnauthservice.getDetail(response));
+        } else{
+          this.setApprovalreturnauth(this.approvalreturnauthservice.getDetail(response));
         }
       }
     }, error => {
       this.onfailservice.onFail(error);
     })
   }
+
   approvalreturnauthAdd(approvalreturnauth) {
-    approvalreturnauth.isactive = "Y";
-    if (this.view == 5) {
+    approvalreturnauth.isactive="Y";
+
+    if(this.view == 5){
       approvalreturnauth.returnauth_ID = this.returnauth.returnauthID;
       approvalreturnauth.currency_ID = this.currency.currencyID;
-
-    } else {
+    }else{
       approvalreturnauth.returnauth_ID = this.addreturnauth.returnauthID;
       approvalreturnauth.currency_ID = this.addcurrency.currencyID;
     }
+
     this.approvalreturnauthservice.add(approvalreturnauth).subscribe(response => {
       if (response) {
         if (response.error && response.status) {
@@ -236,7 +243,7 @@ export class ApprovalreturnauthComponent implements OnInit {
         } else if (response.approvalreturnauth_ID) {
           this.toastrservice.success("Success", "New approvalreturnauth Added");
           this.approvalreturnauthGetAll();
-          this.setapprovalreturnauth(this.approvalreturnauthservice.getDetail(response));
+          this.setApprovalreturnauth(response);
           this.disabled = true;
         } else {
           this.toastrservice.error("Some thing went wrong");
@@ -248,14 +255,13 @@ export class ApprovalreturnauthComponent implements OnInit {
   }
 
   approvalreturnauthUpdate(approvalreturnauth) {
-    if (this.view == 5) {
-      approvalreturnauth.returnauth_ID = this.returnauth.returnauthID;
-      approvalreturnauth.currency_ID = this.currency.currencyID;
-    } else {
-      approvalreturnauth.returnauth_ID = this.editreturnauth.returnauthID;
-      approvalreturnauth.currency_ID = this.editcurrency.currencyID;
+     if(this.view == 5){
+     approvalreturnauth.returnauth_ID = this.returnauth.returnauthID;
+     approvalreturnauth.currency_ID = this.currency.currencyID;
+    }else{
+     approvalreturnauth.returnauth_ID = this.editreturnauth.returnauthID;
+     approvalreturnauth.currency_ID = this.editcurrency.currencyID;
     }
-
     if (approvalreturnauth.isactive == true) {
       approvalreturnauth.isactive = "Y";
     } else {
@@ -266,9 +272,9 @@ export class ApprovalreturnauthComponent implements OnInit {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else if (response.approvalreturnauth_ID) {
-          this.toastrservice.success("Success", "approvalreturnauth Updated");
-          if (this.disabled == true) {
-            this.setapprovalreturnauth(this.approvalreturnauthservice.getDetail(response));
+          this.toastrservice.success("Success", " approvalreturnauth Updated");
+          if (this.disabled==true) {
+            this.setApprovalreturnauth(response);
           } else {
             this.disabled = true;
           }
@@ -289,8 +295,8 @@ export class ApprovalreturnauthComponent implements OnInit {
       if (response) {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
-        } else {
-          this.setapprovalreturnauths(this.approvalreturnauthservice.getAllDetail(response));
+        } else{
+          this.setApprovalreturnauths(this.approvalreturnauthservice.getAllDetail(response));
         }
       }
     }, error => {
@@ -306,8 +312,8 @@ export class ApprovalreturnauthComponent implements OnInit {
       if (response) {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
-        } else {
-          this.setapprovalreturnauths(this.approvalreturnauthservice.getAllDetail(response));
+        } else{
+          this.setApprovalreturnauths(this.approvalreturnauthservice.getAllDetail(response));
         }
       }
     }, error => {
@@ -315,19 +321,17 @@ export class ApprovalreturnauthComponent implements OnInit {
     })
   }
 
-  approvalreturnauthAdvancedSearch(returnauthID, currencyID) {
-    this.currencyID = currencyID;
+  approvalreturnauthAdvancedSearch(returnauthID) {
     this.returnauthID = returnauthID;
     var search = {
-      currency_ID: currencyID,
       returnauth_ID: returnauthID
     }
     this.approvalreturnauthservice.advancedSearch(search).subscribe(response => {
       if (response) {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
-        } else {
-          this.setapprovalreturnauths(this.approvalreturnauthservice.getAllDetail(response));
+        } else{
+          this.setApprovalreturnauths(this.approvalreturnauthservice.getAllDetail(response));
         }
       }
     }, error => {
@@ -335,19 +339,17 @@ export class ApprovalreturnauthComponent implements OnInit {
     })
   }
 
-  approvalreturnauthAdvancedSearchAll(returnauthID, currencyID) {
-    this.currencyID = currencyID;
+  approvalreturnauthAdvancedSearchAll(returnauthID) {
     this.returnauthID = returnauthID;
     var search = {
-      currency_ID: currencyID,
       returnauth_ID: returnauthID
     }
     this.approvalreturnauthservice.advancedSearchAll(search).subscribe(response => {
       if (response) {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
-        } else {
-          this.setapprovalreturnauths(this.approvalreturnauthservice.getAllDetail(response));
+        } else{
+          this.setApprovalreturnauths(this.approvalreturnauthservice.getAllDetail(response));
         }
       }
     }, error => {

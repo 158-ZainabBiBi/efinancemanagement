@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { OnFailService } from '../../../services/on-fail.service';
+import { RouterLinkWithHref } from '@angular/router';
 
-import { ExpensecategoryComponent } from '../../../components/accounts/expensecategory/expensecategory.component'
-import { ExpensecategoryService } from '../../../components/accounts/expensecategory/expensecategory.service';
-import { Router, RouterLinkWithHref } from '@angular/router';
+import { ExpensecategoryComponent } from 'src/app/components/accounts/expensecategory/expensecategory.component';
+import { ExpensecategoryService } from 'src/app/components/accounts/expensecategory/expensecategory.service';
 
 declare var $: any;
 
@@ -22,29 +22,25 @@ export class ExpensecategoriesComponent implements OnInit {
     private expensecategorieservice: ExpensecategoryService,
     private toastrservice: ToastrService,
     private onfailservice: OnFailService,
-    private router: Router,
   ) { }
 
   ngOnInit(): void {
-  }
-
-  show(row) {
-    this.router.navigate(["/home/expensecategory"], { queryParams: { expensecategory: row.data.expensecategory_ID } });
   }
 
   view() {
   }
 
   addNew() {
-    this.router.navigate(["/home/expensecategory"], {});
+    this.addexpensecategory.add();
+    $("#add").modal("show");
   }
 
   edit(row) {
     this.editexpensecategory.expensecategory = {
       expensecategory_ID: row.data.expensecategory_ID,
-      expensecategory_CODE: "",
-      expensecategory_NAME: "",
-      expensecategory_DESCRIPTION: "",
+      expensecategory_CODE: row.data.expensecategory_CODE,
+      expensecategory_NAME: row.data.expensecategory_NAME,
+      expensecategory_DESCRIPTION: row.data.expensecategory_DESCRIPTION,
       isactive: row.data.isactive
     };
     if (row.data.isactive=="Y") {
@@ -59,4 +55,5 @@ export class ExpensecategoriesComponent implements OnInit {
     $("#add").modal("hide");
     $("#edit").modal("hide");
   }
+
 }

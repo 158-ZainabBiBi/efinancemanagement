@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { OnFailService } from '../../../services/on-fail.service';
+import { RouterLinkWithHref } from '@angular/router';
 
-import { ApprovalreturnauthComponent } from '../../../components/accounts/approvalreturnauth/approvalreturnauth.component'
-import { ApprovalreturnauthService } from '../../../components/accounts/approvalreturnauth/approvalreturnauth.service';
-import { Router, RouterLinkWithHref } from '@angular/router';
+import { ApprovalreturnauthComponent } from 'src/app/components/accounts/approvalreturnauth/approvalreturnauth.component';
+import { ApprovalreturnauthService } from 'src/app/components/accounts/approvalreturnauth/approvalreturnauth.service';
 
 declare var $: any;
 
@@ -22,21 +22,17 @@ export class ApprovalreturnauthsComponent implements OnInit {
     private approvalreturnauthservice: ApprovalreturnauthService,
     private toastrservice: ToastrService,
     private onfailservice: OnFailService,
-    private router: Router,
   ) { }
 
   ngOnInit(): void {
-  }
-
-  show(row) {
-    this.router.navigate(["/home/approvalreturnauth"], { queryParams: { approvalreturnauth: row.data.approvalreturnauth_ID } });
   }
 
   view() {
   }
 
   addNew() {
-    this.router.navigate(["/home/approvalreturnauth"], {});
+    this.addapprovalreturnauth.add();
+    $("#add").modal("show");
   }
 
   edit(row) {
@@ -61,4 +57,5 @@ export class ApprovalreturnauthsComponent implements OnInit {
     $("#add").modal("hide");
     $("#edit").modal("hide");
   }
+
 }

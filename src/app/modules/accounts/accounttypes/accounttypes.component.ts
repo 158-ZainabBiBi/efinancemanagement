@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { OnFailService } from '../../../services/on-fail.service';
+import { RouterLinkWithHref } from '@angular/router';
 
-import { AccounttypeComponent } from '../../../components/accounts/accounttype/accounttype.component'
-import { AccounttypeService } from '../../../components/accounts/accounttype/accounttype.service';
-import { Router, RouterLinkWithHref } from '@angular/router';
+import { AccounttypeComponent } from 'src/app/components/accounts/accounttype/accounttype.component';
+import { AccounttypeService } from 'src/app/components/accounts/accounttype/accounttype.service';
 
 declare var $: any;
 
@@ -22,21 +22,17 @@ export class AccounttypesComponent implements OnInit {
     private accounttypeservice: AccounttypeService,
     private toastrservice: ToastrService,
     private onfailservice: OnFailService,
-    private router: Router,
   ) { }
 
   ngOnInit(): void {
-  }
-
-  show(row) {
-    this.router.navigate(["/home/accounttype"], { queryParams: { accounttype: row.data.accounttype_ID } });
   }
 
   view() {
   }
 
   addNew() {
-    this.router.navigate(["/home/accounttype"], {});
+    this.addaccounttype.add();
+    $("#add").modal("show");
   }
 
   edit(row) {
@@ -59,4 +55,5 @@ export class AccounttypesComponent implements OnInit {
     $("#add").modal("hide");
     $("#edit").modal("hide");
   }
+
 }

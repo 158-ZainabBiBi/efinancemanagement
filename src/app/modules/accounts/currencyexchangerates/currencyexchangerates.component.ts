@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { OnFailService } from '../../../services/on-fail.service';
+import { RouterLinkWithHref } from '@angular/router';
 
-import { CurrencyexchangerateComponent } from '../../../components/accounts/currencyexchangerate/currencyexchangerate.component'
-import { CurrencyexchangerateService } from '../../../components/accounts/currencyexchangerate/currencyexchangerate.service';
-import { Router, RouterLinkWithHref } from '@angular/router';
+import { CurrencyexchangerateComponent } from 'src/app/components/accounts/currencyexchangerate/currencyexchangerate.component';
+import { CurrencyexchangerateService } from 'src/app/components/accounts/currencyexchangerate/currencyexchangerate.service';
 
 declare var $: any;
 
@@ -22,21 +22,17 @@ export class CurrencyexchangeratesComponent implements OnInit {
     private currencyexchangerateservice: CurrencyexchangerateService,
     private toastrservice: ToastrService,
     private onfailservice: OnFailService,
-    private router: Router,
   ) { }
 
   ngOnInit(): void {
-  }
-
-  show(row) {
-    this.router.navigate(["/home/currencyexchangerate"], { queryParams: { currencyexchangerate: row.data.currencyexchangerate_ID } });
   }
 
   view() {
   }
 
   addNew() {
-    this.router.navigate(["/home/currencyexchangerate"], {});
+    this.addcurrencyexchangerate.add();
+    $("#add").modal("show");
   }
 
   edit(row) {
@@ -58,4 +54,5 @@ export class CurrencyexchangeratesComponent implements OnInit {
     $("#add").modal("hide");
     $("#edit").modal("hide");
   }
+
 }

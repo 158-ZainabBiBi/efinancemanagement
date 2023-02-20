@@ -117,7 +117,7 @@ export class ExpensecategoryComponent implements OnInit {
   expensecategoryCancel() {
     this.disabled = true;
     if (this.expensecategory.expensecategory_ID==0) {
-      this.router.navigate(["/home/expensecategory"], {});
+      this.router.navigate(["/home/expensecategories"], {});
     }
   }
 

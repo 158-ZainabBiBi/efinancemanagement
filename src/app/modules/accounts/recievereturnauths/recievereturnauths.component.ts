@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { OnFailService } from '../../../services/on-fail.service';
+import { RouterLinkWithHref } from '@angular/router';
 
-import { RecievereturnauthComponent } from '../../../components/accounts/recievereturnauth/recievereturnauth.component'
-import { RecievereturnauthService } from '../../../components/accounts/recievereturnauth/recievereturnauth.service';
-import { Router, RouterLinkWithHref } from '@angular/router';
+import { RecievereturnauthComponent } from 'src/app/components/accounts/recievereturnauth/recievereturnauth.component';
+import { RecievereturnauthService } from 'src/app/components/accounts/recievereturnauth/recievereturnauth.service';
 
 declare var $: any;
 
@@ -22,21 +22,17 @@ export class RecievereturnauthsComponent implements OnInit {
     private recievereturnauthservice: RecievereturnauthService,
     private toastrservice: ToastrService,
     private onfailservice: OnFailService,
-    private router: Router,
   ) { }
 
   ngOnInit(): void {
-  }
-
-  show(row) {
-    this.router.navigate(["/home/recievereturnauth"], { queryParams: { recievereturnauth: row.data.recievereturnauth_ID } });
   }
 
   view() {
   }
 
   addNew() {
-    this.router.navigate(["/home/recievereturnauth"], {});
+    this.addrecievereturnauth.add();
+    $("#add").modal("show");
   }
 
   edit(row) {
@@ -61,4 +57,5 @@ export class RecievereturnauthsComponent implements OnInit {
     $("#add").modal("hide");
     $("#edit").modal("hide");
   }
+
 }

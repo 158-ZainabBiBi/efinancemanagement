@@ -1,10 +1,9 @@
-
 import { Component, OnInit, Input, Output, ViewChild, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { OnFailService } from '../../../services/on-fail.service';
 
-import { AccounttypeService } from '../accounttype/accounttype.service';
+import { AccounttypeService } from './accounttype.service';
 
 @Component({
   selector: 'app-accounttype',
@@ -28,14 +27,15 @@ export class AccounttypeComponent implements OnInit {
   @Output() cancel = new EventEmitter();
   @Output() show = new EventEmitter();
 
+
   accounttypes = [];
   accounttypesAll = [];
   accounttype = {
-      accounttype_ID: 0,
-      accounttype_CODE: "",
-      accounttype_NAME: "",
-      accounttype_DESCRIPTION: "",
-      isactive:true,
+    accounttype_ID: 0,
+    accounttype_CODE: "",
+    accounttype_NAME: "",
+    accounttype_DESCRIPTION: "",
+    isactive:true,
   }
 
   constructor(
@@ -64,11 +64,6 @@ export class AccounttypeComponent implements OnInit {
       window.sessionStorage.setItem("accounttype", this.accounttypeID);
       this.accounttypeGetOne(this.accounttypeID);
     }
-    // if (this.accounttypeID == 0) {
-    //   this.universityDisabled = false;
-    //   this.accounttypeID = null;
-    // }
-
   }
 
   onToolbarPreparing(e) {
@@ -91,7 +86,7 @@ export class AccounttypeComponent implements OnInit {
       accounttype_CODE: "",
       accounttype_NAME: "",
       accounttype_DESCRIPTION: "",
-      isactive: true,
+      isactive:true,
     };
   }
 
@@ -118,7 +113,7 @@ export class AccounttypeComponent implements OnInit {
   accounttypeCancel() {
     this.disabled = true;
     if (this.accounttype.accounttype_ID==0) {
-      this.router.navigate(["/home/accounttype"], {});
+      this.router.navigate(["/home/accounttypes"], {});
     }
   }
 
@@ -147,8 +142,6 @@ export class AccounttypeComponent implements OnInit {
       if (response) {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
-        } else{
-          this.setAccounttypes(response);
         }
       }
     }, error => {
@@ -161,8 +154,6 @@ export class AccounttypeComponent implements OnInit {
       if (response) {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
-        } else{
-          this.setAccounttypes(response);
         }
       }
     }, error => {
@@ -176,9 +167,6 @@ export class AccounttypeComponent implements OnInit {
       if (response) {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
-        } else{
-          this.setAccounttype(response);
-
         }
       }
     }, error => {
@@ -189,12 +177,14 @@ export class AccounttypeComponent implements OnInit {
   accounttypeAdd(accounttype) {
     accounttype.isactive="Y";
 
+    if(this.view == 5){}else{}
+
     this.accounttypeservice.add(accounttype).subscribe(response => {
       if (response) {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else if (response.accounttype_ID) {
-          this.toastrservice.success("Success", "New Accounttype Added");
+          this.toastrservice.success("Success", "New accounttype Added");
           this.accounttypeGetAll();
           this.setAccounttype(response);
           this.disabled = true;
@@ -208,6 +198,8 @@ export class AccounttypeComponent implements OnInit {
   }
 
   accounttypeUpdate(accounttype) {
+    if(this.view == 5){}else{}
+
     if (accounttype.isactive == true) {
       accounttype.isactive = "Y";
     } else {
@@ -218,8 +210,12 @@ export class AccounttypeComponent implements OnInit {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else if (response.accounttype_ID) {
-          this.toastrservice.success("Success", " Accounttype Updated");
-          this.accounttypeGetAll();
+          this.toastrservice.success("Success", " accounttype Updated");
+          if (this.disabled==true) {
+            this.setAccounttype(response);
+          } else {
+            this.disabled = true;
+          }
         } else {
           this.toastrservice.error("Some thing went wrong");
         }
@@ -228,75 +224,5 @@ export class AccounttypeComponent implements OnInit {
       this.onfailservice.onFail(error);
     })
   }
-
-  // accounttypeSearch(str) {
-  //   var search = {
-  //     search: str
-  //   }
-  //   this.accounttypeservice.search(search).subscribe(response => {
-  //     if (response) {
-  //       if (response.error && response.status) {
-  //         this.toastrservice.warning("Message", " " + response.message);
-  //       } else{
-  //         this.setAccounttypes(this.accounttypeservice.getAllDetail(response));
-  //       }
-  //     }
-  //   }, error => {
-  //     this.onfailservice.onFail(error);
-  //   })
-  // }
-
-  // accounttypeSearchAll(str) {
-  //   var search = {
-  //     search: str
-  //   }
-  //   this.accounttypeservice.searchAll(search).subscribe(response => {
-  //     if (response) {
-  //       if (response.error && response.status) {
-  //         this.toastrservice.warning("Message", " " + response.message);
-  //       } else{
-  //         this.setAccounttypes(this.accounttypeservice.getAllDetail(response));
-  //       }
-  //     }
-  //   }, error => {
-  //     this.onfailservice.onFail(error);
-  //   })
-  // }
-
-  // accounttypeAdvancedSearch(universityID) {
-  //   this.universityID = universityID;
-  //   var search = {
-  //     university_ID: universityID
-  //   }
-  //   this.accounttypeservice.advancedSearch(search).subscribe(response => {
-  //     if (response) {
-  //       if (response.error && response.status) {
-  //         this.toastrservice.warning("Message", " " + response.message);
-  //       } else{
-  //         this.setAccounttypes(this.accounttypeservice.getAllDetail(response));
-  //       }
-  //     }
-  //   }, error => {
-  //     this.onfailservice.onFail(error);
-  //   })
-  // }
-
-  // accounttypeAdvancedSearchAll(universityID) {
-  //   this.universityID = universityID;
-  //   var search = {
-  //     university_ID: universityID
-  //   }
-  //   this.accounttypeservice.advancedSearchAll(search).subscribe(response => {
-  //     if (response) {
-  //       if (response.error && response.status) {
-  //         this.toastrservice.warning("Message", " " + response.message);
-  //       } else{
-  //         this.setAccounttypes(this.accounttypeservice.getAllDetail(response));
-  //       }
-  //     }
-  //   }, error => {
-  //     this.onfailservice.onFail(error);
-  //   })
-  // }
 
 }

@@ -40,7 +40,7 @@
                       <dxo-selection mode="single"></dxo-selection>
                       <dxi-column [width]="75" [allowFiltering]="false" [allowSorting]="false" alignment="center"
                           cellTemplate="cellTemplate"> </dxi-column>
-                      <dxi-column [width]="150" dataField="expensecategory_CODE" caption="Code" cssClass="myClass"
+                      <dxi-column dataField="expensecategory_CODE" caption="Code" cssClass="myClass"
                           alignment="center"> </dxi-column>
                       <dxi-column dataField="expensecategory_NAME" caption="Name" cssClass="myClass">
                       </dxi-column>
@@ -178,7 +178,7 @@
   </form>
 </div>
 
-<div *ngIf="view==5" class="form-group">
+<!-- <div *ngIf="view==5" class="form-group">
   <div class="card-primary card">
       <div class="card-header">
           <div class="align-items-center row">
@@ -264,4 +264,4 @@
           </div>
       </div>
   </div>
-</div>
+</div> -->

@@ -5,7 +5,7 @@
               <div class="card-header">
                   <div class="align-items-center row">
                       <div class="col">
-                          <a href="javascript:void" aria-controls="collapse-customerrefundinfo1" aria-expanded="true"
+                          <a href="javascript:void" aria-controls="collapse-customerinfo1" aria-expanded="true"
                               class="card-title">Customer Refund
                           </a>
                       </div>
@@ -19,7 +19,7 @@
               <div class="card-body">
                   <div class="row">
                       <div class="col-lg-12">
-                          <app-customerrefund #customerrefunds [view]=2 (show)="show($event)"></app-customerrefund>
+                          <app-customerrefund #customerrefunds [view]=2 (edit)="edit($event)"></app-customerrefund>
                       </div>
                   </div>
               </div>

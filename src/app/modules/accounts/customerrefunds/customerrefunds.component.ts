@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { OnFailService } from '../../../services/on-fail.service';
+import { RouterLinkWithHref } from '@angular/router';
 
-import { CustomerrefundComponent } from '../../../components/accounts/customerrefund/customerrefund.component'
-import { CustomerrefundService } from '../../../components/accounts/customerrefund/customerrefund.service';
-import { Router, RouterLinkWithHref } from '@angular/router';
+import { CustomerrefundComponent } from 'src/app/components/accounts/customerrefund/customerrefund.component';
+import { CustomerrefundService } from 'src/app/components/accounts/customerrefund/customerrefund.service';
 
 declare var $: any;
 
@@ -22,21 +22,17 @@ export class CustomerrefundsComponent implements OnInit {
     private customerrefundservice: CustomerrefundService,
     private toastrservice: ToastrService,
     private onfailservice: OnFailService,
-    private router: Router,
   ) { }
 
   ngOnInit(): void {
-  }
-
-  show(row) {
-    this.router.navigate(["/home/customerrefund"], { queryParams: { customerrefund: row.data.customerrefund_ID } });
   }
 
   view() {
   }
 
   addNew() {
-    this.router.navigate(["/home/customerrefund"], {});
+    this.addcustomerrefund.add();
+    $("#add").modal("show");
   }
 
   edit(row) {
@@ -73,4 +69,5 @@ export class CustomerrefundsComponent implements OnInit {
     $("#add").modal("hide");
     $("#edit").modal("hide");
   }
+
 }

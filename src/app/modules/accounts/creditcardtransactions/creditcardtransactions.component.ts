@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { OnFailService } from '../../../services/on-fail.service';
+import { RouterLinkWithHref } from '@angular/router';
 
-import { CreditcardtransactionComponent } from '../../../components/accounts/creditcardtransaction/creditcardtransaction.component'
-import { CreditcardtransactionService } from '../../../components/accounts/creditcardtransaction/creditcardtransaction.service';
-import { Router, RouterLinkWithHref } from '@angular/router';
+import { CreditcardtransactionComponent } from 'src/app/components/accounts/creditcardtransaction/creditcardtransaction.component';
+import { CreditcardtransactionService } from 'src/app/components/accounts/creditcardtransaction/creditcardtransaction.service';
 
 declare var $: any;
 
@@ -22,21 +22,17 @@ export class CreditcardtransactionsComponent implements OnInit {
     private creditcardtransactionservice: CreditcardtransactionService,
     private toastrservice: ToastrService,
     private onfailservice: OnFailService,
-    private router: Router,
   ) { }
 
   ngOnInit(): void {
-  }
-
-  show(row) {
-    this.router.navigate(["/home/creditcardtransaction"], { queryParams: { creditcardtransaction: row.data.creditcardtransaction_ID } });
   }
 
   view() {
   }
 
   addNew() {
-    this.router.navigate(["/home/creditcardtransaction"], {});
+    this.addcreditcardtransaction.add();
+    $("#add").modal("show");
   }
 
   edit(row) {
@@ -64,4 +60,5 @@ export class CreditcardtransactionsComponent implements OnInit {
     $("#add").modal("hide");
     $("#edit").modal("hide");
   }
+
 }

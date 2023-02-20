@@ -111,7 +111,7 @@ export class CreditcardtransactionComponent implements OnInit {
     console.log(this.creditcardtransaction);
     this.disabled = true;
     if (this.creditcardtransaction.creditcardtransaction_ID == 0) {
-      this.router.navigate(["/home/creditcardtransaction"], {});
+      this.router.navigate(["/home/creditcardtransactions"], {});
     }
   }
 

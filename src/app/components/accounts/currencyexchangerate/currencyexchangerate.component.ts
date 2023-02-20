@@ -100,7 +100,7 @@ export class CurrencyexchangerateComponent implements OnInit {
     console.log(this.currencyexchangerate);
     this.disabled = true;
     if (this.currencyexchangerate.currencyexchangerate_ID == 0) {
-      this.router.navigate(["/home/currencyexchangerate"], {});
+      this.router.navigate(["/home/currencyexchangerates"], {});
     }
   }
 

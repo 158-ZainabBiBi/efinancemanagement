@@ -1,12 +1,12 @@
 import { Component, OnInit, Input, Output, ViewChild, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { OnFailService } from '../../../services/on-fail.service';
-import { Router } from '@angular/router';
 
-import { AccountService } from './account.service';
-import { AccounttypeComponent } from '../accounttype/accounttype.component';
 import { GeneralratetypeComponent } from '../../lookups/generalratetype/generalratetype.component';
 import { CashflowratetypeComponent } from '../../lookups/cashflowratetype/cashflowratetype.component';
+import { AccounttypeComponent } from '../accounttype/accounttype.component';
+import { AccountService } from './account.service';
 
 @Component({
   selector: 'app-account',
@@ -35,27 +35,28 @@ export class AccountComponent implements OnInit {
   @Input()
   all: boolean = false;
   @Input()
-  accountID = null;
-  @Input()
   accounttypeID = null;
+  @Input()
+  accountID = null;
 
-  @Output() show = new EventEmitter();
   @Output() edit = new EventEmitter();
   @Output() cancel = new EventEmitter();
+  @Output() show = new EventEmitter();
+
 
   accounts = [];
   accountsAll = [];
   account = {
     account_ID: 0,
     accounttype_ID: 0,
-    accountparent_ID: null,
     generalratetype_ID: 0,
     cashflowratetype_ID: 0,
-    account_DATE: "",
     account_CODE: "",
     account_NAME: "",
+    account_DATE: "",
     account_DESCRIPTION: "",
     bankaccount_NUMBER: "",
+    accountparent_ID: null,
     isactive: true
   }
 
@@ -63,61 +64,40 @@ export class AccountComponent implements OnInit {
     private accountservice: AccountService,
     private toastrservice: ToastrService,
     private onfailservice: OnFailService,
-    private router: Router,
+    private router : Router,
   ) { }
 
   ngOnInit(): void {
     this.accounts = JSON.parse(window.sessionStorage.getItem('accounts'));
     this.accountsAll = JSON.parse(window.sessionStorage.getItem('accountsAll'));
-    if (this.view == 1 && this.accounts == null) {
+    if (this.view == 1 && this.disabled == false && this.accounts == null) {
       this.accountGet();
-    }else if (this.view == 1 && this.disabled == true && this.accountsAll == null) {
-        this.accountGetAll();
+    } else if (this.view == 1 && this.disabled == true && this.accountsAll == null) {
+      this.accountGetAll();
     } else if (this. view == 2 && this.accountsAll == null) {
       this.accountGetAll();
-    } else if (this. view == 22 && (this.accounttypeID != null )) {
-      this.accountAdvancedSearchAll(this.accounttypeID);
     }
 
     if (this.accountID != 0 && !this.accountID && Number(window.sessionStorage.getItem('account'))>0) {
       this.accountID = Number(window.sessionStorage.getItem('account'));
+    }  else if (this. view == 22 && (this.accounttypeID != null )) {
+      this.accountAdvancedSearchAll(this.accounttypeID);
     }
+
     if (this.view == 5 && this.accountID) {
       window.sessionStorage.setItem("account", this.accountID);
       this.accountGetOne(this.accountID);
-    } if (this.view == 11 && this.accounttypeID && this.disabled == false) {
+    }
+
+    if (this.view == 11 && this.accounttypeID && this.disabled == false) {
       this.accountAdvancedSearch(this.accounttypeID);
     } else if (this.view == 11 && this.accounttypeID && this.disabled == true) {
       this.accountAdvancedSearchAll(this.accounttypeID);
 
-    } else if (this.view == 11 || this.view == 1 ) {
+    } else if (this.view == 11|| this.view == 1) {
       this.accountID = null;
       this.accountsAll = null;
       this.accounts = null;
-    }
-
-    if (this.accountID == 0) {
-      this.accountID = null;
-    }
-  }
-
-  showView(row) {
-    this.show.next(row);
-  }
-
-  editView() {
-    this.disabled = false;
-  }
-
-  cancelView() {
-    this.cancel.next();
-  }
-
-  accountCancel() {
-    console.log(this.account);
-    this.disabled = true;
-    if (this.account.account_ID == 0) {
-      this.router.navigate(["/home/account"], {});
     }
   }
 
@@ -136,6 +116,7 @@ export class AccountComponent implements OnInit {
   }
 
   onToolbarPreparingAdvanced(e) {
+    console.log("onToolbarPreparingAdvanced");
     e.toolbarOptions.items.unshift(
       {
         location: 'after',
@@ -153,33 +134,56 @@ export class AccountComponent implements OnInit {
     this.account = {
       account_ID: 0,
       accounttype_ID: 0,
-      accountparent_ID: null,
       generalratetype_ID: 0,
       cashflowratetype_ID: 0,
-      account_DATE: "",
       account_CODE: "",
       account_NAME: "",
+      account_DATE: "",
       account_DESCRIPTION: "",
       bankaccount_NUMBER: "",
+      accountparent_ID: null,
       isactive: true
     };
-  }
-  setaccount(response) {
-    if (response.isactive == "Y") {
-      response.isactive = true;
-    } else {
-      response.isactive = false;
-    }
-    this.account = response;
-    this.disabled = true;
   }
 
   update(row) {
     this.edit.next(row);
   }
 
-  setaccounts(response) {
-    if ((this.view == 1 || this.view == 11) && this.disabled == false) {
+  editView() {
+    this.disabled = false;
+  }
+
+  showView(row) {
+    this.show.next(row);
+  }
+
+  cancelView() {
+    this.cancel.next();
+  }
+
+  accountEdit(){
+    this.disabled = false;
+  }
+
+  accountCancel() {
+    this.disabled = true;
+    if (this.account.account_ID==0) {
+      this.router.navigate(["/home/accounts"], {});
+    }
+  }
+
+  setAccount(response) {
+    if (response.isactive == "Y") {
+      response.isactive = true;
+    } else {
+      response.isactive = false;
+    }
+    this.account = response;
+  }
+
+  setAccounts(response) {
+    if ((this.view == 1 || this.view == 11)  && this.disabled == false) {
       this.accounts = response;
       window.sessionStorage.setItem("accounts", JSON.stringify(this.accounts));
     } else {
@@ -194,55 +198,57 @@ export class AccountComponent implements OnInit {
       if (response) {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
-        } else {
-          this.setaccounts(this.accountservice.getAllDetail(response));
+        } else{
+          this.setAccounts(this.accountservice.getAllDetail(response));
         }
       }
     }, error => {
       this.onfailservice.onFail(error);
     })
   }
-
 
   accountGetAll() {
     this.accountservice.getAll().subscribe(response => {
       if (response) {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
-        } else {
-          this.setaccounts(this.accountservice.getAllDetail(response));
+        } else{
+          this.setAccounts(this.accountservice.getAllDetail(response));
         }
       }
     }, error => {
       this.onfailservice.onFail(error);
     })
   }
+
   accountGetOne(id) {
+    this.disabled = true;
     this.accountservice.getOne(id).subscribe(response => {
       if (response) {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
-        } else {
-          this.setaccount(this.accountservice.getDetail(response));
+        } else{
+          this.setAccount(this.accountservice.getDetail(response));
         }
       }
     }, error => {
       this.onfailservice.onFail(error);
     })
   }
+
   accountAdd(account) {
-    account.isactive = "Y";
-    if (this.view == 5) {
+    account.isactive="Y";
+
+    if(this.view == 5){
       account.accounttype_ID = this.accounttype.accounttypeID;
       account.cashflowratetype_ID = this.cashflowratetype.cashflowratetypeID;
       account.generalratetype_ID = this.generalratetype.generalratetypeID;
-
-    } else {
-      account.generalratetype_ID = this.addgeneralratetype.generalratetypeID;
+    }else{
       account.accounttype_ID = this.addaccounttype.accounttypeID;
       account.cashflowratetype_ID = this.addcashflowratetype.cashflowratetypeID;
-
+      account.generalratetype_ID = this.addgeneralratetype.generalratetypeID;
     }
+
     this.accountservice.add(account).subscribe(response => {
       if (response) {
         if (response.error && response.status) {
@@ -250,7 +256,7 @@ export class AccountComponent implements OnInit {
         } else if (response.account_ID) {
           this.toastrservice.success("Success", "New account Added");
           this.accountGetAll();
-          this.setaccount(this.accountservice.getDetail(response));
+          this.setAccount(response);
           this.disabled = true;
         } else {
           this.toastrservice.error("Some thing went wrong");
@@ -262,18 +268,15 @@ export class AccountComponent implements OnInit {
   }
 
   accountUpdate(account) {
-    if (this.view == 5) {
-      account.generalratetype_ID = this.generalratetype.generalratetypeID;
-      account.accounttype_ID = this.accounttype.accounttypeID;
-      account.cashflowratetype_ID = this.cashflowratetype.cashflowratetypeID;
-
-    } else {
-      account.generalratetype_ID = this.editgeneralratetype.generalratetypeID;
-      account.accounttype_ID = this.editaccounttype.accounttypeID;
-      account.cashflowratetype_ID = this.editcashflowratetype.cashflowratetypeID;
-
+     if(this.view == 5){
+     account.accounttype_ID = this.accounttype.accounttypeID;
+     account.cashflowratetype_ID = this.cashflowratetype.cashflowratetypeID;
+     account.generalratetype_ID = this.generalratetype.generalratetypeID;
+    }else{
+     account.accounttype_ID = this.editaccounttype.accounttypeID;
+     account.cashflowratetype_ID = this.editcashflowratetype.cashflowratetypeID;
+     account.generalratetype_ID = this.editgeneralratetype.generalratetypeID;
     }
-
     if (account.isactive == true) {
       account.isactive = "Y";
     } else {
@@ -284,9 +287,9 @@ export class AccountComponent implements OnInit {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else if (response.account_ID) {
-          this.toastrservice.success("Success", "account Updated");
-          if (this.disabled == true) {
-            this.setaccount(this.accountservice.getDetail(response));
+          this.toastrservice.success("Success", " account Updated");
+          if (this.disabled==true) {
+            this.setAccount(response);
           } else {
             this.disabled = true;
           }
@@ -307,8 +310,8 @@ export class AccountComponent implements OnInit {
       if (response) {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
-        } else {
-          this.setaccounts(this.accountservice.getAllDetail(response));
+        } else{
+          this.setAccounts(this.accountservice.getAllDetail(response));
         }
       }
     }, error => {
@@ -324,8 +327,8 @@ export class AccountComponent implements OnInit {
       if (response) {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
-        } else {
-          this.setaccounts(this.accountservice.getAllDetail(response));
+        } else{
+          this.setAccounts(this.accountservice.getAllDetail(response));
         }
       }
     }, error => {
@@ -342,8 +345,8 @@ export class AccountComponent implements OnInit {
       if (response) {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
-        } else {
-          this.setaccounts(this.accountservice.getAllDetail(response));
+        } else{
+          this.setAccounts(this.accountservice.getAllDetail(response));
         }
       }
     }, error => {
@@ -360,8 +363,8 @@ export class AccountComponent implements OnInit {
       if (response) {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
-        } else {
-          this.setaccounts(this.accountservice.getAllDetail(response));
+        } else{
+          this.setAccounts(this.accountservice.getAllDetail(response));
         }
       }
     }, error => {

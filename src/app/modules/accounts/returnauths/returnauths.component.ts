@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { OnFailService } from '../../../services/on-fail.service';
+import { RouterLinkWithHref } from '@angular/router';
 
-import { ReturnauthComponent } from '../../../components/accounts/returnauth/returnauth.component'
-import { ReturnauthService } from '../../../components/accounts/returnauth/returnauth.service';
-import { Router, RouterLinkWithHref } from '@angular/router';
+import { ReturnauthComponent } from 'src/app/components/accounts/returnauth/returnauth.component';
+import { ReturnauthService } from 'src/app/components/accounts/returnauth/returnauth.service';
 
 declare var $: any;
 
@@ -22,21 +22,17 @@ export class ReturnauthsComponent implements OnInit {
     private returnauthservice: ReturnauthService,
     private toastrservice: ToastrService,
     private onfailservice: OnFailService,
-    private router: Router,
   ) { }
 
   ngOnInit(): void {
-  }
-
-  show(row) {
-    this.router.navigate(["/home/returnauth"], { queryParams: { returnauth: row.data.returnauth_ID } });
   }
 
   view() {
   }
 
   addNew() {
-    this.router.navigate(["/home/returnauth"], {});
+    this.addreturnauth.add();
+    $("#add").modal("show");
   }
 
   edit(row) {
@@ -68,4 +64,5 @@ export class ReturnauthsComponent implements OnInit {
     $("#add").modal("hide");
     $("#edit").modal("hide");
   }
+
 }

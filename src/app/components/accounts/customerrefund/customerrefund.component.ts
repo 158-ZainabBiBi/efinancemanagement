@@ -68,9 +68,9 @@ export class CustomerrefundComponent implements OnInit {
     refundmethod_ID: 0,
     customerrefund_CODE: "",
     customerrefund_DATE: "",
-    customer_BALANCE: "",
-    customerrefund_AMOUNT: "",
-    exchange_RATE: "",
+    customer_BALANCE: null,
+    customerrefund_AMOUNT: null,
+    exchange_RATE:null,
     check_NUMBER: "",
     creditcard_NUMBER: "",
     expire_DATE: "",
@@ -93,26 +93,26 @@ export class CustomerrefundComponent implements OnInit {
     this.customerrefundsAll = JSON.parse(window.sessionStorage.getItem('customerrefundsAll'));
     if (this.view == 1 && this.customerrefunds == null) {
       this.customerrefundGet();
-    } else if (this.view == 1 && this.disabled == true && this.customerrefundsAll == null) {
+    }else if (this.view == 1 && this.disabled == true && this.customerrefundsAll == null) {
+        this.customerrefundGetAll();
+    } else if (this. view == 2 && this.customerrefundsAll == null) {
       this.customerrefundGetAll();
-    } else if (this.view == 2 && this.customerrefundsAll == null) {
-      this.customerrefundGetAll();
-    } else if (this.view == 22 && (this.accountID != null)) {
-      this.customerrefundAdvancedSearchAll(this.accountID, 0, 0);
+    } else if (this. view == 22 && (this.accountID != null )) {
+      this.customerrefundAdvancedSearchAll(this.accountID,0,0);
     }
 
-    if (this.customerrefundID != 0 && !this.customerrefundID && Number(window.sessionStorage.getItem('customerrefund')) > 0) {
+    if (this.customerrefundID != 0 && !this.customerrefundID && Number(window.sessionStorage.getItem('customerrefund'))>0) {
       this.customerrefundID = Number(window.sessionStorage.getItem('customerrefund'));
     }
     if (this.view == 5 && this.customerrefundID) {
       window.sessionStorage.setItem("customerrefund", this.customerrefundID);
       this.customerrefundGetOne(this.customerrefundID);
     } if (this.view == 11 && this.accountID && this.disabled == false) {
-      this.customerrefundAdvancedSearch(this.accountID, 0, 0);
+      this.customerrefundAdvancedSearch(this.accountID,0,0);
     } else if (this.view == 11 && this.accountID && this.disabled == true) {
-      this.customerrefundAdvancedSearchAll(this.accountID, 0, 0);
+      this.customerrefundAdvancedSearchAll(this.accountID,0,0);
 
-    } else if (this.view == 11 || this.view == 1) {
+    } else if (this.view == 11 || this.view == 1 ) {
       this.customerrefundID = null;
       this.customerrefundsAll = null;
       this.customerrefunds = null;
@@ -139,7 +139,7 @@ export class CustomerrefundComponent implements OnInit {
     console.log(this.customerrefund);
     this.disabled = true;
     if (this.customerrefund.customerrefund_ID == 0) {
-      this.router.navigate(["/home/customerrefund"], {});
+      this.router.navigate(["/home/customerrefunds"], {});
     }
   }
 
@@ -181,9 +181,9 @@ export class CustomerrefundComponent implements OnInit {
       refundmethod_ID: 0,
       customerrefund_CODE: "",
       customerrefund_DATE: "",
-      customer_BALANCE: "",
-      customerrefund_AMOUNT: "",
-      exchange_RATE: "",
+      customer_BALANCE: null,
+      customerrefund_AMOUNT: null,
+      exchange_RATE:null,
       check_NUMBER: "",
       creditcard_NUMBER: "",
       expire_DATE: "",
@@ -268,14 +268,12 @@ export class CustomerrefundComponent implements OnInit {
       customerrefund.postingperiod_ID = this.postingperiod.postingperiodID;
       customerrefund.currency_ID = this.currency.currencyID;
       customerrefund.refundmethod_ID = this.refundmethod.refundmethodID;
-
     } else {
       customerrefund.refundmethod_ID = this.addrefundmethod.refundmethodID;
       customerrefund.currency_ID = this.addcurrency.currencyID;
       customerrefund.account_ID = this.addaccount.accountID;
       customerrefund.customer_ID = this.addcustomer.customerID;
       customerrefund.postingperiod_ID = this.addpostingperiod.postingperiodID;
-
     }
     this.customerrefundservice.add(customerrefund).subscribe(response => {
       if (response) {

@@ -109,7 +109,7 @@ export class CurrencyComponent implements OnInit {
     console.log(this.currency);
     this.disabled = true;
     if (this.currency.currency_ID == 0) {
-      this.router.navigate(["/home/currency"], {});
+      this.router.navigate(["/home/currencies"], {});
     }
   }
 

@@ -110,7 +110,7 @@ export class RecievereturnauthComponent implements OnInit {
     console.log(this.recievereturnauth);
     this.disabled = true;
     if (this.recievereturnauth.recievereturnauth_ID == 0) {
-      this.router.navigate(["/home/recievereturnauth"], {});
+      this.router.navigate(["/home/recievereturnauths"], {});
     }
   }
 

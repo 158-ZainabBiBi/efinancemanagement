@@ -63,16 +63,16 @@ import { ExpensecategoriesComponent } from '../accounts/expensecategories/expens
 import { RecievereturnauthsComponent } from '../accounts/recievereturnauths/recievereturnauths.component';
 import { ReturnauthsComponent } from '../accounts/returnauths/returnauths.component';
 
-import { ViewaccountComponent } from '../accounts/accounts/viewaccount/viewaccount.component';
-import { ViewaccounttypeComponent } from '../accounts/accounttypes/viewaccounttype/viewaccounttype.component';
-import { ViewapprovalComponent } from '../accounts/approvalreturnauths/viewapproval/viewapproval.component';
-import { ViewrecieveComponent } from '../accounts/recievereturnauths/viewrecieve/viewrecieve.component';
-import { ViewreturnComponent } from '../accounts/returnauths/viewreturn/viewreturn.component';
-import { ViewcurrencyComponent } from '../accounts/currencies/viewcurrency/viewcurrency.component';
-import { ViewexchangerateComponent } from '../accounts/currencyexchangerates/viewexchangerate/viewexchangerate.component';
-import { ViewtransactionComponent } from '../accounts/creditcardtransactions/viewtransaction/viewtransaction.component';
-import { ViewrefundComponent } from '../accounts/customerrefunds/viewrefund/viewrefund.component';
-import { ViewexpenseComponent } from '../accounts/expensecategories/viewexpense/viewexpense.component';
+// import { ViewaccountComponent } from '../accounts/accounts/viewaccount/viewaccount.component';
+// import { ViewaccounttypeComponent } from '../accounts/accounttypes/viewaccounttype/viewaccounttype.component';
+// import { ViewapprovalComponent } from '../accounts/approvalreturnauths/viewapproval/viewapproval.component';
+// import { ViewrecieveComponent } from '../accounts/recievereturnauths/viewrecieve/viewrecieve.component';
+// import { ViewreturnComponent } from '../accounts/returnauths/viewreturn/viewreturn.component';
+// import { ViewcurrencyComponent } from '../accounts/currencies/viewcurrency/viewcurrency.component';
+// import { ViewexchangerateComponent } from '../accounts/currencyexchangerates/viewexchangerate/viewexchangerate.component';
+// import { ViewtransactionComponent } from '../accounts/creditcardtransactions/viewtransaction/viewtransaction.component';
+// import { ViewrefundComponent } from '../accounts/customerrefunds/viewrefund/viewrefund.component';
+// import { ViewexpenseComponent } from '../accounts/expensecategories/viewexpense/viewexpense.component';
 
 @NgModule({
   imports: [
@@ -137,16 +137,16 @@ import { ViewexpenseComponent } from '../accounts/expensecategories/viewexpense/
     RecievereturnauthsComponent,
     ReturnauthsComponent,
 
-    ViewaccountComponent,
-    ViewaccounttypeComponent,
-    ViewapprovalComponent,
-    ViewrecieveComponent,
-    ViewreturnComponent,
-    ViewcurrencyComponent,
-    ViewexchangerateComponent,
-    ViewtransactionComponent,
-    ViewrefundComponent,
-    ViewexpenseComponent
+    // ViewaccountComponent,
+    // ViewaccounttypeComponent,
+    // ViewapprovalComponent,
+    // ViewrecieveComponent,
+    // ViewreturnComponent,
+    // ViewcurrencyComponent,
+    // ViewexchangerateComponent,
+    // ViewtransactionComponent,
+    // ViewrefundComponent,
+    // ViewexpenseComponent
   ],
 })
 export class HomeModule {

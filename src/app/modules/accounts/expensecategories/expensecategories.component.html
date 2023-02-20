@@ -5,7 +5,7 @@
               <div class="card-header">
                   <div class="align-items-center row">
                       <div class="col">
-                          <a href="javascript:void" aria-controls="collapse-expensecategoryinfo1" aria-expanded="true"
+                          <a href="javascript:void" aria-controls="collapse-customerinfo1" aria-expanded="true"
                               class="card-title">Expense Category
                           </a>
                       </div>
@@ -19,7 +19,7 @@
               <div class="card-body">
                   <div class="row">
                       <div class="col-lg-12">
-                          <app-expensecategory #expensecategories [view]=2 (show)="show($event)"></app-expensecategory>
+                          <app-expensecategory #expensecategories [view]=2 (edit)="edit($event)"></app-expensecategory>
                       </div>
                   </div>
               </div>
