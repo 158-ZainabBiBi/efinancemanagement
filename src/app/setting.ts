@@ -12,7 +12,7 @@ export const setting = {
 
   AppsStorePath: "http://uog.apps.cwiztech.com/#/",
   LoginAppPath: "http://uog.accounts.cwiztech.com/#/",
-  application_ID: "EFinanceManagementDev",
+  application_ID: "EFinanceManagement",
 
   companyName: 'University of Gujrat',
   companyShortName: 'UOG',
@@ -26,6 +26,7 @@ export const setting = {
   accountservice_NAME: 'ACCOUNT',
   customerservice_NAME: 'CUSTOMER',
   productservice_NAME: 'PRODUCT',
+  locationservice_NAME: 'LOCATION',
 
   isHash: '/#',
   redirctPath: '',

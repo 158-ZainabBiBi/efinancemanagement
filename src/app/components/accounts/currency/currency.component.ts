@@ -3,7 +3,7 @@ import { ToastrService } from 'ngx-toastr';
 import { OnFailService } from '../../../services/on-fail.service';
 import { Router } from '@angular/router';
 
-import { CountryComponent } from '../../lookups/country/country.component';
+import { LocationComponent } from '../../locations/location/location.component';
 import { CurrencyService } from './currency.service';
 import { CurrencysymbolreplacementComponent } from '../../lookups/currencysymbolreplacement/currencysymbolreplacement.component';
 
@@ -13,9 +13,9 @@ import { CurrencysymbolreplacementComponent } from '../../lookups/currencysymbol
   styleUrls: ['./currency.component.css']
 })
 export class CurrencyComponent implements OnInit {
-  @ViewChild("country") country: CountryComponent;
-  @ViewChild("addcountry") addcountry: CountryComponent;
-  @ViewChild("editcountry") editcountry:CountryComponent;
+  @ViewChild("location") location: LocationComponent;
+  @ViewChild("addlocation") addlocation: LocationComponent;
+  @ViewChild("editlocation") editlocation:LocationComponent;
 
   @ViewChild("currencysymbolreplacement") currencysymbolreplacement: CurrencysymbolreplacementComponent;
   @ViewChild("addcurrencysymbolreplacement") addcurrencysymbolreplacement: CurrencysymbolreplacementComponent;
@@ -32,7 +32,7 @@ export class CurrencyComponent implements OnInit {
   @Input()
   currencyID = null;
   @Input()
-  countryID = null;
+  locationID = null;
 
   @Output() show = new EventEmitter();
   @Output() edit = new EventEmitter();
@@ -42,7 +42,7 @@ export class CurrencyComponent implements OnInit {
   currenciesAll = [];
   currency = {
     currency_ID: 0,
-    country_ID: 0,
+    location_ID: 0,
     currencysymbolreplacement_ID: 0,
     iso_CODE: "",
     exchange_RATE: null,
@@ -67,8 +67,8 @@ export class CurrencyComponent implements OnInit {
         this.currencyGetAll();
     } else if (this. view == 2 && this.currenciesAll == null) {
       this.currencyGetAll();
-    } else if (this. view == 22 && (this.countryID != null )) {
-      this.currencyAdvancedSearchAll(this.countryID);
+    } else if (this. view == 22 && (this.locationID != null )) {
+      this.currencyAdvancedSearchAll(this.locationID);
     }
 
     if (this.currencyID != 0 && !this.currencyID && Number(window.sessionStorage.getItem('currency'))>0) {
@@ -77,10 +77,10 @@ export class CurrencyComponent implements OnInit {
     if (this.view == 5 && this.currencyID) {
       window.sessionStorage.setItem("currency", this.currencyID);
       this.currencyGetOne(this.currencyID);
-    } if (this.view == 11 && this.countryID && this.disabled == false) {
-      this.currencyAdvancedSearch(this.countryID);
-    } else if (this.view == 11 && this.countryID && this.disabled == true) {
-      this.currencyAdvancedSearchAll(this.countryID);
+    } if (this.view == 11 && this.locationID && this.disabled == false) {
+      this.currencyAdvancedSearch(this.locationID);
+    } else if (this.view == 11 && this.locationID && this.disabled == true) {
+      this.currencyAdvancedSearchAll(this.locationID);
 
     } else if (this.view == 11 || this.view == 1 ) {
       this.currencyID = null;
@@ -135,7 +135,7 @@ export class CurrencyComponent implements OnInit {
         options: {
           width: 136,
           text: 'Refresh',
-          onClick: this.currencyAdvancedSearchAll.bind(this, this.countryID),
+          onClick: this.currencyAdvancedSearchAll.bind(this, this.locationID),
         },
       }
     );
@@ -144,7 +144,7 @@ export class CurrencyComponent implements OnInit {
   add() {
     this.currency = {
       currency_ID: 0,
-      country_ID: 0,
+      location_ID: 0,
       currencysymbolreplacement_ID: 0,
       iso_CODE: "",
       exchange_RATE: null,
@@ -222,11 +222,11 @@ export class CurrencyComponent implements OnInit {
   currencyAdd(currency) {
     currency.isactive = "Y";
     if(this.view == 5){
-      currency.country_ID = this.country.countryID;
+      currency.location_ID = this.location.locationID;
       currency.currencysymbolreplacement_ID = this.currencysymbolreplacement.currencysymbolreplacementID;
 
     } else {
-       currency.country_ID = this.addcountry.countryID;
+       currency.location_ID = this.addlocation.locationID;
       currency.currencysymbolreplacement_ID = this.addcurrencysymbolreplacement.currencysymbolreplacementID;
     }
     this.currencyservice.add(currency).subscribe(response => {
@@ -249,10 +249,10 @@ export class CurrencyComponent implements OnInit {
 
   currencyUpdate(currency) {
     if(this.view == 5){
-      currency.country_ID = this.country.countryID;
+      currency.location_ID = this.location.locationID;
        currency.currencysymbolreplacement_ID = this.currencysymbolreplacement.currencysymbolreplacementID;
     } else {
-      currency.country_ID = this.editcountry.countryID;
+      currency.location_ID = this.editlocation.locationID;
        currency.currencysymbolreplacement_ID = this.editcurrencysymbolreplacement.currencysymbolreplacementID;
     }
 
@@ -315,10 +315,10 @@ export class CurrencyComponent implements OnInit {
     })
   }
 
-  currencyAdvancedSearch(countryID) {
-    this.countryID = countryID;
+  currencyAdvancedSearch(locationID) {
+    this.locationID = locationID;
     var search = {
-      country_ID: countryID
+      location_ID: locationID
     }
     this.currencyservice.advancedSearch(search).subscribe(response => {
       if (response) {
@@ -333,10 +333,10 @@ export class CurrencyComponent implements OnInit {
     })
   }
 
-  currencyAdvancedSearchAll(countryID) {
-    this.countryID = countryID;
+  currencyAdvancedSearchAll(locationID) {
+    this.locationID = locationID;
     var search = {
-      country_ID: countryID
+      location_ID: locationID
     }
     this.currencyservice.advancedSearchAll(search).subscribe(response => {
       if (response) {

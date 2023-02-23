@@ -46,7 +46,7 @@
         </div>
         <div class="col-md-2">
             <button type="button" class="btn btn-light ml-2" [hidden]="disabled"
-                (click)="currencyAdvancedSearch(countryID)">
+                (click)="currencyAdvancedSearch(locationID)">
                 <i class="fa fa-refresh" aria-hidden="true"></i>
             </button>
         </div>
@@ -74,7 +74,7 @@
                         <dxi-column [width]="75" [allowFiltering]="false" [allowSorting]="false" alignment="center"
                             cellTemplate="cellTemplate"></dxi-column>
 
-                            <dxi-column dataField="country_ID.description" caption="Country" cssClass="myClass" alignment="center" [allowEditing]="false"></dxi-column>
+                            <dxi-column dataField="location_ID.location_NAME" caption="Location" cssClass="myClass" alignment="center" [allowEditing]="false"></dxi-column>
                         <dxi-column dataField="currencysymbolreplacement_ID.description" caption="Symbol Replacement" cssClass="myClass" alignment="center" [allowEditing]="false"></dxi-column>
                             <dxi-column dataField="iso_CODE" caption="Iso Code" cssClass="myClass" alignment="left"></dxi-column>
                             <dxi-column dataField="exchange_RATE" caption="Rate" cssClass="myClass" alignment="left"></dxi-column>
@@ -111,7 +111,7 @@
                 <dxo-selection mode="single"></dxo-selection>
                 <dxi-column [width]="75" [allowFiltering]="false" [allowSorting]="false" alignment="center"
                     cellTemplate="cellTemplate"></dxi-column>
-                    <dxi-column dataField="country_ID.description" caption="Country" cssClass="myClass" alignment="center" [allowEditing]="false"></dxi-column>
+                    <dxi-column dataField="location_ID.location_NAME" caption="Location" cssClass="myClass" alignment="center" [allowEditing]="false"></dxi-column>
                     <dxi-column dataField="currencysymbolreplacement_ID.description" caption="Symbol Replacement" cssClass="myClass" alignment="center" [allowEditing]="false"></dxi-column>
                         <dxi-column dataField="iso_CODE" caption="Iso Code" cssClass="myClass" alignment="left"></dxi-column>
                         <dxi-column dataField="exchange_RATE" caption="Rate" cssClass="myClass" alignment="left"></dxi-column>
@@ -144,7 +144,7 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-6">
-                            <app-country #addcountry ></app-country>
+                            <app-location #addlocation [view]="1"></app-location>
                         </div>
                         <div class="col-md-6">
                             <app-currencysymbolreplacement #addcurrencysymbolreplacement ></app-currencysymbolreplacement>
@@ -209,7 +209,7 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-6">
-                            <app-country #editcountry [countryID]="currency.country_ID"></app-country>
+                            <app-location #editlocation [view]="1" [locationID]="currency.location_ID"></app-location>
                         </div>
                         <div class="col-md-6">
                             <app-currencysymbolreplacement #editcurrencysymbolreplacement [currencysymbolreplacementID]="currency.currencysymbolreplacement_ID"></app-currencysymbolreplacement>
@@ -299,7 +299,7 @@
 
                     <div class="row">
                         <div class="col-md-6">
-                            <app-country #country [countryID]="currency.country_ID" [disabled]="disabled" ></app-country>
+                            <app-location #location [view]="1" [locationID]="currency.location_ID" [disabled]="disabled" ></app-location>
                         </div>
                         <div class="col-md-6">
                             <app-currencysymbolreplacement #currencysymbolreplacement [currencysymbolreplacementID]="currency.currencysymbolreplacement_ID" [disabled]="disabled" ></app-currencysymbolreplacement>

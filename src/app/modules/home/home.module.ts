@@ -29,6 +29,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 
 import { CustomerComponent } from '../../components/customers/customer/customer.component';
 import { ProductComponent } from '../../components/products/product/product.component';
+import { LocationComponent } from 'src/app/components/locations/location/location.component';
+import { LocationleveltypeComponent } from 'src/app/components/locations/locationleveltype/locationleveltype.component';
+import { LocationsearchfilterComponent } from 'src/app/components/locations/locationsearchfilter/locationsearchfilter.component';
 
 import { AccountComponent } from '../../components/accounts/account/account.component';
 import { AccounttypeComponent } from '../../components/accounts/accounttype/accounttype.component';
@@ -47,7 +50,6 @@ import { CashflowratetypeComponent } from '../../components/lookups/cashflowrate
 import { ReturnstatusComponent } from'../../components/lookups/returnstatus/returnstatus.component';
 import { SaleordertypeComponent } from'../../components/lookups/saleordertype/saleordertype.component';
 import { CardtypeComponent } from'../../components/lookups/cardtype/cardtype.component';
-import { CountryComponent } from'../../components/lookups/country/country.component';
 import { PostingperiodComponent } from'../../components/lookups/postingperiod/postingperiod.component';
 import { RefundmethodComponent } from'../../components/lookups/refundmethod/refundmethod.component';
 import { CurrencysymbolreplacementComponent } from'../../components/lookups/currencysymbolreplacement/currencysymbolreplacement.component';
@@ -62,17 +64,6 @@ import { CustomerrefundsComponent } from '../accounts/customerrefunds/customerre
 import { ExpensecategoriesComponent } from '../accounts/expensecategories/expensecategories.component';
 import { RecievereturnauthsComponent } from '../accounts/recievereturnauths/recievereturnauths.component';
 import { ReturnauthsComponent } from '../accounts/returnauths/returnauths.component';
-
-// import { ViewaccountComponent } from '../accounts/accounts/viewaccount/viewaccount.component';
-// import { ViewaccounttypeComponent } from '../accounts/accounttypes/viewaccounttype/viewaccounttype.component';
-// import { ViewapprovalComponent } from '../accounts/approvalreturnauths/viewapproval/viewapproval.component';
-// import { ViewrecieveComponent } from '../accounts/recievereturnauths/viewrecieve/viewrecieve.component';
-// import { ViewreturnComponent } from '../accounts/returnauths/viewreturn/viewreturn.component';
-// import { ViewcurrencyComponent } from '../accounts/currencies/viewcurrency/viewcurrency.component';
-// import { ViewexchangerateComponent } from '../accounts/currencyexchangerates/viewexchangerate/viewexchangerate.component';
-// import { ViewtransactionComponent } from '../accounts/creditcardtransactions/viewtransaction/viewtransaction.component';
-// import { ViewrefundComponent } from '../accounts/customerrefunds/viewrefund/viewrefund.component';
-// import { ViewexpenseComponent } from '../accounts/expensecategories/viewexpense/viewexpense.component';
 
 @NgModule({
   imports: [
@@ -104,6 +95,9 @@ import { ReturnauthsComponent } from '../accounts/returnauths/returnauths.compon
 
     CustomerComponent,
     ProductComponent,
+    LocationComponent,
+    LocationleveltypeComponent,
+    LocationsearchfilterComponent,
 
     AccountComponent,
     AccounttypeComponent,
@@ -121,7 +115,6 @@ import { ReturnauthsComponent } from '../accounts/returnauths/returnauths.compon
     ReturnstatusComponent,
     SaleordertypeComponent,
     CardtypeComponent,
-    CountryComponent,
     PostingperiodComponent,
     RefundmethodComponent,
     CurrencysymbolreplacementComponent,
@@ -136,17 +129,6 @@ import { ReturnauthsComponent } from '../accounts/returnauths/returnauths.compon
     ExpensecategoriesComponent,
     RecievereturnauthsComponent,
     ReturnauthsComponent,
-
-    // ViewaccountComponent,
-    // ViewaccounttypeComponent,
-    // ViewapprovalComponent,
-    // ViewrecieveComponent,
-    // ViewreturnComponent,
-    // ViewcurrencyComponent,
-    // ViewexchangerateComponent,
-    // ViewtransactionComponent,
-    // ViewrefundComponent,
-    // ViewexpenseComponent
   ],
 })
 export class HomeModule {

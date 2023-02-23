@@ -38,7 +38,7 @@ export class CurrenciesComponent implements OnInit {
   edit(row) {
     this.editcurrency.currency = {
       currency_ID: row.data.currency_ID,
-      country_ID: row.data.country_ID,
+      location_ID: row.data.location_ID,
       currencysymbolreplacement_ID: row.data.currencysymbolreplacement_ID,
       iso_CODE: row.data.iso_CODE,
       exchange_RATE: row.data.exchange_RATE,

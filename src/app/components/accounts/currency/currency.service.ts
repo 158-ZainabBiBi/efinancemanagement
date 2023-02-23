@@ -119,9 +119,8 @@ export class CurrencyService {
   getAllDetail(response) {
 
     for (var a = 0; a < response.length; a++) {
-      response[a].country = JSON.parse(response[a].country_DETAIL);
-      if (response[a].country != null)
-        response[a].country_DETAIL = response[a].country.description;
+      response[a].location = JSON.parse(response[a].location_DETAIL);
+       response[a].location_DETAIL = null;
 
       response[a].currencysymbolreplacement = JSON.parse(response[a].currencysymbolreplacement_DETAIL);
       if (response[a].currencysymbolreplacement != null)
@@ -133,9 +132,8 @@ export class CurrencyService {
 
   getDetail(response) {
 
-    response.country = JSON.parse(response.country_DETAIL);
-    if (response.country != null)
-      response.country_DETAIL = response.country.description;
+    response.location = JSON.parse(response.location_DETAIL);
+      response.location_DETAIL = null;
 
     response.currencysymbolreplacement = JSON.parse(response.currencysymbolreplacement_DETAIL);
     if (response.currencysymbolreplacement != null)
