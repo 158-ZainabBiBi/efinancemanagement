@@ -3,8 +3,8 @@ import { ToastrService } from 'ngx-toastr';
 import { OnFailService } from '../../../services/on-fail.service';
 import { RouterLinkWithHref } from '@angular/router';
 
-import { CurrencyexchangerateComponent } from 'src/app/components/accounts/currencyexchangerate/currencyexchangerate.component';
-import { CurrencyexchangerateService } from 'src/app/components/accounts/currencyexchangerate/currencyexchangerate.service';
+import { CurrencyexchangerateComponent } from 'src/app/components/account/currencyexchangerate/currencyexchangerate.component';
+import { CurrencyexchangerateService } from 'src/app/components/account/currencyexchangerate/currencyexchangerate.service';
 
 declare var $: any;
 
@@ -42,7 +42,7 @@ export class CurrencyexchangeratesComponent implements OnInit {
       effective_DATE: row.data.effective_DATE,
       isactive: row.data.isactive
     };
-    if (row.data.isactive=="Y") {
+    if (row.data.isactive == "Y") {
       this.editcurrencyexchangerate.currencyexchangerate.isactive = true;
     } else {
       this.editcurrencyexchangerate.currencyexchangerate.isactive = false;
@@ -53,6 +53,14 @@ export class CurrencyexchangeratesComponent implements OnInit {
   cancel() {
     $("#add").modal("hide");
     $("#edit").modal("hide");
+  }
+
+  advancedSearch(search) {
+    this.currencyexchangerates.currencyexchangerateAdvancedSearch(search);
+  }
+
+  advancedSearchAll(search) {
+    this.currencyexchangerates.currencyexchangerateAdvancedSearchAll(search);
   }
 
 }

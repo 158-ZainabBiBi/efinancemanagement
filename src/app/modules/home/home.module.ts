@@ -27,32 +27,33 @@ import { HomeComponent } from './home.component';
 import { HomeRoutingModule } from './home-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
-import { CustomerComponent } from '../../components/customers/customer/customer.component';
-import { ProductComponent } from '../../components/products/product/product.component';
-import { LocationComponent } from 'src/app/components/locations/location/location.component';
-import { LocationleveltypeComponent } from 'src/app/components/locations/locationleveltype/locationleveltype.component';
-import { LocationsearchfilterComponent } from 'src/app/components/locations/locationsearchfilter/locationsearchfilter.component';
+import { CustomerComponent } from '../../components/customer/customer/customer.component';
+import { ProductComponent } from '../../components/product/product/product.component';
+import { LocationComponent } from 'src/app/components/location/location/location.component';
+import { LocationleveltypeComponent } from 'src/app/components/location/locationleveltype/locationleveltype.component';
+import { LocationsearchfilterComponent } from 'src/app/components/location/locationsearchfilter/locationsearchfilter.component';
+import { AccountsearchfilterComponent} from 'src/app/components/accountsearchfilter/accountsearchfilter.component';
 
-import { AccountComponent } from '../../components/accounts/account/account.component';
-import { AccounttypeComponent } from '../../components/accounts/accounttype/accounttype.component';
-import { ApprovalreturnauthComponent } from '../../components/accounts/approvalreturnauth/approvalreturnauth.component';
-import { CreditcardtransactionComponent } from '../../components/accounts/creditcardtransaction/creditcardtransaction.component';
-import { CurrencyComponent } from '../../components/accounts/currency/currency.component';
-import { CurrencyexchangerateComponent } from '../../components/accounts/currencyexchangerate/currencyexchangerate.component';
-import { CustomerrefundComponent } from '../../components/accounts/customerrefund/customerrefund.component';
-import { ExpensecategoryComponent } from '../../components/accounts/expensecategory/expensecategory.component';
-import { RecievereturnauthComponent } from '../../components/accounts/recievereturnauth/recievereturnauth.component';
-import { ReturnauthComponent } from '../../components/accounts/returnauth/returnauth.component';
+import { AccountComponent } from '../../components/account/account/account.component';
+import { AccounttypeComponent } from '../../components/account/accounttype/accounttype.component';
+import { ApprovalreturnauthComponent } from '../../components/account/approvalreturnauth/approvalreturnauth.component';
+import { CreditcardtransactionComponent } from '../../components/account/creditcardtransaction/creditcardtransaction.component';
+import { CurrencyComponent } from '../../components/account/currency/currency.component';
+import { CurrencyexchangerateComponent } from '../../components/account/currencyexchangerate/currencyexchangerate.component';
+import { CustomerrefundComponent } from '../../components/account/customerrefund/customerrefund.component';
+import { ExpensecategoryComponent } from '../../components/account/expensecategory/expensecategory.component';
+import { RecievereturnauthComponent } from '../../components/account/recievereturnauth/recievereturnauth.component';
+import { ReturnauthComponent } from '../../components/account/returnauth/returnauth.component';
 
-import { GeneralratetypeComponent } from '../../components/lookups/generalratetype/generalratetype.component';
-import { CashflowratetypeComponent } from '../../components/lookups/cashflowratetype/cashflowratetype.component';
+import { GeneralratetypeComponent } from '../../components/lookup/generalratetype/generalratetype.component';
+import { CashflowratetypeComponent } from '../../components/lookup/cashflowratetype/cashflowratetype.component';
 
-import { ReturnstatusComponent } from'../../components/lookups/returnstatus/returnstatus.component';
-import { SaleordertypeComponent } from'../../components/lookups/saleordertype/saleordertype.component';
-import { CardtypeComponent } from'../../components/lookups/cardtype/cardtype.component';
-import { PostingperiodComponent } from'../../components/lookups/postingperiod/postingperiod.component';
-import { RefundmethodComponent } from'../../components/lookups/refundmethod/refundmethod.component';
-import { CurrencysymbolreplacementComponent } from'../../components/lookups/currencysymbolreplacement/currencysymbolreplacement.component';
+import { ReturnstatusComponent } from '../../components/lookup/returnstatus/returnstatus.component';
+import { SaleordertypeComponent } from '../../components/lookup/saleordertype/saleordertype.component';
+import { CardtypeComponent } from '../../components/lookup/cardtype/cardtype.component';
+import { PostingperiodComponent } from '../../components/lookup/postingperiod/postingperiod.component';
+import { RefundmethodComponent } from '../../components/lookup/refundmethod/refundmethod.component';
+import { CurrencysymbolreplacementComponent } from '../../components/lookup/currencysymbolreplacement/currencysymbolreplacement.component';
 
 import { AccountsComponent } from '../accounts/accounts/accounts.component';
 import { AccounttypesComponent } from '../accounts/accounttypes/accounttypes.component';
@@ -98,6 +99,7 @@ import { ReturnauthsComponent } from '../accounts/returnauths/returnauths.compon
     LocationComponent,
     LocationleveltypeComponent,
     LocationsearchfilterComponent,
+    AccountsearchfilterComponent,
 
     AccountComponent,
     AccounttypeComponent,
@@ -132,7 +134,7 @@ import { ReturnauthsComponent } from '../accounts/returnauths/returnauths.compon
   ],
 })
 export class HomeModule {
-  constructor() {}
+  constructor() { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 }

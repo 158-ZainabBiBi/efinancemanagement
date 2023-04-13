@@ -1,0 +1,82 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card-primary card">
+      <div class="card-header">
+        <div class="align-items-center row">
+          <div class="col">
+            <a href="javascript:void" aria-controls="collapse-customerinfo1" aria-expanded="true"
+              class="card-title">Filter
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-4" *ngIf="accounttype==true">
+            <app-accounttype></app-accounttype>
+          </div>
+          <div class="col-md-4" *ngIf="cashflowratetype==true">
+            <app-cashflowratetype></app-cashflowratetype>
+          </div>
+          <div class="col-md-4" *ngIf="generalratetype==true">
+            <app-generalratetype></app-generalratetype>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6" *ngIf="currency==true">
+            <app-currency></app-currency>
+          </div>
+          <div class="col-md-6" *ngIf="returnauth==true">
+            <app-returnauth></app-returnauth>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6" *ngIf="cardtype==true">
+            <app-cardtype></app-cardtype>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6" *ngIf="currencysymbolreplacement==true">
+            <app-currencysymbolreplacement></app-currencysymbolreplacement>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4" *ngIf="account==true">
+            <app-account></app-account>
+          </div>
+          <div class="col-md-4" *ngIf="refundmethod==true">
+            <app-refundmethod></app-refundmethod>
+          </div>
+          <div class="col-md-4" *ngIf="postingperiod==true">
+            <app-postingperiod></app-postingperiod>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6" *ngIf="customerrefund==true">
+            <app-customerrefund></app-customerrefund>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6" *ngIf="returnstatus==true">
+            <app-returnstatus></app-returnstatus>
+          </div>
+          <div class="col-md-6" *ngIf="saleordertype==true">
+            <app-saleordertype></app-saleordertype>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group text-right">
+              <button id="savebutton" class="btn btn-success ml-2" (click)="accountsearchfilter()">
+                Search
+              </button>
+              <button type="button" class="btn btn-light ml-2" (click)="reset()">
+                Reset
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

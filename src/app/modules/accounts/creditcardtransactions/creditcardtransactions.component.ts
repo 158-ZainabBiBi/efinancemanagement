@@ -3,8 +3,8 @@ import { ToastrService } from 'ngx-toastr';
 import { OnFailService } from '../../../services/on-fail.service';
 import { RouterLinkWithHref } from '@angular/router';
 
-import { CreditcardtransactionComponent } from 'src/app/components/accounts/creditcardtransaction/creditcardtransaction.component';
-import { CreditcardtransactionService } from 'src/app/components/accounts/creditcardtransaction/creditcardtransaction.service';
+import { CreditcardtransactionComponent } from 'src/app/components/account/creditcardtransaction/creditcardtransaction.component';
+import { CreditcardtransactionService } from 'src/app/components/account/creditcardtransaction/creditcardtransaction.service';
 
 declare var $: any;
 
@@ -48,7 +48,7 @@ export class CreditcardtransactionsComponent implements OnInit {
       authcode: row.data.authcode,
       isactive: row.data.isactive
     };
-    if (row.data.isactive=="Y") {
+    if (row.data.isactive == "Y") {
       this.editcreditcardtransaction.creditcardtransaction.isactive = true;
     } else {
       this.editcreditcardtransaction.creditcardtransaction.isactive = false;
@@ -59,6 +59,14 @@ export class CreditcardtransactionsComponent implements OnInit {
   cancel() {
     $("#add").modal("hide");
     $("#edit").modal("hide");
+  }
+
+  advancedSearch(search) {
+    this.creditcardtransactions.creditcardtransactionAdvancedSearch(search);
+  }
+
+  advancedSearchAll(search) {
+    this.creditcardtransactions.creditcardtransactionAdvancedSearchAll(search);
   }
 
 }

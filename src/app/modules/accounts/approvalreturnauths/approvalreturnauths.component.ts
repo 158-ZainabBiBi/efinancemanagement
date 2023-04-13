@@ -3,8 +3,8 @@ import { ToastrService } from 'ngx-toastr';
 import { OnFailService } from '../../../services/on-fail.service';
 import { RouterLinkWithHref } from '@angular/router';
 
-import { ApprovalreturnauthComponent } from 'src/app/components/accounts/approvalreturnauth/approvalreturnauth.component';
-import { ApprovalreturnauthService } from 'src/app/components/accounts/approvalreturnauth/approvalreturnauth.service';
+import { ApprovalreturnauthComponent } from 'src/app/components/account/approvalreturnauth/approvalreturnauth.component';
+import { ApprovalreturnauthService } from 'src/app/components/account/approvalreturnauth/approvalreturnauth.service';
 
 declare var $: any;
 
@@ -45,7 +45,7 @@ export class ApprovalreturnauthsComponent implements OnInit {
       isapproved: row.data.isapproved,
       isactive: row.data.isactive
     };
-    if (row.data.isactive=="Y") {
+    if (row.data.isactive == "Y") {
       this.editapprovalreturnauth.approvalreturnauth.isactive = true;
     } else {
       this.editapprovalreturnauth.approvalreturnauth.isactive = false;
@@ -58,4 +58,11 @@ export class ApprovalreturnauthsComponent implements OnInit {
     $("#edit").modal("hide");
   }
 
+  advancedSearch(returnauthID, currencyID) {
+    this.approvalreturnauths.approvalreturnauthAdvancedSearch(returnauthID, currencyID);
+  }
+
+  advancedSearchAll(returnauthID, currencyID) {
+    this.approvalreturnauths.approvalreturnauthAdvancedSearchAll(returnauthID, currencyID);
+  }
 }

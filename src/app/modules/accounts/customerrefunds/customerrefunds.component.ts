@@ -3,8 +3,8 @@ import { ToastrService } from 'ngx-toastr';
 import { OnFailService } from '../../../services/on-fail.service';
 import { RouterLinkWithHref } from '@angular/router';
 
-import { CustomerrefundComponent } from 'src/app/components/accounts/customerrefund/customerrefund.component';
-import { CustomerrefundService } from 'src/app/components/accounts/customerrefund/customerrefund.service';
+import { CustomerrefundComponent } from 'src/app/components/account/customerrefund/customerrefund.component';
+import { CustomerrefundService } from 'src/app/components/account/customerrefund/customerrefund.service';
 
 declare var $: any;
 
@@ -40,7 +40,7 @@ export class CustomerrefundsComponent implements OnInit {
       customerrefund_ID: row.data.customerrefund_ID,
       customer_ID: row.data.customer_ID,
       account_ID: row.data.account_ID,
-      currency_ID:  row.data.currency_ID,
+      currency_ID: row.data.currency_ID,
       postingperiod_ID: row.data.postingperiod_ID,
       refundmethod_ID: row.data.refundmethod_ID,
       customerrefund_CODE: row.data.customerrefund_CODE,
@@ -57,7 +57,7 @@ export class CustomerrefundsComponent implements OnInit {
       isapproved: row.data.isapproved,
       isactive: row.data.isactive
     };
-    if (row.data.isactive=="Y") {
+    if (row.data.isactive == "Y") {
       this.editcustomerrefund.customerrefund.isactive = true;
     } else {
       this.editcustomerrefund.customerrefund.isactive = false;

@@ -3,8 +3,8 @@ import { ToastrService } from 'ngx-toastr';
 import { OnFailService } from '../../../services/on-fail.service';
 import { RouterLinkWithHref } from '@angular/router';
 
-import { AccounttypeComponent } from 'src/app/components/accounts/accounttype/accounttype.component';
-import { AccounttypeService } from 'src/app/components/accounts/accounttype/accounttype.service';
+import { AccounttypeComponent } from 'src/app/components/account/accounttype/accounttype.component';
+import { AccounttypeService } from 'src/app/components/account/accounttype/accounttype.service';
 
 declare var $: any;
 
@@ -38,12 +38,12 @@ export class AccounttypesComponent implements OnInit {
   edit(row) {
     this.editaccounttype.accounttype = {
       accounttype_ID: row.data.accounttype_ID,
-      accounttype_NAME:row.data.accounttype_NAME,
-      accounttype_CODE:row.data.accounttype_CODE,
-      accounttype_DESCRIPTION:row.data.accounttype_DESCRIPTION,
+      accounttype_NAME: row.data.accounttype_NAME,
+      accounttype_CODE: row.data.accounttype_CODE,
+      accounttype_DESCRIPTION: row.data.accounttype_DESCRIPTION,
       isactive: row.data.isactive
     };
-    if (row.data.isactive=="Y") {
+    if (row.data.isactive == "Y") {
       this.editaccounttype.accounttype.isactive = true;
     } else {
       this.editaccounttype.accounttype.isactive = false;

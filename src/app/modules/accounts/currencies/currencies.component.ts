@@ -3,8 +3,8 @@ import { ToastrService } from 'ngx-toastr';
 import { OnFailService } from '../../../services/on-fail.service';
 import { RouterLinkWithHref } from '@angular/router';
 
-import { CurrencyComponent } from 'src/app/components/accounts/currency/currency.component';
-import { CurrencyService } from 'src/app/components/accounts/currency/currency.service';
+import { CurrencyComponent } from 'src/app/components/account/currency/currency.component';
+import { CurrencyService } from 'src/app/components/account/currency/currency.service';
 
 declare var $: any;
 
@@ -46,7 +46,7 @@ export class CurrenciesComponent implements OnInit {
       currency_SYMBOL: row.data.currency_SYMBOL,
       isactive: row.data.isactive
     };
-    if (row.data.isactive=="Y") {
+    if (row.data.isactive == "Y") {
       this.editcurrency.currency.isactive = true;
     } else {
       this.editcurrency.currency.isactive = false;
@@ -57,6 +57,14 @@ export class CurrenciesComponent implements OnInit {
   cancel() {
     $("#add").modal("hide");
     $("#edit").modal("hide");
+  }
+
+  advancedSearch(search) {
+    this.currencies.currencyAdvancedSearch(search);
+  }
+
+  advancedSearchAll(search) {
+    this.currencies.currencyAdvancedSearchAll(search);
   }
 
 }

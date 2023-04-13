@@ -3,8 +3,8 @@ import { ToastrService } from 'ngx-toastr';
 import { OnFailService } from '../../../services/on-fail.service';
 import { RouterLinkWithHref } from '@angular/router';
 
-import { ExpensecategoryComponent } from 'src/app/components/accounts/expensecategory/expensecategory.component';
-import { ExpensecategoryService } from 'src/app/components/accounts/expensecategory/expensecategory.service';
+import { ExpensecategoryComponent } from 'src/app/components/account/expensecategory/expensecategory.component';
+import { ExpensecategoryService } from 'src/app/components/account/expensecategory/expensecategory.service';
 
 declare var $: any;
 
@@ -43,7 +43,7 @@ export class ExpensecategoriesComponent implements OnInit {
       expensecategory_DESCRIPTION: row.data.expensecategory_DESCRIPTION,
       isactive: row.data.isactive
     };
-    if (row.data.isactive=="Y") {
+    if (row.data.isactive == "Y") {
       this.editexpensecategory.expensecategory.isactive = true;
     } else {
       this.editexpensecategory.expensecategory.isactive = false;

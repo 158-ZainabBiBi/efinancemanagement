@@ -1,4 +1,21 @@
 <div class="collapse-card-h container">
+  <app-accountsearchfilter
+  [account]=false
+  [accounttype]=false
+  [returnauth]=false
+  [currency]=false
+  [customerrefund]=false
+  [cardtype]=true
+  [currencysymbolreplacement]=false
+  [refundmethod]=false
+  [saleordertype]=false
+  [postingperiod]=false
+  [returnstatus]=false
+  [cashflowratetype]=false
+  [generalratetype]=false
+  (advancedSearch)="advancedSearch($event)"
+  (advancedSearchAll)="advancedSearchAll($event)"
+  ></app-accountsearchfilter>
   <div class="row">
       <div class="col-md-12">
           <div class="card-primary card">

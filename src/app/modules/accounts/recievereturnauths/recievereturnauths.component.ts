@@ -3,8 +3,8 @@ import { ToastrService } from 'ngx-toastr';
 import { OnFailService } from '../../../services/on-fail.service';
 import { RouterLinkWithHref } from '@angular/router';
 
-import { RecievereturnauthComponent } from 'src/app/components/accounts/recievereturnauth/recievereturnauth.component';
-import { RecievereturnauthService } from 'src/app/components/accounts/recievereturnauth/recievereturnauth.service';
+import { RecievereturnauthComponent } from 'src/app/components/account/recievereturnauth/recievereturnauth.component';
+import { RecievereturnauthService } from 'src/app/components/account/recievereturnauth/recievereturnauth.service';
 
 declare var $: any;
 
@@ -45,7 +45,7 @@ export class RecievereturnauthsComponent implements OnInit {
       isapproved: row.data.isapproved,
       isactive: row.data.isactive
     };
-    if (row.data.isactive=="Y") {
+    if (row.data.isactive == "Y") {
       this.editrecievereturnauth.recievereturnauth.isactive = true;
     } else {
       this.editrecievereturnauth.recievereturnauth.isactive = false;
@@ -56,6 +56,14 @@ export class RecievereturnauthsComponent implements OnInit {
   cancel() {
     $("#add").modal("hide");
     $("#edit").modal("hide");
+  }
+
+  advancedSearch(returnauthID, currencyID) {
+    this.recievereturnauths.recievereturnauthAdvancedSearch(returnauthID, currencyID);
+  }
+
+  advancedSearchAll(returnauthID, currencyID) {
+    this.recievereturnauths.recievereturnauthAdvancedSearchAll(returnauthID, currencyID);
   }
 
 }
