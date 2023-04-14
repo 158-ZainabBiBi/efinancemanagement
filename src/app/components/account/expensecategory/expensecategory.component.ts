@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { OnFailService } from '../../../services/on-fail.service';
 
-import { ExpensecategoryService } from '../expensecategory/expensecategory.service';
+import { ExpensecategoryService } from './expensecategory.service';
 
 @Component({
   selector: 'app-expensecategory',
@@ -17,6 +17,8 @@ export class ExpensecategoryComponent implements OnInit {
   @Input()
   iscompulsory: boolean = false;
   @Input()
+  isreload: boolean = false;
+  @Input()
   disabled: boolean = false;
   @Input()
   all: boolean = false;
@@ -26,48 +28,63 @@ export class ExpensecategoryComponent implements OnInit {
   @Output() edit = new EventEmitter();
   @Output() cancel = new EventEmitter();
   @Output() show = new EventEmitter();
+  @Output() refresh = new EventEmitter();
+  @Output() onExpenseCategoryChange = new EventEmitter();
 
   expensecategories = [];
   expensecategoriesAll = [];
   expensecategory = {
-      expensecategory_ID: 0,
-      expensecategory_CODE: "",
-      expensecategory_NAME: "",
-      expensecategory_DESCRIPTION: "",
-      isactive:true,
+    expensecategory_ID: 0,
+    expensecategory_CODE: null,
+    expensecategory_NAME: null,
+    expensecategory_DESCRIPTION: null,
+    isactive: true
   }
 
   constructor(
     private expensecategoryservice: ExpensecategoryService,
     private toastrservice: ToastrService,
     private onfailservice: OnFailService,
-    private router : Router,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
-    this.expensecategories = JSON.parse(window.sessionStorage.getItem('expensecategories'));
-    this.expensecategoriesAll = JSON.parse(window.sessionStorage.getItem('expensecategoriesAll'));
-    if (this.view == 1 && this.disabled == false && this.expensecategories == null) {
-      this.expensecategoryGet();
-    } else if (this.view == 1 && this.disabled == true && this.expensecategoriesAll == null) {
-      this.expensecategoryGetAll();
-    } else if (this. view == 2 && this.expensecategoriesAll == null) {
-      this.expensecategoryGetAll();
-    }
+    this.load(this.isreload);
+  }
 
-    if (this.expensecategoryID != 0 && !this.expensecategoryID && Number(window.sessionStorage.getItem('expensecategory'))>0) {
+  load(reload) {
+    if (window.sessionStorage.getItem('expensecategories') != null) {
+      this.expensecategories = JSON.parse(window.sessionStorage.getItem('expensecategories'));
+    }
+    if (window.sessionStorage.getItem('expensecategoriesAll') != null) {
+      this.expensecategoriesAll = JSON.parse(window.sessionStorage.getItem('expensecategoriesAll'));
+    }
+    if (this.expensecategoryID != 0 && !this.expensecategoryID && Number(window.sessionStorage.getItem('expensecategory')) > 0) {
       this.expensecategoryID = Number(window.sessionStorage.getItem('expensecategory'));
     }
 
-    if (this.view == 5 && this.expensecategoryID) {
+    if (this.view >= 1 && this.view <= 2 && (this.expensecategories == null || this.expensecategories.length == 0 || reload == true)) {
+      this.expensecategories == null;
+      this.expensecategoryGet();
+    }
+    if (((this.view >= 1 && this.view <= 2) || this.view == 10) && (this.expensecategoriesAll == null || this.expensecategoriesAll.length == 0 || reload == true)) {
+      this.expensecategoriesAll == null;
+      this.expensecategoryGetAll();
+    }
+
+    var search = {}
+
+    if (this.view >= 5 && this.view <= 6 && this.expensecategoryID) {
       window.sessionStorage.setItem("expensecategory", this.expensecategoryID);
       this.expensecategoryGetOne(this.expensecategoryID);
+      this.disabled = true;
+    } else if ((this.view >= 11 && this.view <= 29) && this.disabled == false && (this.expensecategories == null || this.expensecategories.length == 0 || reload == true)) {
+      this.expensecategories == null;
+      this.expensecategoryAdvancedSearch(search);
+    } else if ((this.view >= 11 && this.view <= 29) && this.disabled == true && (this.expensecategoriesAll == null || this.expensecategoriesAll.length == 0 || reload == true)) {
+      this.expensecategoriesAll == null;
+      this.expensecategoryAdvancedSearchAll(search);
     }
-    // if (this.expensecategoryID == 0) {
-    //   this.universityDisabled = false;
-    //   this.expensecategoryID = null;
-    // }
-
   }
 
   onToolbarPreparing(e) {
@@ -78,7 +95,7 @@ export class ExpensecategoryComponent implements OnInit {
         options: {
           width: 136,
           text: 'Refresh',
-          onClick: this.expensecategoryGetAll.bind(this),
+          onClick: this.load.bind(this, true),
         },
       }
     );
@@ -87,10 +104,10 @@ export class ExpensecategoryComponent implements OnInit {
   add() {
     this.expensecategory = {
       expensecategory_ID: 0,
-      expensecategory_CODE: "",
-      expensecategory_NAME: "",
-      expensecategory_DESCRIPTION: "",
-      isactive: true,
+      expensecategory_CODE: null,
+      expensecategory_NAME: null,
+      expensecategory_DESCRIPTION: null,
+      isactive: true
     };
   }
 
@@ -110,14 +127,23 @@ export class ExpensecategoryComponent implements OnInit {
     this.cancel.next();
   }
 
-  expensecategoryEdit(){
+  expensecategoryEdit() {
     this.disabled = false;
   }
 
   expensecategoryCancel() {
     this.disabled = true;
-    if (this.expensecategory.expensecategory_ID==0) {
-      this.router.navigate(["/home/expensecategories"], {});
+    if (this.expensecategory.expensecategory_ID == 0) {
+      this.router.navigate(["/home/expensecategories "], {});
+    }
+  }
+
+  onChange(expensecategoryID) {
+    for (var i = 0; i < this.expensecategoriesAll.length; i++) {
+      if (this.expensecategoriesAll[i].expensecategory_ID == expensecategoryID) {
+        this.onExpenseCategoryChange.next(this.expensecategoriesAll[i]);
+        break;
+      }
     }
   }
 
@@ -130,15 +156,9 @@ export class ExpensecategoryComponent implements OnInit {
     this.expensecategory = response;
   }
 
-  setExpensecategorys(response) {
-    if ((this.view == 1 || this.view == 11)  && this.disabled == false) {
-      this.expensecategories = response;
-      window.sessionStorage.setItem("expensecategories", JSON.stringify(this.expensecategories));
-    } else {
-      this.expensecategoriesAll = response;
-      window.sessionStorage.setItem("expensecategoriesAll", JSON.stringify(this.expensecategoriesAll));
-    }
+  setExpensecategories(response) {
     this.cancel.next();
+    return response;
   }
 
   expensecategoryGet() {
@@ -146,8 +166,9 @@ export class ExpensecategoryComponent implements OnInit {
       if (response) {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
-        } else{
-          this.setExpensecategorys(response);
+        } else {
+          this.expensecategories = this.setExpensecategories(this.expensecategoryservice.getAllDetail(response));
+          window.sessionStorage.setItem("expensecategories", JSON.stringify(this.expensecategories));
         }
       }
     }, error => {
@@ -160,8 +181,9 @@ export class ExpensecategoryComponent implements OnInit {
       if (response) {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
-        } else{
-          this.setExpensecategorys(response);
+        } else {
+          this.expensecategoriesAll = this.setExpensecategories(this.expensecategoryservice.getAllDetail(response));
+          window.sessionStorage.setItem("expensecategoriesAll", JSON.stringify(this.expensecategoriesAll));
         }
       }
     }, error => {
@@ -175,9 +197,8 @@ export class ExpensecategoryComponent implements OnInit {
       if (response) {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
-        } else{
-          this.setExpensecategory(response);
-
+        } else {
+          this.setExpensecategory(this.expensecategoryservice.getDetail(response));
         }
       }
     }, error => {
@@ -186,16 +207,15 @@ export class ExpensecategoryComponent implements OnInit {
   }
 
   expensecategoryAdd(expensecategory) {
-    expensecategory.isactive="Y";
+    expensecategory.isactive = "Y";
 
     this.expensecategoryservice.add(expensecategory).subscribe(response => {
       if (response) {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else if (response.expensecategory_ID) {
-          this.toastrservice.success("Success", "New Expensecategory Added");
-          this.expensecategoryGetAll();
-          this.setExpensecategory(response);
+          this.toastrservice.success("Success", "New Expense Category Added");
+          this.refresh.next();
           this.disabled = true;
         } else {
           this.toastrservice.error("Some thing went wrong");
@@ -207,6 +227,7 @@ export class ExpensecategoryComponent implements OnInit {
   }
 
   expensecategoryUpdate(expensecategory) {
+
     if (expensecategory.isactive == true) {
       expensecategory.isactive = "Y";
     } else {
@@ -217,8 +238,8 @@ export class ExpensecategoryComponent implements OnInit {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else if (response.expensecategory_ID) {
-          this.toastrservice.success("Success", " Expensecategory Updated");
-          this.expensecategoryGetAll();
+          this.toastrservice.success("Success", "Expense Category Updated");
+          this.refresh.next();
         } else {
           this.toastrservice.error("Some thing went wrong");
         }
@@ -227,4 +248,88 @@ export class ExpensecategoryComponent implements OnInit {
       this.onfailservice.onFail(error);
     })
   }
+
+  expensecategoryUpdateAll(expensecategories) {
+    this.expensecategoryservice.updateAll(expensecategories).subscribe(response => {
+      if (response) {
+        if (response.error && response.status) {
+          this.toastrservice.warning("Message", " " + response.message);
+        } else if (response.length > 0) {
+          this.toastrservice.success("Success", "Expense Categories Updated");
+          this.refresh.next();
+        } else {
+          this.toastrservice.error("Some thing went wrong");
+        }
+      }
+    }, error => {
+      this.onfailservice.onFail(error);
+    })
+  }
+
+  expensecategorySearch(str) {
+    var search = {
+      search: str
+    }
+    this.expensecategoryservice.search(search).subscribe(response => {
+      if (response) {
+        if (response.error && response.status) {
+          this.toastrservice.warning("Message", " " + response.message);
+        } else {
+          this.expensecategories = this.setExpensecategories(this.expensecategoryservice.getAllDetail(response));
+          window.sessionStorage.setItem("expensecategories", JSON.stringify(this.expensecategories));
+        }
+      }
+    }, error => {
+      this.onfailservice.onFail(error);
+    })
+  }
+
+  expensecategorySearchAll(str) {
+    var search = {
+      search: str
+    }
+    this.expensecategoryservice.searchAll(search).subscribe(response => {
+      if (response) {
+        if (response.error && response.status) {
+          this.toastrservice.warning("Message", " " + response.message);
+        } else {
+          this.expensecategoriesAll = this.setExpensecategories(this.expensecategoryservice.getAllDetail(response));
+          window.sessionStorage.setItem("expensecategoriesAll", JSON.stringify(this.expensecategoriesAll));
+        }
+      }
+    }, error => {
+      this.onfailservice.onFail(error);
+    })
+  }
+
+  expensecategoryAdvancedSearch(search) {
+    this.expensecategoryservice.advancedSearch(search).subscribe(response => {
+      if (response) {
+        if (response.error && response.status) {
+          this.toastrservice.warning("Message", " " + response.message);
+        } else {
+          this.expensecategories = this.setExpensecategories(this.expensecategoryservice.getAllDetail(response));
+          window.sessionStorage.setItem("expensecategories", JSON.stringify(this.expensecategories));
+        }
+      }
+    }, error => {
+      this.onfailservice.onFail(error);
+    })
+  }
+
+  expensecategoryAdvancedSearchAll(search) {
+    this.expensecategoryservice.advancedSearchAll(search).subscribe(response => {
+      if (response) {
+        if (response.error && response.status) {
+          this.toastrservice.warning("Message", " " + response.message);
+        } else {
+          this.expensecategoriesAll = this.setExpensecategories(this.expensecategoryservice.getAllDetail(response));
+          window.sessionStorage.setItem("expensecategoriesAll", JSON.stringify(this.expensecategoriesAll));
+        }
+      }
+    }, error => {
+      this.onfailservice.onFail(error);
+    })
+  }
+
 }

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpCallServieService } from '../../../services/http-call-servie.service';
 import { setting } from '../../../setting';
+import { ReturnauthService } from '../returnauth/returnauth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,8 @@ export class RecievereturnauthService {
 
 
   constructor(
-    private _HttpCallServieService_: HttpCallServieService
+    private _HttpCallServieService_: HttpCallServieService,
+    private returnauthservice: ReturnauthService
   ) { }
 
 
@@ -59,6 +61,17 @@ export class RecievereturnauthService {
       service_NAME: setting.accountservice_NAME,
       request_TYPE: "PUT",
       request_URI: "recievereturnauth/" + id,
+      request_BODY: JSON.stringify(data)
+
+    }
+    return this._HttpCallServieService_.api(postData);
+  }
+
+  updateAll(data) {
+    var postData = {
+      service_NAME: setting.accountservice_NAME,
+      request_TYPE: "PUT",
+      request_URI: "recievereturnauth",
       request_BODY: JSON.stringify(data)
 
     }
@@ -118,23 +131,16 @@ export class RecievereturnauthService {
 
   getAllDetail(response) {
     for (var a = 0; a < response.length; a++) {
-      response[a].returnauth = JSON.parse(response[a].returnauth_DETAIL);
-       response[a].returnauth_DETAIL = null;
-
-      response[a].currency = JSON.parse(response[a].currency_DETAIL);
-       response[a].currency_DETAIL = null;
-
+      response[a] = this.getDetail(response[a]);
     }
     return (response);
   }
 
   getDetail(response) {
-
-    response.returnauth = JSON.parse(response.returnauth_DETAIL);
-      response.returnauth_DETAIL = null;
-
-    response.currency = JSON.parse(response.currency_DETAIL);
-      response.currency_DETAIL = null;
+    if (response.returnauth_DETAIL != null) {
+      response.returnauth = this.returnauthservice.getDetail(JSON.parse(response.returnauth_DETAIL));
+      response.returnauth_DETAIL = null
+    }
 
     return (response);
   }

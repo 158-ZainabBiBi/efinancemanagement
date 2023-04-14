@@ -65,6 +65,17 @@ export class ExpensecategoryService {
     return this._HttpCallServieService_.api(postData);
   }
 
+  updateAll(data) {
+    var postData = {
+      service_NAME: setting.accountservice_NAME,
+      request_TYPE: "PUT",
+      request_URI: "expensecategory",
+      request_BODY: JSON.stringify(data)
+
+    }
+    return this._HttpCallServieService_.api(postData);
+  }
+
   delete(id) {
     var postData = {
       service_NAME: setting.accountservice_NAME,
@@ -114,6 +125,17 @@ export class ExpensecategoryService {
       request_BODY: JSON.stringify(data)
     }
     return this._HttpCallServieService_.api(postData);
+  }
+
+  getAllDetail(response) {
+    for (var a = 0; a < response.length; a++) {
+      response[a] = this.getDetail(response[a]);
+    }
+    return (response);
+  }
+
+  getDetail(response) {
+    return (response);
   }
 
 }

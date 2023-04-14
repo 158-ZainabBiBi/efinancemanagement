@@ -9,8 +9,6 @@ import { AccountsComponent } from '../accounts/accounts/accounts.component';
 import { AccounttypesComponent } from '../accounts/accounttypes/accounttypes.component';
 import { ApprovalreturnauthsComponent } from '../accounts/approvalreturnauths/approvalreturnauths.component';
 import { CreditcardtransactionsComponent } from '../accounts/creditcardtransactions/creditcardtransactions.component';
-import { CurrenciesComponent } from '../accounts/currencies/currencies.component';
-import { CurrencyexchangeratesComponent } from '../accounts/currencyexchangerates/currencyexchangerates.component';
 import { CustomerrefundsComponent } from '../accounts/customerrefunds/customerrefunds.component';
 import { ExpensecategoriesComponent } from '../accounts/expensecategories/expensecategories.component';
 import { RecievereturnauthsComponent } from '../accounts/recievereturnauths/recievereturnauths.component';
@@ -27,9 +25,6 @@ const routes: Routes = [{
     { path: 'approvalreturnauths', component: ApprovalreturnauthsComponent },
     { path: 'recievereturnauths', component: RecievereturnauthsComponent },
     { path: 'returnauths', component: ReturnauthsComponent },
-
-    { path: 'currencies', component: CurrenciesComponent },
-    { path: 'currencyexchangerates', component: CurrencyexchangeratesComponent },
 
     { path: 'creditcardtransactions', component: CreditcardtransactionsComponent },
     { path: 'customerrefunds', component: CustomerrefundsComponent },

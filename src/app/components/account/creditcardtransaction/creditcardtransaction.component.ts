@@ -1,11 +1,11 @@
 import { Component, OnInit, Input, Output, ViewChild, EventEmitter } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
-
-import { OnFailService } from '../../../services/on-fail.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { OnFailService } from '../../../services/on-fail.service';
+
+import { CreditcardtransactionService } from './creditcardtransaction.service';
 import { CardtypeComponent } from '../../lookup/cardtype/cardtype.component';
 import { CustomerComponent } from '../../customer/customer/customer.component';
-import { CreditcardtransactionService } from './creditcardtransaction.service';
 
 @Component({
   selector: 'app-creditcardtransaction',
@@ -14,17 +14,14 @@ import { CreditcardtransactionService } from './creditcardtransaction.service';
 })
 export class CreditcardtransactionComponent implements OnInit {
   @ViewChild("customer") customer: CustomerComponent;
-  @ViewChild("addcustomer") addcustomer: CustomerComponent;
-  @ViewChild("editcustomer") editcustomer: CustomerComponent;
-
   @ViewChild("cardtype") cardtype: CardtypeComponent;
-  @ViewChild("addcardtype") addcardtype: CardtypeComponent;
-  @ViewChild("editcardtype") editcardtype: CardtypeComponent;
 
   @Input()
   view: number = 1;
   @Input()
   iscompulsory: boolean = false;
+  @Input()
+  isreload: boolean = false;
   @Input()
   disabled: boolean = false;
   @Input()
@@ -33,23 +30,29 @@ export class CreditcardtransactionComponent implements OnInit {
   creditcardtransactionID = null;
   @Input()
   customerID = null;
+  @Input()
+  cardtypeID = null;
+  @Input()
+  cardtypeCode = null;
 
-  @Output() show = new EventEmitter();
   @Output() edit = new EventEmitter();
   @Output() cancel = new EventEmitter();
+  @Output() show = new EventEmitter();
+  @Output() refresh = new EventEmitter();
+  @Output() onCreditCardTransactionChange = new EventEmitter();
 
   creditcardtransactions = [];
   creditcardtransactionsAll = [];
   creditcardtransaction = {
     creditcardtransaction_ID: 0,
-    cardtype_ID: 0,
-    customer_ID: 0,
-    transaction_DATE: "",
+    cardtype_ID: null,
+    customer_ID: null,
+    transaction_DATE: null,
     transaction_AMOUNT: null,
-    transaction_STATUS: "",
-    name_ONCARD: "",
-    card_NUMBER: "",
-    authcode: "",
+    transaction_STATUS: null,
+    name_ONCARD: null,
+    card_NUMBER: null,
+    authcode: null,
     isactive: true,
   }
 
@@ -57,61 +60,49 @@ export class CreditcardtransactionComponent implements OnInit {
     private creditcardtransactionservice: CreditcardtransactionService,
     private toastrservice: ToastrService,
     private onfailservice: OnFailService,
-    private router : Router,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
-    this.creditcardtransactions = JSON.parse(window.sessionStorage.getItem('creditcardtransactions'));
-    this.creditcardtransactionsAll = JSON.parse(window.sessionStorage.getItem('creditcardtransactionsAll'));
-    if (this.view == 1 && this.creditcardtransactions == null) {
-      this.creditcardtransactionGet();
-    }else if (this.view == 1 && this.disabled == true && this.creditcardtransactionsAll == null) {
-        this.creditcardtransactionGetAll();
-    } else if (this. view == 2 && this.creditcardtransactionsAll == null) {
-      this.creditcardtransactionGetAll();
-    } else if (this. view == 22 && (this.customerID != null )) {
-      this.creditcardtransactionAdvancedSearchAll(this.customerID);
-    }
+    this.load(this.isreload);
+  }
 
-    if (this.creditcardtransactionID != 0 && !this.creditcardtransactionID && Number(window.sessionStorage.getItem('creditcardtransaction'))>0) {
+  load(reload) {
+    if (window.sessionStorage.getItem('creditcardtransactions') != null) {
+      this.creditcardtransactions = JSON.parse(window.sessionStorage.getItem('creditcardtransactions'));
+    }
+    if (window.sessionStorage.getItem('creditcardtransactionsAll') != null) {
+      this.creditcardtransactionsAll = JSON.parse(window.sessionStorage.getItem('creditcardtransactionsAll'));
+    }
+    if (this.creditcardtransactionID != 0 && !this.creditcardtransactionID && Number(window.sessionStorage.getItem('creditcardtransaction')) > 0) {
       this.creditcardtransactionID = Number(window.sessionStorage.getItem('creditcardtransaction'));
     }
-    if (this.view == 5 && this.creditcardtransactionID) {
+
+    if (this.view >= 1 && this.view <= 2 && (this.creditcardtransactions == null || this.creditcardtransactions.length == 0 || reload == true)) {
+      this.creditcardtransactions == null;
+      this.creditcardtransactionGet();
+    }
+    if (((this.view >= 1 && this.view <= 2) || this.view == 10) && (this.creditcardtransactionsAll == null || this.creditcardtransactionsAll.length == 0 || reload == true)) {
+      this.creditcardtransactionsAll == null;
+      this.creditcardtransactionGetAll();
+    }
+
+    var search = {
+      customer_ID: this.customerID,
+      cardtype_ID: this.cardtypeID,
+      cardtype_CODE: this.cardtypeCode,
+    }
+
+    if (this.view >= 5 && this.view <= 6 && this.creditcardtransactionID) {
       window.sessionStorage.setItem("creditcardtransaction", this.creditcardtransactionID);
       this.creditcardtransactionGetOne(this.creditcardtransactionID);
-    } if (this.view == 11 && this.customerID && this.disabled == false) {
-      this.creditcardtransactionAdvancedSearch(this.customerID);
-    } else if (this.view == 11 && this.customerID && this.disabled == true) {
-      this.creditcardtransactionAdvancedSearchAll(this.customerID);
-
-    } else if (this.view == 11 || this.view == 1 ) {
-      this.creditcardtransactionID = null;
-      this.creditcardtransactionsAll = null;
-      this.creditcardtransactions = null;
-    }
-
-    if (this.creditcardtransactionID == 0) {
-      this.creditcardtransactionID = null;
-    }
-  }
-
-  showView(row) {
-    this.show.next(row);
-  }
-
-  editView() {
-    this.disabled = false;
-  }
-
-  cancelView() {
-    this.cancel.next();
-  }
-
-  creditcardtransactionCancel() {
-    console.log(this.creditcardtransaction);
-    this.disabled = true;
-    if (this.creditcardtransaction.creditcardtransaction_ID == 0) {
-      this.router.navigate(["/home/creditcardtransactions"], {});
+      this.disabled = true;
+    } else if ((this.view >= 11 && this.view <= 29) && this.disabled == false && (this.creditcardtransactions == null || this.creditcardtransactions.length == 0 || reload == true)) {
+      this.creditcardtransactions == null;
+      this.creditcardtransactionAdvancedSearch(search);
+    } else if ((this.view >= 11 && this.view <= 29) && this.disabled == true && (this.creditcardtransactionsAll == null || this.creditcardtransactionsAll.length == 0 || reload == true)) {
+      this.creditcardtransactionsAll == null;
+      this.creditcardtransactionAdvancedSearchAll(search);
     }
   }
 
@@ -123,21 +114,7 @@ export class CreditcardtransactionComponent implements OnInit {
         options: {
           width: 136,
           text: 'Refresh',
-          onClick: this.creditcardtransactionGetAll.bind(this),
-        },
-      }
-    );
-  }
-
-  onToolbarPreparingAdvanced(e) {
-    e.toolbarOptions.items.unshift(
-      {
-        location: 'after',
-        widget: 'dxButton',
-        options: {
-          width: 136,
-          text: 'Refresh',
-          onClick: this.creditcardtransactionAdvancedSearchAll.bind(this, this.customerID),
+          onClick: this.load.bind(this, true),
         },
       }
     );
@@ -146,101 +123,131 @@ export class CreditcardtransactionComponent implements OnInit {
   add() {
     this.creditcardtransaction = {
       creditcardtransaction_ID: 0,
-      cardtype_ID: 0,
-      customer_ID: 0,
-      transaction_DATE: "",
+      cardtype_ID: null,
+      customer_ID: null,
+      transaction_DATE: null,
       transaction_AMOUNT: null,
-      transaction_STATUS: "",
-      name_ONCARD: "",
-      card_NUMBER: "",
-      authcode: "",
+      transaction_STATUS: null,
+      name_ONCARD: null,
+      card_NUMBER: null,
+      authcode: null,
       isactive: true,
     };
-  }
-  setcreditcardtransaction(response){
-    if (response.isactive == "Y") {
-      response.isactive = true;
-    } else {
-      response.isactive = false;
-    }
-    this.creditcardtransaction = response;
-    this.disabled = true;
   }
 
   update(row) {
     this.edit.next(row);
   }
 
-  setcreditcardtransactions(response) {
-    if ((this.view == 1 || this.view == 11)  && this.disabled == false) {
-      this.creditcardtransactions = response;
-      window.sessionStorage.setItem("creditcardtransactions", JSON.stringify(this.creditcardtransactions));
-    } else {
-      this.creditcardtransactionsAll = response;
-      window.sessionStorage.setItem("creditcardtransactionsAll", JSON.stringify(this.creditcardtransactionsAll));
-    }
+  editView() {
+    this.disabled = false;
+  }
+
+  showView(row) {
+    this.show.next(row);
+  }
+
+  cancelView() {
     this.cancel.next();
   }
 
-  creditcardtransactionGet() {
-      this.creditcardtransactionservice.get().subscribe(response => {
-        if (response) {
-          if (response.error && response.status) {
-            this.toastrservice.warning("Message", " " + response.message);
-          } else{
-            this.setcreditcardtransactions(this.creditcardtransactionservice.getAllDetail(response));
-          }
-        }
-      }, error => {
-        this.onfailservice.onFail(error);
-      })
+  creditcardtransactionEdit() {
+    this.disabled = false;
   }
 
+  creditcardtransactionCancel() {
+    this.disabled = true;
+    if (this.creditcardtransaction.creditcardtransaction_ID == 0) {
+      this.router.navigate(["/home/creditcardtransactions "], {});
+    }
+  }
+
+  onChange(creditcardtransactionID) {
+    for (var i = 0; i < this.creditcardtransactionsAll.length; i++) {
+      if (this.creditcardtransactionsAll[i].creditcardtransaction_ID == creditcardtransactionID) {
+        this.onCreditCardTransactionChange.next(this.creditcardtransactionsAll[i]);
+        break;
+      }
+    }
+  }
+
+  setCreditcardtransaction(response) {
+    if (response.isapproved == "Y") {
+      response.isapproved = true;
+    } else {
+      response.isapproved = false;
+    }
+    if (response.isactive == "Y") {
+      response.isactive = true;
+    } else {
+      response.isactive = false;
+    }
+    this.creditcardtransaction = response;
+  }
+
+  setCreditcardtransactions(response) {
+    this.cancel.next();
+    return response;
+  }
+
+  creditcardtransactionGet() {
+    this.creditcardtransactionservice.get().subscribe(response => {
+      if (response) {
+        if (response.error && response.status) {
+          this.toastrservice.warning("Message", " " + response.message);
+        } else {
+          this.creditcardtransactions = this.setCreditcardtransactions(this.creditcardtransactionservice.getAllDetail(response));
+          window.sessionStorage.setItem("creditcardtransactions", JSON.stringify(this.creditcardtransactions));
+        }
+      }
+    }, error => {
+      this.onfailservice.onFail(error);
+    })
+  }
 
   creditcardtransactionGetAll() {
     this.creditcardtransactionservice.getAll().subscribe(response => {
       if (response) {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
-        } else{
-          this.setcreditcardtransactions(this.creditcardtransactionservice.getAllDetail(response));
+        } else {
+          this.creditcardtransactionsAll = this.setCreditcardtransactions(this.creditcardtransactionservice.getAllDetail(response));
+          window.sessionStorage.setItem("creditcardtransactionsAll", JSON.stringify(this.creditcardtransactionsAll));
         }
       }
     }, error => {
       this.onfailservice.onFail(error);
     })
   }
+
   creditcardtransactionGetOne(id) {
+    this.disabled = true;
     this.creditcardtransactionservice.getOne(id).subscribe(response => {
       if (response) {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
-        } else{
-          this.setcreditcardtransaction(this.creditcardtransactionservice.getDetail(response));
+        } else {
+          this.setCreditcardtransaction(this.creditcardtransactionservice.getDetail(response));
         }
       }
     }, error => {
       this.onfailservice.onFail(error);
     })
   }
+
   creditcardtransactionAdd(creditcardtransaction) {
     creditcardtransaction.isactive = "Y";
-    if(this.view == 5){
-      creditcardtransaction.customer_ID = this.customer.customerID;
-     creditcardtransaction.cardtype_ID = this.cardtype.cardtypeID;
+    creditcardtransaction.isapproved = "N";
+    creditcardtransaction.customer_ID = this.customer.customerID;
+    creditcardtransaction.cardtype_ID = this.cardtype.cardtypeID;
 
-    } else {
-       creditcardtransaction.customer_ID = this.addcustomer.customerID;
-      creditcardtransaction.cardtype_ID = this.addcardtype.cardtypeID;
-    }
     this.creditcardtransactionservice.add(creditcardtransaction).subscribe(response => {
       if (response) {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else if (response.creditcardtransaction_ID) {
-          this.toastrservice.success("Success", "New creditcardtransaction Added");
-          this.creditcardtransactionGetAll();
-          this.setcreditcardtransaction(this.creditcardtransactionservice.getDetail(response));
+          this.toastrservice.success("Success", "New Credit Card Transaction Added");
+          this.refresh.next();
           this.disabled = true;
         } else {
           this.toastrservice.error("Some thing went wrong");
@@ -252,14 +259,15 @@ export class CreditcardtransactionComponent implements OnInit {
   }
 
   creditcardtransactionUpdate(creditcardtransaction) {
-    if(this.view == 5){
-      creditcardtransaction.customer_ID = this.customer.customerID;
-       creditcardtransaction.cardtype_ID = this.cardtype.cardtypeID;
-    } else {
-      creditcardtransaction.customer_ID = this.editcustomer.customerID;
-      creditcardtransaction.cardtype_ID = this.editcardtype.cardtypeID;
-    }
 
+    creditcardtransaction.customer_ID = this.customer.customerID;
+    creditcardtransaction.cardtype_ID = this.cardtype.cardtypeID;
+
+    if (creditcardtransaction.isapproved == true) {
+      creditcardtransaction.isapproved = "Y";
+    } else {
+      creditcardtransaction.isapproved = "N";
+    }
     if (creditcardtransaction.isactive == true) {
       creditcardtransaction.isactive = "Y";
     } else {
@@ -270,12 +278,25 @@ export class CreditcardtransactionComponent implements OnInit {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else if (response.creditcardtransaction_ID) {
-          this.toastrservice.success("Success", "creditcardtransaction Updated");
-          if (this.disabled == true) {
-            this.setcreditcardtransaction(this.creditcardtransactionservice.getDetail(response));
-          } else {
-            this.disabled = true;
-          }
+          this.toastrservice.success("Success", "Credit Card Transaction Updated");
+          this.refresh.next();
+        } else {
+          this.toastrservice.error("Some thing went wrong");
+        }
+      }
+    }, error => {
+      this.onfailservice.onFail(error);
+    })
+  }
+
+  creditcardtransactionUpdateAll(creditcardtransactions) {
+    this.creditcardtransactionservice.updateAll(creditcardtransactions).subscribe(response => {
+      if (response) {
+        if (response.error && response.status) {
+          this.toastrservice.warning("Message", " " + response.message);
+        } else if (response.length > 0) {
+          this.toastrservice.success("Success", "Credit Card Transactions Updated");
+          this.refresh.next();
         } else {
           this.toastrservice.error("Some thing went wrong");
         }
@@ -293,8 +314,9 @@ export class CreditcardtransactionComponent implements OnInit {
       if (response) {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
-        } else{
-          this.setcreditcardtransactions(this.creditcardtransactionservice.getAllDetail(response));
+        } else {
+          this.creditcardtransactions = this.setCreditcardtransactions(this.creditcardtransactionservice.getAllDetail(response));
+          window.sessionStorage.setItem("creditcardtransactions", JSON.stringify(this.creditcardtransactions));
         }
       }
     }, error => {
@@ -310,8 +332,9 @@ export class CreditcardtransactionComponent implements OnInit {
       if (response) {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
-        } else{
-          this.setcreditcardtransactions(this.creditcardtransactionservice.getAllDetail(response));
+        } else {
+          this.creditcardtransactionsAll = this.setCreditcardtransactions(this.creditcardtransactionservice.getAllDetail(response));
+          window.sessionStorage.setItem("creditcardtransactionsAll", JSON.stringify(this.creditcardtransactionsAll));
         }
       }
     }, error => {
@@ -319,17 +342,18 @@ export class CreditcardtransactionComponent implements OnInit {
     })
   }
 
-  creditcardtransactionAdvancedSearch(customerID) {
-    this.customerID = customerID;
-    var search = {
-      customer_ID: customerID
-    }
+  creditcardtransactionAdvancedSearch(search) {
+    this.customerID = search.customer_ID;
+    this.cardtypeID = search.cardtype_ID;
+    this.cardtypeCode = search.cardtype_CODE;
+
     this.creditcardtransactionservice.advancedSearch(search).subscribe(response => {
       if (response) {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
-        } else{
-          this.setcreditcardtransactions(this.creditcardtransactionservice.getAllDetail(response));
+        } else {
+          this.creditcardtransactions = this.setCreditcardtransactions(this.creditcardtransactionservice.getAllDetail(response));
+          window.sessionStorage.setItem("creditcardtransactions", JSON.stringify(this.creditcardtransactions));
         }
       }
     }, error => {
@@ -337,17 +361,18 @@ export class CreditcardtransactionComponent implements OnInit {
     })
   }
 
-  creditcardtransactionAdvancedSearchAll(customerID) {
-    this.customerID = customerID;
-    var search = {
-      customer_ID: customerID
-    }
+  creditcardtransactionAdvancedSearchAll(search) {
+    this.customerID = search.customer_ID;
+    this.cardtypeID = search.cardtype_ID;
+    this.cardtypeCode = search.cardtype_CODE;
+
     this.creditcardtransactionservice.advancedSearchAll(search).subscribe(response => {
       if (response) {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
-        } else{
-          this.setcreditcardtransactions(this.creditcardtransactionservice.getAllDetail(response));
+        } else {
+          this.creditcardtransactionsAll = this.setCreditcardtransactions(this.creditcardtransactionservice.getAllDetail(response));
+          window.sessionStorage.setItem("creditcardtransactionsAll", JSON.stringify(this.creditcardtransactionsAll));
         }
       }
     }, error => {

@@ -58,12 +58,12 @@ export class RecievereturnauthsComponent implements OnInit {
     $("#edit").modal("hide");
   }
 
-  advancedSearch(returnauthID, currencyID) {
-    this.recievereturnauths.recievereturnauthAdvancedSearch(returnauthID, currencyID);
+  advancedSearch(search) {
+    this.recievereturnauths.recievereturnauthAdvancedSearch(search);
   }
 
-  advancedSearchAll(returnauthID, currencyID) {
-    this.recievereturnauths.recievereturnauthAdvancedSearchAll(returnauthID, currencyID);
+  advancedSearchAll(search) {
+    this.recievereturnauths.recievereturnauthAdvancedSearchAll(search);
   }
 
 }

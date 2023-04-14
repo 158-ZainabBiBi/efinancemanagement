@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpCallServieService } from '../../../services/http-call-servie.service';
 import { setting } from '../../../setting';
+import { CustomerService } from '../../customer/customer/customer.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,8 @@ import { setting } from '../../../setting';
 export class CreditcardtransactionService {
 
   constructor(
-    private _HttpCallServieService_: HttpCallServieService
+    private _HttpCallServieService_: HttpCallServieService,
+    private customerservice: CustomerService,
   ) { }
 
 
@@ -64,6 +66,18 @@ export class CreditcardtransactionService {
     return this._HttpCallServieService_.api(postData);
   }
 
+  updateAll(data) {
+    var postData = {
+      service_NAME: setting.accountservice_NAME,
+      request_TYPE: "PUT",
+      request_URI: "creditcardtransaction",
+      request_BODY: JSON.stringify(data)
+
+    }
+    return this._HttpCallServieService_.api(postData);
+  }
+
+
   delete(id) {
     var postData = {
       service_NAME: setting.accountservice_NAME,
@@ -117,24 +131,21 @@ export class CreditcardtransactionService {
 
   getAllDetail(response) {
     for (var a = 0; a < response.length; a++) {
-      response[a].customer = JSON.parse(response[a].customer_DETAIL);
-       response[a].customer_DETAIL = null;
-
-      response[a].cardtype = JSON.parse(response[a].cardtype_DETAIL);
-      if (response[a].cardtype != null)
-        response[a].cardtype_DETAIL = response[a].cardtype.description;
+      response[a] = this.getDetail(response[a]);
     }
     return (response);
   }
 
   getDetail(response) {
+    if (response.customer_DETAIL != null) {
+      response.customer = this.customerservice.getDetail(JSON.parse(response.customer_DETAIL));
+      response.customer_DETAIL = null
+    }
 
-    response.customer = JSON.parse(response.customer_DETAIL);
-      response.customer_DETAIL = null;
-
-    response.cardtype = JSON.parse(response.cardtype_DETAIL);
-    if (response.cardtype != null)
-      response.cardtype_DETAIL = response.cardtype.description;
+    if (response.cardtype_DETAIL != null) {
+      response.cardtype = JSON.parse(response.cardtype_DETAIL);
+      response.cardtype_DETAIL = response.cardtype.code + ' - ' + response.cardtype.description;
+    }
 
     return (response);
   }

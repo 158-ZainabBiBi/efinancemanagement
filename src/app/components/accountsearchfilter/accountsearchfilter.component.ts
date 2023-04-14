@@ -3,7 +3,6 @@ import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angu
 import { AccountComponent } from '../account/account/account.component';
 import { AccounttypeComponent } from '../account/accounttype/accounttype.component';
 import { ReturnauthComponent } from '../account/returnauth/returnauth.component';
-import { CurrencyComponent } from '../account/currency/currency.component';
 import { CustomerrefundComponent } from '../account/customerrefund/customerrefund.component';
 
 import { CardtypeComponent } from '../lookup/cardtype/cardtype.component';
@@ -25,7 +24,6 @@ export class AccountsearchfilterComponent implements OnInit {
   @ViewChild(AccountComponent) accounts;
   @ViewChild(AccounttypeComponent) accounttypes;
   @ViewChild(ReturnauthComponent) returnauths;
-  @ViewChild(CurrencyComponent) currencies;
   @ViewChild(CustomerrefundComponent) customerrefunds
 
   @ViewChild(CardtypeComponent) cardtypes;
@@ -43,8 +41,6 @@ export class AccountsearchfilterComponent implements OnInit {
   accounttype = false;
   @Input()
   returnauth = false;
-  @Input()
-  currency = false;
   @Input()
   customerrefund = false;
   @Input()
@@ -71,7 +67,6 @@ export class AccountsearchfilterComponent implements OnInit {
     account_ID: null,
     accounttype_ID: null,
     returnauth_ID: null,
-    currency_ID: null,
     customerrefund_ID: null,
 
     cardtype_ID: null,
@@ -98,8 +93,6 @@ export class AccountsearchfilterComponent implements OnInit {
       this.search.accounttype_ID = this.accounttypes.accounttypeID;
     if (this.returnauths)
       this.search.returnauth_ID = this.returnauths.returnauthID;
-    if (this.currencies)
-      this.search.currency_ID = this.currencies.currencyID;
     if (this.customerrefunds)
       this.search.customerrefund_ID = this.customerrefunds.customerrefundID;
 
@@ -134,8 +127,6 @@ export class AccountsearchfilterComponent implements OnInit {
       this.accounttypes.accounttypeID = null;
     if (this.returnauths)
       this.returnauths.returnauthID = null;
-    if (this.currencies)
-      this.currencies.currencyID = null;
     if (this.customerrefunds)
       this.customerrefunds.customerrefundID = null;
 

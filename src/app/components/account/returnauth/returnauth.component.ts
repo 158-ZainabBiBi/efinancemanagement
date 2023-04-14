@@ -3,14 +3,13 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { OnFailService } from '../../../services/on-fail.service';
 
-
-import { ProductComponent } from '../../product/product/product.component';
-import { ReturnstatusComponent } from '../../lookup/returnstatus/returnstatus.component';
-import { SaleordertypeComponent } from '../../lookup/saleordertype/saleordertype.component';
-import { CustomerrefundComponent } from '../customerrefund/customerrefund.component';
-import { CustomerComponent } from '../../customer/customer/customer.component';
-import { CurrencyComponent } from '../currency/currency.component';
 import { ReturnauthService } from './returnauth.service';
+import { CurrencyComponent } from '../../lookup/currency/currency.component';
+import { CustomerComponent } from '../../customer/customer/customer.component';
+import { ReturnstatusComponent } from '../../lookup/returnstatus/returnstatus.component';
+import { RefundmethodComponent } from '../../lookup/refundmethod/refundmethod.component';
+import { CustomerrefundComponent } from '../customerrefund/customerrefund.component';
+import { ProductComponent } from '../../product/product/product.component';
 
 @Component({
   selector: 'app-returnauth',
@@ -18,67 +17,63 @@ import { ReturnauthService } from './returnauth.service';
   styleUrls: ['./returnauth.component.css']
 })
 export class ReturnauthComponent implements OnInit {
-  @ViewChild("currency") currency: CurrencyComponent;
-  @ViewChild("addcurrency") addcurrency: CurrencyComponent;
-  @ViewChild("editcurrency") editcurrency: CurrencyComponent;
-
-  @ViewChild("customerrefund") customerrefund: CustomerrefundComponent;
-  @ViewChild("addcustomerrefund") addcustomerrefund: CustomerrefundComponent;
-  @ViewChild("editcustomerrefund") editcustomerrefund: CustomerrefundComponent;
-
-  @ViewChild("customer") customer: CustomerComponent;
-  @ViewChild("addcustomer") addcustomer: CustomerComponent;
-  @ViewChild("editcustomer") editcustomer: CustomerComponent;
-
   @ViewChild("product") product: ProductComponent;
-  @ViewChild("addproduct") addproduct: ProductComponent;
-  @ViewChild("editproduct") editproduct: ProductComponent;
-
+  @ViewChild("customer") customer: CustomerComponent;
+  @ViewChild("customerrefund") customerrefund: CustomerrefundComponent;
   @ViewChild("returnstatus") returnstatus: ReturnstatusComponent;
-  @ViewChild("addreturnstatus") addreturnstatus: ReturnstatusComponent;
-  @ViewChild("editreturnstatus") editreturnstatus: ReturnstatusComponent;
-
-  @ViewChild("saleordertype") saleordertype: SaleordertypeComponent;
-  @ViewChild("addsaleordertype") addsaleordertype: SaleordertypeComponent;
-  @ViewChild("editsaleordertype") editsaleordertype: SaleordertypeComponent;
+  @ViewChild("refundmethod") refundmethod: RefundmethodComponent;
+  @ViewChild("currency") currency: CurrencyComponent;
 
   @Input()
   view: number = 1;
   @Input()
   iscompulsory: boolean = false;
   @Input()
+  isreload: boolean = false;
+  @Input()
   disabled: boolean = false;
   @Input()
   all: boolean = false;
   @Input()
-  currencyID = null;
-  @Input()
   returnauthID = null;
   @Input()
-  customerrefundID = null;
+  productID = null;
   @Input()
   customerID = null;
   @Input()
-  productID = null;
+  customerrefundID = null;
+  @Input()
+  returnstatusID = null;
+  @Input()
+  returnstatusCode = null;
+  @Input()
+  refundmethodID = null;
+  @Input()
+  refundmethodCode = null;
+  @Input()
+  currencyID = null;
+  @Input()
+  currencyCode = null;
 
   @Output() edit = new EventEmitter();
   @Output() cancel = new EventEmitter();
   @Output() show = new EventEmitter();
-
+  @Output() refresh = new EventEmitter();
+  @Output() onReturnAuthChange = new EventEmitter();
 
   returnauths = [];
   returnauthsAll = [];
   returnauth = {
     returnauth_ID: 0,
-    currency_ID: 0,
-    customerrefund_ID: 0,
-    customer_ID: 0,
-    product_ID: 0,
-    returnstatus_ID: 0,
-    saleordertype_ID: 0,
-    returnauth_CODE: "",
-    returnauth_DATE: "",
-    delivery_DATE: "",
+    currency_ID: null,
+    customerrefund_ID: null,
+    customer_ID: null,
+    product_ID: null,
+    returnstatus_ID: null,
+    saleordertype_ID: null,
+    returnauth_CODE: null,
+    returnauth_DATE: null,
+    delivery_DATE: null,
     exchange_RATE: null,
     rate: null,
     discount: null,
@@ -89,40 +84,55 @@ export class ReturnauthComponent implements OnInit {
     private returnauthservice: ReturnauthService,
     private toastrservice: ToastrService,
     private onfailservice: OnFailService,
-    private router : Router,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
-    this.returnauths = JSON.parse(window.sessionStorage.getItem('returnauths'));
-    this.returnauthsAll = JSON.parse(window.sessionStorage.getItem('returnauthsAll'));
-    if (this.view == 1 && this.disabled == false && this.returnauths == null) {
-      this.returnauthGet();
-    } else if (this.view == 1 && this.disabled == true && this.returnauthsAll == null) {
-      this.returnauthGetAll();
-    } else if (this. view == 2 && this.returnauthsAll == null) {
-      this.returnauthGetAll();
-    }
+    this.load(this.isreload);
+  }
 
-    if (this.returnauthID != 0 && !this.returnauthID && Number(window.sessionStorage.getItem('returnauth'))>0) {
+  load(reload) {
+    if (window.sessionStorage.getItem('returnauths') != null) {
+      this.returnauths = JSON.parse(window.sessionStorage.getItem('returnauths'));
+    }
+    if (window.sessionStorage.getItem('returnauthsAll') != null) {
+      this.returnauthsAll = JSON.parse(window.sessionStorage.getItem('returnauthsAll'));
+    }
+    if (this.returnauthID != 0 && !this.returnauthID && Number(window.sessionStorage.getItem('returnauth')) > 0) {
       this.returnauthID = Number(window.sessionStorage.getItem('returnauth'));
-    }  else if (this. view == 22 && (this.currencyID != null )) {
-      this.returnauthAdvancedSearchAll(this.currencyID,0,0,0);
     }
 
-    if (this.view == 5 && this.returnauthID) {
+    if (this.view >= 1 && this.view <= 2 && (this.returnauths == null || this.returnauths.length == 0 || reload == true)) {
+      this.returnauths == null;
+      this.returnauthGet();
+    }
+    if (((this.view >= 1 && this.view <= 2) || this.view == 10) && (this.returnauthsAll == null || this.returnauthsAll.length == 0 || reload == true)) {
+      this.returnauthsAll == null;
+      this.returnauthGetAll();
+    }
+
+    var search = {
+      product_ID: this.productID,
+      customer_ID: this.customerID,
+      customerrefund_ID: this.customerrefundID,
+      returnstatus_ID: this.returnstatusID,
+      returnstatus_CODE: this.returnstatusCode,
+      refundmethod_ID: this.refundmethodID,
+      refundmethod_CODE: this.refundmethodCode,
+      currency_ID: this.currencyID,
+      currency_CODE: this.currencyCode,
+    }
+
+    if (this.view >= 5 && this.view <= 6 && this.returnauthID) {
       window.sessionStorage.setItem("returnauth", this.returnauthID);
       this.returnauthGetOne(this.returnauthID);
-    }
-
-    if (this.view == 11 && this.currencyID && this.disabled == false) {
-      this.returnauthAdvancedSearch(this.currencyID,0,0,0);
-    } else if (this.view == 11 && this.currencyID && this.disabled == true) {
-      this.returnauthAdvancedSearchAll(this.currencyID,0,0,0);
-
-    } else if (this.view == 11|| this.view == 1) {
-      this.returnauthID = null;
-      this.returnauthsAll = null;
-      this.returnauths = null;
+      this.disabled = true;
+    } else if ((this.view >= 11 && this.view <= 29) && this.disabled == false && (this.returnauths == null || this.returnauths.length == 0 || reload == true)) {
+      this.returnauths == null;
+      this.returnauthAdvancedSearch(search);
+    } else if ((this.view >= 11 && this.view <= 29) && this.disabled == true && (this.returnauthsAll == null || this.returnauthsAll.length == 0 || reload == true)) {
+      this.returnauthsAll == null;
+      this.returnauthAdvancedSearchAll(search);
     }
   }
 
@@ -134,22 +144,7 @@ export class ReturnauthComponent implements OnInit {
         options: {
           width: 136,
           text: 'Refresh',
-          onClick: this.returnauthGetAll.bind(this),
-        },
-      }
-    );
-  }
-
-  onToolbarPreparingAdvanced(e) {
-    console.log("onToolbarPreparingAdvanced");
-    e.toolbarOptions.items.unshift(
-      {
-        location: 'after',
-        widget: 'dxButton',
-        options: {
-          width: 136,
-          text: 'Refresh',
-          onClick: this.returnauthAdvancedSearchAll.bind(this, this.currencyID),
+          onClick: this.load.bind(this, true),
         },
       }
     );
@@ -158,15 +153,15 @@ export class ReturnauthComponent implements OnInit {
   add() {
     this.returnauth = {
       returnauth_ID: 0,
-      currency_ID: 0,
-      customerrefund_ID: 0,
-      customer_ID: 0,
-      product_ID: 0,
-      returnstatus_ID: 0,
-      saleordertype_ID: 0,
-      returnauth_CODE: "",
-      returnauth_DATE: "",
-      delivery_DATE: "",
+      currency_ID: null,
+      customerrefund_ID: null,
+      customer_ID: null,
+      product_ID: null,
+      returnstatus_ID: null,
+      saleordertype_ID: null,
+      returnauth_CODE: null,
+      returnauth_DATE: null,
+      delivery_DATE: null,
       exchange_RATE: null,
       rate: null,
       discount: null,
@@ -190,18 +185,28 @@ export class ReturnauthComponent implements OnInit {
     this.cancel.next();
   }
 
-  returnauthEdit(){
+  returnauthEdit() {
     this.disabled = false;
   }
 
   returnauthCancel() {
     this.disabled = true;
-    if (this.returnauth.returnauth_ID==0) {
-      this.router.navigate(["/home/returnauths"], {});
+    if (this.returnauth.returnauth_ID == 0) {
+      this.router.navigate(["/home/returnauths "], {});
+    }
+  }
+
+  onChange(returnauthID) {
+    for (var i = 0; i < this.returnauthsAll.length; i++) {
+      if (this.returnauthsAll[i].returnauth_ID == returnauthID) {
+        this.onReturnAuthChange.next(this.returnauthsAll[i]);
+        break;
+      }
     }
   }
 
   setReturnauth(response) {
+
     if (response.isactive == "Y") {
       response.isactive = true;
     } else {
@@ -211,14 +216,8 @@ export class ReturnauthComponent implements OnInit {
   }
 
   setReturnauths(response) {
-    if ((this.view == 1 || this.view == 11)  && this.disabled == false) {
-      this.returnauths = response;
-      window.sessionStorage.setItem("returnauths", JSON.stringify(this.returnauths));
-    } else {
-      this.returnauthsAll = response;
-      window.sessionStorage.setItem("returnauthsAll", JSON.stringify(this.returnauthsAll));
-    }
     this.cancel.next();
+    return response;
   }
 
   returnauthGet() {
@@ -226,8 +225,9 @@ export class ReturnauthComponent implements OnInit {
       if (response) {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
-        } else{
-          this.setReturnauths(this.returnauthservice.getAllDetail(response));
+        } else {
+          this.returnauths = this.setReturnauths(this.returnauthservice.getAllDetail(response));
+          window.sessionStorage.setItem("returnauths", JSON.stringify(this.returnauths));
         }
       }
     }, error => {
@@ -240,8 +240,9 @@ export class ReturnauthComponent implements OnInit {
       if (response) {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
-        } else{
-          this.setReturnauths(this.returnauthservice.getAllDetail(response));
+        } else {
+          this.returnauthsAll = this.setReturnauths(this.returnauthservice.getAllDetail(response));
+          window.sessionStorage.setItem("returnauthsAll", JSON.stringify(this.returnauthsAll));
         }
       }
     }, error => {
@@ -255,7 +256,7 @@ export class ReturnauthComponent implements OnInit {
       if (response) {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
-        } else{
+        } else {
           this.setReturnauth(this.returnauthservice.getDetail(response));
         }
       }
@@ -265,32 +266,21 @@ export class ReturnauthComponent implements OnInit {
   }
 
   returnauthAdd(returnauth) {
-    returnauth.isactive="Y";
-
-    if(this.view == 5){
-      returnauth.currency_ID = this.currency.currencyID;
-      returnauth.customer_ID = this.customer.customerID;
-      returnauth.customerrefund_ID = this.customerrefund.customerrefundID;
-      returnauth.product_ID = this.product.productID;
-      returnauth.returnstatus_ID = this.returnstatus.returnstatusID;
-      returnauth.saleordertype_ID = this.saleordertype.saleordertypeID;
-    }else{
-      returnauth.currency_ID = this.addcurrency.currencyID;
-      returnauth.customer_ID = this.addcustomer.customerID;
-      returnauth.customerrefund_ID = this.addcustomerrefund.customerrefundID;
-      returnauth.product_ID = this.addproduct.productID;
-      returnauth.returnstatus_ID = this.addreturnstatus.returnstatusID;
-      returnauth.saleordertype_ID = this.addsaleordertype.saleordertypeID;
-    }
+    returnauth.isactive = "Y";
+    returnauth.product_ID = this.product.productID;
+    returnauth.customerrefund_ID = this.customerrefund.customerrefundID;
+    returnauth.customer_ID = this.customer.customerID;
+    returnauth.returnstatus_ID = this.returnstatus.returnstatusID;
+    returnauth.currency_ID = this.currency.currencyID;
+    returnauth.refundmethod_ID = this.refundmethod.refundmethodID;
 
     this.returnauthservice.add(returnauth).subscribe(response => {
       if (response) {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else if (response.returnauth_ID) {
-          this.toastrservice.success("Success", "New returnauth Added");
-          this.returnauthGetAll();
-          this.setReturnauth(response);
+          this.toastrservice.success("Success", "New Return Auth Added");
+          this.refresh.next();
           this.disabled = true;
         } else {
           this.toastrservice.error("Some thing went wrong");
@@ -302,21 +292,14 @@ export class ReturnauthComponent implements OnInit {
   }
 
   returnauthUpdate(returnauth) {
-     if(this.view == 5){
-     returnauth.currency_ID = this.currency.currencyID;
-     returnauth.customer_ID = this.customer.customerID;
-     returnauth.customerrefund_ID = this.customerrefund.customerrefundID;
-     returnauth.product_ID = this.product.productID;
-     returnauth.returnstatus_ID = this.returnstatus.returnstatusID;
-     returnauth.saleordertype_ID = this.saleordertype.saleordertypeID;
-    }else{
-     returnauth.currency_ID = this.editcurrency.currencyID;
-     returnauth.customer_ID = this.editcustomer.customerID;
-     returnauth.customerrefund_ID = this.editcustomerrefund.customerrefundID;
-     returnauth.product_ID = this.editproduct.productID;
-     returnauth.returnstatus_ID = this.editreturnstatus.returnstatusID;
-     returnauth.saleordertype_ID = this.editsaleordertype.saleordertypeID;
-    }
+
+    returnauth.product_ID = this.product.productID;
+    returnauth.customerrefund_ID = this.customerrefund.customerrefundID;
+    returnauth.customer_ID = this.customer.customerID;
+    returnauth.returnstatus_ID = this.returnstatus.returnstatusID;
+    returnauth.currency_ID = this.currency.currencyID;
+    returnauth.refundmethod_ID = this.refundmethod.refundmethodID;
+
     if (returnauth.isactive == true) {
       returnauth.isactive = "Y";
     } else {
@@ -327,12 +310,25 @@ export class ReturnauthComponent implements OnInit {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else if (response.returnauth_ID) {
-          this.toastrservice.success("Success", " returnauth Updated");
-          if (this.disabled==true) {
-            this.setReturnauth(response);
-          } else {
-            this.disabled = true;
-          }
+          this.toastrservice.success("Success", "Return Auth Updated");
+          this.refresh.next();
+        } else {
+          this.toastrservice.error("Some thing went wrong");
+        }
+      }
+    }, error => {
+      this.onfailservice.onFail(error);
+    })
+  }
+
+  returnauthUpdateAll(returnauths) {
+    this.returnauthservice.updateAll(returnauths).subscribe(response => {
+      if (response) {
+        if (response.error && response.status) {
+          this.toastrservice.warning("Message", " " + response.message);
+        } else if (response.length > 0) {
+          this.toastrservice.success("Success", "Return Auths Updated");
+          this.refresh.next();
         } else {
           this.toastrservice.error("Some thing went wrong");
         }
@@ -350,8 +346,9 @@ export class ReturnauthComponent implements OnInit {
       if (response) {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
-        } else{
-          this.setReturnauths(this.returnauthservice.getAllDetail(response));
+        } else {
+          this.returnauths = this.setReturnauths(this.returnauthservice.getAllDetail(response));
+          window.sessionStorage.setItem("returnauths", JSON.stringify(this.returnauths));
         }
       }
     }, error => {
@@ -367,8 +364,9 @@ export class ReturnauthComponent implements OnInit {
       if (response) {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
-        } else{
-          this.setReturnauths(this.returnauthservice.getAllDetail(response));
+        } else {
+          this.returnauthsAll = this.setReturnauths(this.returnauthservice.getAllDetail(response));
+          window.sessionStorage.setItem("returnauthsAll", JSON.stringify(this.returnauthsAll));
         }
       }
     }, error => {
@@ -376,23 +374,24 @@ export class ReturnauthComponent implements OnInit {
     })
   }
 
-  returnauthAdvancedSearch(currencyID, customerrefundID, customerID, productID) {
-    this.currencyID = currencyID;
-    this.customerrefundID = customerrefundID;
-    this.customerID = customerID;
-    this.productID = productID;
-    var search = {
-      currency_ID: currencyID,
-      customerrefund_ID: customerrefundID,
-      customer_ID: customerID,
-      product_ID: productID
-    }
+  returnauthAdvancedSearch(search) {
+    this.customerID = search.customer_ID;
+    this.productID = search.product_ID;
+    this.customerrefundID = search.customerrefund_ID;
+    this.returnstatusID = search.returnstatus_ID;
+    this.returnstatusCode = search.returnstatus_CODE;
+    this.refundmethodID = search.refundmethod_ID;
+    this.refundmethodCode = search.refundmethod_CODE;
+    this.currencyID = search.currency_ID;
+    this.currencyCode = search.currency_CODE;
+
     this.returnauthservice.advancedSearch(search).subscribe(response => {
       if (response) {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
-        } else{
-          this.setReturnauths(this.returnauthservice.getAllDetail(response));
+        } else {
+          this.returnauths = this.setReturnauths(this.returnauthservice.getAllDetail(response));
+          window.sessionStorage.setItem("returnauths", JSON.stringify(this.returnauths));
         }
       }
     }, error => {
@@ -400,23 +399,24 @@ export class ReturnauthComponent implements OnInit {
     })
   }
 
-  returnauthAdvancedSearchAll(currencyID, customerrefundID, customerID, productID) {
-    this.currencyID = currencyID;
-    this.customerrefundID = customerrefundID;
-    this.customerID = customerID;
-    this.productID = productID;
-    var search = {
-      currency_ID: currencyID,
-      customerrefund_ID: customerrefundID,
-      customer_ID: customerID,
-      product_ID: productID
-    }
+  returnauthAdvancedSearchAll(search) {
+    this.customerID = search.customer_ID;
+    this.productID = search.product_ID;
+    this.customerrefundID = search.customerrefund_ID;
+    this.returnstatusID = search.returnstatus_ID;
+    this.returnstatusCode = search.returnstatus_CODE;
+    this.refundmethodID = search.refundmethod_ID;
+    this.refundmethodCode = search.refundmethod_CODE;
+    this.currencyID = search.currency_ID;
+    this.currencyCode = search.currency_CODE;
+
     this.returnauthservice.advancedSearchAll(search).subscribe(response => {
       if (response) {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
-        } else{
-          this.setReturnauths(this.returnauthservice.getAllDetail(response));
+        } else {
+          this.returnauthsAll = this.setReturnauths(this.returnauthservice.getAllDetail(response));
+          window.sessionStorage.setItem("returnauthsAll", JSON.stringify(this.returnauthsAll));
         }
       }
     }, error => {

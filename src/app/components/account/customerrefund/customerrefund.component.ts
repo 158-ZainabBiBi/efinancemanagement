@@ -1,14 +1,14 @@
 import { Component, OnInit, Input, Output, ViewChild, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { OnFailService } from '../../../services/on-fail.service';
-import { Router } from '@angular/router';
 
-import { CurrencyComponent } from '../currency/currency.component';
 import { CustomerrefundService } from './customerrefund.service';
+import { CurrencyComponent } from '../../lookup/currency/currency.component';
 import { CustomerComponent } from '../../customer/customer/customer.component';
-import { AccountComponent } from '../account/account.component';
-import { RefundmethodComponent } from '../../lookup/refundmethod/refundmethod.component';
 import { PostingperiodComponent } from '../../lookup/postingperiod/postingperiod.component';
+import { RefundmethodComponent } from '../../lookup/refundmethod/refundmethod.component';
+import { AccountComponent } from '../account/account.component';
 
 @Component({
   selector: 'app-customerrefund',
@@ -17,29 +17,17 @@ import { PostingperiodComponent } from '../../lookup/postingperiod/postingperiod
 })
 export class CustomerrefundComponent implements OnInit {
   @ViewChild("customer") customer: CustomerComponent;
-  @ViewChild("addcustomer") addcustomer: CustomerComponent;
-  @ViewChild("editcustomer") editcustomer: CustomerComponent;
-
-  @ViewChild("currency") currency: CurrencyComponent;
-  @ViewChild("addcurrency") addcurrency: CurrencyComponent;
-  @ViewChild("editcurrency") editcurrency: CurrencyComponent;
-
   @ViewChild("account") account: AccountComponent;
-  @ViewChild("addaccount") addaccount: AccountComponent;
-  @ViewChild("editaccount") editaccount: AccountComponent;
-
   @ViewChild("postingperiod") postingperiod: PostingperiodComponent;
-  @ViewChild("addpostingperiod") addpostingperiod: PostingperiodComponent;
-  @ViewChild("editpostingperiod") editpostingperiod: PostingperiodComponent;
-
   @ViewChild("refundmethod") refundmethod: RefundmethodComponent;
-  @ViewChild("addrefundmethod") addrefundmethod: RefundmethodComponent;
-  @ViewChild("editrefundmethod") editrefundmethod: RefundmethodComponent;
+  @ViewChild("currency") currency: CurrencyComponent;
 
   @Input()
   view: number = 1;
   @Input()
   iscompulsory: boolean = false;
+  @Input()
+  isreload: boolean = false;
   @Input()
   disabled: boolean = false;
   @Input()
@@ -51,32 +39,44 @@ export class CustomerrefundComponent implements OnInit {
   @Input()
   accountID = null;
   @Input()
+  postingperiodID = null;
+  @Input()
+  postingperiodCode = null;
+  @Input()
+  refundmethodID = null;
+  @Input()
+  refundmethodCode = null;
+  @Input()
   currencyID = null;
+  @Input()
+  currencyCode = null;
 
-  @Output() show = new EventEmitter();
   @Output() edit = new EventEmitter();
   @Output() cancel = new EventEmitter();
+  @Output() show = new EventEmitter();
+  @Output() refresh = new EventEmitter();
+  @Output() onCustomerRefundChange = new EventEmitter();
 
   customerrefunds = [];
   customerrefundsAll = [];
   customerrefund = {
     customerrefund_ID: 0,
-    customer_ID: 0,
-    account_ID: 0,
-    currency_ID: 0,
-    postingperiod_ID: 0,
-    refundmethod_ID: 0,
-    customerrefund_CODE: "",
-    customerrefund_DATE: "",
+    customer_ID: null,
+    account_ID: null,
+    currency_ID: null,
+    postingperiod_ID: null,
+    refundmethod_ID: null,
+    customerrefund_CODE: null,
+    customerrefund_DATE: null,
     customer_BALANCE: null,
     customerrefund_AMOUNT: null,
-    exchange_RATE:null,
-    check_NUMBER: "",
-    creditcard_NUMBER: "",
-    expire_DATE: "",
-    name_ONCARD: "",
-    card_STREET: "",
-    card_ZIPCODE: "",
+    exchange_RATE: null,
+    check_NUMBER: null,
+    creditcard_NUMBER: null,
+    expire_DATE: null,
+    name_ONCARD: null,
+    card_STREET: null,
+    card_ZIPCODE: null,
     isapproved: true,
     isactive: true,
   }
@@ -89,57 +89,50 @@ export class CustomerrefundComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.customerrefunds = JSON.parse(window.sessionStorage.getItem('customerrefunds'));
-    this.customerrefundsAll = JSON.parse(window.sessionStorage.getItem('customerrefundsAll'));
-    if (this.view == 1 && this.customerrefunds == null) {
-      this.customerrefundGet();
-    }else if (this.view == 1 && this.disabled == true && this.customerrefundsAll == null) {
-        this.customerrefundGetAll();
-    } else if (this. view == 2 && this.customerrefundsAll == null) {
-      this.customerrefundGetAll();
-    } else if (this. view == 22 && (this.accountID != null )) {
-      this.customerrefundAdvancedSearchAll(this.accountID,0,0);
-    }
+    this.load(this.isreload);
+  }
 
-    if (this.customerrefundID != 0 && !this.customerrefundID && Number(window.sessionStorage.getItem('customerrefund'))>0) {
+  load(reload) {
+    if (window.sessionStorage.getItem('customerrefunds') != null) {
+      this.customerrefunds = JSON.parse(window.sessionStorage.getItem('customerrefunds'));
+    }
+    if (window.sessionStorage.getItem('customerrefundsAll') != null) {
+      this.customerrefundsAll = JSON.parse(window.sessionStorage.getItem('customerrefundsAll'));
+    }
+    if (this.customerrefundID != 0 && !this.customerrefundID && Number(window.sessionStorage.getItem('customerrefund')) > 0) {
       this.customerrefundID = Number(window.sessionStorage.getItem('customerrefund'));
     }
-    if (this.view == 5 && this.customerrefundID) {
+
+    if (this.view >= 1 && this.view <= 2 && (this.customerrefunds == null || this.customerrefunds.length == 0 || reload == true)) {
+      this.customerrefunds == null;
+      this.customerrefundGet();
+    }
+    if (((this.view >= 1 && this.view <= 2) || this.view == 10) && (this.customerrefundsAll == null || this.customerrefundsAll.length == 0 || reload == true)) {
+      this.customerrefundsAll == null;
+      this.customerrefundGetAll();
+    }
+
+    var search = {
+      customer_ID: this.customerID,
+      account_ID: this.accountID,
+      postingperiod_ID: this.postingperiodID,
+      postingperiod_CODE: this.postingperiodCode,
+      refundmethod_ID: this.refundmethodID,
+      refundmethod_CODE: this.refundmethodCode,
+      currency_ID: this.currencyID,
+      currency_CODE: this.currencyCode,
+    }
+
+    if (this.view >= 5 && this.view <= 6 && this.customerrefundID) {
       window.sessionStorage.setItem("customerrefund", this.customerrefundID);
       this.customerrefundGetOne(this.customerrefundID);
-    } if (this.view == 11 && this.accountID && this.disabled == false) {
-      this.customerrefundAdvancedSearch(this.accountID,0,0);
-    } else if (this.view == 11 && this.accountID && this.disabled == true) {
-      this.customerrefundAdvancedSearchAll(this.accountID,0,0);
-
-    } else if (this.view == 11 || this.view == 1 ) {
-      this.customerrefundID = null;
-      this.customerrefundsAll = null;
-      this.customerrefunds = null;
-    }
-
-    if (this.customerrefundID == 0) {
-      this.customerrefundID = null;
-    }
-  }
-
-  showView(row) {
-    this.show.next(row);
-  }
-
-  editView() {
-    this.disabled = false;
-  }
-
-  cancelView() {
-    this.cancel.next();
-  }
-
-  customerrefundCancel() {
-    console.log(this.customerrefund);
-    this.disabled = true;
-    if (this.customerrefund.customerrefund_ID == 0) {
-      this.router.navigate(["/home/customerrefunds"], {});
+      this.disabled = true;
+    } else if ((this.view >= 11 && this.view <= 29) && this.disabled == false && (this.customerrefunds == null || this.customerrefunds.length == 0 || reload == true)) {
+      this.customerrefunds == null;
+      this.customerrefundAdvancedSearch(search);
+    } else if ((this.view >= 11 && this.view <= 29) && this.disabled == true && (this.customerrefundsAll == null || this.customerrefundsAll.length == 0 || reload == true)) {
+      this.customerrefundsAll == null;
+      this.customerrefundAdvancedSearchAll(search);
     }
   }
 
@@ -151,21 +144,7 @@ export class CustomerrefundComponent implements OnInit {
         options: {
           width: 136,
           text: 'Refresh',
-          onClick: this.customerrefundGetAll.bind(this),
-        },
-      }
-    );
-  }
-
-  onToolbarPreparingAdvanced(e) {
-    e.toolbarOptions.items.unshift(
-      {
-        location: 'after',
-        widget: 'dxButton',
-        options: {
-          width: 136,
-          text: 'Refresh',
-          onClick: this.customerrefundAdvancedSearchAll.bind(this, this.accountID),
+          onClick: this.load.bind(this, true),
         },
       }
     );
@@ -174,49 +153,80 @@ export class CustomerrefundComponent implements OnInit {
   add() {
     this.customerrefund = {
       customerrefund_ID: 0,
-      customer_ID: 0,
-      account_ID: 0,
-      currency_ID: 0,
-      postingperiod_ID: 0,
-      refundmethod_ID: 0,
-      customerrefund_CODE: "",
-      customerrefund_DATE: "",
+      customer_ID: null,
+      account_ID: null,
+      currency_ID: null,
+      postingperiod_ID: null,
+      refundmethod_ID: null,
+      customerrefund_CODE: null,
+      customerrefund_DATE: null,
       customer_BALANCE: null,
       customerrefund_AMOUNT: null,
-      exchange_RATE:null,
-      check_NUMBER: "",
-      creditcard_NUMBER: "",
-      expire_DATE: "",
-      name_ONCARD: "",
-      card_STREET: "",
-      card_ZIPCODE: "",
+      exchange_RATE: null,
+      check_NUMBER: null,
+      creditcard_NUMBER: null,
+      expire_DATE: null,
+      name_ONCARD: null,
+      card_STREET: null,
+      card_ZIPCODE: null,
       isapproved: true,
       isactive: true,
     };
-  }
-  setcustomerrefund(response) {
-    if (response.isactive == "Y") {
-      response.isactive = true;
-    } else {
-      response.isactive = false;
-    }
-    this.customerrefund = response;
-    this.disabled = true;
   }
 
   update(row) {
     this.edit.next(row);
   }
 
-  setcustomerrefunds(response) {
-    if ((this.view == 1 || this.view == 11) && this.disabled == false) {
-      this.customerrefunds = response;
-      window.sessionStorage.setItem("customerrefunds", JSON.stringify(this.customerrefunds));
-    } else {
-      this.customerrefundsAll = response;
-      window.sessionStorage.setItem("customerrefundsAll", JSON.stringify(this.customerrefundsAll));
-    }
+  editView() {
+    this.disabled = false;
+  }
+
+  showView(row) {
+    this.show.next(row);
+  }
+
+  cancelView() {
     this.cancel.next();
+  }
+
+  customerrefundEdit() {
+    this.disabled = false;
+  }
+
+  customerrefundCancel() {
+    this.disabled = true;
+    if (this.customerrefund.customerrefund_ID == 0) {
+      this.router.navigate(["/home/customerrefunds "], {});
+    }
+  }
+
+  onChange(customerrefundID) {
+    for (var i = 0; i < this.customerrefundsAll.length; i++) {
+      if (this.customerrefundsAll[i].customerrefund_ID == customerrefundID) {
+        this.onCustomerRefundChange.next(this.customerrefundsAll[i]);
+        break;
+      }
+    }
+  }
+
+  setCustomerrefund(response) {
+    if (response.isapproved == "Y") {
+      response.isapproved = true;
+    } else {
+      response.isapproved = false;
+    }
+    if (response.isactive == "Y") {
+      response.isactive = true;
+    } else {
+      response.isactive = false;
+    }
+    this.customerrefund = response;
+  }
+
+  setCustomerrefunds(response) {
+    this.cancel.next();
+    return response;
   }
 
   customerrefundGet() {
@@ -225,14 +235,14 @@ export class CustomerrefundComponent implements OnInit {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else {
-          this.setcustomerrefunds(this.customerrefundservice.getAllDetail(response));
+          this.customerrefunds = this.setCustomerrefunds(this.customerrefundservice.getAllDetail(response));
+          window.sessionStorage.setItem("customerrefunds", JSON.stringify(this.customerrefunds));
         }
       }
     }, error => {
       this.onfailservice.onFail(error);
     })
   }
-
 
   customerrefundGetAll() {
     this.customerrefundservice.getAll().subscribe(response => {
@@ -240,49 +250,46 @@ export class CustomerrefundComponent implements OnInit {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else {
-          this.setcustomerrefunds(this.customerrefundservice.getAllDetail(response));
+          this.customerrefundsAll = this.setCustomerrefunds(this.customerrefundservice.getAllDetail(response));
+          window.sessionStorage.setItem("customerrefundsAll", JSON.stringify(this.customerrefundsAll));
         }
       }
     }, error => {
       this.onfailservice.onFail(error);
     })
   }
+
   customerrefundGetOne(id) {
+    this.disabled = true;
     this.customerrefundservice.getOne(id).subscribe(response => {
       if (response) {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else {
-          this.setcustomerrefund(this.customerrefundservice.getDetail(response));
+          this.setCustomerrefund(this.customerrefundservice.getDetail(response));
         }
       }
     }, error => {
       this.onfailservice.onFail(error);
     })
   }
+
   customerrefundAdd(customerrefund) {
     customerrefund.isactive = "Y";
-    if (this.view == 5) {
-      customerrefund.account_ID = this.account.accountID;
-      customerrefund.customer_ID = this.customer.customerID;
-      customerrefund.postingperiod_ID = this.postingperiod.postingperiodID;
-      customerrefund.currency_ID = this.currency.currencyID;
-      customerrefund.refundmethod_ID = this.refundmethod.refundmethodID;
-    } else {
-      customerrefund.refundmethod_ID = this.addrefundmethod.refundmethodID;
-      customerrefund.currency_ID = this.addcurrency.currencyID;
-      customerrefund.account_ID = this.addaccount.accountID;
-      customerrefund.customer_ID = this.addcustomer.customerID;
-      customerrefund.postingperiod_ID = this.addpostingperiod.postingperiodID;
-    }
+    customerrefund.isapproved = "N";
+    customerrefund.account_ID = this.account.accountID;
+    customerrefund.customer_ID = this.customer.customerID;
+    customerrefund.postingperiod_ID = this.postingperiod.postingperiodID;
+    customerrefund.currency_ID = this.currency.currencyID;
+    customerrefund.refundmethod_ID = this.refundmethod.refundmethodID;
+
     this.customerrefundservice.add(customerrefund).subscribe(response => {
       if (response) {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else if (response.customerrefund_ID) {
-          this.toastrservice.success("Success", "New customerrefund Added");
-          this.customerrefundGetAll();
-          this.setcustomerrefund(this.customerrefundservice.getDetail(response));
+          this.toastrservice.success("Success", "New Customer Refund Added");
+          this.refresh.next();
           this.disabled = true;
         } else {
           this.toastrservice.error("Some thing went wrong");
@@ -294,22 +301,18 @@ export class CustomerrefundComponent implements OnInit {
   }
 
   customerrefundUpdate(customerrefund) {
-    if (this.view == 5) {
-      customerrefund.refundmethod_ID = this.refundmethod.refundmethodID;
-      customerrefund.currency_ID = this.currency.currencyID;
-      customerrefund.account_ID = this.account.accountID;
-      customerrefund.customer_ID = this.customer.customerID;
-      customerrefund.postingperiod_ID = this.postingperiod.postingperiodID;
 
+    customerrefund.account_ID = this.account.accountID;
+    customerrefund.customer_ID = this.customer.customerID;
+    customerrefund.postingperiod_ID = this.postingperiod.postingperiodID;
+    customerrefund.currency_ID = this.currency.currencyID;
+    customerrefund.refundmethod_ID = this.refundmethod.refundmethodID;
+
+    if (customerrefund.isapproved == true) {
+      customerrefund.isapproved = "Y";
     } else {
-      customerrefund.refundmethod_ID = this.editrefundmethod.refundmethodID;
-      customerrefund.currency_ID = this.editcurrency.currencyID;
-      customerrefund.account_ID = this.editaccount.accountID;
-      customerrefund.customer_ID = this.editcustomer.customerID;
-      customerrefund.postingperiod_ID = this.editpostingperiod.postingperiodID;
-
+      customerrefund.isapproved = "N";
     }
-
     if (customerrefund.isactive == true) {
       customerrefund.isactive = "Y";
     } else {
@@ -320,12 +323,25 @@ export class CustomerrefundComponent implements OnInit {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else if (response.customerrefund_ID) {
-          this.toastrservice.success("Success", "customerrefund Updated");
-          if (this.disabled == true) {
-            this.setcustomerrefund(this.customerrefundservice.getDetail(response));
-          } else {
-            this.disabled = true;
-          }
+          this.toastrservice.success("Success", "Customer Refund Updated");
+          this.refresh.next();
+        } else {
+          this.toastrservice.error("Some thing went wrong");
+        }
+      }
+    }, error => {
+      this.onfailservice.onFail(error);
+    })
+  }
+
+  customerrefundUpdateAll(customerrefunds) {
+    this.customerrefundservice.updateAll(customerrefunds).subscribe(response => {
+      if (response) {
+        if (response.error && response.status) {
+          this.toastrservice.warning("Message", " " + response.message);
+        } else if (response.length > 0) {
+          this.toastrservice.success("Success", "Customer Refunds Updated");
+          this.refresh.next();
         } else {
           this.toastrservice.error("Some thing went wrong");
         }
@@ -344,7 +360,8 @@ export class CustomerrefundComponent implements OnInit {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else {
-          this.setcustomerrefunds(this.customerrefundservice.getAllDetail(response));
+          this.customerrefunds = this.setCustomerrefunds(this.customerrefundservice.getAllDetail(response));
+          window.sessionStorage.setItem("customerrefunds", JSON.stringify(this.customerrefunds));
         }
       }
     }, error => {
@@ -361,7 +378,8 @@ export class CustomerrefundComponent implements OnInit {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else {
-          this.setcustomerrefunds(this.customerrefundservice.getAllDetail(response));
+          this.customerrefundsAll = this.setCustomerrefunds(this.customerrefundservice.getAllDetail(response));
+          window.sessionStorage.setItem("customerrefundsAll", JSON.stringify(this.customerrefundsAll));
         }
       }
     }, error => {
@@ -369,21 +387,23 @@ export class CustomerrefundComponent implements OnInit {
     })
   }
 
-  customerrefundAdvancedSearch(currencyID, accountID, customerID) {
-    this.currencyID = currencyID;
-    this.accountID = accountID;
-    this.customerID = customerID;
-    var search = {
-      currency_ID: currencyID,
-      account_ID: accountID,
-      customer_ID: customerID
-    }
+  customerrefundAdvancedSearch(search) {
+    this.customerID = search.customer_ID;
+    this.accountID = search.account_ID;
+    this.postingperiodID = search.postingperiod_ID;
+    this.postingperiodCode = search.postingperiod_CODE;
+    this.refundmethodID = search.refundmethod_ID;
+    this.refundmethodCode = search.refundmethod_CODE;
+    this.currencyID = search.currency_ID;
+    this.currencyCode = search.currency_CODE;
+
     this.customerrefundservice.advancedSearch(search).subscribe(response => {
       if (response) {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else {
-          this.setcustomerrefunds(this.customerrefundservice.getAllDetail(response));
+          this.customerrefunds = this.setCustomerrefunds(this.customerrefundservice.getAllDetail(response));
+          window.sessionStorage.setItem("customerrefunds", JSON.stringify(this.customerrefunds));
         }
       }
     }, error => {
@@ -391,21 +411,23 @@ export class CustomerrefundComponent implements OnInit {
     })
   }
 
-  customerrefundAdvancedSearchAll(currencyID, accountID, customerID) {
-    this.currencyID = currencyID;
-    this.accountID = accountID;
-    this.customerID = customerID;
-    var search = {
-      currency_ID: currencyID,
-      account_ID: accountID,
-      customer_ID: customerID
-    }
+  customerrefundAdvancedSearchAll(search) {
+    this.customerID = search.customer_ID;
+    this.accountID = search.account_ID;
+    this.postingperiodID = search.postingperiod_ID;
+    this.postingperiodCode = search.postingperiod_CODE;
+    this.refundmethodID = search.refundmethod_ID;
+    this.refundmethodCode = search.refundmethod_CODE;
+    this.currencyID = search.currency_ID;
+    this.currencyCode = search.currency_CODE;
+
     this.customerrefundservice.advancedSearchAll(search).subscribe(response => {
       if (response) {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else {
-          this.setcustomerrefunds(this.customerrefundservice.getAllDetail(response));
+          this.customerrefundsAll = this.setCustomerrefunds(this.customerrefundservice.getAllDetail(response));
+          window.sessionStorage.setItem("customerrefundsAll", JSON.stringify(this.customerrefundsAll));
         }
       }
     }, error => {

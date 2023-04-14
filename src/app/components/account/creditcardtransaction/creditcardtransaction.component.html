@@ -1,426 +1,509 @@
 <div *ngIf="view==1" class="form-group">
-    <label class="custom-label form-label"> Credit Card Transaction
-        <span style="color: red;" [hidden]="disabled" *ngIf="iscompulsory==true">*</span>
-    </label>
-    <div class="row">
-        <div class="col-md-10" *ngIf="disabled==true">
-            <ng-select [(ngModel)]="creditcardtransactionID" [disabled]="disabled" name="creditcardtransactionID">
-                <ng-option *ngFor="let creditcardtransaction of creditcardtransactionsAll" [value]="creditcardtransaction.creditcardtransaction_ID">
-                  {{ creditcardtransaction.transaction_DATE }} - {{ creditcardtransaction.transaction_DATE }}
-                </ng-option>
-            </ng-select>
-        </div>
-        <div class="col-md-10" *ngIf="disabled==false">
-            <ng-select [(ngModel)]="creditcardtransactionID" [disabled]="disabled" name="creditcardtransactionID">
-                <ng-option *ngFor="let creditcardtransaction of creditcardtransactions" [value]="creditcardtransaction.creditcardtransaction_ID">
-                    {{ creditcardtransaction.transaction_DATE }} - {{ creditcardtransaction.transaction_AMOUNT }}
-                </ng-option>
-            </ng-select>
-        </div>
-        <div class="col-md-2">
-            <button type="button" class="btn btn-light ml-2" [hidden]="disabled" (click)="creditcardtransactionGet()">
-                <i class="fa fa-refresh" aria-hidden="true"></i>
-            </button>
-        </div>
+  <label class="custom-label form-label">Credit Card Transaction
+    <span style="color: red;" [hidden]="disabled" *ngIf="iscompulsory==true">*</span>
+  </label>
+  <div class="row" *ngIf="disabled==true">
+    <div class="col-md-12">
+      <ng-select [(ngModel)]="creditcardtransactionID" [disabled]="disabled" name="creditcardtransactionID"
+        (change)="onChange($event)">
+        <ng-option *ngFor="let creditcardtransaction of creditcardtransactionsAll"
+          [value]="creditcardtransaction.creditcardtransaction_ID">
+          {{ creditcardtransaction.transaction_DATE }} - {{ creditcardtransaction.transaction_AMOUNT }}
+        </ng-option>
+      </ng-select>
     </div>
+  </div>
+  <div class="row" *ngIf="disabled==false">
+    <div class="col-md-10">
+      <ng-select [(ngModel)]="creditcardtransactionID" name="creditcardtransactionID" (change)="onChange($event)">
+        <ng-option *ngFor="let creditcardtransaction of creditcardtransactions"
+          [value]="creditcardtransaction.creditcardtransaction_ID" [disabled]="disabled">
+          {{ creditcardtransaction.transaction_DATE }} - {{ creditcardtransaction.transaction_AMOUNT }}
+        </ng-option>
+      </ng-select>
+    </div>
+    <div class="col-md-2">
+      <button type="button" class="btn btn-light ml-2" (click)="load(true)">
+        <i class="fa fa-refresh" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="view==10" class="form-group">
+  <label class="custom-label form-label">Credit Card Transaction
+    <span style="color: red;" [hidden]="disabled" *ngIf="iscompulsory==true">*</span>
+  </label>
+  <div class="row" *ngIf="disabled==true">
+    <div class="col-md-12">
+      <ng-select [(ngModel)]="creditcardtransactionID" [disabled]="disabled" name="creditcardtransactionID"
+        (change)="onChange($event)">
+        <ng-option *ngFor="let creditcardtransaction of creditcardtransactionsAll"
+          [value]="creditcardtransaction.creditcardtransaction_ID">
+          {{ creditcardtransaction.transaction_DATE }} - {{ creditcardtransaction.transaction_AMOUNT }}
+        </ng-option>
+      </ng-select>
+    </div>
+  </div>
+  <div class="row" *ngIf="disabled==false">
+    <div class="col-md-10">
+      <ng-select [(ngModel)]="creditcardtransactionID" name="creditcardtransactionID" (change)="onChange($event)">
+        <ng-option *ngFor="let creditcardtransaction of creditcardtransactionsAll"
+          [value]="creditcardtransaction.creditcardtransaction_ID" [disabled]="disabled">
+          {{ creditcardtransaction.transaction_DATE }} - {{ creditcardtransaction.transaction_AMOUNT }}
+        </ng-option>
+      </ng-select>
+    </div>
+    <div class="col-md-2">
+      <button type="button" class="btn btn-light ml-2" (click)="load(true)">
+        <i class="fa fa-refresh" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
 </div>
 
 <div *ngIf="view==11" class="form-group">
-    <label class="custom-label form-label"> Credit Card Transaction
-        <span style="color: red;" [hidden]="disabled" *ngIf="iscompulsory==true">*</span>
-    </label>
-    <div class="row">
-        <div class="col-md-10" *ngIf="disabled==true">
-            <ng-select [(ngModel)]="creditcardtransactionID" [disabled]="disabled" name="creditcardtransactionID">
-                <ng-option *ngFor="let creditcardtransaction of creditcardtransactionsAll" [value]="creditcardtransaction.creditcardtransaction_ID">
-                    {{ creditcardtransaction.transaction_DATE }} - {{ creditcardtransaction.transaction_AMOUNT }}
-                </ng-option>
-            </ng-select>
-        </div>
-        <div class="col-md-10" *ngIf="disabled==false">
-            <ng-select [(ngModel)]="creditcardtransactionID" [disabled]="disabled" name="creditcardtransactionID">
-                <ng-option *ngFor="let creditcardtransaction of creditcardtransactions" [value]="creditcardtransaction.creditcardtransaction_ID">
-                    {{ creditcardtransaction.transaction_DATE }} - {{ creditcardtransaction.transaction_AMOUNT }}
-                </ng-option>
-            </ng-select>
-        </div>
-        <div class="col-md-2">
-            <button type="button" class="btn btn-light ml-2" [hidden]="disabled"
-                (click)="creditcardtransactionAdvancedSearch(customerID)">
-                <i class="fa fa-refresh" aria-hidden="true"></i>
-            </button>
-        </div>
+  <label class="custom-label form-label">Credit Card Transaction
+    <span style="color: red;" [hidden]="disabled" *ngIf="iscompulsory==true">*</span>
+  </label>
+  <div class="row" *ngIf="disabled==true">
+    <div class="col-md-12">
+      <ng-select [(ngModel)]="creditcardtransactionID" [disabled]="disabled" name="creditcardtransactionID">
+        <ng-option *ngFor="let creditcardtransaction of creditcardtransactionsAll"
+          [value]="creditcardtransaction.creditcardtransaction_ID" [disabled]="disabled">
+          {{ creditcardtransaction.transaction_DATE }} - {{ creditcardtransaction.transaction_AMOUNT }}
+        </ng-option>
+      </ng-select>
     </div>
+  </div>
+  <div class="row" *ngIf="disabled==false">
+    <div class="col-md-10">
+      <ng-select [(ngModel)]="creditcardtransactionID" [disabled]="disabled" name="creditcardtransactionID"
+        (change)="onChange($event)">
+        <ng-option *ngFor="let creditcardtransaction of creditcardtransactions"
+          [value]="creditcardtransaction.creditcardtransaction_ID" [disabled]="disabled">
+          {{ creditcardtransaction.transaction_DATE }} - {{ creditcardtransaction.transaction_AMOUNT }}
+        </ng-option>
+      </ng-select>
+    </div>
+    <div class="col-md-2">
+      <button type="button" class="btn btn-light ml-2" [hidden]="disabled" (click)="load(true)">
+        <i class="fa fa-refresh" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="view==19" class="form-group">
+  <label class="custom-label form-label">Credit Card Transaction
+    <span style="color: red;" [hidden]="disabled" *ngIf="iscompulsory==true">*</span>
+  </label>
+  <div class="row" *ngIf="disabled==true">
+    <div class="col-md-12">
+      <ng-select [(ngModel)]="creditcardtransactionID" [disabled]="disabled" name="creditcardtransactionID"
+        (change)="onChange($event)">
+        <ng-option *ngFor="let creditcardtransaction of creditcardtransactionsAll"
+          [value]="creditcardtransaction.creditcardtransaction_ID" [disabled]="disabled">
+          {{ creditcardtransaction.transaction_DATE }} - {{ creditcardtransaction.transaction_AMOUNT }}
+        </ng-option>
+      </ng-select>
+    </div>
+  </div>
+  <div class="row" *ngIf="disabled==false">
+    <div class="col-md-10">
+      <ng-select [(ngModel)]="creditcardtransactionID" [disabled]="disabled" name="creditcardtransactionID"
+        (change)="onChange($event)">
+        <ng-option *ngFor="let creditcardtransaction of creditcardtransactionsAll"
+          [value]="creditcardtransaction.creditcardtransaction_ID" [disabled]="disabled">
+          {{ creditcardtransaction.transaction_DATE }} - {{ creditcardtransaction.transaction_AMOUNT }}
+        </ng-option>
+      </ng-select>
+    </div>
+    <div class="col-md-2">
+      <button type="button" class="btn btn-light ml-2" [hidden]="disabled" (click)="load(true)">
+        <i class="fa fa-refresh" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
 </div>
 
 <div *ngIf="view==2" class="form-group">
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="outer-div">
-                <div class="grid-wrapper">
-                    <dx-data-grid #grid id="gridContainer" [dataSource]="creditcardtransactionsAll" keyExpr="creditcardtransaction_ID"
-                        [showColumnLines]="true" [showRowLines]="true" [showBorders]="true"
-                        [rowAlternationEnabled]="true" [allowColumnResizing]="true" [columnMinWidth]="30"
-                        [columnAutoWidth]="true" [remoteOperations]="true" height="600" width="100%"
-                        (onToolbarPreparing)="onToolbarPreparing($event)">
-                        <dxo-filter-row [visible]="true"></dxo-filter-row>
-                        <dxo-header-filter [visible]="true"></dxo-header-filter>
-                        <dxo-search-panel [visible]="true"></dxo-search-panel>
-                        <dxo-group-panel [visible]="false"></dxo-group-panel>
-                        <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
-                        <dxo-scrolling mode="virtual"></dxo-scrolling>
-                        <dxo-sorting mode="multiple"></dxo-sorting>
-                        <dxo-selection mode="single"></dxo-selection>
-                        <dxi-column [width]="75" [allowFiltering]="false" [allowSorting]="false" alignment="center"
-                            cellTemplate="cellTemplate"></dxi-column>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="outer-div">
+        <div class="grid-wrapper">
+          <dx-data-grid #grid id="gridContainer" [dataSource]="creditcardtransactionsAll"
+            keyExpr="creditcardtransaction_ID" [showColumnLines]="true" [showRowLines]="true" [showBorders]="true"
+            [rowAlternationEnabled]="true" [allowColumnResizing]="true" [columnMinWidth]="30" [columnAutoWidth]="true"
+            [remoteOperations]="true" height="600" width="100%" (onToolbarPreparing)="onToolbarPreparing($event)">
+            <dxo-filter-row [visible]="true"></dxo-filter-row>
+            <dxo-header-filter [visible]="true"></dxo-header-filter>
+            <dxo-search-panel [visible]="true"></dxo-search-panel>
+            <dxo-group-panel [visible]="false"></dxo-group-panel>
+            <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
+            <dxo-scrolling mode="virtual"></dxo-scrolling>
+            <dxo-sorting mode="multiple"></dxo-sorting>
+            <dxo-selection mode="single"></dxo-selection>
+            <dxi-column [width]="75" [allowFiltering]="false" [allowSorting]="false" alignment="center"
+              cellTemplate="cellTemplate"></dxi-column>
 
-                        <dxi-column dataField="customer.customer_NAME" caption="Customer" cssClass="myClass" alignment="left"></dxi-column>
-                        <dxi-column dataField="cardtype_ID.description" caption="Card Type" cssClass="myClass" alignment="center" ></dxi-column>
-                            <dxi-column dataField="transaction_DATE" caption="Date" cssClass="myClass" alignment="left"></dxi-column>
-                            <dxi-column dataField="transaction_AMOUNT" caption="Amount" cssClass="myClass" alignment="left"></dxi-column>
-                            <dxi-column dataField="transaction_STATUS" caption="Status" cssClass="myClass" alignment="left"></dxi-column>
-                            <dxi-column dataField="name_ONCARD" caption="Name On Card" cssClass="myClass" alignment="left"></dxi-column>
-                            <dxi-column dataField="card_NUMBER" caption="Card Number" cssClass="myClass" alignment="left"></dxi-column>
-                            <dxi-column dataField="authcode" caption="Auth Code " cssClass="myClass" alignment="left"></dxi-column>
-                            <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass"
-                            alignment="center"></dxi-column>
+            <dxi-column dataField="customer.customer_NAME" caption="Customer" cssClass="myClass"
+              alignment="left"></dxi-column>
+            <dxi-column dataField="cardtype_ID.description" caption="Card Type" cssClass="myClass"
+              alignment="center"></dxi-column>
+            <dxi-column dataField="transaction_DATE" caption="Date" cssClass="myClass" alignment="left"></dxi-column>
+            <dxi-column dataField="transaction_AMOUNT" caption="Amount" cssClass="myClass"
+              alignment="left"></dxi-column>
+            <dxi-column dataField="transaction_STATUS" caption="Status" cssClass="myClass"
+              alignment="left"></dxi-column>
+            <dxi-column dataField="name_ONCARD" caption="Name On Card" cssClass="myClass" alignment="left"></dxi-column>
+            <dxi-column dataField="card_NUMBER" caption="Card Number" cssClass="myClass" alignment="left"></dxi-column>
+            <dxi-column dataField="authcode" caption="Auth Code " cssClass="myClass" alignment="left"></dxi-column>
+            <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass"
+              alignment="center"></dxi-column>
 
-                            <div *dxTemplate="let data of 'cellTemplate'">
-                              <a href="javascript:void" class="" (click)="showView(data)">
-                                <i class="fa fa-eye" aria-hidden="true"></i></a>
-                            </div>
-                    </dx-data-grid>
-                </div>
+            <div *dxTemplate="let data of 'cellTemplate'">
+              <a href="javascript:void" class="" (click)="showView(data)">
+                <i class="fa fa-eye" aria-hidden="true"></i></a>
             </div>
+          </dx-data-grid>
         </div>
+      </div>
     </div>
+  </div>
 </div>
 
 <div *ngIf="view==22" class="form-group">
-    <div class="outer-div">
-        <div class="grid-wrapper">
-            <dx-data-grid #grid id="gridContainer" [dataSource]="creditcardtransactionsAll" keyExpr="creditcardtransaction_ID"
-                [showColumnLines]="true" [showRowLines]="true" [showBorders]="true" [rowAlternationEnabled]="true"
-                [allowColumnResizing]="true" [columnMinWidth]="30" [columnAutoWidth]="true" [remoteOperations]="true"
-                height="600" width="100%" (onToolbarPreparing)="onToolbarPreparingAdvanced($event)">
-                <dxo-filter-row [visible]="true"></dxo-filter-row>
-                <dxo-header-filter [visible]="true"></dxo-header-filter>
-                <dxo-search-panel [visible]="true"></dxo-search-panel>
-                <dxo-group-panel [visible]="false"></dxo-group-panel>
-                <dxo-grouping #expand [autoExpandAll]="false"></dxo-grouping>
-                <dxo-scrolling mode="virtual"></dxo-scrolling>
-                <dxo-sorting mode="multiple"></dxo-sorting>
-                <dxo-selection mode="single"></dxo-selection>
-                <dxi-column [width]="75" [allowFiltering]="false" [allowSorting]="false" alignment="center"
-                    cellTemplate="cellTemplate"></dxi-column>
+  <div class="outer-div">
+    <div class="grid-wrapper">
+      <dx-data-grid #grid id="gridContainer" [dataSource]="creditcardtransactions" keyExpr="creditcardtransaction_ID"
+        [showColumnLines]="true" [showRowLines]="true" [showBorders]="true" [rowAlternationEnabled]="true"
+        [allowColumnResizing]="true" [columnMinWidth]="30" [columnAutoWidth]="true" [remoteOperations]="true"
+        height="600" width="100%" (onToolbarPreparing)="onToolbarPreparing($event)">
+        <dxo-filter-row [visible]="true"></dxo-filter-row>
+        <dxo-header-filter [visible]="true"></dxo-header-filter>
+        <dxo-search-panel [visible]="true"></dxo-search-panel>
+        <dxo-group-panel [visible]="false"></dxo-group-panel>
+        <dxo-grouping #expand [autoExpandAll]="false"></dxo-grouping>
+        <dxo-scrolling mode="virtual"></dxo-scrolling>
+        <dxo-sorting mode="multiple"></dxo-sorting>
+        <dxo-selection mode="single"></dxo-selection>
+        <dxi-column [width]="75" [allowFiltering]="false" [allowSorting]="false" alignment="center"
+          cellTemplate="cellTemplate"></dxi-column>
 
-                    <dxi-column dataField="customer.customer_NAME" caption="Customer" cssClass="myClass" alignment="left"></dxi-column>
-                    <dxi-column dataField="cardtype_ID.description" caption="Card Type" cssClass="myClass" alignment="center" ></dxi-column>
-                        <dxi-column dataField="transaction_DATE" caption="Date" cssClass="myClass" alignment="left"></dxi-column>
-                        <dxi-column dataField="transaction_AMOUNT" caption="Amount" cssClass="myClass" alignment="left"></dxi-column>
-                        <dxi-column dataField="transaction_STATUS" caption="Status" cssClass="myClass" alignment="left"></dxi-column>
-                        <dxi-column dataField="name_ONCARD" caption="Name On Card" cssClass="myClass" alignment="left"></dxi-column>
-                        <dxi-column dataField="card_NUMBER" caption="Card Number" cssClass="myClass" alignment="left"></dxi-column>
-                        <dxi-column dataField="authcode" caption="Auth Code " cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="customer.customer_NAME" caption="Customer" cssClass="myClass"
+          alignment="left"></dxi-column>
+        <dxi-column dataField="cardtype_ID.description" caption="Card Type" cssClass="myClass"
+          alignment="center"></dxi-column>
+        <dxi-column dataField="transaction_DATE" caption="Date" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="transaction_AMOUNT" caption="Amount" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="transaction_STATUS" caption="Status" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="name_ONCARD" caption="Name On Card" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="card_NUMBER" caption="Card Number" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="authcode" caption="Auth Code " cssClass="myClass" alignment="left"></dxi-column>
 
-                <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass"
-                    alignment="center"></dxi-column>
+        <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass"
+          alignment="center"></dxi-column>
 
-                <div *dxTemplate="let data of 'cellTemplate'">
-                    <a href="javascript:void" class="" (click)="update(data)">
-                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                </div>
-            </dx-data-grid>
+        <div *dxTemplate="let data of 'cellTemplate'">
+          <a href="javascript:void" class="" (click)="update(data)">
+            <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
         </div>
+      </dx-data-grid>
     </div>
+  </div>
 </div>
 
 <div *ngIf="view==3" class="form-group">
-    <form action="" class="form" (ngSubmit)="f.form.valid && creditcardtransactionAdd(creditcardtransaction)" #f="ngForm" novalidate>
-        <div class="modal-dialog modal-xl" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">
-                        <i class="fa fa-plus" aria-hidden="true"></i> Add New Card Transaction
-                    </h5>
-                    <button aria-label="Close" class="close" data-dismiss="modal" type="button">
-                        <span aria-hidden="true"> ×</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <app-customer #addcustomer [view]="1"></app-customer>
-                        </div>
-                        <div class="col-md-6">
-                            <app-cardtype #addcardtype ></app-cardtype>
-                        </div>
-                    </div>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label class="control-label"> Date <span style="color:red">*</span></label>
-                                    <input type="date" class="form-control" name="transaction_DATE" [(ngModel)]="creditcardtransaction.transaction_DATE"
-                                        maxlength="50" required>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label class="control-label"> Amount <span style="color:red">*</span></label>
-                                    <input type="text" class="form-control" name="transaction_AMOUNT" [(ngModel)]="creditcardtransaction.transaction_AMOUNT"
-                                        maxlength="50" required>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label class="control-label"> Status <span style="color:red">*</span></label>
-                                    <input type="text" class="form-control" name="transaction_STATUS" [(ngModel)]="creditcardtransaction.transaction_STATUS"
-                                        maxlength="50" required>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label class="control-label"> Name On Card <span style="color:red">*</span></label>
-                                    <input type="text" class="form-control" name="name_ONCARD" [(ngModel)]="creditcardtransaction.name_ONCARD"
-                                        maxlength="50" required>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label class="control-label"> Card Number <span style="color:red">*</span></label>
-                                    <input type="text" class="form-control" name="card_NUMBER" [(ngModel)]="creditcardtransaction.card_NUMBER"
-                                        maxlength="50" required>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label class="control-label"> Auth Code <span style="color:red">*</span></label>
-                                    <input type="text" class="form-control" name="authcode" [(ngModel)]="creditcardtransaction.authcode"
-                                        maxlength="50" required>
-                                </div>
-                            </div>
-                        </div>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary" [disabled]="f.invalid">
-                        <i class="fa fa-plus" aria-hidden="true"></i> Add
-                    </button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                </div>
-            </div>
+  <form action="" class="form" (ngSubmit)="f.form.valid && creditcardtransactionAdd(creditcardtransaction)" #f="ngForm"
+    novalidate>
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">
+            <i class="fa fa-plus" aria-hidden="true"></i> Add New Card Transaction
+          </h5>
+          <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+            <span aria-hidden="true"> ×</span>
+          </button>
         </div>
-    </form>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-6">
+              <app-cardtype #cardtype [cardtypeID]="creditcardtransaction.cardtype_ID"></app-cardtype>
+            </div>
+            <div class="col-md-6">
+              <app-customer #customer [view]="1" [customerID]="creditcardtransaction.customer_ID"></app-customer>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label"> Date <span style="color:red">*</span></label>
+                <input type="date" class="form-control" name="transaction_DATE"
+                  [(ngModel)]="creditcardtransaction.transaction_DATE" maxlength="50" required>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label"> Amount <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="transaction_AMOUNT"
+                  [(ngModel)]="creditcardtransaction.transaction_AMOUNT" maxlength="50" required>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label"> Status <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="transaction_STATUS"
+                  [(ngModel)]="creditcardtransaction.transaction_STATUS" maxlength="50" required>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label"> Name On Card <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="name_ONCARD"
+                  [(ngModel)]="creditcardtransaction.name_ONCARD" maxlength="50" required>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label"> Card Number <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="card_NUMBER"
+                  [(ngModel)]="creditcardtransaction.card_NUMBER" maxlength="50" required>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label"> Auth Code <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="authcode" [(ngModel)]="creditcardtransaction.authcode"
+                  maxlength="50" required>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary" [disabled]="f.invalid">
+            <i class="fa fa-plus" aria-hidden="true"></i> Add
+          </button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </form>
 </div>
 
 <div *ngIf="view==4" class="form-group">
-    <form action="" class="form" (ngSubmit)="f.form.valid && creditcardtransactionUpdate(creditcardtransaction)" #f="ngForm" novalidate>
-        <div class="modal-dialog modal-xl" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">
-                        <i class="fa fa-plus" aria-hidden="true"></i> Edit Card Transaction
-                    </h5>
-                    <button aria-label="Close" class="close" data-dismiss="modal" type="button">
-                        <span aria-hidden="true"> ×</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <app-cardtype #editcardtype [cardtypeID]="creditcardtransaction.cardtype_ID"></app-cardtype>
-                        </div>
-                        <div class="col-md-6">
-                            <app-customer #editcustomer [view]="1" [customerID]="creditcardtransaction.customer_ID"></app-customer>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label class="control-label"> Date <span style="color:red">*</span></label>
-                                <input type="date" class="form-control" name="transaction_DATE" [(ngModel)]="creditcardtransaction.transaction_DATE"
-                                    maxlength="50" required>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label class="control-label"> Amount <span style="color:red">*</span></label>
-                                <input type="text" class="form-control" name="transaction_AMOUNT" [(ngModel)]="creditcardtransaction.transaction_AMOUNT"
-                                    maxlength="50" required>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label class="control-label"> Status <span style="color:red">*</span></label>
-                                <input type="text" class="form-control" name="transaction_STATUS" [(ngModel)]="creditcardtransaction.transaction_STATUS"
-                                    maxlength="50" required>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label class="control-label"> Name On Card <span style="color:red">*</span></label>
-                                <input type="text" class="form-control" name="name_ONCARD" [(ngModel)]="creditcardtransaction.name_ONCARD"
-                                    maxlength="50" required>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label class="control-label"> Card Number <span style="color:red">*</span></label>
-                                <input type="text" class="form-control" name="card_NUMBER" [(ngModel)]="creditcardtransaction.card_NUMBER"
-                                    maxlength="50" required>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label class="control-label"> Auth Code <span style="color:red">*</span></label>
-                                <input type="text" class="form-control" name="authcode" [(ngModel)]="creditcardtransaction.authcode"
-                                    maxlength="50" required>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <div class="checkbox">
-                                    <label class="control-label">
-                                        <input type="checkbox" [checked]="creditcardtransaction.isactive"
-                                            [(ngModel)]="creditcardtransaction.isactive" name="isactive">
-                                        Active
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary" [disabled]="f.invalid">
-                        <i class="fa fa-plus" aria-hidden="true"></i> Update
-                    </button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                </div>
-            </div>
+  <form action="" class="form" (ngSubmit)="f.form.valid && creditcardtransactionUpdate(creditcardtransaction)"
+    #f="ngForm" novalidate>
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">
+            <i class="fa fa-plus" aria-hidden="true"></i> Edit Card Transaction
+          </h5>
+          <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+            <span aria-hidden="true"> ×</span>
+          </button>
         </div>
-    </form>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-6">
+              <app-cardtype #cardtype [cardtypeID]="creditcardtransaction.cardtype_ID"></app-cardtype>
+            </div>
+            <div class="col-md-6">
+              <app-customer #customer [view]="1" [customerID]="creditcardtransaction.customer_ID"></app-customer>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label"> Date <span style="color:red">*</span></label>
+                <input type="date" class="form-control" name="transaction_DATE"
+                  [(ngModel)]="creditcardtransaction.transaction_DATE" maxlength="50" required>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label"> Amount <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="transaction_AMOUNT"
+                  [(ngModel)]="creditcardtransaction.transaction_AMOUNT" maxlength="50" required>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label"> Status <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="transaction_STATUS"
+                  [(ngModel)]="creditcardtransaction.transaction_STATUS" maxlength="50" required>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label"> Name On Card <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="name_ONCARD"
+                  [(ngModel)]="creditcardtransaction.name_ONCARD" maxlength="50" required>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label"> Card Number <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="card_NUMBER"
+                  [(ngModel)]="creditcardtransaction.card_NUMBER" maxlength="50" required>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label"> Auth Code <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="authcode" [(ngModel)]="creditcardtransaction.authcode"
+                  maxlength="50" required>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <div class="checkbox">
+                  <label class="control-label">
+                    <input type="checkbox" [checked]="creditcardtransaction.isactive"
+                      [(ngModel)]="creditcardtransaction.isactive" name="isactive">
+                    Active
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary" [disabled]="f.invalid">
+            <i class="fa fa-plus" aria-hidden="true"></i> Update
+          </button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </form>
 </div>
 
-<!-- <div *ngIf="view==5" class="form-group">
-    <div class="card-primary card">
-        <div class="card-header">
-            <div class="align-items-center row">
-                <div class="col" *ngIf="creditcardtransaction.creditcardtransaction_ID==0">
-                    <a href="javascript:void" aria-controls="collapse-creditcardtransactiotransaction_AMOUNTfo1" aria-expanded="true"
-                        class="card-title">Add New Credit Card Transaction
-                    </a>
-                </div>
-                <div class="col" *ngIf="creditcardtransaction.creditcardtransaction_ID!=0 && disabled==false">
-                    <a href="javascript:void" aria-controls="collapse-creditcardtransactiotransaction_AMOUNTfo1" aria-expanded="true"
-                        class="card-title">Edit Credit Card Transaction
-                    </a>
-                </div>
-                <div class="col" *ngIf="creditcardtransaction.creditcardtransaction_ID!=0 && disabled==true">
-                    <a href="javascript:void" aria-controls="collapse-creditcardtransactiotransaction_AMOUNTfo1" aria-expanded="true"
-                        class="card-title">Credit Card Transaction Detail
-                    </a>
-                </div>
-            </div>
+<div *ngIf="view==5" class="form-group">
+  <div class="card-primary card">
+    <div class="card-header">
+      <div class="align-items-center row">
+        <div class="col" *ngIf="creditcardtransaction.creditcardtransaction_ID==0">
+          <a href="javascript:void" aria-controls="collapse-creditcardtransactiotransaction_AMOUNTfo1"
+            aria-expanded="true" class="card-title">Add New Credit Card Transaction
+          </a>
         </div>
-        <div class="card-body">
-            <div class="row">
-                <div class="col-lg-12">
-
-                    <div class="row">
-                        <div class="col-md-6">
-                            <app-customer #customer [view]="1" [customerID]="creditcardtransaction.customer_ID" [disabled]="disabled"></app-customer>
-                        </div>
-                        <div class="col-md-6">
-                            <app-cardtype #cardtype [cardtypeID]="creditcardtransaction.cardtype_ID" [disabled]="disabled"></app-cardtype>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label class="control-label"> Date <span style="color:red">*</span></label>
-                                <input type="date" class="form-control" name="transaction_DATE" [(ngModel)]="creditcardtransaction.transaction_DATE"
-                                [disabled]="disabled" maxlength="50" required>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label class="control-label"> Amount <span style="color:red">*</span></label>
-                                <input type="text" class="form-control" name="transaction_AMOUNT" [(ngModel)]="creditcardtransaction.transaction_AMOUNT"
-                                [disabled]="disabled" maxlength="50" required>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label class="control-label">Status<span style="color:red">*</span></label>
-                                <input type="text" class="form-control" name="transaction_STATUS" [(ngModel)]="creditcardtransaction.transaction_STATUS"
-                                [disabled]="disabled" maxlength="50" required>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label class="control-label"> Name On Card <span style="color:red">*</span></label>
-                                <input type="text" class="form-control" name="name_ONCARD" [(ngModel)]="creditcardtransaction.name_ONCARD"
-                                [disabled]="disabled" maxlength="50" required>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label class="control-label">Card Number<span style="color:red">*</span></label>
-                                <input type="text" class="form-control" name="card_NUMBER" [(ngModel)]="creditcardtransaction.card_NUMBER"
-                                [disabled]="disabled" maxlength="50" required>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label class="control-label">Auth Code<span style="color:red">*</span></label>
-                                <input type="text" class="form-control" name="authcode" [(ngModel)]="creditcardtransaction.authcode"
-                                [disabled]="disabled" maxlength="50" required>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6" *ngIf="creditcardtransaction.creditcardtransaction_ID!=0">
-                            <div class="form-group">
-                                <div class="checkbox">
-                                    <label class="control-label">
-                                        <input type="checkbox" [checked]="creditcardtransaction.isactive"
-                                            [(ngModel)]="creditcardtransaction.isactive" [disabled]="disabled" name="isactive">
-                                        Active
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <button *ngIf="creditcardtransaction.creditcardtransaction_ID!=0 && disabled==true" (click)="editView()"
-                                id="cancel" class="btn btn-primary" style="float: right;"> Edit
-                            </button>
-                            <button *ngIf="disabled==false" type="button" (click)='creditcardtransactionCancel()'
-                                style="float: right;" class="btn btn-light" data-dismiss="modal"> Cancel
-                            </button>
-                            <button *ngIf="creditcardtransaction.creditcardtransaction_ID!=0 && disabled==false" type="button"
-                                data-dismiss="modal" style=" margin-right: 10px; float: right;"
-                                (click)='creditcardtransactionUpdate(creditcardtransaction)' class="btn btn-primary">
-                                Update
-                            </button>
-                            <button *ngIf="creditcardtransaction.creditcardtransaction_ID==0" type="button" data-dismiss="modal"
-                                style=" margin-right: 10px; float: right;" (click)='creditcardtransactionAdd(creditcardtransaction)'
-                                class="btn btn-primary">
-                                Save
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="col" *ngIf="creditcardtransaction.creditcardtransaction_ID!=0 && disabled==false">
+          <a href="javascript:void" aria-controls="collapse-creditcardtransactiotransaction_AMOUNTfo1"
+            aria-expanded="true" class="card-title">Edit Credit Card Transaction
+          </a>
         </div>
+        <div class="col" *ngIf="creditcardtransaction.creditcardtransaction_ID!=0 && disabled==true">
+          <a href="javascript:void" aria-controls="collapse-creditcardtransactiotransaction_AMOUNTfo1"
+            aria-expanded="true" class="card-title">Credit Card Transaction Detail
+          </a>
+        </div>
+      </div>
     </div>
-</div> -->
+    <div class="card-body">
+      <div class="row">
+        <div class="col-lg-12">
+
+          <div class="row">
+            <div class="col-md-6">
+              <app-customer #customer [view]="1" [customerID]="creditcardtransaction.customer_ID"
+                [disabled]="disabled"></app-customer>
+            </div>
+            <div class="col-md-6">
+              <app-cardtype #cardtype [cardtypeID]="creditcardtransaction.cardtype_ID"
+                [disabled]="disabled"></app-cardtype>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label"> Date <span style="color:red">*</span></label>
+                <input type="date" class="form-control" name="transaction_DATE"
+                  [(ngModel)]="creditcardtransaction.transaction_DATE" [disabled]="disabled" maxlength="50" required>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label"> Amount <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="transaction_AMOUNT"
+                  [(ngModel)]="creditcardtransaction.transaction_AMOUNT" [disabled]="disabled" maxlength="50" required>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">Status<span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="transaction_STATUS"
+                  [(ngModel)]="creditcardtransaction.transaction_STATUS" [disabled]="disabled" maxlength="50" required>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label"> Name On Card <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="name_ONCARD"
+                  [(ngModel)]="creditcardtransaction.name_ONCARD" [disabled]="disabled" maxlength="50" required>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">Card Number<span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="card_NUMBER"
+                  [(ngModel)]="creditcardtransaction.card_NUMBER" [disabled]="disabled" maxlength="50" required>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">Auth Code<span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="authcode" [(ngModel)]="creditcardtransaction.authcode"
+                  [disabled]="disabled" maxlength="50" required>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6" *ngIf="creditcardtransaction.creditcardtransaction_ID!=0">
+              <div class="form-group">
+                <div class="checkbox">
+                  <label class="control-label">
+                    <input type="checkbox" [checked]="creditcardtransaction.isactive"
+                      [(ngModel)]="creditcardtransaction.isactive" [disabled]="disabled" name="isactive">
+                    Active
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <button *ngIf="creditcardtransaction.creditcardtransaction_ID!=0 && disabled==true" (click)="editView()"
+                id="cancel" class="btn btn-primary" style="float: right;"> Edit
+              </button>
+              <button *ngIf="disabled==false" type="button" (click)='creditcardtransactionCancel()'
+                style="float: right;" class="btn btn-light" data-dismiss="modal"> Cancel
+              </button>
+              <button *ngIf="creditcardtransaction.creditcardtransaction_ID!=0 && disabled==false" type="button"
+                data-dismiss="modal" style=" margin-right: 10px; float: right;"
+                (click)='creditcardtransactionUpdate(creditcardtransaction)' class="btn btn-primary">
+                Update
+              </button>
+              <button *ngIf="creditcardtransaction.creditcardtransaction_ID==0" type="button" data-dismiss="modal"
+                style=" margin-right: 10px; float: right;" (click)='creditcardtransactionAdd(creditcardtransaction)'
+                class="btn btn-primary">
+                Save
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

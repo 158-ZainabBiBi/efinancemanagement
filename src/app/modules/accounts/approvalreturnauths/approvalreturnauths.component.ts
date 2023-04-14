@@ -58,11 +58,11 @@ export class ApprovalreturnauthsComponent implements OnInit {
     $("#edit").modal("hide");
   }
 
-  advancedSearch(returnauthID, currencyID) {
-    this.approvalreturnauths.approvalreturnauthAdvancedSearch(returnauthID, currencyID);
+  advancedSearch(search) {
+    this.approvalreturnauths.approvalreturnauthAdvancedSearch(search);
   }
 
-  advancedSearchAll(returnauthID, currencyID) {
-    this.approvalreturnauths.approvalreturnauthAdvancedSearchAll(returnauthID, currencyID);
+  advancedSearchAll(search) {
+    this.approvalreturnauths.approvalreturnauthAdvancedSearchAll(search);
   }
 }
