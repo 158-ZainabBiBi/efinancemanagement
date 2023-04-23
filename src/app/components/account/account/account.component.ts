@@ -3,10 +3,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { OnFailService } from '../../../services/on-fail.service';
 
-import { AccounttypeComponent } from '../accounttype/accounttype.component';
-import { CashflowratetypeComponent } from '../../lookup/cashflowratetype/cashflowratetype.component';
 import { AccountService } from './account.service';
-import { GeneralratetypeComponent } from '../../lookup/generalratetype/generalratetype.component';
 
 @Component({
   selector: 'app-account',
@@ -14,9 +11,6 @@ import { GeneralratetypeComponent } from '../../lookup/generalratetype/generalra
   styleUrls: ['./account.component.css']
 })
 export class AccountComponent implements OnInit {
-  @ViewChild("accounttype") accounttype: AccounttypeComponent;
-  @ViewChild("cashflowratetype") cashflowratetype: CashflowratetypeComponent;
-  @ViewChild("generalratetype") generalratetype: GeneralratetypeComponent;
 
   @Input()
   view: number = 1;
@@ -29,17 +23,7 @@ export class AccountComponent implements OnInit {
   @Input()
   all: boolean = false;
   @Input()
-  accounttypeID = null;
-  @Input()
   accountID = null;
-  @Input()
-  cashflowratetypeID = null;
-  @Input()
-  cashflowratetypeCode = null;
-  @Input()
-  generalratetypeID = null;
-  @Input()
-  generalratetypeCode = null;
 
   @Output() edit = new EventEmitter();
   @Output() cancel = new EventEmitter();
@@ -51,15 +35,12 @@ export class AccountComponent implements OnInit {
   accountsAll = [];
   account = {
     account_ID: 0,
-    accounttype_ID: null,
-    generalratetype_ID: null,
-    cashflowratetype_ID: null,
     account_CODE: null,
     account_NAME: null,
-    account_DATE: null,
+    account_NUMBER: null,
     account_DESCRIPTION: null,
-    bankaccount_NUMBER: null,
-    accountparent_ID: null,
+    account_BIC: null,
+    account_IBAN: null,
     isactive: true
   }
 
@@ -94,13 +75,8 @@ export class AccountComponent implements OnInit {
       this.accountGetAll();
     }
 
-    var search = {
-      accounttype_ID: this.accounttypeID,
-      cashflowratetype_ID: this.cashflowratetypeID,
-      cashflowratetype_CODE: this.cashflowratetypeCode,
-      generalratetype_ID: this.generalratetypeID,
-      generalratetype_CODE: this.generalratetypeCode
-    }
+    var search = {}
+
     if (this.view >= 5 && this.view <= 6 && this.accountID) {
       window.sessionStorage.setItem("account", this.accountID);
       this.accountGetOne(this.accountID);
@@ -131,15 +107,12 @@ export class AccountComponent implements OnInit {
   add() {
     this.account = {
       account_ID: 0,
-      accounttype_ID: null,
-      generalratetype_ID: null,
-      cashflowratetype_ID: null,
       account_CODE: null,
       account_NAME: null,
-      account_DATE: null,
+      account_NUMBER: null,
       account_DESCRIPTION: null,
-      bankaccount_NUMBER: null,
-      accountparent_ID: null,
+      account_BIC: null,
+      account_IBAN: null,
       isactive: true
     };
   }
@@ -242,10 +215,6 @@ export class AccountComponent implements OnInit {
   accountAdd(account) {
     account.isactive = "Y";
 
-    account.accounttype_ID = this.accounttype.accounttypeID;
-    account.cashflowratetype_ID = this.cashflowratetype.cashflowratetypeID;
-    account.generalratetype_ID = this.generalratetype.generalratetypeID;
-
     this.accountservice.add(account).subscribe(response => {
       if (response) {
         if (response.error && response.status) {
@@ -264,10 +233,6 @@ export class AccountComponent implements OnInit {
   }
 
   accountUpdate(account) {
-
-    account.accounttype_ID = this.accounttype.accounttypeID;
-    account.cashflowratetype_ID = this.cashflowratetype.cashflowratetypeID;
-    account.generalratetype_ID = this.generalratetype.generalratetypeID;
 
     if (account.isactive == true) {
       account.isactive = "Y";
@@ -344,11 +309,6 @@ export class AccountComponent implements OnInit {
   }
 
   accountAdvancedSearch(search) {
-    this.accounttypeID = search.accounttype_ID;
-    this.cashflowratetypeID = search.cashflowratetype_ID;
-    this.cashflowratetypeCode = search.cashflowratetype_CODE;
-    this.generalratetypeID = search.generalratetype_ID;
-    this.generalratetypeCode = search.generalratetype_CODE;
 
     this.accountservice.advancedSearch(search).subscribe(response => {
       if (response) {
@@ -365,11 +325,6 @@ export class AccountComponent implements OnInit {
   }
 
   accountAdvancedSearchAll(search) {
-    this.accounttypeID = search.accounttype_ID;
-    this.cashflowratetypeID = search.cashflowratetype_ID;
-    this.cashflowratetypeCode = search.cashflowratetype_CODE;
-    this.generalratetypeID = search.generalratetype_ID;
-    this.generalratetypeCode = search.generalratetype_CODE;
 
     this.accountservice.advancedSearchAll(search).subscribe(response => {
       if (response) {

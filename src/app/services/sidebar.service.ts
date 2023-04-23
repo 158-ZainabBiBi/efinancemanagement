@@ -16,7 +16,7 @@ export class SidebarService {
 
   userprivileges() {
     return this.http.post(
-      this.BaseUrl + "login/userprivileges",
+      this.BaseUrl + "login/userprivileges/" + this.LoggedUserId.user_ID,
       { application_ID: this.loginService.loaddetail().application_ID },
       {
         headers: new Headers({

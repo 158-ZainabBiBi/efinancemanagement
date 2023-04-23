@@ -41,10 +41,6 @@ export class HeaderComponent implements OnInit {
     this.loginservice.logout();
   }
 
-  redirectToAppsStore() {
-    location.replace(setting.AppsStorePath);
-  }
-  
   sideBar() {
     this.sidebarservice.userprivileges().subscribe(res => {
       this.AllMenus = res;

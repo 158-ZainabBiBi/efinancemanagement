@@ -134,15 +134,9 @@
 
         <dxi-column dataField="account_NAME" caption="Name" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="account_CODE" caption="Code" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="account_DATE" caption="Date" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="bankaccount_NUMBER" caption="Bank Account Number" cssClass="myClass"
-          alignment="left"></dxi-column>
-        <dxi-column dataField="accounttype.accounttype_CODE" caption="Account Type" cssClass="myClass"
-          alignment="left"></dxi-column>
-        <dxi-column dataField="generalratetype.description" caption="General Rate Type" cssClass="myClass"
-          alignment="left"></dxi-column>
-        <dxi-column dataField="cashflowratetype.description" caption="Cash Flow Rate Type" cssClass="myClass"
-          alignment="left"></dxi-column>
+        <dxi-column dataField="account_NUMBER" caption="Number" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="account_BIC" caption="BIC" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="account_IBAN" caption="IBAN" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="account_DESCRIPTION" caption="Description" cssClass="myClass"
           alignment="left"></dxi-column>
         <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass"
@@ -177,15 +171,9 @@
 
         <dxi-column dataField="account_NAME" caption="Name" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="account_CODE" caption="Code" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="account_DATE" caption="Date" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="bankaccount_NUMBER" caption="Bank Account Number" cssClass="myClass"
-          alignment="left"></dxi-column>
-        <dxi-column dataField="accounttype.accounttype_CODE" caption="Account Type" cssClass="myClass"
-          alignment="left"></dxi-column>
-        <dxi-column dataField="generalratetype.description" caption="General Rate Type" cssClass="myClass"
-          alignment="left"></dxi-column>
-        <dxi-column dataField="cashflowratetype.description" caption="Cash Flow Rate Type" cssClass="myClass"
-          alignment="left"></dxi-column>
+        <dxi-column dataField="account_NUMBER" caption="Number" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="account_BIC" caption="BIC" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="account_IBAN" caption="IBAN" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="account_DESCRIPTION" caption="Description" cssClass="myClass"
           alignment="left"></dxi-column>
         <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass"
@@ -214,51 +202,41 @@
         </div>
         <div class="modal-body">
           <div class="row">
-            <div class="col-md-6">
-              <app-accounttype #accounttype [view]="1" [accounttypeID]="account.accounttype_ID"></app-accounttype>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label class="control-label">Bank Account Number <span style="color:red">*</span></label>
-                <input type="text" class="form-control" name="bankaccount_NUMBER"
-                  [(ngModel)]="account.bankaccount_NUMBER" maxlength="50" required>
-              </div>
-            </div>
-          </div>
-          <div class="row">
             <div class="col-md-4">
               <div class="form-group">
-                <label class="control-label">Name <span style="color:red">*</span></label>
-                <input type="text" class="form-control" name="account_NAME" [(ngModel)]="account.account_NAME"
+                <label class="control-label">Account Number <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="account_NUMBER" [(ngModel)]="account.account_NUMBER"
                   maxlength="50" required>
               </div>
             </div>
             <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">IBAN <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="account_IBAN" [(ngModel)]="account.account_IBAN"
+                  maxlength="50" required>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">BIC <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="account_BIC" [(ngModel)]="account.account_BIC"
+                  maxlength="50" required>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
               <div class="form-group">
                 <label class="control-label">Code <span style="color:red">*</span></label>
                 <input type="text" class="form-control" name="account_CODE" [(ngModel)]="account.account_CODE"
                   maxlength="50" required>
               </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-6">
               <div class="form-group">
-                <label class="control-label">Date <span style="color:red">*</span></label>
-                <input type="date" class="form-control" name="account_DATE" [(ngModel)]="account.account_DATE"
+                <label class="control-label">Name <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="account_NAME" [(ngModel)]="account.account_NAME"
                   maxlength="50" required>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <app-cashflowratetype #cashflowratetype
-                  [cashflowratetypeID]="account.cashflowratetype_ID"></app-cashflowratetype>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <app-generalratetype #generalratetype
-                  [generalratetypeID]="account.generalratetype_ID"></app-generalratetype>
               </div>
             </div>
           </div>
@@ -297,51 +275,41 @@
         </div>
         <div class="modal-body">
           <div class="row">
-            <div class="col-md-6">
-              <app-accounttype #accounttype [view]="1" [accounttypeID]="account.accounttype_ID"></app-accounttype>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label class="control-label">Bank Account Number <span style="color:red">*</span></label>
-                <input type="text" class="form-control" name="bankaccount_NUMBER"
-                  [(ngModel)]="account.bankaccount_NUMBER" maxlength="50" required>
-              </div>
-            </div>
-          </div>
-          <div class="row">
             <div class="col-md-4">
               <div class="form-group">
-                <label class="control-label">Name <span style="color:red">*</span></label>
-                <input type="text" class="form-control" name="account_NAME" [(ngModel)]="account.account_NAME"
+                <label class="control-label">Account Number <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="account_NUMBER" [(ngModel)]="account.account_NUMBER"
                   maxlength="50" required>
               </div>
             </div>
             <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">IBAN <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="account_IBAN" [(ngModel)]="account.account_IBAN"
+                  maxlength="50" required>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">BIC <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="account_BIC" [(ngModel)]="account.account_BIC"
+                  maxlength="50" required>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
               <div class="form-group">
                 <label class="control-label">Code <span style="color:red">*</span></label>
                 <input type="text" class="form-control" name="account_CODE" [(ngModel)]="account.account_CODE"
                   maxlength="50" required>
               </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-6">
               <div class="form-group">
-                <label class="control-label">Date <span style="color:red">*</span></label>
-                <input type="date" class="form-control" name="account_DATE" [(ngModel)]="account.account_DATE"
+                <label class="control-label">Name <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="account_NAME" [(ngModel)]="account.account_NAME"
                   maxlength="50" required>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <app-cashflowratetype #cashflowratetype
-                  [cashflowratetypeID]="account.cashflowratetype_ID"></app-cashflowratetype>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <app-generalratetype #generalratetype
-                  [generalratetypeID]="account.generalratetype_ID"></app-generalratetype>
               </div>
             </div>
           </div>
@@ -403,52 +371,41 @@
       <div class="row">
         <div class="col-lg-12">
           <div class="row">
-            <div class="col-md-6">
-              <app-accounttype #accounttype [view]="1" [accounttypeID]="account.accounttype_ID"
-                [disabled]="disabled"></app-accounttype>
-            </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
               <div class="form-group">
-                <label class="control-label">Bank Account Number <span style="color:red">*</span></label>
-                <input type="text" class="form-control" name="bankaccount_NUMBER" [disabled]="disabled"
-                  [(ngModel)]="account.bankaccount_NUMBER" maxlength="50" required>
+                <label class="control-label">Account Number <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="account_NUMBER" [(ngModel)]="account.account_NUMBER"
+                  [disabled]="disabled" maxlength="50" required>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">IBAN <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="account_IBAN" [(ngModel)]="account.account_IBAN"
+                  [disabled]="disabled" maxlength="50" required>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">BIC <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="account_BIC" [(ngModel)]="account.account_BIC"
+                  [disabled]="disabled" maxlength="50" required>
               </div>
             </div>
           </div>
           <div class="row">
-            <div class="col-md-4">
-              <div class="form-group">
-                <label class="control-label">Name <span style="color:red">*</span></label>
-                <input type="text" class="form-control" name="account_NAME" [disabled]="disabled"
-                  [(ngModel)]="account.account_NAME" maxlength="50" required>
-              </div>
-            </div>
-            <div class="col-md-4">
+            <div class="col-md-6">
               <div class="form-group">
                 <label class="control-label">Code <span style="color:red">*</span></label>
-                <input type="text" class="form-control" name="account_CODE" [disabled]="disabled"
-                  [(ngModel)]="account.account_CODE" maxlength="50" required>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="form-group">
-                <label class="control-label">Date <span style="color:red">*</span></label>
-                <input type="date" class="form-control" name="account_DATE" [disabled]="disabled"
-                  [(ngModel)]="account.account_DATE" maxlength="50" required>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <app-cashflowratetype #cashflowratetype [cashflowratetypeID]="account.cashflowratetype_ID"
-                  [disabled]="disabled"></app-cashflowratetype>
+                <input type="text" class="form-control" name="account_CODE" [(ngModel)]="account.account_CODE"
+                  [disabled]="disabled" maxlength="50" required>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <app-generalratetype #generalratetype [generalratetypeID]="account.generalratetype_ID"
-                  [disabled]="disabled"></app-generalratetype>
+                <label class="control-label">Name <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="account_NAME" [(ngModel)]="account.account_NAME"
+                  [disabled]="disabled" maxlength="50" required>
               </div>
             </div>
           </div>
@@ -456,8 +413,8 @@
             <div class="col-md-12">
               <div class="form-group">
                 <label class="control-label">Description</label>
-                <textarea type="text" class="form-control" name="account_DESCRIPTION" length="50"
-                  [(ngModel)]="account.account_DESCRIPTION" [disabled]="disabled"></textarea>
+                <textarea type="text" class="form-control" name="account_DESCRIPTION" length="50" [disabled]="disabled"
+                  [(ngModel)]="account.account_DESCRIPTION"></textarea>
               </div>
             </div>
           </div>

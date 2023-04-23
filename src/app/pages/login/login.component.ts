@@ -24,7 +24,8 @@ export class LoginComponent implements OnInit {
     if (this.loginservice.logged() == true) {
       setTimeout(() => this.toastr.success("Sucessfully loged in!"));
       this.offSpinner();
-      redirectByHref(setting.redirctPath+"/#/home/accounts");
+      redirectByHref(setting.redirctPath+"/#/home/indexes")
+      console.log("wellcome to UM");
       return;
     } else {
       this.activatedRoute.queryParams.subscribe(params => {
@@ -37,9 +38,10 @@ export class LoginComponent implements OnInit {
                 this.toastr.success("Sucessfully loged in!")
               );
               this.offSpinner();
-              redirectByHref(setting.redirctPath+"/#/home/accounts")
+              redirectByHref(setting.redirctPath+"/#/home/indexes")
               return;
             } else {
+              console.log("go to login ");
               this.offSpinner();
               this.loginservice.logout();
               return false;
@@ -47,7 +49,10 @@ export class LoginComponent implements OnInit {
           }
         } else {
           if (this.loginservice.logged() == false) {
-            location.assign(setting.LoginAppPath + "?application_ID=" + setting.application_ID);
+            console.log('====================================');
+            console.log("else part");
+            console.log('====================================');
+            location.assign(setting.LoginAppPath + "login?application_ID=" + setting.application_ID);
             return;
           } else {
             this.offSpinner();

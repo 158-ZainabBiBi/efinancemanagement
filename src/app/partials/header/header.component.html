@@ -44,13 +44,13 @@
             <div class="col-12 col-md order-md-2 mt-4 mt-md-0 px-md-5">
                 <form class="search-suggestions searchbar-lg">
                     <div class="input-group">
-                        <input type="text" class="form-control search-input" placeholder="Search">
+                        <!-- <input type="text" class="form-control search-input" placeholder="Search">
                         <div class="input-group-append">
                             <button type="submit" class="btn btn-primary" variant="primary">Search</button>
                             <button type="button" class="btn btn-light btn-toggle ml-2" id="btn-toggle">
                                 <i class="fas fa-bars fa-lg"></i>
                             </button>
-                        </div>
+                        </div> -->
                     </div>
                 </form>
             </div>
@@ -66,8 +66,9 @@
                 <!-- Navbar -->
                 <nav id="smart-menu" class="sm sm-blue">
                     <li>
-                        <a (click)="redirectToAppsStore()"><i class="fas fa-home font-lg"></i></a>
+                        <a [routerLink]="" routerLinkActive="linkactive"><i class="fas fa-home font-lg"></i></a>
                     </li>
+
                     <li *ngFor="let m of menu"><a href="#">{{m.cat}} </a>
                         <ul *ngIf="isNotEmpty(m.pri)">
                             <li *ngFor="let s of m.pri"><a [routerLink]="[s.link]"
@@ -81,7 +82,8 @@
                 <!-- Navbar -->
                 <nav id="smart-menu" class="sm sm-blue">
                     <li>
-                        <a (click)="redirectToAppsStore()"><i class="fas fa-home font-lg"></i></a>
+                        <a [routerLink]="['/home/dashboard']" routerLinkActive="linkactive"><i
+                                class="fas fa-home font-lg"></i></a>
                     </li>
                     <li *ngFor="let m of smenu"><a [routerLink]="[m.link]" routerLinkActive="linkactive">{{m.name}} </a>
                         <!-- <ul *ngIf="isNotEmpty(m.pri)">

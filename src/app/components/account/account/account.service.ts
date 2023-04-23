@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpCallServieService } from '../../../services/http-call-servie.service';
 import { setting } from '../../../setting';
-import { AccounttypeService } from '../accounttype/accounttype.service';
-
 @Injectable({
   providedIn: 'root'
 })
@@ -10,8 +8,7 @@ export class AccountService {
 
 
   constructor(
-    private _HttpCallServieService_: HttpCallServieService,
-    private accounttypeservice: AccounttypeService
+    private _HttpCallServieService_: HttpCallServieService
   ) { }
 
 
@@ -138,8 +135,8 @@ export class AccountService {
 
   getDetail(response) {
     if (response.accounttype_DETAIL != null) {
-      response.accounttype = this.accounttypeservice.getDetail(JSON.parse(response.accounttype_DETAIL));
-      response.accounttype_DETAIL = null
+      response.accounttype = JSON.parse(response.accounttype_DETAIL);
+      response.accounttype_DETAIL = response.accounttype.code + ' - ' + response.accounttype.description;
     }
 
     if (response.cashflowratetype_DETAIL != null) {
