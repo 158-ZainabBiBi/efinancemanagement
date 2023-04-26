@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpCallServieService } from '../../../services/http-call-servie.service';
 import { setting } from '../../../setting';
 import { JournallineService } from '../journalline/journalline.service';
+import { TransactionService } from '../transaction/transaction.service';
 // import { JournalcodeService } from '../journalcode/journalcode.service';
 
 @Injectable({
@@ -12,6 +13,7 @@ export class JournalService {
   constructor(
     private _HttpCallServieService_: HttpCallServieService,
     private journallineervice: JournallineService,
+    private transactionservice: TransactionService,
     // private journalcodeservice: JournalcodeService,
   ) { }
 
@@ -141,6 +143,11 @@ export class JournalService {
     if (response.journalline_DETAIL != null) {
       response.journalline = this.journallineervice.getDetail(JSON.parse(response.journalline_DETAIL));
       response.journalline_DETAIL = null
+    }
+
+    if (response.transaction_DETAIL != null) {
+      response.transaction = this.transactionservice.getDetail(JSON.parse(response.transaction_DETAIL));
+      response.transaction_DETAIL = null;
     }
 
     // if (response.journalcode_DETAIL != null) {

@@ -8,7 +8,6 @@ import { BankaccountService } from '../bankaccount/bankaccount.service';
 })
 export class BankdepositService {
 
-
   constructor(
     private _HttpCallServieService_: HttpCallServieService,
     private bankaccountservice: BankaccountService,

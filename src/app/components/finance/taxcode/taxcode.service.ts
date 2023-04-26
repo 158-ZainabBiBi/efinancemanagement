@@ -5,18 +5,17 @@ import { setting } from '../../../setting';
 @Injectable({
   providedIn: 'root'
 })
-export class LedgeraccounttypeService {
+export class TaxcodeService {
 
   constructor(
-    private _HttpCallServieService_: HttpCallServieService,
+    private _HttpCallServieService_: HttpCallServieService
   ) { }
-
 
   get() {
     var postData = {
-      service_NAME: setting.accountservice_NAME,
+      service_NAME: setting.financeservice_NAME,
       request_TYPE: "GET",
-      request_URI: "ledgeraccounttype",
+      request_URI: "taxcode",
       request_BODY: ""
     }
     return this._HttpCallServieService_.api(postData);
@@ -24,9 +23,9 @@ export class LedgeraccounttypeService {
 
   getAll() {
     var postData = {
-      service_NAME: setting.accountservice_NAME,
+      service_NAME: setting.financeservice_NAME,
       request_TYPE: "GET",
-      request_URI: "ledgeraccounttype/all",
+      request_URI: "taxcode/all",
       request_BODY: ""
     }
     return this._HttpCallServieService_.api(postData);
@@ -35,9 +34,9 @@ export class LedgeraccounttypeService {
 
   getOne(id) {
     var postData = {
-      service_NAME: setting.accountservice_NAME,
+      service_NAME: setting.financeservice_NAME,
       request_TYPE: "GET",
-      request_URI: "ledgeraccounttype/" + id,
+      request_URI: "taxcode/" + id,
       request_BODY: ""
     }
     return this._HttpCallServieService_.api(postData);
@@ -45,9 +44,9 @@ export class LedgeraccounttypeService {
 
   add(data) {
     var postData = {
-      service_NAME: setting.accountservice_NAME,
+      service_NAME: setting.financeservice_NAME,
       request_TYPE: "POST",
-      request_URI: "ledgeraccounttype",
+      request_URI: "taxcode",
       request_BODY: JSON.stringify(data)
     }
     return this._HttpCallServieService_.api(postData);
@@ -55,9 +54,9 @@ export class LedgeraccounttypeService {
 
   update(data, id) {
     var postData = {
-      service_NAME: setting.accountservice_NAME,
+      service_NAME: setting.financeservice_NAME,
       request_TYPE: "PUT",
-      request_URI: "ledgeraccounttype/" + id,
+      request_URI: "taxcode/" + id,
       request_BODY: JSON.stringify(data)
 
     }
@@ -66,9 +65,9 @@ export class LedgeraccounttypeService {
 
   updateAll(data) {
     var postData = {
-      service_NAME: setting.accountservice_NAME,
+      service_NAME: setting.financeservice_NAME,
       request_TYPE: "PUT",
-      request_URI: "ledgeraccounttype",
+      request_URI: "taxcode",
       request_BODY: JSON.stringify(data)
 
     }
@@ -77,9 +76,9 @@ export class LedgeraccounttypeService {
 
   delete(id) {
     var postData = {
-      service_NAME: setting.accountservice_NAME,
+      service_NAME: setting.financeservice_NAME,
       request_TYPE: "DELETE",
-      request_URI: "ledgeraccounttype/" + id,
+      request_URI: "taxcode/" + id,
       request_BODY: ""
     }
     return this._HttpCallServieService_.api(postData);
@@ -87,9 +86,9 @@ export class LedgeraccounttypeService {
 
   search(data) {
     var postData = {
-      service_NAME: setting.accountservice_NAME,
+      service_NAME: setting.financeservice_NAME,
       request_TYPE: "POST",
-      request_URI: "ledgeraccounttype/search",
+      request_URI: "taxcode/search",
       request_BODY: JSON.stringify(data)
 
     }
@@ -98,9 +97,9 @@ export class LedgeraccounttypeService {
 
   searchAll(data) {
     var postData = {
-      service_NAME: setting.accountservice_NAME,
+      service_NAME: setting.financeservice_NAME,
       request_TYPE: "POST",
-      request_URI: "ledgeraccounttype/search/all",
+      request_URI: "taxcode/search/all",
       request_BODY: JSON.stringify(data)
     }
     return this._HttpCallServieService_.api(postData);
@@ -108,9 +107,9 @@ export class LedgeraccounttypeService {
 
   advancedSearch(data) {
     var postData = {
-      service_NAME: setting.accountservice_NAME,
+      service_NAME: setting.financeservice_NAME,
       request_TYPE: "POST",
-      request_URI: "ledgeraccounttype/advancedsearch",
+      request_URI: "taxcode/advancedsearch",
       request_BODY: JSON.stringify(data)
     }
     return this._HttpCallServieService_.api(postData);
@@ -118,9 +117,9 @@ export class LedgeraccounttypeService {
 
   advancedSearchAll(data) {
     var postData = {
-      service_NAME: setting.accountservice_NAME,
+      service_NAME: setting.financeservice_NAME,
       request_TYPE: "POST",
-      request_URI: "ledgeraccounttype/advancedsearch/all",
+      request_URI: "taxcode/advancedsearch/all",
       request_BODY: JSON.stringify(data)
     }
     return this._HttpCallServieService_.api(postData);
@@ -134,15 +133,6 @@ export class LedgeraccounttypeService {
   }
 
   getDetail(response) {
-    if (response.ledgeraccountgroup_DETAIL != null) {
-      response.ledgeraccountgroup = JSON.parse(response.ledgeraccountgroup_DETAIL);
-      response.ledgeraccountgroup_DETAIL = response.ledgeraccountgroup.code + ' - ' + response.ledgeraccountgroup.description;
-    }
-
-    if (response.ledgeraccountclassification_DETAIL != null) {
-      response.ledgeraccountclassification = JSON.parse(response.ledgeraccountclassification_DETAIL);
-      response.ledgeraccountclassification_DETAIL = response.ledgeraccountclassification.code + ' - ' + response.ledgeraccountclassification.description;
-    }
 
     return (response);
   }

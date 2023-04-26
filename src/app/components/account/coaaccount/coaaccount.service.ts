@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpCallServieService } from '../../../services/http-call-servie.service';
 import { setting } from '../../../setting';
-import { AccountService } from '../account/account.service';
-import { LedgeraccounttypeService } from '../ledgeraccounttype/ledgeraccounttype.service';
+import { LedgeraccountService } from '../ledgeraccount/ledgeraccount.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +10,7 @@ export class CoaaccountService {
 
   constructor(
     private _HttpCallServieService_: HttpCallServieService,
-    private ledgeraccounttypeservice: LedgeraccounttypeService,
-    private accountservice: AccountService,
+    private ledgeraccountservice: LedgeraccountService,
   ) { }
 
 
@@ -138,19 +136,9 @@ export class CoaaccountService {
   }
 
   getDetail(response) {
-    if (response.ledgeraccounttype_DETAIL != null) {
-      response.ledgeraccounttype = this.ledgeraccounttypeservice.getDetail(JSON.parse(response.ledgeraccounttype_DETAIL));
-      response.ledgeraccounttype_DETAIL = null
-    }
-
-    if (response.ledgeraccountgroup_DETAIL != null) {
-      response.ledgeraccountgroup = JSON.parse(response.ledgeraccountgroup_DETAIL);
-      response.ledgeraccountgroup_DETAIL = response.ledgeraccountgroup.code + ' - ' + response.ledgeraccountgroup.description;
-    }
-
-    if (response.ledgeraccountclassification_DETAIL != null) {
-      response.ledgeraccountclassification = JSON.parse(response.ledgeraccountclassification_DETAIL);
-      response.ledgeraccountclassification_DETAIL = response.ledgeraccountclassification.code + ' - ' + response.ledgeraccountclassification.description;
+    if (response.ledgeraccount_DETAIL != null) {
+      response.ledgeraccount = this.ledgeraccountservice.getDetail(JSON.parse(response.ledgeraccount_DETAIL));
+      response.ledgeraccount_DETAIL = null
     }
 
     return (response);

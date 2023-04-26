@@ -8,7 +8,7 @@ import { CurrencyComponent } from '../../lookup/currency/currency.component';
 import { CustomerComponent } from '../../customer/customer/customer.component';
 import { PostingperiodComponent } from '../../lookup/postingperiod/postingperiod.component';
 import { RefundmethodComponent } from '../../lookup/refundmethod/refundmethod.component';
-import { AccountComponent } from '../account/account.component';
+import { AccountComponent } from '../../finance/account/account.component';
 
 @Component({
   selector: 'app-customerrefund',
@@ -77,7 +77,7 @@ export class CustomerrefundComponent implements OnInit {
     name_ONCARD: null,
     card_STREET: null,
     card_ZIPCODE: null,
-    isapproved: true,
+    isapproved: false,
     isactive: true,
   }
 
@@ -169,7 +169,7 @@ export class CustomerrefundComponent implements OnInit {
       name_ONCARD: null,
       card_STREET: null,
       card_ZIPCODE: null,
-      isapproved: true,
+      isapproved: false,
       isactive: true,
     };
   }

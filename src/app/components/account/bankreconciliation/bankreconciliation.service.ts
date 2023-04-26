@@ -7,7 +7,6 @@ import { BankaccountService } from '../bankaccount/bankaccount.service';
 })
 export class BankreconciliationService {
 
-
   constructor(
     private _HttpCallServieService_: HttpCallServieService,
     private bankaccountservice: BankaccountService,
@@ -140,12 +139,6 @@ export class BankreconciliationService {
       response.bankaccount = this.bankaccountservice.getDetail(JSON.parse(response.bankaccount_DETAIL));
       response.bankaccount_DETAIL = response.bankaccount.code + ' - ' + response.bankaccount.description;
     }
-
-    if (response.status_DETAIL != null) {
-      response.status = JSON.parse(response.status_DETAIL);
-      response.status_DETAIL = response.status.code + ' - ' + response.status.description;
-    }
-
 
     return (response);
   }

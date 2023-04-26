@@ -7,7 +7,6 @@ import { BankaccountService } from '../bankaccount/bankaccount.service';
 })
 export class BankopeningbalanceService {
 
-
   constructor(
     private _HttpCallServieService_: HttpCallServieService,
     private bankaccountservice: BankaccountService,
@@ -136,19 +135,9 @@ export class BankopeningbalanceService {
   }
 
   getDetail(response) {
-    if (response.transactiontype_DETAIL != null) {
-      response.transactiontype = JSON.parse(response.transactiontype_DETAIL);
-      response.transactiontype_DETAIL = response.transactiontype.code + ' - ' + response.transactiontype.description;
-    }
-
     if (response.bankaccount_DETAIL != null) {
       response.bankaccount = this.bankaccountservice.getDetail(JSON.parse(response.bankaccount_DETAIL));
-      response.bankaccount_DETAIL = response.bankaccount.code + ' - ' + response.bankaccount.description;
-    }
-
-    if (response.generalratetype_DETAIL != null) {
-      response.generalratetype = JSON.parse(response.generalratetype_DETAIL);
-      response.generalratetype_DETAIL = response.generalratetype.code + ' - ' + response.generalratetype.description;
+      response.bankaccount_DETAIL = null;
     }
 
     return (response);

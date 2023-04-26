@@ -1,1 +1,559 @@
-<p>trialbalance works!</p>
+<div *ngIf="view==1" class="form-group">
+  <label class="custom-label form-label">Trial Balance
+    <span style="color: red;" [hidden]="disabled" *ngIf="iscompulsory==true">*</span>
+  </label>
+  <div class="row" *ngIf="disabled==true">
+    <div class="col-md-12">
+      <ng-select [(ngModel)]="trialbalanceID" [disabled]="disabled" name="trialbalanceID" (change)="onChange($event)">
+        <ng-option *ngFor="let trialbalance of trialbalancesAll" [value]="trialbalance.trialbalance_ID">
+          {{ trialbalance.balance_FROMDATE }} - {{ trialbalance.balance_TODATE }} - {{
+          trialbalance.ledgerentry.ledgerentry_NAME }}
+        </ng-option>
+      </ng-select>
+    </div>
+  </div>
+  <div class="row" *ngIf="disabled==false">
+    <div class="col-md-10">
+      <ng-select [(ngModel)]="trialbalanceID" name="trialbalanceID" (change)="onChange($event)">
+        <ng-option *ngFor="let trialbalance of trialbalances" [value]="trialbalance.trialbalance_ID"
+          [disabled]="disabled">
+          {{ trialbalance.balance_FROMDATE }} - {{ trialbalance.balance_TODATE }} - {{
+          trialbalance.ledgerentry.ledgerentry_NAME }}
+        </ng-option>
+      </ng-select>
+    </div>
+    <div class="col-md-2">
+      <button type="button" class="btn btn-light ml-2" (click)="load(true)">
+        <i class="fa fa-refresh" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="view==10" class="form-group">
+  <label class="custom-label form-label">Trial Balance
+    <span style="color: red;" [hidden]="disabled" *ngIf="iscompulsory==true">*</span>
+  </label>
+  <div class="row" *ngIf="disabled==true">
+    <div class="col-md-12">
+      <ng-select [(ngModel)]="trialbalanceID" [disabled]="disabled" name="trialbalanceID" (change)="onChange($event)">
+        <ng-option *ngFor="let trialbalance of trialbalancesAll" [value]="trialbalance.trialbalance_ID">
+          {{ trialbalance.balance_FROMDATE }} - {{ trialbalance.balance_TODATE }} - {{
+          trialbalance.ledgerentry.ledgerentry_NAME }}
+        </ng-option>
+      </ng-select>
+    </div>
+  </div>
+  <div class="row" *ngIf="disabled==false">
+    <div class="col-md-10">
+      <ng-select [(ngModel)]="trialbalanceID" name="trialbalanceID" (change)="onChange($event)">
+        <ng-option *ngFor="let trialbalance of trialbalancesAll" [value]="trialbalance.trialbalance_ID"
+          [disabled]="disabled">
+          {{ trialbalance.balance_FROMDATE }} - {{ trialbalance.balance_TODATE }} - {{
+          trialbalance.ledgerentry.ledgerentry_NAME }}
+        </ng-option>
+      </ng-select>
+    </div>
+    <div class="col-md-2">
+      <button type="button" class="btn btn-light ml-2" (click)="load(true)">
+        <i class="fa fa-refresh" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="view==11" class="form-group">
+  <label class="custom-label form-label">Trial Balance
+    <span style="color: red;" [hidden]="disabled" *ngIf="iscompulsory==true">*</span>
+  </label>
+  <div class="row" *ngIf="disabled==true">
+    <div class="col-md-12">
+      <ng-select [(ngModel)]="trialbalanceID" [disabled]="disabled" name="trialbalanceID">
+        <ng-option *ngFor="let trialbalance of trialbalancesAll" [value]="trialbalance.trialbalance_ID"
+          [disabled]="disabled">
+          {{ trialbalance.balance_FROMDATE }} - {{ trialbalance.balance_TODATE }} - {{
+          trialbalance.ledgerentry.ledgerentry_NAME }}
+        </ng-option>
+      </ng-select>
+    </div>
+  </div>
+  <div class="row" *ngIf="disabled==false">
+    <div class="col-md-10">
+      <ng-select [(ngModel)]="trialbalanceID" [disabled]="disabled" name="trialbalanceID" (change)="onChange($event)">
+        <ng-option *ngFor="let trialbalance of trialbalances" [value]="trialbalance.trialbalance_ID"
+          [disabled]="disabled">
+          {{ trialbalance.balance_FROMDATE }} - {{ trialbalance.balance_TODATE }} - {{
+          trialbalance.ledgerentry.ledgerentry_NAME }}
+        </ng-option>
+      </ng-select>
+    </div>
+    <div class="col-md-2">
+      <button type="button" class="btn btn-light ml-2" [hidden]="disabled" (click)="load(true)">
+        <i class="fa fa-refresh" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="view==19" class="form-group">
+  <label class="custom-label form-label">Trial Balance
+    <span style="color: red;" [hidden]="disabled" *ngIf="iscompulsory==true">*</span>
+  </label>
+  <div class="row" *ngIf="disabled==true">
+    <div class="col-md-12">
+      <ng-select [(ngModel)]="trialbalanceID" [disabled]="disabled" name="trialbalanceID" (change)="onChange($event)">
+        <ng-option *ngFor="let trialbalance of trialbalancesAll" [value]="trialbalance.trialbalance_ID"
+          [disabled]="disabled">
+          {{ trialbalance.balance_FROMDATE }} - {{ trialbalance.balance_TODATE }} - {{
+          trialbalance.ledgerentry.ledgerentry_NAME }}
+        </ng-option>
+      </ng-select>
+    </div>
+  </div>
+  <div class="row" *ngIf="disabled==false">
+    <div class="col-md-10">
+      <ng-select [(ngModel)]="trialbalanceID" [disabled]="disabled" name="trialbalanceID" (change)="onChange($event)">
+        <ng-option *ngFor="let trialbalance of trialbalancesAll" [value]="trialbalance.trialbalance_ID"
+          [disabled]="disabled">
+          {{ trialbalance.balance_FROMDATE }} - {{ trialbalance.balance_TODATE }} - {{
+          trialbalance.ledgerentry.ledgerentry_NAME }}
+        </ng-option>
+      </ng-select>
+    </div>
+    <div class="col-md-2">
+      <button type="button" class="btn btn-light ml-2" [hidden]="disabled" (click)="load(true)">
+        <i class="fa fa-refresh" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="view==2" class="form-group">
+  <div class="outer-div">
+    <div class="grid-wrapper">
+      <dx-data-grid #grid id="gridContainer" [dataSource]="trialbalancesAll" keyExpr="trialbalance_ID"
+        [showColumnLines]="true" [showRowLines]="true" [showBorders]="true" [rowAlternationEnabled]="true"
+        [allowColumnResizing]="true" [columnMinWidth]="30" [columnAutoWidth]="true" [remoteOperations]="true"
+        height="600" width="100%" (onToolbarPreparing)="onToolbarPreparing($event)">
+        <dxo-filter-row [visible]="true"></dxo-filter-row>
+        <dxo-header-filter [visible]="true"></dxo-header-filter>
+        <dxo-search-panel [visible]="true"></dxo-search-panel>
+        <dxo-group-panel [visible]="false"></dxo-group-panel>
+        <dxo-grouping #expand [autoExpandAll]="false"></dxo-grouping>
+        <dxo-scrolling mode="virtual"></dxo-scrolling>
+        <dxo-sorting mode="multiple"></dxo-sorting>
+        <dxo-selection mode="single"></dxo-selection>
+        <dxi-column [width]="75" [allowFiltering]="false" [allowSorting]="false" alignment="center"
+          cellTemplate="cellTemplate"></dxi-column>
+
+        <dxi-column dataField="trialbalance_CODE" caption="Code" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="trialbalance_NAME" caption="Name" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="ledgerentry.ledgeraccount.ledgeraccount_NAME" caption="Account Name" cssClass="myClass"
+          alignment="left"></dxi-column>
+        <dxi-column dataField="balance_FROMDATE" caption="From Date" cssClass="myClass" alignment="center"></dxi-column>
+        <dxi-column dataField="balance_TODATE" caption="To Date" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="balance_CREDIT" caption="Credit" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="balance_DEBIT" caption="Debit" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="trialbalance_DESC" caption="Description" cssClass="myClass"
+          alignment="left"></dxi-column>
+        <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass"
+          alignment="center"></dxi-column>
+
+        <div *dxTemplate="let data of 'cellTemplate'">
+          <a href="javascript:void" class="" (click)="update(data)">
+            <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+        </div>
+      </dx-data-grid>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="view==22" class="form-group">
+  <div class="outer-div">
+    <div class="grid-wrapper">
+      <dx-data-grid #grid id="gridContainer" [dataSource]="trialbalances" keyExpr="trialbalance_ID"
+        [showColumnLines]="true" [showRowLines]="true" [showBorders]="true" [rowAlternationEnabled]="true"
+        [allowColumnResizing]="true" [columnMinWidth]="30" [columnAutoWidth]="true" [remoteOperations]="true"
+        height="600" width="100%" (onToolbarPreparing)="onToolbarPreparing($event)">
+        <dxo-filter-row [visible]="true"></dxo-filter-row>
+        <dxo-header-filter [visible]="true"></dxo-header-filter>
+        <dxo-search-panel [visible]="true"></dxo-search-panel>
+        <dxo-group-panel [visible]="false"></dxo-group-panel>
+        <dxo-grouping #expand [autoExpandAll]="false"></dxo-grouping>
+        <dxo-scrolling mode="virtual"></dxo-scrolling>
+        <dxo-sorting mode="multiple"></dxo-sorting>
+        <dxo-selection mode="single"></dxo-selection>
+        <dxi-column [width]="75" [allowFiltering]="false" [allowSorting]="false" alignment="center"
+          cellTemplate="cellTemplate"></dxi-column>
+
+        <dxi-column dataField="trialbalance_CODE" caption="Code" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="trialbalance_NAME" caption="Name" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="ledgerentry.ledgeraccount.ledgeraccount_NAME" caption="Account Name" cssClass="myClass"
+          alignment="left"></dxi-column>
+        <dxi-column dataField="balance_FROMDATE" caption="From Date" cssClass="myClass" alignment="center"></dxi-column>
+        <dxi-column dataField="balance_TODATE" caption="To Date" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="balance_CREDIT" caption="Credit" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="balance_DEBIT" caption="Debit" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="trialbalance_DESC" caption="Description" cssClass="myClass"
+          alignment="left"></dxi-column>
+        <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass"
+          alignment="center"></dxi-column>
+
+        <div *dxTemplate="let data of 'cellTemplate'">
+          <a href="javascript:void" class="" (click)="showView(data)">
+            <i class="fa fa-eye" aria-hidden="true"></i></a>
+        </div>
+      </dx-data-grid>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="view==23" class="form-group">
+  <div class="outer-div">
+    <div class="grid-wrapper">
+      <dx-data-grid #grid id="gridContainer" [dataSource]="trialbalancesAll" keyExpr="trialbalance_ID"
+        [showColumnLines]="true" [showRowLines]="true" [showBorders]="true" [rowAlternationEnabled]="true"
+        [allowColumnResizing]="true" [columnMinWidth]="30" [columnAutoWidth]="true" [remoteOperations]="true"
+        height="600" width="100%" (onToolbarPreparing)="onToolbarPreparing($event)">
+        <dxo-filter-row [visible]="true"></dxo-filter-row>
+        <dxo-header-filter [visible]="true"></dxo-header-filter>
+        <dxo-search-panel [visible]="true"></dxo-search-panel>
+        <dxo-group-panel [visible]="false"></dxo-group-panel>
+        <dxo-grouping #expand [autoExpandAll]="false"></dxo-grouping>
+        <dxo-scrolling mode="virtual"></dxo-scrolling>
+        <dxo-sorting mode="multiple"></dxo-sorting>
+        <dxo-selection mode="single"></dxo-selection>
+        <dxi-column [width]="75" [allowFiltering]="false" [allowSorting]="false" alignment="center"
+          cellTemplate="cellTemplate"></dxi-column>
+
+        <dxi-column dataField="ledgerentry.ledgeraccount.ledgeraccount_NAME" caption="Account Name" cssClass="myClass"
+          alignment="left"></dxi-column>
+        <dxi-column dataField="balance_FROMDATE" caption="From Date" cssClass="myClass" alignment="center"></dxi-column>
+        <dxi-column dataField="balance_TODATE" caption="To Date" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="balance_CREDIT" caption="Credit" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="balance_DEBIT" caption="Debit" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass"
+          alignment="center"></dxi-column>
+
+        <div *dxTemplate="let data of 'cellTemplate'">
+          <a href="javascript:void" class="" (click)="showView(data)">
+            <i class="fa fa-eye" aria-hidden="true"></i></a>
+        </div>
+      </dx-data-grid>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="view==3" class="form-group">
+  <form action="" class="form" (ngSubmit)="f.form.valid && trialbalanceAdd(trialbalance)" #f="ngForm" novalidate>
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">
+            <i class="fa fa-plus" aria-hidden="true"></i> Add New Trial Balance
+          </h5>
+          <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+            <span aria-hidden="true"> ×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="control-label"> Code <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="trialbalance_CODE"
+                  [(ngModel)]="trialbalance.trialbalance_CODE" maxlength="50" required>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="control-label"> Name <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="trialbalance_NAME"
+                  [(ngModel)]="trialbalance.trialbalance_NAME" maxlength="50" required>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <app-ledgerentry #ledgerentry [view]="1" [ledgerentryID]="trialbalance.ledgerentry_ID"></app-ledgerentry>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="control-label"> From Date <span style="color:red">*</span></label>
+                <input type="date" class="form-control" name="balance_FROMDATE"
+                  [(ngModel)]="trialbalance.balance_FROMDATE" maxlength="50" required>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="control-label"> To Date <span style="color:red">*</span></label>
+                <input type="date" class="form-control" name="balance_TODATE" [(ngModel)]="trialbalance.balance_TODATE"
+                  maxlength="50" required>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="control-label"> Credit <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="balance_CREDIT" [(ngModel)]="trialbalance.balance_CREDIT"
+                  maxlength="50" required>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="control-label"> Debit <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="balance_DEBIT" [(ngModel)]="trialbalance.balance_DEBIT"
+                  maxlength="50" required>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label class="control-label"> Description <span style="color:red">*</span></label>
+                <textarea type="text" class="form-control" name="trialbalance_DESC"
+                  [(ngModel)]="trialbalance.trialbalance_DESC" maxlength="50"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary" [disabled]="f.invalid">
+            <i class="fa fa-plus" aria-hidden="true"></i> Add
+          </button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div *ngIf="view==4" class="form-group">
+  <form action="" class="form" (ngSubmit)="f.form.valid && trialbalanceUpdate(trialbalance)" #f="ngForm" novalidate>
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">
+            <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit Trial Balance
+          </h5>
+          <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+            <span aria-hidden="true"> ×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="control-label"> Code <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="trialbalance_CODE"
+                  [(ngModel)]="trialbalance.trialbalance_CODE" maxlength="50" required>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="control-label"> Name <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="trialbalance_NAME"
+                  [(ngModel)]="trialbalance.trialbalance_NAME" maxlength="50" required>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <app-ledgerentry #ledgerentry [view]="1" [ledgerentryID]="trialbalance.ledgerentry_ID"></app-ledgerentry>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="control-label"> From Date <span style="color:red">*</span></label>
+                <input type="date" class="form-control" name="balance_FROMDATE"
+                  [(ngModel)]="trialbalance.balance_FROMDATE" maxlength="50" required>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="control-label"> To Date <span style="color:red">*</span></label>
+                <input type="date" class="form-control" name="balance_TODATE" [(ngModel)]="trialbalance.balance_TODATE"
+                  maxlength="50" required>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="control-label"> Credit <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="balance_CREDIT" [(ngModel)]="trialbalance.balance_CREDIT"
+                  maxlength="50" required>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="control-label"> Debit <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="balance_DEBIT" [(ngModel)]="trialbalance.balance_DEBIT"
+                  maxlength="50" required>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label class="control-label"> Description <span style="color:red">*</span></label>
+                <textarea type="text" class="form-control" name="trialbalance_DESC"
+                  [(ngModel)]="trialbalance.trialbalance_DESC" maxlength="50"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <div class="checkbox">
+                  <label class="control-label">
+                    <input type="checkbox" [checked]="trialbalance.isactive" [(ngModel)]="trialbalance.isactive"
+                      name="isactive">
+                    Active
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary" [disabled]="f.invalid">
+            <i class="fa fa-plus" aria-hidden="true"></i> Update
+          </button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div *ngIf="view==5" class="form-group">
+  <div class="card-primary card">
+    <div class="card-header">
+      <div class="align-items-center row">
+        <div class="col" *ngIf="trialbalance.trialbalance_ID==0">
+          <a href="javascript:void" aria-controls="collapse-trialbalanceinfo1" aria-expanded="true"
+            class="card-title">Add
+            New Trial Balance
+          </a>
+        </div>
+        <div class="col" *ngIf="trialbalance.trialbalance_ID!=0 && disabled==false">
+          <a href="javascript:void" aria-controls="collapse-trialbalanceinfo1" aria-expanded="true"
+            class="card-title">Edit Trial Balance
+          </a>
+        </div>
+        <div class="col" *ngIf="trialbalance.trialbalance_ID!=0 && disabled==true">
+          <a href="javascript:void" aria-controls="collapse-trialbalanceinfo1" aria-expanded="true"
+            class="card-title">Trial Balance Detail
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="control-label"> Code <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="trialbalance_CODE"
+                  [(ngModel)]="trialbalance.trialbalance_CODE" maxlength="50" [disabled]="disabled" required>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="control-label"> Name <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="trialbalance_NAME"
+                  [(ngModel)]="trialbalance.trialbalance_NAME" maxlength="50" [disabled]="disabled" required>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <app-ledgerentry #ledgerentry [view]="1" [disabled]="disabled"
+                [ledgerentryID]="trialbalance.ledgerentry_ID"></app-ledgerentry>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="control-label"> From Date <span style="color:red">*</span></label>
+                <input type="date" class="form-control" name="balance_FROMDATE" [disabled]="disabled"
+                  [(ngModel)]="trialbalance.balance_FROMDATE" maxlength="50" required>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="control-label"> To Date <span style="color:red">*</span></label>
+                <input type="date" class="form-control" name="balance_TODATE" [disabled]="disabled"
+                  [(ngModel)]="trialbalance.balance_TODATE" maxlength="50" required>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="control-label"> Credit <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="balance_CREDIT" [disabled]="disabled"
+                  [(ngModel)]="trialbalance.balance_CREDIT" maxlength="50" required>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="control-label"> Debit <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="balance_DEBIT" [disabled]="disabled"
+                  [(ngModel)]="trialbalance.balance_DEBIT" maxlength="50" required>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label class="control-label"> Description <span style="color:red">*</span></label>
+                <textarea type="text" class="form-control" name="trialbalance_DESC"
+                  [(ngModel)]="trialbalance.trialbalance_DESC" maxlength="50" [disabled]="disabled"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12" *ngIf="trialbalance.trialbalance_ID!=0">
+              <div class="form-group">
+                <div class="checkbox">
+                  <label class="control-label">
+                    <input type="checkbox" [checked]="trialbalance.isactive" [(ngModel)]="trialbalance.isactive"
+                      [disabled]="disabled" name="isactive">
+                    Active
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <button *ngIf="trialbalance.trialbalance_ID!=0 && disabled==true" (click)="editView()" id="cancel"
+                class="btn btn-primary" style="float: right;"> Edit
+              </button>
+              <button *ngIf="disabled==false" type="button" (click)='trialbalanceCancel()' style="float: right;"
+                class="btn btn-light" data-dismiss="modal"> Cancel
+              </button>
+              <button *ngIf="trialbalance.trialbalance_ID!=0 && disabled==false" type="button" data-dismiss="modal"
+                style=" margin-right: 10px; float: right;" (click)='trialbalanceUpdate(trialbalance)'
+                class="btn btn-primary">
+                Update
+              </button>
+              <button *ngIf="trialbalance.trialbalance_ID==0" type="button" data-dismiss="modal"
+                style=" margin-right: 10px; float: right;" (click)='trialbalanceAdd(trialbalance)'
+                class="btn btn-primary">
+                Save
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -6,7 +6,7 @@ import { setting } from '../../../setting';
 @Injectable({
   providedIn: 'root'
 })
-export class TransactiontypeService {
+export class TransactionService {
 
   constructor(
     private _HttpCallServieService_: HttpCallServieService,
@@ -18,7 +18,7 @@ export class TransactiontypeService {
     var postData = {
       service_NAME: setting.accountservice_NAME,
       request_TYPE: "GET",
-      request_URI: "transactiontype",
+      request_URI: "transaction",
       request_BODY: ""
     }
     return this._HttpCallServieService_.api(postData);
@@ -28,7 +28,7 @@ export class TransactiontypeService {
     var postData = {
       service_NAME: setting.accountservice_NAME,
       request_TYPE: "GET",
-      request_URI: "transactiontype/all",
+      request_URI: "transaction/all",
       request_BODY: ""
     }
     return this._HttpCallServieService_.api(postData);
@@ -39,7 +39,7 @@ export class TransactiontypeService {
     var postData = {
       service_NAME: setting.accountservice_NAME,
       request_TYPE: "GET",
-      request_URI: "transactiontype/" + id,
+      request_URI: "transaction/" + id,
       request_BODY: ""
     }
     return this._HttpCallServieService_.api(postData);
@@ -49,7 +49,7 @@ export class TransactiontypeService {
     var postData = {
       service_NAME: setting.accountservice_NAME,
       request_TYPE: "POST",
-      request_URI: "transactiontype",
+      request_URI: "transaction",
       request_BODY: JSON.stringify(data)
     }
     return this._HttpCallServieService_.api(postData);
@@ -59,7 +59,7 @@ export class TransactiontypeService {
     var postData = {
       service_NAME: setting.accountservice_NAME,
       request_TYPE: "PUT",
-      request_URI: "transactiontype/" + id,
+      request_URI: "transaction/" + id,
       request_BODY: JSON.stringify(data)
 
     }
@@ -70,7 +70,7 @@ export class TransactiontypeService {
     var postData = {
       service_NAME: setting.accountservice_NAME,
       request_TYPE: "PUT",
-      request_URI: "transactiontype",
+      request_URI: "transaction",
       request_BODY: JSON.stringify(data)
 
     }
@@ -81,7 +81,7 @@ export class TransactiontypeService {
     var postData = {
       service_NAME: setting.accountservice_NAME,
       request_TYPE: "DELETE",
-      request_URI: "transactiontype/" + id,
+      request_URI: "transaction/" + id,
       request_BODY: ""
     }
     return this._HttpCallServieService_.api(postData);
@@ -91,7 +91,7 @@ export class TransactiontypeService {
     var postData = {
       service_NAME: setting.accountservice_NAME,
       request_TYPE: "POST",
-      request_URI: "transactiontype/search",
+      request_URI: "transaction/search",
       request_BODY: JSON.stringify(data)
 
     }
@@ -102,7 +102,7 @@ export class TransactiontypeService {
     var postData = {
       service_NAME: setting.accountservice_NAME,
       request_TYPE: "POST",
-      request_URI: "transactiontype/search/all",
+      request_URI: "transaction/search/all",
       request_BODY: JSON.stringify(data)
     }
     return this._HttpCallServieService_.api(postData);
@@ -112,7 +112,7 @@ export class TransactiontypeService {
     var postData = {
       service_NAME: setting.accountservice_NAME,
       request_TYPE: "POST",
-      request_URI: "transactiontype/advancedsearch",
+      request_URI: "transaction/advancedsearch",
       request_BODY: JSON.stringify(data)
     }
     return this._HttpCallServieService_.api(postData);
@@ -122,7 +122,7 @@ export class TransactiontypeService {
     var postData = {
       service_NAME: setting.accountservice_NAME,
       request_TYPE: "POST",
-      request_URI: "transactiontype/advancedsearch/all",
+      request_URI: "transaction/advancedsearch/all",
       request_BODY: JSON.stringify(data)
     }
     return this._HttpCallServieService_.api(postData);
@@ -141,9 +141,9 @@ export class TransactiontypeService {
     //   response.personcontact_DETAIL = null
     // }
 
-    if (response.transactiontype_DETAIL != null) {
-      response.transactiontype = JSON.parse(response.transactiontype_DETAIL);
-      response.transactiontype_DETAIL = response.transactiontype.code + ' - ' + response.transactiontype.description;
+    if (response.transaction_DETAIL != null) {
+      response.transaction = JSON.parse(response.transaction_DETAIL);
+      response.transaction_DETAIL = response.transaction.code + ' - ' + response.transaction.description;
     }
 
     if (response.currency_DETAIL != null) {

@@ -1,11 +1,12 @@
 <div class="form-group">
-  <label class="custom-label form-label">Account Type
+  <label class="custom-label form-label">Bank Account Type
     <span style="color: red;" [hidden]="disabled" *ngIf="iscompulsory==true">*</span>
   </label>
   <div class="row" *ngIf="disabled==true">
     <div class="col-md-12">
       <ng-select [(ngModel)]="bankaccounttypeID" [disabled]="disabled" name="bankaccounttypeID" maxlength="50">
-        <ng-option *ngFor="let bankaccounttype of bankaccounttypesAll" [value]="bankaccounttype.id" [disabled]="disabled">
+        <ng-option *ngFor="let bankaccounttype of bankaccounttypesAll" [value]="bankaccounttype.id"
+          [disabled]="disabled">
           {{ bankaccounttype.code }} - {{ bankaccounttype.description }}
         </ng-option>
       </ng-select>

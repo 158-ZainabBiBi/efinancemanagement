@@ -33,7 +33,7 @@ export class BankdepositComponent implements OnInit {
   @Output() cancel = new EventEmitter();
   @Output() show = new EventEmitter();
   @Output() refresh = new EventEmitter();
-  @Output() onBankdepositChange = new EventEmitter();
+  @Output() onBankDepositChange = new EventEmitter();
 
   bankdeposits = [];
   bankdepositsAll = [];
@@ -41,11 +41,14 @@ export class BankdepositComponent implements OnInit {
     bankdeposit_ID: 0,
     frombankaccount_ID: null,
     tobankaccount_ID: null,
+
     bankdeposit_CODE: null,
     bankdeposit_DATE: null,
+
     cash_AMOUNT: null,
     cheque_AMOUNT: null,
     total_AMOUNT: null,
+
     isactive: true,
   }
 
@@ -81,7 +84,8 @@ export class BankdepositComponent implements OnInit {
     }
 
     var search = {
-
+      frombankaccount_ID: this.bankaccountID,
+      tobankaccount_ID: this.bankaccountID,
     }
 
     if (this.view >= 5 && this.view <= 6 && this.bankdepositID) {
@@ -116,11 +120,14 @@ export class BankdepositComponent implements OnInit {
       bankdeposit_ID: 0,
       frombankaccount_ID: null,
       tobankaccount_ID: null,
+
       bankdeposit_CODE: null,
       bankdeposit_DATE: null,
+
       cash_AMOUNT: null,
       cheque_AMOUNT: null,
       total_AMOUNT: null,
+
       isactive: true,
     };
   }
@@ -148,14 +155,14 @@ export class BankdepositComponent implements OnInit {
   bankdepositCancel() {
     this.disabled = true;
     if (this.bankdeposit.bankdeposit_ID == 0) {
-      this.router.navigate(["/home/bankdeposit "], {});
+      this.router.navigate(["/home/bankdeposits "], {});
     }
   }
 
   onChange(bankdepositID) {
     for (var i = 0; i < this.bankdeposits.length; i++) {
       if (this.bankdeposits[i].bankdeposit_ID == bankdepositID) {
-        this.onBankdepositChange.next(this.bankdeposits[i]);
+        this.onBankDepositChange.next(this.bankdeposits[i]);
         break;
       }
     }
@@ -221,16 +228,16 @@ export class BankdepositComponent implements OnInit {
   }
 
   bankdepositAdd(bankdeposit) {
-  
     bankdeposit.isactive = "Y";
     bankdeposit.frombankaccount_ID = this.frombankaccount.bankaccountID;
     bankdeposit.tobankaccount_ID = this.tobankaccount.bankaccountID;
+
     this.bankdepositservice.add(bankdeposit).subscribe(response => {
       if (response) {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else if (response.bankdeposit_ID) {
-          this.toastrservice.success("Success", "New Fee Category Added");
+          this.toastrservice.success("Success", "New Bank Deposit Added");
           this.refresh.next();
           this.disabled = true;
         } else {
@@ -256,7 +263,7 @@ export class BankdepositComponent implements OnInit {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else if (response.bankdeposit_ID) {
-          this.toastrservice.success("Success", "Fee Category Updated");
+          this.toastrservice.success("Success", "Bank Deposit Updated");
           this.refresh.next();
           this.disabled = true;
         } else {
@@ -274,7 +281,7 @@ export class BankdepositComponent implements OnInit {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else if (response.length > 0) {
-          this.toastrservice.success("Success", "Fee Category Updated");
+          this.toastrservice.success("Success", "Bank Deposit Updated");
           this.refresh.next();
         } else {
           this.toastrservice.error("Some thing went wrong");
@@ -324,6 +331,7 @@ export class BankdepositComponent implements OnInit {
   bankdepositAdvancedSearch(search) {
     this.bankaccountID = search.tobankaccount_ID;
     this.bankaccountID = search.frombankaccount_ID;
+
     this.bankdepositservice.advancedSearch(search).subscribe(response => {
       if (response) {
         if (response.error && response.status) {
@@ -341,6 +349,8 @@ export class BankdepositComponent implements OnInit {
   bankdepositAdvancedSearchAll(search) {
     this.bankaccountID = search.tobankaccount_ID;
     this.bankaccountID = search.frombankaccount_ID;
+
+
     this.bankdepositservice.advancedSearchAll(search).subscribe(response => {
       if (response) {
         if (response.error && response.status) {

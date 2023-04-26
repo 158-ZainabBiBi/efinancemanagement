@@ -2,17 +2,16 @@ import { Injectable } from '@angular/core';
 import { HttpCallServieService } from '../../../services/http-call-servie.service';
 import { setting } from '../../../setting';
 import { BankaccountService } from '../bankaccount/bankaccount.service';
+
 @Injectable({
   providedIn: 'root'
 })
 export class BanktransferService {
 
-
   constructor(
     private _HttpCallServieService_: HttpCallServieService,
     private bankaccountservice: BankaccountService,
   ) { }
-
 
   get() {
     var postData = {
@@ -136,7 +135,6 @@ export class BanktransferService {
   }
 
   getDetail(response) {
-  
     if (response.frombankaccount_DETAIL != null) {
       response.frombankaccount = this.bankaccountservice.getDetail(JSON.parse(response.frombankaccount_DETAIL));
       response.frombankaccount_DETAIL = null;
@@ -146,7 +144,6 @@ export class BanktransferService {
       response.tobankaccount = this.bankaccountservice.getDetail(JSON.parse(response.tobankaccount_DETAIL));
       response.tobankaccount_DETAIL = null;
     }
-
     return (response);
   }
 

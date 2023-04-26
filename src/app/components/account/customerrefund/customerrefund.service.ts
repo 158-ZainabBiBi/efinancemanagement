@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpCallServieService } from '../../../services/http-call-servie.service';
 import { setting } from '../../../setting';
 import { CustomerService } from '../../customer/customer/customer.service';
-import { AccountService } from '../account/account.service';
+import { AccountService } from '../../finance/account/account.service';
 
 @Injectable({
   providedIn: 'root'

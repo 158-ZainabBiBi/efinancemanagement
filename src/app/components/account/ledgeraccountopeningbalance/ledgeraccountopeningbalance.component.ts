@@ -39,9 +39,12 @@ export class LedgeraccountopeningbalanceComponent implements OnInit {
   ledgeraccountopeningbalance = {
     ledgeraccountopeningbalance_ID: 0,
     ledgeraccount_ID: null,
-    ledgeraccountopeningbalance_DESC: null,
-    ledgeraccountopeningbalance_DEBIT: null,
-    ledgeraccountopeningbalance_CREDIT: null,
+
+    balance_CODE: null,
+    balance_DATE: null,
+    balance_CREDIT: null,
+    balance_DEBIT: null,
+
     isactive: true
   }
 
@@ -77,7 +80,7 @@ export class LedgeraccountopeningbalanceComponent implements OnInit {
     }
 
     var search = {
-
+      ledgeraccount_ID: this.ledgeraccountID,
     }
 
     if (this.view >= 5 && this.view <= 6 && this.ledgeraccountopeningbalanceID) {
@@ -111,9 +114,12 @@ export class LedgeraccountopeningbalanceComponent implements OnInit {
     this.ledgeraccountopeningbalance = {
       ledgeraccountopeningbalance_ID: 0,
       ledgeraccount_ID: null,
-      ledgeraccountopeningbalance_DESC: null,
-      ledgeraccountopeningbalance_DEBIT: null,
-      ledgeraccountopeningbalance_CREDIT: null,
+
+      balance_CODE: null,
+      balance_DATE: null,
+      balance_CREDIT: null,
+      balance_DEBIT: null,
+
       isactive: true
     };
   }
@@ -216,14 +222,14 @@ export class LedgeraccountopeningbalanceComponent implements OnInit {
   ledgeraccountopeningbalanceAdd(ledgeraccountopeningbalance) {
 
     ledgeraccountopeningbalance.isactive = "Y";
-    // journalopeningbalance.fromledgeraccount_ID = this.ledgeraccount.ledgeraccountID;
+    ledgeraccountopeningbalance.ledgeraccount_ID = this.ledgeraccount.ledgeraccountID;
 
     this.ledgeraccountopeningbalanceservice.add(ledgeraccountopeningbalance).subscribe(response => {
       if (response) {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else if (response.ledgeraccountopeningbalance_ID) {
-          this.toastrservice.success("Success", "New Fee Category Added");
+          this.toastrservice.success("Success", "New Ledger Account Opening Balance Added");
           this.refresh.next();
           this.disabled = true;
         } else {
@@ -236,7 +242,7 @@ export class LedgeraccountopeningbalanceComponent implements OnInit {
   }
 
   ledgeraccountopeningbalanceUpdate(ledgeraccountopeningbalance) {
-    // journalopeningbalance.fromledgeraccount_ID = this.ledgeraccount.ledgeraccountID;
+    ledgeraccountopeningbalance.ledgeraccount_ID = this.ledgeraccount.ledgeraccountID;
 
     if (ledgeraccountopeningbalance.isactive == true) {
       ledgeraccountopeningbalance.isactive = "Y";
@@ -248,7 +254,7 @@ export class LedgeraccountopeningbalanceComponent implements OnInit {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else if (response.ledgeraccountopeningbalance_ID) {
-          this.toastrservice.success("Success", "Fee Category Updated");
+          this.toastrservice.success("Success", "Ledger Account Opening Balance Updated");
           this.refresh.next();
           this.disabled = true;
         } else {
@@ -266,7 +272,7 @@ export class LedgeraccountopeningbalanceComponent implements OnInit {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else if (response.length > 0) {
-          this.toastrservice.success("Success", "Fee Category Updated");
+          this.toastrservice.success("Success", "Ledger Account Opening Balance Updated");
           this.refresh.next();
         } else {
           this.toastrservice.error("Some thing went wrong");

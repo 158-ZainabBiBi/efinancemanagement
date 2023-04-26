@@ -12,8 +12,8 @@ import { BankaccountComponent } from '../bankaccount/bankaccount.component';
 })
 export class BanktransferComponent implements OnInit {
   @ViewChild("tobankaccount") tobankaccount: BankaccountComponent;
-  @ViewChild("frombankaccount") frombankaccount: BankaccountComponent; 
-  
+  @ViewChild("frombankaccount") frombankaccount: BankaccountComponent;
+
   @Input()
   view: number = 1;
   @Input()
@@ -33,7 +33,7 @@ export class BanktransferComponent implements OnInit {
   @Output() cancel = new EventEmitter();
   @Output() show = new EventEmitter();
   @Output() refresh = new EventEmitter();
-  @Output() onBanktransferChange = new EventEmitter();
+  @Output() onBankTransferChange = new EventEmitter();
 
   banktransfers = [];
   banktransfersAll = [];
@@ -41,10 +41,13 @@ export class BanktransferComponent implements OnInit {
     banktransfer_ID: 0,
     frombankaccount_ID: null,
     tobankaccount_ID: null,
+
+    banktransfer_NAME: null,
     banktransfer_CODE: null,
     banktransfer_DATE: null,
     banktransfer_AMOUNT: null,
-    banktransfer_DESCRIPTION: null,
+    banktransfer_DESC: null,
+
     isactive: true,
   }
 
@@ -80,7 +83,8 @@ export class BanktransferComponent implements OnInit {
     }
 
     var search = {
-
+      frombankaccount_ID: this.bankaccountID,
+      tobankaccount_ID: this.bankaccountID
     }
 
     if (this.view >= 5 && this.view <= 6 && this.banktransferID) {
@@ -115,10 +119,13 @@ export class BanktransferComponent implements OnInit {
       banktransfer_ID: 0,
       frombankaccount_ID: null,
       tobankaccount_ID: null,
+
+      banktransfer_NAME: null,
       banktransfer_CODE: null,
       banktransfer_DATE: null,
       banktransfer_AMOUNT: null,
-      banktransfer_DESCRIPTION: null,
+      banktransfer_DESC: null,
+
       isactive: true,
     };
   }
@@ -153,7 +160,7 @@ export class BanktransferComponent implements OnInit {
   onChange(banktransferID) {
     for (var i = 0; i < this.banktransfers.length; i++) {
       if (this.banktransfers[i].banktransfer_ID == banktransferID) {
-        this.onBanktransferChange.next(this.banktransfers[i]);
+        this.onBankTransferChange.next(this.banktransfers[i]);
         break;
       }
     }
@@ -219,16 +226,16 @@ export class BanktransferComponent implements OnInit {
   }
 
   banktransferAdd(banktransfer) {
-
     banktransfer.isactive = "Y";
     banktransfer.frombankaccount_ID = this.frombankaccount.bankaccountID;
     banktransfer.tobankaccount_ID = this.tobankaccount.bankaccountID;
+
     this.banktransferservice.add(banktransfer).subscribe(response => {
       if (response) {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else if (response.banktransfer_ID) {
-          this.toastrservice.success("Success", "New Fee Category Added");
+          this.toastrservice.success("Success", "New Bank Transfer Added");
           this.refresh.next();
           this.disabled = true;
         } else {
@@ -243,6 +250,7 @@ export class BanktransferComponent implements OnInit {
   banktransferUpdate(banktransfer) {
     banktransfer.frombankaccount_ID = this.frombankaccount.bankaccountID;
     banktransfer.tobankaccount_ID = this.tobankaccount.bankaccountID;
+
     if (banktransfer.isactive == true) {
       banktransfer.isactive = "Y";
     } else {
@@ -253,7 +261,7 @@ export class BanktransferComponent implements OnInit {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else if (response.banktransfer_ID) {
-          this.toastrservice.success("Success", "Fee Category Updated");
+          this.toastrservice.success("Success", "Bank Transfer Updated");
           this.refresh.next();
           this.disabled = true;
         } else {
@@ -271,7 +279,7 @@ export class BanktransferComponent implements OnInit {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else if (response.length > 0) {
-          this.toastrservice.success("Success", "Fee Category Updated");
+          this.toastrservice.success("Success", "Bank Transfer Updated");
           this.refresh.next();
         } else {
           this.toastrservice.error("Some thing went wrong");
@@ -321,6 +329,7 @@ export class BanktransferComponent implements OnInit {
   banktransferAdvancedSearch(search) {
     this.bankaccountID = search.tobankaccount_ID;
     this.bankaccountID = search.frombankaccount_ID;
+
     this.banktransferservice.advancedSearch(search).subscribe(response => {
       if (response) {
         if (response.error && response.status) {
@@ -338,6 +347,7 @@ export class BanktransferComponent implements OnInit {
   banktransferAdvancedSearchAll(search) {
     this.bankaccountID = search.tobankaccount_ID;
     this.bankaccountID = search.frombankaccount_ID;
+
     this.banktransferservice.advancedSearchAll(search).subscribe(response => {
       if (response) {
         if (response.error && response.status) {

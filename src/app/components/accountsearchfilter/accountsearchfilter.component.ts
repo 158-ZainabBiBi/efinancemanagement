@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 
-import { AccountComponent } from '../account/account/account.component';
+import { AccountComponent } from '../finance/account/account.component';
+import { BankaccounttypeComponent } from '../lookup/bankaccounttype/bankaccounttype.component';
 import { ReturnauthComponent } from '../account/returnauth/returnauth.component';
 import { CustomerrefundComponent } from '../account/customerrefund/customerrefund.component';
 
@@ -13,7 +14,6 @@ import { CurrencysymbolreplacementComponent } from '../lookup/currencysymbolrepl
 
 import { GeneralratetypeComponent } from '../lookup/generalratetype/generalratetype.component';
 import { CashflowratetypeComponent } from '../lookup/cashflowratetype/cashflowratetype.component';
-import { BankaccounttypeComponent } from '../lookup/bankaccounttype/bankaccounttype.component';
 
 @Component({
   selector: 'app-accountsearchfilter',

@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-
 import { LookupService } from 'src/app/services/lookup.service';
 import { OnFailService } from 'src/app/services/on-fail.service';
 
@@ -47,7 +46,7 @@ export class TransactiontypeComponent implements OnInit {
   }
 
   transactiontypeGet() {
-    this.lookupservice.lookup("WEEKDAY").subscribe(response => {
+    this.lookupservice.lookup("TRANSACTIONTYPE").subscribe(response => {
       if (response) {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
@@ -61,7 +60,7 @@ export class TransactiontypeComponent implements OnInit {
   }
 
   transactiontypeGetAll() {
-    this.lookupservice.lookupAll("WEEKDAY").subscribe(response => {
+    this.lookupservice.lookupAll("TRANSACTIONTYPE").subscribe(response => {
       if (response) {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);

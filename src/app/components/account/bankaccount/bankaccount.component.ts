@@ -3,10 +3,12 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { OnFailService } from '../../../services/on-fail.service';
 import { BankaccountService } from './bankaccount.service';
-import { AccountComponent } from '../account/account.component';
+import { AccountComponent } from '../../finance/account/account.component';
 import { PaymentmethodComponent } from '../../lookup/paymentmethod/paymentmethod.component';
 import { BankaccounttypeComponent } from '../../lookup/bankaccounttype/bankaccounttype.component';
 import { LedgeraccountComponent } from '../ledgeraccount/ledgeraccount.component';
+import { PersonComponent } from '../../person/person/person.component';
+import { LocationsearchfilterComponent } from '../../location/locationsearchfilter/locationsearchfilter.component';
 
 @Component({
   selector: 'app-bankaccount',
@@ -14,12 +16,12 @@ import { LedgeraccountComponent } from '../ledgeraccount/ledgeraccount.component
   styleUrls: ['./bankaccount.component.css']
 })
 export class BankaccountComponent implements OnInit {
-  @ViewChild("paymentmethod") paymentmethod: PaymentmethodComponent;
-//  @ViewChild("journalcode") journalcode: JournalcodeComponent;
-  @ViewChild("account") account: AccountComponent;
   @ViewChild("bankaccounttype") bankaccounttype: BankaccounttypeComponent;
+  @ViewChild("paymentmethod") paymentmethod: PaymentmethodComponent;
+  @ViewChild("locationsearchfilter") locationsearchfilter: LocationsearchfilterComponent;
+  @ViewChild("person") person: PersonComponent;
+  @ViewChild("account") account: AccountComponent;
   @ViewChild("ledgeraccount") ledgeraccount: LedgeraccountComponent;
-  
 
   @Input()
   view: number = 1;
@@ -36,33 +38,42 @@ export class BankaccountComponent implements OnInit {
   @Input()
   accountID = null;
   @Input()
-  paymentmethodID = null;
-  @Input()
   ledgeraccountID = null;
   @Input()
-  journalcodeID = null;
+  personID = null;
+  @Input()
+  paymentmethodID = null;
+  @Input()
+  paymentmethodCode = null;
   @Input()
   bankaccounttypeID = null;
+  @Input()
+  bankaccounttypeCode = null;
+  @Input()
+  locationID = null;
 
   @Output() edit = new EventEmitter();
   @Output() cancel = new EventEmitter();
   @Output() show = new EventEmitter();
   @Output() refresh = new EventEmitter();
-  @Output() onBankaccountChange = new EventEmitter();
+  @Output() onBankAccountChange = new EventEmitter();
 
   bankaccounts = [];
   bankaccountsAll = [];
   bankaccount = {
     bankaccount_ID: 0,
+    ledgeraccount_ID: null,
     account_ID: null,
-    bankaccount_CODE: null,
-    ledgeraccount_ID:null,
-    bankaccounttype_ID:null,
-    balance:null,
-    bankaccount_ADDRESS: null,
-    contact_PERSON: null,
+    bankaccounttype_ID: null,
     paymentmethod_ID: null,
-    journalcode_ID:null,
+    person_ID: null,
+    location_ID: null,
+    locations: [],
+
+    bankaccount_CODE: null,
+    bankaccount_DATE: null,
+    bankaccount_BALANCE: null,
+
     isactive: true,
   }
 
@@ -98,7 +109,14 @@ export class BankaccountComponent implements OnInit {
     }
 
     var search = {
-
+      ledgeraccount_ID: this.ledgeraccountID,
+      account_ID: this.accountID,
+      person_ID: this.personID,
+      paymentmethod_ID: this.paymentmethodID,
+      paymentmethod_CODE: this.paymentmethodCode,
+      bankaccounttype_ID: this.bankaccounttypeID,
+      bankaccounttype_CODE: this.bankaccounttypeCode,
+      location_ID: this.locationID,
     }
 
     if (this.view >= 5 && this.view <= 6 && this.bankaccountID) {
@@ -131,15 +149,18 @@ export class BankaccountComponent implements OnInit {
   add() {
     this.bankaccount = {
       bankaccount_ID: 0,
+      ledgeraccount_ID: null,
       account_ID: null,
-      bankaccount_CODE: null,
-      ledgeraccount_ID:null,
-      bankaccounttype_ID:null,
-      balance:null,
-      bankaccount_ADDRESS: null,
-      contact_PERSON: null,
+      bankaccounttype_ID: null,
       paymentmethod_ID: null,
-      journalcode_ID:null,
+      person_ID: null,
+      location_ID: null,
+      locations: [],
+
+      bankaccount_CODE: null,
+      bankaccount_DATE: null,
+      bankaccount_BALANCE: null,
+
       isactive: true,
     };
   }
@@ -167,14 +188,14 @@ export class BankaccountComponent implements OnInit {
   bankaccountCancel() {
     this.disabled = true;
     if (this.bankaccount.bankaccount_ID == 0) {
-      this.router.navigate(["/home/bankaccount "], {});
+      this.router.navigate(["/home/bankaccounts "], {});
     }
   }
 
   onChange(bankaccountID) {
     for (var i = 0; i < this.bankaccounts.length; i++) {
       if (this.bankaccounts[i].bankaccount_ID == bankaccountID) {
-        this.onBankaccountChange.next(this.bankaccounts[i]);
+        this.onBankAccountChange.next(this.bankaccounts[i]);
         break;
       }
     }
@@ -232,6 +253,8 @@ export class BankaccountComponent implements OnInit {
           this.toastrservice.warning("Message", " " + response.message);
         } else {
           this.setBankaccount(this.bankaccountservice.getDetail(response));
+          if (this.locationsearchfilter != null)
+          this.locationsearchfilter.setLocation(this.bankaccount.locations);
         }
       }
     }, error => {
@@ -244,16 +267,17 @@ export class BankaccountComponent implements OnInit {
     bankaccount.isactive = "Y";
     bankaccount.bankaccounttype_ID = this.bankaccounttype.bankaccounttypeID;
     bankaccount.account_ID = this.account.accountID;
-    // bankaccount.ledgeraccount_ID = this.ledgeraccount.ledgeraccountID;
-    // bankaccount.journalcode_ID = this.journalcode.journalcodeID;
+    bankaccount.ledgeraccount_ID = this.ledgeraccount.ledgeraccountID;
+    bankaccount.person_ID = this.person.personID;
     bankaccount.paymentmethod_ID = this.paymentmethod.paymentmethodID;
-    
+    bankaccount.location_ID = this.locationsearchfilter.locationID;
+
     this.bankaccountservice.add(bankaccount).subscribe(response => {
       if (response) {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else if (response.bankaccount_ID) {
-          this.toastrservice.success("Success", "New Fee Category Added");
+          this.toastrservice.success("Success", "New Bank Account Added");
           this.refresh.next();
           this.disabled = true;
         } else {
@@ -268,9 +292,10 @@ export class BankaccountComponent implements OnInit {
   bankaccountUpdate(bankaccount) {
     bankaccount.bankaccounttype_ID = this.bankaccounttype.bankaccounttypeID;
     bankaccount.account_ID = this.account.accountID;
-    // bankaccount.ledgeraccount_ID = this.ledgeraccount.ledgeraccountID;
-    // bankaccount.journalcode_ID = this.journalcode.journalcodeID;
+    bankaccount.ledgeraccount_ID = this.ledgeraccount.ledgeraccountID;
+    bankaccount.person_ID = this.person.personID;
     bankaccount.paymentmethod_ID = this.paymentmethod.paymentmethodID;
+    bankaccount.location_ID = this.locationsearchfilter.locationID;
 
     if (bankaccount.isactive == true) {
       bankaccount.isactive = "Y";
@@ -282,7 +307,7 @@ export class BankaccountComponent implements OnInit {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else if (response.bankaccount_ID) {
-          this.toastrservice.success("Success", "Fee Category Updated");
+          this.toastrservice.success("Success", "Bank Account Updated");
           this.refresh.next();
           this.disabled = true;
         } else {
@@ -300,7 +325,7 @@ export class BankaccountComponent implements OnInit {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else if (response.length > 0) {
-          this.toastrservice.success("Success", "Fee Category Updated");
+          this.toastrservice.success("Success", "Bank Account Updated");
           this.refresh.next();
         } else {
           this.toastrservice.error("Some thing went wrong");
@@ -348,11 +373,14 @@ export class BankaccountComponent implements OnInit {
   }
 
   bankaccountAdvancedSearch(search) {
-    this.bankaccountID = search.account_ID;
+    this.accountID = search.account_ID;
     this.bankaccounttypeID = search.bankaccounttype_ID;
+    this.bankaccounttypeCode = search.bankaccounttype_CODE;
     this.ledgeraccountID = search.ledgeraccount_ID;
-    this.journalcodeID = search.journalcode_ID;
+    this.personID = search.person_ID;
     this.paymentmethodID = search.paymentmethod_ID;
+    this.paymentmethodCode = search.paymentmethod_CODE;
+    this.locationID = search.location_ID;
 
     this.bankaccountservice.advancedSearch(search).subscribe(response => {
       if (response) {
@@ -369,12 +397,15 @@ export class BankaccountComponent implements OnInit {
   }
 
   bankaccountAdvancedSearchAll(search) {
-    this.bankaccountID = search.account_ID;
+    this.accountID = search.account_ID;
     this.bankaccounttypeID = search.bankaccounttype_ID;
+    this.bankaccounttypeCode = search.bankaccounttype_CODE;
     this.ledgeraccountID = search.ledgeraccount_ID;
-    this.journalcodeID = search.journalcode_ID;
+    this.personID = search.person_ID;
     this.paymentmethodID = search.paymentmethod_ID;
-    
+    this.paymentmethodCode = search.paymentmethod_CODE;
+    this.locationID = search.location_ID;
+
     this.bankaccountservice.advancedSearchAll(search).subscribe(response => {
       if (response) {
         if (response.error && response.status) {

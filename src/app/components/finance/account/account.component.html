@@ -137,8 +137,6 @@
         <dxi-column dataField="account_NUMBER" caption="Number" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="account_BIC" caption="BIC" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="account_IBAN" caption="IBAN" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="account_DESCRIPTION" caption="Description" cssClass="myClass"
-          alignment="left"></dxi-column>
         <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass"
           alignment="center"></dxi-column>
 
@@ -174,8 +172,6 @@
         <dxi-column dataField="account_NUMBER" caption="Number" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="account_BIC" caption="BIC" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="account_IBAN" caption="IBAN" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="account_DESCRIPTION" caption="Description" cssClass="myClass"
-          alignment="left"></dxi-column>
         <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass"
           alignment="center"></dxi-column>
 
@@ -240,15 +236,6 @@
               </div>
             </div>
           </div>
-          <div class="row">
-            <div class="col-md-12">
-              <div class="form-group">
-                <label class="control-label">Description</label>
-                <textarea type="text" class="form-control" name="account_DESCRIPTION" length="50"
-                  [(ngModel)]="account.account_DESCRIPTION"></textarea>
-              </div>
-            </div>
-          </div>
         </div>
         <div class="modal-footer">
           <button type="submit" class="btn btn-primary" [disabled]="f.invalid">
@@ -310,15 +297,6 @@
                 <label class="control-label">Name <span style="color:red">*</span></label>
                 <input type="text" class="form-control" name="account_NAME" [(ngModel)]="account.account_NAME"
                   maxlength="50" required>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <div class="form-group">
-                <label class="control-label">Description</label>
-                <textarea type="text" class="form-control" name="account_DESCRIPTION" length="50"
-                  [(ngModel)]="account.account_DESCRIPTION"></textarea>
               </div>
             </div>
           </div>
@@ -406,15 +384,6 @@
                 <label class="control-label">Name <span style="color:red">*</span></label>
                 <input type="text" class="form-control" name="account_NAME" [(ngModel)]="account.account_NAME"
                   [disabled]="disabled" maxlength="50" required>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <div class="form-group">
-                <label class="control-label">Description</label>
-                <textarea type="text" class="form-control" name="account_DESCRIPTION" length="50" [disabled]="disabled"
-                  [(ngModel)]="account.account_DESCRIPTION"></textarea>
               </div>
             </div>
           </div>

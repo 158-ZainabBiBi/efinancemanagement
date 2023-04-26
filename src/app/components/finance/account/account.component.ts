@@ -38,7 +38,6 @@ export class AccountComponent implements OnInit {
     account_CODE: null,
     account_NAME: null,
     account_NUMBER: null,
-    account_DESCRIPTION: null,
     account_BIC: null,
     account_IBAN: null,
     isactive: true
@@ -110,7 +109,6 @@ export class AccountComponent implements OnInit {
       account_CODE: null,
       account_NAME: null,
       account_NUMBER: null,
-      account_DESCRIPTION: null,
       account_BIC: null,
       account_IBAN: null,
       isactive: true

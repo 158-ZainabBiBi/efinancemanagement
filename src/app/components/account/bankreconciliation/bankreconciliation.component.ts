@@ -4,7 +4,6 @@ import { ToastrService } from 'ngx-toastr';
 import { OnFailService } from '../../../services/on-fail.service';
 import { BankreconciliationService } from './bankreconciliation.service';
 import { BankaccountComponent } from '../bankaccount/bankaccount.component';
-import { StatusComponent } from '../../lookup/status/status.component';
 
 @Component({
   selector: 'app-bankreconciliation',
@@ -12,8 +11,7 @@ import { StatusComponent } from '../../lookup/status/status.component';
   styleUrls: ['./bankreconciliation.component.css']
 })
 export class BankreconciliationComponent implements OnInit {
- @ViewChild("status") status: StatusComponent;
- @ViewChild("bankaccount") bankaccount: BankaccountComponent; 
+  @ViewChild("bankaccount") bankaccount: BankaccountComponent;
 
   @Input()
   view: number = 1;
@@ -44,12 +42,11 @@ export class BankreconciliationComponent implements OnInit {
   bankreconciliation = {
     bankreconciliation_ID: 0,
     bankaccount_ID: null,
-    status_ID: null,
     bankreconciliation_CODE: null,
     statement_DATE: null,
     statementend_BALANCE: null,
     total_RECEIVED: null,
-    total_PAID:null,
+    total_PAID: null,
     starting_BALANCE: null,
     closing_BALANCE: null,
     reconciled_BALANCE: null,
@@ -123,12 +120,11 @@ export class BankreconciliationComponent implements OnInit {
     this.bankreconciliation = {
       bankreconciliation_ID: 0,
       bankaccount_ID: null,
-      status_ID: null,
       bankreconciliation_CODE: null,
       statement_DATE: null,
       statementend_BALANCE: null,
       total_RECEIVED: null,
-      total_PAID:null,
+      total_PAID: null,
       starting_BALANCE: null,
       closing_BALANCE: null,
       reconciled_BALANCE: null,
@@ -236,13 +232,12 @@ export class BankreconciliationComponent implements OnInit {
 
     bankreconciliation.isactive = "Y";
     bankreconciliation.bankaccount_ID = this.bankaccount.bankaccountID;
-     bankreconciliation.status_ID = this.status.statusID;
     this.bankreconciliationservice.add(bankreconciliation).subscribe(response => {
       if (response) {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else if (response.bankreconciliation_ID) {
-          this.toastrservice.success("Success", "New Fee Category Added");
+          this.toastrservice.success("Success", "New Bank Reconciliation Added");
           this.refresh.next();
           this.disabled = true;
         } else {
@@ -256,7 +251,6 @@ export class BankreconciliationComponent implements OnInit {
 
   bankreconciliationUpdate(bankreconciliation) {
     bankreconciliation.bankaccount_ID = this.bankaccount.bankaccountID;
-     bankreconciliation.status_ID = this.status.statusID;
     if (bankreconciliation.isactive == true) {
       bankreconciliation.isactive = "Y";
     } else {
@@ -267,7 +261,7 @@ export class BankreconciliationComponent implements OnInit {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else if (response.bankreconciliation_ID) {
-          this.toastrservice.success("Success", "Fee Category Updated");
+          this.toastrservice.success("Success", "Bank Reconciliation Updated");
           this.refresh.next();
           this.disabled = true;
         } else {
@@ -285,7 +279,7 @@ export class BankreconciliationComponent implements OnInit {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else if (response.length > 0) {
-          this.toastrservice.success("Success", "Fee Category Updated");
+          this.toastrservice.success("Success", "Bank Reconciliation Updated");
           this.refresh.next();
         } else {
           this.toastrservice.error("Some thing went wrong");

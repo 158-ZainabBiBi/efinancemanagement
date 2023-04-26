@@ -1,8 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-
-import { OnFailService } from '../../../services/on-fail.service';
-import { LookupService } from '../../../services/lookup.service';
+import { LookupService } from 'src/app/services/lookup.service';
+import { OnFailService } from 'src/app/services/on-fail.service';
 
 @Component({
   selector: 'app-bankaccounttype',
@@ -47,7 +46,7 @@ export class BankaccounttypeComponent implements OnInit {
   }
 
   bankaccounttypeGet() {
-    this.lookupservice.lookup("ACCOUNTTYPE").subscribe(response => {
+    this.lookupservice.lookup("BANKACCOUNTTYPE").subscribe(response => {
       if (response) {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
@@ -61,7 +60,7 @@ export class BankaccounttypeComponent implements OnInit {
   }
 
   bankaccounttypeGetAll() {
-    this.lookupservice.lookupAll("ACCOUNTTYPE").subscribe(response => {
+    this.lookupservice.lookupAll("BANKACCOUNTTYPE").subscribe(response => {
       if (response) {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);

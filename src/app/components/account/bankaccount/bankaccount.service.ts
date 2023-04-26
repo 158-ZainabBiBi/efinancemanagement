@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpCallServieService } from '../../../services/http-call-servie.service';
 import { setting } from '../../../setting';
-import { AccountService } from '../account/account.service';
-import { LedgeraccountComponent } from '../ledgeraccount/ledgeraccount.component';
+import { AccountService } from '../../finance/account/account.service';
+import { LedgeraccountService } from '../ledgeraccount/ledgeraccount.service';
+import { PersonService } from '../../person/person/person.service';
+import { LocationService } from '../../location/location/location.service';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -10,8 +13,10 @@ export class BankaccountService {
 
   constructor(
     private _HttpCallServieService_: HttpCallServieService,
-    private accountservice : AccountService,
-    private ledgeraccountservice : LedgeraccountComponent,
+    private accountservice: AccountService,
+    private ledgeraccountservice: LedgeraccountService,
+    private personservice: PersonService,
+    private locationservice: LocationService
   ) { }
 
 
@@ -143,8 +148,25 @@ export class BankaccountService {
     }
 
     if (response.ledgeraccount_DETAIL != null) {
-      // response.ledgeraccount =  this.ledgeraccountservice.getDetail(JSON.parse(response.ledgeraccount_DETAIL));
+      response.ledgeraccount = this.ledgeraccountservice.getDetail(JSON.parse(response.ledgeraccount_DETAIL));
       response.ledgeraccount_DETAIL = null;
+    }
+
+    if (response.person_DETAIL != null) {
+      response.person = this.personservice.getDetail(JSON.parse(response.person_DETAIL));
+      response.person_DETAIL = null;
+    }
+
+    if (response.location_DETAIL != null) {
+      response.location = this.locationservice.getDetail(JSON.parse(response.location_DETAIL));
+      response.locations = [];
+      response.location_DETAIL = null;
+      while (response.location.locationparent_ID != null) {
+        response.address = response.address + ", " + response.location.location_NAME;
+        response.locations.push(response.location);
+        response.location = response.location.locationparent_ID;
+      }
+      response.locations.push(response.location);
     }
 
     if (response.bankaccounttype_DETAIL != null) {
@@ -157,11 +179,6 @@ export class BankaccountService {
       response.paymentmethod_DETAIL = null;
     }
 
-    if (response.journalcode_DETAIL != null) {
-      response.journalcode = JSON.parse(response.journalcode_DETAIL);
-      response.journalcode_DETAIL = null;
-    }
-    
     return (response);
   }
 

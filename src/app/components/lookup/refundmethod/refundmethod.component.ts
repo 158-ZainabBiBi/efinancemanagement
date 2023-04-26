@@ -1,8 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-
-import { OnFailService } from '../../../services/on-fail.service';
-import { LookupService } from '../../../services/lookup.service';
+import { LookupService } from 'src/app/services/lookup.service';
+import { OnFailService } from 'src/app/services/on-fail.service';
 
 @Component({
   selector: 'app-refundmethod',

@@ -3,7 +3,6 @@ import { HttpCallServieService } from "../../../services/http-call-servie.servic
 import { setting } from "../../../setting";
 import { JournallineService } from "../journalline/journalline.service";
 
-
 @Injectable({
   providedIn: "root"
 })

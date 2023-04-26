@@ -4,7 +4,6 @@ import { ToastrService } from 'ngx-toastr';
 import { OnFailService } from '../../../services/on-fail.service';
 import { BankopeningbalanceService } from './bankopeningbalance.service';
 import { BankaccountComponent } from '../bankaccount/bankaccount.component';
-import { TransactiontypeComponent } from '../../lookup/transactiontype/transactiontype.component';
 
 @Component({
   selector: 'app-bankopeningbalance',
@@ -12,9 +11,8 @@ import { TransactiontypeComponent } from '../../lookup/transactiontype/transacti
   styleUrls: ['./bankopeningbalance.component.css']
 })
 export class BankopeningbalanceComponent implements OnInit {
-  @ViewChild("transactiontype") transactiontype: TransactiontypeComponent;
   @ViewChild("bankaccount") bankaccount: BankaccountComponent;
-  
+
   @Input()
   view: number = 1;
   @Input()
@@ -29,24 +27,24 @@ export class BankopeningbalanceComponent implements OnInit {
   bankopeningbalanceID = null;
   @Input()
   bankaccountID = null;
-  @Input()
-  transactiontypeID = null;
 
   @Output() edit = new EventEmitter();
   @Output() cancel = new EventEmitter();
   @Output() show = new EventEmitter();
   @Output() refresh = new EventEmitter();
-  @Output() onBankopeningbalanceChange = new EventEmitter();
+  @Output() onBankOpeningbBalanceChange = new EventEmitter();
 
   bankopeningbalances = [];
   bankopeningbalancesAll = [];
   bankopeningbalance = {
     bankopeningbalance_ID: 0,
     bankaccount_ID: null,
-    transactiontype_ID: null,
-    bankopeningbalance_CREDIT: null,
-    bankopeningbalance_DATE: null,
-    bankopeningbalance_DESCRIPTION: null,
+
+    balance_CODE: null,
+    balance_DATE: null,
+    balance_CREDIT: null,
+    balance_DEBIT: null,
+
     isactive: true,
   }
 
@@ -82,7 +80,7 @@ export class BankopeningbalanceComponent implements OnInit {
     }
 
     var search = {
-
+      bankaccount_ID: this.bankaccountID,
     }
 
     if (this.view >= 5 && this.view <= 6 && this.bankopeningbalanceID) {
@@ -116,10 +114,12 @@ export class BankopeningbalanceComponent implements OnInit {
     this.bankopeningbalance = {
       bankopeningbalance_ID: 0,
       bankaccount_ID: null,
-      transactiontype_ID: null,
-      bankopeningbalance_CREDIT: null,
-      bankopeningbalance_DATE: null,
-      bankopeningbalance_DESCRIPTION: null,
+
+      balance_CODE: null,
+      balance_DATE: null,
+      balance_CREDIT: null,
+      balance_DEBIT: null,
+
       isactive: true,
     };
   }
@@ -154,7 +154,7 @@ export class BankopeningbalanceComponent implements OnInit {
   onChange(bankopeningbalanceID) {
     for (var i = 0; i < this.bankopeningbalances.length; i++) {
       if (this.bankopeningbalances[i].bankopeningbalance_ID == bankopeningbalanceID) {
-        this.onBankopeningbalanceChange.next(this.bankopeningbalances[i]);
+        this.onBankOpeningbBalanceChange.next(this.bankopeningbalances[i]);
         break;
       }
     }
@@ -222,13 +222,13 @@ export class BankopeningbalanceComponent implements OnInit {
   bankopeningbalanceAdd(bankopeningbalance) {
     bankopeningbalance.isactive = "Y";
     bankopeningbalance.bankaccount_ID = this.bankaccount.bankaccountID;
-    bankopeningbalance.transactiontype_ID = this.transactiontype.transactiontypeID;
+
     this.bankopeningbalanceservice.add(bankopeningbalance).subscribe(response => {
       if (response) {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else if (response.bankopeningbalance_ID) {
-          this.toastrservice.success("Success", "New Fee Category Added");
+          this.toastrservice.success("Success", "New Bank Opening Balance Added");
           this.refresh.next();
           this.disabled = true;
         } else {
@@ -242,7 +242,7 @@ export class BankopeningbalanceComponent implements OnInit {
 
   bankopeningbalanceUpdate(bankopeningbalance) {
     bankopeningbalance.bankaccount = this.bankaccount.bankaccountID;
-    bankopeningbalance.transactiontype_ID = this.transactiontype.transactiontypeID;
+
     if (bankopeningbalance.isactive == true) {
       bankopeningbalance.isactive = "Y";
     } else {
@@ -253,7 +253,7 @@ export class BankopeningbalanceComponent implements OnInit {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else if (response.bankopeningbalance_ID) {
-          this.toastrservice.success("Success", "Fee Category Updated");
+          this.toastrservice.success("Success", "Bank Opening Balance Updated");
           this.refresh.next();
           this.disabled = true;
         } else {
@@ -271,7 +271,7 @@ export class BankopeningbalanceComponent implements OnInit {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else if (response.length > 0) {
-          this.toastrservice.success("Success", "Fee Category Updated");
+          this.toastrservice.success("Success", "Bank Opening Balance Updated");
           this.refresh.next();
         } else {
           this.toastrservice.error("Some thing went wrong");
@@ -319,8 +319,7 @@ export class BankopeningbalanceComponent implements OnInit {
   }
 
   bankopeningbalanceAdvancedSearch(search) {
-    this.transactiontypeID = search.transactiontype_ID;
-    this.bankaccountID = search.bankaccount;
+    this.bankaccountID = search.bankaccount_ID;
 
     this.bankopeningbalanceservice.advancedSearch(search).subscribe(response => {
       if (response) {
@@ -337,8 +336,7 @@ export class BankopeningbalanceComponent implements OnInit {
   }
 
   bankopeningbalanceAdvancedSearchAll(search) {
-    this.transactiontypeID = search.transactiontype_ID;
-    this.bankaccountID = search.bankaccount;
+    this.bankaccountID = search.bankaccount_ID;
 
     this.bankopeningbalanceservice.advancedSearchAll(search).subscribe(response => {
       if (response) {

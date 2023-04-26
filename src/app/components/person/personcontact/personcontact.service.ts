@@ -1,22 +1,23 @@
-import { Injectable } from '@angular/core';
-import { HttpCallServieService } from '../../../services/http-call-servie.service';
-import { setting } from '../../../setting';
+import { Injectable } from "@angular/core";
+import { HttpCallServieService } from "src/app/services/http-call-servie.service";
+import { setting } from "src/app/setting";
+import { PersonService } from "../person/person.service";
+
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
-export class AccountService {
-
-
+export class PersoncontactService {
   constructor(
-    private _HttpCallServieService_: HttpCallServieService
+    private _HttpCallServieService_: HttpCallServieService,
+    private personservice: PersonService
   ) { }
 
 
   get() {
     var postData = {
-      service_NAME: setting.accountservice_NAME,
+      service_NAME: setting.personservice_NAME,
       request_TYPE: "GET",
-      request_URI: "account",
+      request_URI: "personcontact",
       request_BODY: ""
     }
     return this._HttpCallServieService_.api(postData);
@@ -24,9 +25,9 @@ export class AccountService {
 
   getAll() {
     var postData = {
-      service_NAME: setting.accountservice_NAME,
+      service_NAME: setting.personservice_NAME,
       request_TYPE: "GET",
-      request_URI: "account/all",
+      request_URI: "personcontact/all",
       request_BODY: ""
     }
     return this._HttpCallServieService_.api(postData);
@@ -35,9 +36,9 @@ export class AccountService {
 
   getOne(id) {
     var postData = {
-      service_NAME: setting.accountservice_NAME,
+      service_NAME: setting.personservice_NAME,
       request_TYPE: "GET",
-      request_URI: "account/" + id,
+      request_URI: "personcontact/" + id,
       request_BODY: ""
     }
     return this._HttpCallServieService_.api(postData);
@@ -45,9 +46,9 @@ export class AccountService {
 
   add(data) {
     var postData = {
-      service_NAME: setting.accountservice_NAME,
+      service_NAME: setting.personservice_NAME,
       request_TYPE: "POST",
-      request_URI: "account",
+      request_URI: "personcontact",
       request_BODY: JSON.stringify(data)
     }
     return this._HttpCallServieService_.api(postData);
@@ -55,9 +56,9 @@ export class AccountService {
 
   update(data, id) {
     var postData = {
-      service_NAME: setting.accountservice_NAME,
+      service_NAME: setting.personservice_NAME,
       request_TYPE: "PUT",
-      request_URI: "account/" + id,
+      request_URI: "personcontact/" + id,
       request_BODY: JSON.stringify(data)
 
     }
@@ -66,9 +67,9 @@ export class AccountService {
 
   updateAll(data) {
     var postData = {
-      service_NAME: setting.accountservice_NAME,
+      service_NAME: setting.personservice_NAME,
       request_TYPE: "PUT",
-      request_URI: "account",
+      request_URI: "personcontact",
       request_BODY: JSON.stringify(data)
 
     }
@@ -77,9 +78,9 @@ export class AccountService {
 
   delete(id) {
     var postData = {
-      service_NAME: setting.accountservice_NAME,
+      service_NAME: setting.personservice_NAME,
       request_TYPE: "DELETE",
-      request_URI: "account/" + id,
+      request_URI: "personcontact/" + id,
       request_BODY: ""
     }
     return this._HttpCallServieService_.api(postData);
@@ -87,9 +88,9 @@ export class AccountService {
 
   search(data) {
     var postData = {
-      service_NAME: setting.accountservice_NAME,
+      service_NAME: setting.personservice_NAME,
       request_TYPE: "POST",
-      request_URI: "account/search",
+      request_URI: "personcontact/search",
       request_BODY: JSON.stringify(data)
 
     }
@@ -98,9 +99,9 @@ export class AccountService {
 
   searchAll(data) {
     var postData = {
-      service_NAME: setting.accountservice_NAME,
+      service_NAME: setting.personservice_NAME,
       request_TYPE: "POST",
-      request_URI: "account/search/all",
+      request_URI: "personcontact/search/all",
       request_BODY: JSON.stringify(data)
     }
     return this._HttpCallServieService_.api(postData);
@@ -108,9 +109,9 @@ export class AccountService {
 
   advancedSearch(data) {
     var postData = {
-      service_NAME: setting.accountservice_NAME,
+      service_NAME: setting.personservice_NAME,
       request_TYPE: "POST",
-      request_URI: "account/advancedsearch",
+      request_URI: "personcontact/advancedsearch",
       request_BODY: JSON.stringify(data)
     }
     return this._HttpCallServieService_.api(postData);
@@ -118,9 +119,9 @@ export class AccountService {
 
   advancedSearchAll(data) {
     var postData = {
-      service_NAME: setting.accountservice_NAME,
+      service_NAME: setting.personservice_NAME,
       request_TYPE: "POST",
-      request_URI: "account/advancedsearch/all",
+      request_URI: "personcontact/advancedsearch/all",
       request_BODY: JSON.stringify(data)
     }
     return this._HttpCallServieService_.api(postData);
@@ -134,19 +135,14 @@ export class AccountService {
   }
 
   getDetail(response) {
-    if (response.accounttype_DETAIL != null) {
-      response.accounttype = JSON.parse(response.accounttype_DETAIL);
-      response.accounttype_DETAIL = response.accounttype.code + ' - ' + response.accounttype.description;
+    if (response.person_DETAIL != null) {
+      response.person = this.personservice.getDetail(JSON.parse(response.person_DETAIL));
+      response.person_DETAIL = null
     }
 
-    if (response.cashflowratetype_DETAIL != null) {
-      response.cashflowratetype = JSON.parse(response.cashflowratetype_DETAIL);
-      response.cashflowratetype_DETAIL = response.cashflowratetype.code + ' - ' + response.cashflowratetype.description;
-    }
-
-    if (response.generalratetype_DETAIL != null) {
-      response.generalratetype = JSON.parse(response.generalratetype_DETAIL);
-      response.generalratetype_DETAIL = response.generalratetype.code + ' - ' + response.generalratetype.description;
+    if (response.contacttype_DETAIL != null) {
+      response.contacttype = JSON.parse(response.contacttype_DETAIL);
+      response.contacttype_DETAIL = response.contacttype.code + ' - ' + response.contacttype.description;
     }
 
     return (response);

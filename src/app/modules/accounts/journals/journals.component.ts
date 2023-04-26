@@ -1,0 +1,68 @@
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+import { OnFailService } from '../../../services/on-fail.service';
+
+import { JournalComponent } from '../../../components/account/journal/journal.component'
+import { JournalService } from '../../../components/account/journal/journal.service';
+import { RouterLinkWithHref } from '@angular/router';
+
+declare var $: any;
+
+@Component({
+  selector: 'app-journals',
+  templateUrl: './journals.component.html',
+  styleUrls: ['./journals.component.css']
+})
+export class JournalsComponent implements OnInit {
+  @ViewChild("journals") journals: JournalComponent;
+  @ViewChild("addjournal") addjournal: JournalComponent;
+  @ViewChild("editjournal") editjournal: JournalComponent;
+
+  constructor(
+    private journalservice: JournalService,
+    private toastrservice: ToastrService,
+    private onfailservice: OnFailService,
+  ) { }
+
+  ngOnInit(): void {
+  }
+
+  view() {
+  }
+
+  refresh() {
+    this.journals.ngOnInit();
+    this.cancel();
+  }
+
+  addNew() {
+    this.addjournal.add();
+    $("#add").modal("show");
+  }
+
+  edit(row) {
+    this.editjournal.journal = {
+      journal_ID: row.data.journal_ID,
+      journalline_ID: row.data.journalline_ID,
+      transaction_ID: row.data.transaction_ID,
+
+      journal_CODE: row.data.journal_CODE,
+      journal_DATE: row.data.journal_DATE,
+      journal_NAME: row.data.journal_NAME,
+      journal_DESC: row.data.journal_DESC,
+
+      isactive: row.data.isactive
+    };
+    if (row.data.isactive == "Y") {
+      this.editjournal.journal.isactive = true;
+    } else {
+      this.editjournal.journal.isactive = false;
+    }
+    $("#edit").modal("show");
+  }
+  cancel() {
+    $("#add").modal("hide");
+    $("#edit").modal("hide");
+  }
+
+}

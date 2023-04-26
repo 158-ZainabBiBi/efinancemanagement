@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpCallServieService } from '../../../services/http-call-servie.service';
 import { setting } from '../../../setting';
-import { LedgeraccounttypeService } from '../ledgeraccounttype/ledgeraccounttype.service';
+import { LedgeraccountclassificationService } from '../ledgeraccountclassification/ledgeraccountclassification.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +10,7 @@ export class LedgeraccountService {
 
   constructor(
     private _HttpCallServieService_: HttpCallServieService,
-    private ledgeraccounttypeservice: LedgeraccounttypeService,
+    private ledgeraccountclassificationservice: LedgeraccountclassificationService,
   ) { }
 
 
@@ -136,9 +136,14 @@ export class LedgeraccountService {
   }
 
   getDetail(response) {
+    if (response.ledgeraccountclassification_DETAIL != null) {
+      response.ledgeraccountclassification = this.ledgeraccountclassificationservice.getDetail(JSON.parse(response.ledgeraccountclassification_DETAIL));
+      response.ledgeraccountclassification_DETAIL = null
+    }
+
     if (response.ledgeraccounttype_DETAIL != null) {
-      response.ledgeraccounttype = this.ledgeraccounttypeservice.getDetail(JSON.parse(response.ledgeraccounttype_DETAIL));
-      response.ledgeraccounttype_DETAIL = null
+      response.ledgeraccounttype = JSON.parse(response.ledgeraccounttype_DETAIL);
+      response.ledgeraccounttype_DETAIL = response.ledgeraccounttype.code + ' - ' + response.ledgeraccounttype.description;
     }
 
     if (response.taxrate_DETAIL != null) {

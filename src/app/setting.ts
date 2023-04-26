@@ -16,6 +16,8 @@ export const setting = {
   customerservice_NAME: 'CUSTOMER',
   productservice_NAME: 'PRODUCT',
   locationservice_NAME: 'LOCATION',
+  personservice_NAME: 'PERSON',
+  financeservice_NAME: 'FINANCE',
 
   isHash: '/#',
   redirctPath: '',

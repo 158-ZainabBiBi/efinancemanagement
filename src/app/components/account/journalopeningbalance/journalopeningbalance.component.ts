@@ -32,15 +32,17 @@ export class JournalopeningbalanceComponent implements OnInit {
   @Output() cancel = new EventEmitter();
   @Output() show = new EventEmitter();
   @Output() refresh = new EventEmitter();
-  @Output() onJournalopeningbalanceChange = new EventEmitter();
+  @Output() onJournalOpeningBalanceChange = new EventEmitter();
 
   journalopeningbalances = [];
   journalopeningbalancesAll = [];
   journalopeningbalance = {
     journalopeningbalance_ID: 0,
     journalline_ID: null,
-    journalopeningbalance_CODE: null,
-    journalopeningbalance_DATE: null,
+
+    balance_CODE: null,
+    balance_DATE: null,
+
     isactive: true,
   }
 
@@ -76,7 +78,7 @@ export class JournalopeningbalanceComponent implements OnInit {
     }
 
     var search = {
-
+      journalline_ID: this.journallineID,
     }
 
     if (this.view >= 5 && this.view <= 6 && this.journalopeningbalanceID) {
@@ -108,11 +110,13 @@ export class JournalopeningbalanceComponent implements OnInit {
 
   add() {
     this.journalopeningbalance = {
-    journalopeningbalance_ID: 0,
-    journalline_ID: null,
-    journalopeningbalance_CODE: null,
-    journalopeningbalance_DATE: null,
-    isactive: true,
+      journalopeningbalance_ID: 0,
+      journalline_ID: null,
+
+      balance_CODE: null,
+      balance_DATE: null,
+
+      isactive: true,
     };
   }
 
@@ -146,7 +150,7 @@ export class JournalopeningbalanceComponent implements OnInit {
   onChange(journalopeningbalanceID) {
     for (var i = 0; i < this.journalopeningbalances.length; i++) {
       if (this.journalopeningbalances[i].journalopeningbalance_ID == journalopeningbalanceID) {
-        this.onJournalopeningbalanceChange.next(this.journalopeningbalances[i]);
+        this.onJournalOpeningBalanceChange.next(this.journalopeningbalances[i]);
         break;
       }
     }
@@ -214,14 +218,14 @@ export class JournalopeningbalanceComponent implements OnInit {
   journalopeningbalanceAdd(journalopeningbalance) {
 
     journalopeningbalance.isactive = "Y";
-    // journalopeningbalance.journalline_ID = this.journalline.journallineID;
+    journalopeningbalance.journalline_ID = this.journalline.journallineID;
 
     this.journalopeningbalanceservice.add(journalopeningbalance).subscribe(response => {
       if (response) {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else if (response.journalopeningbalance_ID) {
-          this.toastrservice.success("Success", "New Fee Category Added");
+          this.toastrservice.success("Success", "New Journal Opening Balance Added");
           this.refresh.next();
           this.disabled = true;
         } else {
@@ -234,7 +238,7 @@ export class JournalopeningbalanceComponent implements OnInit {
   }
 
   journalopeningbalanceUpdate(journalopeningbalance) {
-    // journalopeningbalance.fromjournalline_ID = this.journalline.journallineID;
+    journalopeningbalance.fromjournalline_ID = this.journalline.journallineID;
 
     if (journalopeningbalance.isactive == true) {
       journalopeningbalance.isactive = "Y";
@@ -246,7 +250,7 @@ export class JournalopeningbalanceComponent implements OnInit {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else if (response.journalopeningbalance_ID) {
-          this.toastrservice.success("Success", "Fee Category Updated");
+          this.toastrservice.success("Success", "Journal Opening Balance Updated");
           this.refresh.next();
           this.disabled = true;
         } else {
@@ -264,7 +268,7 @@ export class JournalopeningbalanceComponent implements OnInit {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else if (response.length > 0) {
-          this.toastrservice.success("Success", "Fee Category Updated");
+          this.toastrservice.success("Success", "Journal Opening Balance Updated");
           this.refresh.next();
         } else {
           this.toastrservice.error("Some thing went wrong");

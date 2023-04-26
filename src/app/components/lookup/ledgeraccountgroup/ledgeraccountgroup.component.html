@@ -1,0 +1,30 @@
+<div class="form-group">
+  <label class="custom-label form-label">Ledger Account Group
+    <span style="color: red;" [hidden]="disabled" *ngIf="iscompulsory==true">*</span>
+  </label>
+  <div class="row" *ngIf="disabled==true">
+    <div class="col-md-12">
+      <ng-select [(ngModel)]="ledgeraccountgroupID" [disabled]="disabled" name="ledgeraccountgroupID" maxlength="50">
+        <ng-option *ngFor="let ledgeraccountgroup of ledgeraccountgroupsAll" [value]="ledgeraccountgroup.id"
+          [disabled]="disabled">
+          {{ ledgeraccountgroup.code }} - {{ ledgeraccountgroup.description }}
+        </ng-option>
+      </ng-select>
+    </div>
+  </div>
+  <div class="row" *ngIf="disabled==false">
+    <div class="col-md-10">
+      <ng-select [(ngModel)]="ledgeraccountgroupID" [disabled]="disabled" name="ledgeraccountgroupID" maxlength="50">
+        <ng-option *ngFor="let ledgeraccountgroup of ledgeraccountgroups" [value]="ledgeraccountgroup.id"
+          [disabled]="disabled">
+          {{ ledgeraccountgroup.code }} - {{ ledgeraccountgroup.description }}
+        </ng-option>
+      </ng-select>
+    </div>
+    <div class="col-md-2">
+      <button type="button" class="btn btn-light ml-2" [hidden]="disabled" (click)="ledgeraccountgroupGet()">
+        <i class="fa fa-refresh" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+</div>
