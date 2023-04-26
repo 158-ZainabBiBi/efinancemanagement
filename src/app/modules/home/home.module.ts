@@ -68,7 +68,7 @@ import { TransactionComponent } from '../../components/account/transaction/trans
 import { TrialbalanceComponent } from '../../components/account/trialbalance/trialbalance.component';
 
 //lookup
-import { AccounttypeComponent } from '../../components/lookup/accounttype/accounttype.component';
+import { BankaccounttypeComponent } from '../../components/lookup/bankaccounttype/bankaccounttype.component';
 import { CurrencyComponent } from '../../components/lookup/currency/currency.component';
 import { GeneralratetypeComponent } from '../../components/lookup/generalratetype/generalratetype.component';
 import { CashflowratetypeComponent } from '../../components/lookup/cashflowratetype/cashflowratetype.component';
@@ -78,6 +78,9 @@ import { CardtypeComponent } from '../../components/lookup/cardtype/cardtype.com
 import { PostingperiodComponent } from '../../components/lookup/postingperiod/postingperiod.component';
 import { RefundmethodComponent } from '../../components/lookup/refundmethod/refundmethod.component';
 import { CurrencysymbolreplacementComponent } from '../../components/lookup/currencysymbolreplacement/currencysymbolreplacement.component';
+import { PaymentmethodComponent } from 'src/app/components/lookup/paymentmethod/paymentmethod.component';
+import { StatusComponent } from 'src/app/components/lookup/status/status.component';
+import { TransactiontypeComponent } from 'src/app/components/lookup/transactiontype/transactiontype.component';
 
 //accounts
 // import { AccountsComponent } from '../accounts/accounts/accounts.component';
@@ -124,7 +127,6 @@ import { CurrencysymbolreplacementComponent } from '../../components/lookup/curr
     AccountsearchfilterComponent,
 
     AccountComponent,
-    AccounttypeComponent,
     ApprovalreturnauthComponent,
     CreditcardtransactionComponent,
     CustomerrefundComponent,
@@ -155,6 +157,10 @@ import { CurrencysymbolreplacementComponent } from '../../components/lookup/curr
     PostingperiodComponent,
     RefundmethodComponent,
     CurrencysymbolreplacementComponent,
+    PaymentmethodComponent,
+    StatusComponent,
+    TransactiontypeComponent,
+    BankaccounttypeComponent,
 
     // AccountsComponent,
     // CompaniesComponent,

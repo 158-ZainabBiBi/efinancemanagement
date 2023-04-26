@@ -1,1 +1,379 @@
-<p>journalopeningbalance works!</p>
+<div *ngIf="view==1" class="form-group">
+    <label class="custom-label form-label">Journal Opening Balance
+      <span style="color: red;" [hidden]="disabled" *ngIf="iscompulsory==true">*</span>
+    </label>
+    <div class="row" *ngIf="disabled==true">
+      <div class="col-md-12">
+        <ng-select [(ngModel)]="journalopeningbalanceID" [disabled]="disabled" name="journalopeningbalanceID" (change)="onChange($event)">
+          <ng-option *ngFor="let journalopeningbalance of journalopeningbalancesAll" [value]="journalopeningbalance.journalopeningbalance_ID">
+            {{ journalopeningbalance.journalopeningbalance_CODE }} - {{ journalopeningbalance.journalopeningbalance_DATE }}
+          </ng-option>
+        </ng-select>
+      </div>
+    </div>
+    <div class="row" *ngIf="disabled==false">
+      <div class="col-md-10">
+        <ng-select [(ngModel)]="journalopeningbalanceID" name="journalopeningbalanceID" (change)="onChange($event)">
+          <ng-option *ngFor="let journalopeningbalance of journalopeningbalances" [value]="journalopeningbalance.journalopeningbalance_ID" [disabled]="disabled">
+            {{ journalopeningbalance.journalopeningbalance_CODE }} -  {{ journalopeningbalance.journalopeningbalance_DATE }}
+          </ng-option>
+        </ng-select>
+      </div>
+      <div class="col-md-2">
+        <button type="button" class="btn btn-light ml-2" (click)="load(true)">
+          <i class="fa fa-refresh" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <div *ngIf="view==10" class="form-group">
+    <label class="custom-label form-label">Journal Opening Balance
+      <span style="color: red;" [hidden]="disabled" *ngIf="iscompulsory==true">*</span>
+    </label>
+    <div class="row" *ngIf="disabled==true">
+      <div class="col-md-12">
+        <ng-select [(ngModel)]="journalopeningbalanceID" [disabled]="disabled" name="journalopeningbalanceID" (change)="onChange($event)">
+          <ng-option *ngFor="let journalopeningbalance of journalopeningbalancesAll" [value]="journalopeningbalance.journalopeningbalance_ID">
+            {{ journalopeningbalance.journalopeningbalance_CODE }} -  {{ journalopeningbalance.journalopeningbalance_DATE }}
+          </ng-option>
+        </ng-select>
+      </div>
+    </div>
+    <div class="row" *ngIf="disabled==false">
+      <div class="col-md-10">
+        <ng-select [(ngModel)]="journalopeningbalanceID" name="journalopeningbalanceID" (change)="onChange($event)">
+          <ng-option *ngFor="let journalopeningbalance of journalopeningbalancesAll" [value]="journalopeningbalance.journalopeningbalance_ID" [disabled]="disabled">
+            {{ journalopeningbalance.journalopeningbalance_CODE }} -  {{ journalopeningbalance.journalopeningbalance_DATE }}
+          </ng-option>
+        </ng-select>
+      </div>
+      <div class="col-md-2">
+        <button type="button" class="btn btn-light ml-2" (click)="load(true)">
+          <i class="fa fa-refresh" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <div *ngIf="view==11" class="form-group">
+    <label class="custom-label form-label">Journal Opening Balance
+      <span style="color: red;" [hidden]="disabled" *ngIf="iscompulsory==true">*</span>
+    </label>
+    <div class="row" *ngIf="disabled==true">
+      <div class="col-md-12">
+        <ng-select [(ngModel)]="journalopeningbalanceID" [disabled]="disabled" name="journalopeningbalanceID">
+          <ng-option *ngFor="let journalopeningbalance of journalopeningbalancesAll" [value]="journalopeningbalance.journalopeningbalance_ID" [disabled]="disabled">
+            {{ journalopeningbalance.journalopeningbalance_CODE }} -  {{ journalopeningbalance.journalopeningbalance_DATE }}
+          </ng-option>
+        </ng-select>
+      </div>
+    </div>
+    <div class="row" *ngIf="disabled==false">
+      <div class="col-md-10">
+        <ng-select [(ngModel)]="journalopeningbalanceID" [disabled]="disabled" name="journalopeningbalanceID" (change)="onChange($event)">
+          <ng-option *ngFor="let journalopeningbalance of journalopeningbalances" [value]="journalopeningbalance.journalopeningbalance_ID" [disabled]="disabled">
+            {{ journalopeningbalance.journalopeningbalance_CODE }} -  {{ journalopeningbalance.journalopeningbalance_DATE }}
+          </ng-option>
+        </ng-select>
+      </div>
+      <div class="col-md-2">
+        <button type="button" class="btn btn-light ml-2" [hidden]="disabled" (click)="load(true)">
+          <i class="fa fa-refresh" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <div *ngIf="view==19" class="form-group">
+    <label class="custom-label form-label">Journal Opening Balance
+      <span style="color: red;" [hidden]="disabled" *ngIf="iscompulsory==true">*</span>
+    </label>
+    <div class="row" *ngIf="disabled==true">
+      <div class="col-md-12">
+        <ng-select [(ngModel)]="journalopeningbalanceID" [disabled]="disabled" name="journalopeningbalanceID" (change)="onChange($event)">
+          <ng-option *ngFor="let journalopeningbalance of journalopeningbalancesAll" [value]="journalopeningbalance.journalopeningbalance_ID" [disabled]="disabled">
+            {{ journalopeningbalance.journalopeningbalance_CODE }} -  {{ journalopeningbalance.journalopeningbalance_DATE }}
+          </ng-option>
+        </ng-select>
+      </div>
+    </div>
+    <div class="row" *ngIf="disabled==false">
+      <div class="col-md-10">
+        <ng-select [(ngModel)]="journalopeningbalanceID" [disabled]="disabled" name="journalopeningbalanceID" (change)="onChange($event)">
+          <ng-option *ngFor="let journalopeningbalance of journalopeningbalancesAll" [value]="journalopeningbalance.journalopeningbalance_ID" [disabled]="disabled">
+            {{ journalopeningbalance.journalopeningbalance_CODE }} -  {{ journalopeningbalance.journalopeningbalance_DATE }}
+          </ng-option>
+        </ng-select>
+      </div>
+      <div class="col-md-2">
+        <button type="button" class="btn btn-light ml-2" [hidden]="disabled" (click)="load(true)">
+          <i class="fa fa-refresh" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <div *ngIf="view==2" class="form-group">
+    <div class="outer-div">
+      <div class="grid-wrapper">
+        <dx-data-grid #grid id="gridContainer" [dataSource]="journalopeningbalancesAll" keyExpr="journalopeningbalance_ID" [showColumnLines]="true"
+          [showRowLines]="true" [showBorders]="true" [rowAlternationEnabled]="true" [allowColumnResizing]="true"
+          [columnMinWidth]="30" [columnAutoWidth]="true" [remoteOperations]="true" height="600" width="100%"
+          (onToolbarPreparing)="onToolbarPreparing($event)">
+          <dxo-filter-row [visible]="true"></dxo-filter-row>
+          <dxo-header-filter [visible]="true"></dxo-header-filter>
+          <dxo-search-panel [visible]="true"></dxo-search-panel>
+          <dxo-group-panel [visible]="false"></dxo-group-panel>
+          <dxo-grouping #expand [autoExpandAll]="false"></dxo-grouping>
+          <dxo-scrolling mode="virtual"></dxo-scrolling>
+          <dxo-sorting mode="multiple"></dxo-sorting>
+          <dxo-selection mode="single"></dxo-selection>
+          <dxi-column [width]="75" [allowFiltering]="false" [allowSorting]="false" alignment="center"
+            cellTemplate="cellTemplate"></dxi-column>
+            <dxi-column dataField="journalline" caption="journalline" cssClass="myClass"
+            alignment="left"></dxi-column>
+          <dxi-column dataField="journalopeningbalance_CODE" caption="Code" cssClass="myClass" alignment="left"></dxi-column>
+          <dxi-column dataField="journalopeningbalance_DATE" caption="Date" cssClass="myClass" alignment="left"></dxi-column>
+         
+          <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass"
+            alignment="center"></dxi-column>
+  
+          <div *dxTemplate="let data of 'cellTemplate'">
+            <a href="javascript:void" class="" (click)="showView(data)">
+              <i class="fa fa-eye" aria-hidden="true"></i></a>
+          </div>
+        </dx-data-grid>
+      </div>
+    </div>
+  </div>
+  
+  <div *ngIf="view==22" class="form-group">
+    <div class="outer-div">
+      <div class="grid-wrapper">
+        <dx-data-grid #grid id="gridContainer" [dataSource]="journalopeningbalances" keyExpr="journalopeningbalance_ID" [showColumnLines]="true"
+          [showRowLines]="true" [showBorders]="true" [rowAlternationEnabled]="true" [allowColumnResizing]="true"
+          [columnMinWidth]="30" [columnAutoWidth]="true" [remoteOperations]="true" height="600" width="100%"
+          (onToolbarPreparing)="onToolbarPreparing($event)">
+          <dxo-filter-row [visible]="true"></dxo-filter-row>
+          <dxo-header-filter [visible]="true"></dxo-header-filter>
+          <dxo-search-panel [visible]="true"></dxo-search-panel>
+          <dxo-group-panel [visible]="false"></dxo-group-panel>
+          <dxo-grouping #expand [autoExpandAll]="false"></dxo-grouping>
+          <dxo-scrolling mode="virtual"></dxo-scrolling>
+          <dxo-sorting mode="multiple"></dxo-sorting>
+          <dxo-selection mode="single"></dxo-selection>
+          <dxi-column [width]="75" [allowFiltering]="false" [allowSorting]="false" alignment="center"
+            cellTemplate="cellTemplate"></dxi-column>
+  
+            <dxi-column dataField="journalline" caption="journalline" cssClass="myClass"
+            alignment="left"></dxi-column>
+          <dxi-column dataField="journalopeningbalance_CODE" caption="Code" cssClass="myClass" alignment="left"></dxi-column>
+          <dxi-column dataField="journalopeningbalance_DATE" caption="Date" cssClass="myClass" alignment="left"></dxi-column>
+         
+          <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass"
+            alignment="center"></dxi-column>
+  
+          <div *dxTemplate="let data of 'cellTemplate'">
+            <a href="javascript:void" class="" (click)="showView(data)">
+              <i class="fa fa-eye" aria-hidden="true"></i></a>
+          </div>
+        </dx-data-grid>
+      </div>
+    </div>
+  </div>
+  
+  <div *ngIf="view==3" class="form-group">
+    <form action="" class="form" (ngSubmit)="f.form.valid && journalopeningbalanceAdd(journalopeningbalance)" #f="ngForm" novalidate>
+      <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">
+              <i class="fa fa-plus" aria-hidden="true"></i> Add New Journal Opening Balance
+            </h5>
+            <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+              <span aria-hidden="true"> ×</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <app-journalline #journalline ></app-journalline>
+                </div>
+              </div>
+              
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="control-label">Code <span style="color:red">*</span></label>
+                      <input type="text" class="form-control" name="journalopeningbalance_CODE" [(ngModel)]="journalopeningbalance.journalopeningbalance_CODE"
+                        maxlength="50" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="control-label">Date<span style="color:red">*</span></label>
+                      <input type="text" class="form-control" name="journalopeningbalance_DATE" [(ngModel)]="journalopeningbalance.journalopeningbalance_DATE"
+                        maxlength="50" required>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary" [disabled]="f.invalid">
+              <i class="fa fa-plus" aria-hidden="true"></i> Add
+            </button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  
+  <div *ngIf="view==4" class="form-group">
+    <form action="" class="form" (ngSubmit)="f.form.valid && journalopeningbalanceUpdate(journalopeningbalance)" #f="ngForm" novalidate>
+      <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">
+              <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit Journal Opening Balance
+            </h5>
+            <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+              <span aria-hidden="true"> ×</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <app-journalline #journalline ></app-journalline>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="control-label">Code <span style="color:red">*</span></label>
+                      <input type="text" class="form-control" name="journalopeningbalance_CODE" [(ngModel)]="journalopeningbalance.journalopeningbalance_CODE"
+                        maxlength="50" required>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="control-label">Date <span style="color:red">*</span></label>
+                      <input type="text" class="form-control" name="journalopeningbalance_DATE" [(ngModel)]="journalopeningbalance.journalopeningbalance_DATE"
+                        maxlength="50" required>
+                    </div>
+                  </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <div class="checkbox">
+                    <label class="control-label">
+                      <input type="checkbox" [checked]="journalopeningbalance.isactive" [(ngModel)]="journalopeningbalance.isactive" name="isactive">
+                      Active
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary" [disabled]="f.invalid">
+              <i class="fa fa-plus" aria-hidden="true"></i> Update
+            </button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  
+  <div *ngIf="view==5" class="form-group">
+    <div class="card-primary card">
+      <div class="card-header">
+        <div class="align-items-center row">
+          <div class="col" *ngIf="journalopeningbalance.journalopeningbalance_ID==0">
+            <a href="javascript:void" aria-controls="collapse-journalopeningbalanceinfo1" aria-expanded="true" class="card-title">Add
+              New Journal Opening Balance
+            </a>
+          </div>
+          <div class="col" *ngIf="journalopeningbalance.journalopeningbalance_ID!=0 && disabled==false">
+            <a href="javascript:void" aria-controls="collapse-journalopeningbalanceinfo1" aria-expanded="true" class="card-title">Edit
+              Journal Opening Balance
+            </a>
+          </div>
+          <div class="col" *ngIf="journalopeningbalance.journalopeningbalance_ID!=0 && disabled==true">
+            <a href="javascript:void" aria-controls="collapse-journalopeningbalanceinfo1" aria-expanded="true"
+              class="card-title">Journal Opening Balance Detail
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <app-journalline #journalline ></app-journalline>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="control-label">Code <span style="color:red">*</span></label>
+                      <input type="text" class="form-control" name="journalopeningbalance_CODE" [(ngModel)]="journalopeningbalance.journalopeningbalance_CODE"
+                        [disabled]="disabled" maxlength="50" required>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="control-label">Date <span style="color:red">*</span></label>
+                      <input type="text" class="form-control" name="journalopeningbalance_DATE" [(ngModel)]="journalopeningbalance.journalopeningbalance_DATE"
+                        [disabled]="disabled" maxlength="50" required>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12" *ngIf="journalopeningbalance.journalopeningbalance_ID!=0">
+                <div class="form-group">
+                  <div class="checkbox">
+                    <label class="control-label">
+                      <input type="checkbox" [checked]="journalopeningbalance.isactive" [(ngModel)]="journalopeningbalance.isactive"
+                        [disabled]="disabled" name="isactive">
+                      Active
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <button *ngIf="journalopeningbalance.journalopeningbalance_ID!=0 && disabled==true" (click)="editView()" id="cancel"
+                  class="btn btn-primary" style="float: right;"> Edit
+                </button>
+                <button *ngIf="disabled==false" type="button" (click)='journalopeningbalanceCancel()' style="float: right;"
+                  class="btn btn-light" data-dismiss="modal"> Cancel
+                </button>
+                <button *ngIf="journalopeningbalance.journalopeningbalance_ID!=0 && disabled==false" type="button" data-dismiss="modal"
+                  style=" margin-right: 10px; float: right;" (click)='journalopeningbalanceUpdate(journalopeningbalance)' class="btn btn-primary">
+                  Update
+                </button>
+                <button *ngIf="journalopeningbalance.journalopeningbalance_ID==0" type="button" data-dismiss="modal"
+                  style=" margin-right: 10px; float: right;" (click)='journalopeningbalanceAdd(journalopeningbalance)' class="btn btn-primary"> Save
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

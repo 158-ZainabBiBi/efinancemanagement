@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpCallServieService } from '../../../services/http-call-servie.service';
 import { setting } from '../../../setting';
-import { LedgeraccountService } from '../ledgeraccount/ledgeraccount.service';
+import { BankaccountService } from '../bankaccount/bankaccount.service';
 @Injectable({
   providedIn: 'root'
 })
-export class LedgeraccountopeningbalanceService {
+export class BanktransferService {
 
 
   constructor(
     private _HttpCallServieService_: HttpCallServieService,
-    private ledgeraccountservice:LedgeraccountService,
+    private bankaccountservice: BankaccountService,
   ) { }
 
 
@@ -18,7 +18,7 @@ export class LedgeraccountopeningbalanceService {
     var postData = {
       service_NAME: setting.accountservice_NAME,
       request_TYPE: "GET",
-      request_URI: "ledgeraccountopeningbalance",
+      request_URI: "banktransfer",
       request_BODY: ""
     }
     return this._HttpCallServieService_.api(postData);
@@ -28,7 +28,7 @@ export class LedgeraccountopeningbalanceService {
     var postData = {
       service_NAME: setting.accountservice_NAME,
       request_TYPE: "GET",
-      request_URI: "ledgeraccountopeningbalance/all",
+      request_URI: "banktransfer/all",
       request_BODY: ""
     }
     return this._HttpCallServieService_.api(postData);
@@ -39,7 +39,7 @@ export class LedgeraccountopeningbalanceService {
     var postData = {
       service_NAME: setting.accountservice_NAME,
       request_TYPE: "GET",
-      request_URI: "ledgeraccountopeningbalance/" + id,
+      request_URI: "banktransfer/" + id,
       request_BODY: ""
     }
     return this._HttpCallServieService_.api(postData);
@@ -49,7 +49,7 @@ export class LedgeraccountopeningbalanceService {
     var postData = {
       service_NAME: setting.accountservice_NAME,
       request_TYPE: "POST",
-      request_URI: "ledgeraccountopeningbalance",
+      request_URI: "banktransfer",
       request_BODY: JSON.stringify(data)
     }
     return this._HttpCallServieService_.api(postData);
@@ -59,7 +59,7 @@ export class LedgeraccountopeningbalanceService {
     var postData = {
       service_NAME: setting.accountservice_NAME,
       request_TYPE: "PUT",
-      request_URI: "ledgeraccountopeningbalance/" + id,
+      request_URI: "banktransfer/" + id,
       request_BODY: JSON.stringify(data)
 
     }
@@ -70,7 +70,7 @@ export class LedgeraccountopeningbalanceService {
     var postData = {
       service_NAME: setting.accountservice_NAME,
       request_TYPE: "PUT",
-      request_URI: "ledgeraccountopeningbalance",
+      request_URI: "banktransfer",
       request_BODY: JSON.stringify(data)
 
     }
@@ -81,7 +81,7 @@ export class LedgeraccountopeningbalanceService {
     var postData = {
       service_NAME: setting.accountservice_NAME,
       request_TYPE: "DELETE",
-      request_URI: "ledgeraccountopeningbalance/" + id,
+      request_URI: "banktransfer/" + id,
       request_BODY: ""
     }
     return this._HttpCallServieService_.api(postData);
@@ -91,7 +91,7 @@ export class LedgeraccountopeningbalanceService {
     var postData = {
       service_NAME: setting.accountservice_NAME,
       request_TYPE: "POST",
-      request_URI: "ledgeraccountopeningbalance/search",
+      request_URI: "banktransfer/search",
       request_BODY: JSON.stringify(data)
 
     }
@@ -102,7 +102,7 @@ export class LedgeraccountopeningbalanceService {
     var postData = {
       service_NAME: setting.accountservice_NAME,
       request_TYPE: "POST",
-      request_URI: "ledgeraccountopeningbalance/search/all",
+      request_URI: "banktransfer/search/all",
       request_BODY: JSON.stringify(data)
     }
     return this._HttpCallServieService_.api(postData);
@@ -112,7 +112,7 @@ export class LedgeraccountopeningbalanceService {
     var postData = {
       service_NAME: setting.accountservice_NAME,
       request_TYPE: "POST",
-      request_URI: "ledgeraccountopeningbalance/advancedsearch",
+      request_URI: "banktransfer/advancedsearch",
       request_BODY: JSON.stringify(data)
     }
     return this._HttpCallServieService_.api(postData);
@@ -122,7 +122,7 @@ export class LedgeraccountopeningbalanceService {
     var postData = {
       service_NAME: setting.accountservice_NAME,
       request_TYPE: "POST",
-      request_URI: "ledgeraccountopeningbalance/advancedsearch/all",
+      request_URI: "banktransfer/advancedsearch/all",
       request_BODY: JSON.stringify(data)
     }
     return this._HttpCallServieService_.api(postData);
@@ -136,11 +136,16 @@ export class LedgeraccountopeningbalanceService {
   }
 
   getDetail(response) {
-    if (response.ledgeraccount_DETAIL != null) {
-      response.ledgeraccount = this.ledgeraccountservice.getDetail(JSON.parse(response.ledgeraccount_DETAIL));
-      response.ledgeraccount_DETAIL = null;
+  
+    if (response.frombankaccount_DETAIL != null) {
+      response.frombankaccount = this.bankaccountservice.getDetail(JSON.parse(response.frombankaccount_DETAIL));
+      response.frombankaccount_DETAIL = null;
     }
 
+    if (response.tobankaccount_DETAIL != null) {
+      response.tobankaccount = this.bankaccountservice.getDetail(JSON.parse(response.tobankaccount_DETAIL));
+      response.tobankaccount_DETAIL = null;
+    }
 
     return (response);
   }

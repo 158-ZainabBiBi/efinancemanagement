@@ -5,11 +5,11 @@ import { OnFailService } from '../../../services/on-fail.service';
 import { LookupService } from '../../../services/lookup.service';
 
 @Component({
-  selector: 'app-accounttype',
-  templateUrl: './accounttype.component.html',
-  styleUrls: ['./accounttype.component.css']
+  selector: 'app-bankaccounttype',
+  templateUrl: './bankaccounttype.component.html',
+  styleUrls: ['./bankaccounttype.component.css']
 })
-export class AccounttypeComponent implements OnInit {
+export class BankaccounttypeComponent implements OnInit {
   @Input()
   iscompulsory: boolean = false;
   @Input()
@@ -17,10 +17,10 @@ export class AccounttypeComponent implements OnInit {
   @Input()
   all: boolean = false;
   @Input()
-  accounttypeID = null;
+  bankaccounttypeID = null;
 
-  accounttypes = [];
-  accounttypesAll = [];
+  bankaccounttypes = [];
+  bankaccounttypesAll = [];
 
   constructor(
     private lookupservice: LookupService,
@@ -29,30 +29,30 @@ export class AccounttypeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.accounttypes = JSON.parse(window.sessionStorage.getItem('accounttypes'));
-    this.accounttypesAll = JSON.parse(window.sessionStorage.getItem('accounttypesAll'));
-    if (this.disabled == false && this.accounttypes == null) {
-      this.accounttypeGet();
-    } else if (this.disabled == true && this.accounttypesAll == null) {
-      this.accounttypeGetAll();
+    this.bankaccounttypes = JSON.parse(window.sessionStorage.getItem('bankaccounttypes'));
+    this.bankaccounttypesAll = JSON.parse(window.sessionStorage.getItem('bankaccounttypesAll'));
+    if (this.disabled == false && this.bankaccounttypes == null) {
+      this.bankaccounttypeGet();
+    } else if (this.disabled == true && this.bankaccounttypesAll == null) {
+      this.bankaccounttypeGetAll();
     }
   }
 
-  setAccounttypes(response) {
-    this.accounttypes = response;
-    window.sessionStorage.setItem("accounttypes", JSON.stringify(this.accounttypes));
+  setBankaccounttypes(response) {
+    this.bankaccounttypes = response;
+    window.sessionStorage.setItem("bankaccounttypes", JSON.stringify(this.bankaccounttypes));
 
-    this.accounttypesAll = response;
-    window.sessionStorage.setItem("accounttypesAll", JSON.stringify(this.accounttypesAll));
+    this.bankaccounttypesAll = response;
+    window.sessionStorage.setItem("bankaccounttypesAll", JSON.stringify(this.bankaccounttypesAll));
   }
 
-  accounttypeGet() {
+  bankaccounttypeGet() {
     this.lookupservice.lookup("ACCOUNTTYPE").subscribe(response => {
       if (response) {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else {
-          this.setAccounttypes(response);
+          this.setBankaccounttypes(response);
         }
       }
     }, error => {
@@ -60,13 +60,13 @@ export class AccounttypeComponent implements OnInit {
     })
   }
 
-  accounttypeGetAll() {
+  bankaccounttypeGetAll() {
     this.lookupservice.lookupAll("ACCOUNTTYPE").subscribe(response => {
       if (response) {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else {
-          this.setAccounttypes(response);
+          this.setBankaccounttypes(response);
         }
       }
     }, error => {

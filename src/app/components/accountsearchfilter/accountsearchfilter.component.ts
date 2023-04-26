@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 
 import { AccountComponent } from '../account/account/account.component';
-import { AccounttypeComponent } from '../lookup/accounttype/accounttype.component';
 import { ReturnauthComponent } from '../account/returnauth/returnauth.component';
 import { CustomerrefundComponent } from '../account/customerrefund/customerrefund.component';
 
@@ -14,6 +13,7 @@ import { CurrencysymbolreplacementComponent } from '../lookup/currencysymbolrepl
 
 import { GeneralratetypeComponent } from '../lookup/generalratetype/generalratetype.component';
 import { CashflowratetypeComponent } from '../lookup/cashflowratetype/cashflowratetype.component';
+import { BankaccounttypeComponent } from '../lookup/bankaccounttype/bankaccounttype.component';
 
 @Component({
   selector: 'app-accountsearchfilter',
@@ -22,7 +22,7 @@ import { CashflowratetypeComponent } from '../lookup/cashflowratetype/cashflowra
 })
 export class AccountsearchfilterComponent implements OnInit {
   @ViewChild(AccountComponent) accounts;
-  @ViewChild(AccounttypeComponent) accounttypes;
+  @ViewChild(BankaccounttypeComponent) bankaccounttypes;
   @ViewChild(ReturnauthComponent) returnauths;
   @ViewChild(CustomerrefundComponent) customerrefunds
 
@@ -38,7 +38,7 @@ export class AccountsearchfilterComponent implements OnInit {
   @Input()
   account: boolean = false;
   @Input()
-  accounttype = false;
+  bankaccounttype = false;
   @Input()
   returnauth = false;
   @Input()
@@ -65,7 +65,7 @@ export class AccountsearchfilterComponent implements OnInit {
 
   search = {
     account_ID: null,
-    accounttype_ID: null,
+    bankaccounttype_ID: null,
     returnauth_ID: null,
     customerrefund_ID: null,
 
@@ -89,8 +89,8 @@ export class AccountsearchfilterComponent implements OnInit {
   accountsearchfilter() {
     if (this.accounts)
       this.search.account_ID = this.accounts.accountID;
-    if (this.accounttypes)
-      this.search.accounttype_ID = this.accounttypes.accounttypeID;
+    if (this.bankaccounttypes)
+      this.search.bankaccounttype_ID = this.bankaccounttypes.bankaccounttypeID;
     if (this.returnauths)
       this.search.returnauth_ID = this.returnauths.returnauthID;
     if (this.customerrefunds)
@@ -123,8 +123,8 @@ export class AccountsearchfilterComponent implements OnInit {
   reset() {
     if (this.accounts)
       this.accounts.accountID = null;
-    if (this.accounttypes)
-      this.accounttypes.accounttypeID = null;
+    if (this.bankaccounttypes)
+      this.bankaccounttypes.bankaccounttypeID = null;
     if (this.returnauths)
       this.returnauths.returnauthID = null;
     if (this.customerrefunds)
