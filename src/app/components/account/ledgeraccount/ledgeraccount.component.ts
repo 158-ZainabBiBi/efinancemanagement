@@ -169,7 +169,7 @@ export class LedgeraccountComponent implements OnInit {
   ledgeraccountCancel() {
     this.disabled = true;
     if (this.ledgeraccount.ledgeraccount_ID == 0) {
-      this.router.navigate(["/home/ledgeraccounts "], {});
+      this.router.navigate(["/home/ledgeraccounts"], {});
     }
   }
 

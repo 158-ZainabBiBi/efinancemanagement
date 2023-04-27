@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { OnFailService } from '../../../services/on-fail.service';
-import { RouterLinkWithHref } from '@angular/router';
 
 import { CoaaccountComponent } from 'src/app/components/account/coaaccount/coaaccount.component';
 import { CoaaccountService } from 'src/app/components/account/coaaccount/coaaccount.service';
+import { Router, RouterLinkWithHref } from '@angular/router';
 
 declare var $: any;
 
@@ -14,34 +14,33 @@ declare var $: any;
   styleUrls: ['./chartofaccounts.component.css']
 })
 export class ChartofaccountsComponent implements OnInit {
-  @ViewChild("chartofaccounts") chartofaccounts: CoaaccountComponent;
-  @ViewChild("addchartofaccount") addchartofaccount: CoaaccountComponent;
-  @ViewChild("editchartofaccount") editchartofaccount: CoaaccountComponent;
+  @ViewChild("coaaccounts") coaaccounts: CoaaccountComponent;
+  @ViewChild("addcoaaccount") addcoaaccount: CoaaccountComponent;
+  @ViewChild("editcoaaccount") editcoaaccount: CoaaccountComponent;
 
   constructor(
-    private chartofaccountservice: CoaaccountService,
+    private coaaccountservice: CoaaccountService,
     private toastrservice: ToastrService,
     private onfailservice: OnFailService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
   }
 
+  show(row) {
+    this.router.navigate(["/home/account"], { queryParams: { coaaccount: row.data.coaaccount_ID } });
+  }
+
   view() {
   }
 
-  refresh() {
-    this.chartofaccounts.ngOnInit();
-    this.cancel();
-  }
-
   addNew() {
-    this.addchartofaccount.add();
-    $("#add").modal("show");
+    this.router.navigate(["/home/account"], {});
   }
 
   edit(row) {
-    this.editchartofaccount.coaaccount = {
+    this.editcoaaccount.coaaccount = {
       coaaccount_ID: row.data.coaaccount_ID,
       ledgeraccount_ID: row.data.ledgeraccount_ID,
 
@@ -52,12 +51,13 @@ export class ChartofaccountsComponent implements OnInit {
       isactive: row.data.isactive
     };
     if (row.data.isactive == "Y") {
-      this.editchartofaccount.coaaccount.isactive = true;
+      this.editcoaaccount.coaaccount.isactive = true;
     } else {
-      this.editchartofaccount.coaaccount.isactive = false;
+      this.editcoaaccount.coaaccount.isactive = false;
     }
     $("#edit").modal("show");
   }
+
   cancel() {
     $("#add").modal("hide");
     $("#edit").modal("hide");

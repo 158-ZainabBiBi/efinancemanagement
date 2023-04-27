@@ -99,6 +99,7 @@ import { TrialbalancesComponent } from 'src/app/modules/accounts/trialbalances/t
 import { ChartofaccountsComponent } from 'src/app/modules/accounts/chartofaccounts/chartofaccounts.component';
 import { TransactionsComponent } from 'src/app/modules/accounts/transactions/transactions.component';
 
+import { ChartofaccountviewComponent } from 'src/app/modules/accounts/chartofaccounts/chartofaccountview/chartofaccountview.component';
 @NgModule({
   imports: [
     HomeRoutingModule,
@@ -187,6 +188,8 @@ import { TransactionsComponent } from 'src/app/modules/accounts/transactions/tra
     TrialbalancesComponent,
     ChartofaccountsComponent,
     TransactionsComponent,
+
+    ChartofaccountviewComponent,
   ]
 })
 

@@ -11,6 +11,8 @@ import { TrialbalancesComponent } from 'src/app/modules/accounts/trialbalances/t
 import { ChartofaccountsComponent } from 'src/app/modules/accounts/chartofaccounts/chartofaccounts.component';
 import { TransactionsComponent } from 'src/app/modules/accounts/transactions/transactions.component';
 
+import { ChartofaccountviewComponent } from 'src/app/modules/accounts/chartofaccounts/chartofaccountview/chartofaccountview.component';
+
 
 const routes: Routes = [{
   path: '', component: HomeComponent,
@@ -18,10 +20,12 @@ const routes: Routes = [{
     { path: 'dashboard', component: DashboardComponent },
     { path: 'indexes', component: IndexComponent },
 
-    { path: 'transactions', component: TransactionsComponent },
+    // { path: 'transactions', component: TransactionsComponent },
     { path: 'journals', component: JournalsComponent },
     { path: 'accounts', component: ChartofaccountsComponent },
     { path: 'trialbalances', component: TrialbalancesComponent },
+
+    { path: 'account', component: ChartofaccountviewComponent },
 
     { path: '', redirectTo: 'dashboard' },
     { path: '**', component: NotfoundComponent }
