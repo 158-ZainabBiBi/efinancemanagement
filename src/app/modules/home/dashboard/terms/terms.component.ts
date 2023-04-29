@@ -4,11 +4,11 @@ import { ToastrService } from 'ngx-toastr';
 import { OnFailService } from 'src/app/services/on-fail.service';
 
 @Component({
-  selector: 'app-contact',
-  templateUrl: './contact.component.html',
-  styleUrls: ['./contact.component.css']
+  selector: 'app-terms',
+  templateUrl: './terms.component.html',
+  styleUrls: ['./terms.component.css']
 })
-export class ContactComponent implements OnInit {
+export class TermsComponent implements OnInit {
 
   constructor(
     private toastrservice: ToastrService,

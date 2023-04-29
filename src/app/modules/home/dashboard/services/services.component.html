@@ -13,93 +13,109 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/fontawesome.css">
   <link rel="stylesheet" href="services.component.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
 
 <body>
-
-  <!-- ***** Preloader Start ***** -->
-  <div id="preloader" style="opacity: 0; visibility: hidden; display: none;">
-    <div class="jumper">
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-  </div>
-  <!-- ***** Preloader End ***** -->
 
   <!-- Page Content -->
   <div class="page-heading header-text">
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <h1>Our Services</h1>
+          <h1 style="color: #a4c639;">OUR SERVICES</h1>
           <span>We are over 20 years of experience</span>
         </div>
       </div>
     </div>
   </div>
 
+  <!-- services -->
   <div class="single-services">
     <div class="container">
       <div class="row" id="tabs">
         <div class="col-md-4">
           <ul>
-            <li><a (click)="showDiv(1)">Market Analysis <i class="fa fa-angle-right"></i></a></li>
-            <li><a (click)="showDiv(2)">Financial Data <i class="fa fa-angle-right"></i></a></li>
-            <li><a (click)="showDiv(3)">Accounting Service <i class="fa fa-angle-right"></i></a></li>
-            <li><a (click)="showDiv(4)">Overall Evaluation <i class="fa fa-angle-right"></i></a></li>
+            <li><a (click)="showDiv(1)" style="color:white;">Bank Account <i class="fa fa-angle-right"></i></a></li>
+            <li><a (click)="showDiv(2)" style="color:white;">Transaction <i class="fa fa-angle-right"></i></a></li>
+            <li><a (click)="showDiv(3)" style="color:white;">Journal Account <i class="fa fa-angle-right"></i></a></li>
+            <li><a (click)="showDiv(4)" style="color:white;">Chart of Account <i class="fa fa-angle-right"></i></a></li>
+            <li><a (click)="showDiv(5)" style="color:white;">Trial Balance <i class="fa fa-angle-right"></i></a></li>
           </ul>
         </div>
         <div class="col-md-8">
           <section class='tabs-content'>
             <div id='tab1' class="tab">
               <img src="../../../../../assets/images/single_service_01.jpg" alt="">
-              <h4>Market Analysis</h4>
-              <p>Vivamus sed feugiat elit. Pellentesque pretium, massa at placerat vehicula, neque turpis pulvinar
-                tortor, eget convallis lorem odio non tortor. Donec massa est, fermentum sit amet felis ac, maximus
-                luctus elit. Vivamus aliquet, dolor id imperdiet imperdiet, dui diam aliquet dui, a euismod metus enim
-                ac velit. Vivamus eu tristique odio, vel tristique quam.
-                <br><br>Proin eu molestie risus. Etiam suscipit pretium odio, at consectetur nisi. Sed ut dolor in augue
-                cursus ultrices. Vivamus mauris turpis, auctor vel facilisis in, tincidunt vel diam. Sed vitae
-                scelerisque orci. Nunc non magna orci. Aliquam commodo mauris ante.
+              <h4>Bank Account</h4>
+              <p>EFinance is a comprehensive finance software that includes a banking module to cater to the banking
+                needs of its users. With EFinance, users can manage their bank accounts, make transactions, and track
+                their finances all in one place. Our banking services are designed to provide users with a seamless and
+                hassle-free banking experience.
+                <br>With features like online banking, mobile banking, and real-time updates, users can access their
+                account information anytime, anywhere. Our software also ensures the security of all banking
+                transactions, providing users with peace of mind. With EFinance, banking has never been easier.
               </p>
+              <br><br>
+              <a (click)="showbankaccount()" class="filled-button">View Banks</a>
             </div>
             <div id='tab2' class="tab">
               <img src="../../../../../assets/images/single_service_02.jpg" alt="">
-              <h4>Financial Data</h4>
-              <p>Sed ut dolor in augue cursus ultrices. Vivamus mauris turpis, auctor vel facilisis in, tincidunt vel
-                diam. Sed vitae scelerisque orci. Nunc non magna orci. Aliquam commodo mauris ante, quis posuere nibh
-                vestibulum sit amet
-                <br><br>Pellentesque pretium, massa at placerat vehicula, neque turpis pulvinar tortor, eget convallis
-                lorem odio non tortor. Donec massa est, fermentum sit amet felis ac, maximus luctus elit. Vivamus
-                aliquet, dolor id imperdiet imperdiet, dui diam aliquet dui, a euismod metus enim ac velit. Vivamus eu
-                tristique odio, vel tristique quam.
+              <h4>Transaction</h4>
+              <p>EFinance's Transactions module provides a streamlined and efficient way to manage financial
+                transactions for businesses of all sizes. With our software, users can easily record, track, and
+                reconcile financial transactions, including payments, deposits, and transfers. Our system also allows
+                for customizable reports, providing valuable insights into cash flow, account balances, and more.
+                <br>Additionally, our secure platform ensures that all financial information is protected and backed
+                up for peace of mind. Whether you need to manage transactions for a small business or a large
+                corporation, EFinance's Transactions module has you covered.
               </p>
+              <br><br>
+              <a (click)="showtransaction()" class="filled-button">View Transactions</a>
             </div>
             <div id='tab3' class="tab">
               <img src="../../../../../assets/images/single_service_03.jpg" alt="">
-              <h4>Accounting Service</h4>
-              <p>Mauris lobortis quam id dictum dignissim. Donec pellentesque erat dolor, cursus dapibus turpis
-                hendrerit quis. Suspendisse at suscipit arcu. Nulla sed erat lectus. Nulla facilisi. In sit amet neque
-                sapien. Donec scelerisque mi at gravida efficitur. Nunc lacinia a est eu malesuada. Curabitur eleifend
-                elit sapien, sed pulvinar orci luctus eget.
-                <br><br>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nunc
-                vel ultrices nulla, ac tincidunt eros. Aenean quis tellus velit. Praesent pretium justo non auctor
-                condimentum.
+              <h4>Journal Account</h4>
+              <p>EFinance's Journal Account module is a powerful tool designed to help businesses easily manage their
+                financial transactions. With its intuitive interface and user-friendly features, users can easily
+                create, record, and manage journal entries, as well as track account balances and generate reports.
+                <br>The module supports multiple currencies and provides a high level of customization, allowing
+                users to tailor it to their specific needs. EFinance's Journal Account module ensures accurate and
+                timely financial reporting, streamlining the accounting process and improving overall business
+                efficiency.
               </p>
+              <br><br>
+              <a (click)="showjournal()" class="filled-button">View Journal</a>
             </div>
             <div id='tab4' class="tab">
               <img src="../../../../../assets/images/single_service_04.jpg" alt="">
-              <h4>Overall Evaluation</h4>
-              <p>Integer vehicula sapien quis dolor efficitur, eget molestie eros tempus. Curabitur sollicitudin, tortor
-                at suscipit volutpat, nisi arcu aliquet dui, vitae semper sem turpis quis libero. Quisque vulputate
-                lacinia nisl ac lobortis. Ut ultricies maximus turpis, in sollicitudin ligula posuere vel.
-                <br><br>Donec finibus maximus neque, vitae egestas quam imperdiet nec. Proin nec mauris eu tortor
-                consectetur tristique. Etiam suscipit ante a odio consequat, in ornare lacus suscipit. Cras ac libero
-                massa. Quisque rhoncus velit feugiat vulputate mollis. Donec nisl eros, malesuada sed nisi id,
-                condimentum condimentum quam.
+              <h4>Chart of Account</h4>
+              <p>EFinance's Chart of Account module provides a comprehensive solution for businesses to manage their
+                financial transactions with ease. With our software, you can create, customize, and manage your chart of
+                accounts according to your specific needs. Our module allows you to easily categorize and track your
+                income, expenses, assets, and liabilities, giving you a clear view of your financial position at any
+                given time.
+                <br>With detailed reports and customizable views, you can easily monitor and analyze your financial
+                data, helping you make informed decisions to drive your business forward.
               </p>
+              <br><br>
+              <a (click)="showchartofaccount()" class="filled-button">View Chart of Account</a>
+            </div>
+            <div id='tab5' class="tab">
+              <img src="../../../../../assets/images/single_service_05.jpg" alt="">
+              <h4>Trial Balance</h4>
+              <p>EFinance's Trial Balance module is designed to simplify and streamline the process of creating and
+                managing accurate financial statements. Our software provides a comprehensive view of all account
+                balances, allowing you to easily identify any discrepancies and make necessary adjustments. With
+                customizable reporting options, you can quickly generate trial balance reports in a format that meets
+                your specific needs.
+                <br>Our module also allows for easy integration with other financial software, ensuring seamless
+                collaboration and increased efficiency. Trust EFinance to help you maintain a clear and accurate picture
+                of your organization's financial health.
+              </p>
+              <br><br>
+              <a (click)="showtrialbalance()" class="filled-button">View Trial Balnace</a>
             </div>
           </section>
         </div>
@@ -107,50 +123,17 @@
     </div>
   </div>
 
+  <!-- ***** Call Back ***** -->
   <div class="callback-form">
     <div class="container">
       <div class="row">
         <div class="col-md-12">
           <div class="section-heading">
             <h2>Request a <em>call back</em></h2>
-            <span>Etiam suscipit ante a odio consequat</span>
-          </div>
-        </div>
-        <div class="col-md-12">
-          <div class="contact-form">
-            <form id="contact" action="" method="post">
-              <div class="row">
-                <div class="col-lg-4 col-md-12 col-sm-12">
-                  <fieldset>
-                    <input name="name" type="text" class="form-control" id="name" placeholder="Full Name" required="">
-                  </fieldset>
-                </div>
-                <div class="col-lg-4 col-md-12 col-sm-12">
-                  <fieldset>
-                    <input name="email" type="text" class="form-control" id="email" pattern="[^ @]*@[^ @]*"
-                      placeholder="E-Mail Address" required="">
-                  </fieldset>
-                </div>
-                <div class="col-lg-4 col-md-12 col-sm-12">
-                  <fieldset>
-                    <input name="subject" type="text" class="form-control" id="subject" placeholder="Subject"
-                      required="">
-                  </fieldset>
-                </div>
-                <div class="col-lg-12">
-                  <fieldset>
-                    <textarea name="message" rows="6" class="form-control" id="message" placeholder="Your Message"
-                      required=""></textarea>
-                  </fieldset>
-                </div>
-                <div class="col-lg-12">
-                  <fieldset>
-                    <button type="submit" id="form-submit" class="border-button">Send
-                      Message</button>
-                  </fieldset>
-                </div>
-              </div>
-            </form>
+            <span>FEEL FREE TO CONTACT US!
+            </span>
+            <br>
+            <a (click)="showcontact()" class="filled-button">Contact US</a>
           </div>
         </div>
       </div>
@@ -158,74 +141,39 @@
     <br><br><br><br><br><br>
   </div>
 
-  <!-- Footer Starts Here -->
+  <!-- Footer -->
   <footer>
     <div class="container">
       <div class="row">
-        <div class="col-md-3 footer-item">
-          <h4>Finance Business</h4>
-          <p>Vivamus tellus mi. Nulla ne cursus elit,vulputate. Sed ne cursus augue hasellus lacinia sapien
-            vitae.</p>
+        <div class="col-md-5 footer-item">
+          <h4>EFinance</h4>
+          <p>Managing finances made easy with EFinance. <br> Get social with us and never miss a beat.</p>
           <ul class="social-icons">
-            <li><a rel="nofollow" href="https://fb.com/templatemo" target="_blank"><i class="fa fa-facebook"></i></a>
+            <li><a href="https://www.facebook.com/efinanceteam/" target="_blank"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="https://www.instagram.com/e._.finance/" target="_blank"><i class="fa fa-instagram"></i></a>
             </li>
-            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-            <li><a href="#"><i class="fa fa-behance"></i></a></li>
+            <li><a href="https://twitter.com/E__Finance" target="_blank"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="https://www.linkedin.com/in/e-finance-58261b274/" target="_blank"><i
+                  class="fa fa-linkedin"></i></a></li>
           </ul>
         </div>
         <div class="col-md-3 footer-item">
-          <h4>Useful Links</h4>
+          <h4>Support</h4>
           <ul class="menu-list">
-            <li><a href="#">Vivamus ut tellus mi</a></li>
-            <li><a href="#">Nulla nec cursus elit</a></li>
-            <li><a href="#">Vulputate sed nec</a></li>
-            <li><a href="#">Cursus augue hasellus</a></li>
-            <li><a href="#">Lacinia ac sapien</a></li>
+            <li><a (click)="showservices()">Our Services</a></li>
+            <li><a (click)="showabout()">About Us</a></li>
+            <li><a (click)="showcontact()">Contact Us</a></li>
           </ul>
         </div>
         <div class="col-md-3 footer-item">
-          <h4>Additional Pages</h4>
+          <h4>Policies</h4>
           <ul class="menu-list">
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">How We Work</a></li>
-            <li><a href="#">Quick Support</a></li>
-            <li><a href="#">Contact Us</a></li>
-            <li><a href="#">Privacy Policy</a></li>
+            <li><a (click)="showlegal()">Legal</a></li>
+            <li><a (click)="showprivacy()">Privacy Policy</a></li>
+            <li><a (click)="showterms()">Terms of Service</a></li>
           </ul>
         </div>
-        <div class="col-md-3 footer-item last-item">
-          <h4>Contact Us</h4>
-          <div class="contact-form">
-            <form id="contact footer-contact" action="" method="post">
-              <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12">
-                  <fieldset>
-                    <input name="name" type="text" class="form-control" id="name" placeholder="Full Name" required="">
-                  </fieldset>
-                </div>
-                <div class="col-lg-12 col-md-12 col-sm-12">
-                  <fieldset>
-                    <input name="email" type="text" class="form-control" id="email" pattern="[^ @]*@[^ @]*"
-                      placeholder="E-Mail Address" required="">
-                  </fieldset>
-                </div>
-                <div class="col-lg-12">
-                  <fieldset>
-                    <textarea name="message" rows="6" class="form-control" id="message" placeholder="Your Message"
-                      required=""></textarea>
-                  </fieldset>
-                </div>
-                <div class="col-lg-12">
-                  <fieldset>
-                    <button type="submit" id="form-submit" class="filled-button">Send
-                      Message</button>
-                  </fieldset>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
+
       </div>
     </div>
   </footer>

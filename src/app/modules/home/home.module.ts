@@ -29,6 +29,9 @@ import { AboutComponent } from '../home/dashboard/about/about.component';
 import { ContactComponent } from '../home/dashboard/contact/contact.component';
 import { IndexComponent } from '../home/dashboard/index/index.component';
 import { ServicesComponent } from '../home/dashboard/services/services.component';
+import { LegalComponent } from './dashboard/legal/legal.component';
+import { PrivacyComponent } from './dashboard/privacy/privacy.component';
+import { TermsComponent } from './dashboard/terms/terms.component';
 
 //customer
 import { CustomerComponent } from 'src/app/components/customer/customer/customer.component';
@@ -138,6 +141,9 @@ import { TrialbalanceviewComponent } from 'src/app/modules/accounts/trialbalance
     ContactComponent,
     IndexComponent,
     ServicesComponent,
+    LegalComponent,
+    PrivacyComponent,
+    TermsComponent,
 
     CustomerComponent,
     ProductComponent,
@@ -201,7 +207,8 @@ import { TrialbalanceviewComponent } from 'src/app/modules/accounts/trialbalance
     BankaccountviewComponent,
     JournalviewComponent,
     TransactionviewComponent,
-    TrialbalanceviewComponent
+    TrialbalanceviewComponent,
+
   ]
 })
 

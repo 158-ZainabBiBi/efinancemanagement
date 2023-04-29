@@ -4,11 +4,11 @@ import { ToastrService } from 'ngx-toastr';
 import { OnFailService } from 'src/app/services/on-fail.service';
 
 @Component({
-  selector: 'app-contact',
-  templateUrl: './contact.component.html',
-  styleUrls: ['./contact.component.css']
+  selector: 'app-privacy',
+  templateUrl: './privacy.component.html',
+  styleUrls: ['./privacy.component.css']
 })
-export class ContactComponent implements OnInit {
+export class PrivacyComponent implements OnInit {
 
   constructor(
     private toastrservice: ToastrService,

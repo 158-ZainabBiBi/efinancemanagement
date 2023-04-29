@@ -19,16 +19,68 @@ export class AboutComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  // showcontact() {
+  //   this.router.navigate(["/home/contact"], {});
+  // }
+
+  // showabout() {
+  //   this.router.navigate(["/home/about"], {});
+  // }
+
+  // showservices() {
+  //   this.router.navigate(["/home/services"], {});
+  // }
+
+  // showlegal() {
+  //   this.router.navigate(["/home/legal"], {});
+  // }
+
+  // showprivacy() {
+  //   this.router.navigate(["/home/privacy"], {});
+  // }
+
+  // showterms() {
+  //   this.router.navigate(["/home/terms"], {});
+  // }
+
+  showindex() {
+    window.open('http://localhost:4200/#/home/indexes', '_blank');
+  }
+
   showcontact() {
-    this.router.navigate(["/home/customers"], {});
+    window.open('http://localhost:4200/#/home/contact', '_blank');
   }
 
   showabout() {
-    this.router.navigate(["/home/tellers"], {});
+    window.open('http://localhost:4200/#/home/about', '_blank');
   }
 
   showservices() {
-    this.router.navigate(["/home/advisors"], {});
+    window.open('http://localhost:4200/#/home/services', '_blank');
+  }
+
+  showlegal() {
+    window.open('http://localhost:4200/#/home/legal', '_blank');
+  }
+
+  showprivacy() {
+    window.open('http://localhost:4200/#/home/privacy', '_blank');
+  }
+
+  showterms() {
+    window.open('http://localhost:4200/#/home/terms', '_blank');
+  }
+
+  showbankaccount() {
+    window.open('http://localhost:4200/#/home/bankaccounts', '_blank');
+  }
+
+  showtransaction() {
+    window.open('http://localhost:4200/#/home/transactions', '_blank');
+  }
+
+  showjournal() {
+    window.open('http://localhost:4200/#/home/journals', '_blank');
   }
 
 }
