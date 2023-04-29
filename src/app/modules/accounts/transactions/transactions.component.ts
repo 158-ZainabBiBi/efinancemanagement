@@ -4,7 +4,7 @@ import { OnFailService } from '../../../services/on-fail.service';
 
 import { TransactionComponent } from '../../../components/account/transaction/transaction.component'
 import { TransactionService } from '../../../components/account/transaction/transaction.service';
-import { RouterLinkWithHref } from '@angular/router';
+import { Router, RouterLinkWithHref } from '@angular/router';
 
 declare var $: any;
 
@@ -22,12 +22,10 @@ export class TransactionsComponent implements OnInit {
     private transactionservice: TransactionService,
     private toastrservice: ToastrService,
     private onfailservice: OnFailService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
-  }
-
-  view() {
   }
 
   refresh() {
@@ -35,15 +33,23 @@ export class TransactionsComponent implements OnInit {
     this.cancel();
   }
 
+  show(row) {
+    this.router.navigate(["/home/transaction"], { queryParams: { transaction: row.data.transaction_ID } });
+  }
+
+  view() {
+  }
+
   addNew() {
-    this.addtransaction.add();
-    $("#add").modal("show");
+    this.router.navigate(["/home/transaction"], {});
+    // this.addtransaction.add();
+    // $("#add").modal("show");
   }
 
   edit(row) {
     this.edittransaction.transaction = {
       transaction_ID: row.data.transaction_ID,
-      person_ID: row.data.person_ID,
+      customer_ID: row.data.customer_ID,
       currency_ID: row.data.currency_ID,
       transactiontype_ID: row.data.transactiontype_ID,
 

@@ -4,7 +4,7 @@ import { OnFailService } from '../../../services/on-fail.service';
 
 import { TrialbalanceComponent } from '../../../components/account/trialbalance/trialbalance.component'
 import { TrialbalanceService } from '../../../components/account/trialbalance/trialbalance.service';
-import { RouterLinkWithHref } from '@angular/router';
+import { Router, RouterLinkWithHref } from '@angular/router';
 
 declare var $: any;
 
@@ -22,12 +22,10 @@ export class TrialbalancesComponent implements OnInit {
     private trialbalanceservice: TrialbalanceService,
     private toastrservice: ToastrService,
     private onfailservice: OnFailService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
-  }
-
-  view() {
   }
 
   refresh() {
@@ -35,9 +33,17 @@ export class TrialbalancesComponent implements OnInit {
     this.cancel();
   }
 
+  show(row) {
+    this.router.navigate(["/home/trialbalance"], { queryParams: { trialbalance: row.data.trialbalance_ID } });
+  }
+
+  view() {
+  }
+
   addNew() {
-    this.addtrialbalance.add();
-    $("#add").modal("show");
+    this.router.navigate(["/home/trialbalance"], {});
+    // this.addtrialbalance.add();
+    // $("#add").modal("show");
   }
 
   edit(row) {

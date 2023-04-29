@@ -7,6 +7,8 @@ import { JournalService } from './journal.service';
 import { JournallineComponent } from '../journalline/journalline.component';
 import { TransactionComponent } from '../transaction/transaction.component';
 
+declare var $: any;
+
 @Component({
   selector: 'app-journal',
   templateUrl: './journal.component.html',
@@ -14,6 +16,8 @@ import { TransactionComponent } from '../transaction/transaction.component';
 })
 export class JournalComponent implements OnInit {
   @ViewChild("journalline") journalline: JournallineComponent;
+  @ViewChild("addjournalline") addjournalline: JournallineComponent;
+  @ViewChild("editjournalline") editjournalline: JournallineComponent;
   @ViewChild("transaction") transaction: TransactionComponent;
 
   @Input()
@@ -132,6 +136,23 @@ export class JournalComponent implements OnInit {
     };
   }
 
+  journallineAddNew() {
+    this.addjournalline.add();
+    $("#addjournalline").modal("show");
+  }
+
+  journallineCancel() {
+    $("#addjournalline").modal("hide");
+    $("#editjournalline").modal("hide");
+    this.journalline.journallines = this.addjournalline.journallines;
+  }
+
+  onJournallineChange(journalline) {
+    console.log(journalline);
+    this.journal.journal_NAME = journalline.journalline_NAME;
+    this.journal.journal_DESC = journalline.journalline_DESC;
+  }
+
   update(row) {
     this.edit.next(row);
   }
@@ -155,7 +176,7 @@ export class JournalComponent implements OnInit {
   journalCancel() {
     this.disabled = true;
     if (this.journal.journal_ID == 0) {
-      this.router.navigate(["/home/journals "], {});
+      this.router.navigate(["/home/journals"], {});
     }
   }
 

@@ -24,6 +24,8 @@ export class LedgeraccountopeningbalanceComponent implements OnInit {
   @Input()
   all: boolean = false;
   @Input()
+  balancetypedisabled: boolean = false;
+  @Input()
   ledgeraccountopeningbalanceID = null;
   @Input()
   ledgeraccountID = null;
@@ -122,6 +124,14 @@ export class LedgeraccountopeningbalanceComponent implements OnInit {
 
       isactive: true
     };
+  }
+
+  onCreditChange() {
+    this.balancetypedisabled = true;
+  }
+
+  onDebitChange() {
+    this.balancetypedisabled = true;
   }
 
   update(row) {

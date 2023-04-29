@@ -22,6 +22,8 @@ export class BankopeningbalanceComponent implements OnInit {
   @Input()
   disabled: boolean = false;
   @Input()
+  balancetypedisabled: boolean = false;
+  @Input()
   all: boolean = false;
   @Input()
   bankopeningbalanceID = null;
@@ -122,6 +124,14 @@ export class BankopeningbalanceComponent implements OnInit {
 
       isactive: true,
     };
+  }
+
+  onCreditChange() {
+    this.balancetypedisabled = true;
+  }
+
+  onDebitChange() {
+    this.balancetypedisabled = true;
   }
 
   update(row) {

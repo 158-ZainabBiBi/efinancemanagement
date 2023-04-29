@@ -145,7 +145,7 @@
           alignment="left"></dxi-column>
         <dxi-column dataField="currency.description" caption="Currency" cssClass="myClass"
           alignment="left"></dxi-column>
-        <dxi-column dataField="person.contact_VALUE" caption="Contact" cssClass="myClass"
+        <dxi-column dataField="customer.customer_NAME" caption="Customer" cssClass="myClass"
           alignment="left"></dxi-column>
         <dxi-column dataField="transaction_DESC" caption="Description" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass" alignment="center">
@@ -187,7 +187,7 @@
           alignment="left"></dxi-column>
         <dxi-column dataField="currency.description" caption="Currency" cssClass="myClass"
           alignment="left"></dxi-column>
-        <dxi-column dataField="person.contact_VALUE" caption="Contact" cssClass="myClass"
+        <dxi-column dataField="customer.customer_NAME" caption="Customer" cssClass="myClass"
           alignment="left"></dxi-column>
         <dxi-column dataField="transaction_DESC" caption="Description" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass" alignment="center">
@@ -256,8 +256,7 @@
                 [transactiontypeID]="transaction.transactiontype_ID"></app-transactiontype>
             </div>
             <div class="col-md-6">
-              <app-person #person [view]="1"
-                [personID]="transaction.person_ID"></app-person>
+              <app-customer #customer [view]="1" [customerID]="transaction.customer_ID"></app-customer>
             </div>
           </div>
           <div class="row">
@@ -335,8 +334,7 @@
                 [transactiontypeID]="transaction.transactiontype_ID"></app-transactiontype>
             </div>
             <div class="col-md-6">
-              <app-person #person [view]="1"
-                [personID]="transaction.person_ID"></app-person>
+              <app-customer #customer [view]="1" [customerID]="transaction.customer_ID"></app-customer>
             </div>
           </div>
           <div class="row">
@@ -438,8 +436,8 @@
                 [transactiontypeID]="transaction.transactiontype_ID"></app-transactiontype>
             </div>
             <div class="col-md-6">
-              <app-person #person [view]="1" [disabled]="disabled"
-                [personID]="transaction.person_ID"></app-person>
+              <app-customer #customer [view]="1" [disabled]="disabled"
+                [customerID]="transaction.customer_ID"></app-customer>
             </div>
           </div>
           <div class="row">

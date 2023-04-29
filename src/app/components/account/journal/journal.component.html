@@ -135,15 +135,16 @@
         <dxi-column dataField="journal_CODE" caption="Code" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="journal_DATE" caption="Date" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="journal_NAME" caption="Name" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="transaction.transaction_DATE" caption="Date" cssClass="myClass"
+        <dxi-column dataField="transaction.transaction_CODE" caption="Transaction Code" cssClass="myClass"
           alignment="left"></dxi-column>
-        <dxi-column dataField="transaction.transaction_CODE" caption="Code" cssClass="myClass"
+        <dxi-column dataField="transaction.transaction_DATE" caption="Transaction Date" cssClass="myClass"
           alignment="left"></dxi-column>
-        <dxi-column dataField="journalline.ledgeraccount.ledgeraccount_NAME" caption="Account" cssClass="myClass"
+        <dxi-column dataField="journalline.ledgeraccount.ledgeraccount_NAME" caption="Account Name" cssClass="myClass"
           alignment="left"></dxi-column>
-        <dxi-column dataField="journalline.balancetype.description" caption="Balance Type" cssClass="myClass"
+        <dxi-column dataField="journalline.ledgeraccount.balance_CREDIT" caption="Credit" cssClass="myClass"
           alignment="left"></dxi-column>
-        <dxi-column dataField="journalline.amount" caption="Amount" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="journalline.ledgeraccount.balance_DEBIT" caption="Debit" cssClass="myClass"
+          alignment="left"></dxi-column>
         <dxi-column dataField="journal_DESC" caption="Description" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass" alignment="center">
         </dxi-column>
@@ -178,22 +179,23 @@
         <dxi-column dataField="journal_CODE" caption="Code" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="journal_DATE" caption="Date" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="journal_NAME" caption="Name" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="transaction.transaction_DATE" caption="Date" cssClass="myClass"
-          alignment="left"></dxi-column>
         <dxi-column dataField="transaction.transaction_CODE" caption="Code" cssClass="myClass"
+          alignment="left"></dxi-column>
+        <dxi-column dataField="transaction.transaction_DATE" caption="Date" cssClass="myClass"
           alignment="left"></dxi-column>
         <dxi-column dataField="journalline.ledgeraccount.ledgeraccount_NAME" caption="Account" cssClass="myClass"
           alignment="left"></dxi-column>
-        <dxi-column dataField="journalline.balancetype.description" caption="Balance Type" cssClass="myClass"
+        <dxi-column dataField="journalline.ledgeraccount.balance_CREDIT" caption="Credit" cssClass="myClass"
           alignment="left"></dxi-column>
-        <dxi-column dataField="journalline.amount" caption="Amount" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="journalline.ledgeraccount.balance_DEBIT" caption="Debit" cssClass="myClass"
+          alignment="left"></dxi-column>
         <dxi-column dataField="journal_DESC" caption="Description" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass" alignment="center">
         </dxi-column>
 
         <div *dxTemplate="let data of 'cellTemplate'">
-          <a href="javascript:void" class="" (click)="update(data)">
-            <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+          <a href="javascript:void" class="" (click)="showView(data)">
+            <i class="fa fa-eye" aria-hidden="true"></i></a>
         </div>
       </dx-data-grid>
     </div>
@@ -218,21 +220,24 @@
         <dxi-column [width]="75" [allowFiltering]="false" [allowSorting]="false" alignment="center"
           cellTemplate="cellTemplate"></dxi-column>
 
-        <dxi-column dataField="transaction.transaction_DATE" caption="Date" cssClass="myClass"
-          alignment="left"></dxi-column>
+        <dxi-column dataField="journal_CODE" caption="Code" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="transaction.transaction_CODE" caption="Code" cssClass="myClass"
+          alignment="left"></dxi-column>
+        <dxi-column dataField="transaction.transaction_DATE" caption="Date" cssClass="myClass"
           alignment="left"></dxi-column>
         <dxi-column dataField="journalline.ledgeraccount.ledgeraccount_NAME" caption="Account" cssClass="myClass"
           alignment="left"></dxi-column>
-        <dxi-column dataField="journalline.balancetype.description" caption="Balance Type" cssClass="myClass"
+        <dxi-column dataField="journalline.ledgeraccount.balance_CREDIT" caption="Credit" cssClass="myClass"
           alignment="left"></dxi-column>
-        <dxi-column dataField="journalline.amount" caption="Amount" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass"
-          alignment="center"></dxi-column>
+        <dxi-column dataField="journalline.ledgeraccount.balance_DEBIT" caption="Debit" cssClass="myClass"
+          alignment="left"></dxi-column>
+        <dxi-column dataField="journal_DESC" caption="Description" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass" alignment="center">
+        </dxi-column>
 
         <div *dxTemplate="let data of 'cellTemplate'">
-          <a href="javascript:void" class="" (click)="update(data)">
-            <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+          <a href="javascript:void" class="" (click)="showView(data)">
+            <i class="fa fa-eye" aria-hidden="true"></i></a>
         </div>
       </dx-data-grid>
     </div>
@@ -433,9 +438,18 @@
               <app-transaction #transaction [view]="1" [disabled]="disabled"
                 [transactionID]="journal.transaction_ID"></app-transaction>
             </div>
-            <div class="col-md-6">
-              <app-journalline #journalline [view]="1" [disabled]="disabled"
-                [journallineID]="journal.journalline_ID"></app-journalline>
+          </div>
+          <div class="row">
+            <div class="col-md-10">
+              <app-journalline #journalline [view]="1" [disabled]='disabled' [journallineID]=journal.journalline_ID
+                (onJournallineChange)="onJournallineChange($event)"></app-journalline>
+            </div>
+            <div class="col-md-2">
+              <br />
+              <button type="button" *ngIf="journal.journal_ID==0" (click)="journallineAddNew()"
+                class="btn btn-secondary btn-sm">
+                <i class="fas fa-plus fa-fw"></i> Add New Journal Line
+              </button>
             </div>
           </div>
           <div class="row">
@@ -482,4 +496,8 @@
       </div>
     </div>
   </div>
+</div>
+
+<div aria-labelledby="exampleModalLabel" class="modal fade show" id="addjournalline" role="dialog" tabindex="-1">
+  <app-journalline #addjournalline [view]=3 (cancel)="journallineCancel()"></app-journalline>
 </div>

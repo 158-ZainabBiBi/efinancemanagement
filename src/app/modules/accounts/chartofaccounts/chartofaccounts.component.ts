@@ -29,14 +29,14 @@ export class ChartofaccountsComponent implements OnInit {
   }
 
   show(row) {
-    this.router.navigate(["/home/account"], { queryParams: { coaaccount: row.data.coaaccount_ID } });
+    this.router.navigate(["/home/chartofaccount"], { queryParams: { coaaccount: row.data.coaaccount_ID } });
   }
 
   view() {
   }
 
   addNew() {
-    this.router.navigate(["/home/account"], {});
+    this.router.navigate(["/home/chartofaccount"], {});
   }
 
   edit(row) {

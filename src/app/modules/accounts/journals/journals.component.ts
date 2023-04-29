@@ -4,7 +4,7 @@ import { OnFailService } from '../../../services/on-fail.service';
 
 import { JournalComponent } from '../../../components/account/journal/journal.component'
 import { JournalService } from '../../../components/account/journal/journal.service';
-import { RouterLinkWithHref } from '@angular/router';
+import { Router, RouterLinkWithHref } from '@angular/router';
 
 declare var $: any;
 
@@ -22,12 +22,10 @@ export class JournalsComponent implements OnInit {
     private journalservice: JournalService,
     private toastrservice: ToastrService,
     private onfailservice: OnFailService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
-  }
-
-  view() {
   }
 
   refresh() {
@@ -35,9 +33,17 @@ export class JournalsComponent implements OnInit {
     this.cancel();
   }
 
+  show(row) {
+    this.router.navigate(["/home/journal"], { queryParams: { journal: row.data.journal_ID } });
+  }
+
+  view() {
+  }
+
   addNew() {
-    this.addjournal.add();
-    $("#add").modal("show");
+    this.router.navigate(["/home/journal"], {});
+    // this.addjournal.add();
+    // $("#add").modal("show");
   }
 
   edit(row) {

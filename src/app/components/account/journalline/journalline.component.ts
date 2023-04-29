@@ -6,6 +6,8 @@ import { OnFailService } from '../../../services/on-fail.service';
 import { JournallineService } from './journalline.service';
 import { LedgeraccountComponent } from '../ledgeraccount/ledgeraccount.component';
 
+declare var $: any;
+
 @Component({
   selector: 'app-journalline',
   templateUrl: './journalline.component.html',
@@ -13,6 +15,8 @@ import { LedgeraccountComponent } from '../ledgeraccount/ledgeraccount.component
 })
 export class JournallineComponent implements OnInit {
   @ViewChild("ledgeraccount") ledgeraccount: LedgeraccountComponent;
+  @ViewChild("addledgeraccount") addledgeraccount: LedgeraccountComponent;
+  @ViewChild("editledgeraccount") editledgeraccount: LedgeraccountComponent;
 
   @Input()
   view: number = 1;
@@ -43,6 +47,7 @@ export class JournallineComponent implements OnInit {
 
     journalline_CODE: null,
     journalline_NAME: null,
+    journalline_DESC: null,
 
     isactive: true,
   }
@@ -116,9 +121,26 @@ export class JournallineComponent implements OnInit {
 
       journalline_CODE: null,
       journalline_NAME: null,
+      journalline_DESC: null,
 
       isactive: true,
     };
+  }
+
+  ledgeraccountAddNew() {
+    this.addledgeraccount.add();
+    $("#addledgeraccount").modal("show");
+  }
+
+  ledgeraccountCancel() {
+    $("#addledgeraccount").modal("hide");
+    $("#editledgeraccount").modal("hide");
+    this.ledgeraccount.ledgeraccounts = this.addledgeraccount.ledgeraccounts;
+  }
+
+  onLedgeraccountChange(ledgeraccount) {
+    this.journalline.journalline_NAME = ledgeraccount.ledgeraccount_NAME;
+    this.journalline.journalline_DESC = ledgeraccount.ledgeraccount_DESC;
   }
 
   update(row) {

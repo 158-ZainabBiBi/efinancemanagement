@@ -4,13 +4,13 @@ import { Router, ActivatedRoute } from '@angular/router';
 declare var $: any;
 
 @Component({
-  selector: 'app-chartofaccountview',
-  templateUrl: './chartofaccountview.component.html',
-  styleUrls: ['./chartofaccountview.component.css']
+  selector: 'app-journalview',
+  templateUrl: './journalview.component.html',
+  styleUrls: ['./journalview.component.css']
 })
-export class ChartofaccountviewComponent implements OnInit {
+export class JournalviewComponent implements OnInit {
 
-  coaaccountID = 0;
+  journalID = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -19,14 +19,14 @@ export class ChartofaccountviewComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
-      if (params.coaaccount) {
-        this.coaaccountID = params.coaaccount;
+      if (params.journal) {
+        this.journalID = params.journal;
       }
     });
   }
 
   cancel() {
-    this.router.navigate(["/home/chartofaccounts"], { queryParams: {} });
+    this.router.navigate(["/home/journals"], { queryParams: {} });
   }
 
   refresh() {

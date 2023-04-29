@@ -150,6 +150,8 @@
         <dxi-column dataField="ledgeraccount_NAME" caption="Name" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="ledgeraccounttype.description" caption="Category" cssClass="myClass"
           alignment="center"></dxi-column>
+        <dxi-column dataField="balance_CREDIT" caption="Credit" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="balance_DEBIT" caption="Debit" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="ledgeraccountclassification.ledgeraccountclassification_NAME" caption="Category Group"
           cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="ledgeraccount_DESC" caption="Description" cssClass="myClass"
@@ -190,6 +192,8 @@
         <dxi-column dataField="ledgeraccount_NAME" caption="Name" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="ledgeraccounttype.description" caption="Category" cssClass="myClass"
           alignment="center"></dxi-column>
+        <dxi-column dataField="balance_CREDIT" caption="Credit" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="balance_DEBIT" caption="Debit" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="ledgeraccountclassification.ledgeraccountclassification_NAME" caption="Category Group"
           cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="ledgeraccount_DESC" caption="Description" cssClass="myClass"
@@ -395,6 +399,22 @@
                 <label class="control-label"> Name <span style="color:red">*</span></label>
                 <input type="text" class="form-control" name="ledgeraccount_NAME"
                   [(ngModel)]="ledgeraccount.ledgeraccount_NAME" maxlength="50" [disabled]="disabled" required>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="control-label"> Credit <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="balance_CREDIT" [disabled]="balancetypedisabled"
+                  [(ngModel)]="ledgeraccount.balance_CREDIT" maxlength="50" required (change)="onCreditChange()">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="control-label"> Debit <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="balance_DEBIT" [disabled]="balancetypedisabled"
+                  [(ngModel)]="ledgeraccount.balance_DEBIT" maxlength="50" required (change)="onDebitChange()">
               </div>
             </div>
           </div>

@@ -1,0 +1,85 @@
+<div class="collapse-card-h container">
+  <div class="row">
+    <div class="col-md-12">
+      <app-transaction [view]=5 [transactionID]="transactionID" (cancel)="cancel()"></app-transaction>
+    </div>
+  </div>
+</div>
+
+<div class="collapse-card-h container" *ngIf="transactionID!=0">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card-primary card">
+        <div class="card-header">
+          <div class="align-items-center row">
+            <div class="col">
+              <a href="javascript:void" aria-controls="collapse-customerinfo1" aria-expanded="true"
+                class="card-title">Journal Account
+              </a>
+            </div>
+            <div class="col-auto">
+              <button (click)="journaladdNew()" class="btn btn-secondary btn-sm">
+                <i class="fas fa-plus fa-fw"></i> Add New
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-lg-12">
+              <app-journal #journals [view]=22 (show)="journalshow($event)"
+                [transactionID]="transactionID"></app-journal>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="collapse-card-h container" *ngIf="transactionID!=0">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card-primary card">
+        <div class="card-header">
+          <div class="align-items-center row">
+            <div class="col">
+              <a href="javascript:void" aria-controls="collapse-customerinfo1" aria-expanded="true"
+                class="card-title">Ledger Entry
+              </a>
+            </div>
+            <div class="col-auto">
+              <button (click)="ledgerentryaddNew()" class="btn btn-secondary btn-sm">
+                <i class="fas fa-plus fa-fw"></i> Add New
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-lg-12">
+              <app-ledgerentry #ledgerentrys [view]=22 (show)="ledgerentryshow($event)"
+                [transactionID]="transactionID"></app-ledgerentry>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div aria-labelledby="exampleModalLabel" class="modal fade show" id="addjournal" role="dialog" tabindex="-1">
+  <app-journal #addjournal [view]=3 (refresh)="refresh()" (cancel)="journalcancel()"></app-journal>
+</div>
+
+<div aria-labelledby="exampleModalLabel" class="modal fade show" id="editjournal" role="dialog" tabindex="-1">
+  <app-journal #editjournal [view]=4 (refresh)="refresh()" (cancel)="journalcancel()"></app-journal>
+</div>
+
+<div aria-labelledby="exampleModalLabel" class="modal fade show" id="addledgerentry" role="dialog" tabindex="-1">
+  <app-ledgerentry #addledgerentry [view]=3 (refresh)="refresh()" (cancel)="ledgerentrycancel()"></app-ledgerentry>
+</div>
+
+<div aria-labelledby="exampleModalLabel" class="modal fade show" id="editledgerentry" role="dialog" tabindex="-1">
+  <app-ledgerentry #editledgerentry [view]=4 (refresh)="refresh()" (cancel)="ledgerentrycancel()"></app-ledgerentry>
+</div>

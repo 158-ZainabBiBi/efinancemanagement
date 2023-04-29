@@ -148,10 +148,14 @@
 
         <dxi-column dataField="trialbalance_CODE" caption="Code" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="trialbalance_NAME" caption="Name" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="ledgerentry.ledgeraccount.ledgeraccount_NAME" caption="Account Name" cssClass="myClass"
-          alignment="left"></dxi-column>
         <dxi-column dataField="balance_FROMDATE" caption="From Date" cssClass="myClass" alignment="center"></dxi-column>
         <dxi-column dataField="balance_TODATE" caption="To Date" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="ledgerentry.ledgeraccount.ledgeraccount_NAME" caption="Account Name" cssClass="myClass"
+          alignment="left"></dxi-column>
+        <dxi-column dataField="ledgerentry.credit_AMOUNT" caption="Account Credit" cssClass="myClass"
+          alignment="left"></dxi-column>
+        <dxi-column dataField="ledgerentry.debit_AMOUNT" caption="Account Debit" cssClass="myClass"
+          alignment="left"></dxi-column>
         <dxi-column dataField="balance_CREDIT" caption="Credit" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="balance_DEBIT" caption="Debit" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="trialbalance_DESC" caption="Description" cssClass="myClass"
@@ -188,10 +192,14 @@
 
         <dxi-column dataField="trialbalance_CODE" caption="Code" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="trialbalance_NAME" caption="Name" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="ledgerentry.ledgeraccount.ledgeraccount_NAME" caption="Account Name" cssClass="myClass"
-          alignment="left"></dxi-column>
         <dxi-column dataField="balance_FROMDATE" caption="From Date" cssClass="myClass" alignment="center"></dxi-column>
         <dxi-column dataField="balance_TODATE" caption="To Date" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="ledgerentry.ledgeraccount.ledgeraccount_NAME" caption="Account Name" cssClass="myClass"
+          alignment="left"></dxi-column>
+        <dxi-column dataField="ledgerentry.credit_AMOUNT" caption="Account Credit" cssClass="myClass"
+          alignment="left"></dxi-column>
+        <dxi-column dataField="ledgerentry.debit_AMOUNT" caption="Account Debit" cssClass="myClass"
+          alignment="left"></dxi-column>
         <dxi-column dataField="balance_CREDIT" caption="Credit" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="balance_DEBIT" caption="Debit" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="trialbalance_DESC" caption="Description" cssClass="myClass"
@@ -226,12 +234,19 @@
         <dxi-column [width]="75" [allowFiltering]="false" [allowSorting]="false" alignment="center"
           cellTemplate="cellTemplate"></dxi-column>
 
-        <dxi-column dataField="ledgerentry.ledgeraccount.ledgeraccount_NAME" caption="Account Name" cssClass="myClass"
-          alignment="left"></dxi-column>
+        <dxi-column dataField="trialbalance_CODE" caption="Code" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="balance_FROMDATE" caption="From Date" cssClass="myClass" alignment="center"></dxi-column>
         <dxi-column dataField="balance_TODATE" caption="To Date" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="ledgerentry.ledgeraccount.ledgeraccount_NAME" caption="Account Name" cssClass="myClass"
+          alignment="left"></dxi-column>
+        <dxi-column dataField="ledgerentry.credit_AMOUNT" caption="Account Credit" cssClass="myClass"
+          alignment="left"></dxi-column>
+        <dxi-column dataField="ledgerentry.debit_AMOUNT" caption="Account Debit" cssClass="myClass"
+          alignment="left"></dxi-column>
         <dxi-column dataField="balance_CREDIT" caption="Credit" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="balance_DEBIT" caption="Debit" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="trialbalance_DESC" caption="Description" cssClass="myClass"
+          alignment="left"></dxi-column>
         <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass"
           alignment="center"></dxi-column>
 
@@ -437,8 +452,7 @@
       <div class="align-items-center row">
         <div class="col" *ngIf="trialbalance.trialbalance_ID==0">
           <a href="javascript:void" aria-controls="collapse-trialbalanceinfo1" aria-expanded="true"
-            class="card-title">Add
-            New Trial Balance
+            class="card-title">Add New Trial Balance
           </a>
         </div>
         <div class="col" *ngIf="trialbalance.trialbalance_ID!=0 && disabled==false">
@@ -473,7 +487,7 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-12">
               <app-ledgerentry #ledgerentry [view]="1" [disabled]="disabled"
                 [ledgerentryID]="trialbalance.ledgerentry_ID"></app-ledgerentry>
             </div>
@@ -494,7 +508,7 @@
               </div>
             </div>
           </div>
-          <div class="row">
+          <!-- <div class="row">
             <div class="col-md-6">
               <div class="form-group">
                 <label class="control-label"> Credit <span style="color:red">*</span></label>
@@ -507,6 +521,22 @@
                 <label class="control-label"> Debit <span style="color:red">*</span></label>
                 <input type="text" class="form-control" name="balance_DEBIT" [disabled]="disabled"
                   [(ngModel)]="trialbalance.balance_DEBIT" maxlength="50" required>
+              </div>
+            </div>
+          </div> -->
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="control-label"> Credit <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="balance_CREDIT" [disabled]="balancetypedisabled"
+                  [(ngModel)]="trialbalance.balance_CREDIT" maxlength="50" required (change)="onCreditChange()">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="control-label"> Debit <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="balance_DEBIT" [disabled]="balancetypedisabled"
+                  [(ngModel)]="trialbalance.balance_DEBIT" maxlength="50" required (change)="onDebitChange()">
               </div>
             </div>
           </div>

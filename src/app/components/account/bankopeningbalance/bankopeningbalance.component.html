@@ -367,25 +367,18 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-6">
               <div class="form-group">
-                <label class="control-label">Date<span style="color:red">*</span></label>
-                <input type="date" class="form-control" name="balance_DATE" [disabled]="disabled"
-                  [(ngModel)]="bankopeningbalance.balance_DATE" maxlength="50" required>
+                <label class="control-label"> Credit <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="balance_CREDIT" [disabled]="balancetypedisabled"
+                  [(ngModel)]="bankopeningbalance.balance_CREDIT" maxlength="50" required (change)="onCreditChange()">
               </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-6">
               <div class="form-group">
-                <label class="control-label">Credit<span style="color:red">*</span></label>
-                <input type="text" class="form-control" name="balance_CREDIT" [disabled]="disabled"
-                  [(ngModel)]="bankopeningbalance.balance_CREDIT" maxlength="50" required>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="form-group">
-                <label class="control-label">Debit <span style="color:red">*</span></label>
-                <input type="text" class="form-control" name="balance_DEBIT" [disabled]="disabled"
-                  [(ngModel)]="bankopeningbalance.balance_DEBIT" maxlength="50" required>
+                <label class="control-label"> Debit <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="balance_DEBIT" [disabled]="balancetypedisabled"
+                  [(ngModel)]="bankopeningbalance.balance_DEBIT" maxlength="50" required (change)="onDebitChange()">
               </div>
             </div>
           </div>

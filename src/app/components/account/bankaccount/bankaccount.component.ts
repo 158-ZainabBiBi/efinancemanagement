@@ -10,6 +10,8 @@ import { LedgeraccountComponent } from '../ledgeraccount/ledgeraccount.component
 import { PersonComponent } from '../../person/person/person.component';
 import { LocationsearchfilterComponent } from '../../location/locationsearchfilter/locationsearchfilter.component';
 
+declare var $: any;
+
 @Component({
   selector: 'app-bankaccount',
   templateUrl: './bankaccount.component.html',
@@ -21,7 +23,10 @@ export class BankaccountComponent implements OnInit {
   @ViewChild("locationsearchfilter") locationsearchfilter: LocationsearchfilterComponent;
   @ViewChild("person") person: PersonComponent;
   @ViewChild("account") account: AccountComponent;
+
   @ViewChild("ledgeraccount") ledgeraccount: LedgeraccountComponent;
+  @ViewChild("addledgeraccount") addledgeraccount: LedgeraccountComponent;
+  @ViewChild("editledgeraccount") editledgeraccount: LedgeraccountComponent;
 
   @Input()
   view: number = 1;
@@ -165,6 +170,22 @@ export class BankaccountComponent implements OnInit {
     };
   }
 
+  ledgeraccountAddNew() {
+    this.addledgeraccount.add();
+    $("#addledgeraccount").modal("show");
+  }
+
+  ledgeraccountCancel() {
+    $("#addledgeraccount").modal("hide");
+    $("#editledgeraccount").modal("hide");
+    this.ledgeraccount.ledgeraccounts = this.addledgeraccount.ledgeraccounts;
+  }
+
+  onLedgeraccountChange(ledgeraccount) {
+    // this.bankaccount.bankaccount_NAME = ledgeraccount.ledgeraccount_NAME;
+    // this.bankaccount.bankaccount_DESC = ledgeraccount.ledgeraccount_DESC;
+  }
+
   update(row) {
     this.edit.next(row);
   }
@@ -188,7 +209,7 @@ export class BankaccountComponent implements OnInit {
   bankaccountCancel() {
     this.disabled = true;
     if (this.bankaccount.bankaccount_ID == 0) {
-      this.router.navigate(["/home/bankaccounts "], {});
+      this.router.navigate(["/home/bankaccounts"], {});
     }
   }
 
@@ -254,7 +275,7 @@ export class BankaccountComponent implements OnInit {
         } else {
           this.setBankaccount(this.bankaccountservice.getDetail(response));
           if (this.locationsearchfilter != null)
-          this.locationsearchfilter.setLocation(this.bankaccount.locations);
+            this.locationsearchfilter.setLocation(this.bankaccount.locations);
         }
       }
     }, error => {

@@ -7,6 +7,8 @@ import { LedgerentryService } from './ledgerentry.service';
 import { LedgeraccountComponent } from '../ledgeraccount/ledgeraccount.component';
 import { TransactionComponent } from '../transaction/transaction.component';
 
+declare var $: any;
+
 @Component({
   selector: 'app-ledgerentry',
   templateUrl: './ledgerentry.component.html',
@@ -14,6 +16,8 @@ import { TransactionComponent } from '../transaction/transaction.component';
 })
 export class LedgerentryComponent implements OnInit {
   @ViewChild("ledgeraccount") ledgeraccount: LedgeraccountComponent;
+  @ViewChild("addledgeraccount") addledgeraccount: LedgeraccountComponent;
+  @ViewChild("editledgeraccount") editledgeraccount: LedgeraccountComponent;
   @ViewChild("transaction") transaction: TransactionComponent;
 
   @Input()
@@ -121,19 +125,35 @@ export class LedgerentryComponent implements OnInit {
 
   add() {
     this.ledgerentry = {
-    ledgerentry_ID: 0,
-    ledgeraccount_ID: null,
-    transaction_ID: null,
+      ledgerentry_ID: 0,
+      ledgeraccount_ID: null,
+      transaction_ID: null,
 
-    ledgerentry_CODE: null,
-    ledgerentry_NAME: null,
-    ledgerentry_DESC: null,
+      ledgerentry_CODE: null,
+      ledgerentry_NAME: null,
+      ledgerentry_DESC: null,
 
-    credit_AMOUNT: null,
-    debit_AMOUNT: null,
+      credit_AMOUNT: null,
+      debit_AMOUNT: null,
 
-    isactive: true,
+      isactive: true,
     };
+  }
+
+  ledgeraccountAddNew() {
+    this.addledgeraccount.add();
+    $("#addledgeraccount").modal("show");
+  }
+
+  ledgeraccountCancel() {
+    $("#addledgeraccount").modal("hide");
+    $("#editledgeraccount").modal("hide");
+    this.ledgeraccount.ledgeraccounts = this.addledgeraccount.ledgeraccounts;
+  }
+
+  onLedgeraccountChange(ledgeraccount) {
+    this.ledgerentry.ledgerentry_NAME = ledgeraccount.ledgeraccount_NAME;
+    this.ledgerentry.ledgerentry_DESC = ledgeraccount.ledgeraccount_DESC;
   }
 
   update(row) {

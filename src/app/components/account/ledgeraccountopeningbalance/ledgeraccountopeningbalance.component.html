@@ -397,16 +397,18 @@
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
-                <label class="control-label">Credit <span style="color:red">*</span></label>
-                <input type="text" class="form-control" name="balance_CREDIT" [disabled]="disabled"
-                  [(ngModel)]="ledgeraccountopeningbalance.balance_CREDIT" maxlength="50" required>
+                <label class="control-label"> Credit <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="balance_CREDIT" [disabled]="balancetypedisabled"
+                  [(ngModel)]="ledgeraccountopeningbalance.balance_CREDIT" maxlength="50" required
+                  (change)="onCreditChange()">
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <label class="control-label">Debit <span style="color:red">*</span></label>
-                <input type="text" class="form-control" name="balance_DEBIT" [disabled]="disabled"
-                  [(ngModel)]="ledgeraccountopeningbalance.balance_DEBIT" maxlength="50" required>
+                <label class="control-label"> Debit <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="balance_DEBIT" [disabled]="balancetypedisabled"
+                  [(ngModel)]="ledgeraccountopeningbalance.balance_DEBIT" maxlength="50" required
+                  (change)="onDebitChange()">
               </div>
             </div>
           </div>

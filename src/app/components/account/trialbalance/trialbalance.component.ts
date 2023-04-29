@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, ViewChild, EventEmitter } from '@angu
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { OnFailService } from '../../../services/on-fail.service';
+import { ValidatorFn, AbstractControl } from '@angular/forms';
 
 import { TrialbalanceService } from './trialbalance.service';
 import { LedgerentryComponent } from '../ledgerentry/ledgerentry.component';
@@ -22,6 +23,8 @@ export class TrialbalanceComponent implements OnInit {
   isreload: boolean = false;
   @Input()
   disabled: boolean = false;
+  @Input()
+  balancetypedisabled: boolean = false;
   @Input()
   all: boolean = false;
   @Input()
@@ -133,6 +136,14 @@ export class TrialbalanceComponent implements OnInit {
     };
   }
 
+  onCreditChange() {
+    this.balancetypedisabled = true;
+  }
+
+  onDebitChange() {
+    this.balancetypedisabled = true;
+  }
+
   update(row) {
     this.edit.next(row);
   }
@@ -156,7 +167,7 @@ export class TrialbalanceComponent implements OnInit {
   trialbalanceCancel() {
     this.disabled = true;
     if (this.trialbalance.trialbalance_ID == 0) {
-      this.router.navigate(["/home/trialbalances "], {});
+      this.router.navigate(["/home/trialbalances"], {});
     }
   }
 

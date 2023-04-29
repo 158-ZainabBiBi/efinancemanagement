@@ -169,7 +169,7 @@ export class CoaaccountComponent implements OnInit {
   coaaccountCancel() {
     this.disabled = true;
     if (this.coaaccount.coaaccount_ID == 0) {
-      this.router.navigate(["/home/accounts"], {});
+      this.router.navigate(["/home/chartofaccounts"], {});
     }
   }
 

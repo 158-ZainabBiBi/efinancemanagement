@@ -146,7 +146,9 @@
 
         <dxi-column dataField="ledgerentry_CODE" caption="Code" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="ledgerentry_NAME" caption="Name" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="transaction.transaction_CODE" caption="Code" cssClass="myClass"
+        <dxi-column dataField="transaction.transaction_CODE" caption="Transaction Code" cssClass="myClass"
+          alignment="left"></dxi-column>
+        <dxi-column dataField="transaction.transaction_DATE" caption="Transaction Date" cssClass="myClass"
           alignment="left"></dxi-column>
         <dxi-column dataField="ledgeraccount.ledgeraccount_NAME" caption="Account Name" cssClass="myClass"
           alignment="left"></dxi-column>
@@ -185,7 +187,9 @@
 
         <dxi-column dataField="ledgerentry_CODE" caption="Code" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="ledgerentry_NAME" caption="Name" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="transaction.transaction_CODE" caption="Code" cssClass="myClass"
+        <dxi-column dataField="transaction.transaction_CODE" caption="Transaction Code" cssClass="myClass"
+          alignment="left"></dxi-column>
+        <dxi-column dataField="transaction.transaction_DATE" caption="Transaction Date" cssClass="myClass"
           alignment="left"></dxi-column>
         <dxi-column dataField="ledgeraccount.ledgeraccount_NAME" caption="Account Name" cssClass="myClass"
           alignment="left"></dxi-column>
@@ -198,6 +202,45 @@
         <div *dxTemplate="let data of 'cellTemplate'">
           <a href="javascript:void" class="" (click)="showView(data)">
             <i class="fa fa-eye" aria-hidden="true"></i></a>
+        </div>
+      </dx-data-grid>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="view==23" class="form-group">
+  <div class="outer-div">
+    <div class="grid-wrapper">
+      <dx-data-grid #grid id="gridContainer" [dataSource]="ledgerentrysAll" keyExpr="ledgerentry_ID"
+        [showColumnLines]="true" [showRowLines]="true" [showBorders]="true" [rowAlternationEnabled]="true"
+        [allowColumnResizing]="true" [columnMinWidth]="30" [columnAutoWidth]="true" [remoteOperations]="true"
+        height="600" width="100%" (onToolbarPreparing)="onToolbarPreparing($event)">
+        <dxo-filter-row [visible]="true"></dxo-filter-row>
+        <dxo-header-filter [visible]="true"></dxo-header-filter>
+        <dxo-search-panel [visible]="true"></dxo-search-panel>
+        <dxo-group-panel [visible]="false"></dxo-group-panel>
+        <dxo-grouping #expand [autoExpandAll]="false"></dxo-grouping>
+        <dxo-scrolling mode="virtual"></dxo-scrolling>
+        <dxo-sorting mode="multiple"></dxo-sorting>
+        <dxo-selection mode="single"></dxo-selection>
+        <dxi-column [width]="75" [allowFiltering]="false" [allowSorting]="false" alignment="center"
+          cellTemplate="cellTemplate"></dxi-column>
+
+        <dxi-column dataField="ledgerentry_CODE" caption="Code" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="transaction.transaction_CODE" caption="Transaction Code" cssClass="myClass"
+          alignment="left"></dxi-column>
+        <dxi-column dataField="transaction.transaction_DATE" caption="Transaction Date" cssClass="myClass"
+          alignment="left"></dxi-column>
+        <dxi-column dataField="ledgeraccount.ledgeraccount_NAME" caption="Account Name" cssClass="myClass"
+          alignment="left"></dxi-column>
+        <dxi-column dataField="credit_AMOUNT" caption="Credit" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="debit_AMOUNT" caption="Debit" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass"
+          alignment="center"></dxi-column>
+
+        <div *dxTemplate="let data of 'cellTemplate'">
+          <a href="javascript:void" class="" (click)="update(data)">
+            <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
         </div>
       </dx-data-grid>
     </div>
@@ -412,9 +455,19 @@
               <app-transaction #transaction [view]="1" [disabled]="disabled"
                 [transactionID]="ledgerentry.transaction_ID"></app-transaction>
             </div>
-            <div class="col-md-6">
-              <app-ledgeraccount #ledgeraccount [view]="1" [disabled]="disabled"
-                [ledgeraccountID]="ledgerentry.ledgeraccount_ID"></app-ledgeraccount>
+          </div>
+          <div class="row">
+            <div class="col-md-10">
+              <app-ledgeraccount #ledgeraccount [view]="1" [disabled]='disabled'
+                [ledgeraccountID]=ledgerentry.ledgeraccount_ID
+                (onLedgeraccountChange)="onLedgeraccountChange($event)"></app-ledgeraccount>
+            </div>
+            <div class="col-md-2">
+              <br />
+              <button type="button" *ngIf="ledgerentry.ledgerentry_ID==0" (click)="ledgeraccountAddNew()"
+                class="btn btn-secondary btn-sm">
+                <i class="fas fa-plus fa-fw"></i> Add New Ledger Account
+              </button>
             </div>
           </div>
           <div class="row">
@@ -479,4 +532,8 @@
       </div>
     </div>
   </div>
+</div>
+
+<div aria-labelledby="exampleModalLabel" class="modal fade show" id="addledgeraccount" role="dialog" tabindex="-1">
+  <app-ledgeraccount #addledgeraccount [view]=3 (cancel)="ledgeraccountCancel()"></app-ledgeraccount>
 </div>
