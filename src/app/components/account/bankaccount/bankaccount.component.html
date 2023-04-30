@@ -459,7 +459,7 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-10">
+            <div class="col-md-8">
               <app-ledgeraccount #ledgeraccount [view]="1" [disabled]='disabled'
                 [ledgeraccountID]=bankaccount.ledgeraccount_ID
                 (onLedgeraccountChange)="onLedgeraccountChange($event)"></app-ledgeraccount>
@@ -468,7 +468,7 @@
               <br />
               <button type="button" *ngIf="bankaccount.bankaccount_ID==0" (click)="ledgeraccountAddNew()"
                 class="btn btn-secondary btn-sm">
-                <i class="fas fa-plus fa-fw"></i> Add New Ledgeraccount
+                <i class="fas fa-plus fa-fw"></i> Add New Ledger account
               </button>
             </div>
           </div>
@@ -495,7 +495,7 @@
                 Update
               </button>
               <button *ngIf="bankaccount.bankaccount_ID==0" type="button" data-dismiss="modal"
-                style=" margin-right: 10px; float: right;" (click)='bankaccountAdd(bankaccount)'
+                style=" margin-right: 10px; float: right; color: #a4c639;" (click)='bankaccountAdd(bankaccount)'
                 class="btn btn-primary"> Save
               </button>
             </div>

@@ -67,57 +67,30 @@ export class BankaccountComponent implements OnInit {
   bankaccountsAll = [
     {
       bankaccount_ID: 1,
-      bankaccount_CODE: "BA-1001",
-      bankaccount_DATE: "2022-02-01",
-      account: {
-        account_NUMBER: "ACC-001"
-      },
-      bankaccounttype: {
-        description: "Savings"
-      },
-      bankaccount_BALANCE: 5000.0,
-      ledgeraccount: {
-        ledgeraccount_NAME: "Ledger Account A"
-      },
-      paymentmethod: {
-        description: "Direct Deposit"
-      },
-      person: {
-        forenames: "John",
-        surname: "Doe"
-      },
-      location: {
-        location_NAME: "USA"
-      },
+      bankaccount_CODE: '001',
+      bankaccount_DATE: '2023-04-30',
+      account: { account_NUMBER: '123456' },
+      bankaccounttype: { description: 'Savings' },
+      bankaccount_BALANCE: 1000,
+      ledgeraccount: { ledgeraccount_NAME: 'Cash' },
+      paymentmethod: { description: 'Credit Card' },
+      person: { forenames: 'John', surname: 'Doe' },
+      location: { location_NAME: 'USA' },
       isactive: true
     },
     {
       bankaccount_ID: 2,
-      bankaccount_CODE: "BA-1001",
-      bankaccount_DATE: "2022-02-01",
-      account: {
-        account_NUMBER: "ACC-001"
-      },
-      bankaccounttype: {
-        description: "Savings"
-      },
-      bankaccount_BALANCE: 5000.0,
-      ledgeraccount: {
-        ledgeraccount_NAME: "Ledger Account A"
-      },
-      paymentmethod: {
-        description: "Direct Deposit"
-      },
-      person: {
-        forenames: "John",
-        surname: "Doe"
-      },
-      location: {
-        location_NAME: "USA"
-      },
-      isactive: true
-    },
-    // Add more objects for additional rows
+      bankaccount_CODE: '002',
+      bankaccount_DATE: '2023-05-01',
+      account: { account_NUMBER: '654321' },
+      bankaccounttype: { description: 'Checking' },
+      bankaccount_BALANCE: 500,
+      ledgeraccount: { ledgeraccount_NAME: 'Bank' },
+      paymentmethod: { description: 'PayPal' },
+      person: { forenames: 'Jane', surname: 'Doe' },
+      location: { location_NAME: 'Canada' },
+      isactive: false
+    }
   ];
   // bankaccountsAll = [];
   bankaccount = {

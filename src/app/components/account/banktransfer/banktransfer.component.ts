@@ -36,8 +36,132 @@ export class BanktransferComponent implements OnInit {
   @Output() onBankTransferChange = new EventEmitter();
 
   banktransfers = [];
-  banktransfersAll = [];
-  banktransfer = {
+  // banktransfersAll = [];
+  banktransfersAll = [
+    {
+      banktransfer_ID: 1,
+      frombankaccount: { ledgeraccount_NAME: 'From Account 1' },
+      tobankaccount: { ledgeraccount_NAME: 'To Account 1' },
+      banktransfer_CODE: 'BT-001',
+      banktransfer_DATE: '2023-04-30',
+      banktransfer_NAME: 'Bank Transfer 1',
+      banktransfer_AMOUNT: 1000.00,
+      banktransfer_DESC: 'Transfer for invoice #001',
+      isactive: true
+    },
+    {
+      banktransfer_ID: 2,
+      frombankaccount: { ledgeraccount_NAME: 'From Account 2' },
+      tobankaccount: { ledgeraccount_NAME: 'To Account 2' },
+      banktransfer_CODE: 'BT-002',
+      banktransfer_DATE: '2023-05-01',
+      banktransfer_NAME: 'Bank Transfer 2',
+      banktransfer_AMOUNT: 2000.00,
+      banktransfer_DESC: 'Transfer for invoice #002',
+      isactive: false
+    },
+    {
+      banktransfer_ID: 3,
+      frombankaccount: { ledgeraccount_NAME: 'From Account 1' },
+      tobankaccount: { ledgeraccount_NAME: 'To Account 1' },
+      banktransfer_CODE: 'BT-001',
+      banktransfer_DATE: '2023-04-30',
+      banktransfer_NAME: 'Bank Transfer 1',
+      banktransfer_AMOUNT: 1000.00,
+      banktransfer_DESC: 'Transfer for invoice #001',
+      isactive: true
+    },
+    {
+      banktransfer_ID: 4,
+      frombankaccount: { ledgeraccount_NAME: 'From Account 2' },
+      tobankaccount: { ledgeraccount_NAME: 'To Account 2' },
+      banktransfer_CODE: 'BT-002',
+      banktransfer_DATE: '2023-05-01',
+      banktransfer_NAME: 'Bank Transfer 2',
+      banktransfer_AMOUNT: 2000.00,
+      banktransfer_DESC: 'Transfer for invoice #002',
+      isactive: false
+    },
+  ];
+banktransfer = {
+  banktransfer_ID: 0,
+  frombankaccount_ID: null,
+  tobankaccount_ID: null,
+
+  banktransfer_NAME: null,
+  banktransfer_CODE: null,
+  banktransfer_DATE: null,
+  banktransfer_AMOUNT: null,
+  banktransfer_DESC: null,
+
+  isactive: true,
+}
+
+constructor(
+  private banktransferservice: BanktransferService,
+  private toastrservice: ToastrService,
+  private onfailservice: OnFailService,
+  private router: Router,
+) { }
+
+ngOnInit(): void {
+  this.load(this.isreload);
+}
+
+load(reload): void {
+  if(window.sessionStorage.getItem('banktransfers') != null) {
+  this.banktransfers = JSON.parse(window.sessionStorage.getItem('banktransfers'));
+}
+if (window.sessionStorage.getItem('banktransfersAll') != null) {
+  this.banktransfersAll = JSON.parse(window.sessionStorage.getItem('banktransfersAll'));
+}
+if (this.banktransferID != 0 && !this.banktransferID && Number(window.sessionStorage.getItem('banktransfer')) > 0) {
+  this.banktransferID = Number(window.sessionStorage.getItem('banktransfer'));
+}
+
+if (this.view >= 1 && this.view <= 2 && (this.banktransfers == null || this.banktransfers.length == 0 || reload == true)) {
+  this.banktransfers == null;
+  this.banktransferGet();
+}
+if (((this.view >= 1 && this.view <= 2) || this.view == 10) && (this.banktransfersAll == null || this.banktransfersAll.length == 0 || reload == true)) {
+  this.banktransfersAll == null;
+  this.banktransferGetAll();
+}
+
+var search = {
+  frombankaccount_ID: this.bankaccountID,
+  tobankaccount_ID: this.bankaccountID
+}
+
+if (this.view >= 5 && this.view <= 6 && this.banktransferID) {
+  window.sessionStorage.setItem("banktransfer", this.banktransferID);
+  this.banktransferGetOne(this.banktransferID);
+  this.disabled = true;
+} else if ((this.view >= 11 && this.view <= 29) && this.disabled == false && (this.banktransfers == null || this.banktransfers.length == 0 || reload == true)) {
+  this.banktransfers == null;
+  this.banktransferAdvancedSearch(search);
+} else if ((this.view >= 11 && this.view <= 29) && this.disabled == true && (this.banktransfersAll == null || this.banktransfersAll.length == 0 || reload == true)) {
+  this.banktransfersAll == null;
+  this.banktransferAdvancedSearchAll(search);
+}
+  }
+
+onToolbarPreparing(e) {
+  e.toolbarOptions.items.unshift(
+    {
+      location: 'after',
+      widget: 'dxButton',
+      options: {
+        width: 136,
+        text: 'Refresh',
+        onClick: this.load.bind(this, true),
+      },
+    }
+  );
+}
+
+add() {
+  this.banktransfer = {
     banktransfer_ID: 0,
     frombankaccount_ID: null,
     tobankaccount_ID: null,
@@ -49,317 +173,239 @@ export class BanktransferComponent implements OnInit {
     banktransfer_DESC: null,
 
     isactive: true,
+  };
+}
+
+update(row) {
+  this.edit.next(row);
+}
+
+editView() {
+  this.disabled = false;
+}
+
+showView(row) {
+  this.show.next(row);
+}
+
+cancelView() {
+  this.cancel.next();
+}
+
+banktransferEdit() {
+  this.disabled = false;
+}
+
+banktransferCancel() {
+  this.disabled = true;
+  if (this.banktransfer.banktransfer_ID == 0) {
+    this.router.navigate(["/home/banktransfer "], {});
   }
+}
 
-  constructor(
-    private banktransferservice: BanktransferService,
-    private toastrservice: ToastrService,
-    private onfailservice: OnFailService,
-    private router: Router,
-  ) { }
-
-  ngOnInit(): void {
-    this.load(this.isreload);
-  }
-
-  load(reload): void {
-    if (window.sessionStorage.getItem('banktransfers') != null) {
-      this.banktransfers = JSON.parse(window.sessionStorage.getItem('banktransfers'));
-    }
-    if (window.sessionStorage.getItem('banktransfersAll') != null) {
-      this.banktransfersAll = JSON.parse(window.sessionStorage.getItem('banktransfersAll'));
-    }
-    if (this.banktransferID != 0 && !this.banktransferID && Number(window.sessionStorage.getItem('banktransfer')) > 0) {
-      this.banktransferID = Number(window.sessionStorage.getItem('banktransfer'));
-    }
-
-    if (this.view >= 1 && this.view <= 2 && (this.banktransfers == null || this.banktransfers.length == 0 || reload == true)) {
-      this.banktransfers == null;
-      this.banktransferGet();
-    }
-    if (((this.view >= 1 && this.view <= 2) || this.view == 10) && (this.banktransfersAll == null || this.banktransfersAll.length == 0 || reload == true)) {
-      this.banktransfersAll == null;
-      this.banktransferGetAll();
-    }
-
-    var search = {
-      frombankaccount_ID: this.bankaccountID,
-      tobankaccount_ID: this.bankaccountID
-    }
-
-    if (this.view >= 5 && this.view <= 6 && this.banktransferID) {
-      window.sessionStorage.setItem("banktransfer", this.banktransferID);
-      this.banktransferGetOne(this.banktransferID);
-      this.disabled = true;
-    } else if ((this.view >= 11 && this.view <= 29) && this.disabled == false && (this.banktransfers == null || this.banktransfers.length == 0 || reload == true)) {
-      this.banktransfers == null;
-      this.banktransferAdvancedSearch(search);
-    } else if ((this.view >= 11 && this.view <= 29) && this.disabled == true && (this.banktransfersAll == null || this.banktransfersAll.length == 0 || reload == true)) {
-      this.banktransfersAll == null;
-      this.banktransferAdvancedSearchAll(search);
+onChange(banktransferID) {
+  for (var i = 0; i < this.banktransfers.length; i++) {
+    if (this.banktransfers[i].banktransfer_ID == banktransferID) {
+      this.onBankTransferChange.next(this.banktransfers[i]);
+      break;
     }
   }
+}
 
-  onToolbarPreparing(e) {
-    e.toolbarOptions.items.unshift(
-      {
-        location: 'after',
-        widget: 'dxButton',
-        options: {
-          width: 136,
-          text: 'Refresh',
-          onClick: this.load.bind(this, true),
-        },
-      }
-    );
+setBanktransfer(response) {
+  if (response.isactive == "Y") {
+    response.isactive = true;
+  } else {
+    response.isactive = false;
   }
+  this.banktransfer = response;
+}
 
-  add() {
-    this.banktransfer = {
-      banktransfer_ID: 0,
-      frombankaccount_ID: null,
-      tobankaccount_ID: null,
+setFeecategories(response) {
+  this.cancel.next();
+  return response;
+}
 
-      banktransfer_NAME: null,
-      banktransfer_CODE: null,
-      banktransfer_DATE: null,
-      banktransfer_AMOUNT: null,
-      banktransfer_DESC: null,
-
-      isactive: true,
-    };
-  }
-
-  update(row) {
-    this.edit.next(row);
-  }
-
-  editView() {
-    this.disabled = false;
-  }
-
-  showView(row) {
-    this.show.next(row);
-  }
-
-  cancelView() {
-    this.cancel.next();
-  }
-
-  banktransferEdit() {
-    this.disabled = false;
-  }
-
-  banktransferCancel() {
-    this.disabled = true;
-    if (this.banktransfer.banktransfer_ID == 0) {
-      this.router.navigate(["/home/banktransfer "], {});
-    }
-  }
-
-  onChange(banktransferID) {
-    for (var i = 0; i < this.banktransfers.length; i++) {
-      if (this.banktransfers[i].banktransfer_ID == banktransferID) {
-        this.onBankTransferChange.next(this.banktransfers[i]);
-        break;
+banktransferGet() {
+  this.banktransferservice.get().subscribe(response => {
+    if (response) {
+      if (response.error && response.status) {
+        this.toastrservice.warning("Message", " " + response.message);
+      } else {
+        this.banktransfers = this.setFeecategories(this.banktransferservice.getAllDetail(response));
+        window.sessionStorage.setItem("banktransfers", JSON.stringify(this.banktransfers));
       }
     }
-  }
+  }, error => {
+    this.onfailservice.onFail(error);
+  })
+}
 
-  setBanktransfer(response) {
-    if (response.isactive == "Y") {
-      response.isactive = true;
-    } else {
-      response.isactive = false;
+banktransferGetAll() {
+  this.banktransferservice.getAll().subscribe(response => {
+    if (response) {
+      if (response.error && response.status) {
+        this.toastrservice.warning("Message", " " + response.message);
+      } else {
+        this.banktransfersAll = this.setFeecategories(this.banktransferservice.getAllDetail(response));
+        window.sessionStorage.setItem("banktransfersAll", JSON.stringify(this.banktransfersAll));
+      }
     }
-    this.banktransfer = response;
-  }
+  }, error => {
+    this.onfailservice.onFail(error);
+  })
+}
 
-  setFeecategories(response) {
-    this.cancel.next();
-    return response;
-  }
-
-  banktransferGet() {
-    this.banktransferservice.get().subscribe(response => {
-      if (response) {
-        if (response.error && response.status) {
-          this.toastrservice.warning("Message", " " + response.message);
-        } else {
-          this.banktransfers = this.setFeecategories(this.banktransferservice.getAllDetail(response));
-          window.sessionStorage.setItem("banktransfers", JSON.stringify(this.banktransfers));
-        }
+banktransferGetOne(id) {
+  this.disabled = true;
+  this.banktransferservice.getOne(id).subscribe(response => {
+    if (response) {
+      if (response.error && response.status) {
+        this.toastrservice.warning("Message", " " + response.message);
+      } else {
+        this.setBanktransfer(this.banktransferservice.getDetail(response));
       }
-    }, error => {
-      this.onfailservice.onFail(error);
-    })
-  }
+    }
+  }, error => {
+    this.onfailservice.onFail(error);
+  })
+}
 
-  banktransferGetAll() {
-    this.banktransferservice.getAll().subscribe(response => {
-      if (response) {
-        if (response.error && response.status) {
-          this.toastrservice.warning("Message", " " + response.message);
-        } else {
-          this.banktransfersAll = this.setFeecategories(this.banktransferservice.getAllDetail(response));
-          window.sessionStorage.setItem("banktransfersAll", JSON.stringify(this.banktransfersAll));
-        }
+banktransferAdd(banktransfer) {
+  banktransfer.isactive = "Y";
+  banktransfer.frombankaccount_ID = this.frombankaccount.bankaccountID;
+  banktransfer.tobankaccount_ID = this.tobankaccount.bankaccountID;
+
+  this.banktransferservice.add(banktransfer).subscribe(response => {
+    if (response) {
+      if (response.error && response.status) {
+        this.toastrservice.warning("Message", " " + response.message);
+      } else if (response.banktransfer_ID) {
+        this.toastrservice.success("Success", "New Bank Transfer Added");
+        this.refresh.next();
+        this.disabled = true;
+      } else {
+        this.toastrservice.error("Some thing went wrong");
       }
-    }, error => {
-      this.onfailservice.onFail(error);
-    })
-  }
+    }
+  }, error => {
+    this.onfailservice.onFail(error);
+  })
+}
 
-  banktransferGetOne(id) {
-    this.disabled = true;
-    this.banktransferservice.getOne(id).subscribe(response => {
-      if (response) {
-        if (response.error && response.status) {
-          this.toastrservice.warning("Message", " " + response.message);
-        } else {
-          this.setBanktransfer(this.banktransferservice.getDetail(response));
-        }
-      }
-    }, error => {
-      this.onfailservice.onFail(error);
-    })
-  }
+banktransferUpdate(banktransfer) {
+  banktransfer.frombankaccount_ID = this.frombankaccount.bankaccountID;
+  banktransfer.tobankaccount_ID = this.tobankaccount.bankaccountID;
 
-  banktransferAdd(banktransfer) {
+  if (banktransfer.isactive == true) {
     banktransfer.isactive = "Y";
-    banktransfer.frombankaccount_ID = this.frombankaccount.bankaccountID;
-    banktransfer.tobankaccount_ID = this.tobankaccount.bankaccountID;
-
-    this.banktransferservice.add(banktransfer).subscribe(response => {
-      if (response) {
-        if (response.error && response.status) {
-          this.toastrservice.warning("Message", " " + response.message);
-        } else if (response.banktransfer_ID) {
-          this.toastrservice.success("Success", "New Bank Transfer Added");
-          this.refresh.next();
-          this.disabled = true;
-        } else {
-          this.toastrservice.error("Some thing went wrong");
-        }
-      }
-    }, error => {
-      this.onfailservice.onFail(error);
-    })
+  } else {
+    banktransfer.isactive = "N";
   }
-
-  banktransferUpdate(banktransfer) {
-    banktransfer.frombankaccount_ID = this.frombankaccount.bankaccountID;
-    banktransfer.tobankaccount_ID = this.tobankaccount.bankaccountID;
-
-    if (banktransfer.isactive == true) {
-      banktransfer.isactive = "Y";
-    } else {
-      banktransfer.isactive = "N";
+  this.banktransferservice.update(banktransfer, banktransfer.banktransfer_ID).subscribe(response => {
+    if (response) {
+      if (response.error && response.status) {
+        this.toastrservice.warning("Message", " " + response.message);
+      } else if (response.banktransfer_ID) {
+        this.toastrservice.success("Success", "Bank Transfer Updated");
+        this.refresh.next();
+        this.disabled = true;
+      } else {
+        this.toastrservice.error("Some thing went wrong");
+      }
     }
-    this.banktransferservice.update(banktransfer, banktransfer.banktransfer_ID).subscribe(response => {
-      if (response) {
-        if (response.error && response.status) {
-          this.toastrservice.warning("Message", " " + response.message);
-        } else if (response.banktransfer_ID) {
-          this.toastrservice.success("Success", "Bank Transfer Updated");
-          this.refresh.next();
-          this.disabled = true;
-        } else {
-          this.toastrservice.error("Some thing went wrong");
-        }
-      }
-    }, error => {
-      this.onfailservice.onFail(error);
-    })
-  }
+  }, error => {
+    this.onfailservice.onFail(error);
+  })
+}
 
-  banktransferUpdateAll(banktransfers) {
-    this.banktransferservice.updateAll(banktransfers).subscribe(response => {
-      if (response) {
-        if (response.error && response.status) {
-          this.toastrservice.warning("Message", " " + response.message);
-        } else if (response.length > 0) {
-          this.toastrservice.success("Success", "Bank Transfer Updated");
-          this.refresh.next();
-        } else {
-          this.toastrservice.error("Some thing went wrong");
-        }
+banktransferUpdateAll(banktransfers) {
+  this.banktransferservice.updateAll(banktransfers).subscribe(response => {
+    if (response) {
+      if (response.error && response.status) {
+        this.toastrservice.warning("Message", " " + response.message);
+      } else if (response.length > 0) {
+        this.toastrservice.success("Success", "Bank Transfer Updated");
+        this.refresh.next();
+      } else {
+        this.toastrservice.error("Some thing went wrong");
       }
-    }, error => {
-      this.onfailservice.onFail(error);
-    })
-  }
-
-  banktransferSearch(str) {
-    var search = {
-      search: str
     }
-    this.banktransferservice.search(search).subscribe(response => {
-      if (response) {
-        if (response.error && response.status) {
-          this.toastrservice.warning("Message", " " + response.message);
-        } else {
-          this.banktransfers = this.setFeecategories(this.banktransferservice.getAllDetail(response));
-          window.sessionStorage.setItem("banktransfers", JSON.stringify(this.banktransfers));
-        }
-      }
-    }, error => {
-      this.onfailservice.onFail(error);
-    })
-  }
+  }, error => {
+    this.onfailservice.onFail(error);
+  })
+}
 
-  banktransferSearchAll(str) {
-    var search = {
-      search: str
+banktransferSearch(str) {
+  var search = {
+    search: str
+  }
+  this.banktransferservice.search(search).subscribe(response => {
+    if (response) {
+      if (response.error && response.status) {
+        this.toastrservice.warning("Message", " " + response.message);
+      } else {
+        this.banktransfers = this.setFeecategories(this.banktransferservice.getAllDetail(response));
+        window.sessionStorage.setItem("banktransfers", JSON.stringify(this.banktransfers));
+      }
     }
-    this.banktransferservice.searchAll(search).subscribe(response => {
-      if (response) {
-        if (response.error && response.status) {
-          this.toastrservice.warning("Message", " " + response.message);
-        } else {
-          this.banktransfersAll = this.setFeecategories(this.banktransferservice.getAllDetail(response));
-          window.sessionStorage.setItem("banktransfersAll", JSON.stringify(this.banktransfersAll));
-        }
-      }
-    }, error => {
-      this.onfailservice.onFail(error);
-    })
+  }, error => {
+    this.onfailservice.onFail(error);
+  })
+}
+
+banktransferSearchAll(str) {
+  var search = {
+    search: str
   }
-
-  banktransferAdvancedSearch(search) {
-    this.bankaccountID = search.tobankaccount_ID;
-    this.bankaccountID = search.frombankaccount_ID;
-
-    this.banktransferservice.advancedSearch(search).subscribe(response => {
-      if (response) {
-        if (response.error && response.status) {
-          this.toastrservice.warning("Message", " " + response.message);
-        } else {
-          this.banktransfers = this.setFeecategories(this.banktransferservice.getAllDetail(response));
-          window.sessionStorage.setItem("banktransfers", JSON.stringify(this.banktransfers));
-        }
+  this.banktransferservice.searchAll(search).subscribe(response => {
+    if (response) {
+      if (response.error && response.status) {
+        this.toastrservice.warning("Message", " " + response.message);
+      } else {
+        this.banktransfersAll = this.setFeecategories(this.banktransferservice.getAllDetail(response));
+        window.sessionStorage.setItem("banktransfersAll", JSON.stringify(this.banktransfersAll));
       }
-    }, error => {
-      this.onfailservice.onFail(error);
-    })
-  }
+    }
+  }, error => {
+    this.onfailservice.onFail(error);
+  })
+}
 
-  banktransferAdvancedSearchAll(search) {
-    this.bankaccountID = search.tobankaccount_ID;
-    this.bankaccountID = search.frombankaccount_ID;
+banktransferAdvancedSearch(search) {
+  this.bankaccountID = search.tobankaccount_ID;
+  this.bankaccountID = search.frombankaccount_ID;
 
-    this.banktransferservice.advancedSearchAll(search).subscribe(response => {
-      if (response) {
-        if (response.error && response.status) {
-          this.toastrservice.warning("Message", " " + response.message);
-        } else {
-          this.banktransfersAll = this.setFeecategories(this.banktransferservice.getAllDetail(response));
-          window.sessionStorage.setItem("banktransfersAll", JSON.stringify(this.banktransfersAll));
-        }
+  this.banktransferservice.advancedSearch(search).subscribe(response => {
+    if (response) {
+      if (response.error && response.status) {
+        this.toastrservice.warning("Message", " " + response.message);
+      } else {
+        this.banktransfers = this.setFeecategories(this.banktransferservice.getAllDetail(response));
+        window.sessionStorage.setItem("banktransfers", JSON.stringify(this.banktransfers));
       }
-    }, error => {
-      this.onfailservice.onFail(error);
-    })
-  }
+    }
+  }, error => {
+    this.onfailservice.onFail(error);
+  })
+}
+
+banktransferAdvancedSearchAll(search) {
+  this.bankaccountID = search.tobankaccount_ID;
+  this.bankaccountID = search.frombankaccount_ID;
+
+  this.banktransferservice.advancedSearchAll(search).subscribe(response => {
+    if (response) {
+      if (response.error && response.status) {
+        this.toastrservice.warning("Message", " " + response.message);
+      } else {
+        this.banktransfersAll = this.setFeecategories(this.banktransferservice.getAllDetail(response));
+        window.sessionStorage.setItem("banktransfersAll", JSON.stringify(this.banktransfersAll));
+      }
+    }
+  }, error => {
+    this.onfailservice.onFail(error);
+  })
+}
 
 }

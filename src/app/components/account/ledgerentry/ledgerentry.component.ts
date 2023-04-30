@@ -44,7 +44,40 @@ export class LedgerentryComponent implements OnInit {
   @Output() onLedgerEntryChange = new EventEmitter();
 
   ledgerentrys = [];
-  ledgerentrysAll = [];
+  ledgerentrysAll = [
+    {
+      ledgerentry_ID: 1,
+      ledgerentry_CODE: 'LE001',
+      ledgerentry_NAME: 'Dummy Ledger Entry 1',
+      transaction: {
+        transaction_CODE: 'TR001',
+        transaction_DATE: '2023-04-30'
+      },
+      ledgeraccount: {
+        ledgeraccount_NAME: 'Dummy Account 1'
+      },
+      credit_AMOUNT: 1000,
+      debit_AMOUNT: 0,
+      ledgerentry_DESC: 'This is a dummy ledger entry.',
+      isactive: true
+    },
+    {
+      ledgerentry_ID: 2,
+      ledgerentry_CODE: 'LE002',
+      ledgerentry_NAME: 'Dummy Ledger Entry 2',
+      transaction: {
+        transaction_CODE: 'TR002',
+        transaction_DATE: '2023-04-30'
+      },
+      ledgeraccount: {
+        ledgeraccount_NAME: 'Dummy Account 2'
+      },
+      credit_AMOUNT: 0,
+      debit_AMOUNT: 500,
+      ledgerentry_DESC: 'This is another dummy ledger entry.',
+      isactive: false
+    }
+  ];
   ledgerentry = {
     ledgerentry_ID: 0,
     ledgeraccount_ID: null,

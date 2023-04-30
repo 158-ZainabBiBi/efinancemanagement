@@ -11,6 +11,13 @@ import { LegalComponent } from './dashboard/legal/legal.component';
 import { PrivacyComponent } from './dashboard/privacy/privacy.component';
 import { TermsComponent } from './dashboard/terms/terms.component';
 
+//account
+import { BankdepositComponent } from 'src/app/components/account/bankdeposit/bankdeposit.component';
+import { BanktransferComponent } from 'src/app/components/account/banktransfer/banktransfer.component';
+import { JournallineComponent } from 'src/app/components/account/journalline/journalline.component';
+import { LedgeraccountComponent } from 'src/app/components/account/ledgeraccount/ledgeraccount.component';
+import { LedgerentryComponent } from 'src/app/components/account/ledgerentry/ledgerentry.component';
+
 //accounts
 import { JournalsComponent } from 'src/app/modules/accounts/journals/journals.component';
 import { TrialbalancesComponent } from 'src/app/modules/accounts/trialbalances/trialbalances.component';
@@ -39,6 +46,8 @@ const routes: Routes = [{
 
     { path: 'bankaccounts', component: BankaccountsComponent },
     { path: 'bankaccount', component: BankaccountviewComponent },
+    { path: 'banktransfer', component: BanktransferComponent },
+    { path: 'bankdeposit', component: BankdepositComponent },
 
     { path: 'transactions', component: TransactionsComponent },
     { path: 'transaction', component: TransactionviewComponent },

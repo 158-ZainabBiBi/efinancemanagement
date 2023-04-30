@@ -207,10 +207,10 @@
 <div *ngIf="view==23" class="form-group">
   <div class="outer-div">
     <div class="grid-wrapper">
-      <dx-data-grid #grid id="gridContainer" [dataSource]="coaaccounts" keyExpr="coaaccount_ID" [showColumnLines]="true"
-        [showRowLines]="true" [showBorders]="true" [rowAlternationEnabled]="true" [allowColumnResizing]="true"
-        [columnMinWidth]="30" [columnAutoWidth]="true" [remoteOperations]="true" height="600" width="100%"
-        (onToolbarPreparing)="onToolbarPreparing($event)">
+      <dx-data-grid #grid id="gridContainer" [dataSource]="coaaccountsAll" keyExpr="coaaccount_ID"
+        [showColumnLines]="true" [showRowLines]="true" [showBorders]="true" [rowAlternationEnabled]="true"
+        [allowColumnResizing]="true" [columnMinWidth]="30" [columnAutoWidth]="true" [remoteOperations]="true"
+        height="600" width="100%" (onToolbarPreparing)="onToolbarPreparing($event)">
         <dxo-filter-row [visible]="true"></dxo-filter-row>
         <dxo-header-filter [visible]="true"></dxo-header-filter>
         <dxo-search-panel [visible]="true"></dxo-search-panel>
@@ -222,7 +222,7 @@
         <dxi-column [width]="75" [allowFiltering]="false" [allowSorting]="false" alignment="center"
           cellTemplate="cellTemplate"></dxi-column>
 
-        <dxi-column dataField="ledgeraccount.ledgeraccount_CODE" caption="Code" cssClass="myClass"
+          <dxi-column dataField="ledgeraccount.ledgeraccount_CODE" caption="Code" cssClass="myClass"
           alignment="left"></dxi-column>
         <dxi-column dataField="ledgeraccount.ledgeraccount_NAME" caption="Name" cssClass="myClass"
           alignment="left"></dxi-column>
@@ -323,7 +323,7 @@
         </div>
         <div class="modal-body">
           <div class="row">
-            <div class="col-md-10">
+            <div class="col-md-8">
               <app-ledgeraccount #ledgeraccount [view]="1" (onLedgeraccountChange)="onLedgeraccountChange($event)"
                 [ledgeraccountID]="coaaccount.ledgeraccount_ID"></app-ledgeraccount>
             </div>
@@ -410,7 +410,7 @@
       <div class="row">
         <div class="col-lg-12">
           <div class="row">
-            <div class="col-md-10">
+            <div class="col-md-8">
               <app-ledgeraccount #ledgeraccount [view]="1" [disabled]='disabled'
                 [ledgeraccountID]=coaaccount.ledgeraccount_ID
                 (onLedgeraccountChange)="onLedgeraccountChange($event)"></app-ledgeraccount>

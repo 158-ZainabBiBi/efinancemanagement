@@ -88,6 +88,14 @@ export class ServicesComponent implements OnInit {
     window.open('http://localhost:4200/#/home/bankaccounts', '_blank');
   }
 
+  showbanktransfer() {
+    window.open('http://localhost:4200/#/home/banktransfer', '_blank');
+  }
+
+  showbankdeposit() {
+    window.open('http://localhost:4200/#/home/bankdeposit', '_blank');
+  }
+
   showtransaction() {
     window.open('http://localhost:4200/#/home/transactions', '_blank');
   }

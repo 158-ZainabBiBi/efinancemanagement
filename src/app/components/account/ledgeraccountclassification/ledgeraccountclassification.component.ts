@@ -38,7 +38,13 @@ export class LedgeraccountclassificationComponent implements OnInit {
   @Output() onLedgerAccountClassificationChange = new EventEmitter();
 
   ledgeraccountclassifications = [];
-  ledgeraccountclassificationsAll = [];
+  ledgeraccountclassificationsAll = [
+    { ledgeraccountclassification_ID: 1, ledgeraccountclassification_CODE: '001', ledgeraccountclassification_NAME: 'Account 1', ledgeraccounttype: { description: 'Type 1' }, ledgeraccountclassification_DESC: 'Description 1', isactive: true },
+    { ledgeraccountclassification_ID: 2, ledgeraccountclassification_CODE: '002', ledgeraccountclassification_NAME: 'Account 2', ledgeraccounttype: { description: 'Type 2' }, ledgeraccountclassification_DESC: 'Description 2', isactive: true },
+    { ledgeraccountclassification_ID: 3, ledgeraccountclassification_CODE: '003', ledgeraccountclassification_NAME: 'Account 3', ledgeraccounttype: { description: 'Type 3' }, ledgeraccountclassification_DESC: 'Description 3', isactive: false },
+    { ledgeraccountclassification_ID: 4, ledgeraccountclassification_CODE: '004', ledgeraccountclassification_NAME: 'Account 4', ledgeraccounttype: { description: 'Type 4' }, ledgeraccountclassification_DESC: 'Description 4', isactive: true },
+    { ledgeraccountclassification_ID: 5, ledgeraccountclassification_CODE: '005', ledgeraccountclassification_NAME: 'Account 5', ledgeraccounttype: { description: 'Type 5' }, ledgeraccountclassification_DESC: 'Description 5', isactive: false },
+  ];
   ledgeraccountclassification = {
     ledgeraccountclassification_ID: 0,
     ledgeraccounttype_ID: null,

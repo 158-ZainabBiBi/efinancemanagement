@@ -7,7 +7,7 @@
       <ng-select [(ngModel)]="trialbalanceID" [disabled]="disabled" name="trialbalanceID" (change)="onChange($event)">
         <ng-option *ngFor="let trialbalance of trialbalancesAll" [value]="trialbalance.trialbalance_ID">
           {{ trialbalance.balance_FROMDATE }} - {{ trialbalance.balance_TODATE }} - {{
-          trialbalance.ledgerentry.ledgerentry_NAME }}
+          trialbalance.ledgerentry.ledgeraccount.ledgeraccount_NAME }}
         </ng-option>
       </ng-select>
     </div>
@@ -18,7 +18,7 @@
         <ng-option *ngFor="let trialbalance of trialbalances" [value]="trialbalance.trialbalance_ID"
           [disabled]="disabled">
           {{ trialbalance.balance_FROMDATE }} - {{ trialbalance.balance_TODATE }} - {{
-          trialbalance.ledgerentry.ledgerentry_NAME }}
+          trialbalance.ledgerentry.ledgeraccount.ledgeraccount_NAME }}
         </ng-option>
       </ng-select>
     </div>
@@ -39,7 +39,7 @@
       <ng-select [(ngModel)]="trialbalanceID" [disabled]="disabled" name="trialbalanceID" (change)="onChange($event)">
         <ng-option *ngFor="let trialbalance of trialbalancesAll" [value]="trialbalance.trialbalance_ID">
           {{ trialbalance.balance_FROMDATE }} - {{ trialbalance.balance_TODATE }} - {{
-          trialbalance.ledgerentry.ledgerentry_NAME }}
+          trialbalance.ledgerentry.ledgeraccount.ledgeraccount_NAME }}
         </ng-option>
       </ng-select>
     </div>
@@ -50,7 +50,7 @@
         <ng-option *ngFor="let trialbalance of trialbalancesAll" [value]="trialbalance.trialbalance_ID"
           [disabled]="disabled">
           {{ trialbalance.balance_FROMDATE }} - {{ trialbalance.balance_TODATE }} - {{
-          trialbalance.ledgerentry.ledgerentry_NAME }}
+          trialbalance.ledgerentry.ledgeraccount.ledgeraccount_NAME }}
         </ng-option>
       </ng-select>
     </div>
@@ -72,7 +72,7 @@
         <ng-option *ngFor="let trialbalance of trialbalancesAll" [value]="trialbalance.trialbalance_ID"
           [disabled]="disabled">
           {{ trialbalance.balance_FROMDATE }} - {{ trialbalance.balance_TODATE }} - {{
-          trialbalance.ledgerentry.ledgerentry_NAME }}
+          trialbalance.ledgerentry.ledgeraccount.ledgeraccount_NAME }}
         </ng-option>
       </ng-select>
     </div>
@@ -83,7 +83,7 @@
         <ng-option *ngFor="let trialbalance of trialbalances" [value]="trialbalance.trialbalance_ID"
           [disabled]="disabled">
           {{ trialbalance.balance_FROMDATE }} - {{ trialbalance.balance_TODATE }} - {{
-          trialbalance.ledgerentry.ledgerentry_NAME }}
+          trialbalance.ledgerentry.ledgeraccount.ledgeraccount_NAME }}
         </ng-option>
       </ng-select>
     </div>
@@ -105,7 +105,7 @@
         <ng-option *ngFor="let trialbalance of trialbalancesAll" [value]="trialbalance.trialbalance_ID"
           [disabled]="disabled">
           {{ trialbalance.balance_FROMDATE }} - {{ trialbalance.balance_TODATE }} - {{
-          trialbalance.ledgerentry.ledgerentry_NAME }}
+          trialbalance.ledgerentry.ledgeraccount.ledgeraccount_NAME }}
         </ng-option>
       </ng-select>
     </div>
@@ -116,7 +116,7 @@
         <ng-option *ngFor="let trialbalance of trialbalancesAll" [value]="trialbalance.trialbalance_ID"
           [disabled]="disabled">
           {{ trialbalance.balance_FROMDATE }} - {{ trialbalance.balance_TODATE }} - {{
-          trialbalance.ledgerentry.ledgerentry_NAME }}
+          trialbalance.ledgerentry.ledgeraccount.ledgeraccount_NAME }}
         </ng-option>
       </ng-select>
     </div>

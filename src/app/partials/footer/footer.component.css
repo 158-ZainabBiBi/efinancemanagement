@@ -927,7 +927,7 @@ ul.slick-dots {
 
 /* Footer Style */
 
-footer {
+/* footer {
   background-color: #232323;
   padding: 80px 0px;
   color: #fff;
@@ -994,25 +994,80 @@ footer ul.menu-list li a {
 
 footer ul.menu-list li a:hover {
   color: #a4c639;
+} */
+
+/* Footer Style */
+
+footer {
+  background-color: #232323;
+  padding: 80px 0;
+  color: #fff;
 }
 
-/* Sub-footer Style */
+.footer-item {
+  width: 300px;
+}
 
-.sub-footer {
-  background-color: #343434;
+h4 {
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 0.25px;
+  margin-bottom: 35px;
+  color: inherit;
+}
+
+p,
+ul.menu-list li a {
+  color: inherit;
+}
+
+ul.social-icons {
+  margin-top: 25px;
+}
+
+ul.social-icons li {
+  display: inline-block;
+  margin-right: 5px;
+  margin-bottom: 0;
+}
+
+ul.social-icons li:last-child {
+  margin-right: 0;
+}
+
+ul.social-icons li a {
+  width: 34px;
+  height: 34px;
+  display: inline-block;
+  line-height: 34px;
   text-align: center;
-  padding: 15px 0px;
+  background-color: #fff;
+  color: #232323;
+  border-radius: 50%;
+  transition: all 0.3s;
 }
 
-.sub-footer p {
-  color: #fff;
-  font-weight: 300;
-  letter-spacing: 0.5px;
+ul.social-icons li a:hover {
+  background-color: #a4c639;
 }
 
-.sub-footer a {
-  color: #fff;
+ul.menu-list li {
+  margin-bottom: 13px;
 }
+
+ul.menu-list li:last-child {
+  margin-bottom: 0;
+}
+
+ul.menu-list li a {
+  font-size: 14px;
+  transition: all 0.3s;
+}
+
+ul.menu-list li a:hover {
+  color: #a4c639;
+}
+
 
 
 .page-heading {
