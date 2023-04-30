@@ -32,6 +32,7 @@ import { ServicesComponent } from '../home/dashboard/services/services.component
 import { LegalComponent } from './dashboard/legal/legal.component';
 import { PrivacyComponent } from './dashboard/privacy/privacy.component';
 import { TermsComponent } from './dashboard/terms/terms.component';
+import { FooterComponent } from 'src/app/partials/footer/footer.component';
 
 //customer
 import { CustomerComponent } from 'src/app/components/customer/customer/customer.component';
@@ -136,6 +137,7 @@ import { TrialbalanceviewComponent } from 'src/app/modules/accounts/trialbalance
   declarations: [
     HomeComponent,
     DashboardComponent,
+    FooterComponent,
 
     AboutComponent,
     ContactComponent,

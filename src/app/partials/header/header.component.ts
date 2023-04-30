@@ -152,4 +152,20 @@ export class HeaderComponent implements OnInit {
   ngAfterViewInit() {
     this.sideBar();
   }
+
+  showindex() {
+    window.open('http://localhost:4200/#/home/indexes', '_blank');
+  }
+
+  showcontact() {
+    window.open('http://localhost:4200/#/home/contact', '_blank');
+  }
+
+  showabout() {
+    window.open('http://localhost:4200/#/home/about', '_blank');
+  }
+
+  showservices() {
+    window.open('http://localhost:4200/#/home/services', '_blank');
+  }
 }

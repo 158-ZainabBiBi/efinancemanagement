@@ -5,7 +5,7 @@ export const setting = {
 
   companyName: 'Compuwiz Technologies',
   companyShortName: 'CWizTech',
-  logo: 'assets/images/logo.jpeg',
+  logo: 'assets/images/logo.png',
   // logo: 'http://cwiztech.com/design/images/logo.png',
   logo1white: 'http://cwiztech.com/design/images/logo-short.png',
   loginBanner1: 'http://cwiztech.com/design/images/intro-back.jpeg',

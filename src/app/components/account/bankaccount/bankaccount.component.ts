@@ -64,7 +64,62 @@ export class BankaccountComponent implements OnInit {
   @Output() onBankAccountChange = new EventEmitter();
 
   bankaccounts = [];
-  bankaccountsAll = [];
+  bankaccountsAll = [
+    {
+      bankaccount_ID: 1,
+      bankaccount_CODE: "BA-1001",
+      bankaccount_DATE: "2022-02-01",
+      account: {
+        account_NUMBER: "ACC-001"
+      },
+      bankaccounttype: {
+        description: "Savings"
+      },
+      bankaccount_BALANCE: 5000.0,
+      ledgeraccount: {
+        ledgeraccount_NAME: "Ledger Account A"
+      },
+      paymentmethod: {
+        description: "Direct Deposit"
+      },
+      person: {
+        forenames: "John",
+        surname: "Doe"
+      },
+      location: {
+        location_NAME: "USA"
+      },
+      isactive: true
+    },
+    {
+      bankaccount_ID: 2,
+      bankaccount_CODE: "BA-1001",
+      bankaccount_DATE: "2022-02-01",
+      account: {
+        account_NUMBER: "ACC-001"
+      },
+      bankaccounttype: {
+        description: "Savings"
+      },
+      bankaccount_BALANCE: 5000.0,
+      ledgeraccount: {
+        ledgeraccount_NAME: "Ledger Account A"
+      },
+      paymentmethod: {
+        description: "Direct Deposit"
+      },
+      person: {
+        forenames: "John",
+        surname: "Doe"
+      },
+      location: {
+        location_NAME: "USA"
+      },
+      isactive: true
+    },
+    // Add more objects for additional rows
+  ];
+  // bankaccountsAll = [];
   bankaccount = {
     bankaccount_ID: 0,
     ledgeraccount_ID: null,
