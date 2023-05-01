@@ -1,11 +1,12 @@
 <!---Main Header-->
-<div class="main-header" style="background-color: #a4c639;">
+
+<div class="main-header">
   <div class="container">
     <div class="row align-items-center">
       <div class="col-auto">
         <div class="site-brand">
           <a href="#">
-            <img (click)="showindex()" style="width:250px;height:94px;" src="{{ logo }}" class="logo" alt="Logo" />
+            <img [src]="logo" (click)="showindex()" style="width:200px;height:44px;" class="logo" alt="Logo" />
           </a>
         </div>
       </div>
@@ -29,7 +30,7 @@
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="javascript:void(0)">Profile</a>
                     <a class="dropdown-item" href="javascript:void(0)">Settings</a>
-                    <a (click)=logout() class="dropdown-item" href="javascript:void(0)">Logout</a>
+                    <a (click)="logout()" class="dropdown-item" href="javascript:void(0)">Logout</a>
                   </div>
                   <div class="admin">Admin</div>
                 </li>
@@ -38,96 +39,50 @@
           </div>
         </nav>
       </div>
-
-      <div class="col-12 col-md order-md-2 mt-4 mt-md-0 px-md-5">
-        <header class="">
-          <nav class="navbar navbar-expand-lg">
-            <div class="container" style="background-color: #a4c639;">
-              <a class="navbar-brand"></a>
-              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto" >
-                  <li class="nav-item">
-                    <a class="nav-link"><strong>        </strong></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link"><strong>        </strong></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link"><strong>        </strong></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" (click)="showindex()"><strong> Home </strong>
-                      <span class="sr-only">(current)</span>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link"><strong></strong></a>
-                  </li>
-                  <li class="nav-item active">
-                    <a class="nav-link" (click)="showabout()"><strong> About </strong></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link"><strong></strong></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" (click)="showservices()"><strong> Services </strong></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link"><strong></strong></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" (click)="showcontact()"><strong> Contact </strong></a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </nav>
-        </header>
-      </div>
     </div>
   </div>
 </div>
 
-<!---Navigation-->
-<div class="navigation">
-  <div class="container">
-    <div class="row">
-      <div class="col" *ngIf="findLength(menu)>1">
-        <!-- Navbar -->
-        <nav id="smart-menu" class="sm sm-blue">
-          <li>
-            <a [routerLink]="" routerLinkActive="linkactive"><i class="fas fa-home font-lg"></i></a>
-          </li>
+<!-- style="background-color: #a4c639;" -->
 
-          <li *ngFor="let m of menu"><a href="#">{{m.cat}} </a>
-            <ul *ngIf="isNotEmpty(m.pri)">
-              <li *ngFor="let s of m.pri"><a [routerLink]="[s.link]" routerLinkActive="linkactive">{{s.name}}</a></li>
+<!---Navigation-->
+<div class="navigation" style="background-color: #007437;border-color:#007437">
+  <div class="container" style="background-color: #007437;border-color:#007437">
+    <div class="row" style="background-color: #007437;border-color:#007437">
+      <div class="col" *ngIf="findLength(menu)>1" style="background-color: #007437;border-color:#007437">
+        <!-- Navbar -->
+        <nav id="smart-menu" class="sm sm-blue" style="background-color: #007437;border-color:#007437">
+          <li style="background-color: #007437;border-color:#007437">
+            <a (click)="redirectToAppsStore()" style="background-color: #007437;border-color:#007437"><i
+                class="fas fa-home font-lg" style="color: white;"></i></a>
+          </li>
+          <li *ngFor="let m of menu" style="background-color: #007437;border-color:#007437"><a href="#"
+              style="background-color: #007437;border-color:#007437">{{m.cat}} </a>
+            <ul *ngIf="isNotEmpty(m.pri)" style="background-color: #007437;border-color:#007437">
+              <li *ngFor="let s of m.pri" style="background-color: #007437;border-color:#007437"><a
+                  [routerLink]="[s.link]" routerLinkActive="linkactive"
+                  style="background-color: #007437;border-color:#007437">{{s.name}}</a></li>
             </ul>
           </li>
         </nav>
 
       </div>
-      <div class="col" *ngIf="findLength(menu)==1">
+      <div class="col" *ngIf="findLength(menu)==1" style="background-color: #007437;border-color:#007437">
         <!-- Navbar -->
-        <nav id="smart-menu" class="sm sm-blue">
-          <li>
-            <a [routerLink]="['/home/dashboard']" routerLinkActive="linkactive"><i class="fas fa-home font-lg"></i></a>
+        <nav id="smart-menu" class="sm sm-blue" style="background-color: #007437;border-color:#007437">
+          <li style="background-color: #007437;border-color:#007437">
+            <a (click)="redirectToAppsStore()" style="background-color: #007437;border-color:#007437"><i
+                class="fas fa-home font-lg" style="color: white;"></i></a>
           </li>
-          <li *ngFor="let m of smenu"><a [routerLink]="[m.link]" routerLinkActive="linkactive">{{m.name}} </a>
-            <!-- <ul *ngIf="isNotEmpty(m.pri)">
-                        <li  *ngFor="let s of m.pri"><a [routerLink]="[s.link]" routerLinkActive="linkactive" >{{s.name}}</a></li>
-                      </ul> -->
+          <li *ngFor="let m of smenu" style="background-color: #007437;border-color:#007437"><a [routerLink]="[m.link]"
+              routerLinkActive="linkactive" style="background-color: #007437;border-color:#007437">{{m.name}} </a>
           </li>
         </nav>
       </div>
     </div>
   </div>
 
-  <div class="myinput" style="display: none;">
+  <div class="myinput" style="display: none;background-color: #007437;border-color:#007437">
 
   </div>
 </div>

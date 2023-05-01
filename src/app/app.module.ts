@@ -21,7 +21,6 @@ import { NotfoundComponent } from './pages/notfound/notfound.component';
 import { RequestOptionsService } from './services/setting.headers';
 import { HttpErrorInterceptor } from './services/http-error.interceptor';
 
-
 @NgModule({
   declarations: [AppComponent, LoginComponent, NotfoundComponent],
   imports: [

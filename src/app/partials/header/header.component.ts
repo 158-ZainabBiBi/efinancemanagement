@@ -41,6 +41,10 @@ export class HeaderComponent implements OnInit {
     this.loginservice.logout();
   }
 
+  redirectToAppsStore() {
+    location.replace(setting.AppsStorePath);
+  }
+
   sideBar() {
     this.sidebarservice.userprivileges().subscribe(res => {
       this.AllMenus = res;
@@ -155,17 +159,5 @@ export class HeaderComponent implements OnInit {
 
   showindex() {
     window.open('http://localhost:4200/#/home/indexes', '_blank');
-  }
-
-  showcontact() {
-    window.open('http://localhost:4200/#/home/contact', '_blank');
-  }
-
-  showabout() {
-    window.open('http://localhost:4200/#/home/about', '_blank');
-  }
-
-  showservices() {
-    window.open('http://localhost:4200/#/home/services', '_blank');
   }
 }

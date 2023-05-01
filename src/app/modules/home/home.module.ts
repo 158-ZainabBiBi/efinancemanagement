@@ -19,12 +19,13 @@ import {
   DxDropDownButtonModule,
 } from 'devextreme-angular';
 import { IconPickerModule } from "ngx-icon-picker";
-import { SharedModule } from '../shared/shared.module';
 
-//home
+import { SharedModule } from '../shared/shared.module';
 import { HomeComponent } from './home.component';
 import { HomeRoutingModule } from './home-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
+
+//home
 import { AboutComponent } from '../home/dashboard/about/about.component';
 import { ContactComponent } from '../home/dashboard/contact/contact.component';
 import { IndexComponent } from '../home/dashboard/index/index.component';
@@ -32,7 +33,6 @@ import { ServicesComponent } from '../home/dashboard/services/services.component
 import { LegalComponent } from './dashboard/legal/legal.component';
 import { PrivacyComponent } from './dashboard/privacy/privacy.component';
 import { TermsComponent } from './dashboard/terms/terms.component';
-import { FooterComponent } from 'src/app/partials/footer/footer.component';
 
 //customer
 import { CustomerComponent } from 'src/app/components/customer/customer/customer.component';
@@ -137,7 +137,6 @@ import { TrialbalanceviewComponent } from 'src/app/modules/accounts/trialbalance
   declarations: [
     HomeComponent,
     DashboardComponent,
-    FooterComponent,
 
     AboutComponent,
     ContactComponent,
@@ -210,7 +209,6 @@ import { TrialbalanceviewComponent } from 'src/app/modules/accounts/trialbalance
     JournalviewComponent,
     TransactionviewComponent,
     TrialbalanceviewComponent,
-
   ]
 })
 

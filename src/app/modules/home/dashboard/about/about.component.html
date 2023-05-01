@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/fontawesome.css">
   <link rel="stylesheet" href="about.component.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
 
@@ -180,43 +181,78 @@
     </div>
   </div>
 
-  <!-- ***** Project Idea ***** -->
-  <div class="more-info about-info">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="more-info-content">
-            <div class="row">
-              <div class="col-md-6 align-self-center">
-                <div class="right-content">
-                  <span>From a need to simplify finances, EFinance was born</span>
-                  <h2>How you came up <em>with the idea</em></h2>
-                  <p>EFinance was born out of the need to simplify financial management for individuals and businesses.
-                    Our team recognized that many people struggle with managing their finances, especially in the
-                    increasingly complex financial landscape we live in. We saw an opportunity to create a software that
-                    would make it easy for people to track their expenses, create budgets, and make informed financial
-                    decisions. We conducted extensive research, spoke with financial experts, and analyzed user feedback
-                    to develop EFinance.
-                    <br><br>Our goal is to empower individuals and businesses to take control of their finances and
-                    achieve their financial goals. We are proud to offer a comprehensive financial management solution
-                    that is accessible, user-friendly, and affordable.
-                  </p>
+    <!-- ***** Project Idea ***** -->
+    <div class="more-info about-info">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="more-info-content">
+              <div class="row">
+                <div class="col-md-6 align-self-center">
+                  <div class="right-content">
+                    <span>From a need to simplify finances, EFinance was born</span>
+                    <h2>How you came up <em>with the idea</em></h2>
+                    <p>EFinance was born out of the need to simplify financial management for individuals and businesses.
+                      Our team recognized that many people struggle with managing their finances, especially in the
+                      increasingly complex financial landscape we live in. We saw an opportunity to create a software that
+                      would make it easy for people to track their expenses, create budgets, and make informed financial
+                      decisions. We conducted extensive research, spoke with financial experts, and analyzed user feedback
+                      to develop EFinance.
+                      <br><br>Our goal is to empower individuals and businesses to take control of their finances and
+                      achieve their financial goals. We are proud to offer a comprehensive financial management solution
+                      that is accessible, user-friendly, and affordable.
+                    </p>
+                  </div>
                 </div>
-              </div>
-              <div class="col-md-6">
-                <div class="left-image">
-                  <img src="assets/images/about-image2.jpeg" alt="">
+                <div class="col-md-6">
+                  <div class="left-image">
+                    <img src="assets/images/about-image2.jpeg" alt="">
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </div><br><br><br><br>
-  </div>
+      </div><br><br><br><br>
+    </div>
 
-    <!-- App Route Footer -->
-    <app-footer></app-footer>
+  <!-- App Route Footer -->
+  <!-- <app-footer></app-footer> -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-5 footer-item">
+          <h4>EFinance</h4>
+          <p>Managing finances made easy with EFinance. <br> Get social with us and never miss a beat.</p>
+          <ul class="social-icons">
+            <li><a href="https://www.facebook.com/efinanceteam/" target="_blank"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="https://www.instagram.com/e._.finance/" target="_blank"><i class="fa fa-instagram"></i></a>
+            </li>
+            <li><a href="https://twitter.com/E__Finance" target="_blank"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="https://www.linkedin.com/in/e-finance-58261b274/" target="_blank"><i
+                  class="fa fa-linkedin"></i></a></li>
+          </ul>
+        </div>
+        <div class="col-md-3 footer-item">
+          <h4>Support</h4>
+          <ul class="menu-list">
+            <li><a (click)="showservices()">Our Services</a></li>
+            <li><a (click)="showabout()">About Us</a></li>
+            <li><a (click)="showcontact()">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="col-md-3 footer-item">
+          <h4>Policies</h4>
+          <ul class="menu-list">
+            <li><a (click)="showlegal()">Legal</a></li>
+            <li><a (click)="showprivacy()">Privacy Policy</a></li>
+            <li><a (click)="showterms()">Terms of Service</a></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </footer>
 
 </body>
 
