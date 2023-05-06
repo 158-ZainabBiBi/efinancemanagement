@@ -15,7 +15,7 @@ export class AccountService {
 
   get() {
     var postData = {
-      service_NAME: setting.financeservice_NAME,
+      service_NAME: setting.accountservice_NAME,
       request_TYPE: "GET",
       request_URI: "account",
       request_BODY: ""
@@ -25,7 +25,7 @@ export class AccountService {
 
   getAll() {
     var postData = {
-      service_NAME: setting.financeservice_NAME,
+      service_NAME: setting.accountservice_NAME,
       request_TYPE: "GET",
       request_URI: "account/all",
       request_BODY: ""
@@ -36,7 +36,7 @@ export class AccountService {
 
   getOne(id) {
     var postData = {
-      service_NAME: setting.financeservice_NAME,
+      service_NAME: setting.accountservice_NAME,
       request_TYPE: "GET",
       request_URI: "account/" + id,
       request_BODY: ""
@@ -46,7 +46,7 @@ export class AccountService {
 
   add(data) {
     var postData = {
-      service_NAME: setting.financeservice_NAME,
+      service_NAME: setting.accountservice_NAME,
       request_TYPE: "POST",
       request_URI: "account",
       request_BODY: JSON.stringify(data)
@@ -56,7 +56,7 @@ export class AccountService {
 
   update(data, id) {
     var postData = {
-      service_NAME: setting.financeservice_NAME,
+      service_NAME: setting.accountservice_NAME,
       request_TYPE: "PUT",
       request_URI: "account/" + id,
       request_BODY: JSON.stringify(data)
@@ -67,7 +67,7 @@ export class AccountService {
 
   updateAll(data) {
     var postData = {
-      service_NAME: setting.financeservice_NAME,
+      service_NAME: setting.accountservice_NAME,
       request_TYPE: "PUT",
       request_URI: "account",
       request_BODY: JSON.stringify(data)
@@ -78,7 +78,7 @@ export class AccountService {
 
   delete(id) {
     var postData = {
-      service_NAME: setting.financeservice_NAME,
+      service_NAME: setting.accountservice_NAME,
       request_TYPE: "DELETE",
       request_URI: "account/" + id,
       request_BODY: ""
@@ -88,7 +88,7 @@ export class AccountService {
 
   search(data) {
     var postData = {
-      service_NAME: setting.financeservice_NAME,
+      service_NAME: setting.accountservice_NAME,
       request_TYPE: "POST",
       request_URI: "account/search",
       request_BODY: JSON.stringify(data)
@@ -99,7 +99,7 @@ export class AccountService {
 
   searchAll(data) {
     var postData = {
-      service_NAME: setting.financeservice_NAME,
+      service_NAME: setting.accountservice_NAME,
       request_TYPE: "POST",
       request_URI: "account/search/all",
       request_BODY: JSON.stringify(data)
@@ -109,7 +109,7 @@ export class AccountService {
 
   advancedSearch(data) {
     var postData = {
-      service_NAME: setting.financeservice_NAME,
+      service_NAME: setting.accountservice_NAME,
       request_TYPE: "POST",
       request_URI: "account/advancedsearch",
       request_BODY: JSON.stringify(data)
@@ -119,7 +119,7 @@ export class AccountService {
 
   advancedSearchAll(data) {
     var postData = {
-      service_NAME: setting.financeservice_NAME,
+      service_NAME: setting.accountservice_NAME,
       request_TYPE: "POST",
       request_URI: "account/advancedsearch/all",
       request_BODY: JSON.stringify(data)

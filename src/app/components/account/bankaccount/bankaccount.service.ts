@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpCallServieService } from '../../../services/http-call-servie.service';
 import { setting } from '../../../setting';
-import { AccountService } from '../../finance/account/account.service';
+import { AccountService } from '../account/account.service';
 import { LedgeraccountService } from '../ledgeraccount/ledgeraccount.service';
 import { PersonService } from '../../person/person/person.service';
 import { LocationService } from '../../location/location/location.service';

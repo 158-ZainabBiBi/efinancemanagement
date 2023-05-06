@@ -223,7 +223,7 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label class="control-label">Code <span style="color:red">*</span></label>
-                <input type="text" class="form-control" name="bankaccount_CODE"
+                <input type="text" class="form-control" name="bankaccount_CODE" pattern="[a-zA-Z0-9-]+"
                   [(ngModel)]="bankaccount.bankaccount_CODE" maxlength="50" required>
               </div>
             </div>
@@ -275,8 +275,7 @@
               <app-person #person [view]="1" [personID]="bankaccount.person_ID"></app-person>
             </div>
             <div class="col-md-6">
-              <app-locationsearchfilter #locationsearchfilter [view]="3"
-                [locationID]="bankaccount.location_ID"></app-locationsearchfilter>
+              <app-location #location [view]="1" [locationID]="bankaccount.location_ID"></app-location>
             </div>
           </div>
         </div>
@@ -360,8 +359,7 @@
               <app-person #person [view]="1" [personID]="bankaccount.person_ID"></app-person>
             </div>
             <div class="col-md-6">
-              <app-locationsearchfilter #locationsearchfilter [view]="3"
-                [locationID]="bankaccount.location_ID"></app-locationsearchfilter>
+              <app-location #location [view]="1" [locationID]="bankaccount.location_ID"></app-location>
             </div>
           </div>
           <div class="row">
@@ -477,8 +475,8 @@
               <app-person #person [view]="1" [disabled]="disabled" [personID]="bankaccount.person_ID"></app-person>
             </div>
             <div class="col-md-6">
-              <app-locationsearchfilter #locationsearchfilter [view]="3" [disabled]="disabled"
-                [locationID]="bankaccount.location_ID"></app-locationsearchfilter>
+              <app-location #location [view]="1" [disabled]="disabled"
+                [locationID]="bankaccount.location_ID"></app-location>
             </div>
           </div>
           <div class="row">

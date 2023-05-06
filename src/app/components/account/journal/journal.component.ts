@@ -44,46 +44,47 @@ export class JournalComponent implements OnInit {
   @Output() onJournalChange = new EventEmitter();
 
   journals = [];
-  journalsAll = [
-    {
-      journal_ID: 1,
-      journal_CODE: "J1",
-      journal_DATE: "2023-04-01",
-      journal_NAME: "Journal 1",
-      transaction: {
-        transaction_CODE: "T1",
-        transaction_DATE: "2023-04-01"
-      },
-      journalline: {
-        ledgeraccount: {
-          ledgeraccount_NAME: "Account 1",
-          balance_CREDIT: 100,
-          balance_DEBIT: 0
-        }
-      },
-      journal_DESC: "Description 1",
-      isactive: true
-    },
-    {
-      journal_ID: 2,
-      journal_CODE: "J2",
-      journal_DATE: "2023-04-02",
-      journal_NAME: "Journal 2",
-      transaction: {
-        transaction_CODE: "T2",
-        transaction_DATE: "2023-04-02"
-      },
-      journalline: {
-        ledgeraccount: {
-          ledgeraccount_NAME: "Account 2",
-          balance_CREDIT: 0,
-          balance_DEBIT: 50
-        }
-      },
-      journal_DESC: "Description 2",
-      isactive: false
-    }
-  ];
+  journalsAll = [];
+  // journalsAll = [
+  //   {
+  //     journal_ID: 1,
+  //     journal_CODE: "J1",
+  //     journal_DATE: "2023-04-01",
+  //     journal_NAME: "Journal 1",
+  //     transaction: {
+  //       transaction_CODE: "T1",
+  //       transaction_DATE: "2023-04-01"
+  //     },
+  //     journalline: {
+  //       ledgeraccount: {
+  //         ledgeraccount_NAME: "Account 1",
+  //         balance_CREDIT: 100,
+  //         balance_DEBIT: 0
+  //       }
+  //     },
+  //     journal_DESC: "Description 1",
+  //     isactive: true
+  //   },
+  //   {
+  //     journal_ID: 2,
+  //     journal_CODE: "J2",
+  //     journal_DATE: "2023-04-02",
+  //     journal_NAME: "Journal 2",
+  //     transaction: {
+  //       transaction_CODE: "T2",
+  //       transaction_DATE: "2023-04-02"
+  //     },
+  //     journalline: {
+  //       ledgeraccount: {
+  //         ledgeraccount_NAME: "Account 2",
+  //         balance_CREDIT: 0,
+  //         balance_DEBIT: 50
+  //       }
+  //     },
+  //     journal_DESC: "Description 2",
+  //     isactive: false
+  //   }
+  // ];
   journal = {
     journal_ID: 0,
     journalline_ID: null,

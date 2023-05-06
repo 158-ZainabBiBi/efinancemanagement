@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { OnFailService } from '../../../services/on-fail.service';
 import { BankaccountService } from './bankaccount.service';
-import { AccountComponent } from '../../finance/account/account.component';
+import { AccountComponent } from '../account/account.component';
 import { PaymentmethodComponent } from '../../lookup/paymentmethod/paymentmethod.component';
 import { BankaccounttypeComponent } from '../../lookup/bankaccounttype/bankaccounttype.component';
 import { LedgeraccountComponent } from '../ledgeraccount/ledgeraccount.component';
@@ -64,35 +64,35 @@ export class BankaccountComponent implements OnInit {
   @Output() onBankAccountChange = new EventEmitter();
 
   bankaccounts = [];
-  bankaccountsAll = [
-    {
-      bankaccount_ID: 1,
-      bankaccount_CODE: '001',
-      bankaccount_DATE: '2023-04-30',
-      account: { account_NUMBER: '123456' },
-      bankaccounttype: { description: 'Savings' },
-      bankaccount_BALANCE: 1000,
-      ledgeraccount: { ledgeraccount_NAME: 'Cash' },
-      paymentmethod: { description: 'Credit Card' },
-      person: { forenames: 'John', surname: 'Doe' },
-      location: { location_NAME: 'USA' },
-      isactive: true
-    },
-    {
-      bankaccount_ID: 2,
-      bankaccount_CODE: '002',
-      bankaccount_DATE: '2023-05-01',
-      account: { account_NUMBER: '654321' },
-      bankaccounttype: { description: 'Checking' },
-      bankaccount_BALANCE: 500,
-      ledgeraccount: { ledgeraccount_NAME: 'Bank' },
-      paymentmethod: { description: 'PayPal' },
-      person: { forenames: 'Jane', surname: 'Doe' },
-      location: { location_NAME: 'Canada' },
-      isactive: false
-    }
-  ];
-  // bankaccountsAll = [];
+  // bankaccountsAll = [
+  //   {
+  //     bankaccount_ID: 1,
+  //     bankaccount_CODE: '001',
+  //     bankaccount_DATE: '2023-04-30',
+  //     account: { account_NUMBER: '123456' },
+  //     bankaccounttype: { description: 'Savings' },
+  //     bankaccount_BALANCE: 1000,
+  //     ledgeraccount: { ledgeraccount_NAME: 'Cash' },
+  //     paymentmethod: { description: 'Credit Card' },
+  //     person: { forenames: 'John', surname: 'Doe' },
+  //     location: { location_NAME: 'USA' },
+  //     isactive: true
+  //   },
+  //   {
+  //     bankaccount_ID: 2,
+  //     bankaccount_CODE: '002',
+  //     bankaccount_DATE: '2023-05-01',
+  //     account: { account_NUMBER: '654321' },
+  //     bankaccounttype: { description: 'Checking' },
+  //     bankaccount_BALANCE: 500,
+  //     ledgeraccount: { ledgeraccount_NAME: 'Bank' },
+  //     paymentmethod: { description: 'PayPal' },
+  //     person: { forenames: 'Jane', surname: 'Doe' },
+  //     location: { location_NAME: 'Canada' },
+  //     isactive: false
+  //   }
+  // ];
+  bankaccountsAll = [];
   bankaccount = {
     bankaccount_ID: 0,
     ledgeraccount_ID: null,

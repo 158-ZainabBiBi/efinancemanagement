@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 
-import { AccountComponent } from '../finance/account/account.component';
+import { AccountComponent } from '../account/account/account.component';
 import { BankaccounttypeComponent } from '../lookup/bankaccounttype/bankaccounttype.component';
 import { ReturnauthComponent } from '../account/returnauth/returnauth.component';
 import { CustomerrefundComponent } from '../account/customerrefund/customerrefund.component';

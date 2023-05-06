@@ -48,44 +48,45 @@ export class TransactionComponent implements OnInit {
   @Output() onTransactionChange = new EventEmitter();
 
   transactions = [];
-  transactionsAll = [
-    {
-      transaction_ID: 1,
-      transaction_CODE: 'ABC123',
-      transaction_DATE: '2022-04-01',
-      transaction_NAME: 'Transaction 1',
-      transactiontype: { description: 'Type 1' },
-      transaction_TOTAL: 1000,
-      currency: { description: 'USD' },
-      customer: { customer_NAME: 'Customer 1' },
-      transaction_DESC: 'Description 1',
-      isactive: true
-    },
-    {
-      transaction_ID: 2,
-      transaction_CODE: 'DEF456',
-      transaction_DATE: '2022-04-02',
-      transaction_NAME: 'Transaction 2',
-      transactiontype: { description: 'Type 2' },
-      transaction_TOTAL: 2000,
-      currency: { description: 'EUR' },
-      customer: { customer_NAME: 'Customer 2' },
-      transaction_DESC: 'Description 2',
-      isactive: false
-    },
-    {
-      transaction_ID: 3,
-      transaction_CODE: 'GHI789',
-      transaction_DATE: '2022-04-03',
-      transaction_NAME: 'Transaction 3',
-      transactiontype: { description: 'Type 3' },
-      transaction_TOTAL: 3000,
-      currency: { description: 'JPY' },
-      customer: { customer_NAME: 'Customer 3' },
-      transaction_DESC: 'Description 3',
-      isactive: true
-    }
-  ];
+  transactionsAll = [];
+  // transactionsAll = [
+  //   {
+  //     transaction_ID: 1,
+  //     transaction_CODE: 'ABC123',
+  //     transaction_DATE: '2022-04-01',
+  //     transaction_NAME: 'Transaction 1',
+  //     transactiontype: { description: 'Type 1' },
+  //     transaction_TOTAL: 1000,
+  //     currency: { description: 'USD' },
+  //     customer: { customer_NAME: 'Customer 1' },
+  //     transaction_DESC: 'Description 1',
+  //     isactive: true
+  //   },
+  //   {
+  //     transaction_ID: 2,
+  //     transaction_CODE: 'DEF456',
+  //     transaction_DATE: '2022-04-02',
+  //     transaction_NAME: 'Transaction 2',
+  //     transactiontype: { description: 'Type 2' },
+  //     transaction_TOTAL: 2000,
+  //     currency: { description: 'EUR' },
+  //     customer: { customer_NAME: 'Customer 2' },
+  //     transaction_DESC: 'Description 2',
+  //     isactive: false
+  //   },
+  //   {
+  //     transaction_ID: 3,
+  //     transaction_CODE: 'GHI789',
+  //     transaction_DATE: '2022-04-03',
+  //     transaction_NAME: 'Transaction 3',
+  //     transactiontype: { description: 'Type 3' },
+  //     transaction_TOTAL: 3000,
+  //     currency: { description: 'JPY' },
+  //     customer: { customer_NAME: 'Customer 3' },
+  //     transaction_DESC: 'Description 3',
+  //     isactive: true
+  //   }
+  // ];
   transaction = {
     transaction_ID: 0,
     customer_ID: null,

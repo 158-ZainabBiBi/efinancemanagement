@@ -48,32 +48,33 @@ export class LedgeraccountComponent implements OnInit {
   @Output() onLedgerAccountChange = new EventEmitter();
 
   ledgeraccounts = [];
-  ledgeraccountsAll = [
-    {
-      ledgeraccount_ID: 1,
-      ledgeraccount_CODE: '101',
-      ledgeraccount_NAME: 'Bank Account',
-      ledgeraccounttype: { description: 'Asset' },
-      balance_CREDIT: 0,
-      balance_DEBIT: 5000,
-      ledgeraccountclassification: { ledgeraccountclassification_NAME: 'Bank Accounts' },
-      ledgeraccount_DESC: 'Bank account for company',
-      taxcode: { taxcode_NAME: 'None' },
-      isactive: true
-    },
-    {
-      ledgeraccount_ID: 2,
-      ledgeraccount_CODE: '201',
-      ledgeraccount_NAME: 'Accounts Payable',
-      ledgeraccounttype: { description: 'Liability' },
-      balance_CREDIT: 5000,
-      balance_DEBIT: 0,
-      ledgeraccountclassification: { ledgeraccountclassification_NAME: 'Accounts Payable' },
-      ledgeraccount_DESC: 'Amount owed to suppliers',
-      taxcode: { taxcode_NAME: 'GST' },
-      isactive: true
-    }
-  ];
+  ledgeraccountsAll = [];
+  // ledgeraccountsAll = [
+  //   {
+  //     ledgeraccount_ID: 1,
+  //     ledgeraccount_CODE: '101',
+  //     ledgeraccount_NAME: 'Bank Account',
+  //     ledgeraccounttype: { description: 'Asset' },
+  //     balance_CREDIT: 0,
+  //     balance_DEBIT: 5000,
+  //     ledgeraccountclassification: { ledgeraccountclassification_NAME: 'Bank Accounts' },
+  //     ledgeraccount_DESC: 'Bank account for company',
+  //     taxcode: { taxcode_NAME: 'None' },
+  //     isactive: true
+  //   },
+  //   {
+  //     ledgeraccount_ID: 2,
+  //     ledgeraccount_CODE: '201',
+  //     ledgeraccount_NAME: 'Accounts Payable',
+  //     ledgeraccounttype: { description: 'Liability' },
+  //     balance_CREDIT: 5000,
+  //     balance_DEBIT: 0,
+  //     ledgeraccountclassification: { ledgeraccountclassification_NAME: 'Accounts Payable' },
+  //     ledgeraccount_DESC: 'Amount owed to suppliers',
+  //     taxcode: { taxcode_NAME: 'GST' },
+  //     isactive: true
+  //   }
+  // ];
   ledgeraccount = {
     ledgeraccount_ID: 0,
     ledgeraccounttype_ID: null,

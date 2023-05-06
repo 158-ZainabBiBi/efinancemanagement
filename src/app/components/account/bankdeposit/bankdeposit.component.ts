@@ -36,46 +36,46 @@ export class BankdepositComponent implements OnInit {
   @Output() onBankDepositChange = new EventEmitter();
 
   bankdeposits = [];
-  // bankdepositsAll = [];
-  bankdepositsAll = [
-    {
-      bankdeposit_ID: 1,
-      frombankaccount: { ledgeraccount_NAME: 'Account A' },
-      tobankaccount: { ledgeraccount_NAME: 'Account B' },
-      bankdeposit_CODE: '123',
-      bankdeposit_DATE: '2021-08-10',
-      cash_AMOUNT: 1000,
-      cheque_AMOUNT: 2000,
-      total_AMOUNT: 3000,
-      bankdeposit_DESCRIPTION: 'Sample deposit',
-      isactive: true
-    },
-    {
-      bankdeposit_ID: 2,
-      frombankaccount: { ledgeraccount_NAME: 'Account A' },
-      tobankaccount: { ledgeraccount_NAME: 'Account B' },
-      bankdeposit_CODE: '123',
-      bankdeposit_DATE: '2021-08-10',
-      cash_AMOUNT: 1000,
-      cheque_AMOUNT: 2000,
-      total_AMOUNT: 3000,
-      bankdeposit_DESCRIPTION: 'Sample deposit',
-      isactive: true
-    },
-    {
-      bankdeposit_ID: 3,
-      frombankaccount: { ledgeraccount_NAME: 'Account A' },
-      tobankaccount: { ledgeraccount_NAME: 'Account B' },
-      bankdeposit_CODE: '123',
-      bankdeposit_DATE: '2021-08-10',
-      cash_AMOUNT: 1000,
-      cheque_AMOUNT: 2000,
-      total_AMOUNT: 3000,
-      bankdeposit_DESCRIPTION: 'Sample deposit',
-      isactive: true
-    },
-    // Add more objects here as required...
-  ];
+  bankdepositsAll = [];
+  // bankdepositsAll = [
+  //   {
+  //     bankdeposit_ID: 1,
+  //     frombankaccount: { ledgeraccount_NAME: 'Account A' },
+  //     tobankaccount: { ledgeraccount_NAME: 'Account B' },
+  //     bankdeposit_CODE: '123',
+  //     bankdeposit_DATE: '2021-08-10',
+  //     cash_AMOUNT: 1000,
+  //     cheque_AMOUNT: 2000,
+  //     total_AMOUNT: 3000,
+  //     bankdeposit_DESCRIPTION: 'Sample deposit',
+  //     isactive: true
+  //   },
+  //   {
+  //     bankdeposit_ID: 2,
+  //     frombankaccount: { ledgeraccount_NAME: 'Account A' },
+  //     tobankaccount: { ledgeraccount_NAME: 'Account B' },
+  //     bankdeposit_CODE: '123',
+  //     bankdeposit_DATE: '2021-08-10',
+  //     cash_AMOUNT: 1000,
+  //     cheque_AMOUNT: 2000,
+  //     total_AMOUNT: 3000,
+  //     bankdeposit_DESCRIPTION: 'Sample deposit',
+  //     isactive: true
+  //   },
+  //   {
+  //     bankdeposit_ID: 3,
+  //     frombankaccount: { ledgeraccount_NAME: 'Account A' },
+  //     tobankaccount: { ledgeraccount_NAME: 'Account B' },
+  //     bankdeposit_CODE: '123',
+  //     bankdeposit_DATE: '2021-08-10',
+  //     cash_AMOUNT: 1000,
+  //     cheque_AMOUNT: 2000,
+  //     total_AMOUNT: 3000,
+  //     bankdeposit_DESCRIPTION: 'Sample deposit',
+  //     isactive: true
+  //   },
+  //   // Add more objects here as required...
+  // ];
   bankdeposit = {
     bankdeposit_ID: 0,
     frombankaccount_ID: null,

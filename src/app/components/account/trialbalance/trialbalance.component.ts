@@ -39,44 +39,45 @@ export class TrialbalanceComponent implements OnInit {
   @Output() onTrialBalanceChange = new EventEmitter();
 
   trialbalances = [];
-  trialbalancesAll = [
-    {
-      trialbalance_ID: 1,
-      trialbalance_CODE: "TB001",
-      trialbalance_NAME: "Trial Balance 1",
-      balance_FROMDATE: "2022-01-01",
-      balance_TODATE: "2022-12-31",
-      ledgerentry: {
-        ledgeraccount: {
-          ledgeraccount_NAME: "Account 1"
-        },
-        credit_AMOUNT: 1000,
-        debit_AMOUNT: 500
-      },
-      balance_CREDIT: 1000,
-      balance_DEBIT: 500,
-      trialbalance_DESC: "This is a description",
-      isactive: true
-    },
-    {
-      trialbalance_ID: 2,
-      trialbalance_CODE: "TB002",
-      trialbalance_NAME: "Trial Balance 2",
-      balance_FROMDATE: "2022-01-01",
-      balance_TODATE: "2022-12-31",
-      ledgerentry: {
-        ledgeraccount: {
-          ledgeraccount_NAME: "Account 2"
-        },
-        credit_AMOUNT: 2000,
-        debit_AMOUNT: 1000
-      },
-      balance_CREDIT: 2000,
-      balance_DEBIT: 1000,
-      trialbalance_DESC: "This is another description",
-      isactive: false
-    }
-  ];
+  trialbalancesAll = [];
+  // trialbalancesAll = [
+  //   {
+  //     trialbalance_ID: 1,
+  //     trialbalance_CODE: "TB001",
+  //     trialbalance_NAME: "Trial Balance 1",
+  //     balance_FROMDATE: "2022-01-01",
+  //     balance_TODATE: "2022-12-31",
+  //     ledgerentry: {
+  //       ledgeraccount: {
+  //         ledgeraccount_NAME: "Account 1"
+  //       },
+  //       credit_AMOUNT: 1000,
+  //       debit_AMOUNT: 500
+  //     },
+  //     balance_CREDIT: 1000,
+  //     balance_DEBIT: 500,
+  //     trialbalance_DESC: "This is a description",
+  //     isactive: true
+  //   },
+  //   {
+  //     trialbalance_ID: 2,
+  //     trialbalance_CODE: "TB002",
+  //     trialbalance_NAME: "Trial Balance 2",
+  //     balance_FROMDATE: "2022-01-01",
+  //     balance_TODATE: "2022-12-31",
+  //     ledgerentry: {
+  //       ledgeraccount: {
+  //         ledgeraccount_NAME: "Account 2"
+  //       },
+  //       credit_AMOUNT: 2000,
+  //       debit_AMOUNT: 1000
+  //     },
+  //     balance_CREDIT: 2000,
+  //     balance_DEBIT: 1000,
+  //     trialbalance_DESC: "This is another description",
+  //     isactive: false
+  //   }
+  // ];
   trialbalance = {
     trialbalance_ID: 0,
     ledgerentry_ID: null,

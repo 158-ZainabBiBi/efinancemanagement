@@ -50,13 +50,13 @@ import { LocationleveltypeComponent } from 'src/app/components/location/location
 import { LocationsearchfilterComponent } from 'src/app/components/location/locationsearchfilter/locationsearchfilter.component';
 
 //finance
-import { AccountComponent } from 'src/app/components/finance/account/account.component';
 import { TaxcodeComponent } from 'src/app/components/finance/taxcode/taxcode.component';
 
 //searchfilter
 import { AccountsearchfilterComponent } from 'src/app/components/accountsearchfilter/accountsearchfilter.component';
 
 //account
+import { AccountComponent } from 'src/app/components/account/account/account.component';
 import { ApprovalreturnauthComponent } from 'src/app/components/account/approvalreturnauth/approvalreturnauth.component';
 import { CreditcardtransactionComponent } from 'src/app/components/account/creditcardtransaction/creditcardtransaction.component';
 import { CustomerrefundComponent } from 'src/app/components/account/customerrefund/customerrefund.component';

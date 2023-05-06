@@ -8,7 +8,7 @@ import { CurrencyComponent } from '../../lookup/currency/currency.component';
 import { CustomerComponent } from '../../customer/customer/customer.component';
 import { PostingperiodComponent } from '../../lookup/postingperiod/postingperiod.component';
 import { RefundmethodComponent } from '../../lookup/refundmethod/refundmethod.component';
-import { AccountComponent } from '../../finance/account/account.component';
+import { AccountComponent } from '../account/account.component';
 
 @Component({
   selector: 'app-customerrefund',

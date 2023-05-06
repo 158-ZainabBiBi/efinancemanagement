@@ -36,53 +36,53 @@ export class BanktransferComponent implements OnInit {
   @Output() onBankTransferChange = new EventEmitter();
 
   banktransfers = [];
-  // banktransfersAll = [];
-  banktransfersAll = [
-    {
-      banktransfer_ID: 1,
-      frombankaccount: { ledgeraccount_NAME: 'From Account 1' },
-      tobankaccount: { ledgeraccount_NAME: 'To Account 1' },
-      banktransfer_CODE: 'BT-001',
-      banktransfer_DATE: '2023-04-30',
-      banktransfer_NAME: 'Bank Transfer 1',
-      banktransfer_AMOUNT: 1000.00,
-      banktransfer_DESC: 'Transfer for invoice #001',
-      isactive: true
-    },
-    {
-      banktransfer_ID: 2,
-      frombankaccount: { ledgeraccount_NAME: 'From Account 2' },
-      tobankaccount: { ledgeraccount_NAME: 'To Account 2' },
-      banktransfer_CODE: 'BT-002',
-      banktransfer_DATE: '2023-05-01',
-      banktransfer_NAME: 'Bank Transfer 2',
-      banktransfer_AMOUNT: 2000.00,
-      banktransfer_DESC: 'Transfer for invoice #002',
-      isactive: false
-    },
-    {
-      banktransfer_ID: 3,
-      frombankaccount: { ledgeraccount_NAME: 'From Account 1' },
-      tobankaccount: { ledgeraccount_NAME: 'To Account 1' },
-      banktransfer_CODE: 'BT-001',
-      banktransfer_DATE: '2023-04-30',
-      banktransfer_NAME: 'Bank Transfer 1',
-      banktransfer_AMOUNT: 1000.00,
-      banktransfer_DESC: 'Transfer for invoice #001',
-      isactive: true
-    },
-    {
-      banktransfer_ID: 4,
-      frombankaccount: { ledgeraccount_NAME: 'From Account 2' },
-      tobankaccount: { ledgeraccount_NAME: 'To Account 2' },
-      banktransfer_CODE: 'BT-002',
-      banktransfer_DATE: '2023-05-01',
-      banktransfer_NAME: 'Bank Transfer 2',
-      banktransfer_AMOUNT: 2000.00,
-      banktransfer_DESC: 'Transfer for invoice #002',
-      isactive: false
-    },
-  ];
+  banktransfersAll = [];
+  // banktransfersAll = [
+  //   {
+  //     banktransfer_ID: 1,
+  //     frombankaccount: { ledgeraccount_NAME: 'From Account 1' },
+  //     tobankaccount: { ledgeraccount_NAME: 'To Account 1' },
+  //     banktransfer_CODE: 'BT-001',
+  //     banktransfer_DATE: '2023-04-30',
+  //     banktransfer_NAME: 'Bank Transfer 1',
+  //     banktransfer_AMOUNT: 1000.00,
+  //     banktransfer_DESC: 'Transfer for invoice #001',
+  //     isactive: true
+  //   },
+  //   {
+  //     banktransfer_ID: 2,
+  //     frombankaccount: { ledgeraccount_NAME: 'From Account 2' },
+  //     tobankaccount: { ledgeraccount_NAME: 'To Account 2' },
+  //     banktransfer_CODE: 'BT-002',
+  //     banktransfer_DATE: '2023-05-01',
+  //     banktransfer_NAME: 'Bank Transfer 2',
+  //     banktransfer_AMOUNT: 2000.00,
+  //     banktransfer_DESC: 'Transfer for invoice #002',
+  //     isactive: false
+  //   },
+  //   {
+  //     banktransfer_ID: 3,
+  //     frombankaccount: { ledgeraccount_NAME: 'From Account 1' },
+  //     tobankaccount: { ledgeraccount_NAME: 'To Account 1' },
+  //     banktransfer_CODE: 'BT-001',
+  //     banktransfer_DATE: '2023-04-30',
+  //     banktransfer_NAME: 'Bank Transfer 1',
+  //     banktransfer_AMOUNT: 1000.00,
+  //     banktransfer_DESC: 'Transfer for invoice #001',
+  //     isactive: true
+  //   },
+  //   {
+  //     banktransfer_ID: 4,
+  //     frombankaccount: { ledgeraccount_NAME: 'From Account 2' },
+  //     tobankaccount: { ledgeraccount_NAME: 'To Account 2' },
+  //     banktransfer_CODE: 'BT-002',
+  //     banktransfer_DATE: '2023-05-01',
+  //     banktransfer_NAME: 'Bank Transfer 2',
+  //     banktransfer_AMOUNT: 2000.00,
+  //     banktransfer_DESC: 'Transfer for invoice #002',
+  //     isactive: false
+  //   },
+  // ];
 banktransfer = {
   banktransfer_ID: 0,
   frombankaccount_ID: null,

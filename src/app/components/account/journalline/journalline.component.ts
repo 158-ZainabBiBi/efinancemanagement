@@ -40,11 +40,12 @@ export class JournallineComponent implements OnInit {
   @Output() onJournalLineChange = new EventEmitter();
 
   journallines = [];
-  journallinesAll = [
-    { journalline_ID: 1, journalline_CODE: 'AAA', journalline_NAME: 'Line 1', ledgeraccount: { ledgeraccount_NAME: 'Account 1', ledgeraccount_CODE: '101', balance_CREDIT: 100, balance_DEBIT: 0 }, journalline_DESC: 'Description 1', isactive: true },
-    { journalline_ID: 2, journalline_CODE: 'BBB', journalline_NAME: 'Line 2', ledgeraccount: { ledgeraccount_NAME: 'Account 2', ledgeraccount_CODE: '102', balance_CREDIT: 0, balance_DEBIT: 50 }, journalline_DESC: 'Description 2', isactive: false },
-    { journalline_ID: 3, journalline_CODE: 'CCC', journalline_NAME: 'Line 3', ledgeraccount: { ledgeraccount_NAME: 'Account 3', ledgeraccount_CODE: '103', balance_CREDIT: 75, balance_DEBIT: 75 }, journalline_DESC: 'Description 3', isactive: true }
-  ];
+  journallinesAll = [];
+  // journallinesAll = [
+  //   { journalline_ID: 1, journalline_CODE: 'AAA', journalline_NAME: 'Line 1', ledgeraccount: { ledgeraccount_NAME: 'Account 1', ledgeraccount_CODE: '101', balance_CREDIT: 100, balance_DEBIT: 0 }, journalline_DESC: 'Description 1', isactive: true },
+  //   { journalline_ID: 2, journalline_CODE: 'BBB', journalline_NAME: 'Line 2', ledgeraccount: { ledgeraccount_NAME: 'Account 2', ledgeraccount_CODE: '102', balance_CREDIT: 0, balance_DEBIT: 50 }, journalline_DESC: 'Description 2', isactive: false },
+  //   { journalline_ID: 3, journalline_CODE: 'CCC', journalline_NAME: 'Line 3', ledgeraccount: { ledgeraccount_NAME: 'Account 3', ledgeraccount_CODE: '103', balance_CREDIT: 75, balance_DEBIT: 75 }, journalline_DESC: 'Description 3', isactive: true }
+  // ];
   journalline = {
     journalline_ID: 0,
     ledgeraccount_ID: null,
