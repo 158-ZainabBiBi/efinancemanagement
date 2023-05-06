@@ -17,7 +17,7 @@ export const setting = {
   accountservice_NAME: 'CWIZTECHACCOUNT',
   customerservice_NAME: 'CWIZTECHCUSTOMER',
   productservice_NAME: 'CWIZTECHPRODUCT',
-  financeservice_NAME: 'CWIZTECHFINANCE',
+  financeservice_NAME: 'CWIZTECHERPFINANCE',
 
   isHash: '/#',
   // redirctPath: '',

@@ -7,7 +7,7 @@ import { AccountComponent } from '../account/account.component';
 import { PaymentmethodComponent } from '../../lookup/paymentmethod/paymentmethod.component';
 import { BankaccounttypeComponent } from '../../lookup/bankaccounttype/bankaccounttype.component';
 import { LedgeraccountComponent } from '../ledgeraccount/ledgeraccount.component';
-import { PersonComponent } from '../../person/person/person.component';
+import { CustomerComponent } from '../../customer/customer/customer.component';
 import { LocationsearchfilterComponent } from '../../location/locationsearchfilter/locationsearchfilter.component';
 
 declare var $: any;
@@ -21,7 +21,7 @@ export class BankaccountComponent implements OnInit {
   @ViewChild("bankaccounttype") bankaccounttype: BankaccounttypeComponent;
   @ViewChild("paymentmethod") paymentmethod: PaymentmethodComponent;
   @ViewChild("locationsearchfilter") locationsearchfilter: LocationsearchfilterComponent;
-  @ViewChild("person") person: PersonComponent;
+  @ViewChild("customer") customer: CustomerComponent;
   @ViewChild("account") account: AccountComponent;
 
   @ViewChild("ledgeraccount") ledgeraccount: LedgeraccountComponent;
@@ -45,7 +45,7 @@ export class BankaccountComponent implements OnInit {
   @Input()
   ledgeraccountID = null;
   @Input()
-  personID = null;
+  customerID = null;
   @Input()
   paymentmethodID = null;
   @Input()
@@ -64,42 +64,15 @@ export class BankaccountComponent implements OnInit {
   @Output() onBankAccountChange = new EventEmitter();
 
   bankaccounts = [];
-  // bankaccountsAll = [
-  //   {
-  //     bankaccount_ID: 1,
-  //     bankaccount_CODE: '001',
-  //     bankaccount_DATE: '2023-04-30',
-  //     account: { account_NUMBER: '123456' },
-  //     bankaccounttype: { description: 'Savings' },
-  //     bankaccount_BALANCE: 1000,
-  //     ledgeraccount: { ledgeraccount_NAME: 'Cash' },
-  //     paymentmethod: { description: 'Credit Card' },
-  //     person: { forenames: 'John', surname: 'Doe' },
-  //     location: { location_NAME: 'USA' },
-  //     isactive: true
-  //   },
-  //   {
-  //     bankaccount_ID: 2,
-  //     bankaccount_CODE: '002',
-  //     bankaccount_DATE: '2023-05-01',
-  //     account: { account_NUMBER: '654321' },
-  //     bankaccounttype: { description: 'Checking' },
-  //     bankaccount_BALANCE: 500,
-  //     ledgeraccount: { ledgeraccount_NAME: 'Bank' },
-  //     paymentmethod: { description: 'PayPal' },
-  //     person: { forenames: 'Jane', surname: 'Doe' },
-  //     location: { location_NAME: 'Canada' },
-  //     isactive: false
-  //   }
-  // ];
   bankaccountsAll = [];
   bankaccount = {
     bankaccount_ID: 0,
     ledgeraccount_ID: null,
     account_ID: null,
     bankaccounttype_ID: null,
+
     paymentmethod_ID: null,
-    person_ID: null,
+    customer_ID: null,
     location_ID: null,
     locations: [],
 
@@ -144,7 +117,7 @@ export class BankaccountComponent implements OnInit {
     var search = {
       ledgeraccount_ID: this.ledgeraccountID,
       account_ID: this.accountID,
-      person_ID: this.personID,
+      customer_ID: this.customerID,
       paymentmethod_ID: this.paymentmethodID,
       paymentmethod_CODE: this.paymentmethodCode,
       bankaccounttype_ID: this.bankaccounttypeID,
@@ -186,7 +159,7 @@ export class BankaccountComponent implements OnInit {
       account_ID: null,
       bankaccounttype_ID: null,
       paymentmethod_ID: null,
-      person_ID: null,
+      customer_ID: null,
       location_ID: null,
       locations: [],
 
@@ -317,7 +290,7 @@ export class BankaccountComponent implements OnInit {
     bankaccount.bankaccounttype_ID = this.bankaccounttype.bankaccounttypeID;
     bankaccount.account_ID = this.account.accountID;
     bankaccount.ledgeraccount_ID = this.ledgeraccount.ledgeraccountID;
-    bankaccount.person_ID = this.person.personID;
+    bankaccount.customer_ID = this.customer.customerID;
     bankaccount.paymentmethod_ID = this.paymentmethod.paymentmethodID;
     bankaccount.location_ID = this.locationsearchfilter.locationID;
 
@@ -342,7 +315,7 @@ export class BankaccountComponent implements OnInit {
     bankaccount.bankaccounttype_ID = this.bankaccounttype.bankaccounttypeID;
     bankaccount.account_ID = this.account.accountID;
     bankaccount.ledgeraccount_ID = this.ledgeraccount.ledgeraccountID;
-    bankaccount.person_ID = this.person.personID;
+    bankaccount.customer_ID = this.customer.customerID;
     bankaccount.paymentmethod_ID = this.paymentmethod.paymentmethodID;
     bankaccount.location_ID = this.locationsearchfilter.locationID;
 
@@ -426,7 +399,7 @@ export class BankaccountComponent implements OnInit {
     this.bankaccounttypeID = search.bankaccounttype_ID;
     this.bankaccounttypeCode = search.bankaccounttype_CODE;
     this.ledgeraccountID = search.ledgeraccount_ID;
-    this.personID = search.person_ID;
+    this.customerID = search.customer_ID;
     this.paymentmethodID = search.paymentmethod_ID;
     this.paymentmethodCode = search.paymentmethod_CODE;
     this.locationID = search.location_ID;
@@ -450,7 +423,7 @@ export class BankaccountComponent implements OnInit {
     this.bankaccounttypeID = search.bankaccounttype_ID;
     this.bankaccounttypeCode = search.bankaccounttype_CODE;
     this.ledgeraccountID = search.ledgeraccount_ID;
-    this.personID = search.person_ID;
+    this.customerID = search.customer_ID;
     this.paymentmethodID = search.paymentmethod_ID;
     this.paymentmethodCode = search.paymentmethod_CODE;
     this.locationID = search.location_ID;

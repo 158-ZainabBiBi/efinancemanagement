@@ -176,7 +176,7 @@ export class BankaccountService {
 
     if (response.paymentmethod_DETAIL != null) {
       response.paymentmethod = JSON.parse(response.paymentmethod_DETAIL);
-      response.paymentmethod_DETAIL = null;
+      response.paymentmethod_DETAIL = response.paymentmethod.code + ' - ' + response.paymentmethod.description;
     }
 
     return (response);

@@ -24,6 +24,14 @@ import { TrialbalancesComponent } from 'src/app/modules/accounts/trialbalances/t
 import { ChartofaccountsComponent } from 'src/app/modules/accounts/chartofaccounts/chartofaccounts.component';
 import { TransactionsComponent } from 'src/app/modules/accounts/transactions/transactions.component';
 import { BankaccountsComponent } from 'src/app/modules/accounts/bankaccounts/bankaccounts.component';
+import { AccountsComponent } from 'src/app/modules/accounts/accounts/accounts.component';
+import { BankdepositsComponent } from 'src/app/modules/accounts/bankdeposits/bankdeposits.component';
+import { BanktransfersComponent } from 'src/app/modules/accounts/banktransfers/banktransfers.component';
+import { JournallinesComponent } from 'src/app/modules/accounts/journallines/journallines.component';
+import { LedgeraccountsComponent } from 'src/app/modules/accounts/ledgeraccounts/ledgeraccounts.component';
+import { LedgeraccountclassificationsComponent } from 'src/app/modules/accounts/ledgeraccountclassifications/ledgeraccountclassifications.component';
+import { LedgerentriesComponent } from 'src/app/modules/accounts/ledgerentries/ledgerentries.component';
+
 
 //accountview
 import { ChartofaccountviewComponent } from 'src/app/modules/accounts/chartofaccounts/chartofaccountview/chartofaccountview.component';
@@ -46,8 +54,14 @@ const routes: Routes = [{
 
     { path: 'bankaccounts', component: BankaccountsComponent },
     { path: 'bankaccount', component: BankaccountviewComponent },
-    { path: 'banktransfer', component: BanktransferComponent },
-    { path: 'bankdeposit', component: BankdepositComponent },
+
+    { path: 'accounts', component: AccountsComponent },
+    { path: 'banktransfers', component: BanktransfersComponent },
+    { path: 'bankdeposits', component: BankdepositsComponent },
+    { path: 'journallines', component: JournallinesComponent },
+    { path: 'ledgeraccounts', component: LedgeraccountsComponent },
+    { path: 'ledgerentries', component: LedgerentriesComponent },
+    { path: 'ledgeraccountclassifications', component: LedgeraccountclassificationsComponent },
 
     { path: 'transactions', component: TransactionsComponent },
     { path: 'transaction', component: TransactionviewComponent },

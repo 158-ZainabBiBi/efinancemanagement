@@ -45,7 +45,7 @@ export class BankaccountsComponent implements OnInit {
       account_ID: row.data.account_ID,
       bankaccounttype_ID: row.data.bankaccounttype_ID,
       paymentmethod_ID: row.data.paymentmethod_ID,
-      person_ID: row.data.person_ID,
+      customer_ID: row.data.customer_ID,
       location_ID: row.data.location_ID,
       locations: [],
 
