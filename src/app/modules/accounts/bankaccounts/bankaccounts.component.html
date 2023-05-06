@@ -27,3 +27,10 @@
     </div>
   </div>
 </div>
+<div aria-labelledby="exampleModalLabel" class="modal fade show" id="addbankaccount" role="dialog" tabindex="-1">
+  <app-bankaccount #addbankaccount [view]=3 (refresh)="refresh()" (cancel)="cancel()"></app-bankaccount>
+</div>
+
+<div aria-labelledby="exampleModalLabel" class="modal fade show" id="editbankaccount" role="dialog" tabindex="-1">
+  <app-bankaccount #editbankaccount [view]=4 (refresh)="refresh()" (cancel)="cancel()"></app-bankaccount>
+</div>

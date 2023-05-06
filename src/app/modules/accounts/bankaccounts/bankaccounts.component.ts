@@ -34,8 +34,15 @@ export class BankaccountsComponent implements OnInit {
   view() {
   }
 
+  refresh() {
+    this.bankaccounts.ngOnInit();
+    this.cancel();
+  }
+
   addNew() {
-    this.router.navigate(["/home/bankaccount"], {});
+    // this.router.navigate(["/home/bankaccount"], {});
+    this.addbankaccount.add();
+    $("#addbankaccount").modal("show");
   }
 
   edit(row) {
@@ -60,12 +67,12 @@ export class BankaccountsComponent implements OnInit {
     } else {
       this.editbankaccount.bankaccount.isactive = false;
     }
-    $("#edit").modal("show");
+    $("#editbankaccount").modal("show");
   }
 
   cancel() {
-    $("#add").modal("hide");
-    $("#edit").modal("hide");
+    $("#addbankaccount").modal("hide");
+    $("#editbankaccount").modal("hide");
   }
 
 }

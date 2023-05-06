@@ -27,7 +27,7 @@
         <div class="card-body">
           <div class="row">
             <div class="col-lg-12">
-              <app-bankdeposit #bankdeposits [view]=22 (show)="bankdepositshow($event)"
+              <app-bankdeposit #bankdeposits [view]=22 (edit)="bankdepositedit($event)"
                 [bankaccountID]="bankaccountID"></app-bankdeposit>
             </div>
           </div>
@@ -58,7 +58,7 @@
         <div class="card-body">
           <div class="row">
             <div class="col-lg-12">
-              <app-banktransfer #banktransfers [view]=22 (show)="banktransfershow($event)"
+              <app-banktransfer #banktransfers [view]=22 (edit)="banktransferedit($event)"
                 [bankaccountID]="bankaccountID"></app-banktransfer>
             </div>
           </div>

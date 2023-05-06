@@ -68,7 +68,7 @@ export class BankaccountviewComponent implements OnInit {
     } else {
       this.editbankdeposit.bankdeposit.isactive = false;
     }
-    $("#edit").modal("show");
+    $("#editbankdeposit").modal("show");
   }
 
   banktransferedit(row) {
@@ -90,7 +90,7 @@ export class BankaccountviewComponent implements OnInit {
     } else {
       this.editbanktransfer.banktransfer.isactive = false;
     }
-    $("#edit").modal("show");
+    $("#editbanktransfer").modal("show");
   }
 
   bankdepositshow(row) {
@@ -103,7 +103,9 @@ export class BankaccountviewComponent implements OnInit {
   }
 
   bankdepositaddNew() {
-    this.router.navigate(["/home/bankdeposit"], {});
+    // this.router.navigate(["/home/bankdeposit"], {});
+    this.addbankdeposit.add();
+    $("#addbankdeposit").modal("show");
   }
 
   banktransfershow(row) {
@@ -116,6 +118,8 @@ export class BankaccountviewComponent implements OnInit {
   }
 
   banktransferaddNew() {
-    this.router.navigate(["/home/banktransfer"], {});
+    // this.router.navigate(["/home/banktransfer"], {});
+    this.addbanktransfer.add();
+    $("#addbanktransfer").modal("show");
   }
 }
