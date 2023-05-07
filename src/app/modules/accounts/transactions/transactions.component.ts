@@ -41,9 +41,9 @@ export class TransactionsComponent implements OnInit {
   }
 
   addNew() {
-    this.router.navigate(["/home/transaction"], {});
-    // this.addtransaction.add();
-    // $("#add").modal("show");
+    // this.router.navigate(["/home/transaction"], {});
+    this.addtransaction.add();
+    $("#addtransaction").modal("show");
   }
 
   edit(row) {
@@ -66,11 +66,11 @@ export class TransactionsComponent implements OnInit {
     } else {
       this.edittransaction.transaction.isactive = false;
     }
-    $("#edit").modal("show");
+    $("#edittransaction").modal("show");
   }
   cancel() {
-    $("#add").modal("hide");
-    $("#edit").modal("hide");
+    $("#addtransaction").modal("hide");
+    $("#edittransaction").modal("hide");
   }
 
 }

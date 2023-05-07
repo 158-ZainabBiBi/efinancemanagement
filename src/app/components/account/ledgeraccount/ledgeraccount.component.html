@@ -148,7 +148,7 @@
           cssClass="myClass" alignment="center"></dxi-column>
         <dxi-column dataField="ledgeraccount_DESC" caption="Description" cssClass="myClass"
           alignment="left"></dxi-column>
-        <dxi-column dataField="taxcode.taxcode_NAME" caption="Tax Rate" cssClass="myClass"
+        <dxi-column dataField="taxcode.taxcode_TITLE" caption="Tax Rate" cssClass="myClass"
           alignment="left"></dxi-column>
         <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass"
           alignment="center"></dxi-column>
@@ -190,7 +190,7 @@
           cssClass="myClass" alignment="center"></dxi-column>
         <dxi-column dataField="ledgeraccount_DESC" caption="Description" cssClass="myClass"
           alignment="left"></dxi-column>
-        <dxi-column dataField="taxcode.taxcode_NAME" caption="Tax Rate" cssClass="myClass"
+        <dxi-column dataField="taxcode.taxcode_TITLE" caption="Tax Rate" cssClass="myClass"
           alignment="left"></dxi-column>
         <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass"
           alignment="center"></dxi-column>
@@ -295,8 +295,12 @@
         <div class="modal-body">
           <div class="row">
             <div class="col-md-6">
-              <app-ledgeraccountclassification #ledgeraccountclassification [view]="1"
+              <app-ledgeraccountclassification #ledgeraccountclassification [view]="1" [disabled]="disabled"
                 [ledgeraccountclassificationID]="ledgeraccount.ledgeraccountclassification_ID"></app-ledgeraccountclassification>
+            </div>
+            <div class="col-md-6">
+              <app-taxcode #taxcode [view]="1" [taxcodeID]="ledgeraccount.taxcode_ID"
+                [disabled]="disabled"></app-taxcode>
             </div>
           </div>
           <div class="row">
@@ -332,15 +336,12 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-12">
               <div class="form-group">
                 <label class="control-label"> Description <span style="color:red">*</span></label>
-                <input type="text" class="form-control" name="ledgeraccount_DESC"
-                  [(ngModel)]="ledgeraccount.ledgeraccount_DESC" maxlength="50" required>
+                <textarea type="text" class="form-control" name="ledgeraccount_DESC"
+                  [(ngModel)]="ledgeraccount.ledgeraccount_DESC" maxlength="50" [disabled]="disabled"></textarea>
               </div>
-            </div>
-            <div class="col-md-6">
-              <app-taxcode #taxcode [view]="1" [taxcodeID]="ledgeraccount.taxcode_ID"></app-taxcode>
             </div>
           </div>
           <div class="row">

@@ -140,6 +140,10 @@ export class TransactionService {
     //   response.personcontact = this.personcontactservice.getDetail(JSON.parse(response.personcontact_DETAIL));
     //   response.personcontact_DETAIL = null
     // }
+    if (response.customer_DETAIL != null) {
+      response.customer = JSON.parse(response.customer_DETAIL);
+      response.customer_DETAIL = null;
+    }
 
     if (response.transactiontype_DETAIL != null) {
       response.transactiontype = JSON.parse(response.transactiontype_DETAIL);

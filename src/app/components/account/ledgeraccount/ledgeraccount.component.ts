@@ -310,7 +310,7 @@ export class LedgeraccountComponent implements OnInit {
     ledgeraccount.isactive = "Y";
     ledgeraccount.taxcode_ID = this.taxcode.taxcodeID;
     ledgeraccount.ledgeraccountclassification_ID = this.ledgeraccountclassification.ledgeraccountclassificationID;
-    ledgeraccount.ledgeraccounttype_ID = this.ledgeraccounttype.ledgeraccounttypeID;
+    // ledgeraccount.ledgeraccounttype_ID = this.ledgeraccounttype.ledgeraccounttypeID;
 
     this.ledgeraccountservice.add(ledgeraccount).subscribe(response => {
       if (response) {
@@ -333,7 +333,7 @@ export class LedgeraccountComponent implements OnInit {
 
     ledgeraccount.taxcode_ID = this.taxcode.taxcodeID;
     ledgeraccount.ledgeraccountclassification_ID = this.ledgeraccountclassification.ledgeraccountclassificationID;
-    ledgeraccount.ledgeraccounttype_ID = this.ledgeraccounttype.ledgeraccounttypeID;
+    // ledgeraccount.ledgeraccounttype_ID = this.ledgeraccounttype.ledgeraccounttypeID;
 
     if (ledgeraccount.isactive == true) {
       ledgeraccount.isactive = "Y";

@@ -146,9 +146,9 @@ export class LedgeraccountService {
       response.ledgeraccounttype_DETAIL = response.ledgeraccounttype.code + ' - ' + response.ledgeraccounttype.description;
     }
 
-    if (response.taxrate_DETAIL != null) {
-      response.taxrate = JSON.parse(response.taxrate_DETAIL);
-      response.taxrate_DETAIL = response.taxrate.code + ' - ' + response.taxrate.description;
+    if (response.taxcode_DETAIL != null) {
+      response.taxcode = JSON.parse(response.taxcode_DETAIL);
+      response.taxcode_DETAIL = null;
     }
 
     return (response);

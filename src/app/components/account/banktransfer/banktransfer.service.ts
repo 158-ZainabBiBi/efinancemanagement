@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpCallServieService } from '../../../services/http-call-servie.service';
 import { setting } from '../../../setting';
 import { BankaccountService } from '../bankaccount/bankaccount.service';
+import { LedgeraccountService } from '../ledgeraccount/ledgeraccount.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,7 @@ export class BanktransferService {
   constructor(
     private _HttpCallServieService_: HttpCallServieService,
     private bankaccountservice: BankaccountService,
+    private ledgeraccountservice: LedgeraccountService,
   ) { }
 
   get() {
