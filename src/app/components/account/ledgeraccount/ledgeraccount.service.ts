@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpCallServieService } from '../../../services/http-call-servie.service';
 import { setting } from '../../../setting';
 import { LedgeraccountclassificationService } from '../ledgeraccountclassification/ledgeraccountclassification.service';
+import { TaxcodeComponent } from '../../finance/taxcode/taxcode.component';
+import { TaxcodeService } from '../../finance/taxcode/taxcode.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +13,7 @@ export class LedgeraccountService {
   constructor(
     private _HttpCallServieService_: HttpCallServieService,
     private ledgeraccountclassificationservice: LedgeraccountclassificationService,
+    private taxcodeservice: TaxcodeService,
   ) { }
 
 
@@ -141,14 +144,9 @@ export class LedgeraccountService {
       response.ledgeraccountclassification_DETAIL = null
     }
 
-    if (response.ledgeraccounttype_DETAIL != null) {
-      response.ledgeraccounttype = JSON.parse(response.ledgeraccounttype_DETAIL);
-      response.ledgeraccounttype_DETAIL = response.ledgeraccounttype.code + ' - ' + response.ledgeraccounttype.description;
-    }
-
     if (response.taxcode_DETAIL != null) {
-      response.taxcode = JSON.parse(response.taxcode_DETAIL);
-      response.taxcode_DETAIL = null;
+      response.taxcode = this.taxcodeservice.getDetail(JSON.parse(response.taxcode_DETAIL));
+      response.taxcode_DETAIL = null
     }
 
     return (response);

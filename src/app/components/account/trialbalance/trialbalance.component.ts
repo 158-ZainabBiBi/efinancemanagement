@@ -7,6 +7,8 @@ import { ValidatorFn, AbstractControl } from '@angular/forms';
 import { TrialbalanceService } from './trialbalance.service';
 import { LedgerentryComponent } from '../ledgerentry/ledgerentry.component';
 
+declare var $: any;
+
 @Component({
   selector: 'app-trialbalance',
   templateUrl: './trialbalance.component.html',
@@ -14,6 +16,8 @@ import { LedgerentryComponent } from '../ledgerentry/ledgerentry.component';
 })
 export class TrialbalanceComponent implements OnInit {
   @ViewChild("ledgerentry") ledgerentry: LedgerentryComponent;
+  @ViewChild("addledgerentry") addledgerentry: LedgerentryComponent;
+  @ViewChild("editledgerentry") editledgerentry: LedgerentryComponent;
 
   @Input()
   view: number = 1;
@@ -188,6 +192,22 @@ export class TrialbalanceComponent implements OnInit {
 
       isactive: true,
     };
+  }
+
+  ledgerentryAddNew() {
+    this.addledgerentry.add();
+    $("#addledgerentry").modal("show");
+  }
+
+  ledgerentryCancel() {
+    $("#addledgerentry").modal("hide");
+    $("#editledgerentry").modal("hide");
+    this.ledgerentry.ledgerentries = this.addledgerentry.ledgerentries;
+  }
+
+  onLedgerentryChange(ledgerentry) {
+    // this.journal.journal_NAME = ledgerentry.ledgerentry_NAME;
+    // this.journal.journal_DESC = ledgerentry.ledgerentry_DESC;
   }
 
   update(row) {

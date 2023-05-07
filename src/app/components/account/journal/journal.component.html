@@ -135,8 +135,6 @@
         <dxi-column dataField="journal_CODE" caption="Code" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="journal_DATE" caption="Date" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="journal_NAME" caption="Name" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="transaction.transaction_CODE" caption="Transaction Code" cssClass="myClass"
-          alignment="left"></dxi-column>
         <dxi-column dataField="transaction.transaction_DATE" caption="Transaction Date" cssClass="myClass"
           alignment="left"></dxi-column>
         <dxi-column dataField="journalline.ledgeraccount.ledgeraccount_NAME" caption="Account Name" cssClass="myClass"
@@ -179,53 +177,9 @@
         <dxi-column dataField="journal_CODE" caption="Code" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="journal_DATE" caption="Date" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="journal_NAME" caption="Name" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="transaction.transaction_CODE" caption="Code" cssClass="myClass"
+        <dxi-column dataField="transaction.transaction_DATE" caption="Transaction Date" cssClass="myClass"
           alignment="left"></dxi-column>
-        <dxi-column dataField="transaction.transaction_DATE" caption="Date" cssClass="myClass"
-          alignment="left"></dxi-column>
-        <dxi-column dataField="journalline.ledgeraccount.ledgeraccount_NAME" caption="Account" cssClass="myClass"
-          alignment="left"></dxi-column>
-        <dxi-column dataField="journalline.ledgeraccount.balance_CREDIT" caption="Credit" cssClass="myClass"
-          alignment="left"></dxi-column>
-        <dxi-column dataField="journalline.ledgeraccount.balance_DEBIT" caption="Debit" cssClass="myClass"
-          alignment="left"></dxi-column>
-        <dxi-column dataField="journal_DESC" caption="Description" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass" alignment="center">
-        </dxi-column>
-
-        <div *dxTemplate="let data of 'cellTemplate'">
-          <a href="javascript:void" class="" (click)="showView(data)">
-            <i class="fa fa-eye" aria-hidden="true"></i></a>
-        </div>
-      </dx-data-grid>
-    </div>
-  </div>
-</div>
-
-<div *ngIf="view==23" class="form-group">
-  <div class="outer-div">
-    <div class="grid-wrapper">
-      <dx-data-grid #grid id="gridContainer" [dataSource]="journalsAll" keyExpr="journal_ID" [showColumnLines]="true"
-        [showRowLines]="true" [showBorders]="true" [rowAlternationEnabled]="true" [allowColumnResizing]="true"
-        [columnMinWidth]="30" [columnAutoWidth]="true" [remoteOperations]="true" height="600" width="100%"
-        (onToolbarPreparing)="onToolbarPreparing($event)">
-        <dxo-filter-row [visible]="true"></dxo-filter-row>
-        <dxo-header-filter [visible]="true"></dxo-header-filter>
-        <dxo-search-panel [visible]="true"></dxo-search-panel>
-        <dxo-group-panel [visible]="false"></dxo-group-panel>
-        <dxo-grouping #expand [autoExpandAll]="false"></dxo-grouping>
-        <dxo-scrolling mode="virtual"></dxo-scrolling>
-        <dxo-sorting mode="multiple"></dxo-sorting>
-        <dxo-selection mode="single"></dxo-selection>
-        <dxi-column [width]="75" [allowFiltering]="false" [allowSorting]="false" alignment="center"
-          cellTemplate="cellTemplate"></dxi-column>
-
-        <dxi-column dataField="journal_CODE" caption="Code" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="transaction.transaction_CODE" caption="Code" cssClass="myClass"
-          alignment="left"></dxi-column>
-        <dxi-column dataField="transaction.transaction_DATE" caption="Date" cssClass="myClass"
-          alignment="left"></dxi-column>
-        <dxi-column dataField="journalline.ledgeraccount.ledgeraccount_NAME" caption="Account" cssClass="myClass"
+        <dxi-column dataField="journalline.ledgeraccount.ledgeraccount_NAME" caption="Account Name" cssClass="myClass"
           alignment="left"></dxi-column>
         <dxi-column dataField="journalline.ledgeraccount.balance_CREDIT" caption="Credit" cssClass="myClass"
           alignment="left"></dxi-column>
@@ -281,11 +235,30 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-6">
-              <app-transaction #transaction [view]="1" [transactionID]="journal.transaction_ID"></app-transaction>
+            <div class="col-md-8">
+              <app-transaction #transaction [view]="1" [transactionID]=journal.transaction_ID
+                (onTransactionChange)="onTransactionChange($event)"></app-transaction>
             </div>
-            <div class="col-md-6">
-              <app-journalline #journalline [view]="1" [journallineID]="journal.journalline_ID"></app-journalline>
+            <div class="col-md-4">
+              <br />
+              <button type="button" *ngIf="journal.journal_ID==0" (click)="transactionAddNew()"
+                class="btn btn-secondary btn-sm">
+                <i class="fas fa-plus fa-fw"></i> Add New Transaction
+              </button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-8">
+              <div class="form-group">
+                <app-journalline #journalline [view]="1" [journallineID]="journal.journalline_ID"></app-journalline>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <br />
+              <button type="button" *ngIf="journal.journal_ID==0" (click)="journallineAddNew()"
+                class="btn btn-secondary btn-sm">
+                <i class="fas fa-plus fa-fw"></i> Add New Line
+              </button>
             </div>
           </div>
           <div class="row">
@@ -346,11 +319,30 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-6">
-              <app-transaction #transaction [view]="1" [transactionID]="journal.transaction_ID"></app-transaction>
+            <div class="col-md-8">
+              <app-transaction #transaction [view]="1" [transactionID]=journal.transaction_ID
+                (onTransactionChange)="onTransactionChange($event)"></app-transaction>
             </div>
-            <div class="col-md-6">
-              <app-journalline #journalline [view]="1" [journallineID]="journal.journalline_ID"></app-journalline>
+            <div class="col-md-4">
+              <br />
+              <button type="button" *ngIf="journal.journal_ID==0" (click)="transactionAddNew()"
+                class="btn btn-secondary btn-sm">
+                <i class="fas fa-plus fa-fw"></i> Add New Transaction
+              </button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-8">
+              <div class="form-group">
+                <app-journalline #journalline [view]="1" [journallineID]="journal.journalline_ID"></app-journalline>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <br />
+              <button type="button" *ngIf="journal.journal_ID==0" (click)="journallineAddNew()"
+                class="btn btn-secondary btn-sm">
+                <i class="fas fa-plus fa-fw"></i> Add New Line
+              </button>
             </div>
           </div>
           <div class="row">
@@ -434,21 +426,30 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-6">
-              <app-transaction #transaction [view]="1" [disabled]="disabled"
-                [transactionID]="journal.transaction_ID"></app-transaction>
+            <div class="col-md-8">
+              <app-transaction #transaction [view]="1" [disabled]="disabled" [transactionID]=journal.transaction_ID
+                (onTransactionChange)="onTransactionChange($event)"></app-transaction>
+            </div>
+            <div class="col-md-4">
+              <br />
+              <button type="button" *ngIf="journal.journal_ID==0" (click)="transactionAddNew()"
+                class="btn btn-secondary btn-sm">
+                <i class="fas fa-plus fa-fw"></i> Add New Transaction
+              </button>
             </div>
           </div>
           <div class="row">
-            <div class="col-md-10">
-              <app-journalline #journalline [view]="1" [disabled]='disabled' [journallineID]=journal.journalline_ID
-                (onJournallineChange)="onJournallineChange($event)"></app-journalline>
+            <div class="col-md-8">
+              <div class="form-group">
+                <app-journalline #journalline [view]="1" [disabled]="disabled"
+                  [journallineID]="journal.journalline_ID"></app-journalline>
+              </div>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-4">
               <br />
               <button type="button" *ngIf="journal.journal_ID==0" (click)="journallineAddNew()"
                 class="btn btn-secondary btn-sm">
-                <i class="fas fa-plus fa-fw"></i> Add New Journal Line
+                <i class="fas fa-plus fa-fw"></i> Add New Line
               </button>
             </div>
           </div>
@@ -496,6 +497,10 @@
       </div>
     </div>
   </div>
+</div>
+
+<div aria-labelledby="exampleModalLabel" class="modal fade show" id="addtransaction" role="dialog" tabindex="-1">
+  <app-transaction #addtransaction [view]=3 (cancel)="transactionCancel()"></app-transaction>
 </div>
 
 <div aria-labelledby="exampleModalLabel" class="modal fade show" id="addjournalline" role="dialog" tabindex="-1">

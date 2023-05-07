@@ -23,6 +23,8 @@ export class BankaccountComponent implements OnInit {
   @ViewChild("locationsearchfilter") locationsearchfilter: LocationsearchfilterComponent;
   @ViewChild("customer") customer: CustomerComponent;
   @ViewChild("account") account: AccountComponent;
+  @ViewChild("addaccount") addaccount: AccountComponent;
+  @ViewChild("editaccount") editaccount: AccountComponent;
 
   @ViewChild("ledgeraccount") ledgeraccount: LedgeraccountComponent;
   @ViewChild("addledgeraccount") addledgeraccount: LedgeraccountComponent;
@@ -183,8 +185,22 @@ export class BankaccountComponent implements OnInit {
   }
 
   onLedgeraccountChange(ledgeraccount) {
-    // this.bankaccount.bankaccount_NAME = ledgeraccount.ledgeraccount_NAME;
-    // this.bankaccount.bankaccount_DESC = ledgeraccount.ledgeraccount_DESC;
+    this.bankaccount.bankaccount_CODE = ledgeraccount.ledgeraccount_CODE;
+  }
+
+  accountAddNew() {
+    this.addaccount.add();
+    $("#addaccount").modal("show");
+  }
+
+  accountCancel() {
+    $("#addaccount").modal("hide");
+    $("#editaccount").modal("hide");
+    this.account.accounts = this.addaccount.accounts;
+  }
+
+  onAccountChange(account) {
+    this.bankaccount.bankaccount_CODE = account.account_CODE;
   }
 
   update(row) {

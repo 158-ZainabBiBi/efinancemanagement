@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpCallServieService } from '../../../services/http-call-servie.service';
 import { setting } from '../../../setting';
-// import { PersoncontactService } from '../../personcontact/personcontact/personcontact.service';
+import { CustomerService } from '../../customer/customer/customer.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +10,7 @@ export class TransactionService {
 
   constructor(
     private _HttpCallServieService_: HttpCallServieService,
-    // private personcontactservice: PersoncontactService,
+    private customerservice: CustomerService,
   ) { }
 
 
@@ -136,23 +136,19 @@ export class TransactionService {
   }
 
   getDetail(response) {
-    // if (response.personcontact_DETAIL != null) {
-    //   response.personcontact = this.personcontactservice.getDetail(JSON.parse(response.personcontact_DETAIL));
-    //   response.personcontact_DETAIL = null
-    // }
     if (response.customer_DETAIL != null) {
-      response.customer = JSON.parse(response.customer_DETAIL);
+      response.customer = this.customerservice.getDetail(JSON.parse(response.customer_DETAIL));
       response.customer_DETAIL = null;
     }
 
     if (response.transactiontype_DETAIL != null) {
       response.transactiontype = JSON.parse(response.transactiontype_DETAIL);
-      response.transactiontype_DETAIL = response.transactiontype.code + ' - ' + response.transactiontype.description;
+      response.transactiontype_DETAIL = response.transactiontype.description;
     }
 
     if (response.currency_DETAIL != null) {
       response.currency = JSON.parse(response.currency_DETAIL);
-      response.currency_DETAIL = response.currency.code + ' - ' + response.currency.description;
+      response.currency_DETAIL = response.currency.description;
     }
 
     return (response);

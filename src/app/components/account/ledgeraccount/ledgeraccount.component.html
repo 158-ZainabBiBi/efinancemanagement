@@ -1,12 +1,14 @@
 <div *ngIf="view==1" class="form-group">
-  <label class="custom-label form-label">Ledger Account
+  <label class="custom-label form-label">Ledger
     <span style="color: red;" [hidden]="disabled" *ngIf="iscompulsory==true">*</span>
   </label>
   <div class="row" *ngIf="disabled==true">
     <div class="col-md-12">
       <ng-select [(ngModel)]="ledgeraccountID" [disabled]="disabled" name="ledgeraccountID" (change)="onChange($event)">
         <ng-option *ngFor="let ledgeraccount of ledgeraccountsAll" [value]="ledgeraccount.ledgeraccount_ID">
-          {{ ledgeraccount.ledgeraccount_CODE }} - {{ ledgeraccount.ledgeraccount_NAME }}
+          {{ ledgeraccount.ledgeraccount_NAME }} - {{
+          ledgeraccount.ledgeraccountclassification.ledgeraccountclassification_NAME }} - {{
+          ledgeraccount.ledgeraccountclassification.ledgeraccounttype.description }}
         </ng-option>
       </ng-select>
     </div>
@@ -16,7 +18,9 @@
       <ng-select [(ngModel)]="ledgeraccountID" name="ledgeraccountID" (change)="onChange($event)">
         <ng-option *ngFor="let ledgeraccount of ledgeraccounts" [value]="ledgeraccount.ledgeraccount_ID"
           [disabled]="disabled">
-          {{ ledgeraccount.ledgeraccount_CODE }} - {{ ledgeraccount.ledgeraccount_NAME }}
+          {{ ledgeraccount.ledgeraccount_NAME }} - {{
+          ledgeraccount.ledgeraccountclassification.ledgeraccountclassification_NAME }} - {{
+          ledgeraccount.ledgeraccountclassification.ledgeraccounttype.description }}
         </ng-option>
       </ng-select>
     </div>
@@ -29,14 +33,16 @@
 </div>
 
 <div *ngIf="view==10" class="form-group">
-  <label class="custom-label form-label">Ledger Account
+  <label class="custom-label form-label">Ledger
     <span style="color: red;" [hidden]="disabled" *ngIf="iscompulsory==true">*</span>
   </label>
   <div class="row" *ngIf="disabled==true">
     <div class="col-md-12">
       <ng-select [(ngModel)]="ledgeraccountID" [disabled]="disabled" name="ledgeraccountID" (change)="onChange($event)">
         <ng-option *ngFor="let ledgeraccount of ledgeraccountsAll" [value]="ledgeraccount.ledgeraccount_ID">
-          {{ ledgeraccount.ledgeraccount_CODE }} - {{ ledgeraccount.ledgeraccount_NAME }}
+          {{ ledgeraccount.ledgeraccount_NAME }} - {{
+          ledgeraccount.ledgeraccountclassification.ledgeraccountclassification_NAME }} - {{
+          ledgeraccount.ledgeraccountclassification.ledgeraccounttype.description }}
         </ng-option>
       </ng-select>
     </div>
@@ -46,7 +52,9 @@
       <ng-select [(ngModel)]="ledgeraccountID" name="ledgeraccountID" (change)="onChange($event)">
         <ng-option *ngFor="let ledgeraccount of ledgeraccountsAll" [value]="ledgeraccount.ledgeraccount_ID"
           [disabled]="disabled">
-          {{ ledgeraccount.ledgeraccount_CODE }} - {{ ledgeraccount.ledgeraccount_NAME }}
+          {{ ledgeraccount.ledgeraccount_NAME }} - {{
+          ledgeraccount.ledgeraccountclassification.ledgeraccountclassification_NAME }} - {{
+          ledgeraccount.ledgeraccountclassification.ledgeraccounttype.description }}
         </ng-option>
       </ng-select>
     </div>
@@ -59,7 +67,7 @@
 </div>
 
 <div *ngIf="view==11" class="form-group">
-  <label class="custom-label form-label">Ledger Account
+  <label class="custom-label form-label">Ledger
     <span style="color: red;" [hidden]="disabled" *ngIf="iscompulsory==true">*</span>
   </label>
   <div class="row" *ngIf="disabled==true">
@@ -67,7 +75,9 @@
       <ng-select [(ngModel)]="ledgeraccountID" [disabled]="disabled" name="ledgeraccountID">
         <ng-option *ngFor="let ledgeraccount of ledgeraccountsAll" [value]="ledgeraccount.ledgeraccount_ID"
           [disabled]="disabled">
-          {{ ledgeraccount.ledgeraccount_CODE }} - {{ ledgeraccount.ledgeraccount_NAME }}
+          {{ ledgeraccount.ledgeraccount_NAME }} - {{
+          ledgeraccount.ledgeraccountclassification.ledgeraccountclassification_NAME }} - {{
+          ledgeraccount.ledgeraccountclassification.ledgeraccounttype.description }}
         </ng-option>
       </ng-select>
     </div>
@@ -77,7 +87,9 @@
       <ng-select [(ngModel)]="ledgeraccountID" [disabled]="disabled" name="ledgeraccountID" (change)="onChange($event)">
         <ng-option *ngFor="let ledgeraccount of ledgeraccounts" [value]="ledgeraccount.ledgeraccount_ID"
           [disabled]="disabled">
-          {{ ledgeraccount.ledgeraccount_CODE }} - {{ ledgeraccount.ledgeraccount_NAME }}
+          {{ ledgeraccount.ledgeraccount_NAME }} - {{
+          ledgeraccount.ledgeraccountclassification.ledgeraccountclassification_NAME }} - {{
+          ledgeraccount.ledgeraccountclassification.ledgeraccounttype.description }}
         </ng-option>
       </ng-select>
     </div>
@@ -90,7 +102,7 @@
 </div>
 
 <div *ngIf="view==19" class="form-group">
-  <label class="custom-label form-label">Ledger Account
+  <label class="custom-label form-label">Ledger
     <span style="color: red;" [hidden]="disabled" *ngIf="iscompulsory==true">*</span>
   </label>
   <div class="row" *ngIf="disabled==true">
@@ -98,7 +110,9 @@
       <ng-select [(ngModel)]="ledgeraccountID" [disabled]="disabled" name="ledgeraccountID" (change)="onChange($event)">
         <ng-option *ngFor="let ledgeraccount of ledgeraccountsAll" [value]="ledgeraccount.ledgeraccount_ID"
           [disabled]="disabled">
-          {{ ledgeraccount.ledgeraccount_CODE }} - {{ ledgeraccount.ledgeraccount_NAME }}
+          {{ ledgeraccount.ledgeraccount_NAME }} - {{
+          ledgeraccount.ledgeraccountclassification.ledgeraccountclassification_NAME }} - {{
+          ledgeraccount.ledgeraccountclassification.ledgeraccounttype.description }}
         </ng-option>
       </ng-select>
     </div>
@@ -108,7 +122,9 @@
       <ng-select [(ngModel)]="ledgeraccountID" [disabled]="disabled" name="ledgeraccountID" (change)="onChange($event)">
         <ng-option *ngFor="let ledgeraccount of ledgeraccountsAll" [value]="ledgeraccount.ledgeraccount_ID"
           [disabled]="disabled">
-          {{ ledgeraccount.ledgeraccount_CODE }} - {{ ledgeraccount.ledgeraccount_NAME }}
+          {{ ledgeraccount.ledgeraccount_NAME }} - {{
+          ledgeraccount.ledgeraccountclassification.ledgeraccountclassification_NAME }} - {{
+          ledgeraccount.ledgeraccountclassification.ledgeraccounttype.description }}
         </ng-option>
       </ng-select>
     </div>
@@ -140,15 +156,15 @@
 
         <dxi-column dataField="ledgeraccount_CODE" caption="Code" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="ledgeraccount_NAME" caption="Name" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="balance_CREDIT" caption="Credit" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="balance_DEBIT" caption="Debit" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="ledgeraccountclassification.ledgeraccountclassification_NAME" caption="Category Group"
           cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="ledgeraccountclassification.ledgeraccounttype.description" caption="Category"
           cssClass="myClass" alignment="center"></dxi-column>
-        <dxi-column dataField="ledgeraccount_DESC" caption="Description" cssClass="myClass"
-          alignment="left"></dxi-column>
+        <dxi-column dataField="balance_CREDIT" caption="Credit" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="balance_DEBIT" caption="Debit" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="taxcode.taxcode_TITLE" caption="Tax Rate" cssClass="myClass"
+          alignment="left"></dxi-column>
+        <dxi-column dataField="ledgeraccount_DESC" caption="Description" cssClass="myClass"
           alignment="left"></dxi-column>
         <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass"
           alignment="center"></dxi-column>
@@ -182,15 +198,15 @@
 
         <dxi-column dataField="ledgeraccount_CODE" caption="Code" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="ledgeraccount_NAME" caption="Name" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="balance_CREDIT" caption="Credit" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="balance_DEBIT" caption="Debit" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="ledgeraccountclassification.ledgeraccountclassification_NAME" caption="Category Group"
           cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="ledgeraccountclassification.ledgeraccounttype.description" caption="Category"
           cssClass="myClass" alignment="center"></dxi-column>
-        <dxi-column dataField="ledgeraccount_DESC" caption="Description" cssClass="myClass"
-          alignment="left"></dxi-column>
+        <dxi-column dataField="balance_CREDIT" caption="Credit" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="balance_DEBIT" caption="Debit" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="taxcode.taxcode_TITLE" caption="Tax Rate" cssClass="myClass"
+          alignment="left"></dxi-column>
+        <dxi-column dataField="ledgeraccount_DESC" caption="Description" cssClass="myClass"
           alignment="left"></dxi-column>
         <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass"
           alignment="center"></dxi-column>
@@ -210,23 +226,13 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">
-            <i class="fa fa-plus" aria-hidden="true"></i> Add New Ledger Account
+            <i class="fa fa-plus" aria-hidden="true"></i> Add New Ledger
           </h5>
           <button aria-label="Close" class="close" data-dismiss="modal" type="button">
             <span aria-hidden="true"> ×</span>
           </button>
         </div>
         <div class="modal-body">
-          <div class="row">
-            <div class="col-md-6">
-              <app-ledgeraccountclassification #ledgeraccountclassification [view]="1" [disabled]="disabled"
-                [ledgeraccountclassificationID]="ledgeraccount.ledgeraccountclassification_ID"></app-ledgeraccountclassification>
-            </div>
-            <div class="col-md-6">
-              <app-taxcode #taxcode [view]="1" [taxcodeID]="ledgeraccount.taxcode_ID"
-                [disabled]="disabled"></app-taxcode>
-            </div>
-          </div>
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
@@ -241,6 +247,16 @@
                 <input type="text" class="form-control" name="ledgeraccount_NAME"
                   [(ngModel)]="ledgeraccount.ledgeraccount_NAME" maxlength="50" [disabled]="disabled" required>
               </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <app-ledgeraccountclassification #ledgeraccountclassification [view]="1" [disabled]="disabled"
+                [ledgeraccountclassificationID]="ledgeraccount.ledgeraccountclassification_ID"></app-ledgeraccountclassification>
+            </div>
+            <div class="col-md-6">
+              <app-taxcode #taxcode [view]="1" [taxcodeID]="ledgeraccount.taxcode_ID"
+                [disabled]="disabled"></app-taxcode>
             </div>
           </div>
           <div class="row">
@@ -286,23 +302,13 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">
-            <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit Ledger Account
+            <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit Ledger
           </h5>
           <button aria-label="Close" class="close" data-dismiss="modal" type="button">
             <span aria-hidden="true"> ×</span>
           </button>
         </div>
         <div class="modal-body">
-          <div class="row">
-            <div class="col-md-6">
-              <app-ledgeraccountclassification #ledgeraccountclassification [view]="1" [disabled]="disabled"
-                [ledgeraccountclassificationID]="ledgeraccount.ledgeraccountclassification_ID"></app-ledgeraccountclassification>
-            </div>
-            <div class="col-md-6">
-              <app-taxcode #taxcode [view]="1" [taxcodeID]="ledgeraccount.taxcode_ID"
-                [disabled]="disabled"></app-taxcode>
-            </div>
-          </div>
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
@@ -317,6 +323,16 @@
                 <input type="text" class="form-control" name="ledgeraccount_NAME"
                   [(ngModel)]="ledgeraccount.ledgeraccount_NAME" maxlength="50" required>
               </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <app-ledgeraccountclassification #ledgeraccountclassification [view]="1" [disabled]="disabled"
+                [ledgeraccountclassificationID]="ledgeraccount.ledgeraccountclassification_ID"></app-ledgeraccountclassification>
+            </div>
+            <div class="col-md-6">
+              <app-taxcode #taxcode [view]="1" [taxcodeID]="ledgeraccount.taxcode_ID"
+                [disabled]="disabled"></app-taxcode>
             </div>
           </div>
           <div class="row">
@@ -375,17 +391,17 @@
       <div class="align-items-center row">
         <div class="col" *ngIf="ledgeraccount.ledgeraccount_ID==0">
           <a href="javascript:void" aria-controls="collapse-ledgeraccountinfo1" aria-expanded="true"
-            class="card-title">Add New Ledger Account
+            class="card-title">Add New Ledger
           </a>
         </div>
         <div class="col" *ngIf="ledgeraccount.ledgeraccount_ID!=0 && disabled==false">
           <a href="javascript:void" aria-controls="collapse-ledgeraccountinfo1" aria-expanded="true"
-            class="card-title">Edit Ledger Account
+            class="card-title">Edit Ledger
           </a>
         </div>
         <div class="col" *ngIf="ledgeraccount.ledgeraccount_ID!=0 && disabled==true">
           <a href="javascript:void" aria-controls="collapse-ledgeraccountinfo1" aria-expanded="true"
-            class="card-title">Ledger Account Detail
+            class="card-title">Ledger Detail
           </a>
         </div>
       </div>
@@ -393,16 +409,6 @@
     <div class="card-body">
       <div class="row">
         <div class="col-lg-12">
-          <div class="row">
-            <div class="col-md-6">
-              <app-ledgeraccountclassification #ledgeraccountclassification [view]="1" [disabled]="disabled"
-                [ledgeraccountclassificationID]="ledgeraccount.ledgeraccountclassification_ID"></app-ledgeraccountclassification>
-            </div>
-            <div class="col-md-6">
-              <app-taxcode #taxcode [view]="1" [taxcodeID]="ledgeraccount.taxcode_ID"
-                [disabled]="disabled"></app-taxcode>
-            </div>
-          </div>
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
@@ -417,6 +423,16 @@
                 <input type="text" class="form-control" name="ledgeraccount_NAME"
                   [(ngModel)]="ledgeraccount.ledgeraccount_NAME" maxlength="50" [disabled]="disabled" required>
               </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <app-ledgeraccountclassification #ledgeraccountclassification [view]="1" [disabled]="disabled"
+                [ledgeraccountclassificationID]="ledgeraccount.ledgeraccountclassification_ID"></app-ledgeraccountclassification>
+            </div>
+            <div class="col-md-6">
+              <app-taxcode #taxcode [view]="1" [taxcodeID]="ledgeraccount.taxcode_ID"
+                [disabled]="disabled"></app-taxcode>
             </div>
           </div>
           <div class="row">

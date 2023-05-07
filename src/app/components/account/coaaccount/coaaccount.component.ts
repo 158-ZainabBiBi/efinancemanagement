@@ -136,9 +136,8 @@ export class CoaaccountComponent implements OnInit {
   }
 
   onLedgeraccountChange(ledgeraccount) {
-    console.log(ledgeraccount);
-    this.coaaccount.coaaccount_NAME = ledgeraccount.ledgeraccount_NAME;
-    this.coaaccount.coaaccount_DESC = ledgeraccount.ledgeraccount_DESC;
+    // this.coaaccount.coaaccount_NAME = ledgeraccount.ledgeraccount_NAME;
+    // this.coaaccount.coaaccount_DESC = ledgeraccount.ledgeraccount_DESC;
   }
 
   add() {

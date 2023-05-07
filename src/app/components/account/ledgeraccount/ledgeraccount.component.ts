@@ -42,10 +42,6 @@ export class LedgeraccountComponent implements OnInit {
   @Input()
   taxcodeID = null;
   @Input()
-  ledgeraccounttypeID = null;
-  @Input()
-  ledgeraccounttypeCode = null;
-  @Input()
   totalCredit: number = 0;
   @Input()
   totalDebit: number = 0;
@@ -110,8 +106,6 @@ export class LedgeraccountComponent implements OnInit {
     var search = {
       ledgeraccountclassification_ID: this.ledgeraccountclassificationID,
       taxcode_ID: this.taxcodeID,
-      ledgeraccounttype_ID: this.ledgeraccounttypeID,
-      ledgeraccounttype_CODE: this.ledgeraccounttypeCode,
     }
 
     if (this.view >= 5 && this.view <= 6 && this.ledgeraccountID) {
@@ -176,12 +170,12 @@ export class LedgeraccountComponent implements OnInit {
   }
 
   onCreditChange() {
-    this.ledgeraccount.balance_CREDIT=0;
+    this.ledgeraccount.balance_CREDIT = 0;
     this.creditdisabled = true;
   }
 
   onDebitChange() {
-    this.ledgeraccount.balance_DEBIT=0;
+    this.ledgeraccount.balance_DEBIT = 0;
     this.debitdisabled = true;
   }
 
@@ -227,14 +221,6 @@ export class LedgeraccountComponent implements OnInit {
     this.disabled = true;
     if (this.ledgeraccount.ledgeraccount_ID == 0) {
       this.router.navigate(["/home/ledgeraccounts"], {});
-    }
-  }
-
-  onLedgeraccounttypeChange(ledgeraccounttypeID) {
-    if (this.ledgeraccountclassification != null && this.ledgeraccountclassification.disabled == false) {
-      this.ledgeraccountclassification.ledgeraccountclassificationAdvancedSearch(ledgeraccounttypeID);
-    } else if (this.ledgeraccountclassification != null && this.ledgeraccountclassification.disabled == true) {
-      this.ledgeraccountclassification.ledgeraccountclassificationAdvancedSearchAll(ledgeraccounttypeID);
     }
   }
 
@@ -310,7 +296,6 @@ export class LedgeraccountComponent implements OnInit {
     ledgeraccount.isactive = "Y";
     ledgeraccount.taxcode_ID = this.taxcode.taxcodeID;
     ledgeraccount.ledgeraccountclassification_ID = this.ledgeraccountclassification.ledgeraccountclassificationID;
-    // ledgeraccount.ledgeraccounttype_ID = this.ledgeraccounttype.ledgeraccounttypeID;
 
     this.ledgeraccountservice.add(ledgeraccount).subscribe(response => {
       if (response) {
@@ -333,7 +318,6 @@ export class LedgeraccountComponent implements OnInit {
 
     ledgeraccount.taxcode_ID = this.taxcode.taxcodeID;
     ledgeraccount.ledgeraccountclassification_ID = this.ledgeraccountclassification.ledgeraccountclassificationID;
-    // ledgeraccount.ledgeraccounttype_ID = this.ledgeraccounttype.ledgeraccounttypeID;
 
     if (ledgeraccount.isactive == true) {
       ledgeraccount.isactive = "Y";
@@ -412,8 +396,6 @@ export class LedgeraccountComponent implements OnInit {
   ledgeraccountAdvancedSearch(search) {
     this.ledgeraccountclassificationID = search.ledgeraccountclassification_ID;
     this.taxcodeID = search.taxcode_ID;
-    this.ledgeraccounttypeID = search.ledgeraccounttype_ID;
-    this.ledgeraccounttypeCode = search.ledgeraccounttype_CODE;
 
     this.ledgeraccountservice.advancedSearch(search).subscribe(response => {
       if (response) {
@@ -430,8 +412,6 @@ export class LedgeraccountComponent implements OnInit {
   }
 
   ledgeraccountAdvancedSearchAll(search) {
-    this.ledgeraccounttypeID = search.ledgeraccounttype_ID;
-    this.ledgeraccounttypeCode = search.ledgeraccounttype_CODE;
     this.ledgeraccountclassificationID = search.ledgeraccountclassification_ID;
     this.taxcodeID = search.taxcode_ID;
 

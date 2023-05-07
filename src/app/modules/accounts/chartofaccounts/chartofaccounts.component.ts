@@ -32,6 +32,11 @@ export class ChartofaccountsComponent implements OnInit {
     this.router.navigate(["/home/chartofaccount"], { queryParams: { coaaccount: row.data.coaaccount_ID } });
   }
 
+  refresh() {
+    this.coaaccounts.ngOnInit();
+    this.cancel();
+  }
+
   view() {
   }
 

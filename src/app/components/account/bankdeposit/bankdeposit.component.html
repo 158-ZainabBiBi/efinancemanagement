@@ -6,7 +6,7 @@
     <div class="col-md-12">
       <ng-select [(ngModel)]="bankdepositID" [disabled]="disabled" name="bankdepositID" (change)="onChange($event)">
         <ng-option *ngFor="let bankdeposit of bankdepositsAll" [value]="bankdeposit.bankdeposit_ID">
-          {{ bankdeposit.bankdeposit_DATE }} - {{ bankdeposit.bankdeposit_CODE }}
+          {{ bankdeposit.bankdeposit_DATE }} - {{ bankdeposit.bankdeposit_CODE }} - {{ bankdeposit.total_AMOUNT }}
         </ng-option>
       </ng-select>
     </div>
@@ -15,7 +15,7 @@
     <div class="col-md-10">
       <ng-select [(ngModel)]="bankdepositID" name="bankdepositID" (change)="onChange($event)">
         <ng-option *ngFor="let bankdeposit of bankdeposits" [value]="bankdeposit.bankdeposit_ID" [disabled]="disabled">
-          {{ bankdeposit.bankdeposit_DATE }} - {{ bankdeposit.bankdeposit_CODE }}
+          {{ bankdeposit.bankdeposit_DATE }} - {{ bankdeposit.bankdeposit_CODE }} - {{ bankdeposit.total_AMOUNT }}
         </ng-option>
       </ng-select>
     </div>
@@ -35,7 +35,7 @@
     <div class="col-md-12">
       <ng-select [(ngModel)]="bankdepositID" [disabled]="disabled" name="bankdepositID" (change)="onChange($event)">
         <ng-option *ngFor="let bankdeposit of bankdepositsAll" [value]="bankdeposit.bankdeposit_ID">
-          {{ bankdeposit.bankdeposit_DATE }} - {{ bankdeposit.bankdeposit_CODE }}
+          {{ bankdeposit.bankdeposit_DATE }} - {{ bankdeposit.bankdeposit_CODE }} - {{ bankdeposit.total_AMOUNT }}
         </ng-option>
       </ng-select>
     </div>
@@ -45,7 +45,7 @@
       <ng-select [(ngModel)]="bankdepositID" name="bankdepositID" (change)="onChange($event)">
         <ng-option *ngFor="let bankdeposit of bankdepositsAll" [value]="bankdeposit.bankdeposit_ID"
           [disabled]="disabled">
-          {{ bankdeposit.bankdeposit_DATE }} - {{ bankdeposit.bankdeposit_CODE }}
+          {{ bankdeposit.bankdeposit_DATE }} - {{ bankdeposit.bankdeposit_CODE }} - {{ bankdeposit.total_AMOUNT }}
         </ng-option>
       </ng-select>
     </div>
@@ -66,7 +66,7 @@
       <ng-select [(ngModel)]="bankdepositID" [disabled]="disabled" name="bankdepositID">
         <ng-option *ngFor="let bankdeposit of bankdepositsAll" [value]="bankdeposit.bankdeposit_ID"
           [disabled]="disabled">
-          {{ bankdeposit.bankdeposit_DATE }} - {{ bankdeposit.bankdeposit_CODE }}
+          {{ bankdeposit.bankdeposit_DATE }} - {{ bankdeposit.bankdeposit_CODE }} - {{ bankdeposit.total_AMOUNT }}
         </ng-option>
       </ng-select>
     </div>
@@ -75,7 +75,7 @@
     <div class="col-md-10">
       <ng-select [(ngModel)]="bankdepositID" [disabled]="disabled" name="bankdepositID" (change)="onChange($event)">
         <ng-option *ngFor="let bankdeposit of bankdeposits" [value]="bankdeposit.bankdeposit_ID" [disabled]="disabled">
-          {{ bankdeposit.bankdeposit_DATE }} - {{ bankdeposit.bankdeposit_CODE }}
+          {{ bankdeposit.bankdeposit_DATE }} - {{ bankdeposit.bankdeposit_CODE }} - {{ bankdeposit.total_AMOUNT }}
         </ng-option>
       </ng-select>
     </div>
@@ -96,7 +96,7 @@
       <ng-select [(ngModel)]="bankdepositID" [disabled]="disabled" name="bankdepositID" (change)="onChange($event)">
         <ng-option *ngFor="let bankdeposit of bankdepositsAll" [value]="bankdeposit.bankdeposit_ID"
           [disabled]="disabled">
-          {{ bankdeposit.bankdeposit_DATE }} - {{ bankdeposit.bankdeposit_CODE }}
+          {{ bankdeposit.bankdeposit_DATE }} - {{ bankdeposit.bankdeposit_CODE }} - {{ bankdeposit.total_AMOUNT }}
         </ng-option>
       </ng-select>
     </div>
@@ -106,7 +106,7 @@
       <ng-select [(ngModel)]="bankdepositID" [disabled]="disabled" name="bankdepositID" (change)="onChange($event)">
         <ng-option *ngFor="let bankdeposit of bankdepositsAll" [value]="bankdeposit.bankdeposit_ID"
           [disabled]="disabled">
-          {{ bankdeposit.bankdeposit_DATE }} - {{ bankdeposit.bankdeposit_CODE }}
+          {{ bankdeposit.bankdeposit_DATE }} - {{ bankdeposit.bankdeposit_CODE }} - {{ bankdeposit.total_AMOUNT }}
         </ng-option>
       </ng-select>
     </div>
@@ -145,8 +145,6 @@
         <dxi-column dataField="cash_AMOUNT" caption="Cash Amount" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="cheque_AMOUNT" caption="Cheque Amount" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="total_AMOUNT" caption="Total Amount" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="bankdeposit_DESCRIPTION" caption="Description" cssClass="myClass"
-          alignment="left"></dxi-column>
         <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass"
           alignment="center"></dxi-column>
 
@@ -177,25 +175,18 @@
         <dxi-column [width]="75" [allowFiltering]="false" [allowSorting]="false" alignment="center"
           cellTemplate="cellTemplate"></dxi-column>
 
+        <dxi-column dataField="bankdeposit_CODE" caption="Code" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="bankdeposit_DATE" caption="Date" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="frombankaccount.ledgeraccount.ledgeraccount_NAME" caption="From" cssClass="myClass"
           alignment="left"></dxi-column>
         <dxi-column dataField="tobankaccount.ledgeraccount.ledgeraccount_NAME" caption="To" cssClass="myClass"
           alignment="left"></dxi-column>
-        <dxi-column dataField="bankdeposit_CODE" caption="Code" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="bankdeposit_DATE" caption="Date" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="cash_AMOUNT" caption="Cash Amount" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="cheque_AMOUNT" caption="Cheque Amount" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="total_AMOUNT" caption="Total Amount" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="bankdeposit_DESCRIPTION" caption="Description" cssClass="myClass"
-          alignment="left"></dxi-column>
         <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass"
           alignment="center"></dxi-column>
 
-        <!-- <div *dxTemplate="let data of 'cellTemplate'">
-          <a href="javascript:void" class="" (click)="showView(data)">
-            <i class="fa fa-eye" aria-hidden="true"></i></a>
-        </div> -->
-        
         <div *dxTemplate="let data of 'cellTemplate'">
           <a href="javascript:void" class="" (click)="update(data)">
             <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
@@ -221,20 +212,6 @@
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
-                <app-bankaccount #frombankaccount [view]="1"
-                  [bankaccountID]="bankdeposit.frombankaccount_ID"></app-bankaccount>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <app-bankaccount #tobankaccount [view]="1"
-                  [bankaccountID]="bankdeposit.tobankaccount_ID"></app-bankaccount>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
                 <label class="control-label">Code <span style="color:red">*</span></label>
                 <input type="text" class="form-control" name="bankdeposit_CODE"
                   [(ngModel)]="bankdeposit.bankdeposit_CODE" maxlength="50" required>
@@ -245,6 +222,20 @@
                 <label class="control-label">Date<span style="color:red">*</span></label>
                 <input type="date" class="form-control" name="bankdeposit_DATE"
                   [(ngModel)]="bankdeposit.bankdeposit_DATE" maxlength="50" required>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <app-bankaccount #frombankaccount [view]="1"
+                  [bankaccountID]="bankdeposit.frombankaccount_ID"></app-bankaccount>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <app-bankaccount #tobankaccount [view]="1"
+                  [bankaccountID]="bankdeposit.tobankaccount_ID"></app-bankaccount>
               </div>
             </div>
           </div>
@@ -299,20 +290,6 @@
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
-                <app-bankaccount #frombankaccount [view]="1"
-                  [bankaccountID]="bankdeposit.frombankaccount_ID"></app-bankaccount>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <app-bankaccount #tobankaccount [view]="1"
-                  [bankaccountID]="bankdeposit.tobankaccount_ID"></app-bankaccount>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
                 <label class="control-label">Code <span style="color:red">*</span></label>
                 <input type="text" class="form-control" name="bankdeposit_CODE"
                   [(ngModel)]="bankdeposit.bankdeposit_CODE" maxlength="50" required>
@@ -323,6 +300,20 @@
                 <label class="control-label">Date<span style="color:red">*</span></label>
                 <input type="date" class="form-control" name="bankdeposit_DATE"
                   [(ngModel)]="bankdeposit.bankdeposit_DATE" maxlength="50" required>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <app-bankaccount #frombankaccount [view]="1"
+                  [bankaccountID]="bankdeposit.frombankaccount_ID"></app-bankaccount>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <app-bankaccount #tobankaccount [view]="1"
+                  [bankaccountID]="bankdeposit.tobankaccount_ID"></app-bankaccount>
               </div>
             </div>
           </div>
@@ -401,20 +392,6 @@
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
-                <app-bankaccount #frombankaccount [view]="1" [disabled]="disabled"
-                  [bankaccountID]="bankdeposit.frombankaccount_ID"></app-bankaccount>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <app-bankaccount #tobankaccount [view]="1" [disabled]="disabled"
-                  [bankaccountID]="bankdeposit.tobankaccount_ID"></app-bankaccount>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
                 <label class="control-label">Code <span style="color:red">*</span></label>
                 <input type="text" class="form-control" name="bankdeposit_CODE" [disabled]="disabled"
                   [(ngModel)]="bankdeposit.bankdeposit_CODE" maxlength="50" required>
@@ -425,6 +402,20 @@
                 <label class="control-label">Date<span style="color:red">*</span></label>
                 <input type="date" class="form-control" name="bankdeposit_DATE" [disabled]="disabled"
                   [(ngModel)]="bankdeposit.bankdeposit_DATE" maxlength="50" required>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <app-bankaccount #frombankaccount [view]="1" [disabled]="disabled"
+                  [bankaccountID]="bankdeposit.frombankaccount_ID"></app-bankaccount>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <app-bankaccount #tobankaccount [view]="1" [disabled]="disabled"
+                  [bankaccountID]="bankdeposit.tobankaccount_ID"></app-bankaccount>
               </div>
             </div>
           </div>

@@ -216,49 +216,6 @@
   </div>
 </div>
 
-<div *ngIf="view==23" class="form-group">
-  <div class="outer-div">
-    <div class="grid-wrapper">
-      <dx-data-grid #grid id="gridContainer" [dataSource]="trialbalancesAll" keyExpr="trialbalance_ID"
-        [showColumnLines]="true" [showRowLines]="true" [showBorders]="true" [rowAlternationEnabled]="true"
-        [allowColumnResizing]="true" [columnMinWidth]="30" [columnAutoWidth]="true" [remoteOperations]="true"
-        height="600" width="100%" (onToolbarPreparing)="onToolbarPreparing($event)">
-        <dxo-filter-row [visible]="true"></dxo-filter-row>
-        <dxo-header-filter [visible]="true"></dxo-header-filter>
-        <dxo-search-panel [visible]="true"></dxo-search-panel>
-        <dxo-group-panel [visible]="false"></dxo-group-panel>
-        <dxo-grouping #expand [autoExpandAll]="false"></dxo-grouping>
-        <dxo-scrolling mode="virtual"></dxo-scrolling>
-        <dxo-sorting mode="multiple"></dxo-sorting>
-        <dxo-selection mode="single"></dxo-selection>
-        <dxi-column [width]="75" [allowFiltering]="false" [allowSorting]="false" alignment="center"
-          cellTemplate="cellTemplate"></dxi-column>
-
-        <dxi-column dataField="trialbalance_CODE" caption="Code" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="balance_FROMDATE" caption="From Date" cssClass="myClass" alignment="center"></dxi-column>
-        <dxi-column dataField="balance_TODATE" caption="To Date" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="ledgerentry.ledgeraccount.ledgeraccount_NAME" caption="Account Name" cssClass="myClass"
-          alignment="left"></dxi-column>
-        <dxi-column dataField="ledgerentry.credit_AMOUNT" caption="Account Credit" cssClass="myClass"
-          alignment="left"></dxi-column>
-        <dxi-column dataField="ledgerentry.debit_AMOUNT" caption="Account Debit" cssClass="myClass"
-          alignment="left"></dxi-column>
-        <dxi-column dataField="balance_CREDIT" caption="Credit" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="balance_DEBIT" caption="Debit" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="trialbalance_DESC" caption="Description" cssClass="myClass"
-          alignment="left"></dxi-column>
-        <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass"
-          alignment="center"></dxi-column>
-
-        <div *dxTemplate="let data of 'cellTemplate'">
-          <a href="javascript:void" class="" (click)="showView(data)">
-            <i class="fa fa-eye" aria-hidden="true"></i></a>
-        </div>
-      </dx-data-grid>
-    </div>
-  </div>
-</div>
-
 <div *ngIf="view==3" class="form-group">
   <form action="" class="form" (ngSubmit)="f.form.valid && trialbalanceAdd(trialbalance)" #f="ngForm" novalidate>
     <div class="modal-dialog modal-xl" role="document">
@@ -289,8 +246,16 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-12">
-              <app-ledgerentry #ledgerentry [view]="1" [ledgerentryID]="trialbalance.ledgerentry_ID"></app-ledgerentry>
+            <div class="col-md-8">
+              <app-ledgerentry #ledgerentry [view]="1" [ledgerentryID]=trialbalance.ledgerentry_ID
+                (onLedgerentryChange)="onLedgerentryChange($event)"></app-ledgerentry>
+            </div>
+            <div class="col-md-4">
+              <br />
+              <button type="button" *ngIf="trialbalance.trialbalance_ID==0" (click)="ledgerentryAddNew()"
+                class="btn btn-secondary btn-sm">
+                <i class="fas fa-plus fa-fw"></i> Add New Entry
+              </button>
             </div>
           </div>
           <div class="row">
@@ -376,8 +341,16 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-12">
-              <app-ledgerentry #ledgerentry [view]="1" [ledgerentryID]="trialbalance.ledgerentry_ID"></app-ledgerentry>
+            <div class="col-md-8">
+              <app-ledgerentry #ledgerentry [view]="1" [ledgerentryID]=trialbalance.ledgerentry_ID
+                (onLedgerentryChange)="onLedgerentryChange($event)"></app-ledgerentry>
+            </div>
+            <div class="col-md-4">
+              <br />
+              <button type="button" *ngIf="trialbalance.trialbalance_ID==0" (click)="ledgerentryAddNew()"
+                class="btn btn-secondary btn-sm">
+                <i class="fas fa-plus fa-fw"></i> Add New Entry
+              </button>
             </div>
           </div>
           <div class="row">
@@ -487,9 +460,16 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-12">
-              <app-ledgerentry #ledgerentry [view]="1" [disabled]="disabled"
-                [ledgerentryID]="trialbalance.ledgerentry_ID"></app-ledgerentry>
+            <div class="col-md-8">
+              <app-ledgerentry #ledgerentry [view]="1" [disabled]="disabled" [ledgerentryID]=trialbalance.ledgerentry_ID
+                (onLedgerentryChange)="onLedgerentryChange($event)"></app-ledgerentry>
+            </div>
+            <div class="col-md-4">
+              <br />
+              <button type="button" *ngIf="trialbalance.trialbalance_ID==0" (click)="ledgerentryAddNew()"
+                class="btn btn-secondary btn-sm">
+                <i class="fas fa-plus fa-fw"></i> Add New Entry
+              </button>
             </div>
           </div>
           <div class="row">
@@ -570,4 +550,8 @@
       </div>
     </div>
   </div>
+</div>
+
+<div aria-labelledby="exampleModalLabel" class="modal fade show" id="addledgerentry" role="dialog" tabindex="-1">
+  <app-ledgerentry #addledgerentry [view]=3 (cancel)="ledgerentryCancel()"></app-ledgerentry>
 </div>

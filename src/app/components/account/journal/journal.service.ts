@@ -3,7 +3,6 @@ import { HttpCallServieService } from '../../../services/http-call-servie.servic
 import { setting } from '../../../setting';
 import { JournallineService } from '../journalline/journalline.service';
 import { TransactionService } from '../transaction/transaction.service';
-// import { JournalcodeService } from '../journalcode/journalcode.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +13,6 @@ export class JournalService {
     private _HttpCallServieService_: HttpCallServieService,
     private journallineervice: JournallineService,
     private transactionservice: TransactionService,
-    // private journalcodeservice: JournalcodeService,
   ) { }
 
 
@@ -149,11 +147,6 @@ export class JournalService {
       response.transaction = this.transactionservice.getDetail(JSON.parse(response.transaction_DETAIL));
       response.transaction_DETAIL = null;
     }
-
-    // if (response.journalcode_DETAIL != null) {
-    //   response.journalcode = this.journalcodeservice.getDetail(JSON.parse(response.journalcode_DETAIL));
-    //   response.journalcode_DETAIL = null
-    // }
 
     return (response);
   }

@@ -143,7 +143,7 @@
         <dxi-column dataField="bankaccounttype.description" caption="Account Type" cssClass="myClass"
           alignment="left"></dxi-column>
         <dxi-column dataField="bankaccount_BALANCE" caption="Balance" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="ledgeraccount.ledgeraccount_NAME" caption="Name" cssClass="myClass"
+        <dxi-column dataField="ledgeraccount.ledgeraccount_NAME" caption="Ledger" cssClass="myClass"
           alignment="left"></dxi-column>
         <dxi-column dataField="paymentmethod.description" caption="Payment Method" cssClass="myClass"
           alignment="left"></dxi-column>
@@ -222,52 +222,66 @@
         </div>
         <div class="modal-body">
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
               <div class="form-group">
                 <label class="control-label">Code <span style="color:red">*</span></label>
                 <input type="text" class="form-control" name="bankaccount_CODE" pattern="[a-zA-Z0-9-]+"
                   [(ngModel)]="bankaccount.bankaccount_CODE" maxlength="50" required>
               </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
               <div class="form-group">
                 <label class="control-label">Date<span style="color:red">*</span></label>
                 <input type="date" class="form-control" name="bankaccount_DATE"
                   [(ngModel)]="bankaccount.bankaccount_DATE" maxlength="50" required>
               </div>
             </div>
-          </div>
-          <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
               <div class="form-group">
                 <label class="control-label">Balance<span style="color:red">*</span></label>
-                <input type="text" class="form-control" name="bankaccount_BALANCE" 
+                <input type="text" class="form-control" name="bankaccount_BALANCE"
                   [(ngModel)]="bankaccount.bankaccount_BALANCE" maxlength="50" required>
-              </div>
-            </div>
-             <div class="col-md-6">
-              <app-customer #customer [view]="1" 
-                [customerID]="bankaccount.customer_ID"></app-customer>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <app-account #account [view]="1" 
-                  [accountID]="bankaccount.account_ID"></app-account>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <app-bankaccounttype #bankaccounttype 
-                  [bankaccounttypeID]="bankaccount.bankaccounttype_ID"></app-bankaccounttype>
               </div>
             </div>
           </div>
           <div class="row">
             <div class="col-md-8">
-              <app-ledgeraccount #ledgeraccount [view]="1"
-                [ledgeraccountID]=bankaccount.ledgeraccount_ID
+              <div class="form-group">
+                <app-account #account [view]="1" [accountID]="bankaccount.account_ID"></app-account>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <br />
+              <button type="button" *ngIf="bankaccount.bankaccount_ID==0" (click)="accountAddNew()"
+                class="btn btn-secondary btn-sm">
+                <i class="fas fa-plus fa-fw"></i> Add New Account
+              </button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <app-bankaccounttype #bankaccounttype
+                  [bankaccounttypeID]="bankaccount.bankaccounttype_ID"></app-bankaccounttype>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <app-paymentmethod #paymentmethod [paymentmethodID]="bankaccount.paymentmethod_ID"></app-paymentmethod>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <app-customer #customer [view]="1" [customerID]="bankaccount.customer_ID"></app-customer>
+            </div>
+            <div class="col-md-6">
+              <app-location #location [view]="1" [locationID]="bankaccount.location_ID"></app-location>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-8">
+              <app-ledgeraccount #ledgeraccount [view]="1" [ledgeraccountID]=bankaccount.ledgeraccount_ID
                 (onLedgeraccountChange)="onLedgeraccountChange($event)"></app-ledgeraccount>
             </div>
             <div class="col-md-4">
@@ -304,40 +318,47 @@
         </div>
         <div class="modal-body">
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
               <div class="form-group">
                 <label class="control-label">Code <span style="color:red">*</span></label>
-                <input type="text" class="form-control" name="bankaccount_CODE"
+                <input type="text" class="form-control" name="bankaccount_CODE" pattern="[a-zA-Z0-9-]+"
                   [(ngModel)]="bankaccount.bankaccount_CODE" maxlength="50" required>
               </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
               <div class="form-group">
                 <label class="control-label">Date<span style="color:red">*</span></label>
                 <input type="date" class="form-control" name="bankaccount_DATE"
                   [(ngModel)]="bankaccount.bankaccount_DATE" maxlength="50" required>
               </div>
             </div>
-          </div>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <app-account #account [view]="1" [accountID]="bankaccount.account_ID"></app-account>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <app-bankaccounttype #bankaccounttype
-                  [bankaccounttypeID]="bankaccount.bankaccounttype_ID"></app-bankaccounttype>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
               <div class="form-group">
                 <label class="control-label">Balance<span style="color:red">*</span></label>
                 <input type="text" class="form-control" name="bankaccount_BALANCE"
                   [(ngModel)]="bankaccount.bankaccount_BALANCE" maxlength="50" required>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-8">
+              <div class="form-group">
+                <app-account #account [view]="1" [accountID]="bankaccount.account_ID"></app-account>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <br />
+              <button type="button" *ngIf="bankaccount.bankaccount_ID==0" (click)="accountAddNew()"
+                class="btn btn-secondary btn-sm">
+                <i class="fas fa-plus fa-fw"></i> Add New Account
+              </button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <app-bankaccounttype #bankaccounttype
+                  [bankaccounttypeID]="bankaccount.bankaccounttype_ID"></app-bankaccounttype>
               </div>
             </div>
             <div class="col-md-6">
@@ -347,19 +368,24 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-12">
-              <div class="form-group">
-                <app-ledgeraccount #ledgeraccount [view]="1"
-                  [ledgeraccountID]="bankaccount.ledgeraccount_ID"></app-ledgeraccount>
-              </div>
-            </div>
-          </div>
-          <div class="row">
             <div class="col-md-6">
               <app-customer #customer [view]="1" [customerID]="bankaccount.customer_ID"></app-customer>
             </div>
             <div class="col-md-6">
               <app-location #location [view]="1" [locationID]="bankaccount.location_ID"></app-location>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-8">
+              <app-ledgeraccount #ledgeraccount [view]="1" [ledgeraccountID]=bankaccount.ledgeraccount_ID
+                (onLedgeraccountChange)="onLedgeraccountChange($event)"></app-ledgeraccount>
+            </div>
+            <div class="col-md-4">
+              <br />
+              <button type="button" *ngIf="bankaccount.bankaccount_ID==0" (click)="ledgeraccountAddNew()"
+                class="btn btn-secondary btn-sm">
+                <i class="fas fa-plus fa-fw"></i> Add New Ledger
+              </button>
             </div>
           </div>
           <div class="row">
@@ -415,8 +441,8 @@
             <div class="col-md-4">
               <div class="form-group">
                 <label class="control-label">Code <span style="color:red">*</span></label>
-                <input type="text" class="form-control" name="bankaccount_CODE" [disabled]="disabled"
-                  [(ngModel)]="bankaccount.bankaccount_CODE" maxlength="50" required>
+                <input type="text" class="form-control" name="bankaccount_CODE" pattern="[a-zA-Z0-9-]+"
+                  [disabled]="disabled" [(ngModel)]="bankaccount.bankaccount_CODE" maxlength="50" required>
               </div>
             </div>
             <div class="col-md-4">
@@ -435,21 +461,42 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-4">
-              <app-customer #customer [view]="1" [disabled]="disabled"
-                [customerID]="bankaccount.customer_ID"></app-customer>
-            </div>
-            <div class="col-md-4">
+            <div class="col-md-8">
               <div class="form-group">
                 <app-account #account [view]="1" [disabled]="disabled"
                   [accountID]="bankaccount.account_ID"></app-account>
               </div>
             </div>
             <div class="col-md-4">
+              <br />
+              <button type="button" *ngIf="bankaccount.bankaccount_ID==0" (click)="accountAddNew()"
+                class="btn btn-secondary btn-sm">
+                <i class="fas fa-plus fa-fw"></i> Add New Account
+              </button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
               <div class="form-group">
                 <app-bankaccounttype #bankaccounttype [disabled]="disabled"
                   [bankaccounttypeID]="bankaccount.bankaccounttype_ID"></app-bankaccounttype>
               </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <app-paymentmethod #paymentmethod [disabled]="disabled"
+                  [paymentmethodID]="bankaccount.paymentmethod_ID"></app-paymentmethod>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <app-customer #customer [view]="1" [disabled]="disabled"
+                [customerID]="bankaccount.customer_ID"></app-customer>
+            </div>
+            <div class="col-md-6">
+              <app-location #location [view]="1" [disabled]="disabled"
+                [locationID]="bankaccount.location_ID"></app-location>
             </div>
           </div>
           <div class="row">
@@ -458,8 +505,8 @@
                 [ledgeraccountID]=bankaccount.ledgeraccount_ID
                 (onLedgeraccountChange)="onLedgeraccountChange($event)"></app-ledgeraccount>
             </div>
-            <div class="col-md-2">
-              <br/>
+            <div class="col-md-4">
+              <br />
               <button type="button" *ngIf="bankaccount.bankaccount_ID==0" (click)="ledgeraccountAddNew()"
                 class="btn btn-secondary btn-sm">
                 <i class="fas fa-plus fa-fw"></i> Add New Ledger
@@ -482,19 +529,19 @@
           <div class="row">
             <div class="col-md-12">
               <button *ngIf="bankaccount.bankaccount_ID!=0 && disabled==true" (click)="editView()" id="cancel"
-              class="btn btn-primary" style="float: right;"> Edit
-            </button>
-            <button *ngIf="disabled==false" type="button" (click)='bankaccountCancel()' style="float: right;"
-              class="btn btn-light" data-dismiss="modal"> Cancel
-            </button>
-            <button *ngIf="bankaccount.bankaccount_ID!=0 && disabled==false" type="button" data-dismiss="modal"
-              style=" margin-right: 10px; float: right;" (click)='bankaccountUpdate(bankaccount)'
-              class="btn btn-primary"> Update
-            </button>
-            <button *ngIf="bankaccount.bankaccount_ID==0" type="button" data-dismiss="modal"
-              style=" margin-right: 10px; float: right;" (click)='bankaccountAdd(bankaccount)'
-              class="btn btn-primary"> Save
-            </button>
+                class="btn btn-primary" style="float: right;"> Edit
+              </button>
+              <button *ngIf="disabled==false" type="button" (click)='bankaccountCancel()' style="float: right;"
+                class="btn btn-light" data-dismiss="modal"> Cancel
+              </button>
+              <button *ngIf="bankaccount.bankaccount_ID!=0 && disabled==false" type="button" data-dismiss="modal"
+                style=" margin-right: 10px; float: right;" (click)='bankaccountUpdate(bankaccount)'
+                class="btn btn-primary"> Update
+              </button>
+              <button *ngIf="bankaccount.bankaccount_ID==0" type="button" data-dismiss="modal"
+                style=" margin-right: 10px; float: right;" (click)='bankaccountAdd(bankaccount)'
+                class="btn btn-primary"> Save
+              </button>
             </div>
           </div>
         </div>
@@ -505,4 +552,8 @@
 
 <div aria-labelledby="exampleModalLabel" class="modal fade show" id="addledgeraccount" role="dialog" tabindex="-1">
   <app-ledgeraccount #addledgeraccount [view]=3 (cancel)="ledgeraccountCancel()"></app-ledgeraccount>
+</div>
+
+<div aria-labelledby="exampleModalLabel" class="modal fade show" id="addaccount" role="dialog" tabindex="-1">
+  <app-account #addaccount [view]=3 (cancel)="accountCancel()"></app-account>
 </div>

@@ -15,9 +15,12 @@ export const setting = {
   locationservice_NAME: 'LOCATION',
   personservice_NAME: 'PERSON',
   accountservice_NAME: 'CWIZTECHACCOUNT',
-  customerservice_NAME: 'CWIZTECHCUSTOMER',
+  // customerservice_NAME: 'CWIZTECHCUSTOMER',
+  // financeservice_NAME: 'CWIZTECHERPFINANCE',
+  customerservice_NAME: 'KBFSCUSTOMER',
+  financeservice_NAME: 'KBFSERPFINANCE',
   productservice_NAME: 'CWIZTECHPRODUCT',
-  financeservice_NAME: 'CWIZTECHERPFINANCE',
+
 
   isHash: '/#',
   // redirctPath: '',

@@ -3,7 +3,7 @@ import { HttpCallServieService } from '../../../services/http-call-servie.servic
 import { setting } from '../../../setting';
 import { AccountService } from '../account/account.service';
 import { LedgeraccountService } from '../ledgeraccount/ledgeraccount.service';
-import { PersonService } from '../../person/person/person.service';
+import { CustomerService } from '../../customer/customer/customer.service';
 import { LocationService } from '../../location/location/location.service';
 
 @Injectable({
@@ -15,7 +15,7 @@ export class BankaccountService {
     private _HttpCallServieService_: HttpCallServieService,
     private accountservice: AccountService,
     private ledgeraccountservice: LedgeraccountService,
-    private personservice: PersonService,
+    private customerservice: CustomerService,
     private locationservice: LocationService
   ) { }
 
@@ -152,9 +152,9 @@ export class BankaccountService {
       response.ledgeraccount_DETAIL = null;
     }
 
-    if (response.person_DETAIL != null) {
-      response.person = this.personservice.getDetail(JSON.parse(response.person_DETAIL));
-      response.person_DETAIL = null;
+    if (response.customer_DETAIL != null) {
+      response.customer = this.customerservice.getDetail(JSON.parse(response.customer_DETAIL));
+      response.customer_DETAIL = null;
     }
 
     if (response.location_DETAIL != null) {
@@ -171,12 +171,12 @@ export class BankaccountService {
 
     if (response.bankaccounttype_DETAIL != null) {
       response.bankaccounttype = JSON.parse(response.bankaccounttype_DETAIL);
-      response.bankaccounttype_DETAIL = null;
+      response.bankaccounttype_DETAIL = response.bankaccounttype.description;
     }
 
     if (response.paymentmethod_DETAIL != null) {
       response.paymentmethod = JSON.parse(response.paymentmethod_DETAIL);
-      response.paymentmethod_DETAIL = response.paymentmethod.code + ' - ' + response.paymentmethod.description;
+      response.paymentmethod_DETAIL = response.paymentmethod.description;
     }
 
     return (response);

@@ -18,7 +18,10 @@ export class LedgerentryComponent implements OnInit {
   @ViewChild("ledgeraccount") ledgeraccount: LedgeraccountComponent;
   @ViewChild("addledgeraccount") addledgeraccount: LedgeraccountComponent;
   @ViewChild("editledgeraccount") editledgeraccount: LedgeraccountComponent;
+
   @ViewChild("transaction") transaction: TransactionComponent;
+  @ViewChild("addtransaction") addtransaction: TransactionComponent;
+  @ViewChild("edittransaction") edittransaction: TransactionComponent;
 
   @Input()
   view: number = 1;
@@ -43,8 +46,8 @@ export class LedgerentryComponent implements OnInit {
   @Output() refresh = new EventEmitter();
   @Output() onLedgerEntryChange = new EventEmitter();
 
-  ledgerentrys = [];
-  ledgerentrysAll = [];
+  ledgerentries = [];
+  ledgerentriesAll = [];
   ledgerentry = {
     ledgerentry_ID: 0,
     ledgeraccount_ID: null,
@@ -72,22 +75,22 @@ export class LedgerentryComponent implements OnInit {
   }
 
   load(reload) {
-    if (window.sessionStorage.getItem('ledgerentrys') != null) {
-      this.ledgerentrys = JSON.parse(window.sessionStorage.getItem('ledgerentrys'));
+    if (window.sessionStorage.getItem('ledgerentries') != null) {
+      this.ledgerentries = JSON.parse(window.sessionStorage.getItem('ledgerentries'));
     }
-    if (window.sessionStorage.getItem('ledgerentrysAll') != null) {
-      this.ledgerentrysAll = JSON.parse(window.sessionStorage.getItem('ledgerentrysAll'));
+    if (window.sessionStorage.getItem('ledgerentriesAll') != null) {
+      this.ledgerentriesAll = JSON.parse(window.sessionStorage.getItem('ledgerentriesAll'));
     }
     if (this.ledgerentryID != 0 && !this.ledgerentryID && Number(window.sessionStorage.getItem('ledgerentry')) > 0) {
       this.ledgerentryID = Number(window.sessionStorage.getItem('ledgerentry'));
     }
 
-    if (this.view >= 1 && this.view <= 2 && (this.ledgerentrys == null || this.ledgerentrys.length == 0 || reload == true)) {
-      this.ledgerentrys == null;
+    if (this.view >= 1 && this.view <= 2 && (this.ledgerentries == null || this.ledgerentries.length == 0 || reload == true)) {
+      this.ledgerentries == null;
       this.ledgerentryGet();
     }
-    if (((this.view >= 1 && this.view <= 2) || this.view == 10) && (this.ledgerentrysAll == null || this.ledgerentrysAll.length == 0 || reload == true)) {
-      this.ledgerentrysAll == null;
+    if (((this.view >= 1 && this.view <= 2) || this.view == 10) && (this.ledgerentriesAll == null || this.ledgerentriesAll.length == 0 || reload == true)) {
+      this.ledgerentriesAll == null;
       this.ledgerentryGetAll();
     }
 
@@ -100,11 +103,11 @@ export class LedgerentryComponent implements OnInit {
       window.sessionStorage.setItem("ledgerentry", this.ledgerentryID);
       this.ledgerentryGetOne(this.ledgerentryID);
       this.disabled = true;
-    } else if ((this.view >= 11 && this.view <= 29) && this.disabled == false && (this.ledgerentrys == null || this.ledgerentrys.length == 0 || reload == true)) {
-      this.ledgerentrys == null;
+    } else if ((this.view >= 11 && this.view <= 29) && this.disabled == false && (this.ledgerentries == null || this.ledgerentries.length == 0 || reload == true)) {
+      this.ledgerentries == null;
       this.ledgerentryAdvancedSearch(search);
-    } else if ((this.view >= 11 && this.view <= 29) && this.disabled == true && (this.ledgerentrysAll == null || this.ledgerentrysAll.length == 0 || reload == true)) {
-      this.ledgerentrysAll == null;
+    } else if ((this.view >= 11 && this.view <= 29) && this.disabled == true && (this.ledgerentriesAll == null || this.ledgerentriesAll.length == 0 || reload == true)) {
+      this.ledgerentriesAll == null;
       this.ledgerentryAdvancedSearchAll(search);
     }
   }
@@ -152,8 +155,24 @@ export class LedgerentryComponent implements OnInit {
   }
 
   onLedgeraccountChange(ledgeraccount) {
-    this.ledgerentry.ledgerentry_NAME = ledgeraccount.ledgeraccount_NAME;
-    this.ledgerentry.ledgerentry_DESC = ledgeraccount.ledgeraccount_DESC;
+    // this.ledgerentry.ledgerentry_NAME = ledgeraccount.ledgeraccount_NAME;
+    // this.ledgerentry.ledgerentry_DESC = ledgeraccount.ledgeraccount_DESC;
+  }
+
+  transactionAddNew() {
+    this.addtransaction.add();
+    $("#addtransaction").modal("show");
+  }
+
+  transactionCancel() {
+    $("#addtransaction").modal("hide");
+    $("#edittransaction").modal("hide");
+    this.transaction.transactions = this.addtransaction.transactions;
+  }
+
+  onTransactionChange(transaction) {
+    // this.journal.journal_NAME = transaction.transaction_NAME;
+    // this.journal.journal_DESC = transaction.transaction_DESC;
   }
 
   update(row) {
@@ -179,14 +198,14 @@ export class LedgerentryComponent implements OnInit {
   ledgerentryCancel() {
     this.disabled = true;
     if (this.ledgerentry.ledgerentry_ID == 0) {
-      this.router.navigate(["/home/ledgerentrys "], {});
+      this.router.navigate(["/home/ledgerentries "], {});
     }
   }
 
   onChange(ledgerentryID) {
-    for (var i = 0; i < this.ledgerentrysAll.length; i++) {
-      if (this.ledgerentrysAll[i].ledgerentry_ID == ledgerentryID) {
-        this.onLedgerEntryChange.next(this.ledgerentrysAll[i]);
+    for (var i = 0; i < this.ledgerentriesAll.length; i++) {
+      if (this.ledgerentriesAll[i].ledgerentry_ID == ledgerentryID) {
+        this.onLedgerEntryChange.next(this.ledgerentriesAll[i]);
         break;
       }
     }
@@ -201,7 +220,7 @@ export class LedgerentryComponent implements OnInit {
     this.ledgerentry = response;
   }
 
-  setLedgerentrys(response) {
+  setLedgerentries(response) {
     this.cancel.next();
     return response;
   }
@@ -212,8 +231,8 @@ export class LedgerentryComponent implements OnInit {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else {
-          this.ledgerentrys = this.setLedgerentrys(this.ledgerentryservice.getAllDetail(response));
-          window.sessionStorage.setItem("ledgerentrys", JSON.stringify(this.ledgerentrys));
+          this.ledgerentries = this.setLedgerentries(this.ledgerentryservice.getAllDetail(response));
+          window.sessionStorage.setItem("ledgerentries", JSON.stringify(this.ledgerentries));
         }
       }
     }, error => {
@@ -227,8 +246,8 @@ export class LedgerentryComponent implements OnInit {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else {
-          this.ledgerentrysAll = this.setLedgerentrys(this.ledgerentryservice.getAllDetail(response));
-          window.sessionStorage.setItem("ledgerentrysAll", JSON.stringify(this.ledgerentrysAll));
+          this.ledgerentriesAll = this.setLedgerentries(this.ledgerentryservice.getAllDetail(response));
+          window.sessionStorage.setItem("ledgerentriesAll", JSON.stringify(this.ledgerentriesAll));
         }
       }
     }, error => {
@@ -300,8 +319,8 @@ export class LedgerentryComponent implements OnInit {
     })
   }
 
-  ledgerentryUpdateAll(ledgerentrys) {
-    this.ledgerentryservice.updateAll(ledgerentrys).subscribe(response => {
+  ledgerentryUpdateAll(ledgerentries) {
+    this.ledgerentryservice.updateAll(ledgerentries).subscribe(response => {
       if (response) {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
@@ -326,8 +345,8 @@ export class LedgerentryComponent implements OnInit {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else {
-          this.ledgerentrys = this.setLedgerentrys(this.ledgerentryservice.getAllDetail(response));
-          window.sessionStorage.setItem("ledgerentrys", JSON.stringify(this.ledgerentrys));
+          this.ledgerentries = this.setLedgerentries(this.ledgerentryservice.getAllDetail(response));
+          window.sessionStorage.setItem("ledgerentries", JSON.stringify(this.ledgerentries));
         }
       }
     }, error => {
@@ -344,8 +363,8 @@ export class LedgerentryComponent implements OnInit {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else {
-          this.ledgerentrysAll = this.setLedgerentrys(this.ledgerentryservice.getAllDetail(response));
-          window.sessionStorage.setItem("ledgerentrysAll", JSON.stringify(this.ledgerentrysAll));
+          this.ledgerentriesAll = this.setLedgerentries(this.ledgerentryservice.getAllDetail(response));
+          window.sessionStorage.setItem("ledgerentriesAll", JSON.stringify(this.ledgerentriesAll));
         }
       }
     }, error => {
@@ -362,8 +381,8 @@ export class LedgerentryComponent implements OnInit {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else {
-          this.ledgerentrys = this.setLedgerentrys(this.ledgerentryservice.getAllDetail(response));
-          window.sessionStorage.setItem("ledgerentrys", JSON.stringify(this.ledgerentrys));
+          this.ledgerentries = this.setLedgerentries(this.ledgerentryservice.getAllDetail(response));
+          window.sessionStorage.setItem("ledgerentries", JSON.stringify(this.ledgerentries));
         }
       }
     }, error => {
@@ -380,8 +399,8 @@ export class LedgerentryComponent implements OnInit {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else {
-          this.ledgerentrysAll = this.setLedgerentrys(this.ledgerentryservice.getAllDetail(response));
-          window.sessionStorage.setItem("ledgerentrysAll", JSON.stringify(this.ledgerentrysAll));
+          this.ledgerentriesAll = this.setLedgerentries(this.ledgerentryservice.getAllDetail(response));
+          window.sessionStorage.setItem("ledgerentriesAll", JSON.stringify(this.ledgerentriesAll));
         }
       }
     }, error => {

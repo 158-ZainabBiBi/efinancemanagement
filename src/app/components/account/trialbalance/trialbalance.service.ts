@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpCallServieService } from '../../../services/http-call-servie.service';
 import { setting } from '../../../setting';
-import { LedgeraccountService } from '../ledgeraccount/ledgeraccount.service';
+import { LedgerentryService } from '../ledgerentry/ledgerentry.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +10,7 @@ export class TrialbalanceService {
 
   constructor(
     private _HttpCallServieService_: HttpCallServieService,
-    private ledgeraccountservice: LedgeraccountService
+    private ledgerentryservice: LedgerentryService
   ) { }
 
 
@@ -136,9 +136,9 @@ export class TrialbalanceService {
   }
 
   getDetail(response) {
-    if (response.ledgeraccount_DETAIL != null) {
-      response.ledgeraccount = this.ledgeraccountservice.getDetail(JSON.parse(response.ledgeraccount_DETAIL));
-      response.ledgeraccount_DETAIL = null
+    if (response.ledgerentry_DETAIL != null) {
+      response.ledgerentry = this.ledgerentryservice.getDetail(JSON.parse(response.ledgerentry_DETAIL));
+      response.ledgerentry_DETAIL = null
     }
 
     return (response);

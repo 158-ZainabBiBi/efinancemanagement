@@ -136,7 +136,7 @@ export class LedgeraccountclassificationService {
   getDetail(response) {
     if (response.ledgeraccounttype_DETAIL != null) {
       response.ledgeraccounttype = JSON.parse(response.ledgeraccounttype_DETAIL);
-      response.ledgeraccounttype_DETAIL = response.ledgeraccounttype.code + ' - ' + response.ledgeraccounttype.description;
+      response.ledgeraccounttype_DETAIL = response.ledgeraccounttype.description;
     }
 
     return (response);
