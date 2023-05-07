@@ -30,19 +30,14 @@ export class TransactiontypeComponent implements OnInit {
   ngOnInit(): void {
     this.transactiontypes = JSON.parse(window.sessionStorage.getItem('transactiontypes'));
     this.transactiontypesAll = JSON.parse(window.sessionStorage.getItem('transactiontypesAll'));
-    if (this.disabled == false && this.transactiontypes == null) {
+
+    if (this.transactiontypes == null) {
       this.transactiontypeGet();
-    } else if (this.disabled == true && this.transactiontypesAll == null) {
+    }
+
+    if (this.transactiontypesAll == null) {
       this.transactiontypeGetAll();
     }
-  }
-
-  setTransactiontypes(response) {
-    this.transactiontypes = response;
-    window.sessionStorage.setItem("transactiontypes", JSON.stringify(this.transactiontypes));
-
-    this.transactiontypesAll = response;
-    window.sessionStorage.setItem("transactiontypesAll", JSON.stringify(this.transactiontypesAll));
   }
 
   transactiontypeGet() {
@@ -51,7 +46,8 @@ export class TransactiontypeComponent implements OnInit {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else {
-          this.setTransactiontypes(response);
+          this.transactiontypes = response;
+          window.sessionStorage.setItem("transactiontypes", JSON.stringify(this.transactiontypes));
         }
       }
     }, error => {
@@ -65,7 +61,8 @@ export class TransactiontypeComponent implements OnInit {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else {
-          this.setTransactiontypes(response);
+          this.transactiontypesAll = response;
+          window.sessionStorage.setItem("transactiontypesAll", JSON.stringify(this.transactiontypesAll));
         }
       }
     }, error => {

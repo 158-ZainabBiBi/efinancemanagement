@@ -30,19 +30,14 @@ export class BankaccounttypeComponent implements OnInit {
   ngOnInit(): void {
     this.bankaccounttypes = JSON.parse(window.sessionStorage.getItem('bankaccounttypes'));
     this.bankaccounttypesAll = JSON.parse(window.sessionStorage.getItem('bankaccounttypesAll'));
-    if (this.disabled == false && this.bankaccounttypes == null) {
+
+    if (this.bankaccounttypes == null) {
       this.bankaccounttypeGet();
-    } else if (this.disabled == true && this.bankaccounttypesAll == null) {
+    }
+
+    if (this.bankaccounttypesAll == null) {
       this.bankaccounttypeGetAll();
     }
-  }
-
-  setBankaccounttypes(response) {
-    this.bankaccounttypes = response;
-    window.sessionStorage.setItem("bankaccounttypes", JSON.stringify(this.bankaccounttypes));
-
-    this.bankaccounttypesAll = response;
-    window.sessionStorage.setItem("bankaccounttypesAll", JSON.stringify(this.bankaccounttypesAll));
   }
 
   bankaccounttypeGet() {
@@ -51,7 +46,8 @@ export class BankaccounttypeComponent implements OnInit {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else {
-          this.setBankaccounttypes(response);
+          this.bankaccounttypes = response;
+          window.sessionStorage.setItem("bankaccounttypes", JSON.stringify(this.bankaccounttypes));
         }
       }
     }, error => {
@@ -65,7 +61,8 @@ export class BankaccounttypeComponent implements OnInit {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else {
-          this.setBankaccounttypes(response);
+          this.bankaccounttypesAll = response;
+          window.sessionStorage.setItem("bankaccounttypesAll", JSON.stringify(this.bankaccounttypesAll));
         }
       }
     }, error => {

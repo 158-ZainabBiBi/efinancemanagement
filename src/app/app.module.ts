@@ -20,6 +20,8 @@ import { LoginComponent } from './pages/login/login.component';
 import { NotfoundComponent } from './pages/notfound/notfound.component';
 import { RequestOptionsService } from './services/setting.headers';
 import { HttpErrorInterceptor } from './services/http-error.interceptor';
+import { DxiTotalItemModule } from 'devextreme-angular/ui/nested';
+import { DxDataGridModule } from "devextreme-angular";
 
 @NgModule({
   declarations: [AppComponent, LoginComponent, NotfoundComponent],
@@ -37,6 +39,8 @@ import { HttpErrorInterceptor } from './services/http-error.interceptor';
     NgxSpinnerModule,
     ReactiveFormsModule,
     AppRoutingModule,
+    DxiTotalItemModule,
+    DxDataGridModule
   ],
   providers: [
     {

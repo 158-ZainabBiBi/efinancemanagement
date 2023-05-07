@@ -1,4 +1,3 @@
-
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { LookupService } from 'src/app/services/lookup.service';
@@ -31,30 +30,24 @@ export class CurrencyComponent implements OnInit {
   ngOnInit(): void {
     this.currencies = JSON.parse(window.sessionStorage.getItem('currencies'));
     this.currenciesAll = JSON.parse(window.sessionStorage.getItem('currenciesAll'));
-    if (this.disabled == false && this.currencies == null) {
+
+    if (this.currencies == null) {
       this.currencyGet();
-    } else if (this.disabled == true && this.currenciesAll == null) {
+    }
+
+    if (this.currenciesAll == null) {
       this.currencyGetAll();
     }
   }
 
-  setCurrencies(response) {
-    if (this.disabled == false) {
-      this.currencies = response;
-      window.sessionStorage.setItem("currencies", JSON.stringify(this.currencies));
-    } else {
-      this.currenciesAll = response;
-      window.sessionStorage.setItem("currenciesAll", JSON.stringify(this.currenciesAll));
-    }
-  }
-
-  currencyGet(){
+  currencyGet() {
     this.lookupservice.lookup("CURRENCY").subscribe(response => {
       if (response) {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
-        } else{
-          this.setCurrencies(response);
+        } else {
+          this.currencies = response;
+          window.sessionStorage.setItem("currencies", JSON.stringify(this.currencies));
         }
       }
     }, error => {
@@ -62,13 +55,14 @@ export class CurrencyComponent implements OnInit {
     })
   }
 
-  currencyGetAll(){
+  currencyGetAll() {
     this.lookupservice.lookupAll("CURRENCY").subscribe(response => {
       if (response) {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
-        } else{
-          this.setCurrencies(response);
+        } else {
+          this.currenciesAll = response;
+          window.sessionStorage.setItem("currenciesAll", JSON.stringify(this.currenciesAll));
         }
       }
     }, error => {

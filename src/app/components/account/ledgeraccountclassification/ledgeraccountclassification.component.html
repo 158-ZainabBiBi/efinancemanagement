@@ -9,8 +9,7 @@
         <ng-option *ngFor="let ledgeraccountclassification of ledgeraccountclassificationsAll"
           [value]="ledgeraccountclassification.ledgeraccountclassification_ID">
           {{ ledgeraccountclassification.ledgeraccountclassification_CODE }} - {{
-          ledgeraccountclassification.ledgeraccountclassification_NAME }} - {{
-          ledgeraccountclassification.ledgeraccounttype.description }}
+          ledgeraccountclassification.ledgeraccountclassification_NAME }}
         </ng-option>
       </ng-select>
     </div>
@@ -22,8 +21,8 @@
         <ng-option *ngFor="let ledgeraccountclassification of ledgeraccountclassifications"
           [value]="ledgeraccountclassification.ledgeraccountclassification_ID" [disabled]="disabled">
           {{ ledgeraccountclassification.ledgeraccountclassification_CODE }} - {{
-          ledgeraccountclassification.ledgeraccountclassification_NAME }} - {{
-          ledgeraccountclassification.ledgeraccounttype.description }}
+          ledgeraccountclassification.ledgeraccountclassification_NAME }}
+
         </ng-option>
       </ng-select>
     </div>
@@ -46,8 +45,7 @@
         <ng-option *ngFor="let ledgeraccountclassification of ledgeraccountclassificationsAll"
           [value]="ledgeraccountclassification.ledgeraccountclassification_ID">
           {{ ledgeraccountclassification.ledgeraccountclassification_CODE }} - {{
-          ledgeraccountclassification.ledgeraccountclassification_NAME }} - {{
-          ledgeraccountclassification.ledgeraccounttype.description }}
+          ledgeraccountclassification.ledgeraccountclassification_NAME }}
         </ng-option>
       </ng-select>
     </div>
@@ -59,8 +57,8 @@
         <ng-option *ngFor="let ledgeraccountclassification of ledgeraccountclassificationsAll"
           [value]="ledgeraccountclassification.ledgeraccountclassification_ID" [disabled]="disabled">
           {{ ledgeraccountclassification.ledgeraccountclassification_CODE }} - {{
-          ledgeraccountclassification.ledgeraccountclassification_NAME }} - {{
-          ledgeraccountclassification.ledgeraccounttype.description }}
+          ledgeraccountclassification.ledgeraccountclassification_NAME }}
+
         </ng-option>
       </ng-select>
     </div>
@@ -82,8 +80,7 @@
         <ng-option *ngFor="let ledgeraccountclassification of ledgeraccountclassificationsAll"
           [value]="ledgeraccountclassification.ledgeraccountclassification_ID" [disabled]="disabled">
           {{ ledgeraccountclassification.ledgeraccountclassification_CODE }} - {{
-          ledgeraccountclassification.ledgeraccountclassification_NAME }} - {{
-          ledgeraccountclassification.ledgeraccounttype.description }}
+          ledgeraccountclassification.ledgeraccountclassification_NAME }}
         </ng-option>
       </ng-select>
     </div>
@@ -95,8 +92,8 @@
         <ng-option *ngFor="let ledgeraccountclassification of ledgeraccountclassifications"
           [value]="ledgeraccountclassification.ledgeraccountclassification_ID" [disabled]="disabled">
           {{ ledgeraccountclassification.ledgeraccountclassification_CODE }} - {{
-          ledgeraccountclassification.ledgeraccountclassification_NAME }} - {{
-          ledgeraccountclassification.ledgeraccounttype.description }}
+          ledgeraccountclassification.ledgeraccountclassification_NAME }}
+
         </ng-option>
       </ng-select>
     </div>
@@ -119,8 +116,7 @@
         <ng-option *ngFor="let ledgeraccountclassification of ledgeraccountclassificationsAll"
           [value]="ledgeraccountclassification.ledgeraccountclassification_ID" [disabled]="disabled">
           {{ ledgeraccountclassification.ledgeraccountclassification_CODE }} - {{
-          ledgeraccountclassification.ledgeraccountclassification_NAME }} - {{
-          ledgeraccountclassification.ledgeraccounttype.description }}
+          ledgeraccountclassification.ledgeraccountclassification_NAME }}
         </ng-option>
       </ng-select>
     </div>
@@ -132,8 +128,8 @@
         <ng-option *ngFor="let ledgeraccountclassification of ledgeraccountclassificationsAll"
           [value]="ledgeraccountclassification.ledgeraccountclassification_ID" [disabled]="disabled">
           {{ ledgeraccountclassification.ledgeraccountclassification_CODE }} - {{
-          ledgeraccountclassification.ledgeraccountclassification_NAME }} - {{
-          ledgeraccountclassification.ledgeraccounttype.description }}
+          ledgeraccountclassification.ledgeraccountclassification_NAME }}
+
         </ng-option>
       </ng-select>
     </div>
@@ -236,7 +232,7 @@
         </div>
         <div class="modal-body">
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-12">
               <app-ledgeraccounttype #ledgeraccounttype
                 [ledgeraccounttypeID]="ledgeraccountclassification.ledgeraccounttype_ID"></app-ledgeraccounttype>
             </div>
@@ -258,11 +254,11 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-12">
               <div class="form-group">
                 <label class="control-label"> Description <span style="color:red">*</span></label>
-                <input type="text" class="form-control" name="ledgeraccountclassification_DESC"
-                  [(ngModel)]="ledgeraccountclassification.ledgeraccountclassification_DESC" maxlength="50" required>
+                <textarea type="text" class="form-control" name="ledgeraccountclassification_DESC"
+                  [(ngModel)]="ledgeraccountclassification.ledgeraccountclassification_DESC" maxlength="50"></textarea>
               </div>
             </div>
           </div>
@@ -293,7 +289,7 @@
         </div>
         <div class="modal-body">
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-12">
               <app-ledgeraccounttype #ledgeraccounttype
                 [ledgeraccounttypeID]="ledgeraccountclassification.ledgeraccounttype_ID"></app-ledgeraccounttype>
             </div>
@@ -315,11 +311,11 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-12">
               <div class="form-group">
                 <label class="control-label"> Description <span style="color:red">*</span></label>
-                <input type="text" class="form-control" name="ledgeraccountclassification_DESC"
-                  [(ngModel)]="ledgeraccountclassification.ledgeraccountclassification_DESC" maxlength="50" required>
+                <textarea type="text" class="form-control" name="ledgeraccountclassification_DESC"
+                  [(ngModel)]="ledgeraccountclassification.ledgeraccountclassification_DESC" maxlength="50"></textarea>
               </div>
             </div>
           </div>
@@ -373,7 +369,7 @@
       <div class="row">
         <div class="col-lg-12">
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-12">
               <app-ledgeraccounttype #ledgeraccounttype [disabled]="disabled" [iscompulsory]="true"
                 [ledgeraccounttypeID]="ledgeraccountclassification.ledgeraccounttype_ID"></app-ledgeraccounttype>
             </div>
@@ -397,12 +393,11 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-12">
               <div class="form-group">
                 <label class="control-label"> Description <span style="color:red">*</span></label>
-                <input type="text" class="form-control" name="ledgeraccountclassification_DESC"
-                  [(ngModel)]="ledgeraccountclassification.ledgeraccountclassification_DESC" maxlength="50"
-                  [disabled]="disabled">
+                <textarea type="text" class="form-control" name="ledgeraccountclassification_DESC" [disabled]="disabled"
+                  [(ngModel)]="ledgeraccountclassification.ledgeraccountclassification_DESC" maxlength="50"></textarea>
               </div>
             </div>
           </div>

@@ -26,11 +26,21 @@ export class TrialbalanceComponent implements OnInit {
   @Input()
   balancetypedisabled: boolean = false;
   @Input()
+  debitdisabled: boolean = false;
+  @Input()
+  creditdisabled: boolean = false;
+  @Input()
   all: boolean = false;
   @Input()
   trialbalanceID = null;
   @Input()
   ledgerentryID = null;
+  @Input()
+  totalCredit: number = 0;
+  @Input()
+  totalDebit: number = 0;
+  @Input()
+  columns: any[];
 
   @Output() edit = new EventEmitter();
   @Output() cancel = new EventEmitter();
@@ -40,44 +50,6 @@ export class TrialbalanceComponent implements OnInit {
 
   trialbalances = [];
   trialbalancesAll = [];
-  // trialbalancesAll = [
-  //   {
-  //     trialbalance_ID: 1,
-  //     trialbalance_CODE: "TB001",
-  //     trialbalance_NAME: "Trial Balance 1",
-  //     balance_FROMDATE: "2022-01-01",
-  //     balance_TODATE: "2022-12-31",
-  //     ledgerentry: {
-  //       ledgeraccount: {
-  //         ledgeraccount_NAME: "Account 1"
-  //       },
-  //       credit_AMOUNT: 1000,
-  //       debit_AMOUNT: 500
-  //     },
-  //     balance_CREDIT: 1000,
-  //     balance_DEBIT: 500,
-  //     trialbalance_DESC: "This is a description",
-  //     isactive: true
-  //   },
-  //   {
-  //     trialbalance_ID: 2,
-  //     trialbalance_CODE: "TB002",
-  //     trialbalance_NAME: "Trial Balance 2",
-  //     balance_FROMDATE: "2022-01-01",
-  //     balance_TODATE: "2022-12-31",
-  //     ledgerentry: {
-  //       ledgeraccount: {
-  //         ledgeraccount_NAME: "Account 2"
-  //       },
-  //       credit_AMOUNT: 2000,
-  //       debit_AMOUNT: 1000
-  //     },
-  //     balance_CREDIT: 2000,
-  //     balance_DEBIT: 1000,
-  //     trialbalance_DESC: "This is another description",
-  //     isactive: false
-  //   }
-  // ];
   trialbalance = {
     trialbalance_ID: 0,
     ledgerentry_ID: null,
@@ -152,8 +124,52 @@ export class TrialbalanceComponent implements OnInit {
           text: 'Refresh',
           onClick: this.load.bind(this, true),
         },
+      },
+      {
+        location: 'after',
+        text: `Total Credit: ${this.getTotalCredit()}`,
+      },
+      {
+        location: 'after',
+        text: `Total Debit: ${this.getTotalDebit()}`,
       }
     );
+  }
+
+  getTotalCredit() {
+    let total = 0;
+    this.trialbalancesAll.forEach(account => {
+      const credit = Number(account.balance_CREDIT);
+      if (!isNaN(credit)) {
+        total += credit;
+      }
+    });
+    return total;
+  }
+
+  getTotalDebit() {
+    let total = 0;
+    this.trialbalancesAll.forEach(account => {
+      const debit = Number(account.balance_DEBIT);
+      if (!isNaN(debit)) {
+        total += debit;
+      }
+    });
+    return total;
+  }
+
+  getColumn(columnName: string): any {
+    return this.columns.find(c => c.dataField === columnName);
+  }
+
+  onCreditChange() {
+    this.trialbalance.balance_CREDIT = 0;
+    this.creditdisabled = true;
+  }
+
+  onDebitChange() {
+    this.trialbalance.balance_DEBIT = 0;
+    this.debitdisabled = true;
   }
 
   add() {
@@ -172,14 +188,6 @@ export class TrialbalanceComponent implements OnInit {
 
       isactive: true,
     };
-  }
-
-  onCreditChange() {
-    this.balancetypedisabled = true;
-  }
-
-  onDebitChange() {
-    this.balancetypedisabled = true;
   }
 
   update(row) {

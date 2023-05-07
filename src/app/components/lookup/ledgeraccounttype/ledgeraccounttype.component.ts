@@ -30,19 +30,14 @@ export class LedgeraccounttypeComponent implements OnInit {
   ngOnInit(): void {
     this.ledgeraccounttypes = JSON.parse(window.sessionStorage.getItem('ledgeraccounttypes'));
     this.ledgeraccounttypesAll = JSON.parse(window.sessionStorage.getItem('ledgeraccounttypesAll'));
-    if (this.disabled == false && this.ledgeraccounttypes == null) {
+
+    if (this.ledgeraccounttypes == null) {
       this.ledgeraccounttypeGet();
-    } else if (this.disabled == true && this.ledgeraccounttypesAll == null) {
+    }
+
+    if (this.ledgeraccounttypesAll == null) {
       this.ledgeraccounttypeGetAll();
     }
-  }
-
-  setLedgeraccounttypes(response) {
-    this.ledgeraccounttypes = response;
-    window.sessionStorage.setItem("ledgeraccounttypes", JSON.stringify(this.ledgeraccounttypes));
-
-    this.ledgeraccounttypesAll = response;
-    window.sessionStorage.setItem("ledgeraccounttypesAll", JSON.stringify(this.ledgeraccounttypesAll));
   }
 
   ledgeraccounttypeGet() {
@@ -51,7 +46,8 @@ export class LedgeraccounttypeComponent implements OnInit {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else {
-          this.setLedgeraccounttypes(response);
+          this.ledgeraccounttypes = response;
+          window.sessionStorage.setItem("ledgeraccounttypes", JSON.stringify(this.ledgeraccounttypes));
         }
       }
     }, error => {
@@ -65,7 +61,8 @@ export class LedgeraccounttypeComponent implements OnInit {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else {
-          this.setLedgeraccounttypes(response);
+          this.ledgeraccounttypesAll = response;
+          window.sessionStorage.setItem("ledgeraccounttypesAll", JSON.stringify(this.ledgeraccounttypesAll));
         }
       }
     }, error => {

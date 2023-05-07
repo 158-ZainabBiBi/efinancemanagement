@@ -1,1 +1,40 @@
-<p>ledgeraccountclassifications works!</p>
+<div class="collapse-card-h container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card-primary card">
+        <div class="card-header">
+          <div class="align-items-center row">
+            <div class="col">
+              <a href="javascript:void" aria-controls="collapse-customerinfo1" aria-expanded="true"
+                class="card-title">Ledger Account Classification
+              </a>
+            </div>
+            <div class="col-auto">
+              <button (click)="addNew()" class="btn btn-secondary btn-sm">
+                <i class="fas fa-plus fa-fw"></i> Add New
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-lg-12">
+              <app-ledgeraccountclassification #ledgeraccountclassifications [view]=2
+                (edit)="edit($event)"></app-ledgeraccountclassification>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div aria-labelledby="exampleModalLabel" class="modal fade show" id="add" role="dialog" tabindex="-1">
+  <app-ledgeraccountclassification #addledgeraccountclassification [view]=3 (refresh)="refresh()"
+    (cancel)="cancel()"></app-ledgeraccountclassification>
+</div>
+
+<div aria-labelledby="exampleModalLabel" class="modal fade show" id="edit" role="dialog" tabindex="-1">
+  <app-ledgeraccountclassification #editledgeraccountclassification [view]=4 (refresh)="refresh()"
+    (cancel)="cancel()"></app-ledgeraccountclassification>
+</div>

@@ -42,50 +42,6 @@ export class CoaaccountComponent implements OnInit {
 
   coaaccounts = [];
   coaaccountsAll = [];
-  // coaaccountsAll = [
-  //   {
-  //     coaaccount_ID: 1,
-  //     coaaccount_CODE: '001',
-  //     coaaccount_NAME: 'Account 1',
-  //     coaaccount_DESC: 'Description of Account 1',
-  //     isactive: true,
-  //     ledgeraccount: {
-  //       ledgeraccount_CODE: '1001',
-  //       ledgeraccount_NAME: 'Ledger Account 1',
-  //       ledgeraccounttype: {
-  //         description: 'Type 1'
-  //       },
-  //       ledgeraccountclassification: {
-  //         ledgeraccountclassification_NAME: 'Classification 1'
-  //       },
-  //       ledgeraccount_DESC: 'Description of Ledger Account 1',
-  //       taxrate: {
-  //         taxrate_NAME: 'Tax Rate 1'
-  //       }
-  //     }
-  //   },
-  //   {
-  //     coaaccount_ID: 2,
-  //     coaaccount_CODE: '002',
-  //     coaaccount_NAME: 'Account 2',
-  //     coaaccount_DESC: 'Description of Account 2',
-  //     isactive: false,
-  //     ledgeraccount: {
-  //       ledgeraccount_CODE: '1002',
-  //       ledgeraccount_NAME: 'Ledger Account 2',
-  //       ledgeraccounttype: {
-  //         description: 'Type 2'
-  //       },
-  //       ledgeraccountclassification: {
-  //         ledgeraccountclassification_NAME: 'Classification 2'
-  //       },
-  //       ledgeraccount_DESC: 'Description of Ledger Account 2',
-  //       taxrate: {
-  //         taxrate_NAME: 'Tax Rate 2'
-  //       }
-  //     }
-  //   },
-  // ];
   coaaccount = {
     coaaccount_ID: 0,
     ledgeraccount_ID: null,

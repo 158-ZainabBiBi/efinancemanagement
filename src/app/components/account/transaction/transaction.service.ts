@@ -141,9 +141,9 @@ export class TransactionService {
     //   response.personcontact_DETAIL = null
     // }
 
-    if (response.transaction_DETAIL != null) {
-      response.transaction = JSON.parse(response.transaction_DETAIL);
-      response.transaction_DETAIL = response.transaction.code + ' - ' + response.transaction.description;
+    if (response.transactiontype_DETAIL != null) {
+      response.transactiontype = JSON.parse(response.transactiontype_DETAIL);
+      response.transactiontype_DETAIL = response.transactiontype.code + ' - ' + response.transactiontype.description;
     }
 
     if (response.currency_DETAIL != null) {

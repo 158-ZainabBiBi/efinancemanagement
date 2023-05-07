@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, ViewChild, EventEmitter } from '@angular/core';
+import { DxDataGridComponent } from 'devextreme-angular';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { OnFailService } from '../../../services/on-fail.service';
@@ -14,6 +15,8 @@ import { LedgeraccounttypeComponent } from '../../lookup/ledgeraccounttype/ledge
   styleUrls: ['./ledgeraccount.component.css']
 })
 export class LedgeraccountComponent implements OnInit {
+  @ViewChild(DxDataGridComponent, { static: false }) dataGrid: DxDataGridComponent;
+
   @ViewChild("ledgeraccountclassification") ledgeraccountclassification: LedgeraccountclassificationComponent;
   @ViewChild("ledgeraccounttype") ledgeraccounttype: LedgeraccounttypeComponent;
   @ViewChild("taxcode") taxcode: TaxcodeComponent;
@@ -27,7 +30,9 @@ export class LedgeraccountComponent implements OnInit {
   @Input()
   disabled: boolean = false;
   @Input()
-  balancetypedisabled: boolean = false;
+  debitdisabled: boolean = false;
+  @Input()
+  creditdisabled: boolean = false;
   @Input()
   all: boolean = false;
   @Input()
@@ -40,6 +45,12 @@ export class LedgeraccountComponent implements OnInit {
   ledgeraccounttypeID = null;
   @Input()
   ledgeraccounttypeCode = null;
+  @Input()
+  totalCredit: number = 0;
+  @Input()
+  totalDebit: number = 0;
+  @Input()
+  columns: any[];
 
   @Output() edit = new EventEmitter();
   @Output() cancel = new EventEmitter();
@@ -126,8 +137,52 @@ export class LedgeraccountComponent implements OnInit {
           text: 'Refresh',
           onClick: this.load.bind(this, true),
         },
+      },
+      {
+        location: 'after',
+        text: `Total Credit: ${this.getTotalCredit()}`,
+      },
+      {
+        location: 'after',
+        text: `Total Debit: ${this.getTotalDebit()}`,
       }
     );
+  }
+
+  getTotalCredit() {
+    let total = 0;
+    this.ledgeraccountsAll.forEach(account => {
+      const credit = Number(account.balance_CREDIT);
+      if (!isNaN(credit)) {
+        total += credit;
+      }
+    });
+    return total;
+  }
+
+  getTotalDebit() {
+    let total = 0;
+    this.ledgeraccountsAll.forEach(account => {
+      const debit = Number(account.balance_DEBIT);
+      if (!isNaN(debit)) {
+        total += debit;
+      }
+    });
+    return total;
+  }
+
+  getColumn(columnName: string): any {
+    return this.columns.find(c => c.dataField === columnName);
+  }
+
+  onCreditChange() {
+    this.ledgeraccount.balance_CREDIT=0;
+    this.creditdisabled = true;
+  }
+
+  onDebitChange() {
+    this.ledgeraccount.balance_DEBIT=0;
+    this.debitdisabled = true;
   }
 
   add() {
@@ -146,14 +201,6 @@ export class LedgeraccountComponent implements OnInit {
 
       isactive: true,
     };
-  }
-
-  onCreditChange() {
-    this.balancetypedisabled = true;
-  }
-
-  onDebitChange() {
-    this.balancetypedisabled = true;
   }
 
   update(row) {

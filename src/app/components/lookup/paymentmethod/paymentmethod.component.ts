@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-
 import { LookupService } from 'src/app/services/lookup.service';
 import { OnFailService } from 'src/app/services/on-fail.service';
 
@@ -31,28 +30,24 @@ export class PaymentmethodComponent implements OnInit {
   ngOnInit(): void {
     this.paymentmethods = JSON.parse(window.sessionStorage.getItem('paymentmethods'));
     this.paymentmethodsAll = JSON.parse(window.sessionStorage.getItem('paymentmethodsAll'));
-    if (this.disabled == false && this.paymentmethods == null) {
+
+    if (this.paymentmethods == null) {
       this.paymentmethodGet();
-    } else if (this.disabled == true && this.paymentmethodsAll == null) {
+    }
+
+    if (this.paymentmethodsAll == null) {
       this.paymentmethodGetAll();
     }
   }
 
-  setPaymentmethods(response) {
-      this.paymentmethods = response;
-      window.sessionStorage.setItem("paymentmethods", JSON.stringify(this.paymentmethods));
-    
-      this.paymentmethodsAll = response;
-      window.sessionStorage.setItem("paymentmethodsAll", JSON.stringify(this.paymentmethodsAll));
-    }
-
-  paymentmethodGet(){
+  paymentmethodGet() {
     this.lookupservice.lookup("PAYMENTMETHOD").subscribe(response => {
       if (response) {
-        if (response.error && response.tutortype) {
+        if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
-        } else{
-          this.setPaymentmethods(response);
+        } else {
+          this.paymentmethods = response;
+          window.sessionStorage.setItem("paymentmethods", JSON.stringify(this.paymentmethods));
         }
       }
     }, error => {
@@ -60,13 +55,14 @@ export class PaymentmethodComponent implements OnInit {
     })
   }
 
-  paymentmethodGetAll(){
+  paymentmethodGetAll() {
     this.lookupservice.lookupAll("PAYMENTMETHOD").subscribe(response => {
       if (response) {
-        if (response.error && response.tutortype) {
+        if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
-        } else{
-          this.setPaymentmethods(response);
+        } else {
+          this.paymentmethodsAll = response;
+          window.sessionStorage.setItem("paymentmethodsAll", JSON.stringify(this.paymentmethodsAll));
         }
       }
     }, error => {

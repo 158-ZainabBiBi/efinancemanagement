@@ -11,13 +11,6 @@ import { LegalComponent } from './dashboard/legal/legal.component';
 import { PrivacyComponent } from './dashboard/privacy/privacy.component';
 import { TermsComponent } from './dashboard/terms/terms.component';
 
-//account
-import { BankdepositComponent } from 'src/app/components/account/bankdeposit/bankdeposit.component';
-import { BanktransferComponent } from 'src/app/components/account/banktransfer/banktransfer.component';
-import { JournallineComponent } from 'src/app/components/account/journalline/journalline.component';
-import { LedgeraccountComponent } from 'src/app/components/account/ledgeraccount/ledgeraccount.component';
-import { LedgerentryComponent } from 'src/app/components/account/ledgerentry/ledgerentry.component';
-
 //accounts
 import { JournalsComponent } from 'src/app/modules/accounts/journals/journals.component';
 import { TrialbalancesComponent } from 'src/app/modules/accounts/trialbalances/trialbalances.component';
@@ -31,7 +24,6 @@ import { JournallinesComponent } from 'src/app/modules/accounts/journallines/jou
 import { LedgeraccountsComponent } from 'src/app/modules/accounts/ledgeraccounts/ledgeraccounts.component';
 import { LedgeraccountclassificationsComponent } from 'src/app/modules/accounts/ledgeraccountclassifications/ledgeraccountclassifications.component';
 import { LedgerentriesComponent } from 'src/app/modules/accounts/ledgerentries/ledgerentries.component';
-
 
 //accountview
 import { ChartofaccountviewComponent } from 'src/app/modules/accounts/chartofaccounts/chartofaccountview/chartofaccountview.component';
