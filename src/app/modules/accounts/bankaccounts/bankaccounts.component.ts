@@ -40,9 +40,9 @@ export class BankaccountsComponent implements OnInit {
   }
 
   addNew() {
-    // this.router.navigate(["/home/bankaccount"], {});
-    this.addbankaccount.add();
-    $("#addbankaccount").modal("show");
+    this.router.navigate(["/home/bankaccount"], {});
+    // this.addbankaccount.add();
+    // $("#addbankaccount").modal("show");
   }
 
   edit(row) {
