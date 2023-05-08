@@ -39,12 +39,6 @@ export class TrialbalanceComponent implements OnInit {
   trialbalanceID = null;
   @Input()
   ledgerentryID = null;
-  @Input()
-  totalCredit: number = 0;
-  @Input()
-  totalDebit: number = 0;
-  @Input()
-  columns: any[];
 
   @Output() edit = new EventEmitter();
   @Output() cancel = new EventEmitter();
@@ -91,6 +85,9 @@ export class TrialbalanceComponent implements OnInit {
     if (this.trialbalanceID != 0 && !this.trialbalanceID && Number(window.sessionStorage.getItem('trialbalance')) > 0) {
       this.trialbalanceID = Number(window.sessionStorage.getItem('trialbalance'));
     }
+
+    this.getTotalDebit();
+    this.getTotalCredit();
 
     if (this.view >= 1 && this.view <= 2 && (this.trialbalances == null || this.trialbalances.length == 0 || reload == true)) {
       this.trialbalances == null;
@@ -160,10 +157,6 @@ export class TrialbalanceComponent implements OnInit {
       }
     });
     return total;
-  }
-
-  getColumn(columnName: string): any {
-    return this.columns.find(c => c.dataField === columnName);
   }
 
   onCreditChange() {
