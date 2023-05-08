@@ -18,7 +18,7 @@ export class JournallineService {
     var postData = {
       service_NAME: setting.accountservice_NAME,
       request_TYPE: "GET",
-      request_URI: "Journalline",
+      request_URI: "journalline",
       request_BODY: ""
     }
     return this._HttpCallServieService_.api(postData);
@@ -28,7 +28,7 @@ export class JournallineService {
     var postData = {
       service_NAME: setting.accountservice_NAME,
       request_TYPE: "GET",
-      request_URI: "Journalline/all",
+      request_URI: "journalline/all",
       request_BODY: ""
     }
     return this._HttpCallServieService_.api(postData);
@@ -39,7 +39,7 @@ export class JournallineService {
     var postData = {
       service_NAME: setting.accountservice_NAME,
       request_TYPE: "GET",
-      request_URI: "Journalline/" + id,
+      request_URI: "journalline/" + id,
       request_BODY: ""
     }
     return this._HttpCallServieService_.api(postData);
@@ -49,7 +49,7 @@ export class JournallineService {
     var postData = {
       service_NAME: setting.accountservice_NAME,
       request_TYPE: "POST",
-      request_URI: "Journalline",
+      request_URI: "journalline",
       request_BODY: JSON.stringify(data)
     }
     return this._HttpCallServieService_.api(postData);
@@ -59,7 +59,7 @@ export class JournallineService {
     var postData = {
       service_NAME: setting.accountservice_NAME,
       request_TYPE: "PUT",
-      request_URI: "Journalline/" + id,
+      request_URI: "journalline/" + id,
       request_BODY: JSON.stringify(data)
 
     }
@@ -70,7 +70,7 @@ export class JournallineService {
     var postData = {
       service_NAME: setting.accountservice_NAME,
       request_TYPE: "PUT",
-      request_URI: "Journalline",
+      request_URI: "journalline",
       request_BODY: JSON.stringify(data)
 
     }
@@ -81,7 +81,7 @@ export class JournallineService {
     var postData = {
       service_NAME: setting.accountservice_NAME,
       request_TYPE: "DELETE",
-      request_URI: "Journalline/" + id,
+      request_URI: "journalline/" + id,
       request_BODY: ""
     }
     return this._HttpCallServieService_.api(postData);
@@ -91,7 +91,7 @@ export class JournallineService {
     var postData = {
       service_NAME: setting.accountservice_NAME,
       request_TYPE: "POST",
-      request_URI: "Journalline/search",
+      request_URI: "journalline/search",
       request_BODY: JSON.stringify(data)
 
     }
@@ -102,7 +102,7 @@ export class JournallineService {
     var postData = {
       service_NAME: setting.accountservice_NAME,
       request_TYPE: "POST",
-      request_URI: "Journalline/search/all",
+      request_URI: "journalline/search/all",
       request_BODY: JSON.stringify(data)
     }
     return this._HttpCallServieService_.api(postData);
@@ -112,7 +112,7 @@ export class JournallineService {
     var postData = {
       service_NAME: setting.accountservice_NAME,
       request_TYPE: "POST",
-      request_URI: "Journalline/advancedsearch",
+      request_URI: "journalline/advancedsearch",
       request_BODY: JSON.stringify(data)
     }
     return this._HttpCallServieService_.api(postData);
@@ -122,7 +122,7 @@ export class JournallineService {
     var postData = {
       service_NAME: setting.accountservice_NAME,
       request_TYPE: "POST",
-      request_URI: "Journalline/advancedsearch/all",
+      request_URI: "journalline/advancedsearch/all",
       request_BODY: JSON.stringify(data)
     }
     return this._HttpCallServieService_.api(postData);

@@ -41,12 +41,6 @@ export class LedgeraccountComponent implements OnInit {
   ledgeraccountclassificationID = null;
   @Input()
   taxcodeID = null;
-  @Input()
-  totalCredit: number = 0;
-  @Input()
-  totalDebit: number = 0;
-  @Input()
-  columns: any[];
 
   @Output() edit = new EventEmitter();
   @Output() cancel = new EventEmitter();
@@ -93,6 +87,9 @@ export class LedgeraccountComponent implements OnInit {
     if (this.ledgeraccountID != 0 && !this.ledgeraccountID && Number(window.sessionStorage.getItem('ledgeraccount')) > 0) {
       this.ledgeraccountID = Number(window.sessionStorage.getItem('ledgeraccount'));
     }
+
+    this.getTotalDebit();
+    this.getTotalCredit();
 
     if (this.view >= 1 && this.view <= 2 && (this.ledgeraccounts == null || this.ledgeraccounts.length == 0 || reload == true)) {
       this.ledgeraccounts == null;
@@ -163,10 +160,6 @@ export class LedgeraccountComponent implements OnInit {
       }
     });
     return total;
-  }
-
-  getColumn(columnName: string): any {
-    return this.columns.find(c => c.dataField === columnName);
   }
 
   onCreditChange() {
