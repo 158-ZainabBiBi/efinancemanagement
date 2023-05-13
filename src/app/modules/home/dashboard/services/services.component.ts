@@ -32,30 +32,6 @@ export class ServicesComponent implements OnInit {
     });
   }
 
-  // showcontact() {
-  //   this.router.navigate(["/home/contact"], {});
-  // }
-
-  // showabout() {
-  //   this.router.navigate(["/home/about"], {});
-  // }
-
-  // showservices() {
-  //   this.router.navigate(["/home/services"], {});
-  // }
-
-  // showlegal() {
-  //   this.router.navigate(["/home/legal"], {});
-  // }
-
-  // showprivacy() {
-  //   this.router.navigate(["/home/privacy"], {});
-  // }
-
-  // showterms() {
-  //   this.router.navigate(["/home/terms"], {});
-  // }
-
   showindex() {
     window.open('http://localhost:4200/#/home/indexes', '_blank');
   }
@@ -102,6 +78,10 @@ export class ServicesComponent implements OnInit {
 
   showjournal() {
     window.open('http://localhost:4200/#/home/journals', '_blank');
+  }
+
+  showjournalline() {
+    window.open('http://localhost:4200/#/home/journallines', '_blank');
   }
 
   showchartofaccount() {

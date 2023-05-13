@@ -143,8 +143,6 @@
         <dxi-column dataField="bankaccounttype.description" caption="Account Type" cssClass="myClass"
           alignment="left"></dxi-column>
         <dxi-column dataField="bankaccount_BALANCE" caption="Balance" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="ledgeraccount.ledgeraccount_NAME" caption="Ledger" cssClass="myClass"
-          alignment="left"></dxi-column>
         <dxi-column dataField="paymentmethod.description" caption="Payment Method" cssClass="myClass"
           alignment="left"></dxi-column>
         <dxi-column dataField="customer.customer_NAME" caption="Customer" cssClass="myClass"
@@ -188,8 +186,6 @@
         <dxi-column dataField="bankaccounttype.description" caption="Account Type" cssClass="myClass"
           alignment="left"></dxi-column>
         <dxi-column dataField="bankaccount_BALANCE" caption="Balance" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="ledgeraccount.ledgeraccount_NAME" caption="Ledger" cssClass="myClass"
-          alignment="left"></dxi-column>
         <dxi-column dataField="paymentmethod.description" caption="Payment Method" cssClass="myClass"
           alignment="left"></dxi-column>
         <dxi-column dataField="customer.customer_NAME" caption="Customer" cssClass="myClass"
@@ -279,19 +275,6 @@
               <app-location #location [view]="1" [locationID]="bankaccount.location_ID"></app-location>
             </div>
           </div>
-          <div class="row">
-            <div class="col-md-8">
-              <app-ledgeraccount #ledgeraccount [view]="1" [ledgeraccountID]=bankaccount.ledgeraccount_ID
-                (onLedgeraccountChange)="onLedgeraccountChange($event)"></app-ledgeraccount>
-            </div>
-            <div class="col-md-4">
-              <br />
-              <button type="button" *ngIf="bankaccount.bankaccount_ID==0" (click)="ledgeraccountAddNew()"
-                class="btn btn-secondary btn-sm">
-                <i class="fas fa-plus fa-fw"></i> Add New Ledger
-              </button>
-            </div>
-          </div>
         </div>
         <div class="modal-footer">
           <button type="submit" class="btn btn-primary" [disabled]="f.invalid">
@@ -373,19 +356,6 @@
             </div>
             <div class="col-md-6">
               <app-location #location [view]="1" [locationID]="bankaccount.location_ID"></app-location>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-8">
-              <app-ledgeraccount #ledgeraccount [view]="1" [ledgeraccountID]=bankaccount.ledgeraccount_ID
-                (onLedgeraccountChange)="onLedgeraccountChange($event)"></app-ledgeraccount>
-            </div>
-            <div class="col-md-4">
-              <br />
-              <button type="button" *ngIf="bankaccount.bankaccount_ID==0" (click)="ledgeraccountAddNew()"
-                class="btn btn-secondary btn-sm">
-                <i class="fas fa-plus fa-fw"></i> Add New Ledger
-              </button>
             </div>
           </div>
           <div class="row">
@@ -500,20 +470,6 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-8">
-              <app-ledgeraccount #ledgeraccount [view]="1" [disabled]="disabled"
-                [ledgeraccountID]=bankaccount.ledgeraccount_ID
-                (onLedgeraccountChange)="onLedgeraccountChange($event)"></app-ledgeraccount>
-            </div>
-            <div class="col-md-4">
-              <br />
-              <button type="button" *ngIf="bankaccount.bankaccount_ID==0" (click)="ledgeraccountAddNew()"
-                class="btn btn-secondary btn-sm">
-                <i class="fas fa-plus fa-fw"></i> Add New Ledger
-              </button>
-            </div>
-          </div>
-          <div class="row">
             <div class="col-md-6" *ngIf="bankaccount.bankaccount_ID!=0">
               <div class="form-group">
                 <div class="checkbox">
@@ -548,10 +504,6 @@
       </div>
     </div>
   </div>
-</div>
-
-<div aria-labelledby="exampleModalLabel" class="modal fade show" id="addledgeraccount" role="dialog" tabindex="-1">
-  <app-ledgeraccount #addledgeraccount [view]=3 (cancel)="ledgeraccountCancel()"></app-ledgeraccount>
 </div>
 
 <div aria-labelledby="exampleModalLabel" class="modal fade show" id="addaccount" role="dialog" tabindex="-1">

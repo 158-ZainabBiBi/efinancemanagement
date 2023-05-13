@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { OnFailService } from '../../../services/on-fail.service';
 import { BanktransferService } from './banktransfer.service';
 import { BankaccountComponent } from '../bankaccount/bankaccount.component';
+import { TransactionComponent } from '../transaction/transaction.component';
 
 @Component({
   selector: 'app-banktransfer',
@@ -13,6 +14,10 @@ import { BankaccountComponent } from '../bankaccount/bankaccount.component';
 export class BanktransferComponent implements OnInit {
   @ViewChild("tobankaccount") tobankaccount: BankaccountComponent;
   @ViewChild("frombankaccount") frombankaccount: BankaccountComponent;
+
+  @ViewChild("transaction") transaction: TransactionComponent;
+  @ViewChild("addtransaction") addtransaction: TransactionComponent;
+  @ViewChild("edittransaction") edittransaction: TransactionComponent;
 
   @Input()
   view: number = 1;
@@ -28,6 +33,8 @@ export class BanktransferComponent implements OnInit {
   banktransferID = null;
   @Input()
   bankaccountID = null;
+  @Input()
+  transactionID = null;
 
   @Output() edit = new EventEmitter();
   @Output() cancel = new EventEmitter();
@@ -41,6 +48,7 @@ export class BanktransferComponent implements OnInit {
     banktransfer_ID: 0,
     frombankaccount_ID: null,
     tobankaccount_ID: null,
+    transaction_ID: null,
 
     banktransfer_NAME: null,
     banktransfer_CODE: null,
@@ -84,7 +92,8 @@ export class BanktransferComponent implements OnInit {
 
     var search = {
       frombankaccount_ID: this.bankaccountID,
-      tobankaccount_ID: this.bankaccountID
+      tobankaccount_ID: this.bankaccountID,
+      transaction_ID: this.transactionID,
     }
 
     if (this.view >= 5 && this.view <= 6 && this.banktransferID) {
@@ -119,6 +128,7 @@ export class BanktransferComponent implements OnInit {
       banktransfer_ID: 0,
       frombankaccount_ID: null,
       tobankaccount_ID: null,
+      transaction_ID: null,
 
       banktransfer_NAME: null,
       banktransfer_CODE: null,
@@ -128,6 +138,22 @@ export class BanktransferComponent implements OnInit {
 
       isactive: true,
     };
+  }
+
+  transactionAddNew() {
+    this.addtransaction.add();
+    $("#addtransaction").modal("show");
+  }
+
+  transactionCancel() {
+    $("#addtransaction").modal("hide");
+    $("#edittransaction").modal("hide");
+    this.transaction.transactions = this.addtransaction.transactions;
+  }
+
+  onTransactionChange(transaction) {
+    // this.journal.journal_NAME = transaction.transaction_NAME;
+    // this.journal.journal_DESC = transaction.transaction_DESC;
   }
 
   update(row) {
@@ -227,6 +253,7 @@ export class BanktransferComponent implements OnInit {
 
   banktransferAdd(banktransfer) {
     banktransfer.isactive = "Y";
+    banktransfer.transaction_ID = this.transaction.transactionID;
     banktransfer.frombankaccount_ID = this.frombankaccount.bankaccountID;
     banktransfer.tobankaccount_ID = this.tobankaccount.bankaccountID;
 
@@ -248,6 +275,7 @@ export class BanktransferComponent implements OnInit {
   }
 
   banktransferUpdate(banktransfer) {
+    banktransfer.transaction_ID = this.transaction.transactionID;
     banktransfer.frombankaccount_ID = this.frombankaccount.bankaccountID;
     banktransfer.tobankaccount_ID = this.tobankaccount.bankaccountID;
 
@@ -329,6 +357,7 @@ export class BanktransferComponent implements OnInit {
   banktransferAdvancedSearch(search) {
     this.bankaccountID = search.tobankaccount_ID;
     this.bankaccountID = search.frombankaccount_ID;
+    this.transactionID = search.transaction_ID;
 
     this.banktransferservice.advancedSearch(search).subscribe(response => {
       if (response) {
@@ -347,6 +376,7 @@ export class BanktransferComponent implements OnInit {
   banktransferAdvancedSearchAll(search) {
     this.bankaccountID = search.tobankaccount_ID;
     this.bankaccountID = search.frombankaccount_ID;
+    this.transactionID = search.transaction_ID;
 
     this.banktransferservice.advancedSearchAll(search).subscribe(response => {
       if (response) {

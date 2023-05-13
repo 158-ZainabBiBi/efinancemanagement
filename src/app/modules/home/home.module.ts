@@ -57,24 +57,15 @@ import { AccountsearchfilterComponent } from 'src/app/components/accountsearchfi
 
 //account
 import { AccountComponent } from 'src/app/components/account/account/account.component';
-import { ApprovalreturnauthComponent } from 'src/app/components/account/approvalreturnauth/approvalreturnauth.component';
-import { CreditcardtransactionComponent } from 'src/app/components/account/creditcardtransaction/creditcardtransaction.component';
-import { CustomerrefundComponent } from 'src/app/components/account/customerrefund/customerrefund.component';
-import { ExpensecategoryComponent } from 'src/app/components/account/expensecategory/expensecategory.component';
-import { RecievereturnauthComponent } from 'src/app/components/account/recievereturnauth/recievereturnauth.component';
-import { ReturnauthComponent } from 'src/app/components/account/returnauth/returnauth.component';
 import { BankaccountComponent } from 'src/app/components/account/bankaccount/bankaccount.component';
 import { BankdepositComponent } from 'src/app/components/account/bankdeposit/bankdeposit.component';
-import { BankopeningbalanceComponent } from 'src/app/components/account/bankopeningbalance/bankopeningbalance.component';
 import { BankreconciliationComponent } from 'src/app/components/account/bankreconciliation/bankreconciliation.component';
 import { BanktransferComponent } from 'src/app/components/account/banktransfer/banktransfer.component';
 import { CoaaccountComponent } from 'src/app/components/account/coaaccount/coaaccount.component';
 import { JournalComponent } from 'src/app/components/account/journal/journal.component';
 import { JournallineComponent } from 'src/app/components/account/journalline/journalline.component';
 import { LedgeraccountComponent } from 'src/app/components/account/ledgeraccount/ledgeraccount.component';
-import { LedgeraccountopeningbalanceComponent } from 'src/app/components/account/ledgeraccountopeningbalance/ledgeraccountopeningbalance.component';
 import { LedgeraccountclassificationComponent } from 'src/app/components/account/ledgeraccountclassification/ledgeraccountclassification.component';
-import { JournalopeningbalanceComponent } from 'src/app/components/account/journalopeningbalance/journalopeningbalance.component';
 import { TransactionComponent } from 'src/app/components/account/transaction/transaction.component';
 import { TrialbalanceComponent } from 'src/app/components/account/trialbalance/trialbalance.component';
 import { LedgerentryComponent } from 'src/app/components/account/ledgerentry/ledgerentry.component';
@@ -166,24 +157,15 @@ import { TrialbalanceviewComponent } from 'src/app/modules/accounts/trialbalance
 
     AccountComponent,
     BankaccounttypeComponent,
-    ApprovalreturnauthComponent,
-    CreditcardtransactionComponent,
-    CustomerrefundComponent,
-    ExpensecategoryComponent,
-    RecievereturnauthComponent,
-    ReturnauthComponent,
     BankaccountComponent,
     BankdepositComponent,
-    BankopeningbalanceComponent,
     BankreconciliationComponent,
     BanktransferComponent,
     CoaaccountComponent,
     JournalComponent,
     JournallineComponent,
     LedgeraccountComponent,
-    LedgeraccountopeningbalanceComponent,
     LedgeraccounttypeComponent,
-    JournalopeningbalanceComponent,
     TransactionComponent,
     TrialbalanceComponent,
     TaxcodeComponent,

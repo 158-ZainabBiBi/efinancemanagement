@@ -6,7 +6,6 @@ import { OnFailService } from '../../../services/on-fail.service';
 import { CurrencyComponent } from '../../lookup/currency/currency.component';
 import { TransactiontypeComponent } from '../../lookup/transactiontype/transactiontype.component';
 import { TransactionService } from './transaction.service';
-import { CustomerComponent } from '../../customer/customer/customer.component';
 
 @Component({
   selector: 'app-transaction',
@@ -14,7 +13,6 @@ import { CustomerComponent } from '../../customer/customer/customer.component';
   styleUrls: ['./transaction.component.css']
 })
 export class TransactionComponent implements OnInit {
-  @ViewChild("customer") customer: CustomerComponent;
   @ViewChild("transactiontype") transactiontype: TransactiontypeComponent;
   @ViewChild("currency") currency: CurrencyComponent;
 
@@ -30,8 +28,6 @@ export class TransactionComponent implements OnInit {
   all: boolean = false;
   @Input()
   transactionID = null;
-  @Input()
-  customerID = null;
   @Input()
   transactiontypeID = null;
   @Input()
@@ -51,7 +47,6 @@ export class TransactionComponent implements OnInit {
   transactionsAll = [];
   transaction = {
     transaction_ID: 0,
-    customer_ID: null,
     currency_ID: null,
     transactiontype_ID: null,
 
@@ -96,7 +91,6 @@ export class TransactionComponent implements OnInit {
     }
 
     var search = {
-      customer_ID: this.customerID,
       transactiontype_ID: this.transactiontypeID,
       transactiontype_CODE: this.transactiontypeCode,
       currency_ID: this.currencyID,
@@ -133,7 +127,6 @@ export class TransactionComponent implements OnInit {
   add() {
     this.transaction = {
       transaction_ID: 0,
-      customer_ID: null,
       currency_ID: null,
       transactiontype_ID: null,
 
@@ -249,7 +242,6 @@ export class TransactionComponent implements OnInit {
 
   transactionAdd(transaction) {
     transaction.isactive = "Y";
-    transaction.customer_ID = this.customer.customerID;
     transaction.currency_ID = this.currency.currencyID;
     transaction.transactiontype_ID = this.transactiontype.transactiontypeID;
 
@@ -271,8 +263,6 @@ export class TransactionComponent implements OnInit {
   }
 
   transactionUpdate(transaction) {
-
-    transaction.customer_ID = this.customer.customerID;
     transaction.currency_ID = this.currency.currencyID;
     transaction.transactiontype_ID = this.transactiontype.transactiontypeID;
 
@@ -356,7 +346,6 @@ export class TransactionComponent implements OnInit {
   }
 
   transactionAdvancedSearch(search) {
-    this.customerID = search.customer_ID;
     this.transactiontypeID = search.transactiontype_ID;
     this.transactiontypeCode = search.transactiontype_CODE;
     this.currencyID = search.currency_ID;
@@ -377,7 +366,6 @@ export class TransactionComponent implements OnInit {
   }
 
   transactionAdvancedSearchAll(search) {
-    this.customerID = search.customer_ID;
     this.transactiontypeID = search.transactiontype_ID;
     this.transactiontypeCode = search.transactiontype_CODE;
     this.currencyID = search.currency_ID;

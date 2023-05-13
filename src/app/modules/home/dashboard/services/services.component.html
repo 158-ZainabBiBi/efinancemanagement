@@ -24,7 +24,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <h1 style="color: #a4c639;">OUR SERVICES</h1>
+          <h1 style="color: #a4c639;">FINANCE SERVICES</h1>
           <span>We are over 20 years of experience</span>
         </div>
       </div>
@@ -37,11 +37,13 @@
       <div class="row" id="tabs">
         <div class="col-md-4">
           <ul>
-            <li><a (click)="showDiv(1)" style="color:white;">Bank Account <i class="fa fa-angle-right"></i></a></li>
-            <li><a (click)="showDiv(2)" style="color:white;">Transaction <i class="fa fa-angle-right"></i></a></li>
-            <li><a (click)="showDiv(3)" style="color:white;">Journal Account <i class="fa fa-angle-right"></i></a></li>
-            <li><a (click)="showDiv(4)" style="color:white;">Chart of Account <i class="fa fa-angle-right"></i></a></li>
-            <li><a (click)="showDiv(5)" style="color:white;">Trial Balance <i class="fa fa-angle-right"></i></a></li>
+            <li><a (click)="showDiv(1)" style="color:white;">Account <i class="fa fa-angle-right"></i></a></li>
+            <li><a (click)="showDiv(2)" style="color:white;">Journal <i class="fa fa-angle-right"></i></a></li>
+            <li><a (click)="showDiv(3)" style="color:white;">Ledger <i class="fa fa-angle-right"></i></a></li>
+            <li><a (click)="showDiv(4)" style="color:white;">Trial Balance <i class="fa fa-angle-right"></i></a></li>
+            <li><a (click)="showDiv(5)" style="color:white;">Income Statement <i class="fa fa-angle-right"></i></a></li>
+            <li><a (click)="showDiv(6)" style="color:white;">Statement of Owner's Equity <i class="fa fa-angle-right"></i></a></li>
+            <li><a (click)="showDiv(7)" style="color:white;">Balance Sheet<i class="fa fa-angle-right"></i></a></li>
           </ul>
         </div>
         <div class="col-md-8">
@@ -58,23 +60,11 @@
                 transactions, providing users with peace of mind. With EFinance, banking has never been easier.
               </p>
               <br><br>
-              <a (click)="showbankaccount()" class="filled-button">View Banks</a>
+              <a (click)="showbankaccount()" class="filled-button">View Accounts</a>
+              <a (click)="showbanktransfer()" class="filled-button">View Transfers</a>
+              <a (click)="showbankdeposit()" class="filled-button">View Deposits</a>
             </div>
             <div id='tab2' class="tab">
-              <img src="../../../../../assets/images/single_service_02.jpg" alt="">
-              <h4>Transaction</h4>
-              <p>EFinance's Transactions module provides a streamlined and efficient way to manage financial
-                transactions for businesses of all sizes. With our software, users can easily record, track, and
-                reconcile financial transactions, including payments, deposits, and transfers. Our system also allows
-                for customizable reports, providing valuable insights into cash flow, account balances, and more.
-                <br>Additionally, our secure platform ensures that all financial information is protected and backed
-                up for peace of mind. Whether you need to manage transactions for a small business or a large
-                corporation, EFinance's Transactions module has you covered.
-              </p>
-              <br><br>
-              <a (click)="showtransaction()" class="filled-button">View Transactions</a>
-            </div>
-            <div id='tab3' class="tab">
               <img src="../../../../../assets/images/single_service_03.jpg" alt="">
               <h4>Journal Account</h4>
               <p>EFinance's Journal Account module is a powerful tool designed to help businesses easily manage their
@@ -87,22 +77,23 @@
               </p>
               <br><br>
               <a (click)="showjournal()" class="filled-button">View Journal</a>
+              <a (click)="showjournalline()" class="filled-button">View Journal Line</a>
             </div>
-            <div id='tab4' class="tab">
-              <img src="../../../../../assets/images/single_service_04.jpg" alt="">
-              <h4>Chart of Account</h4>
-              <p>EFinance's Chart of Account module provides a comprehensive solution for businesses to manage their
-                financial transactions with ease. With our software, you can create, customize, and manage your chart of
-                accounts according to your specific needs. Our module allows you to easily categorize and track your
-                income, expenses, assets, and liabilities, giving you a clear view of your financial position at any
-                given time.
-                <br>With detailed reports and customizable views, you can easily monitor and analyze your financial
-                data, helping you make informed decisions to drive your business forward.
+            <div id='tab3' class="tab">
+              <img src="../../../../../assets/images/single_service_02.jpg" alt="">
+              <h4>Ledger Account</h4>
+              <p>EFinance's Transactions module provides a streamlined and efficient way to manage financial
+                transactions for businesses of all sizes. With our software, users can easily record, track, and
+                reconcile financial transactions, including payments, deposits, and transfers. Our system also allows
+                for customizable reports, providing valuable insights into cash flow, account balances, and more.
+                <br>Additionally, our secure platform ensures that all financial information is protected and backed
+                up for peace of mind. Whether you need to manage transactions for a small business or a large
+                corporation, EFinance's Transactions module has you covered.
               </p>
               <br><br>
-              <a (click)="showchartofaccount()" class="filled-button">View Chart of Account</a>
+              <a (click)="showtransaction()" class="filled-button">View Transactions</a>
             </div>
-            <div id='tab5' class="tab">
+            <div id='tab4' class="tab">
               <img src="../../../../../assets/images/single_service_05.jpg" alt="">
               <h4>Trial Balance</h4>
               <p>EFinance's Trial Balance module is designed to simplify and streamline the process of creating and
@@ -141,42 +132,42 @@
     <br><br><br><br><br><br>
   </div>
 
-    <!-- App Route Footer -->
-    <footer>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-5 footer-item">
-            <h4>EFinance</h4>
-            <p>Managing finances made easy with EFinance. <br> Get social with us and never miss a beat.</p>
-            <ul class="social-icons">
-              <li><a href="https://www.facebook.com/efinanceteam/" target="_blank"><i class="fa fa-facebook"></i></a></li>
-              <li><a href="https://www.instagram.com/e._.finance/" target="_blank"><i class="fa fa-instagram"></i></a>
-              </li>
-              <li><a href="https://twitter.com/E__Finance" target="_blank"><i class="fa fa-twitter"></i></a></li>
-              <li><a href="https://www.linkedin.com/in/e-finance-58261b274/" target="_blank"><i
-                    class="fa fa-linkedin"></i></a></li>
-            </ul>
-          </div>
-          <div class="col-md-3 footer-item">
-            <h4>Support</h4>
-            <ul class="menu-list">
-              <li><a (click)="showservices()">Our Services</a></li>
-              <li><a (click)="showabout()">About Us</a></li>
-              <li><a (click)="showcontact()">Contact Us</a></li>
-            </ul>
-          </div>
-          <div class="col-md-3 footer-item">
-            <h4>Policies</h4>
-            <ul class="menu-list">
-              <li><a (click)="showlegal()">Legal</a></li>
-              <li><a (click)="showprivacy()">Privacy Policy</a></li>
-              <li><a (click)="showterms()">Terms of Service</a></li>
-            </ul>
-          </div>
-
+  <!-- App Route Footer -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-5 footer-item">
+          <h4>EFinance</h4>
+          <p>Managing finances made easy with EFinance. <br> Get social with us and never miss a beat.</p>
+          <ul class="social-icons">
+            <li><a href="https://www.facebook.com/efinanceteam/" target="_blank"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="https://www.instagram.com/e._.finance/" target="_blank"><i class="fa fa-instagram"></i></a>
+            </li>
+            <li><a href="https://twitter.com/E__Finance" target="_blank"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="https://www.linkedin.com/in/e-finance-58261b274/" target="_blank"><i
+                  class="fa fa-linkedin"></i></a></li>
+          </ul>
         </div>
+        <div class="col-md-3 footer-item">
+          <h4>Support</h4>
+          <ul class="menu-list">
+            <li><a (click)="showservices()">Our Services</a></li>
+            <li><a (click)="showabout()">About Us</a></li>
+            <li><a (click)="showcontact()">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="col-md-3 footer-item">
+          <h4>Policies</h4>
+          <ul class="menu-list">
+            <li><a (click)="showlegal()">Legal</a></li>
+            <li><a (click)="showprivacy()">Privacy Policy</a></li>
+            <li><a (click)="showterms()">Terms of Service</a></li>
+          </ul>
+        </div>
+
       </div>
-    </footer>
+    </div>
+  </footer>
 
 </body>
 

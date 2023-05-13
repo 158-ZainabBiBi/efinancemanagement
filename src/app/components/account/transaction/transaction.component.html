@@ -145,8 +145,6 @@
           alignment="left"></dxi-column>
         <dxi-column dataField="currency.description" caption="Currency" cssClass="myClass"
           alignment="left"></dxi-column>
-        <dxi-column dataField="customer.customer_NAME" caption="Customer" cssClass="myClass"
-          alignment="left"></dxi-column>
         <dxi-column dataField="transaction_DESC" caption="Description" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass" alignment="center">
         </dxi-column>
@@ -186,8 +184,6 @@
         <dxi-column dataField="transaction_TOTAL" caption="Total Amount" cssClass="myClass"
           alignment="left"></dxi-column>
         <dxi-column dataField="currency.description" caption="Currency" cssClass="myClass"
-          alignment="left"></dxi-column>
-        <dxi-column dataField="customer.customer_NAME" caption="Customer" cssClass="myClass"
           alignment="left"></dxi-column>
         <dxi-column dataField="transaction_DESC" caption="Description" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass" alignment="center">
@@ -258,11 +254,6 @@
           </div>
           <div class="row">
             <div class="col-md-12">
-              <app-customer #customer [view]="1" [customerID]="transaction.customer_ID"></app-customer>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
               <div class="form-group">
                 <label class="control-label"> Description <span style="color:red">*</span></label>
                 <textarea type="text" class="form-control" name="transaction_DESC"
@@ -271,14 +262,14 @@
             </div>
           </div>
         </div>
-      <div class="modal-footer">
-        <button type="submit" class="btn btn-primary" [disabled]="f.invalid">
-          <i class="fa fa-plus" aria-hidden="true"></i> Add
-        </button>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary" [disabled]="f.invalid">
+            <i class="fa fa-plus" aria-hidden="true"></i> Add
+          </button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        </div>
       </div>
     </div>
-  </div>
   </form>
 </div>
 
@@ -334,11 +325,6 @@
             </div>
             <div class="col-md-6">
               <app-currency #currency [currencyID]="transaction.currency_ID"></app-currency>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <app-customer #customer [view]="1" [customerID]="transaction.customer_ID"></app-customer>
             </div>
           </div>
           <div class="row">
@@ -413,12 +399,6 @@
                 <input type="date" class="form-control" name="transaction_DATE" [disabled]="disabled"
                   [(ngModel)]="transaction.transaction_DATE" maxlength="50" required>
               </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <app-customer #customer [view]="1" [disabled]="disabled"
-                [customerID]="transaction.customer_ID"></app-customer>
             </div>
           </div>
           <div class="row">

@@ -156,6 +156,8 @@
         <dxi-column dataField="banktransfer_AMOUNT" caption="Amount" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="banktransfer_DESC" caption="Description" cssClass="myClass"
           alignment="left"></dxi-column>
+        <dxi-column dataField="transaction.transaction_DATE" caption="Transaction Date" cssClass="myClass"
+          alignment="left"></dxi-column>
         <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass"
           alignment="center"></dxi-column>
 
@@ -195,6 +197,8 @@
         <dxi-column dataField="banktransfer_NAME" caption="Name" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="banktransfer_AMOUNT" caption="Amount" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="banktransfer_DESC" caption="Description" cssClass="myClass"
+          alignment="left"></dxi-column>
+        <dxi-column dataField="transaction.transaction_DATE" caption="Transaction Date" cssClass="myClass"
           alignment="left"></dxi-column>
         <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass"
           alignment="center"></dxi-column>
@@ -265,6 +269,19 @@
                 <input type="text" class="form-control" name="banktransfer_AMOUNT"
                   [(ngModel)]="banktransfer.banktransfer_AMOUNT" maxlength="50" required>
               </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-8">
+              <app-transaction #transaction [view]="1" [transactionID]=banktransfer.transaction_ID
+                (onTransactionChange)="onTransactionChange($event)"></app-transaction>
+            </div>
+            <div class="col-md-4">
+              <br />
+              <button type="button" *ngIf="banktransfer.banktransfer_ID==0" (click)="transactionAddNew()"
+                class="btn btn-secondary btn-sm">
+                <i class="fas fa-plus fa-fw"></i> Add New Transaction
+              </button>
             </div>
           </div>
           <div class="row">
@@ -345,6 +362,19 @@
                 <input type="text" class="form-control" name="banktransfer_AMOUNT"
                   [(ngModel)]="banktransfer.banktransfer_AMOUNT" maxlength="50" required>
               </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-8">
+              <app-transaction #transaction [view]="1" [transactionID]=banktransfer.transaction_ID
+                (onTransactionChange)="onTransactionChange($event)"></app-transaction>
+            </div>
+            <div class="col-md-4">
+              <br />
+              <button type="button" *ngIf="banktransfer.banktransfer_ID==0" (click)="transactionAddNew()"
+                class="btn btn-secondary btn-sm">
+                <i class="fas fa-plus fa-fw"></i> Add New Transaction
+              </button>
             </div>
           </div>
           <div class="row">
@@ -452,6 +482,19 @@
             </div>
           </div>
           <div class="row">
+            <div class="col-md-8">
+              <app-transaction #transaction [view]="1" [transactionID]=banktransfer.transaction_ID [disabled]="disabled"
+                (onTransactionChange)="onTransactionChange($event)"></app-transaction>
+            </div>
+            <div class="col-md-4">
+              <br />
+              <button type="button" *ngIf="banktransfer.banktransfer_ID==0" (click)="transactionAddNew()"
+                class="btn btn-secondary btn-sm">
+                <i class="fas fa-plus fa-fw"></i> Add New Transaction
+              </button>
+            </div>
+          </div>
+          <div class="row">
             <div class="col-md-12">
               <div class="form-group">
                 <label class="control-label">Description <span style="color:red">*</span></label>
@@ -496,4 +539,8 @@
       </div>
     </div>
   </div>
+</div>
+
+<div aria-labelledby="exampleModalLabel" class="modal fade show" id="addtransaction" role="dialog" tabindex="-1">
+  <app-transaction #addtransaction [view]=3 (cancel)="transactionCancel()"></app-transaction>
 </div>

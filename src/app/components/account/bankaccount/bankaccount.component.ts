@@ -8,7 +8,7 @@ import { PaymentmethodComponent } from '../../lookup/paymentmethod/paymentmethod
 import { BankaccounttypeComponent } from '../../lookup/bankaccounttype/bankaccounttype.component';
 import { LedgeraccountComponent } from '../ledgeraccount/ledgeraccount.component';
 import { CustomerComponent } from '../../customer/customer/customer.component';
-import { LocationsearchfilterComponent } from '../../location/locationsearchfilter/locationsearchfilter.component';
+import { LocationComponent } from '../../location/location/location.component';
 
 declare var $: any;
 
@@ -20,8 +20,9 @@ declare var $: any;
 export class BankaccountComponent implements OnInit {
   @ViewChild("bankaccounttype") bankaccounttype: BankaccounttypeComponent;
   @ViewChild("paymentmethod") paymentmethod: PaymentmethodComponent;
-  @ViewChild("locationsearchfilter") locationsearchfilter: LocationsearchfilterComponent;
+  @ViewChild("location") location: LocationComponent;
   @ViewChild("customer") customer: CustomerComponent;
+
   @ViewChild("account") account: AccountComponent;
   @ViewChild("addaccount") addaccount: AccountComponent;
   @ViewChild("editaccount") editaccount: AccountComponent;
@@ -49,6 +50,8 @@ export class BankaccountComponent implements OnInit {
   @Input()
   customerID = null;
   @Input()
+  locationID = null;
+  @Input()
   paymentmethodID = null;
   @Input()
   paymentmethodCode = null;
@@ -56,8 +59,6 @@ export class BankaccountComponent implements OnInit {
   bankaccounttypeID = null;
   @Input()
   bankaccounttypeCode = null;
-  @Input()
-  locationID = null;
 
   @Output() edit = new EventEmitter();
   @Output() cancel = new EventEmitter();
@@ -72,7 +73,6 @@ export class BankaccountComponent implements OnInit {
     ledgeraccount_ID: null,
     account_ID: null,
     bankaccounttype_ID: null,
-
     paymentmethod_ID: null,
     customer_ID: null,
     location_ID: null,
@@ -120,11 +120,12 @@ export class BankaccountComponent implements OnInit {
       ledgeraccount_ID: this.ledgeraccountID,
       account_ID: this.accountID,
       customer_ID: this.customerID,
+      location_ID: this.locationID,
+
       paymentmethod_ID: this.paymentmethodID,
       paymentmethod_CODE: this.paymentmethodCode,
       bankaccounttype_ID: this.bankaccounttypeID,
       bankaccounttype_CODE: this.bankaccounttypeCode,
-      location_ID: this.locationID,
     }
 
     if (this.view >= 5 && this.view <= 6 && this.bankaccountID) {
@@ -185,7 +186,7 @@ export class BankaccountComponent implements OnInit {
   }
 
   onLedgeraccountChange(ledgeraccount) {
-    this.bankaccount.bankaccount_CODE = ledgeraccount.ledgeraccount_CODE;
+    // this.bankaccount.bankaccount_CODE = ledgeraccount.ledgeraccount_CODE;
   }
 
   accountAddNew() {
@@ -200,7 +201,7 @@ export class BankaccountComponent implements OnInit {
   }
 
   onAccountChange(account) {
-    this.bankaccount.bankaccount_CODE = account.account_CODE;
+    // this.bankaccount.bankaccount_CODE = account.account_CODE;
   }
 
   update(row) {
@@ -291,8 +292,8 @@ export class BankaccountComponent implements OnInit {
           this.toastrservice.warning("Message", " " + response.message);
         } else {
           this.setBankaccount(this.bankaccountservice.getDetail(response));
-          if (this.locationsearchfilter != null)
-            this.locationsearchfilter.setLocation(this.bankaccount.locations);
+          // if (this.location != null)
+          //   this.location.setLocation(this.bankaccount.locations);
         }
       }
     }, error => {
@@ -308,7 +309,7 @@ export class BankaccountComponent implements OnInit {
     bankaccount.ledgeraccount_ID = this.ledgeraccount.ledgeraccountID;
     bankaccount.customer_ID = this.customer.customerID;
     bankaccount.paymentmethod_ID = this.paymentmethod.paymentmethodID;
-    bankaccount.location_ID = this.locationsearchfilter.locationID;
+    bankaccount.location_ID = this.location.locationID;
 
     this.bankaccountservice.add(bankaccount).subscribe(response => {
       if (response) {
@@ -333,7 +334,7 @@ export class BankaccountComponent implements OnInit {
     bankaccount.ledgeraccount_ID = this.ledgeraccount.ledgeraccountID;
     bankaccount.customer_ID = this.customer.customerID;
     bankaccount.paymentmethod_ID = this.paymentmethod.paymentmethodID;
-    bankaccount.location_ID = this.locationsearchfilter.locationID;
+    bankaccount.location_ID = this.location.locationID;
 
     if (bankaccount.isactive == true) {
       bankaccount.isactive = "Y";
@@ -412,13 +413,15 @@ export class BankaccountComponent implements OnInit {
 
   bankaccountAdvancedSearch(search) {
     this.accountID = search.account_ID;
-    this.bankaccounttypeID = search.bankaccounttype_ID;
-    this.bankaccounttypeCode = search.bankaccounttype_CODE;
+    this.locationID = search.location_ID;
     this.ledgeraccountID = search.ledgeraccount_ID;
     this.customerID = search.customer_ID;
+
     this.paymentmethodID = search.paymentmethod_ID;
     this.paymentmethodCode = search.paymentmethod_CODE;
-    this.locationID = search.location_ID;
+    this.bankaccounttypeID = search.bankaccounttype_ID;
+    this.bankaccounttypeCode = search.bankaccounttype_CODE;
+
 
     this.bankaccountservice.advancedSearch(search).subscribe(response => {
       if (response) {
@@ -436,13 +439,14 @@ export class BankaccountComponent implements OnInit {
 
   bankaccountAdvancedSearchAll(search) {
     this.accountID = search.account_ID;
-    this.bankaccounttypeID = search.bankaccounttype_ID;
-    this.bankaccounttypeCode = search.bankaccounttype_CODE;
+    this.locationID = search.location_ID;
     this.ledgeraccountID = search.ledgeraccount_ID;
     this.customerID = search.customer_ID;
+
     this.paymentmethodID = search.paymentmethod_ID;
     this.paymentmethodCode = search.paymentmethod_CODE;
-    this.locationID = search.location_ID;
+    this.bankaccounttypeID = search.bankaccounttype_ID;
+    this.bankaccounttypeCode = search.bankaccounttype_CODE;
 
     this.bankaccountservice.advancedSearchAll(search).subscribe(response => {
       if (response) {

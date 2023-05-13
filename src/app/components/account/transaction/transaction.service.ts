@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpCallServieService } from '../../../services/http-call-servie.service';
 import { setting } from '../../../setting';
-import { CustomerService } from '../../customer/customer/customer.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +9,6 @@ export class TransactionService {
 
   constructor(
     private _HttpCallServieService_: HttpCallServieService,
-    private customerservice: CustomerService,
   ) { }
 
 
@@ -136,11 +134,6 @@ export class TransactionService {
   }
 
   getDetail(response) {
-    if (response.customer_DETAIL != null) {
-      response.customer = this.customerservice.getDetail(JSON.parse(response.customer_DETAIL));
-      response.customer_DETAIL = null;
-    }
-
     if (response.transactiontype_DETAIL != null) {
       response.transactiontype = JSON.parse(response.transactiontype_DETAIL);
       response.transactiontype_DETAIL = response.transactiontype.description;

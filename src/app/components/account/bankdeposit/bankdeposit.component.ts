@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { OnFailService } from '../../../services/on-fail.service';
 import { BankdepositService } from './bankdeposit.service';
 import { BankaccountComponent } from '../bankaccount/bankaccount.component';
+import { TransactionComponent } from '../transaction/transaction.component';
 
 @Component({
   selector: 'app-bankdeposit',
@@ -13,6 +14,11 @@ import { BankaccountComponent } from '../bankaccount/bankaccount.component';
 export class BankdepositComponent implements OnInit {
   @ViewChild("tobankaccount") tobankaccount: BankaccountComponent;
   @ViewChild("frombankaccount") frombankaccount: BankaccountComponent;
+
+  @ViewChild("transaction") transaction: TransactionComponent;
+  @ViewChild("addtransaction") addtransaction: TransactionComponent;
+  @ViewChild("edittransaction") edittransaction: TransactionComponent;
+
 
   @Input()
   view: number = 1;
@@ -28,6 +34,8 @@ export class BankdepositComponent implements OnInit {
   bankdepositID = null;
   @Input()
   bankaccountID = null;
+  @Input()
+  transactionID = null;
 
   @Output() edit = new EventEmitter();
   @Output() cancel = new EventEmitter();
@@ -41,6 +49,7 @@ export class BankdepositComponent implements OnInit {
     bankdeposit_ID: 0,
     frombankaccount_ID: null,
     tobankaccount_ID: null,
+    transaction_ID: null,
 
     bankdeposit_CODE: null,
     bankdeposit_DATE: null,
@@ -86,6 +95,7 @@ export class BankdepositComponent implements OnInit {
     var search = {
       frombankaccount_ID: this.bankaccountID,
       tobankaccount_ID: this.bankaccountID,
+      transaction_ID: this.transactionID,
     }
 
     if (this.view >= 5 && this.view <= 6 && this.bankdepositID) {
@@ -120,6 +130,7 @@ export class BankdepositComponent implements OnInit {
       bankdeposit_ID: 0,
       frombankaccount_ID: null,
       tobankaccount_ID: null,
+      transaction_ID: null,
 
       bankdeposit_CODE: null,
       bankdeposit_DATE: null,
@@ -131,6 +142,23 @@ export class BankdepositComponent implements OnInit {
       isactive: true,
     };
   }
+
+  transactionAddNew() {
+    this.addtransaction.add();
+    $("#addtransaction").modal("show");
+  }
+
+  transactionCancel() {
+    $("#addtransaction").modal("hide");
+    $("#edittransaction").modal("hide");
+    this.transaction.transactions = this.addtransaction.transactions;
+  }
+
+  onTransactionChange(transaction) {
+    // this.journal.journal_NAME = transaction.transaction_NAME;
+    // this.journal.journal_DESC = transaction.transaction_DESC;
+  }
+
 
   update(row) {
     this.edit.next(row);
@@ -229,6 +257,7 @@ export class BankdepositComponent implements OnInit {
 
   bankdepositAdd(bankdeposit) {
     bankdeposit.isactive = "Y";
+    bankdeposit.transaction_ID = this.transaction.transactionID;
     bankdeposit.frombankaccount_ID = this.frombankaccount.bankaccountID;
     bankdeposit.tobankaccount_ID = this.tobankaccount.bankaccountID;
 
@@ -250,6 +279,7 @@ export class BankdepositComponent implements OnInit {
   }
 
   bankdepositUpdate(bankdeposit) {
+    bankdeposit.transaction_ID = this.transaction.transactionID;
     bankdeposit.frombankaccount_ID = this.frombankaccount.bankaccountID;
     bankdeposit.tobankaccount_ID = this.tobankaccount.bankaccountID;
 
@@ -331,6 +361,7 @@ export class BankdepositComponent implements OnInit {
   bankdepositAdvancedSearch(search) {
     this.bankaccountID = search.tobankaccount_ID;
     this.bankaccountID = search.frombankaccount_ID;
+    this.transactionID = search.transaction_ID;
 
     this.bankdepositservice.advancedSearch(search).subscribe(response => {
       if (response) {
@@ -349,6 +380,7 @@ export class BankdepositComponent implements OnInit {
   bankdepositAdvancedSearchAll(search) {
     this.bankaccountID = search.tobankaccount_ID;
     this.bankaccountID = search.frombankaccount_ID;
+    this.transactionID = search.transaction_ID;
 
 
     this.bankdepositservice.advancedSearchAll(search).subscribe(response => {

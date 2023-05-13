@@ -47,7 +47,6 @@ export class JournallineComponent implements OnInit {
 
     journalline_CODE: null,
     journalline_NAME: null,
-    journalline_DESC: null,
 
     isactive: true,
   }
@@ -121,7 +120,6 @@ export class JournallineComponent implements OnInit {
 
       journalline_CODE: null,
       journalline_NAME: null,
-      journalline_DESC: null,
 
       isactive: true,
     };
@@ -140,7 +138,6 @@ export class JournallineComponent implements OnInit {
 
   onLedgeraccountChange(ledgeraccount) {
     this.journalline.journalline_NAME = ledgeraccount.ledgeraccount_NAME;
-    this.journalline.journalline_DESC = ledgeraccount.ledgeraccount_DESC;
   }
 
   update(row) {

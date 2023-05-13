@@ -6,7 +6,7 @@
     <div class="col-md-12">
       <ng-select [(ngModel)]="journallineID" [disabled]="disabled" name="journallineID" (change)="onChange($event)">
         <ng-option *ngFor="let journalline of journallinesAll" [value]="journalline.journalline_ID">
-          {{ journalline.ledgeraccount.ledgeraccount_CODE }} - {{ journalline.ledgeraccount.ledgeraccount_NAME }}
+          {{ journalline.journalline_CODE }} - {{ journalline.ledgeraccount.ledgeraccount_NAME }}
         </ng-option>
       </ng-select>
     </div>
@@ -15,7 +15,7 @@
     <div class="col-md-10">
       <ng-select [(ngModel)]="journallineID" name="journallineID" (change)="onChange($event)">
         <ng-option *ngFor="let journalline of journallines" [value]="journalline.journalline_ID" [disabled]="disabled">
-          {{ journalline.ledgeraccount.ledgeraccount_CODE }} - {{ journalline.ledgeraccount.ledgeraccount_NAME }}
+          {{ journalline.journalline_CODE }} - {{ journalline.ledgeraccount.ledgeraccount_NAME }}
         </ng-option>
       </ng-select>
     </div>
@@ -35,7 +35,7 @@
     <div class="col-md-12">
       <ng-select [(ngModel)]="journallineID" [disabled]="disabled" name="journallineID" (change)="onChange($event)">
         <ng-option *ngFor="let journalline of journallinesAll" [value]="journalline.journalline_ID">
-          {{ journalline.ledgeraccount.ledgeraccount_CODE }} - {{ journalline.ledgeraccount.ledgeraccount_NAME }}
+          {{ journalline.journalline_CODE }} - {{ journalline.ledgeraccount.ledgeraccount_NAME }}
         </ng-option>
       </ng-select>
     </div>
@@ -45,7 +45,7 @@
       <ng-select [(ngModel)]="journallineID" name="journallineID" (change)="onChange($event)">
         <ng-option *ngFor="let journalline of journallinesAll" [value]="journalline.journalline_ID"
           [disabled]="disabled">
-          {{ journalline.ledgeraccount.ledgeraccount_CODE }} - {{ journalline.ledgeraccount.ledgeraccount_NAME }}
+          {{ journalline.journalline_CODE }} - {{ journalline.ledgeraccount.ledgeraccount_NAME }}
         </ng-option>
       </ng-select>
     </div>
@@ -66,7 +66,7 @@
       <ng-select [(ngModel)]="journallineID" [disabled]="disabled" name="journallineID">
         <ng-option *ngFor="let journalline of journallinesAll" [value]="journalline.journalline_ID"
           [disabled]="disabled">
-          {{ journalline.ledgeraccount.ledgeraccount_CODE }} - {{ journalline.ledgeraccount.ledgeraccount_NAME }}
+          {{ journalline.journalline_CODE }} - {{ journalline.ledgeraccount.ledgeraccount_NAME }}
         </ng-option>
       </ng-select>
     </div>
@@ -75,7 +75,7 @@
     <div class="col-md-10">
       <ng-select [(ngModel)]="journallineID" [disabled]="disabled" name="journallineID" (change)="onChange($event)">
         <ng-option *ngFor="let journalline of journallines" [value]="journalline.journalline_ID" [disabled]="disabled">
-          {{ journalline.ledgeraccount.ledgeraccount_CODE }} - {{ journalline.ledgeraccount.ledgeraccount_NAME }}
+          {{ journalline.journalline_CODE }} - {{ journalline.ledgeraccount.ledgeraccount_NAME }}
         </ng-option>
       </ng-select>
     </div>
@@ -96,7 +96,7 @@
       <ng-select [(ngModel)]="journallineID" [disabled]="disabled" name="journallineID" (change)="onChange($event)">
         <ng-option *ngFor="let journalline of journallinesAll" [value]="journalline.journalline_ID"
           [disabled]="disabled">
-          {{ journalline.ledgeraccount.ledgeraccount_CODE }} - {{ journalline.ledgeraccount.ledgeraccount_NAME }}
+          {{ journalline.journalline_CODE }} - {{ journalline.ledgeraccount.ledgeraccount_NAME }}
         </ng-option>
       </ng-select>
     </div>
@@ -106,7 +106,7 @@
       <ng-select [(ngModel)]="journallineID" [disabled]="disabled" name="journallineID" (change)="onChange($event)">
         <ng-option *ngFor="let journalline of journallinesAll" [value]="journalline.journalline_ID"
           [disabled]="disabled">
-          {{ journalline.ledgeraccount.ledgeraccount_CODE }} - {{ journalline.ledgeraccount.ledgeraccount_NAME }}
+          {{ journalline.journalline_CODE }} - {{ journalline.ledgeraccount.ledgeraccount_NAME }}
         </ng-option>
       </ng-select>
     </div>
@@ -137,14 +137,12 @@
           cellTemplate="cellTemplate"></dxi-column>
 
         <dxi-column dataField="journalline_CODE" caption="Code" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="journalline_NAME" caption="Name" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="ledgeraccount.ledgeraccount_NAME" caption="Account Name" cssClass="myClass"
           alignment="left"></dxi-column>
         <dxi-column dataField="ledgeraccount.balance_CREDIT" caption="Credit" cssClass="myClass"
           alignment="left"></dxi-column>
         <dxi-column dataField="ledgeraccount.balance_DEBIT" caption="Debit" cssClass="myClass"
           alignment="left"></dxi-column>
-        <dxi-column dataField="journalline_DESC" caption="Description" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass"
           alignment="center"></dxi-column>
 
@@ -176,14 +174,12 @@
           cellTemplate="cellTemplate"></dxi-column>
 
         <dxi-column dataField="journalline_CODE" caption="Code" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="journalline_NAME" caption="Name" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="ledgeraccount.ledgeraccount_NAME" caption="Account Name" cssClass="myClass"
           alignment="left"></dxi-column>
         <dxi-column dataField="ledgeraccount.balance_CREDIT" caption="Credit" cssClass="myClass"
           alignment="left"></dxi-column>
         <dxi-column dataField="ledgeraccount.balance_DEBIT" caption="Debit" cssClass="myClass"
           alignment="left"></dxi-column>
-        <dxi-column dataField="journalline_DESC" caption="Description" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass"
           alignment="center"></dxi-column>
 
