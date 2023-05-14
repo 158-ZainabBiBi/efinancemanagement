@@ -6,6 +6,7 @@ import { BankdepositService } from './bankdeposit.service';
 import { BankaccountComponent } from '../bankaccount/bankaccount.component';
 import { TransactionComponent } from '../transaction/transaction.component';
 
+declare var $: any;
 @Component({
   selector: 'app-bankdeposit',
   templateUrl: './bankdeposit.component.html',

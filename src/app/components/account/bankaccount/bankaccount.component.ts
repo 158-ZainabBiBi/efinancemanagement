@@ -6,7 +6,6 @@ import { BankaccountService } from './bankaccount.service';
 import { AccountComponent } from '../account/account.component';
 import { PaymentmethodComponent } from '../../lookup/paymentmethod/paymentmethod.component';
 import { BankaccounttypeComponent } from '../../lookup/bankaccounttype/bankaccounttype.component';
-import { LedgeraccountComponent } from '../ledgeraccount/ledgeraccount.component';
 import { CustomerComponent } from '../../customer/customer/customer.component';
 import { LocationComponent } from '../../location/location/location.component';
 
@@ -27,10 +26,6 @@ export class BankaccountComponent implements OnInit {
   @ViewChild("addaccount") addaccount: AccountComponent;
   @ViewChild("editaccount") editaccount: AccountComponent;
 
-  @ViewChild("ledgeraccount") ledgeraccount: LedgeraccountComponent;
-  @ViewChild("addledgeraccount") addledgeraccount: LedgeraccountComponent;
-  @ViewChild("editledgeraccount") editledgeraccount: LedgeraccountComponent;
-
   @Input()
   view: number = 1;
   @Input()
@@ -45,8 +40,6 @@ export class BankaccountComponent implements OnInit {
   bankaccountID = null;
   @Input()
   accountID = null;
-  @Input()
-  ledgeraccountID = null;
   @Input()
   customerID = null;
   @Input()
@@ -70,7 +63,6 @@ export class BankaccountComponent implements OnInit {
   bankaccountsAll = [];
   bankaccount = {
     bankaccount_ID: 0,
-    ledgeraccount_ID: null,
     account_ID: null,
     bankaccounttype_ID: null,
     paymentmethod_ID: null,
@@ -117,7 +109,6 @@ export class BankaccountComponent implements OnInit {
     }
 
     var search = {
-      ledgeraccount_ID: this.ledgeraccountID,
       account_ID: this.accountID,
       customer_ID: this.customerID,
       location_ID: this.locationID,
@@ -158,7 +149,6 @@ export class BankaccountComponent implements OnInit {
   add() {
     this.bankaccount = {
       bankaccount_ID: 0,
-      ledgeraccount_ID: null,
       account_ID: null,
       bankaccounttype_ID: null,
       paymentmethod_ID: null,
@@ -172,21 +162,6 @@ export class BankaccountComponent implements OnInit {
 
       isactive: true,
     };
-  }
-
-  ledgeraccountAddNew() {
-    this.addledgeraccount.add();
-    $("#addledgeraccount").modal("show");
-  }
-
-  ledgeraccountCancel() {
-    $("#addledgeraccount").modal("hide");
-    $("#editledgeraccount").modal("hide");
-    this.ledgeraccount.ledgeraccounts = this.addledgeraccount.ledgeraccounts;
-  }
-
-  onLedgeraccountChange(ledgeraccount) {
-    // this.bankaccount.bankaccount_CODE = ledgeraccount.ledgeraccount_CODE;
   }
 
   accountAddNew() {
@@ -306,7 +281,6 @@ export class BankaccountComponent implements OnInit {
     bankaccount.isactive = "Y";
     bankaccount.bankaccounttype_ID = this.bankaccounttype.bankaccounttypeID;
     bankaccount.account_ID = this.account.accountID;
-    bankaccount.ledgeraccount_ID = this.ledgeraccount.ledgeraccountID;
     bankaccount.customer_ID = this.customer.customerID;
     bankaccount.paymentmethod_ID = this.paymentmethod.paymentmethodID;
     bankaccount.location_ID = this.location.locationID;
@@ -331,7 +305,6 @@ export class BankaccountComponent implements OnInit {
   bankaccountUpdate(bankaccount) {
     bankaccount.bankaccounttype_ID = this.bankaccounttype.bankaccounttypeID;
     bankaccount.account_ID = this.account.accountID;
-    bankaccount.ledgeraccount_ID = this.ledgeraccount.ledgeraccountID;
     bankaccount.customer_ID = this.customer.customerID;
     bankaccount.paymentmethod_ID = this.paymentmethod.paymentmethodID;
     bankaccount.location_ID = this.location.locationID;
@@ -414,7 +387,6 @@ export class BankaccountComponent implements OnInit {
   bankaccountAdvancedSearch(search) {
     this.accountID = search.account_ID;
     this.locationID = search.location_ID;
-    this.ledgeraccountID = search.ledgeraccount_ID;
     this.customerID = search.customer_ID;
 
     this.paymentmethodID = search.paymentmethod_ID;
@@ -440,7 +412,6 @@ export class BankaccountComponent implements OnInit {
   bankaccountAdvancedSearchAll(search) {
     this.accountID = search.account_ID;
     this.locationID = search.location_ID;
-    this.ledgeraccountID = search.ledgeraccount_ID;
     this.customerID = search.customer_ID;
 
     this.paymentmethodID = search.paymentmethod_ID;

@@ -53,9 +53,6 @@ export class JournalsComponent implements OnInit {
       transaction_ID: row.data.transaction_ID,
 
       journal_CODE: row.data.journal_CODE,
-      journal_DATE: row.data.journal_DATE,
-      journal_NAME: row.data.journal_NAME,
-      journal_DESC: row.data.journal_DESC,
 
       isactive: row.data.isactive
     };

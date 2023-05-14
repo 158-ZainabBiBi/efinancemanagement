@@ -47,11 +47,9 @@ export class LedgerentriesComponent implements OnInit {
   edit(row) {
     this.editledgerentry.ledgerentry = {
       ledgerentry_ID: row.data.ledgerentry_ID,
-      ledgeraccount_ID: row.data.ledgeraccount_ID,
-      transaction_ID: row.data.transaction_ID,
+      journal_ID: row.data.journal_ID,
       ledgerentry_CODE: row.data.ledgerentry_CODE,
       ledgerentry_NAME: row.data.ledgerentry_NAME,
-      ledgerentry_DESC: row.data.ledgerentry_DESC,
       credit_AMOUNT: row.data.credit_AMOUNT,
       debit_AMOUNT: row.data.debit_AMOUNT,
       isactive: row.data.isactive

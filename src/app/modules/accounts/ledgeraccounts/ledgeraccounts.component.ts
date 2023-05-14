@@ -49,7 +49,6 @@ export class LedgeraccountsComponent implements OnInit {
       ledgeraccount_ID: row.data.ledgeraccount_ID,
       ledgeraccounttype_ID: row.data.ledgeraccounttype_ID,
       ledgeraccountclassification_ID: row.data.ledgeraccountclassification_ID,
-      taxcode_ID: row.data.taxcode_ID,
       ledgeraccount_CODE: row.data.ledgeraccount_CODE,
       ledgeraccount_NAME: row.data.ledgeraccount_NAME,
       ledgeraccount_DESC: row.data.ledgeraccount_DESC,

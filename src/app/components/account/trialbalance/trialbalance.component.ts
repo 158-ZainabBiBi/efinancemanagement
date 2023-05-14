@@ -54,7 +54,6 @@ export class TrialbalanceComponent implements OnInit {
 
     trialbalance_CODE: null,
     trialbalance_NAME: null,
-    trialbalance_DESC: null,
 
     balance_FROMDATE: null,
     balance_TODATE: null,
@@ -160,12 +159,12 @@ export class TrialbalanceComponent implements OnInit {
   }
 
   onCreditChange() {
-    this.trialbalance.balance_CREDIT = 0;
+    this.trialbalance.balance_DEBIT = 0;
     this.creditdisabled = true;
   }
 
   onDebitChange() {
-    this.trialbalance.balance_DEBIT = 0;
+    this.trialbalance.balance_CREDIT = 0;
     this.debitdisabled = true;
   }
 
@@ -176,7 +175,6 @@ export class TrialbalanceComponent implements OnInit {
 
       trialbalance_CODE: null,
       trialbalance_NAME: null,
-      trialbalance_DESC: null,
 
       balance_FROMDATE: null,
       balance_TODATE: null,

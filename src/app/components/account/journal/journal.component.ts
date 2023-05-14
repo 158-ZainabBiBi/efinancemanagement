@@ -54,9 +54,6 @@ export class JournalComponent implements OnInit {
     transaction_ID: null,
 
     journal_CODE: null,
-    journal_DATE: null,
-    journal_NAME: null,
-    journal_DESC: null,
 
     isactive: true,
   }
@@ -131,9 +128,6 @@ export class JournalComponent implements OnInit {
       transaction_ID: null,
 
       journal_CODE: null,
-      journal_DATE: null,
-      journal_NAME: null,
-      journal_DESC: null,
 
       isactive: true,
     };

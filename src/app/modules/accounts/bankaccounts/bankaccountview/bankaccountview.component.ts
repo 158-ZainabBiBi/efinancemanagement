@@ -53,6 +53,7 @@ export class BankaccountviewComponent implements OnInit {
       bankdeposit_ID: row.data.bankdeposit_ID,
       frombankaccount_ID: row.data.frombankaccount_ID,
       tobankaccount_ID: row.data.tobankaccount_ID,
+      transaction_ID: row.data.transaction_ID,
 
       bankdeposit_CODE: row.data.bankdeposit_CODE,
       bankdeposit_DATE: row.data.bankdeposit_DATE,
@@ -76,6 +77,7 @@ export class BankaccountviewComponent implements OnInit {
       banktransfer_ID: row.data.banktransfer_ID,
       frombankaccount_ID: row.data.frombankaccount_ID,
       tobankaccount_ID: row.data.tobankaccount_ID,
+      transaction_ID: row.data.transaction_ID,
 
       banktransfer_NAME: row.data.banktransfer_NAME,
       banktransfer_CODE: row.data.banktransfer_CODE,

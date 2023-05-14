@@ -3,7 +3,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { JournalComponent } from '../../../../components/account/journal/journal.component';
 import { TransactionComponent } from 'src/app/components/account/transaction/transaction.component';
-import { LedgerentryComponent } from 'src/app/components/account/ledgerentry/ledgerentry.component';
 
 declare var $: any;
 
@@ -18,10 +17,6 @@ export class TransactionviewComponent implements OnInit {
   @ViewChild("journals") journals: JournalComponent;
   @ViewChild("addjournal") addjournal: JournalComponent;
   @ViewChild("editjournal") editjournal: JournalComponent;
-
-  @ViewChild("ledgerentrys") ledgerentrys: LedgerentryComponent;
-  @ViewChild("addledgerentry") addledgerentry: LedgerentryComponent;
-  @ViewChild("editledgerentry") editledgerentry: LedgerentryComponent;
 
   transactionID = 0;
 
@@ -45,7 +40,6 @@ export class TransactionviewComponent implements OnInit {
   refresh() {
     this.transactions.ngOnInit();
     this.journalcancel();
-    this.ledgerentrycancel();
   }
 
   journaledit(row) {
@@ -55,9 +49,6 @@ export class TransactionviewComponent implements OnInit {
       transaction_ID: row.data.transaction_ID,
 
       journal_CODE: row.data.journal_CODE,
-      journal_DATE: row.data.journal_DATE,
-      journal_NAME: row.data.journal_NAME,
-      journal_DESC: row.data.journal_DESC,
 
       isactive: row.data.isactive
     };
@@ -65,29 +56,6 @@ export class TransactionviewComponent implements OnInit {
       this.editjournal.journal.isactive = true;
     } else {
       this.editjournal.journal.isactive = false;
-    }
-    $("#edit").modal("show");
-  }
-
-  ledgerentryedit(row) {
-    this.editledgerentry.ledgerentry = {
-      ledgerentry_ID: row.data.ledgerentry_ID,
-      ledgeraccount_ID: row.data.ledgeraccount_ID,
-      transaction_ID: row.data.transaction_ID,
-
-      ledgerentry_CODE: row.data.ledgerentry_CODE,
-      ledgerentry_NAME: row.data.ledgerentry_NAME,
-      ledgerentry_DESC: row.data.ledgerentry_DESC,
-
-      credit_AMOUNT: row.data.credit_AMOUNT,
-      debit_AMOUNT: row.data.debit_AMOUNT,
-
-      isactive: row.data.isactive
-    };
-    if (row.data.isactive == "Y") {
-      this.editledgerentry.ledgerentry.isactive = true;
-    } else {
-      this.editledgerentry.ledgerentry.isactive = false;
     }
     $("#edit").modal("show");
   }
@@ -105,16 +73,4 @@ export class TransactionviewComponent implements OnInit {
     this.router.navigate(["/home/journal"], {});
   }
 
-  ledgerentryshow(row) {
-    this.router.navigate(["/home/ledgerentry"], { queryParams: { ledgerentry: row.data.ledgerentry_ID } });
-  }
-
-  ledgerentrycancel() {
-    $("#addledgerentry").modal("hide");
-    $("#editledgerentry").modal("hide");
-  }
-
-  ledgerentryaddNew() {
-    this.router.navigate(["/home/ledgerentry"], {});
-  }
 }

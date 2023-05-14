@@ -50,7 +50,8 @@ export class JournallinesComponent implements OnInit {
       ledgeraccount_ID: row.data.ledgeraccount_ID,
       journalline_CODE: row.data.journalline_CODE,
       journalline_NAME: row.data.journalline_NAME,
-      journalline_DESC: row.data.journalline_DESC,
+      balance_CREDIT: row.data.balance_CREDIT,
+      balance_DEBIT: row.data.balance_DEBIT,
       isactive: row.data.isactive
     };
 

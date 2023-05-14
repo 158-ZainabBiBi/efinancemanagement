@@ -49,6 +49,7 @@ export class BanktransfersComponent implements OnInit {
       banktransfer_ID: row.data.banktransfer_ID,
       frombankaccount_ID: row.data.frombankaccount_ID,
       tobankaccount_ID: row.data.tobankaccount_ID,
+      transaction_ID: row.data.transaction_ID,
       banktransfer_CODE: row.data.banktransfer_CODE,
       banktransfer_DATE: row.data.banktransfer_DATE,
       banktransfer_NAME: row.data.banktransfer_NAME,

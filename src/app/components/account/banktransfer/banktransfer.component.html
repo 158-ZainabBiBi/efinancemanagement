@@ -148,15 +148,15 @@
 
         <dxi-column dataField="banktransfer_CODE" caption="Code" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="banktransfer_DATE" caption="Date" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="frombankaccount.ledgeraccount.ledgeraccount_NAME" caption="From" cssClass="myClass"
-          alignment="left"></dxi-column>
-        <dxi-column dataField="tobankaccount.ledgeraccount.ledgeraccount_NAME" caption="To" cssClass="myClass"
-          alignment="left"></dxi-column>
         <dxi-column dataField="banktransfer_NAME" caption="Name" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="banktransfer_AMOUNT" caption="Amount" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="banktransfer_DESC" caption="Description" cssClass="myClass"
+        <dxi-column dataField="frombankaccount.account.account_NAME" caption="From Account" cssClass="myClass"
           alignment="left"></dxi-column>
-        <dxi-column dataField="transaction.transaction_DATE" caption="Transaction Date" cssClass="myClass"
+        <dxi-column dataField="tobankaccount.account.account_NAME" caption="To Account" cssClass="myClass"
+          alignment="left"></dxi-column>
+        <dxi-column dataField="banktransfer_AMOUNT" caption="Amount" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="transaction.transaction_DATE" caption="Date" cssClass="myClass"
+          alignment="left"></dxi-column>
+        <dxi-column dataField="banktransfer_DESC" caption="Description" cssClass="myClass"
           alignment="left"></dxi-column>
         <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass"
           alignment="center"></dxi-column>
@@ -190,15 +190,15 @@
 
         <dxi-column dataField="banktransfer_CODE" caption="Code" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="banktransfer_DATE" caption="Date" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="frombankaccount.ledgeraccount.ledgeraccount_NAME" caption="From" cssClass="myClass"
-          alignment="left"></dxi-column>
-        <dxi-column dataField="tobankaccount.ledgeraccount.ledgeraccount_NAME" caption="To" cssClass="myClass"
-          alignment="left"></dxi-column>
         <dxi-column dataField="banktransfer_NAME" caption="Name" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="banktransfer_AMOUNT" caption="Amount" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="banktransfer_DESC" caption="Description" cssClass="myClass"
+        <dxi-column dataField="frombankaccount.account.account_NAME" caption="From Account" cssClass="myClass"
           alignment="left"></dxi-column>
-        <dxi-column dataField="transaction.transaction_DATE" caption="Transaction Date" cssClass="myClass"
+        <dxi-column dataField="tobankaccount.account.account_NAME" caption="To Account" cssClass="myClass"
+          alignment="left"></dxi-column>
+        <dxi-column dataField="banktransfer_AMOUNT" caption="Amount" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="transaction.transaction_DATE" caption="Date" cssClass="myClass"
+          alignment="left"></dxi-column>
+        <dxi-column dataField="banktransfer_DESC" caption="Description" cssClass="myClass"
           alignment="left"></dxi-column>
         <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass"
           alignment="center"></dxi-column>
@@ -244,13 +244,13 @@
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
-                <app-bankaccount #frombankaccount [view]="1"
+                <app-bankaccount #frombankaccount [view]="6"
                   [bankaccountID]="banktransfer.frombankaccount_ID"></app-bankaccount>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <app-bankaccount #tobankaccount [view]="1"
+                <app-bankaccount #tobankaccount [view]="7"
                   [bankaccountID]="banktransfer.tobankaccount_ID"></app-bankaccount>
               </div>
             </div>
@@ -337,13 +337,13 @@
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
-                <app-bankaccount #frombankaccount [view]="1"
+                <app-bankaccount #frombankaccount [view]="6"
                   [bankaccountID]="banktransfer.frombankaccount_ID"></app-bankaccount>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <app-bankaccount #tobankaccount [view]="1"
+                <app-bankaccount #tobankaccount [view]="7"
                   [bankaccountID]="banktransfer.tobankaccount_ID"></app-bankaccount>
               </div>
             </div>
@@ -454,13 +454,13 @@
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
-                <app-bankaccount #frombankaccount [view]="1" [disabled]="disabled"
+                <app-bankaccount #frombankaccount [view]="6" [disabled]="disabled"
                   [bankaccountID]="banktransfer.frombankaccount_ID"></app-bankaccount>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <app-bankaccount #tobankaccount [view]="1" [disabled]="disabled"
+                <app-bankaccount #tobankaccount [view]="7" [disabled]="disabled"
                   [bankaccountID]="banktransfer.tobankaccount_ID"></app-bankaccount>
               </div>
             </div>

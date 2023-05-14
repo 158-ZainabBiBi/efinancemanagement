@@ -6,6 +6,7 @@ import { OnFailService } from '../../../services/on-fail.service';
 import { CurrencyComponent } from '../../lookup/currency/currency.component';
 import { TransactiontypeComponent } from '../../lookup/transactiontype/transactiontype.component';
 import { TransactionService } from './transaction.service';
+import { BankaccountComponent } from '../bankaccount/bankaccount.component';
 
 @Component({
   selector: 'app-transaction',
@@ -13,6 +14,7 @@ import { TransactionService } from './transaction.service';
   styleUrls: ['./transaction.component.css']
 })
 export class TransactionComponent implements OnInit {
+  @ViewChild("bankaccount") bankaccount: BankaccountComponent;
   @ViewChild("transactiontype") transactiontype: TransactiontypeComponent;
   @ViewChild("currency") currency: CurrencyComponent;
 
@@ -28,6 +30,8 @@ export class TransactionComponent implements OnInit {
   all: boolean = false;
   @Input()
   transactionID = null;
+  @Input()
+  bankaccountID = null;
   @Input()
   transactiontypeID = null;
   @Input()
@@ -47,6 +51,7 @@ export class TransactionComponent implements OnInit {
   transactionsAll = [];
   transaction = {
     transaction_ID: 0,
+    bankaccount_ID: null,
     currency_ID: null,
     transactiontype_ID: null,
 
@@ -91,6 +96,7 @@ export class TransactionComponent implements OnInit {
     }
 
     var search = {
+      bankaccount_ID: this.bankaccountID,
       transactiontype_ID: this.transactiontypeID,
       transactiontype_CODE: this.transactiontypeCode,
       currency_ID: this.currencyID,
@@ -127,6 +133,7 @@ export class TransactionComponent implements OnInit {
   add() {
     this.transaction = {
       transaction_ID: 0,
+      bankaccount_ID: null,
       currency_ID: null,
       transactiontype_ID: null,
 
@@ -242,6 +249,7 @@ export class TransactionComponent implements OnInit {
 
   transactionAdd(transaction) {
     transaction.isactive = "Y";
+    transaction.bankaccount_ID = this.bankaccount.bankaccountID;
     transaction.currency_ID = this.currency.currencyID;
     transaction.transactiontype_ID = this.transactiontype.transactiontypeID;
 
@@ -263,6 +271,7 @@ export class TransactionComponent implements OnInit {
   }
 
   transactionUpdate(transaction) {
+    transaction.bankaccount_ID = this.bankaccount.bankaccountID;
     transaction.currency_ID = this.currency.currencyID;
     transaction.transactiontype_ID = this.transactiontype.transactiontypeID;
 
@@ -346,6 +355,7 @@ export class TransactionComponent implements OnInit {
   }
 
   transactionAdvancedSearch(search) {
+    this.bankaccountID = search.bankaccount_ID;
     this.transactiontypeID = search.transactiontype_ID;
     this.transactiontypeCode = search.transactiontype_CODE;
     this.currencyID = search.currency_ID;
@@ -366,6 +376,7 @@ export class TransactionComponent implements OnInit {
   }
 
   transactionAdvancedSearchAll(search) {
+    this.bankaccountID = search.bankaccount_ID;
     this.transactiontypeID = search.transactiontype_ID;
     this.transactiontypeCode = search.transactiontype_CODE;
     this.currencyID = search.currency_ID;

@@ -141,9 +141,10 @@
         <dxi-column dataField="transaction_NAME" caption="Name" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="transactiontype.description" caption="Type" cssClass="myClass"
           alignment="center"></dxi-column>
-        <dxi-column dataField="transaction_TOTAL" caption="Total Amount" cssClass="myClass"
-          alignment="left"></dxi-column>
+        <dxi-column dataField="transaction_TOTAL" caption="Amount" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="currency.description" caption="Currency" cssClass="myClass"
+          alignment="left"></dxi-column>
+        <dxi-column dataField="bankaccount.account.account_NAME" caption="Bank Account" cssClass="myClass"
           alignment="left"></dxi-column>
         <dxi-column dataField="transaction_DESC" caption="Description" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass" alignment="center">
@@ -181,9 +182,10 @@
         <dxi-column dataField="transaction_NAME" caption="Name" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="transactiontype.description" caption="Type" cssClass="myClass"
           alignment="center"></dxi-column>
-        <dxi-column dataField="transaction_TOTAL" caption="Total Amount" cssClass="myClass"
-          alignment="left"></dxi-column>
+        <dxi-column dataField="transaction_TOTAL" caption="Amount" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="currency.description" caption="Currency" cssClass="myClass"
+          alignment="left"></dxi-column>
+        <dxi-column dataField="bankaccount.account.account_NAME" caption="Bank Account" cssClass="myClass"
           alignment="left"></dxi-column>
         <dxi-column dataField="transaction_DESC" caption="Description" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass" alignment="center">
@@ -241,6 +243,11 @@
                 <input type="text" class="form-control" name="transaction_TOTAL"
                   [(ngModel)]="transaction.transaction_TOTAL" maxlength="50" required>
               </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <app-bankaccount #bankaccount [view]="1" [bankaccountID]="transaction.bankaccount_ID"></app-bankaccount>
             </div>
           </div>
           <div class="row">
@@ -316,6 +323,11 @@
                 <input type="text" class="form-control" name="transaction_TOTAL"
                   [(ngModel)]="transaction.transaction_TOTAL" maxlength="50" required>
               </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <app-bankaccount #bankaccount [view]="1" [bankaccountID]="transaction.bankaccount_ID"></app-bankaccount>
             </div>
           </div>
           <div class="row">
@@ -415,6 +427,12 @@
                 <input type="text" class="form-control" name="transaction_TOTAL" [disabled]="disabled"
                   [(ngModel)]="transaction.transaction_TOTAL" maxlength="50" required>
               </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <app-bankaccount #bankaccount [view]="1" [disabled]="disabled"
+                [bankaccountID]="transaction.bankaccount_ID"></app-bankaccount>
             </div>
           </div>
           <div class="row">

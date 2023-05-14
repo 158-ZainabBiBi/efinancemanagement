@@ -49,7 +49,7 @@ export class TransactionsComponent implements OnInit {
   edit(row) {
     this.edittransaction.transaction = {
       transaction_ID: row.data.transaction_ID,
-      customer_ID: row.data.customer_ID,
+      bankaccount_ID: row.data.bankaccount_ID,
       currency_ID: row.data.currency_ID,
       transactiontype_ID: row.data.transactiontype_ID,
 

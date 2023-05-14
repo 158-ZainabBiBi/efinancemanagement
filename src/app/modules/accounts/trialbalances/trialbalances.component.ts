@@ -41,9 +41,9 @@ export class TrialbalancesComponent implements OnInit {
   }
 
   addNew() {
-    this.router.navigate(["/home/trialbalance"], {});
-    // this.addtrialbalance.add();
-    // $("#add").modal("show");
+    // this.router.navigate(["/home/trialbalance"], {});
+    this.addtrialbalance.add();
+    $("#add").modal("show");
   }
 
   edit(row) {
@@ -53,7 +53,6 @@ export class TrialbalancesComponent implements OnInit {
 
       trialbalance_CODE: row.data.trialbalance_CODE,
       trialbalance_NAME: row.data.trialbalance_NAME,
-      trialbalance_DESC: row.data.trialbalance_DESC,
 
       balance_FROMDATE: row.data.balance_FROMDATE,
       balance_TODATE: row.data.balance_TODATE,

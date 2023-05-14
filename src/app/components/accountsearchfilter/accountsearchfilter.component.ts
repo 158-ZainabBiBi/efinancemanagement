@@ -2,8 +2,6 @@ import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angu
 
 import { AccountComponent } from '../account/account/account.component';
 import { BankaccounttypeComponent } from '../lookup/bankaccounttype/bankaccounttype.component';
-import { ReturnauthComponent } from '../account/returnauth/returnauth.component';
-import { CustomerrefundComponent } from '../account/customerrefund/customerrefund.component';
 
 import { CardtypeComponent } from '../lookup/cardtype/cardtype.component';
 import { RefundmethodComponent } from '../lookup/refundmethod/refundmethod.component';
@@ -23,8 +21,6 @@ import { CashflowratetypeComponent } from '../lookup/cashflowratetype/cashflowra
 export class AccountsearchfilterComponent implements OnInit {
   @ViewChild(AccountComponent) accounts;
   @ViewChild(BankaccounttypeComponent) bankaccounttypes;
-  @ViewChild(ReturnauthComponent) returnauths;
-  @ViewChild(CustomerrefundComponent) customerrefunds
 
   @ViewChild(CardtypeComponent) cardtypes;
   @ViewChild(RefundmethodComponent) refundmethods;
@@ -91,10 +87,6 @@ export class AccountsearchfilterComponent implements OnInit {
       this.search.account_ID = this.accounts.accountID;
     if (this.bankaccounttypes)
       this.search.bankaccounttype_ID = this.bankaccounttypes.bankaccounttypeID;
-    if (this.returnauths)
-      this.search.returnauth_ID = this.returnauths.returnauthID;
-    if (this.customerrefunds)
-      this.search.customerrefund_ID = this.customerrefunds.customerrefundID;
 
     if (this.generalratetypes)
       this.search.generalratetype_ID = this.generalratetypes.generalratetypeID;
@@ -125,10 +117,6 @@ export class AccountsearchfilterComponent implements OnInit {
       this.accounts.accountID = null;
     if (this.bankaccounttypes)
       this.bankaccounttypes.bankaccounttypeID = null;
-    if (this.returnauths)
-      this.returnauths.returnauthID = null;
-    if (this.customerrefunds)
-      this.customerrefunds.customerrefundID = null;
 
     if (this.cardtypes)
       this.cardtypes.cardtypeID = null;

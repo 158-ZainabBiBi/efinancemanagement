@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpCallServieService } from '../../../services/http-call-servie.service';
 import { setting } from '../../../setting';
+import { BankaccountService } from '../bankaccount/bankaccount.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,7 @@ export class TransactionService {
 
   constructor(
     private _HttpCallServieService_: HttpCallServieService,
+    private bankaccountservice: BankaccountService,
   ) { }
 
 
@@ -142,6 +144,11 @@ export class TransactionService {
     if (response.currency_DETAIL != null) {
       response.currency = JSON.parse(response.currency_DETAIL);
       response.currency_DETAIL = response.currency.description;
+    }
+
+    if (response.bankaccount_DETAIL != null) {
+      response.bankaccount = this.bankaccountservice.getDetail(JSON.parse(response.bankaccount_DETAIL));
+      response.bankaccount_DETAIL = null;
     }
 
     return (response);

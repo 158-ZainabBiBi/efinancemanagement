@@ -27,6 +27,10 @@ export class JournallineComponent implements OnInit {
   @Input()
   disabled: boolean = false;
   @Input()
+  debitdisabled: boolean = false;
+  @Input()
+  creditdisabled: boolean = false;
+  @Input()
   all: boolean = false;
   @Input()
   journallineID = null;
@@ -47,6 +51,9 @@ export class JournallineComponent implements OnInit {
 
     journalline_CODE: null,
     journalline_NAME: null,
+
+    balance_CREDIT: null,
+    balance_DEBIT: null,
 
     isactive: true,
   }
@@ -72,6 +79,9 @@ export class JournallineComponent implements OnInit {
     if (this.journallineID != 0 && !this.journallineID && Number(window.sessionStorage.getItem('journalline')) > 0) {
       this.journallineID = Number(window.sessionStorage.getItem('journalline'));
     }
+
+    this.getTotalDebit();
+    this.getTotalCredit();
 
     if (this.view >= 1 && this.view <= 2 && (this.journallines == null || this.journallines.length == 0 || reload == true)) {
       this.journallines == null;
@@ -109,8 +119,48 @@ export class JournallineComponent implements OnInit {
           text: 'Refresh',
           onClick: this.load.bind(this, true),
         },
+      },
+      {
+        location: 'after',
+        text: `Total Credit: ${this.getTotalCredit()}`,
+      },
+      {
+        location: 'after',
+        text: `Total Debit: ${this.getTotalDebit()}`,
       }
     );
+  }
+
+  getTotalCredit() {
+    let total = 0;
+    this.journallinesAll.forEach(account => {
+      const credit = Number(account.balance_CREDIT);
+      if (!isNaN(credit)) {
+        total += credit;
+      }
+    });
+    return total;
+  }
+
+  getTotalDebit() {
+    let total = 0;
+    this.journallinesAll.forEach(account => {
+      const debit = Number(account.balance_DEBIT);
+      if (!isNaN(debit)) {
+        total += debit;
+      }
+    });
+    return total;
+  }
+
+  onCreditChange() {
+    this.journalline.balance_DEBIT = 0;
+    this.creditdisabled = true;
+  }
+
+  onDebitChange() {
+    this.journalline.balance_CREDIT = 0;
+    this.debitdisabled = true;
   }
 
   add() {
@@ -120,6 +170,9 @@ export class JournallineComponent implements OnInit {
 
       journalline_CODE: null,
       journalline_NAME: null,
+
+      balance_CREDIT: null,
+      balance_DEBIT: null,
 
       isactive: true,
     };

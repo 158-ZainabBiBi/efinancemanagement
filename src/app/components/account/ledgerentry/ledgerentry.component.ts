@@ -4,8 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { OnFailService } from '../../../services/on-fail.service';
 
 import { LedgerentryService } from './ledgerentry.service';
-import { LedgeraccountComponent } from '../ledgeraccount/ledgeraccount.component';
-import { TransactionComponent } from '../transaction/transaction.component';
+import { JournalComponent } from '../journal/journal.component';
 
 declare var $: any;
 
@@ -15,13 +14,9 @@ declare var $: any;
   styleUrls: ['./ledgerentry.component.css']
 })
 export class LedgerentryComponent implements OnInit {
-  @ViewChild("ledgeraccount") ledgeraccount: LedgeraccountComponent;
-  @ViewChild("addledgeraccount") addledgeraccount: LedgeraccountComponent;
-  @ViewChild("editledgeraccount") editledgeraccount: LedgeraccountComponent;
-
-  @ViewChild("transaction") transaction: TransactionComponent;
-  @ViewChild("addtransaction") addtransaction: TransactionComponent;
-  @ViewChild("edittransaction") edittransaction: TransactionComponent;
+  @ViewChild("journal") journal: JournalComponent;
+  @ViewChild("addjournal") addjournal: JournalComponent;
+  @ViewChild("editjournal") editjournal: JournalComponent;
 
   @Input()
   view: number = 1;
@@ -36,9 +31,7 @@ export class LedgerentryComponent implements OnInit {
   @Input()
   ledgerentryID = null;
   @Input()
-  ledgeraccountID = null;
-  @Input()
-  transactionID = null;
+  journalID = null;
 
   @Output() edit = new EventEmitter();
   @Output() cancel = new EventEmitter();
@@ -50,13 +43,10 @@ export class LedgerentryComponent implements OnInit {
   ledgerentriesAll = [];
   ledgerentry = {
     ledgerentry_ID: 0,
-    ledgeraccount_ID: null,
-    transaction_ID: null,
+    journal_ID: null,
 
     ledgerentry_CODE: null,
     ledgerentry_NAME: null,
-    ledgerentry_DESC: null,
-
     credit_AMOUNT: null,
     debit_AMOUNT: null,
 
@@ -95,8 +85,7 @@ export class LedgerentryComponent implements OnInit {
     }
 
     var search = {
-      ledgeraccount_ID: this.ledgeraccountID,
-      transaction_ID: this.transactionID,
+      journal_ID: this.journalID,
     }
 
     if (this.view >= 5 && this.view <= 6 && this.ledgerentryID) {
@@ -129,12 +118,10 @@ export class LedgerentryComponent implements OnInit {
   add() {
     this.ledgerentry = {
       ledgerentry_ID: 0,
-      ledgeraccount_ID: null,
-      transaction_ID: null,
+      journal_ID: null,
 
       ledgerentry_CODE: null,
       ledgerentry_NAME: null,
-      ledgerentry_DESC: null,
 
       credit_AMOUNT: null,
       debit_AMOUNT: null,
@@ -143,36 +130,20 @@ export class LedgerentryComponent implements OnInit {
     };
   }
 
-  ledgeraccountAddNew() {
-    this.addledgeraccount.add();
-    $("#addledgeraccount").modal("show");
+  journalAddNew() {
+    this.addjournal.add();
+    $("#addjournal").modal("show");
   }
 
-  ledgeraccountCancel() {
-    $("#addledgeraccount").modal("hide");
-    $("#editledgeraccount").modal("hide");
-    this.ledgeraccount.ledgeraccounts = this.addledgeraccount.ledgeraccounts;
+  journalCancel() {
+    $("#addjournal").modal("hide");
+    $("#editjournal").modal("hide");
+    this.journal.journals = this.addjournal.journals;
   }
 
-  onLedgeraccountChange(ledgeraccount) {
-    // this.ledgerentry.ledgerentry_NAME = ledgeraccount.ledgeraccount_NAME;
-    // this.ledgerentry.ledgerentry_DESC = ledgeraccount.ledgeraccount_DESC;
-  }
-
-  transactionAddNew() {
-    this.addtransaction.add();
-    $("#addtransaction").modal("show");
-  }
-
-  transactionCancel() {
-    $("#addtransaction").modal("hide");
-    $("#edittransaction").modal("hide");
-    this.transaction.transactions = this.addtransaction.transactions;
-  }
-
-  onTransactionChange(transaction) {
-    // this.journal.journal_NAME = transaction.transaction_NAME;
-    // this.journal.journal_DESC = transaction.transaction_DESC;
+  onJournalChange(journal) {
+    // this.ledgerentry.ledgerentry_NAME = journal.journal_NAME;
+    // this.ledgerentry.ledgerentry_DESC = journal.journal_DESC;
   }
 
   update(row) {
@@ -273,8 +244,7 @@ export class LedgerentryComponent implements OnInit {
   ledgerentryAdd(ledgerentry) {
     ledgerentry.isactive = "Y";
 
-    ledgerentry.ledgeraccount_ID = this.ledgeraccount.ledgeraccountID;
-    ledgerentry.transaction_ID = this.transaction.transactionID;
+    ledgerentry.journal_ID = this.journal.journalID;
 
     this.ledgerentryservice.add(ledgerentry).subscribe(response => {
       if (response) {
@@ -294,9 +264,7 @@ export class LedgerentryComponent implements OnInit {
   }
 
   ledgerentryUpdate(ledgerentry) {
-
-    ledgerentry.ledgeraccount_ID = this.ledgeraccount.ledgeraccountID;
-    ledgerentry.transaction_ID = this.transaction.transactionID;
+    ledgerentry.journal_ID = this.journal.journalID;
 
     if (ledgerentry.isactive == true) {
       ledgerentry.isactive = "Y";
@@ -373,8 +341,7 @@ export class LedgerentryComponent implements OnInit {
   }
 
   ledgerentryAdvancedSearch(search) {
-    this.ledgeraccountID = search.ledgeraccount_ID;
-    this.transactionID = search.transaction_ID;
+    this.journalID = search.journal_ID;
 
     this.ledgerentryservice.advancedSearch(search).subscribe(response => {
       if (response) {
@@ -391,8 +358,7 @@ export class LedgerentryComponent implements OnInit {
   }
 
   ledgerentryAdvancedSearchAll(search) {
-    this.ledgeraccountID = search.ledgeraccount_ID;
-    this.transactionID = search.transaction_ID;
+    this.journalID = search.journal_ID;
 
     this.ledgerentryservice.advancedSearchAll(search).subscribe(response => {
       if (response) {

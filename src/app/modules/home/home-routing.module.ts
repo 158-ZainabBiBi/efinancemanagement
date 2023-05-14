@@ -26,11 +26,11 @@ import { LedgeraccountclassificationsComponent } from 'src/app/modules/accounts/
 import { LedgerentriesComponent } from 'src/app/modules/accounts/ledgerentries/ledgerentries.component';
 
 //accountview
-import { ChartofaccountviewComponent } from 'src/app/modules/accounts/chartofaccounts/chartofaccountview/chartofaccountview.component';
 import { BankaccountviewComponent } from 'src/app/modules/accounts/bankaccounts/bankaccountview/bankaccountview.component';
-import { JournalviewComponent } from 'src/app/modules/accounts/journals/journalview/journalview.component';
-import { TransactionviewComponent } from 'src/app/modules/accounts/transactions/transactionview/transactionview.component';
-import { TrialbalanceviewComponent } from 'src/app/modules/accounts/trialbalances/trialbalanceview/trialbalanceview.component';
+// import { ChartofaccountviewComponent } from 'src/app/modules/accounts/chartofaccounts/chartofaccountview/chartofaccountview.component';
+// import { JournalviewComponent } from 'src/app/modules/accounts/journals/journalview/journalview.component';
+// import { TransactionviewComponent } from 'src/app/modules/accounts/transactions/transactionview/transactionview.component';
+// import { TrialbalanceviewComponent } from 'src/app/modules/accounts/trialbalances/trialbalanceview/trialbalanceview.component';
 
 const routes: Routes = [{
   path: '', component: HomeComponent,
@@ -56,16 +56,16 @@ const routes: Routes = [{
     { path: 'ledgeraccountclassifications', component: LedgeraccountclassificationsComponent },
 
     { path: 'transactions', component: TransactionsComponent },
-    { path: 'transaction', component: TransactionviewComponent },
+    // { path: 'transaction', component: TransactionviewComponent },
 
     { path: 'chartofaccounts', component: ChartofaccountsComponent },
-    { path: 'chartofaccount', component: ChartofaccountviewComponent },
+    // { path: 'chartofaccount', component: ChartofaccountviewComponent },
 
     { path: 'journals', component: JournalsComponent },
-    { path: 'journal', component: JournalviewComponent },
+    // { path: 'journal', component: JournalviewComponent },
 
     { path: 'trialbalances', component: TrialbalancesComponent },
-    { path: 'trialbalance', component: TrialbalanceviewComponent },
+    // { path: 'trialbalance', component: TrialbalanceviewComponent },
 
     { path: '', redirectTo: 'dashboard' },
     { path: '**', component: NotfoundComponent }

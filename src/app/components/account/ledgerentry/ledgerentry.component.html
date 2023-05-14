@@ -7,7 +7,7 @@
       <ng-select [(ngModel)]="ledgerentryID" [disabled]="disabled" name="ledgerentryID" (change)="onChange($event)">
         <ng-option *ngFor="let ledgerentry of ledgerentriesAll" [value]="ledgerentry.ledgerentry_ID">
           {{ ledgerentry.transaction.transaction_DATE }} - {{
-          ledgerentry.ledgeraccount.ledgeraccount_NAME}}
+          ledgerentry.journal.journal_NAME}}
         </ng-option>
       </ng-select>
     </div>
@@ -17,7 +17,7 @@
       <ng-select [(ngModel)]="ledgerentryID" name="ledgerentryID" (change)="onChange($event)">
         <ng-option *ngFor="let ledgerentry of ledgerentries" [value]="ledgerentry.ledgerentry_ID" [disabled]="disabled">
           {{ ledgerentry.transaction.transaction_DATE }} - {{
-          ledgerentry.ledgeraccount.ledgeraccount_NAME}}
+          ledgerentry.journal.journal_NAME}}
         </ng-option>
       </ng-select>
     </div>
@@ -38,7 +38,7 @@
       <ng-select [(ngModel)]="ledgerentryID" [disabled]="disabled" name="ledgerentryID" (change)="onChange($event)">
         <ng-option *ngFor="let ledgerentry of ledgerentriesAll" [value]="ledgerentry.ledgerentry_ID">
           {{ ledgerentry.transaction.transaction_DATE }} - {{
-          ledgerentry.ledgeraccount.ledgeraccount_NAME}}
+          ledgerentry.journal.journal_NAME}}
         </ng-option>
       </ng-select>
     </div>
@@ -49,7 +49,7 @@
         <ng-option *ngFor="let ledgerentry of ledgerentriesAll" [value]="ledgerentry.ledgerentry_ID"
           [disabled]="disabled">
           {{ ledgerentry.transaction.transaction_DATE }} - {{
-          ledgerentry.ledgeraccount.ledgeraccount_NAME}}
+          ledgerentry.journal.journal_NAME}}
         </ng-option>
       </ng-select>
     </div>
@@ -71,7 +71,7 @@
         <ng-option *ngFor="let ledgerentry of ledgerentriesAll" [value]="ledgerentry.ledgerentry_ID"
           [disabled]="disabled">
           {{ ledgerentry.transaction.transaction_DATE }} - {{
-          ledgerentry.ledgeraccount.ledgeraccount_NAME}}
+          ledgerentry.journal.journal_NAME}}
         </ng-option>
       </ng-select>
     </div>
@@ -81,7 +81,7 @@
       <ng-select [(ngModel)]="ledgerentryID" [disabled]="disabled" name="ledgerentryID" (change)="onChange($event)">
         <ng-option *ngFor="let ledgerentry of ledgerentries" [value]="ledgerentry.ledgerentry_ID" [disabled]="disabled">
           {{ ledgerentry.transaction.transaction_DATE }} - {{
-          ledgerentry.ledgeraccount.ledgeraccount_NAME}}
+          ledgerentry.journal.journal_NAME}}
         </ng-option>
       </ng-select>
     </div>
@@ -103,7 +103,7 @@
         <ng-option *ngFor="let ledgerentry of ledgerentriesAll" [value]="ledgerentry.ledgerentry_ID"
           [disabled]="disabled">
           {{ ledgerentry.transaction.transaction_DATE }} - {{
-          ledgerentry.ledgeraccount.ledgeraccount_NAME}}
+          ledgerentry.journal.journal_NAME}}
         </ng-option>
       </ng-select>
     </div>
@@ -114,7 +114,7 @@
         <ng-option *ngFor="let ledgerentry of ledgerentriesAll" [value]="ledgerentry.ledgerentry_ID"
           [disabled]="disabled">
           {{ ledgerentry.transaction.transaction_DATE }} - {{
-          ledgerentry.ledgeraccount.ledgeraccount_NAME}}
+          ledgerentry.journal.journal_NAME}}
         </ng-option>
       </ng-select>
     </div>
@@ -150,11 +150,9 @@
           alignment="left"></dxi-column>
         <dxi-column dataField="transaction.transaction_DATE" caption="Transaction Date" cssClass="myClass"
           alignment="left"></dxi-column>
-        <dxi-column dataField="ledgeraccount.ledgeraccount_NAME" caption="Account" cssClass="myClass"
-          alignment="left"></dxi-column>
+        <dxi-column dataField="journal.journal_NAME" caption="Account" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="credit_AMOUNT" caption="Credit" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="debit_AMOUNT" caption="Debit" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="ledgerentry_DESC" caption="Description" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass"
           alignment="center"></dxi-column>
 
@@ -191,11 +189,9 @@
           alignment="left"></dxi-column>
         <dxi-column dataField="transaction.transaction_DATE" caption="Transaction Date" cssClass="myClass"
           alignment="left"></dxi-column>
-        <dxi-column dataField="ledgeraccount.ledgeraccount_NAME" caption="Account" cssClass="myClass"
-          alignment="left"></dxi-column>
+        <dxi-column dataField="journal.journal_NAME" caption="Account" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="credit_AMOUNT" caption="Credit" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="debit_AMOUNT" caption="Debit" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="ledgerentry_DESC" caption="Description" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass"
           alignment="center"></dxi-column>
 
@@ -238,26 +234,13 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-8">
-              <app-transaction #transaction [view]="1" [transactionID]=ledgerentry.transaction_ID
-                (onTransactionChange)="onTransactionChange($event)"></app-transaction>
-            </div>
-            <div class="col-md-4">
-              <br />
-              <button type="button" *ngIf="ledgerentry.ledgerentry_ID==0" (click)="transactionAddNew()"
-                class="btn btn-secondary btn-sm">
-                <i class="fas fa-plus fa-fw"></i> Add New Transaction
-              </button>
-            </div>
-          </div>
-          <div class="row">
             <div class="col-md-10">
-              <app-ledgeraccount #ledgeraccount [view]="1" [ledgeraccountID]=ledgerentry.ledgeraccount_ID
-                (onLedgeraccountChange)="onLedgeraccountChange($event)"></app-ledgeraccount>
+              <app-journal #journal [view]="1" [journalID]=ledgerentry.journal_ID
+                (onJournalChange)="onJournalChange($event)"></app-journal>
             </div>
             <div class="col-md-2">
               <br />
-              <button type="button" *ngIf="ledgerentry.ledgerentry_ID==0" (click)="ledgeraccountAddNew()"
+              <button type="button" *ngIf="ledgerentry.ledgerentry_ID==0" (click)="journalAddNew()"
                 class="btn btn-secondary btn-sm">
                 <i class="fas fa-plus fa-fw"></i> Add New Ledger Account
               </button>
@@ -276,15 +259,6 @@
                 <label class="control-label"> Debit <span style="color:red">*</span></label>
                 <input type="text" class="form-control" name="debit_AMOUNT" [(ngModel)]="ledgerentry.debit_AMOUNT"
                   maxlength="50" required>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <label class="control-label"> Description <span style="color:red">*</span></label>
-                <input type="text" class="form-control" name="ledgerentry_DESC"
-                  [(ngModel)]="ledgerentry.ledgerentry_DESC" maxlength="50" required>
               </div>
             </div>
           </div>
@@ -330,26 +304,13 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-8">
-              <app-transaction #transaction [view]="1" [transactionID]=ledgerentry.transaction_ID
-                (onTransactionChange)="onTransactionChange($event)"></app-transaction>
-            </div>
-            <div class="col-md-4">
-              <br />
-              <button type="button" *ngIf="ledgerentry.ledgerentry_ID==0" (click)="transactionAddNew()"
-                class="btn btn-secondary btn-sm">
-                <i class="fas fa-plus fa-fw"></i> Add New Transaction
-              </button>
-            </div>
-          </div>
-          <div class="row">
             <div class="col-md-10">
-              <app-ledgeraccount #ledgeraccount [view]="1" [ledgeraccountID]=ledgerentry.ledgeraccount_ID
-                (onLedgeraccountChange)="onLedgeraccountChange($event)"></app-ledgeraccount>
+              <app-journal #journal [view]="1" [journalID]=ledgerentry.journal_ID
+                (onJournalChange)="onJournalChange($event)"></app-journal>
             </div>
             <div class="col-md-2">
               <br />
-              <button type="button" *ngIf="ledgerentry.ledgerentry_ID==0" (click)="ledgeraccountAddNew()"
+              <button type="button" *ngIf="ledgerentry.ledgerentry_ID==0" (click)="journalAddNew()"
                 class="btn btn-secondary btn-sm">
                 <i class="fas fa-plus fa-fw"></i> Add New Ledger Account
               </button>
@@ -368,15 +329,6 @@
                 <label class="control-label"> Debit <span style="color:red">*</span></label>
                 <input type="text" class="form-control" name="debit_AMOUNT" [(ngModel)]="ledgerentry.debit_AMOUNT"
                   maxlength="50" required>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <label class="control-label"> Description <span style="color:red">*</span></label>
-                <input type="text" class="form-control" name="ledgerentry_DESC"
-                  [(ngModel)]="ledgerentry.ledgerentry_DESC" maxlength="50" required>
               </div>
             </div>
           </div>
@@ -446,27 +398,13 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-8">
-              <app-transaction #transaction [view]="1" [disabled]="disabled" [transactionID]=ledgerentry.transaction_ID
-                (onTransactionChange)="onTransactionChange($event)"></app-transaction>
-            </div>
-            <div class="col-md-4">
-              <br />
-              <button type="button" *ngIf="ledgerentry.ledgerentry_ID==0" (click)="transactionAddNew()"
-                class="btn btn-secondary btn-sm">
-                <i class="fas fa-plus fa-fw"></i> Add New Transaction
-              </button>
-            </div>
-          </div>
-          <div class="row">
             <div class="col-md-10">
-              <app-ledgeraccount #ledgeraccount [view]="1" [disabled]='disabled'
-                [ledgeraccountID]=ledgerentry.ledgeraccount_ID
-                (onLedgeraccountChange)="onLedgeraccountChange($event)"></app-ledgeraccount>
+              <app-journal #journal [view]="1" [disabled]='disabled' [journalID]=ledgerentry.journal_ID
+                (onJournalChange)="onJournalChange($event)"></app-journal>
             </div>
             <div class="col-md-2">
               <br />
-              <button type="button" *ngIf="ledgerentry.ledgerentry_ID==0" (click)="ledgeraccountAddNew()"
+              <button type="button" *ngIf="ledgerentry.ledgerentry_ID==0" (click)="journalAddNew()"
                 class="btn btn-secondary btn-sm">
                 <i class="fas fa-plus fa-fw"></i> Add New Ledger Account
               </button>
@@ -485,15 +423,6 @@
                 <label class="control-label"> Debit <span style="color:red">*</span></label>
                 <input type="text" class="form-control" name="debit_AMOUNT" [disabled]="disabled"
                   [(ngModel)]="ledgerentry.debit_AMOUNT" maxlength="50" required>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <label class="control-label"> Description <span style="color:red">*</span></label>
-                <input type="text" class="form-control" name="ledgerentry_DESC"
-                  [(ngModel)]="ledgerentry.ledgerentry_DESC" maxlength="50" [disabled]="disabled">
               </div>
             </div>
           </div>
@@ -536,10 +465,6 @@
   </div>
 </div>
 
-<div aria-labelledby="exampleModalLabel" class="modal fade show" id="addtransaction" role="dialog" tabindex="-1">
-  <app-transaction #addtransaction [view]=3 (cancel)="transactionCancel()"></app-transaction>
-</div>
-
-<div aria-labelledby="exampleModalLabel" class="modal fade show" id="addledgeraccount" role="dialog" tabindex="-1">
-  <app-ledgeraccount #addledgeraccount [view]=3 (cancel)="ledgeraccountCancel()"></app-ledgeraccount>
+<div aria-labelledby="exampleModalLabel" class="modal fade show" id="addjournal" role="dialog" tabindex="-1">
+  <app-journal #addjournal [view]=3 (cancel)="journalCancel()"></app-journal>
 </div>

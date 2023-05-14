@@ -158,8 +158,6 @@
           alignment="left"></dxi-column>
         <dxi-column dataField="balance_CREDIT" caption="Credit" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="balance_DEBIT" caption="Debit" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="trialbalance_DESC" caption="Description" cssClass="myClass"
-          alignment="left"></dxi-column>
         <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass"
           alignment="center"></dxi-column>
 
@@ -202,8 +200,6 @@
           alignment="left"></dxi-column>
         <dxi-column dataField="balance_CREDIT" caption="Credit" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="balance_DEBIT" caption="Debit" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="trialbalance_DESC" caption="Description" cssClass="myClass"
-          alignment="left"></dxi-column>
         <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass"
           alignment="center"></dxi-column>
 
@@ -290,15 +286,6 @@
               </div>
             </div>
           </div>
-          <div class="row">
-            <div class="col-md-12">
-              <div class="form-group">
-                <label class="control-label"> Description <span style="color:red">*</span></label>
-                <textarea type="text" class="form-control" name="trialbalance_DESC"
-                  [(ngModel)]="trialbalance.trialbalance_DESC" maxlength="50"></textarea>
-              </div>
-            </div>
-          </div>
         </div>
         <div class="modal-footer">
           <button type="submit" class="btn btn-primary" [disabled]="f.invalid">
@@ -382,15 +369,6 @@
                 <label class="control-label"> Debit <span style="color:red">*</span></label>
                 <input type="text" class="form-control" name="balance_DEBIT" [(ngModel)]="trialbalance.balance_DEBIT"
                   maxlength="50" required (change)="onDebitChange()" [disabled]="creditdisabled">
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <div class="form-group">
-                <label class="control-label"> Description <span style="color:red">*</span></label>
-                <textarea type="text" class="form-control" name="trialbalance_DESC"
-                  [(ngModel)]="trialbalance.trialbalance_DESC" maxlength="50"></textarea>
               </div>
             </div>
           </div>
@@ -501,15 +479,6 @@
                 <label class="control-label"> Debit <span style="color:red">*</span></label>
                 <input type="text" class="form-control" name="balance_DEBIT" [(ngModel)]="trialbalance.balance_DEBIT"
                   maxlength="50" required (change)="onDebitChange()" [disabled]="creditdisabled">
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <div class="form-group">
-                <label class="control-label"> Description <span style="color:red">*</span></label>
-                <textarea type="text" class="form-control" name="trialbalance_DESC"
-                  [(ngModel)]="trialbalance.trialbalance_DESC" maxlength="50" [disabled]="disabled"></textarea>
               </div>
             </div>
           </div>

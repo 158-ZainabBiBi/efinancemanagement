@@ -6,7 +6,6 @@ import { OnFailService } from '../../../services/on-fail.service';
 
 import { LedgeraccountService } from './ledgeraccount.service';
 import { LedgeraccountclassificationComponent } from '../ledgeraccountclassification/ledgeraccountclassification.component';
-import { TaxcodeComponent } from '../../finance/taxcode/taxcode.component';
 import { LedgeraccounttypeComponent } from '../../lookup/ledgeraccounttype/ledgeraccounttype.component';
 
 @Component({
@@ -19,7 +18,6 @@ export class LedgeraccountComponent implements OnInit {
 
   @ViewChild("ledgeraccountclassification") ledgeraccountclassification: LedgeraccountclassificationComponent;
   @ViewChild("ledgeraccounttype") ledgeraccounttype: LedgeraccounttypeComponent;
-  @ViewChild("taxcode") taxcode: TaxcodeComponent;
 
   @Input()
   view: number = 1;
@@ -54,7 +52,6 @@ export class LedgeraccountComponent implements OnInit {
     ledgeraccount_ID: 0,
     ledgeraccounttype_ID: null,
     ledgeraccountclassification_ID: null,
-    taxcode_ID: null,
 
     ledgeraccount_CODE: null,
     ledgeraccount_NAME: null,
@@ -102,7 +99,6 @@ export class LedgeraccountComponent implements OnInit {
 
     var search = {
       ledgeraccountclassification_ID: this.ledgeraccountclassificationID,
-      taxcode_ID: this.taxcodeID,
     }
 
     if (this.view >= 5 && this.view <= 6 && this.ledgeraccountID) {
@@ -163,12 +159,12 @@ export class LedgeraccountComponent implements OnInit {
   }
 
   onCreditChange() {
-    this.ledgeraccount.balance_CREDIT = 0;
+    this.ledgeraccount.balance_DEBIT = 0;
     this.creditdisabled = true;
   }
 
   onDebitChange() {
-    this.ledgeraccount.balance_DEBIT = 0;
+    this.ledgeraccount.balance_CREDIT = 0;
     this.debitdisabled = true;
   }
 
@@ -177,7 +173,6 @@ export class LedgeraccountComponent implements OnInit {
       ledgeraccount_ID: 0,
       ledgeraccounttype_ID: null,
       ledgeraccountclassification_ID: null,
-      taxcode_ID: null,
 
       ledgeraccount_CODE: null,
       ledgeraccount_NAME: null,
@@ -287,7 +282,6 @@ export class LedgeraccountComponent implements OnInit {
 
   ledgeraccountAdd(ledgeraccount) {
     ledgeraccount.isactive = "Y";
-    ledgeraccount.taxcode_ID = this.taxcode.taxcodeID;
     ledgeraccount.ledgeraccountclassification_ID = this.ledgeraccountclassification.ledgeraccountclassificationID;
 
     this.ledgeraccountservice.add(ledgeraccount).subscribe(response => {
@@ -309,7 +303,6 @@ export class LedgeraccountComponent implements OnInit {
 
   ledgeraccountUpdate(ledgeraccount) {
 
-    ledgeraccount.taxcode_ID = this.taxcode.taxcodeID;
     ledgeraccount.ledgeraccountclassification_ID = this.ledgeraccountclassification.ledgeraccountclassificationID;
 
     if (ledgeraccount.isactive == true) {
@@ -388,7 +381,6 @@ export class LedgeraccountComponent implements OnInit {
 
   ledgeraccountAdvancedSearch(search) {
     this.ledgeraccountclassificationID = search.ledgeraccountclassification_ID;
-    this.taxcodeID = search.taxcode_ID;
 
     this.ledgeraccountservice.advancedSearch(search).subscribe(response => {
       if (response) {
@@ -406,7 +398,6 @@ export class LedgeraccountComponent implements OnInit {
 
   ledgeraccountAdvancedSearchAll(search) {
     this.ledgeraccountclassificationID = search.ledgeraccountclassification_ID;
-    this.taxcodeID = search.taxcode_ID;
 
     this.ledgeraccountservice.advancedSearchAll(search).subscribe(response => {
       if (response) {

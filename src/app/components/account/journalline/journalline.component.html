@@ -139,10 +139,8 @@
         <dxi-column dataField="journalline_CODE" caption="Code" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="ledgeraccount.ledgeraccount_NAME" caption="Account Name" cssClass="myClass"
           alignment="left"></dxi-column>
-        <dxi-column dataField="ledgeraccount.balance_CREDIT" caption="Credit" cssClass="myClass"
-          alignment="left"></dxi-column>
-        <dxi-column dataField="ledgeraccount.balance_DEBIT" caption="Debit" cssClass="myClass"
-          alignment="left"></dxi-column>
+        <dxi-column dataField="balance_CREDIT" caption="Credit" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="balance_DEBIT" caption="Debit" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass"
           alignment="center"></dxi-column>
 
@@ -176,10 +174,8 @@
         <dxi-column dataField="journalline_CODE" caption="Code" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="ledgeraccount.ledgeraccount_NAME" caption="Account Name" cssClass="myClass"
           alignment="left"></dxi-column>
-        <dxi-column dataField="ledgeraccount.balance_CREDIT" caption="Credit" cssClass="myClass"
-          alignment="left"></dxi-column>
-        <dxi-column dataField="ledgeraccount.balance_DEBIT" caption="Debit" cssClass="myClass"
-          alignment="left"></dxi-column>
+        <dxi-column dataField="balance_CREDIT" caption="Credit" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="balance_DEBIT" caption="Debit" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass"
           alignment="center"></dxi-column>
 
@@ -234,6 +230,22 @@
               </button>
             </div>
           </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="control-label"> Credit <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="balance_CREDIT" [(ngModel)]="journalline.balance_CREDIT"
+                  maxlength="50" required (change)="onCreditChange()" [disabled]="debitdisabled">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="control-label"> Debit <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="balance_DEBIT" [(ngModel)]="journalline.balance_DEBIT"
+                  maxlength="50" required (change)="onDebitChange()" [disabled]="creditdisabled">
+              </div>
+            </div>
+          </div>
         </div>
         <div class="modal-footer">
           <button type="submit" class="btn btn-primary" [disabled]="f.invalid">
@@ -286,6 +298,22 @@
                 class="btn btn-secondary btn-sm">
                 <i class="fas fa-plus fa-fw"></i> Add New Ledger
               </button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="control-label"> Credit <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="balance_CREDIT" [(ngModel)]="journalline.balance_CREDIT"
+                  maxlength="50" required (change)="onCreditChange()" [disabled]="debitdisabled">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="control-label"> Debit <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="balance_DEBIT" [(ngModel)]="journalline.balance_DEBIT"
+                  maxlength="50" required (change)="onDebitChange()" [disabled]="creditdisabled">
+              </div>
             </div>
           </div>
           <div class="row">
@@ -368,17 +396,19 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-10">
-              <app-ledgeraccount #ledgeraccount [view]="1" [disabled]='disabled'
-                [ledgeraccountID]=journalline.ledgeraccount_ID
-                (onLedgeraccountChange)="onLedgeraccountChange($event)"></app-ledgeraccount>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="control-label"> Credit <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="balance_CREDIT" [(ngModel)]="journalline.balance_CREDIT"
+                  maxlength="50" required (change)="onCreditChange()" [disabled]="debitdisabled">
+              </div>
             </div>
-            <div class="col-md-2">
-              <br />
-              <button type="button" *ngIf="journalline.journalline_ID==0" (click)="ledgeraccountAddNew()"
-                class="btn btn-secondary btn-sm">
-                <i class="fas fa-plus fa-fw"></i> Add New Ledger Account
-              </button>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="control-label"> Debit <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="balance_DEBIT" [(ngModel)]="journalline.balance_DEBIT"
+                  maxlength="50" required (change)="onDebitChange()" [disabled]="creditdisabled">
+              </div>
             </div>
           </div>
           <div class="row">
