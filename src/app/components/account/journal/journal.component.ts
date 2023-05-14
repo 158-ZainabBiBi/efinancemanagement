@@ -32,6 +32,10 @@ export class JournalComponent implements OnInit {
   @Input()
   disabled: boolean = false;
   @Input()
+  debitdisabled: boolean = false;
+  @Input()
+  creditdisabled: boolean = false;
+  @Input()
   all: boolean = false;
   @Input()
   journalID = null;
@@ -50,7 +54,10 @@ export class JournalComponent implements OnInit {
   journalsAll = [];
   journal = {
     journal_ID: 0,
-    journalline_ID: null,
+    journalline_ID: {
+      balance_CREDIT: null,
+      balance_DEBIT: null,
+    },
     transaction_ID: null,
 
     journal_CODE: null,
@@ -117,14 +124,57 @@ export class JournalComponent implements OnInit {
           text: 'Refresh',
           onClick: this.load.bind(this, true),
         },
+      },
+      {
+        location: 'after',
+        text: `Total Credit: ${this.getTotalCredit()}`,
+      },
+      {
+        location: 'after',
+        text: `Total Debit: ${this.getTotalDebit()}`,
       }
     );
+  }
+
+  getTotalCredit() {
+    let total = 0;
+    this.journalsAll.forEach(account => {
+      const credit = Number(account.balance_CREDIT);
+      if (!isNaN(credit)) {
+        total += credit;
+      }
+    });
+    return total;
+  }
+
+  getTotalDebit() {
+    let total = 0;
+    this.journalsAll.forEach(account => {
+      const debit = Number(account.balance_DEBIT);
+      if (!isNaN(debit)) {
+        total += debit;
+      }
+    });
+    return total;
+  }
+
+  onCreditChange() {
+    this.journal.journalline_ID.balance_DEBIT = 0;
+    this.creditdisabled = true;
+  }
+
+  onDebitChange() {
+    this.journal.journalline_ID.balance_CREDIT = 0;
+    this.debitdisabled = true;
   }
 
   add() {
     this.journal = {
       journal_ID: 0,
-      journalline_ID: null,
+      journalline_ID: {
+        balance_CREDIT: null,
+        balance_DEBIT: null,
+      },
       transaction_ID: null,
 
       journal_CODE: null,

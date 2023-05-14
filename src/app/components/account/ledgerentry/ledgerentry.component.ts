@@ -27,6 +27,10 @@ export class LedgerentryComponent implements OnInit {
   @Input()
   disabled: boolean = false;
   @Input()
+  debitdisabled: boolean = false;
+  @Input()
+  creditdisabled: boolean = false;
+  @Input()
   all: boolean = false;
   @Input()
   ledgerentryID = null;
@@ -47,6 +51,7 @@ export class LedgerentryComponent implements OnInit {
 
     ledgerentry_CODE: null,
     ledgerentry_NAME: null,
+
     credit_AMOUNT: null,
     debit_AMOUNT: null,
 
@@ -111,14 +116,60 @@ export class LedgerentryComponent implements OnInit {
           text: 'Refresh',
           onClick: this.load.bind(this, true),
         },
+      },
+      {
+        location: 'after',
+        text: `Total Credit: ${this.getTotalCredit()}`,
+      },
+      {
+        location: 'after',
+        text: `Total Debit: ${this.getTotalDebit()}`,
       }
     );
+  }
+
+  getTotalCredit() {
+    let total = 0;
+    this.ledgerentriesAll.forEach(account => {
+      const credit = Number(account.credit_AMOUNT);
+      if (!isNaN(credit)) {
+        total += credit;
+      }
+    });
+    return total;
+  }
+
+  getTotalDebit() {
+    let total = 0;
+    this.ledgerentriesAll.forEach(account => {
+      const debit = Number(account.debit_AMOUNT);
+      if (!isNaN(debit)) {
+        total += debit;
+      }
+    });
+    return total;
+  }
+
+  onCreditChange() {
+    this.ledgerentry.debit_AMOUNT = 0;
+    this.creditdisabled = true;
+  }
+
+  onDebitChange() {
+    this.ledgerentry.credit_AMOUNT = 0;
+    this.debitdisabled = true;
   }
 
   add() {
     this.ledgerentry = {
       ledgerentry_ID: 0,
-      journal_ID: null,
+      journal_ID: {
+        journalline_ID: {
+          balance_CREDIT: null,
+          balance_DEBIT: null,
+        },
+        transaction_ID: null,
+      },
 
       ledgerentry_CODE: null,
       ledgerentry_NAME: null,
@@ -142,8 +193,7 @@ export class LedgerentryComponent implements OnInit {
   }
 
   onJournalChange(journal) {
-    // this.ledgerentry.ledgerentry_NAME = journal.journal_NAME;
-    // this.ledgerentry.ledgerentry_DESC = journal.journal_DESC;
+    this.ledgerentry.ledgerentry_NAME = journal.journal_NAME;
   }
 
   update(row) {

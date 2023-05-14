@@ -50,10 +50,10 @@ export class LedgeraccountComponent implements OnInit {
   ledgeraccountsAll = [];
   ledgeraccount = {
     ledgeraccount_ID: 0,
-    ledgeraccounttype_ID: null,
     ledgeraccountclassification_ID: null,
 
     ledgeraccount_CODE: null,
+    ledgeraccount_DATE: null,
     ledgeraccount_NAME: null,
     ledgeraccount_DESC: null,
 
@@ -125,14 +125,14 @@ export class LedgeraccountComponent implements OnInit {
           onClick: this.load.bind(this, true),
         },
       },
-      {
-        location: 'after',
-        text: `Total Credit: ${this.getTotalCredit()}`,
-      },
-      {
-        location: 'after',
-        text: `Total Debit: ${this.getTotalDebit()}`,
-      }
+      // {
+      //   location: 'after',
+      //   text: `Total Credit: ${this.getTotalCredit()}`,
+      // },
+      // {
+      //   location: 'after',
+      //   text: `Total Debit: ${this.getTotalDebit()}`,
+      // }
     );
   }
 
@@ -171,10 +171,10 @@ export class LedgeraccountComponent implements OnInit {
   add() {
     this.ledgeraccount = {
       ledgeraccount_ID: 0,
-      ledgeraccounttype_ID: null,
       ledgeraccountclassification_ID: null,
 
       ledgeraccount_CODE: null,
+      ledgeraccount_DATE: null,
       ledgeraccount_NAME: null,
       ledgeraccount_DESC: null,
 

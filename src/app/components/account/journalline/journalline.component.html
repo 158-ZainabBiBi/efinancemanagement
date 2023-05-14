@@ -6,7 +6,8 @@
     <div class="col-md-12">
       <ng-select [(ngModel)]="journallineID" [disabled]="disabled" name="journallineID" (change)="onChange($event)">
         <ng-option *ngFor="let journalline of journallinesAll" [value]="journalline.journalline_ID">
-          {{ journalline.journalline_CODE }} - {{ journalline.ledgeraccount.ledgeraccount_NAME }}
+          {{ journalline.ledgeraccount.ledgeraccount_NAME }} - {{ journalline.balance_CREDIT }} - {{
+          journalline.balance_DEBIT }}
         </ng-option>
       </ng-select>
     </div>
@@ -15,7 +16,8 @@
     <div class="col-md-10">
       <ng-select [(ngModel)]="journallineID" name="journallineID" (change)="onChange($event)">
         <ng-option *ngFor="let journalline of journallines" [value]="journalline.journalline_ID" [disabled]="disabled">
-          {{ journalline.journalline_CODE }} - {{ journalline.ledgeraccount.ledgeraccount_NAME }}
+          {{ journalline.ledgeraccount.ledgeraccount_NAME }} - {{ journalline.balance_CREDIT }} - {{
+          journalline.balance_DEBIT }}
         </ng-option>
       </ng-select>
     </div>
@@ -35,7 +37,8 @@
     <div class="col-md-12">
       <ng-select [(ngModel)]="journallineID" [disabled]="disabled" name="journallineID" (change)="onChange($event)">
         <ng-option *ngFor="let journalline of journallinesAll" [value]="journalline.journalline_ID">
-          {{ journalline.journalline_CODE }} - {{ journalline.ledgeraccount.ledgeraccount_NAME }}
+          {{ journalline.ledgeraccount.ledgeraccount_NAME }} - {{ journalline.balance_CREDIT }} - {{
+          journalline.balance_DEBIT }}
         </ng-option>
       </ng-select>
     </div>
@@ -45,7 +48,8 @@
       <ng-select [(ngModel)]="journallineID" name="journallineID" (change)="onChange($event)">
         <ng-option *ngFor="let journalline of journallinesAll" [value]="journalline.journalline_ID"
           [disabled]="disabled">
-          {{ journalline.journalline_CODE }} - {{ journalline.ledgeraccount.ledgeraccount_NAME }}
+          {{ journalline.ledgeraccount.ledgeraccount_NAME }} - {{ journalline.balance_CREDIT }} - {{
+          journalline.balance_DEBIT }}
         </ng-option>
       </ng-select>
     </div>
@@ -66,7 +70,8 @@
       <ng-select [(ngModel)]="journallineID" [disabled]="disabled" name="journallineID">
         <ng-option *ngFor="let journalline of journallinesAll" [value]="journalline.journalline_ID"
           [disabled]="disabled">
-          {{ journalline.journalline_CODE }} - {{ journalline.ledgeraccount.ledgeraccount_NAME }}
+          {{ journalline.ledgeraccount.ledgeraccount_NAME }} - {{ journalline.balance_CREDIT }} - {{
+          journalline.balance_DEBIT }}
         </ng-option>
       </ng-select>
     </div>
@@ -75,7 +80,8 @@
     <div class="col-md-10">
       <ng-select [(ngModel)]="journallineID" [disabled]="disabled" name="journallineID" (change)="onChange($event)">
         <ng-option *ngFor="let journalline of journallines" [value]="journalline.journalline_ID" [disabled]="disabled">
-          {{ journalline.journalline_CODE }} - {{ journalline.ledgeraccount.ledgeraccount_NAME }}
+          {{ journalline.ledgeraccount.ledgeraccount_NAME }} - {{ journalline.balance_CREDIT }} - {{
+          journalline.balance_DEBIT }}
         </ng-option>
       </ng-select>
     </div>
@@ -96,7 +102,8 @@
       <ng-select [(ngModel)]="journallineID" [disabled]="disabled" name="journallineID" (change)="onChange($event)">
         <ng-option *ngFor="let journalline of journallinesAll" [value]="journalline.journalline_ID"
           [disabled]="disabled">
-          {{ journalline.journalline_CODE }} - {{ journalline.ledgeraccount.ledgeraccount_NAME }}
+          {{ journalline.ledgeraccount.ledgeraccount_NAME }} - {{ journalline.balance_CREDIT }} - {{
+          journalline.balance_DEBIT }}
         </ng-option>
       </ng-select>
     </div>
@@ -106,7 +113,8 @@
       <ng-select [(ngModel)]="journallineID" [disabled]="disabled" name="journallineID" (change)="onChange($event)">
         <ng-option *ngFor="let journalline of journallinesAll" [value]="journalline.journalline_ID"
           [disabled]="disabled">
-          {{ journalline.journalline_CODE }} - {{ journalline.ledgeraccount.ledgeraccount_NAME }}
+          {{ journalline.ledgeraccount.ledgeraccount_NAME }} - {{ journalline.balance_CREDIT }} - {{
+          journalline.balance_DEBIT }}
         </ng-option>
       </ng-select>
     </div>

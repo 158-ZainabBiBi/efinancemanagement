@@ -150,14 +150,14 @@
         <dxi-column dataField="trialbalance_NAME" caption="Name" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="balance_FROMDATE" caption="From Date" cssClass="myClass" alignment="center"></dxi-column>
         <dxi-column dataField="balance_TODATE" caption="To Date" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="ledgerentry.ledgeraccount.ledgeraccount_NAME" caption="Account Name" cssClass="myClass"
+        <dxi-column dataField="ledgerentry.ledgerentry_NAME" caption="Account Name" cssClass="myClass"
           alignment="left"></dxi-column>
-        <dxi-column dataField="ledgerentry.credit_AMOUNT" caption="Account Credit" cssClass="myClass"
+        <dxi-column dataField="ledgerentry.credit_AMOUNT" caption="Credit Balance" cssClass="myClass"
           alignment="left"></dxi-column>
-        <dxi-column dataField="ledgerentry.debit_AMOUNT" caption="Account Debit" cssClass="myClass"
+        <dxi-column dataField="ledgerentry.debit_AMOUNT" caption="Debit Balance" cssClass="myClass"
           alignment="left"></dxi-column>
-        <dxi-column dataField="balance_CREDIT" caption="Credit" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="balance_DEBIT" caption="Debit" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="balance_CREDIT" caption="Credit Amount" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="balance_DEBIT" caption="Debit Amount" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass"
           alignment="center"></dxi-column>
 
@@ -192,14 +192,14 @@
         <dxi-column dataField="trialbalance_NAME" caption="Name" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="balance_FROMDATE" caption="From Date" cssClass="myClass" alignment="center"></dxi-column>
         <dxi-column dataField="balance_TODATE" caption="To Date" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="ledgerentry.ledgeraccount.ledgeraccount_NAME" caption="Account Name" cssClass="myClass"
+        <dxi-column dataField="ledgerentry.ledgerentry_NAME" caption="Account Name" cssClass="myClass"
           alignment="left"></dxi-column>
-        <dxi-column dataField="ledgerentry.credit_AMOUNT" caption="Account Credit" cssClass="myClass"
+        <dxi-column dataField="ledgerentry.credit_AMOUNT" caption="Credit Balance" cssClass="myClass"
           alignment="left"></dxi-column>
-        <dxi-column dataField="ledgerentry.debit_AMOUNT" caption="Account Debit" cssClass="myClass"
+        <dxi-column dataField="ledgerentry.debit_AMOUNT" caption="Debit Balance" cssClass="myClass"
           alignment="left"></dxi-column>
-        <dxi-column dataField="balance_CREDIT" caption="Credit" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="balance_DEBIT" caption="Debit" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="balance_CREDIT" caption="Credit Amount" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="balance_DEBIT" caption="Debit Amount" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass"
           alignment="center"></dxi-column>
 
@@ -242,19 +242,6 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-8">
-              <app-ledgerentry #ledgerentry [view]="1" [ledgerentryID]=trialbalance.ledgerentry_ID
-                (onLedgerentryChange)="onLedgerentryChange($event)"></app-ledgerentry>
-            </div>
-            <div class="col-md-4">
-              <br />
-              <button type="button" *ngIf="trialbalance.trialbalance_ID==0" (click)="ledgerentryAddNew()"
-                class="btn btn-secondary btn-sm">
-                <i class="fas fa-plus fa-fw"></i> Add New Entry
-              </button>
-            </div>
-          </div>
-          <div class="row">
             <div class="col-md-6">
               <div class="form-group">
                 <label class="control-label"> From Date <span style="color:red">*</span></label>
@@ -268,6 +255,19 @@
                 <input type="date" class="form-control" name="balance_TODATE" [(ngModel)]="trialbalance.balance_TODATE"
                   maxlength="50" required>
               </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-8">
+              <app-ledgerentry #ledgerentry [view]="1" [ledgerentryID]=trialbalance.ledgerentry_ID
+                (onLedgerentryChange)="onLedgerentryChange($event)"></app-ledgerentry>
+            </div>
+            <div class="col-md-4">
+              <br />
+              <button type="button" *ngIf="trialbalance.trialbalance_ID==0" (click)="ledgerentryAddNew()"
+                class="btn btn-secondary btn-sm">
+                <i class="fas fa-plus fa-fw"></i> Add New Entry
+              </button>
             </div>
           </div>
           <div class="row">
@@ -328,19 +328,6 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-8">
-              <app-ledgerentry #ledgerentry [view]="1" [ledgerentryID]=trialbalance.ledgerentry_ID
-                (onLedgerentryChange)="onLedgerentryChange($event)"></app-ledgerentry>
-            </div>
-            <div class="col-md-4">
-              <br />
-              <button type="button" *ngIf="trialbalance.trialbalance_ID==0" (click)="ledgerentryAddNew()"
-                class="btn btn-secondary btn-sm">
-                <i class="fas fa-plus fa-fw"></i> Add New Entry
-              </button>
-            </div>
-          </div>
-          <div class="row">
             <div class="col-md-6">
               <div class="form-group">
                 <label class="control-label"> From Date <span style="color:red">*</span></label>
@@ -354,6 +341,19 @@
                 <input type="date" class="form-control" name="balance_TODATE" [(ngModel)]="trialbalance.balance_TODATE"
                   maxlength="50" required>
               </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-8">
+              <app-ledgerentry #ledgerentry [view]="1" [ledgerentryID]=trialbalance.ledgerentry_ID
+                (onLedgerentryChange)="onLedgerentryChange($event)"></app-ledgerentry>
+            </div>
+            <div class="col-md-4">
+              <br />
+              <button type="button" *ngIf="trialbalance.trialbalance_ID==0" (click)="ledgerentryAddNew()"
+                class="btn btn-secondary btn-sm">
+                <i class="fas fa-plus fa-fw"></i> Add New Entry
+              </button>
             </div>
           </div>
           <div class="row">
@@ -438,19 +438,6 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-8">
-              <app-ledgerentry #ledgerentry [view]="1" [disabled]="disabled" [ledgerentryID]=trialbalance.ledgerentry_ID
-                (onLedgerentryChange)="onLedgerentryChange($event)"></app-ledgerentry>
-            </div>
-            <div class="col-md-4">
-              <br />
-              <button type="button" *ngIf="trialbalance.trialbalance_ID==0" (click)="ledgerentryAddNew()"
-                class="btn btn-secondary btn-sm">
-                <i class="fas fa-plus fa-fw"></i> Add New Entry
-              </button>
-            </div>
-          </div>
-          <div class="row">
             <div class="col-md-6">
               <div class="form-group">
                 <label class="control-label"> From Date <span style="color:red">*</span></label>
@@ -464,6 +451,19 @@
                 <input type="date" class="form-control" name="balance_TODATE" [disabled]="disabled"
                   [(ngModel)]="trialbalance.balance_TODATE" maxlength="50" required>
               </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-8">
+              <app-ledgerentry #ledgerentry [view]="1" [disabled]="disabled" [ledgerentryID]=trialbalance.ledgerentry_ID
+                (onLedgerentryChange)="onLedgerentryChange($event)"></app-ledgerentry>
+            </div>
+            <div class="col-md-4">
+              <br />
+              <button type="button" *ngIf="trialbalance.trialbalance_ID==0" (click)="ledgerentryAddNew()"
+                class="btn btn-secondary btn-sm">
+                <i class="fas fa-plus fa-fw"></i> Add New Entry
+              </button>
             </div>
           </div>
           <div class="row">

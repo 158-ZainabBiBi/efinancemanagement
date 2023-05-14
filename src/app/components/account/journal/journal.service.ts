@@ -140,7 +140,7 @@ export class JournalService {
   getDetail(response) {
     if (response.journalline_DETAIL != null) {
       response.journalline = this.journallineervice.getDetail(JSON.parse(response.journalline_DETAIL));
-      response.journalline_DETAIL = null
+      response.journalline_DETAIL = null;
     }
 
     if (response.transaction_DETAIL != null) {

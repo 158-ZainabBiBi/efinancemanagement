@@ -50,7 +50,10 @@ export class TrialbalanceComponent implements OnInit {
   trialbalancesAll = [];
   trialbalance = {
     trialbalance_ID: 0,
-    ledgerentry_ID: null,
+    ledgerentry_ID: {
+      credit_AMOUNT: null,
+      debit_AMOUNT: null,
+    },
 
     trialbalance_CODE: null,
     trialbalance_NAME: null,
@@ -171,7 +174,10 @@ export class TrialbalanceComponent implements OnInit {
   add() {
     this.trialbalance = {
       trialbalance_ID: 0,
-      ledgerentry_ID: null,
+      ledgerentry_ID: {
+        credit_AMOUNT: null,
+        debit_AMOUNT: null,
+      },
 
       trialbalance_CODE: null,
       trialbalance_NAME: null,
@@ -197,8 +203,7 @@ export class TrialbalanceComponent implements OnInit {
   }
 
   onLedgerentryChange(ledgerentry) {
-    // this.journal.journal_NAME = ledgerentry.ledgerentry_NAME;
-    // this.journal.journal_DESC = ledgerentry.ledgerentry_DESC;
+    this.trialbalance.trialbalance_NAME = ledgerentry.ledgerentry_NAME;
   }
 
   update(row) {

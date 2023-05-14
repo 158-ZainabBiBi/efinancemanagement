@@ -47,9 +47,9 @@ export class LedgeraccountsComponent implements OnInit {
   edit(row) {
     this.editledgeraccount.ledgeraccount = {
       ledgeraccount_ID: row.data.ledgeraccount_ID,
-      ledgeraccounttype_ID: row.data.ledgeraccounttype_ID,
       ledgeraccountclassification_ID: row.data.ledgeraccountclassification_ID,
       ledgeraccount_CODE: row.data.ledgeraccount_CODE,
+      ledgeraccount_DATE: row.data.ledgeraccount_DATE,
       ledgeraccount_NAME: row.data.ledgeraccount_NAME,
       ledgeraccount_DESC: row.data.ledgeraccount_DESC,
       balance_CREDIT: row.data.balance_CREDIT,
