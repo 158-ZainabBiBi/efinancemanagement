@@ -40,8 +40,9 @@ export class BankdepositsComponent implements OnInit {
   }
 
   addNew() {
-    this.addbankdeposit.add();
-    $("#add").modal("show");
+    this.router.navigate(["/home/bankdeposit"], {});
+    // this.addbankdeposit.add();
+    // $("#add").modal("show");
   }
 
   edit(row) {

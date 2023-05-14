@@ -4,13 +4,13 @@ import { Router, ActivatedRoute } from '@angular/router';
 declare var $: any;
 
 @Component({
-  selector: 'app-chartofaccountview',
-  templateUrl: './chartofaccountview.component.html',
-  styleUrls: ['./chartofaccountview.component.css']
+  selector: 'app-bankdepositview',
+  templateUrl: './bankdepositview.component.html',
+  styleUrls: ['./bankdepositview.component.css']
 })
-export class ChartofaccountviewComponent implements OnInit {
+export class BankdepositviewComponent implements OnInit {
 
-  coaaccountID = 0;
+  bankdepositID = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -19,14 +19,14 @@ export class ChartofaccountviewComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
-      if (params.coaaccount) {
-        this.coaaccountID = params.coaaccount;
+      if (params.bankdeposit) {
+        this.bankdepositID = params.bankdeposit;
       }
     });
   }
 
   cancel() {
-    this.router.navigate(["/home/chartofaccounts"], { queryParams: {} });
+    this.router.navigate(["/home/bankdeposits"], { queryParams: {} });
   }
 
   refresh() {

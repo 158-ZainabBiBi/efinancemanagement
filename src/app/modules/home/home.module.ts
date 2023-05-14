@@ -91,7 +91,6 @@ import { PaymentmethodComponent } from 'src/app/components/lookup/paymentmethod/
 //accounts
 import { JournalsComponent } from 'src/app/modules/accounts/journals/journals.component';
 import { TrialbalancesComponent } from 'src/app/modules/accounts/trialbalances/trialbalances.component';
-import { ChartofaccountsComponent } from 'src/app/modules/accounts/chartofaccounts/chartofaccounts.component';
 import { TransactionsComponent } from 'src/app/modules/accounts/transactions/transactions.component';
 import { BankaccountsComponent } from 'src/app/modules/accounts/bankaccounts/bankaccounts.component';
 import { AccountsComponent } from 'src/app/modules/accounts/accounts/accounts.component';
@@ -101,13 +100,20 @@ import { JournallinesComponent } from 'src/app/modules/accounts/journallines/jou
 import { LedgeraccountsComponent } from 'src/app/modules/accounts/ledgeraccounts/ledgeraccounts.component';
 import { LedgeraccountclassificationsComponent } from 'src/app/modules/accounts/ledgeraccountclassifications/ledgeraccountclassifications.component';
 import { LedgerentriesComponent } from 'src/app/modules/accounts/ledgerentries/ledgerentries.component';
+import { CoaaccountsComponent } from 'src/app/modules/accounts/coaaccounts/coaaccounts.component';
 
 //accountview
-import { ChartofaccountviewComponent } from 'src/app/modules/accounts/chartofaccounts/chartofaccountview/chartofaccountview.component';
 import { BankaccountviewComponent } from 'src/app/modules/accounts/bankaccounts/bankaccountview/bankaccountview.component';
 import { JournalviewComponent } from 'src/app/modules/accounts/journals/journalview/journalview.component';
 import { TransactionviewComponent } from 'src/app/modules/accounts/transactions/transactionview/transactionview.component';
 import { TrialbalanceviewComponent } from 'src/app/modules/accounts/trialbalances/trialbalanceview/trialbalanceview.component';
+import { CoaaccountviewComponent } from 'src/app/modules/accounts/coaaccounts/coaaccountview/coaaccountview.component';
+import { AccountviewComponent } from 'src/app/modules/accounts/accounts/accountview/accountview.component';
+import { BankdepositviewComponent } from 'src/app/modules/accounts/bankdeposits/bankdepositview/bankdepositview.component';
+import { BanktransferviewComponent } from 'src/app/modules/accounts/banktransfers/banktransferview/banktransferview.component';
+import { JournallineviewComponent } from 'src/app/modules/accounts/journallines/journallineview/journallineview.component';
+import { LedgeraccountviewComponent } from 'src/app/modules/accounts/ledgeraccounts/ledgeraccountview/ledgeraccountview.component';
+import { LedgerentryviewComponent } from 'src/app/modules/accounts/ledgerentries/ledgerentryview/ledgerentryview.component';
 
 @NgModule({
   imports: [
@@ -189,7 +195,7 @@ import { TrialbalanceviewComponent } from 'src/app/modules/accounts/trialbalance
 
     JournalsComponent,
     TrialbalancesComponent,
-    ChartofaccountsComponent,
+    CoaaccountsComponent,
     TransactionsComponent,
     BankaccountsComponent,
     AccountsComponent,
@@ -200,11 +206,17 @@ import { TrialbalanceviewComponent } from 'src/app/modules/accounts/trialbalance
     LedgeraccountclassificationsComponent,
     LedgerentriesComponent,
 
-    ChartofaccountviewComponent,
+    CoaaccountviewComponent,
     BankaccountviewComponent,
     JournalviewComponent,
     TransactionviewComponent,
     TrialbalanceviewComponent,
+    AccountviewComponent,
+    BankdepositviewComponent,
+    BanktransferviewComponent,
+    JournallineviewComponent,
+    LedgeraccountviewComponent,
+    LedgerentryviewComponent
   ]
 })
 

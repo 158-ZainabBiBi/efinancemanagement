@@ -14,7 +14,7 @@ import { TermsComponent } from './dashboard/terms/terms.component';
 //accounts
 import { JournalsComponent } from 'src/app/modules/accounts/journals/journals.component';
 import { TrialbalancesComponent } from 'src/app/modules/accounts/trialbalances/trialbalances.component';
-import { ChartofaccountsComponent } from 'src/app/modules/accounts/chartofaccounts/chartofaccounts.component';
+import { CoaaccountsComponent } from 'src/app/modules/accounts/coaaccounts/coaaccounts.component';
 import { TransactionsComponent } from 'src/app/modules/accounts/transactions/transactions.component';
 import { BankaccountsComponent } from 'src/app/modules/accounts/bankaccounts/bankaccounts.component';
 import { AccountsComponent } from 'src/app/modules/accounts/accounts/accounts.component';
@@ -27,10 +27,16 @@ import { LedgerentriesComponent } from 'src/app/modules/accounts/ledgerentries/l
 
 //accountview
 import { BankaccountviewComponent } from 'src/app/modules/accounts/bankaccounts/bankaccountview/bankaccountview.component';
-// import { ChartofaccountviewComponent } from 'src/app/modules/accounts/chartofaccounts/chartofaccountview/chartofaccountview.component';
-// import { JournalviewComponent } from 'src/app/modules/accounts/journals/journalview/journalview.component';
-// import { TransactionviewComponent } from 'src/app/modules/accounts/transactions/transactionview/transactionview.component';
-// import { TrialbalanceviewComponent } from 'src/app/modules/accounts/trialbalances/trialbalanceview/trialbalanceview.component';
+import { JournalviewComponent } from 'src/app/modules/accounts/journals/journalview/journalview.component';
+import { TransactionviewComponent } from 'src/app/modules/accounts/transactions/transactionview/transactionview.component';
+import { TrialbalanceviewComponent } from 'src/app/modules/accounts/trialbalances/trialbalanceview/trialbalanceview.component';
+import { CoaaccountviewComponent } from 'src/app/modules/accounts/coaaccounts/coaaccountview/coaaccountview.component';
+import { AccountviewComponent } from 'src/app/modules/accounts/accounts/accountview/accountview.component';
+import { BankdepositviewComponent } from 'src/app/modules/accounts/bankdeposits/bankdepositview/bankdepositview.component';
+import { BanktransferviewComponent } from 'src/app/modules/accounts/banktransfers/banktransferview/banktransferview.component';
+import { JournallineviewComponent } from 'src/app/modules/accounts/journallines/journallineview/journallineview.component';
+import { LedgeraccountviewComponent } from 'src/app/modules/accounts/ledgeraccounts/ledgeraccountview/ledgeraccountview.component';
+import { LedgerentryviewComponent } from 'src/app/modules/accounts/ledgerentries/ledgerentryview/ledgerentryview.component';
 
 const routes: Routes = [{
   path: '', component: HomeComponent,
@@ -48,24 +54,36 @@ const routes: Routes = [{
     { path: 'bankaccount', component: BankaccountviewComponent },
 
     { path: 'accounts', component: AccountsComponent },
+    { path: 'account', component: AccountviewComponent },
+
     { path: 'banktransfers', component: BanktransfersComponent },
+    { path: 'banktransfer', component: BanktransferviewComponent },
+
     { path: 'bankdeposits', component: BankdepositsComponent },
+    { path: 'bankdeposit', component: BankdepositviewComponent },
+
     { path: 'journallines', component: JournallinesComponent },
+    { path: 'journalline', component: JournallineviewComponent },
+
     { path: 'ledgeraccounts', component: LedgeraccountsComponent },
+    { path: 'ledgeraccount', component: LedgeraccountviewComponent },
+
     { path: 'ledgerentries', component: LedgerentriesComponent },
+    { path: 'ledgerentry', component: LedgerentryviewComponent },
+
     { path: 'ledgeraccountclassifications', component: LedgeraccountclassificationsComponent },
 
     { path: 'transactions', component: TransactionsComponent },
-    // { path: 'transaction', component: TransactionviewComponent },
+    { path: 'transaction', component: TransactionviewComponent },
 
-    { path: 'chartofaccounts', component: ChartofaccountsComponent },
-    // { path: 'chartofaccount', component: ChartofaccountviewComponent },
+    { path: 'chartofaccounts', component: CoaaccountsComponent },
+    { path: 'chartofaccount', component: CoaaccountviewComponent },
 
     { path: 'journals', component: JournalsComponent },
-    // { path: 'journal', component: JournalviewComponent },
+    { path: 'journal', component: JournalviewComponent },
 
     { path: 'trialbalances', component: TrialbalancesComponent },
-    // { path: 'trialbalance', component: TrialbalanceviewComponent },
+    { path: 'trialbalance', component: TrialbalanceviewComponent },
 
     { path: '', redirectTo: 'dashboard' },
     { path: '**', component: NotfoundComponent }

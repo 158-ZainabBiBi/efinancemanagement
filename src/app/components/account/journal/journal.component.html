@@ -153,8 +153,8 @@
         </dxi-column>
 
         <div *dxTemplate="let data of 'cellTemplate'">
-          <a href="javascript:void" class="" (click)="update(data)">
-            <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+          <a href="javascript:void" class="" (click)="showView(data)">
+            <i class="fa fa-eye" aria-hidden="true"></i></a>
         </div>
       </dx-data-grid>
     </div>
@@ -230,30 +230,13 @@
             </div> -->
           </div>
           <div class="row">
-            <div class="col-md-8">
-              <app-transaction #transaction [view]="1" [transactionID]=journal.transaction_ID
-                (onTransactionChange)="onTransactionChange($event)"></app-transaction>
+            <div class="col-md-6">
+              <app-transaction #transaction [view]="1" [transactionID]=journal.transaction_ID></app-transaction>
             </div>
-            <div class="col-md-4">
-              <br />
-              <button type="button" *ngIf="journal.journal_ID==0" (click)="transactionAddNew()"
-                class="btn btn-secondary btn-sm">
-                <i class="fas fa-plus fa-fw"></i> Add New Transaction
-              </button>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-6">
               <div class="form-group">
                 <app-journalline #journalline [view]="1" [journallineID]="journal.journalline_ID"></app-journalline>
               </div>
-            </div>
-            <div class="col-md-4">
-              <br />
-              <button type="button" *ngIf="journal.journal_ID==0" (click)="journallineAddNew()"
-                class="btn btn-secondary btn-sm">
-                <i class="fas fa-plus fa-fw"></i> Add New Line
-              </button>
             </div>
           </div>
         </div>
@@ -298,30 +281,13 @@
             </div> -->
           </div>
           <div class="row">
-            <div class="col-md-8">
-              <app-transaction #transaction [view]="1" [transactionID]=journal.transaction_ID
-                (onTransactionChange)="onTransactionChange($event)"></app-transaction>
+            <div class="col-md-6">
+              <app-transaction #transaction [view]="1" [transactionID]=journal.transaction_ID></app-transaction>
             </div>
-            <div class="col-md-4">
-              <br />
-              <button type="button" *ngIf="journal.journal_ID==0" (click)="transactionAddNew()"
-                class="btn btn-secondary btn-sm">
-                <i class="fas fa-plus fa-fw"></i> Add New Transaction
-              </button>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-6">
               <div class="form-group">
                 <app-journalline #journalline [view]="1" [journallineID]="journal.journalline_ID"></app-journalline>
               </div>
-            </div>
-            <div class="col-md-4">
-              <br />
-              <button type="button" *ngIf="journal.journal_ID==0" (click)="journallineAddNew()"
-                class="btn btn-secondary btn-sm">
-                <i class="fas fa-plus fa-fw"></i> Add New Line
-              </button>
             </div>
           </div>
           <div class="row">

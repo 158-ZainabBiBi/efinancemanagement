@@ -159,8 +159,8 @@
           alignment="center"></dxi-column>
 
         <div *dxTemplate="let data of 'cellTemplate'">
-          <a href="javascript:void" class="" (click)="update(data)">
-            <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+          <a href="javascript:void" class="" (click)="showView(data)">
+            <i class="fa fa-eye" aria-hidden="true"></i></a>
         </div>
       </dx-data-grid>
     </div>
@@ -238,16 +238,8 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-10">
-              <app-journal #journal [view]="1" [journalID]=ledgerentry.journal_ID
-                (onJournalChange)="onJournalChange($event)"></app-journal>
-            </div>
-            <div class="col-md-2">
-              <br />
-              <button type="button" *ngIf="ledgerentry.ledgerentry_ID==0" (click)="journalAddNew()"
-                class="btn btn-secondary btn-sm">
-                <i class="fas fa-plus fa-fw"></i> Add New Journal
-              </button>
+            <div class="col-md-12">
+              <app-journal #journal [view]="1" [journalID]=ledgerentry.journal_ID></app-journal>
             </div>
           </div>
           <div class="row">
@@ -308,16 +300,8 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-10">
-              <app-journal #journal [view]="1" [journalID]=ledgerentry.journal_ID
-                (onJournalChange)="onJournalChange($event)"></app-journal>
-            </div>
-            <div class="col-md-2">
-              <br />
-              <button type="button" *ngIf="ledgerentry.ledgerentry_ID==0" (click)="journalAddNew()"
-                class="btn btn-secondary btn-sm">
-                <i class="fas fa-plus fa-fw"></i> Add New Journal
-              </button>
+            <div class="col-md-12">
+              <app-journal #journal [view]="1" [journalID]=ledgerentry.journal_ID></app-journal>
             </div>
           </div>
           <div class="row">

@@ -40,8 +40,9 @@ export class LedgerentriesComponent implements OnInit {
   }
 
   addNew() {
-    this.addledgerentry.add();
-    $("#add").modal("show");
+    this.router.navigate(["/home/ledgerentry"], {});
+    // this.addledgerentry.add();
+    // $("#add").modal("show");
   }
 
   edit(row) {

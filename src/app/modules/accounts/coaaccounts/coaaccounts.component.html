@@ -5,8 +5,8 @@
         <div class="card-header">
           <div class="align-items-center row">
             <div class="col">
-              <a href="javascript:void" aria-controls="collapse-coaaccountinfo1" aria-expanded="true"
-                class="card-title">Chart of Accounts
+              <a href="javascript:void" aria-controls="collapse-customerinfo1" aria-expanded="true"
+                class="card-title">Chart of Account
               </a>
             </div>
             <div class="col-auto">
@@ -19,7 +19,7 @@
         <div class="card-body">
           <div class="row">
             <div class="col-lg-12">
-              <app-coaaccount #coaaccounts [view]=2 (edit)="edit($event)"></app-coaaccount>
+              <app-coaaccount #coaaccounts [view]=2 (show)="show($event)"></app-coaaccount>
             </div>
           </div>
         </div>

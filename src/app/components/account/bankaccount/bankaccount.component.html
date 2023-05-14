@@ -299,20 +299,6 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-8">
-              <div class="form-group">
-                <app-account #account [view]="1" [accountID]="bankaccount.account_ID"></app-account>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <br />
-              <button type="button" *ngIf="bankaccount.bankaccount_ID==0" (click)="accountAddNew()"
-                class="btn btn-secondary btn-sm">
-                <i class="fas fa-plus fa-fw"></i> Add New Account
-              </button>
-            </div>
-          </div>
-          <div class="row">
             <div class="col-md-6">
               <div class="form-group">
                 <app-bankaccounttype #bankaccounttype
@@ -322,6 +308,13 @@
             <div class="col-md-6">
               <div class="form-group">
                 <app-paymentmethod #paymentmethod [paymentmethodID]="bankaccount.paymentmethod_ID"></app-paymentmethod>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <app-account #account [view]="1" [accountID]="bankaccount.account_ID"></app-account>
               </div>
             </div>
           </div>
@@ -382,17 +375,10 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-12">
               <div class="form-group">
                 <app-account #account [view]="1" [accountID]="bankaccount.account_ID"></app-account>
               </div>
-            </div>
-            <div class="col-md-4">
-              <br />
-              <button type="button" *ngIf="bankaccount.bankaccount_ID==0" (click)="accountAddNew()"
-                class="btn btn-secondary btn-sm">
-                <i class="fas fa-plus fa-fw"></i> Add New Account
-              </button>
             </div>
           </div>
           <div class="row">

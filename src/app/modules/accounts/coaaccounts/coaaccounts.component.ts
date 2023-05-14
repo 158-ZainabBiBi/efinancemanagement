@@ -2,18 +2,18 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { OnFailService } from '../../../services/on-fail.service';
 
-import { CoaaccountComponent } from 'src/app/components/account/coaaccount/coaaccount.component';
-import { CoaaccountService } from 'src/app/components/account/coaaccount/coaaccount.service';
+import { CoaaccountComponent } from '../../../components/account/coaaccount/coaaccount.component'
+import { CoaaccountService } from '../../../components/account/coaaccount/coaaccount.service';
 import { Router, RouterLinkWithHref } from '@angular/router';
 
 declare var $: any;
 
 @Component({
-  selector: 'app-chartofaccounts',
-  templateUrl: './chartofaccounts.component.html',
-  styleUrls: ['./chartofaccounts.component.css']
+  selector: 'app-coaaccounts',
+  templateUrl: './coaaccounts.component.html',
+  styleUrls: ['./coaaccounts.component.css']
 })
-export class ChartofaccountsComponent implements OnInit {
+export class CoaaccountsComponent implements OnInit {
   @ViewChild("coaaccounts") coaaccounts: CoaaccountComponent;
   @ViewChild("addcoaaccount") addcoaaccount: CoaaccountComponent;
   @ViewChild("editcoaaccount") editcoaaccount: CoaaccountComponent;
@@ -28,22 +28,22 @@ export class ChartofaccountsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  show(row) {
-    this.router.navigate(["/home/chartofaccount"], { queryParams: { coaaccount: row.data.coaaccount_ID } });
-  }
-
   refresh() {
     this.coaaccounts.ngOnInit();
     this.cancel();
+  }
+
+  show(row) {
+    this.router.navigate(["/home/chartofaccount"], { queryParams: { coaaccount: row.data.coaaccount_ID } });
   }
 
   view() {
   }
 
   addNew() {
-    // this.router.navigate(["/home/chartofaccount"], {});
-    this.addcoaaccount.add();
-    $("#add").modal("show");
+    this.router.navigate(["/home/chartofaccount"], {});
+    // this.addcoaaccount.add();
+    // $("#add").modal("show");
   }
 
   edit(row) {
@@ -64,7 +64,6 @@ export class ChartofaccountsComponent implements OnInit {
     }
     $("#edit").modal("show");
   }
-
   cancel() {
     $("#add").modal("hide");
     $("#edit").modal("hide");

@@ -162,8 +162,8 @@
           alignment="center"></dxi-column>
 
         <div *dxTemplate="let data of 'cellTemplate'">
-          <a href="javascript:void" class="" (click)="update(data)">
-            <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+          <a href="javascript:void" class="" (click)="showView(data)">
+            <i class="fa fa-eye" aria-hidden="true"></i></a>
         </div>
       </dx-data-grid>
     </div>
@@ -258,16 +258,8 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-8">
-              <app-ledgerentry #ledgerentry [view]="1" [ledgerentryID]=trialbalance.ledgerentry_ID
-                (onLedgerentryChange)="onLedgerentryChange($event)"></app-ledgerentry>
-            </div>
-            <div class="col-md-4">
-              <br />
-              <button type="button" *ngIf="trialbalance.trialbalance_ID==0" (click)="ledgerentryAddNew()"
-                class="btn btn-secondary btn-sm">
-                <i class="fas fa-plus fa-fw"></i> Add New Entry
-              </button>
+            <div class="col-md-12">
+              <app-ledgerentry #ledgerentry [view]="1" [ledgerentryID]=trialbalance.ledgerentry_ID></app-ledgerentry>
             </div>
           </div>
           <div class="row">
@@ -344,16 +336,8 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-8">
-              <app-ledgerentry #ledgerentry [view]="1" [ledgerentryID]=trialbalance.ledgerentry_ID
-                (onLedgerentryChange)="onLedgerentryChange($event)"></app-ledgerentry>
-            </div>
-            <div class="col-md-4">
-              <br />
-              <button type="button" *ngIf="trialbalance.trialbalance_ID==0" (click)="ledgerentryAddNew()"
-                class="btn btn-secondary btn-sm">
-                <i class="fas fa-plus fa-fw"></i> Add New Entry
-              </button>
+            <div class="col-md-12">
+              <app-ledgerentry #ledgerentry [view]="1" [ledgerentryID]=trialbalance.ledgerentry_ID></app-ledgerentry>
             </div>
           </div>
           <div class="row">

@@ -41,9 +41,9 @@ export class JournalsComponent implements OnInit {
   }
 
   addNew() {
-    // this.router.navigate(["/home/journal"], {});
-    this.addjournal.add();
-    $("#add").modal("show");
+    this.router.navigate(["/home/journal"], {});
+    // this.addjournal.add();
+    // $("#add").modal("show");
   }
 
   edit(row) {

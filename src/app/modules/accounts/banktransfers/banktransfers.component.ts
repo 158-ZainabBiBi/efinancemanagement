@@ -40,8 +40,9 @@ export class BanktransfersComponent implements OnInit {
   }
 
   addNew() {
-    this.addbanktransfer.add();
-    $("#add").modal("show");
+    this.router.navigate(["/home/banktransfer"], {});
+    // this.addbanktransfer.add();
+    // $("#add").modal("show");
   }
 
   edit(row) {

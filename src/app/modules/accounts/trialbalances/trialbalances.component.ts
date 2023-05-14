@@ -41,9 +41,9 @@ export class TrialbalancesComponent implements OnInit {
   }
 
   addNew() {
-    // this.router.navigate(["/home/trialbalance"], {});
-    this.addtrialbalance.add();
-    $("#add").modal("show");
+    this.router.navigate(["/home/trialbalance"], {});
+    // this.addtrialbalance.add();
+    // $("#add").modal("show");
   }
 
   edit(row) {

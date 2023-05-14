@@ -40,8 +40,9 @@ export class JournallinesComponent implements OnInit {
   }
 
   addNew() {
-    this.addjournalline.add();
-    $("#add").modal("show");
+    this.router.navigate(["/home/journalline"], {});
+    // this.addjournalline.add();
+    // $("#add").modal("show");
   }
 
   edit(row) {
