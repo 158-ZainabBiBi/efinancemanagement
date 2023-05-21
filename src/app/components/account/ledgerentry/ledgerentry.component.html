@@ -153,6 +153,16 @@
           alignment="left"></dxi-column>
         <dxi-column dataField="journal.journalline.balance_DEBIT" caption="Debit" cssClass="myClass"
           alignment="left"></dxi-column>
+        <!-- <dxi-column dataField="journal.journalline.balance_CREDIT" caption="Credit" cssClass="myClass" alignment="left">
+          <ng-template dxTemplate="cellTemplate" let-data>
+            <span>{{ data.journal_ID.journalline_ID.balance_CREDIT }}</span>
+          </ng-template>
+        </dxi-column>
+        <dxi-column dataField="journal.journalline.balance_DEBIT" caption="Debit" cssClass="myClass" alignment="left">
+          <ng-template dxTemplate="cellTemplate" let-data>
+            <span>{{ data.journal_ID.journalline_ID.balance_DEBIT }}</span>
+          </ng-template>
+        </dxi-column> -->
         <dxi-column dataField="credit_AMOUNT" caption="Credit Balance" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="debit_AMOUNT" caption="Debit Balance" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass"

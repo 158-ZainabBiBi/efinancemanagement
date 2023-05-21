@@ -47,7 +47,13 @@ export class LedgerentryComponent implements OnInit {
   ledgerentriesAll = [];
   ledgerentry = {
     ledgerentry_ID: 0,
-    journal_ID: null,
+    journal_ID: {
+      journalline_ID: {
+        balance_CREDIT: null,
+        balance_DEBIT: null,
+      },
+      transaction_ID: null,
+    },
 
     ledgerentry_CODE: null,
     ledgerentry_NAME: null,
@@ -148,6 +154,34 @@ export class LedgerentryComponent implements OnInit {
       }
     });
     return total;
+  }
+
+  calculateBalance(): void {
+    for (let i = 0; i < this.ledgerentriesAll.length; i++) {
+      const entry = this.ledgerentriesAll[i];
+
+      if (i === 0) {
+        // For the first row
+        if (entry.journal_ID.journalline_ID.balance_DEBIT > 0) {
+          entry.debit_AMOUNT = entry.debit_AMOUNT + entry.journal_ID.journalline_ID.balance_DEBIT;
+        }
+      } else {
+        // For remaining rows
+        if (entry.journal_ID.journalline_ID.balance_DEBIT > 0) {
+          entry.debit_AMOUNT = entry.debit_AMOUNT + entry.journal_ID.journalline_ID.balance_DEBIT;
+        } else if (entry.journal_ID.journalline_ID.balance_CREDIT > 0) {
+          entry.debit_AMOUNT = entry.debit_AMOUNT - entry.journal_ID.journalline_ID.balance_CREDIT;
+        }
+      }
+
+      if (entry.credit_AMOUNT > 0) {
+        if (entry.journal_ID.journalline_ID.balance_DEBIT > 0) {
+          entry.credit_AMOUNT = entry.credit_AMOUNT - entry.journal_ID.journalline_ID.balance_DEBIT;
+        } else if (entry.journal_ID.journalline_ID.balance_CREDIT > 0) {
+          entry.credit_AMOUNT = entry.credit_AMOUNT + entry.journal_ID.journalline_ID.balance_CREDIT;
+        }
+      }
+    }
   }
 
   onCreditChange() {
