@@ -6,8 +6,7 @@
     <div class="col-md-12">
       <ng-select [(ngModel)]="ledgerentryID" [disabled]="disabled" name="ledgerentryID" (change)="onChange($event)">
         <ng-option *ngFor="let ledgerentry of ledgerentriesAll" [value]="ledgerentry.ledgerentry_ID">
-          {{ ledgerentry.transaction.transaction_DATE }} - {{
-          ledgerentry.journal.journal_NAME}}
+          {{ ledgerentry.journal.transaction.transaction_DATE }}
         </ng-option>
       </ng-select>
     </div>
@@ -16,8 +15,7 @@
     <div class="col-md-10">
       <ng-select [(ngModel)]="ledgerentryID" name="ledgerentryID" (change)="onChange($event)">
         <ng-option *ngFor="let ledgerentry of ledgerentries" [value]="ledgerentry.ledgerentry_ID" [disabled]="disabled">
-          {{ ledgerentry.transaction.transaction_DATE }} - {{
-          ledgerentry.journal.journal_NAME}}
+          {{ ledgerentry.journal.transaction.transaction_DATE }}
         </ng-option>
       </ng-select>
     </div>
@@ -37,8 +35,7 @@
     <div class="col-md-12">
       <ng-select [(ngModel)]="ledgerentryID" [disabled]="disabled" name="ledgerentryID" (change)="onChange($event)">
         <ng-option *ngFor="let ledgerentry of ledgerentriesAll" [value]="ledgerentry.ledgerentry_ID">
-          {{ ledgerentry.transaction.transaction_DATE }} - {{
-          ledgerentry.journal.journal_NAME}}
+          {{ ledgerentry.journal.transaction.transaction_DATE }}
         </ng-option>
       </ng-select>
     </div>
@@ -48,8 +45,7 @@
       <ng-select [(ngModel)]="ledgerentryID" name="ledgerentryID" (change)="onChange($event)">
         <ng-option *ngFor="let ledgerentry of ledgerentriesAll" [value]="ledgerentry.ledgerentry_ID"
           [disabled]="disabled">
-          {{ ledgerentry.transaction.transaction_DATE }} - {{
-          ledgerentry.journal.journal_NAME}}
+          {{ ledgerentry.journal.transaction.transaction_DATE }}
         </ng-option>
       </ng-select>
     </div>
@@ -70,8 +66,7 @@
       <ng-select [(ngModel)]="ledgerentryID" [disabled]="disabled" name="ledgerentryID">
         <ng-option *ngFor="let ledgerentry of ledgerentriesAll" [value]="ledgerentry.ledgerentry_ID"
           [disabled]="disabled">
-          {{ ledgerentry.transaction.transaction_DATE }} - {{
-          ledgerentry.journal.journal_NAME}}
+          {{ ledgerentry.journal.transaction.transaction_DATE }}
         </ng-option>
       </ng-select>
     </div>
@@ -80,8 +75,7 @@
     <div class="col-md-10">
       <ng-select [(ngModel)]="ledgerentryID" [disabled]="disabled" name="ledgerentryID" (change)="onChange($event)">
         <ng-option *ngFor="let ledgerentry of ledgerentries" [value]="ledgerentry.ledgerentry_ID" [disabled]="disabled">
-          {{ ledgerentry.transaction.transaction_DATE }} - {{
-          ledgerentry.journal.journal_NAME}}
+          {{ ledgerentry.journal.transaction.transaction_DATE }}
         </ng-option>
       </ng-select>
     </div>
@@ -102,8 +96,7 @@
       <ng-select [(ngModel)]="ledgerentryID" [disabled]="disabled" name="ledgerentryID" (change)="onChange($event)">
         <ng-option *ngFor="let ledgerentry of ledgerentriesAll" [value]="ledgerentry.ledgerentry_ID"
           [disabled]="disabled">
-          {{ ledgerentry.transaction.transaction_DATE }} - {{
-          ledgerentry.journal.journal_NAME}}
+          {{ ledgerentry.journal.transaction.transaction_DATE }}
         </ng-option>
       </ng-select>
     </div>
@@ -113,8 +106,7 @@
       <ng-select [(ngModel)]="ledgerentryID" [disabled]="disabled" name="ledgerentryID" (change)="onChange($event)">
         <ng-option *ngFor="let ledgerentry of ledgerentriesAll" [value]="ledgerentry.ledgerentry_ID"
           [disabled]="disabled">
-          {{ ledgerentry.transaction.transaction_DATE }} - {{
-          ledgerentry.journal.journal_NAME}}
+          {{ ledgerentry.journal.transaction.transaction_DATE }}
         </ng-option>
       </ng-select>
     </div>

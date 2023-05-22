@@ -2,7 +2,6 @@ import { Component, OnInit, Input, Output, ViewChild, EventEmitter } from '@angu
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { OnFailService } from '../../../services/on-fail.service';
-
 import { LedgerentryService } from './ledgerentry.service';
 import { JournalComponent } from '../journal/journal.component';
 
@@ -75,7 +74,7 @@ export class LedgerentryComponent implements OnInit {
     this.load(this.isreload);
   }
 
-  load(reload) {
+  load(reload): void {
     if (window.sessionStorage.getItem('ledgerentries') != null) {
       this.ledgerentries = JSON.parse(window.sessionStorage.getItem('ledgerentries'));
     }
@@ -96,7 +95,7 @@ export class LedgerentryComponent implements OnInit {
     }
 
     var search = {
-      journal_ID: this.journalID,
+      journal_ID: this.journalID
     }
 
     if (this.view >= 5 && this.view <= 6 && this.ledgerentryID) {
@@ -215,21 +214,6 @@ export class LedgerentryComponent implements OnInit {
     };
   }
 
-  journalAddNew() {
-    this.addjournal.add();
-    $("#addjournal").modal("show");
-  }
-
-  journalCancel() {
-    $("#addjournal").modal("hide");
-    $("#editjournal").modal("hide");
-    this.journal.journals = this.addjournal.journals;
-  }
-
-  onJournalChange(journal) {
-    this.ledgerentry.ledgerentry_NAME = journal.journal_NAME;
-  }
-
   update(row) {
     this.edit.next(row);
   }
@@ -253,8 +237,23 @@ export class LedgerentryComponent implements OnInit {
   ledgerentryCancel() {
     this.disabled = true;
     if (this.ledgerentry.ledgerentry_ID == 0) {
-      this.router.navigate(["/home/ledgerentries "], {});
+      this.router.navigate(["/home/ledgerentries"], {});
     }
+  }
+
+  journalAddNew() {
+    this.addjournal.add();
+    $("#addjournal").modal("show");
+  }
+
+  journalCancel() {
+    $("#addjournal").modal("hide");
+    $("#editjournal").modal("hide");
+    this.journal.journals = this.addjournal.journals;
+  }
+
+  onJournalChange(journal) {
+    this.ledgerentry.ledgerentry_NAME = journal.journal_NAME;
   }
 
   onChange(ledgerentryID) {
@@ -318,6 +317,8 @@ export class LedgerentryComponent implements OnInit {
           this.toastrservice.warning("Message", " " + response.message);
         } else {
           this.setLedgerentry(this.ledgerentryservice.getDetail(response));
+          // if (this.location != null)
+          //   this.location.setLocation(this.ledgerentry.locations);
         }
       }
     }, error => {
@@ -326,8 +327,8 @@ export class LedgerentryComponent implements OnInit {
   }
 
   ledgerentryAdd(ledgerentry) {
-    ledgerentry.isactive = "Y";
 
+    ledgerentry.isactive = "Y";
     ledgerentry.journal_ID = this.journal.journalID;
 
     this.ledgerentryservice.add(ledgerentry).subscribe(response => {
@@ -362,6 +363,7 @@ export class LedgerentryComponent implements OnInit {
         } else if (response.ledgerentry_ID) {
           this.toastrservice.success("Success", "Ledger Entry Updated");
           this.refresh.next();
+          this.disabled = true;
         } else {
           this.toastrservice.error("Some thing went wrong");
         }
@@ -377,7 +379,7 @@ export class LedgerentryComponent implements OnInit {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else if (response.length > 0) {
-          this.toastrservice.success("Success", "Ledger Entrys Updated");
+          this.toastrservice.success("Success", "Ledger Entry Updated");
           this.refresh.next();
         } else {
           this.toastrservice.error("Some thing went wrong");
@@ -426,6 +428,7 @@ export class LedgerentryComponent implements OnInit {
 
   ledgerentryAdvancedSearch(search) {
     this.journalID = search.journal_ID;
+
 
     this.ledgerentryservice.advancedSearch(search).subscribe(response => {
       if (response) {

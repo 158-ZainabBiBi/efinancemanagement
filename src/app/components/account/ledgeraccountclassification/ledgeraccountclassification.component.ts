@@ -2,7 +2,6 @@ import { Component, OnInit, Input, Output, ViewChild, EventEmitter } from '@angu
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { OnFailService } from '../../../services/on-fail.service';
-
 import { LedgeraccountclassificationService } from './ledgeraccountclassification.service';
 import { LedgeraccounttypeComponent } from '../../lookup/ledgeraccounttype/ledgeraccounttype.component';
 
@@ -61,7 +60,7 @@ export class LedgeraccountclassificationComponent implements OnInit {
     this.load(this.isreload);
   }
 
-  load(reload) {
+  load(reload): void {
     if (window.sessionStorage.getItem('ledgeraccountclassifications') != null) {
       this.ledgeraccountclassifications = JSON.parse(window.sessionStorage.getItem('ledgeraccountclassifications'));
     }
@@ -149,7 +148,7 @@ export class LedgeraccountclassificationComponent implements OnInit {
   ledgeraccountclassificationCancel() {
     this.disabled = true;
     if (this.ledgeraccountclassification.ledgeraccountclassification_ID == 0) {
-      this.router.navigate(["/home/ledgeraccountclassifications "], {});
+      this.router.navigate(["/home/ledgeraccountclassifications"], {});
     }
   }
 
@@ -214,6 +213,8 @@ export class LedgeraccountclassificationComponent implements OnInit {
           this.toastrservice.warning("Message", " " + response.message);
         } else {
           this.setLedgeraccountclassification(this.ledgeraccountclassificationservice.getDetail(response));
+          // if (this.location != null)
+          //   this.location.setLocation(this.ledgeraccountclassification.locations);
         }
       }
     }, error => {
@@ -222,6 +223,7 @@ export class LedgeraccountclassificationComponent implements OnInit {
   }
 
   ledgeraccountclassificationAdd(ledgeraccountclassification) {
+
     ledgeraccountclassification.isactive = "Y";
     ledgeraccountclassification.ledgeraccounttype_ID = this.ledgeraccounttype.ledgeraccounttypeID;
 
@@ -243,7 +245,6 @@ export class LedgeraccountclassificationComponent implements OnInit {
   }
 
   ledgeraccountclassificationUpdate(ledgeraccountclassification) {
-
     ledgeraccountclassification.ledgeraccounttype_ID = this.ledgeraccounttype.ledgeraccounttypeID;
 
     if (ledgeraccountclassification.isactive == true) {
@@ -258,6 +259,7 @@ export class LedgeraccountclassificationComponent implements OnInit {
         } else if (response.ledgeraccountclassification_ID) {
           this.toastrservice.success("Success", "Ledger Account Classification Updated");
           this.refresh.next();
+          this.disabled = true;
         } else {
           this.toastrservice.error("Some thing went wrong");
         }
@@ -273,7 +275,7 @@ export class LedgeraccountclassificationComponent implements OnInit {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else if (response.length > 0) {
-          this.toastrservice.success("Success", "Ledger Account Classifications Updated");
+          this.toastrservice.success("Success", "Ledger Account Classification Updated");
           this.refresh.next();
         } else {
           this.toastrservice.error("Some thing went wrong");
@@ -323,6 +325,7 @@ export class LedgeraccountclassificationComponent implements OnInit {
   ledgeraccountclassificationAdvancedSearch(search) {
     this.ledgeraccounttypeID = search.ledgeraccounttype_ID;
     this.ledgeraccounttypeCode = search.ledgeraccounttype_CODE;
+
 
     this.ledgeraccountclassificationservice.advancedSearch(search).subscribe(response => {
       if (response) {

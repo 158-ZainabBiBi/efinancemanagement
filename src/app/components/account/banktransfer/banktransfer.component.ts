@@ -202,7 +202,7 @@ export class BanktransferComponent implements OnInit {
     this.banktransfer = response;
   }
 
-  setFeecategories(response) {
+  setBanktransfers(response) {
     this.cancel.next();
     return response;
   }
@@ -213,7 +213,7 @@ export class BanktransferComponent implements OnInit {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else {
-          this.banktransfers = this.setFeecategories(this.banktransferservice.getAllDetail(response));
+          this.banktransfers = this.setBanktransfers(this.banktransferservice.getAllDetail(response));
           window.sessionStorage.setItem("banktransfers", JSON.stringify(this.banktransfers));
         }
       }
@@ -228,7 +228,7 @@ export class BanktransferComponent implements OnInit {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else {
-          this.banktransfersAll = this.setFeecategories(this.banktransferservice.getAllDetail(response));
+          this.banktransfersAll = this.setBanktransfers(this.banktransferservice.getAllDetail(response));
           window.sessionStorage.setItem("banktransfersAll", JSON.stringify(this.banktransfersAll));
         }
       }
@@ -328,7 +328,7 @@ export class BanktransferComponent implements OnInit {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else {
-          this.banktransfers = this.setFeecategories(this.banktransferservice.getAllDetail(response));
+          this.banktransfers = this.setBanktransfers(this.banktransferservice.getAllDetail(response));
           window.sessionStorage.setItem("banktransfers", JSON.stringify(this.banktransfers));
         }
       }
@@ -346,7 +346,7 @@ export class BanktransferComponent implements OnInit {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else {
-          this.banktransfersAll = this.setFeecategories(this.banktransferservice.getAllDetail(response));
+          this.banktransfersAll = this.setBanktransfers(this.banktransferservice.getAllDetail(response));
           window.sessionStorage.setItem("banktransfersAll", JSON.stringify(this.banktransfersAll));
         }
       }
@@ -365,7 +365,7 @@ export class BanktransferComponent implements OnInit {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else {
-          this.banktransfers = this.setFeecategories(this.banktransferservice.getAllDetail(response));
+          this.banktransfers = this.setBanktransfers(this.banktransferservice.getAllDetail(response));
           window.sessionStorage.setItem("banktransfers", JSON.stringify(this.banktransfers));
         }
       }
@@ -384,7 +384,7 @@ export class BanktransferComponent implements OnInit {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else {
-          this.banktransfersAll = this.setFeecategories(this.banktransferservice.getAllDetail(response));
+          this.banktransfersAll = this.setBanktransfers(this.banktransferservice.getAllDetail(response));
           window.sessionStorage.setItem("banktransfersAll", JSON.stringify(this.banktransfersAll));
         }
       }

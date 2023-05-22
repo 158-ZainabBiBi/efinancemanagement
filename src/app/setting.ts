@@ -1,7 +1,7 @@
 export const setting = {
   AppsStorePath: "http://apps.cwiztech.com/#/",
   LoginAppPath: "http://accounts.cwiztech.com/#/",
-  application_ID: "CWIZTECHAccountManagement",
+  application_ID: "CWIZTECHAccountManagementDev",
 
   companyName: 'Compuwiz Technologies',
   companyShortName: 'CWizTech',
@@ -15,9 +15,9 @@ export const setting = {
   locationservice_NAME: 'LOCATION',
   personservice_NAME: 'PERSON',
   accountservice_NAME: 'CWIZTECHACCOUNT',
-  customerservice_NAME: 'CWIZTECHCUSTOMER',
+  // customerservice_NAME: 'CWIZTECHCUSTOMER',
   financeservice_NAME: 'CWIZTECHERPFINANCE',
-  // customerservice_NAME: 'KBFSCUSTOMER',
+  customerservice_NAME: 'KBFSCUSTOMER',
   // financeservice_NAME: 'KBFSERPFINANCE',
   productservice_NAME: 'CWIZTECHPRODUCT',
 

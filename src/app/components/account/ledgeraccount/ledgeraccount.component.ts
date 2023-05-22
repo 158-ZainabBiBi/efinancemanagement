@@ -6,7 +6,6 @@ import { OnFailService } from '../../../services/on-fail.service';
 
 import { LedgeraccountService } from './ledgeraccount.service';
 import { LedgeraccountclassificationComponent } from '../ledgeraccountclassification/ledgeraccountclassification.component';
-import { LedgeraccounttypeComponent } from '../../lookup/ledgeraccounttype/ledgeraccounttype.component';
 
 @Component({
   selector: 'app-ledgeraccount',
@@ -17,7 +16,6 @@ export class LedgeraccountComponent implements OnInit {
   @ViewChild(DxDataGridComponent, { static: false }) dataGrid: DxDataGridComponent;
 
   @ViewChild("ledgeraccountclassification") ledgeraccountclassification: LedgeraccountclassificationComponent;
-  @ViewChild("ledgeraccounttype") ledgeraccounttype: LedgeraccounttypeComponent;
 
   @Input()
   view: number = 1;

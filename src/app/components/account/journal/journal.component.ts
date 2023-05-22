@@ -139,7 +139,7 @@ export class JournalComponent implements OnInit {
   getTotalCredit() {
     let total = 0;
     this.journalsAll.forEach(account => {
-      const credit = Number(account.balance_CREDIT);
+      const credit = Number(account.journalline.balance_CREDIT);
       if (!isNaN(credit)) {
         total += credit;
       }
@@ -150,7 +150,7 @@ export class JournalComponent implements OnInit {
   getTotalDebit() {
     let total = 0;
     this.journalsAll.forEach(account => {
-      const debit = Number(account.balance_DEBIT);
+      const debit = Number(account.journalline.balance_DEBIT);
       if (!isNaN(debit)) {
         total += debit;
       }

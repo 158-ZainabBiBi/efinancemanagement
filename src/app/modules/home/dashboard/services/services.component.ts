@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { OnFailService } from 'src/app/services/on-fail.service';
+import 'owl.carousel';
 
 @Component({
   selector: 'app-services',
@@ -65,11 +66,11 @@ export class ServicesComponent implements OnInit {
   }
 
   showbanktransfer() {
-    window.open('http://localhost:4200/#/home/banktransfer', '_blank');
+    window.open('http://localhost:4200/#/home/banktransfers', '_blank');
   }
 
   showbankdeposit() {
-    window.open('http://localhost:4200/#/home/bankdeposit', '_blank');
+    window.open('http://localhost:4200/#/home/bankdeposits', '_blank');
   }
 
   showtransaction() {
@@ -82,6 +83,10 @@ export class ServicesComponent implements OnInit {
 
   showjournalline() {
     window.open('http://localhost:4200/#/home/journallines', '_blank');
+  }
+
+  showledgeraccount() {
+    window.open('http://localhost:4200/#/home/ledgeraccounts', '_blank');
   }
 
   showchartofaccount() {

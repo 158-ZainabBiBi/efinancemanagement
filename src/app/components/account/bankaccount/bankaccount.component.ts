@@ -224,7 +224,7 @@ export class BankaccountComponent implements OnInit {
     this.bankaccount = response;
   }
 
-  setFeecategories(response) {
+  setBankaccounts(response) {
     this.cancel.next();
     return response;
   }
@@ -235,7 +235,7 @@ export class BankaccountComponent implements OnInit {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else {
-          this.bankaccounts = this.setFeecategories(this.bankaccountservice.getAllDetail(response));
+          this.bankaccounts = this.setBankaccounts(this.bankaccountservice.getAllDetail(response));
           window.sessionStorage.setItem("bankaccounts", JSON.stringify(this.bankaccounts));
         }
       }
@@ -250,7 +250,7 @@ export class BankaccountComponent implements OnInit {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else {
-          this.bankaccountsAll = this.setFeecategories(this.bankaccountservice.getAllDetail(response));
+          this.bankaccountsAll = this.setBankaccounts(this.bankaccountservice.getAllDetail(response));
           window.sessionStorage.setItem("bankaccountsAll", JSON.stringify(this.bankaccountsAll));
         }
       }
@@ -357,7 +357,7 @@ export class BankaccountComponent implements OnInit {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else {
-          this.bankaccounts = this.setFeecategories(this.bankaccountservice.getAllDetail(response));
+          this.bankaccounts = this.setBankaccounts(this.bankaccountservice.getAllDetail(response));
           window.sessionStorage.setItem("bankaccounts", JSON.stringify(this.bankaccounts));
         }
       }
@@ -375,7 +375,7 @@ export class BankaccountComponent implements OnInit {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else {
-          this.bankaccountsAll = this.setFeecategories(this.bankaccountservice.getAllDetail(response));
+          this.bankaccountsAll = this.setBankaccounts(this.bankaccountservice.getAllDetail(response));
           window.sessionStorage.setItem("bankaccountsAll", JSON.stringify(this.bankaccountsAll));
         }
       }
@@ -400,7 +400,7 @@ export class BankaccountComponent implements OnInit {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else {
-          this.bankaccounts = this.setFeecategories(this.bankaccountservice.getAllDetail(response));
+          this.bankaccounts = this.setBankaccounts(this.bankaccountservice.getAllDetail(response));
           window.sessionStorage.setItem("bankaccounts", JSON.stringify(this.bankaccounts));
         }
       }
@@ -424,7 +424,7 @@ export class BankaccountComponent implements OnInit {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else {
-          this.bankaccountsAll = this.setFeecategories(this.bankaccountservice.getAllDetail(response));
+          this.bankaccountsAll = this.setBankaccounts(this.bankaccountservice.getAllDetail(response));
           window.sessionStorage.setItem("bankaccountsAll", JSON.stringify(this.bankaccountsAll));
         }
       }

@@ -59,7 +59,6 @@ import { AccountsearchfilterComponent } from 'src/app/components/accountsearchfi
 import { AccountComponent } from 'src/app/components/account/account/account.component';
 import { BankaccountComponent } from 'src/app/components/account/bankaccount/bankaccount.component';
 import { BankdepositComponent } from 'src/app/components/account/bankdeposit/bankdeposit.component';
-import { BankreconciliationComponent } from 'src/app/components/account/bankreconciliation/bankreconciliation.component';
 import { BanktransferComponent } from 'src/app/components/account/banktransfer/banktransfer.component';
 import { CoaaccountComponent } from 'src/app/components/account/coaaccount/coaaccount.component';
 import { JournalComponent } from 'src/app/components/account/journal/journal.component';
@@ -165,7 +164,6 @@ import { LedgerentryviewComponent } from 'src/app/modules/accounts/ledgerentries
     BankaccounttypeComponent,
     BankaccountComponent,
     BankdepositComponent,
-    BankreconciliationComponent,
     BanktransferComponent,
     CoaaccountComponent,
     JournalComponent,

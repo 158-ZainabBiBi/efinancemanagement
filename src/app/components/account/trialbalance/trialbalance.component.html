@@ -439,8 +439,10 @@
           </div>
           <div class="row">
             <div class="col-md-8">
-              <app-ledgerentry #ledgerentry [view]="1" [disabled]="disabled" [ledgerentryID]=trialbalance.ledgerentry_ID
-                (onLedgerentryChange)="onLedgerentryChange($event)"></app-ledgerentry>
+              <div class="form-group">
+                <app-ledgerentry #ledgerentry [view]="1" [disabled]="disabled"
+                  [ledgerentryID]="trialbalance.ledgerentry_ID"></app-ledgerentry>
+              </div>
             </div>
             <div class="col-md-4">
               <br />

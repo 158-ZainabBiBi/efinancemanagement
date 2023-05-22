@@ -8,8 +8,7 @@
         (change)="onChange($event)">
         <ng-option *ngFor="let ledgeraccountclassification of ledgeraccountclassificationsAll"
           [value]="ledgeraccountclassification.ledgeraccountclassification_ID">
-          {{ ledgeraccountclassification.ledgeraccountclassification_NAME }} - {{
-          ledgeraccountclassification.ledgeraccounttype.description }}
+          {{ ledgeraccountclassification.ledgeraccountclassification_NAME }}
         </ng-option>
       </ng-select>
     </div>
@@ -20,8 +19,7 @@
         (change)="onChange($event)">
         <ng-option *ngFor="let ledgeraccountclassification of ledgeraccountclassifications"
           [value]="ledgeraccountclassification.ledgeraccountclassification_ID" [disabled]="disabled">
-          {{ ledgeraccountclassification.ledgeraccountclassification_NAME }} - {{
-          ledgeraccountclassification.ledgeraccounttype.description }}
+          {{ ledgeraccountclassification.ledgeraccountclassification_NAME }}
         </ng-option>
       </ng-select>
     </div>
@@ -43,8 +41,7 @@
         (change)="onChange($event)">
         <ng-option *ngFor="let ledgeraccountclassification of ledgeraccountclassificationsAll"
           [value]="ledgeraccountclassification.ledgeraccountclassification_ID">
-          {{ ledgeraccountclassification.ledgeraccountclassification_NAME }} - {{
-          ledgeraccountclassification.ledgeraccounttype.description }}
+          {{ ledgeraccountclassification.ledgeraccountclassification_NAME }}
         </ng-option>
       </ng-select>
     </div>
@@ -55,8 +52,7 @@
         (change)="onChange($event)">
         <ng-option *ngFor="let ledgeraccountclassification of ledgeraccountclassificationsAll"
           [value]="ledgeraccountclassification.ledgeraccountclassification_ID" [disabled]="disabled">
-          {{ ledgeraccountclassification.ledgeraccountclassification_NAME }} - {{
-          ledgeraccountclassification.ledgeraccounttype.description }}
+          {{ ledgeraccountclassification.ledgeraccountclassification_NAME }}
         </ng-option>
       </ng-select>
     </div>
@@ -77,8 +73,7 @@
       <ng-select [(ngModel)]="ledgeraccountclassificationID" [disabled]="disabled" name="ledgeraccountclassificationID">
         <ng-option *ngFor="let ledgeraccountclassification of ledgeraccountclassificationsAll"
           [value]="ledgeraccountclassification.ledgeraccountclassification_ID" [disabled]="disabled">
-          {{ ledgeraccountclassification.ledgeraccountclassification_NAME }} - {{
-          ledgeraccountclassification.ledgeraccounttype.description }}
+          {{ ledgeraccountclassification.ledgeraccountclassification_NAME }}
         </ng-option>
       </ng-select>
     </div>
@@ -89,8 +84,7 @@
         (change)="onChange($event)">
         <ng-option *ngFor="let ledgeraccountclassification of ledgeraccountclassifications"
           [value]="ledgeraccountclassification.ledgeraccountclassification_ID" [disabled]="disabled">
-          {{ ledgeraccountclassification.ledgeraccountclassification_NAME }} - {{
-          ledgeraccountclassification.ledgeraccounttype.description }}
+          {{ ledgeraccountclassification.ledgeraccountclassification_NAME }}
         </ng-option>
       </ng-select>
     </div>
@@ -112,8 +106,7 @@
         (change)="onChange($event)">
         <ng-option *ngFor="let ledgeraccountclassification of ledgeraccountclassificationsAll"
           [value]="ledgeraccountclassification.ledgeraccountclassification_ID" [disabled]="disabled">
-          {{ ledgeraccountclassification.ledgeraccountclassification_NAME }} - {{
-          ledgeraccountclassification.ledgeraccounttype.description }}
+          {{ ledgeraccountclassification.ledgeraccountclassification_NAME }}
         </ng-option>
       </ng-select>
     </div>
@@ -124,8 +117,7 @@
         (change)="onChange($event)">
         <ng-option *ngFor="let ledgeraccountclassification of ledgeraccountclassificationsAll"
           [value]="ledgeraccountclassification.ledgeraccountclassification_ID" [disabled]="disabled">
-          {{ ledgeraccountclassification.ledgeraccountclassification_NAME }} - {{
-          ledgeraccountclassification.ledgeraccounttype.description }}
+          {{ ledgeraccountclassification.ledgeraccountclassification_NAME }}
         </ng-option>
       </ng-select>
     </div>
@@ -398,7 +390,7 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-12" *ngIf="ledgeraccountclassification.ledgeraccountclassification_ID!=0">
+            <div class="col-md-6" *ngIf="ledgeraccountclassification.ledgeraccountclassification_ID!=0">
               <div class="form-group">
                 <div class="checkbox">
                   <label class="control-label">
@@ -420,13 +412,11 @@
               </button>
               <button *ngIf="ledgeraccountclassification.ledgeraccountclassification_ID!=0 && disabled==false"
                 type="button" data-dismiss="modal" style=" margin-right: 10px; float: right;"
-                (click)='ledgeraccountclassificationUpdate(ledgeraccountclassification)' class="btn btn-primary">
-                Update
+                (click)='ledgeraccountclassificationUpdate(ledgeraccountclassification)' class="btn btn-primary"> Update
               </button>
               <button *ngIf="ledgeraccountclassification.ledgeraccountclassification_ID==0" type="button"
                 data-dismiss="modal" style=" margin-right: 10px; float: right;"
-                (click)='ledgeraccountclassificationAdd(ledgeraccountclassification)' class="btn btn-primary">
-                Save
+                (click)='ledgeraccountclassificationAdd(ledgeraccountclassification)' class="btn btn-primary"> Save
               </button>
             </div>
           </div>
