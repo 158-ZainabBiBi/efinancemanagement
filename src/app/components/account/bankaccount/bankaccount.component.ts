@@ -4,8 +4,8 @@ import { ToastrService } from 'ngx-toastr';
 import { OnFailService } from '../../../services/on-fail.service';
 import { BankaccountService } from './bankaccount.service';
 import { AccountComponent } from '../account/account.component';
-import { PaymentmethodComponent } from '../../lookup/paymentmethod/paymentmethod.component';
-import { BankaccounttypeComponent } from '../../lookup/bankaccounttype/bankaccounttype.component';
+import { PaymentmethodComponent } from '../../lookup/finance/paymentmethod/paymentmethod.component';
+import { BankaccounttypeComponent } from '../../lookup/account/bankaccounttype/bankaccounttype.component';
 import { CustomerComponent } from '../../customer/customer/customer.component';
 import { LocationComponent } from '../../location/location/location.component';
 

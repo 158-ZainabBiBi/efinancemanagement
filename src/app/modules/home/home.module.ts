@@ -34,15 +34,19 @@ import { LegalComponent } from './dashboard/legal/legal.component';
 import { PrivacyComponent } from './dashboard/privacy/privacy.component';
 import { TermsComponent } from './dashboard/terms/terms.component';
 
+//lookup
+import { BankaccounttypeComponent } from 'src/app/components/lookup/account/bankaccounttype/bankaccounttype.component';
+import { CurrencyComponent } from 'src/app/components/lookup/finance/currency/currency.component';
+import { LedgeraccounttypeComponent } from 'src/app/components/lookup/account/ledgeraccounttype/ledgeraccounttype.component';
+import { TransactiontypeComponent } from 'src/app/components/lookup/account/transactiontype/transactiontype.component';
+import { PersontitleComponent } from 'src/app/components/lookup/person/persontitle/persontitle.component';
+import { PaymentmethodComponent } from 'src/app/components/lookup/finance/paymentmethod/paymentmethod.component';
+
 //customer
 import { CustomerComponent } from 'src/app/components/customer/customer/customer.component';
 
-//product
-import { ProductComponent } from 'src/app/components/product/product/product.component';
-
 //person
 import { PersonComponent } from 'src/app/components/person/person/person.component';
-import { PersoncontactComponent } from 'src/app/components/person/personcontact/personcontact.component';
 
 //location
 import { LocationComponent } from 'src/app/components/location/location/location.component';
@@ -51,9 +55,6 @@ import { LocationsearchfilterComponent } from 'src/app/components/location/locat
 
 //finance
 import { TaxcodeComponent } from 'src/app/components/finance/taxcode/taxcode.component';
-
-//searchfilter
-import { AccountsearchfilterComponent } from 'src/app/components/accountsearchfilter/accountsearchfilter.component';
 
 //account
 import { AccountComponent } from 'src/app/components/account/account/account.component';
@@ -69,23 +70,8 @@ import { TransactionComponent } from 'src/app/components/account/transaction/tra
 import { TrialbalanceComponent } from 'src/app/components/account/trialbalance/trialbalance.component';
 import { LedgerentryComponent } from 'src/app/components/account/ledgerentry/ledgerentry.component';
 
-//lookup
-import { BankaccounttypeComponent } from 'src/app/components/lookup/bankaccounttype/bankaccounttype.component';
-import { CurrencyComponent } from 'src/app/components/lookup/currency/currency.component';
-import { GeneralratetypeComponent } from 'src/app/components/lookup/generalratetype/generalratetype.component';
-import { CashflowratetypeComponent } from 'src/app/components/lookup/cashflowratetype/cashflowratetype.component';
-import { ReturnstatusComponent } from 'src/app/components/lookup/returnstatus/returnstatus.component';
-import { SaleordertypeComponent } from 'src/app/components/lookup/saleordertype/saleordertype.component';
-import { CardtypeComponent } from 'src/app/components/lookup/cardtype/cardtype.component';
-import { PostingperiodComponent } from 'src/app/components/lookup/postingperiod/postingperiod.component';
-import { RefundmethodComponent } from 'src/app/components/lookup/refundmethod/refundmethod.component';
-import { CurrencysymbolreplacementComponent } from 'src/app/components/lookup/currencysymbolreplacement/currencysymbolreplacement.component';
-import { LedgeraccounttypeComponent } from 'src/app/components/lookup/ledgeraccounttype/ledgeraccounttype.component';
-import { LedgeraccountgroupComponent } from 'src/app/components/lookup/ledgeraccountgroup/ledgeraccountgroup.component';
-import { TransactiontypeComponent } from 'src/app/components/lookup/transactiontype/transactiontype.component';
-import { ContacttypeComponent } from 'src/app/components/lookup/contacttype/contacttype.component';
-import { PersontitleComponent } from 'src/app/components/lookup/persontitle/persontitle.component';
-import { PaymentmethodComponent } from 'src/app/components/lookup/paymentmethod/paymentmethod.component';
+//searchfilter
+import { AccountsearchfilterComponent } from 'src/app/components/accountsearchfilter/accountsearchfilter.component';
 
 //accounts
 import { JournalsComponent } from 'src/app/modules/accounts/journals/journals.component';
@@ -150,9 +136,7 @@ import { LedgerentryviewComponent } from 'src/app/modules/accounts/ledgerentries
     TermsComponent,
 
     CustomerComponent,
-    ProductComponent,
     PersonComponent,
-    PersoncontactComponent,
 
     LocationComponent,
     LocationleveltypeComponent,
@@ -177,18 +161,8 @@ import { LedgerentryviewComponent } from 'src/app/modules/accounts/ledgerentries
 
     PaymentmethodComponent,
     CurrencyComponent,
-    GeneralratetypeComponent,
-    CashflowratetypeComponent,
-    ReturnstatusComponent,
-    SaleordertypeComponent,
-    CardtypeComponent,
-    PostingperiodComponent,
-    RefundmethodComponent,
-    CurrencysymbolreplacementComponent,
     LedgeraccountclassificationComponent,
-    LedgeraccountgroupComponent,
     TransactiontypeComponent,
-    ContacttypeComponent,
     PersontitleComponent,
 
     JournalsComponent,

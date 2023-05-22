@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { OnFailService } from '../../../services/on-fail.service';
 
-import { CurrencyComponent } from '../../lookup/currency/currency.component';
-import { TransactiontypeComponent } from '../../lookup/transactiontype/transactiontype.component';
+import { CurrencyComponent } from '../../lookup/finance/currency/currency.component';
+import { TransactiontypeComponent } from '../../lookup/account/transactiontype/transactiontype.component';
 import { TransactionService } from './transaction.service';
 import { BankaccountComponent } from '../bankaccount/bankaccount.component';
 

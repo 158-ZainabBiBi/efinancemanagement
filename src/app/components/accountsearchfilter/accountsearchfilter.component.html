@@ -12,43 +12,44 @@
       </div>
       <div class="card-body">
         <div class="row">
-          <div class="col-md-4" *ngIf="bankaccounttype==true">
-            <app-bankaccounttype></app-bankaccounttype>
+          <div class="col-md-4" *ngIf="customer==true">
+            <app-customer></app-customer>
           </div>
-          <div class="col-md-4" *ngIf="cashflowratetype==true">
-            <app-cashflowratetype></app-cashflowratetype>
+          <div class="col-md-4" *ngIf="bankaccount==true">
+            <app-bankaccount></app-bankaccount>
           </div>
-          <div class="col-md-4" *ngIf="generalratetype==true">
-            <app-generalratetype></app-generalratetype>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6" *ngIf="cardtype==true">
-            <app-cardtype></app-cardtype>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6" *ngIf="currencysymbolreplacement==true">
-            <app-currencysymbolreplacement></app-currencysymbolreplacement>
-          </div>
-        </div>
-        <div class="row">
           <div class="col-md-4" *ngIf="account==true">
             <app-account></app-account>
           </div>
-          <div class="col-md-4" *ngIf="refundmethod==true">
-            <app-refundmethod></app-refundmethod>
-          </div>
-          <div class="col-md-4" *ngIf="postingperiod==true">
-            <app-postingperiod></app-postingperiod>
+          <div class="col-md-4" *ngIf="bankaccounttype==true">
+            <app-bankaccounttype></app-bankaccounttype>
           </div>
         </div>
         <div class="row">
-          <div class="col-md-6" *ngIf="returnstatus==true">
-            <app-returnstatus></app-returnstatus>
+          <div class="col-md-4" *ngIf="transaction==true">
+            <app-transaction></app-transaction>
           </div>
-          <div class="col-md-6" *ngIf="saleordertype==true">
-            <app-saleordertype></app-saleordertype>
+          <div class="col-md-4" *ngIf="transactiontype==true">
+            <app-transactiontype></app-transactiontype>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4" *ngIf="journal==true">
+            <app-journal></app-journal>
+          </div>
+          <div class="col-md-4" *ngIf="ledgeraccount==true">
+            <app-ledgeraccount></app-ledgeraccount>
+          </div>
+          <div class="col-md-4" *ngIf="trialbalance==true">
+            <app-trialbalance></app-trialbalance>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4" *ngIf="coaaccount==true">
+            <app-coaaccount></app-coaaccount>
+          </div>
+          <div class="col-md-4" *ngIf="ledgeraccounttype==true">
+            <app-ledgeraccounttype></app-ledgeraccounttype>
           </div>
         </div>
         <div class="row">

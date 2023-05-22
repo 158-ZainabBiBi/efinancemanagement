@@ -1,17 +1,16 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 
 import { AccountComponent } from '../account/account/account.component';
-import { BankaccounttypeComponent } from '../lookup/bankaccounttype/bankaccounttype.component';
-
-import { CardtypeComponent } from '../lookup/cardtype/cardtype.component';
-import { RefundmethodComponent } from '../lookup/refundmethod/refundmethod.component';
-import { PostingperiodComponent } from '../lookup/postingperiod/postingperiod.component';
-import { ReturnstatusComponent } from '../lookup/returnstatus/returnstatus.component';
-import { SaleordertypeComponent } from '../lookup/saleordertype/saleordertype.component';
-import { CurrencysymbolreplacementComponent } from '../lookup/currencysymbolreplacement/currencysymbolreplacement.component'
-
-import { GeneralratetypeComponent } from '../lookup/generalratetype/generalratetype.component';
-import { CashflowratetypeComponent } from '../lookup/cashflowratetype/cashflowratetype.component';
+import { BankaccounttypeComponent } from '../lookup/account/bankaccounttype/bankaccounttype.component';
+import { TransactiontypeComponent } from '../lookup/account/transactiontype/transactiontype.component';
+import { LedgeraccounttypeComponent } from '../lookup/account/ledgeraccounttype/ledgeraccounttype.component';
+import { BankaccountComponent } from '../account/bankaccount/bankaccount.component';
+import { CoaaccountComponent } from '../account/coaaccount/coaaccount.component';
+import { JournalComponent } from '../account/journal/journal.component';
+import { TransactionComponent } from '../account/transaction/transaction.component';
+import { CustomerComponent } from '../customer/customer/customer.component';
+import { LedgeraccountComponent } from '../account/ledgeraccount/ledgeraccount.component';
+import { TrialbalanceComponent } from '../account/trialbalance/trialbalance.component';
 
 @Component({
   selector: 'app-accountsearchfilter',
@@ -20,41 +19,42 @@ import { CashflowratetypeComponent } from '../lookup/cashflowratetype/cashflowra
 })
 export class AccountsearchfilterComponent implements OnInit {
   @ViewChild(AccountComponent) accounts;
-  @ViewChild(BankaccounttypeComponent) bankaccounttypes;
+  @ViewChild(CustomerComponent) customers;
+  @ViewChild(BankaccountComponent) bankaccounts;
+  @ViewChild(TransactionComponent) transactions;
+  @ViewChild(LedgeraccountComponent) ledgeraccounts;
+  @ViewChild(CoaaccountComponent) coaaccounts;
+  @ViewChild(JournalComponent) journals;
+  @ViewChild(TrialbalanceComponent) trialbalances;
 
-  @ViewChild(CardtypeComponent) cardtypes;
-  @ViewChild(RefundmethodComponent) refundmethods;
-  @ViewChild(GeneralratetypeComponent) generalratetypes;
-  @ViewChild(CashflowratetypeComponent) cashflowratetypes;
-  @ViewChild(PostingperiodComponent) postingperiods;
-  @ViewChild(ReturnstatusComponent) returnstatuss;
-  @ViewChild(SaleordertypeComponent) saleordertypes;
-  @ViewChild(CurrencysymbolreplacementComponent) currencysymbolreplacements;
+  @ViewChild(BankaccounttypeComponent) bankaccounttypes;
+  @ViewChild(TransactiontypeComponent) transactiontypes;
+  @ViewChild(LedgeraccounttypeComponent) ledgeraccounttypes;
 
   @Input()
   account: boolean = false;
   @Input()
   bankaccounttype = false;
   @Input()
-  returnauth = false;
+  trialbalance = false;
   @Input()
   customerrefund = false;
   @Input()
-  cardtype = false;
+  transactiontype = false;
   @Input()
-  currencysymbolreplacement = false;
+  journal = false;
   @Input()
-  refundmethod = false;
+  ledgeraccounttype = false;
   @Input()
-  saleordertype = false;
+  coaaccount = false;
   @Input()
-  postingperiod = false;
+  transaction = false;
   @Input()
-  returnstatus = false;
+  ledgeraccount = false;
   @Input()
-  cashflowratetype = false;
+  bankaccount = false;
   @Input()
-  generalratetype = false;
+  customer = false;
 
   @Output() advancedSearch = new EventEmitter();
   @Output() advancedSearchAll = new EventEmitter();
@@ -62,17 +62,17 @@ export class AccountsearchfilterComponent implements OnInit {
   search = {
     account_ID: null,
     bankaccounttype_ID: null,
-    returnauth_ID: null,
+    trialbalance_ID: null,
     customerrefund_ID: null,
 
-    cardtype_ID: null,
-    cashflowratetype_ID: null,
-    generalratetype_ID: null,
-    refundmethod_ID: null,
-    saleordertype_ID: null,
-    postingperiod_ID: null,
-    returnstatus_ID: null,
-    currencysymbolreplacement_ID: null
+    transactiontype_ID: null,
+    bankaccount_ID: null,
+    customer_ID: null,
+    ledgeraccounttype_ID: null,
+    coaaccount_ID: null,
+    transaction_ID: null,
+    ledgeraccount_ID: null,
+    journal_ID: null
   };
   isall = false;
 
@@ -88,22 +88,24 @@ export class AccountsearchfilterComponent implements OnInit {
     if (this.bankaccounttypes)
       this.search.bankaccounttype_ID = this.bankaccounttypes.bankaccounttypeID;
 
-    if (this.generalratetypes)
-      this.search.generalratetype_ID = this.generalratetypes.generalratetypeID;
-    if (this.cashflowratetypes)
-      this.search.cashflowratetype_ID = this.cashflowratetypes.cashflowratetypeID;
-    if (this.refundmethods)
-      this.search.refundmethod_ID = this.refundmethods.refundmethodID;
-    if (this.cardtypes)
-      this.cardtypes.cardtype_ID = this.cardtypes.cardtypeID;
-    if (this.saleordertypes)
-      this.saleordertypes.saleordertype_ID = this.saleordertypes.saleordertypeID;
-    if (this.returnstatuss)
-      this.returnstatuss.returnstatus_ID = this.returnstatuss.returnstatusID;
-    if (this.postingperiods)
-      this.postingperiods.postingperiod_ID = this.postingperiods.postingperiodID;
-    if (this.currencysymbolreplacements)
-      this.search.currencysymbolreplacement_ID = this.currencysymbolreplacements.currencysymbolreplacementID;
+    if (this.customers)
+      this.search.customer_ID = this.customers.customerID;
+    if (this.bankaccounts)
+      this.search.bankaccount_ID = this.bankaccounts.bankaccountID;
+    if (this.ledgeraccounttypes)
+      this.search.ledgeraccounttype_ID = this.ledgeraccounttypes.ledgeraccounttypeID;
+    if (this.transactiontypes)
+      this.transactiontypes.transactiontype_ID = this.transactiontypes.transactiontypeID;
+    if (this.coaaccounts)
+      this.coaaccounts.coaaccount_ID = this.coaaccounts.coaaccountID;
+    if (this.ledgeraccounts)
+      this.ledgeraccounts.ledgeraccount_ID = this.ledgeraccounts.ledgeraccountID;
+    if (this.transactions)
+      this.transactions.transaction_ID = this.transactions.transactionID;
+    if (this.journals)
+      this.search.journal_ID = this.journals.journalID;
+    if (this.trialbalances)
+      this.search.trialbalance_ID = this.trialbalances.trialbalanceID;
 
 
     if (this.isall == true)
@@ -118,22 +120,24 @@ export class AccountsearchfilterComponent implements OnInit {
     if (this.bankaccounttypes)
       this.bankaccounttypes.bankaccounttypeID = null;
 
-    if (this.cardtypes)
-      this.cardtypes.cardtypeID = null;
-    if (this.generalratetypes)
-      this.generalratetypes.generalratetypeID = null;
-    if (this.cashflowratetypes)
-      this.cashflowratetypes.cashflowratetypeID = null;
-    if (this.saleordertypes)
-      this.saleordertypes.saleordertypeID = null;
-    if (this.returnstatuss)
-      this.returnstatuss.returnstatusID = null;
-    if (this.postingperiods)
-      this.postingperiods.postingperiodID = null;
-    if (this.refundmethods)
-      this.refundmethods.refundmethodID = null;
-    if (this.currencysymbolreplacements)
-      this.currencysymbolreplacements.currencysymbolreplacementID = null;
+    if (this.transactiontypes)
+      this.transactiontypes.transactiontypeID = null;
+    if (this.customers)
+      this.customers.customerID = null;
+    if (this.bankaccounts)
+      this.bankaccounts.bankaccountID = null;
+    if (this.coaaccounts)
+      this.coaaccounts.coaaccountID = null;
+    if (this.ledgeraccounts)
+      this.ledgeraccounts.ledgeraccountID = null;
+    if (this.transactions)
+      this.transactions.transactionID = null;
+    if (this.ledgeraccounttypes)
+      this.ledgeraccounttypes.ledgeraccounttypeID = null;
+    if (this.journals)
+      this.journals.journalID = null;
+    if (this.trialbalances)
+      this.trialbalances.trialbalanceID = null;
   }
 
 }

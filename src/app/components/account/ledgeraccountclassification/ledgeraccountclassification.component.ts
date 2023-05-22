@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { OnFailService } from '../../../services/on-fail.service';
 import { LedgeraccountclassificationService } from './ledgeraccountclassification.service';
-import { LedgeraccounttypeComponent } from '../../lookup/ledgeraccounttype/ledgeraccounttype.component';
+import { LedgeraccounttypeComponent } from '../../lookup/account/ledgeraccounttype/ledgeraccounttype.component';
 
 @Component({
   selector: 'app-ledgeraccountclassification',

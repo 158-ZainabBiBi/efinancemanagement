@@ -1,9 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { HttpCallServieService } from '../../../services/http-call-servie.service';
+import { HttpCallServieService } from '../../../../services/http-call-servie.service';
 
-import { OnFailService } from '../../../services/on-fail.service';
-import { LookupService } from '../../../services/lookup.service';
+import { OnFailService } from '../../../../services/on-fail.service';
+import { LookupService } from '../../../../services/lookup.service';
 
 @Component({
   selector: 'app-persontitle',
@@ -45,7 +45,7 @@ export class PersontitleComponent implements OnInit {
       }
     }, error => {
       return;
-    } 
+    }
     );
   }
 }

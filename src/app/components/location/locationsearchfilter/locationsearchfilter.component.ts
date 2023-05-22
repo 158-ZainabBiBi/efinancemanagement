@@ -26,6 +26,8 @@ export class LocationsearchfilterComponent implements OnInit {
   locationtypeID: number = 10;
   @Input()
   locationID: number = 0;
+  @Input()
+  locationsearchfilterID: number = 0;
 
   @Output() advancedSearch = new EventEmitter();
 
