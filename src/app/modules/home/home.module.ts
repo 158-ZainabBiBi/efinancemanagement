@@ -42,8 +42,12 @@ import { TransactiontypeComponent } from 'src/app/components/lookup/account/tran
 import { PersontitleComponent } from 'src/app/components/lookup/person/persontitle/persontitle.component';
 import { PaymentmethodComponent } from 'src/app/components/lookup/finance/paymentmethod/paymentmethod.component';
 
+//common
+import { AddressComponent } from 'src/app/components/common/address/address.component';
+
 //customer
 import { CustomerComponent } from 'src/app/components/customer/customer/customer.component';
+import { CustomersComponent } from '../customers/customers/customers.component';
 
 //person
 import { PersonComponent } from 'src/app/components/person/person/person.component';
@@ -135,7 +139,10 @@ import { LedgerentryviewComponent } from 'src/app/modules/accounts/ledgerentries
     PrivacyComponent,
     TermsComponent,
 
+    AddressComponent,
+
     CustomerComponent,
+    CustomersComponent,
     PersonComponent,
 
     LocationComponent,
@@ -188,7 +195,9 @@ import { LedgerentryviewComponent } from 'src/app/modules/accounts/ledgerentries
     BanktransferviewComponent,
     JournallineviewComponent,
     LedgeraccountviewComponent,
-    LedgerentryviewComponent
+    LedgerentryviewComponent,
+
+
   ]
 })
 

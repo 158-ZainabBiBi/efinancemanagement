@@ -38,6 +38,9 @@ import { JournallineviewComponent } from 'src/app/modules/accounts/journallines/
 import { LedgeraccountviewComponent } from 'src/app/modules/accounts/ledgeraccounts/ledgeraccountview/ledgeraccountview.component';
 import { LedgerentryviewComponent } from 'src/app/modules/accounts/ledgerentries/ledgerentryview/ledgerentryview.component';
 
+//customer
+import { CustomersComponent } from '../customers/customers/customers.component';
+
 const routes: Routes = [{
   path: '', component: HomeComponent,
   children: [
@@ -84,6 +87,8 @@ const routes: Routes = [{
 
     { path: 'trialbalances', component: TrialbalancesComponent },
     { path: 'trialbalance', component: TrialbalanceviewComponent },
+
+    { path: 'customers', component: CustomersComponent },
 
     { path: '', redirectTo: 'dashboard' },
     { path: '**', component: NotfoundComponent }

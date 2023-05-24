@@ -1,10 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { OnFailService } from '../../../services/on-fail.service';
-
-import { CustomerComponent } from '../../../components/customer/customer/customer.component'
-import { CustomerService } from '../../../components/customer/customer/customer.service';
-import { ActivatedRoute, Router, RouterLinkWithHref } from '@angular/router';
+import { CustomerComponent } from 'src/app/components/customer/customer/customer.component';
+import { CustomerService } from 'src/app/components/customer/customer/customer.service';
+import { Router } from '@angular/router';
 
 declare var $: any;
 
@@ -17,22 +16,15 @@ export class CustomersComponent implements OnInit {
   @ViewChild("customers") customers: CustomerComponent;
   @ViewChild("addcustomer") addcustomer: CustomerComponent;
   @ViewChild("editcustomer") editcustomer: CustomerComponent;
-  customerID = 0;
+
   constructor(
     private customerservice: CustomerService,
     private toastrservice: ToastrService,
     private onfailservice: OnFailService,
     private router: Router,
-    private route: ActivatedRoute,
-
   ) { }
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe(params => {
-      if (params.customer) {
-        this.customerID = params.customer;
-      }
-    });
   }
 
   view() {
@@ -48,7 +40,6 @@ export class CustomersComponent implements OnInit {
   }
 
   addNew() {
-    // this.router.navigate(["/home/customer"], {});
     this.addcustomer.add();
     $("#add").modal("show");
   }
@@ -57,8 +48,7 @@ export class CustomersComponent implements OnInit {
     this.editcustomer.customer = {
       customer_ID: row.data.customer_ID,
       person_ID: row.data.person_ID,
-      taxcode_ID: row.data.taxcode_ID,
-      location_ID: row.data.location_ID,
+
       customer_NAME: row.data.customer_NAME,
       customer_CODE: row.data.customer_CODE,
       web_ADDRESS: row.data.web_ADDRESS,
@@ -74,9 +64,13 @@ export class CustomersComponent implements OnInit {
       address_POSTCODE: row.data.address_POSTCODE,
       address_LATITUDE: row.data.address_LATITUDE,
       address_LONGITUDE: row.data.address_LONGITUDE,
+
+      location_ID: row.data.location_ID,
       locations: [],
+
       isactive: row.data.isactive
     };
+
     if (row.data.isactive == "Y") {
       this.editcustomer.customer.isactive = true;
     } else {
@@ -89,4 +83,5 @@ export class CustomersComponent implements OnInit {
     $("#add").modal("hide");
     $("#edit").modal("hide");
   }
+
 }

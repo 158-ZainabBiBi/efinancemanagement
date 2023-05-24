@@ -1,8 +1,10 @@
 import { Component, OnInit, Input, Output, ViewChild, EventEmitter } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { OnFailService } from '../../../services/on-fail.service';
 
+import { PersonComponent } from '../../person/person/person.component';
+import { AddressComponent } from '../../common/address/address.component';
 import { CustomerService } from './customer.service';
 
 @Component({
@@ -11,6 +13,9 @@ import { CustomerService } from './customer.service';
   styleUrls: ['./customer.component.css']
 })
 export class CustomerComponent implements OnInit {
+  @ViewChild("address") address: AddressComponent;
+  @ViewChild("person") person: PersonComponent;
+
 
   @Input()
   view: number = 1;
@@ -21,114 +26,107 @@ export class CustomerComponent implements OnInit {
   @Input()
   all: boolean = false;
   @Input()
+  isreload: boolean = false;
+  @Input()
   customerID = null;
+  @Input()
+  personID = null;
+  @Input()
+  addressID = null;
 
   @Output() edit = new EventEmitter();
   @Output() cancel = new EventEmitter();
   @Output() show = new EventEmitter();
+  @Output() refresh = new EventEmitter();
   @Output() onCustomerChange = new EventEmitter();
 
   customers = [];
   customersAll = [];
   customer = {
     customer_ID: 0,
-    company_ID:0,
-    person_ID:0,
-    taxcode_ID:0,
 
-    currency_ID: 0,
-    hold_ID: 0,
-    addresscountry_ID:0,
-    invoicetype_ID:0,
-    customerstatus_ID:0,
-    pricelevel_ID:0,
-    terms_ID:0,
-    customercategory_ID:0,
-    businesstype_ID:0,
-    businessmarketniche_ID:0,
-    creditterms_ID:0,
+    customer_NAME: null,
+    customer_CODE: null,
+    person_ID: null,
 
-    salesrepemployee_ID:null,
-    netsuite_ID:null,
-    quickbook_ID:null,
-    defaultreceivablesaccout_ID:null,
-
-    customer_NAME:"",
-    customer_CODE:"",
-    customer_NEWCODE:"",
-    web_ADDRESS:"",
-    defaultorder_PRIORITY: "",
-    comments:"",
-    origin_CODE:"",
-    delivery_INSTRUCTIONS:"",
-    opening_HOURS:"",
-    closing_HOURS:"",
-    account:"",
-    start_DATE:"",
-    end_DATE:"",
-    taxreg_NUMBER:null,
-    resale_NUMBER:null,
-    overdue_BALANCE:null,
-    unbilled_ORDERS:null,
-    days_OVERDUE:null,
-    hold_REASON:"",
-    telephone_NUMBER:"",
-    telephone_ALTNUMBER:"",
-    mobile_NUMBER:"",
-    email:"",
-    credit_LIMIT:null,
-    balance:"",
-    deposit_BALANCE:"",
-
-    address_LONGITUDE:"",
-    address_LINE1:"",
-    address_LINE2:"",
-    address_LINE3:"",
-    address_LINE4:"",
-    address_LINE5:"",
-    address_POSTCODE:"",
-    address_LATITUDE:"",
+    address_LINE1: null,
+    address_LINE2: null,
+    address_LINE3: null,
+    address_LINE4: null,
+    address_LINE5: null,
+    address_POSTCODE: null,
+    address_LATITUDE: null,
+    address_LONGITUDE: null,
+    location_ID: null,
     locations: [],
 
-    iscashonlineonly:true,
-    iscreditfacility:true,
-    istemporaryaccount:true,
-    issellonlycustompriceitems:true,
-    isapplycustompricefirst:true,
-    isfranchisee:true,
-    iscashonly:true,
-    isonlinepaymentonly:true,
-    isactive:true,
+    telephone_NUMBER: null,
+    telephone_ALTNUMBER: null,
+    mobile_NUMBER: null,
+    email: null,
+    web_ADDRESS: null,
+
+    isactive: true
   }
 
   constructor(
     private customerservice: CustomerService,
     private toastrservice: ToastrService,
     private onfailservice: OnFailService,
-    private router : Router,
+    private route: ActivatedRoute,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
-    this.customers = JSON.parse(window.sessionStorage.getItem('customers'));
-    this.customersAll = JSON.parse(window.sessionStorage.getItem('customersAll'));
-    if (this.view == 1 && this.disabled == false && this.customers == null) {
-      this.customerGet();
-    } else if (this.view == 1 && this.disabled == true && this.customersAll == null) {
-      this.customerGetAll();
-    } else if (this. view == 2 && this.customersAll == null) {
-      this.customerGetAll();
+    this.load(this.isreload);
+  }
+
+  load(reload): void {
+    if (this.view == 0) {
+      this.customer = JSON.parse(window.sessionStorage.getItem('customerdetail'));
+      this.disabled = true;
     }
 
-    if (this.customerID != 0 && !this.customerID && Number(window.sessionStorage.getItem('customer'))>0) {
+    if (window.sessionStorage.getItem('customers') != null) {
+      this.customers = JSON.parse(window.sessionStorage.getItem('customers'));
+    }
+    if (window.sessionStorage.getItem('customersAll') != null) {
+      this.customersAll = JSON.parse(window.sessionStorage.getItem('customersAll'));
+    }
+    if (this.customerID != 0 && !this.customerID && Number(window.sessionStorage.getItem('customer')) > 0) {
       this.customerID = Number(window.sessionStorage.getItem('customer'));
     }
-    if (this.view == 5 && this.customerID) {
-      window.sessionStorage.setItem("customer", this.customerID);
-      this.customerGetOne(this.customerID);
+
+    if (this.view >= 1 && this.view <= 2 && (this.customers == null || this.customers.length == 0 || reload == true)) {
+      this.customers == null;
+      this.customerGet();
+    }
+    if (((this.view >= 1 && this.view <= 2) || this.view == 10) && (this.customersAll == null || this.customersAll.length == 0 || reload == true)) {
+      this.customersAll == null;
+      this.customerGetAll();
     }
 
-    if (this.customerID == 0)
+    var search = {
+      person_ID: this.personID,
+      address_ID: this.addressID,
+    }
+    if (this.view >= 5 && this.view <= 6 && this.customerID) {
+      window.sessionStorage.setItem("customer", this.customerID);
+      this.customerGetOne(this.customerID);
+      this.disabled = true;
+    } else if ((this.view >= 11 && this.view <= 29) && this.disabled == false && (this.customers == null ||
+      this.customers.length == 0 || reload == true)) {
+      this.customers == null;
+      this.customerAdvancedSearch(search);
+    } else if ((this.view >= 11 && this.view <= 29) && this.disabled == true && (this.customersAll == null ||
+      this.customers.length == 0 || reload == true)) {
+      this.customersAll == null;
+      this.customerAdvancedSearchAll(search);
+    } else if (this.view == 7 || (this.view >= 11 && this.view <= 29)) {
       this.customerID = null;
+      this.customersAll = null;
+      this.customers = null;
+    }
   }
 
   onToolbarPreparing(e) {
@@ -139,7 +137,7 @@ export class CustomerComponent implements OnInit {
         options: {
           width: 136,
           text: 'Refresh',
-          onClick: this.customerGetAll.bind(this),
+          onClick: this.load.bind(this, true),
         },
       }
     );
@@ -148,73 +146,29 @@ export class CustomerComponent implements OnInit {
   add() {
     this.customer = {
       customer_ID: 0,
-      company_ID:0,
-      person_ID:0,
-      taxcode_ID:0,
 
-      currency_ID: 0,
-      hold_ID: 0,
-      addresscountry_ID:0,
-      invoicetype_ID:0,
-      customerstatus_ID:0,
-      pricelevel_ID:0,
-      terms_ID:0,
-      customercategory_ID:0,
-      businesstype_ID:0,
-      businessmarketniche_ID:0,
-      creditterms_ID:0,
+      customer_NAME: null,
+      customer_CODE: null,
+      person_ID: null,
 
-      salesrepemployee_ID:null,
-      netsuite_ID:null,
-      quickbook_ID:null,
-      defaultreceivablesaccout_ID:null,
-
-      customer_NAME:"",
-      customer_CODE:"",
-      customer_NEWCODE:"",
-      web_ADDRESS:"",
-      defaultorder_PRIORITY: "",
-      comments:"",
-      origin_CODE:"",
-      delivery_INSTRUCTIONS:"",
-      opening_HOURS:"",
-      closing_HOURS:"",
-      account:"",
-      start_DATE:"",
-      end_DATE:"",
-      taxreg_NUMBER:null,
-      resale_NUMBER:null,
-      overdue_BALANCE:null,
-      unbilled_ORDERS:null,
-      days_OVERDUE:null,
-      hold_REASON:"",
-      telephone_NUMBER:"",
-      telephone_ALTNUMBER:"",
-      mobile_NUMBER:"",
-      email:"",
-      credit_LIMIT:null,
-      balance:"",
-      deposit_BALANCE:"",
-
-      address_LINE1:"",
-      address_LINE2:"",
-      address_LINE3:"",
-      address_LINE4:"",
-      address_LINE5:"",
-      address_POSTCODE:"",
-      address_LATITUDE:"",
-      address_LONGITUDE:"",
+      address_LINE1: null,
+      address_LINE2: null,
+      address_LINE3: null,
+      address_LINE4: null,
+      address_LINE5: null,
+      address_POSTCODE: null,
+      address_LATITUDE: null,
+      address_LONGITUDE: null,
+      location_ID: null,
       locations: [],
 
-      iscashonlineonly:true,
-      iscreditfacility:true,
-      istemporaryaccount:true,
-      issellonlycustompriceitems:true,
-      isapplycustompricefirst:true,
-      isfranchisee:true,
-      iscashonly:true,
-      isonlinepaymentonly:true,
-      isactive:true,
+      telephone_NUMBER: null,
+      telephone_ALTNUMBER: null,
+      mobile_NUMBER: null,
+      email: null,
+      web_ADDRESS: null,
+
+      isactive: true
     };
   }
 
@@ -234,88 +188,54 @@ export class CustomerComponent implements OnInit {
     this.cancel.next();
   }
 
-  customerEdit(){
+  customerEdit() {
     this.disabled = false;
   }
 
   customerCancel() {
     this.disabled = true;
-    if (this.customer.customer_ID==0) {
+    if (this.customer.customer_ID == 0) {
       this.router.navigate(["/home/customers"], {});
     }
+  }
+
+  reset() {
+    this.add();
   }
 
   onChange(customer) {
     this.onCustomerChange.next(customer);
   }
 
+  // onChange(customerID) {
+  //   for (var i = 0; i < this.customersAll.length; i++) {
+  //     if (this.customersAll[i].customer_ID == customerID) {
+  //       this.onCustomerChange.next(this.customersAll[i]);
+  //       break;
+  //     }
+  //   }
+  // }
+
+  addShop() {
+    this.router.navigate(["/home/customershop"], {});
+  }
+
   setCustomer(response) {
-    if (response.issellonlycustompriceitems == "Y") {
-      response.issellonlycustompriceitems = true;
-    } else {
-      response.issellonlycustompriceitems = false;
-    }
-
-    if (response.isapplycustompricefirst == "Y") {
-      response.isapplycustompricefirst = true;
-    } else {
-      response.isapplycustompricefirst = false;
-    }
-
-    if (response.isfranchisee == "Y") {
-      response.isfranchisee = true;
-    } else {
-      response.isfranchisee = false;
-    }
-
-    if (response.iscashonlineonly == "Y") {
-      response.iscashonlineonly = true;
-    } else {
-      response.iscashonlineonly = false;
-    }
-
-    if (response.iscreditfacility == "Y") {
-      response.iscreditfacility = true;
-    } else {
-      response.iscreditfacility = false;
-    }
-
-    if (response.istemporaryaccount == "Y") {
-      response.istemporaryaccount = true;
-    } else {
-      response.istemporaryaccount = false;
-    }
-
-    if (response.iscashonly == "Y") {
-      response.iscashonly = true;
-    } else {
-      response.iscashonly = false;
-    }
-
-    if (response.isonlinepaymentonly == "Y") {
-      response.isonlinepaymentonly = true;
-    } else {
-      response.isonlinepaymentonly = false;
-    }
-
+    this.disabled = true;
     if (response.isactive == "Y") {
       response.isactive = true;
     } else {
       response.isactive = false;
     }
+
     this.customer = response;
-    this.disabled = true;
+    window.sessionStorage.setItem("customer", this.customerID);
+    window.sessionStorage.setItem("customerdetail", JSON.stringify(this.customer));
   }
 
   setCustomers(response) {
-    if (this.view == 1 && this.disabled == false) {
-      this.customers = response;
-      window.sessionStorage.setItem("customers", JSON.stringify(this.customers));
-    } else {
-      this.customersAll = response;
-      window.sessionStorage.setItem("customersAll", JSON.stringify(this.customersAll));
-    }
     this.cancel.next();
+    return response;
   }
 
   customerGet() {
@@ -323,8 +243,9 @@ export class CustomerComponent implements OnInit {
       if (response) {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
-        } else{
-          this.setCustomers(this.customerservice.getAllDetail(response));
+        } else {
+          this.customers = this.setCustomers(this.customerservice.getAllDetail(response));
+          window.sessionStorage.setItem("customers", JSON.stringify(this.customers));
         }
       }
     }, error => {
@@ -337,8 +258,9 @@ export class CustomerComponent implements OnInit {
       if (response) {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
-        } else{
-          this.setCustomers(this.customerservice.getAllDetail(response));
+        } else {
+          this.customersAll = this.setCustomers(this.customerservice.getAllDetail(response));
+          window.sessionStorage.setItem("customersAll", JSON.stringify(this.customersAll));
         }
       }
     }, error => {
@@ -351,8 +273,10 @@ export class CustomerComponent implements OnInit {
       if (response) {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
-        } else{
+        } else {
           this.setCustomer(this.customerservice.getDetail(response));
+          if (this.address != null)
+            this.address.locationsearchfilter.setLocation(this.customer.locations);
         }
       }
     }, error => {
@@ -360,15 +284,26 @@ export class CustomerComponent implements OnInit {
     })
   }
   customerAdd(customer) {
-    customer.isactive="Y";
-    customer.isfranchisee == "Y"
-    customer.isapplycustompricefirst == "Y"
-    customer.issellonlycustompriceitems == "Y"
-    customer.iscashonlineonly == "Y"
-    customer.iscreditfacility == "Y"
-    customer.istemporaryaccount == "Y"
-    customer.iscashonly == "Y"
-    if(this.view == 5){}else{}
+    if (this.person != null) {
+      customer.person_ID = this.person.personID;
+    }
+
+    customer.location_ID = this.address.locationsearchfilter.locationID;
+    customer.address_POSTCODE = this.address.addressPostCode;
+    customer.address_LINE1 = this.address.addressLine1;
+    customer.address_LINE2 = this.address.addressLine2;
+    customer.address_LINE3 = this.address.addressLine3;
+    customer.address_LINE4 = this.address.addressLine4;
+    customer.address_LINE5 = this.address.addressLine5;
+    customer.address_LATITUDE = this.address.addressLatitude;
+    customer.address_LONGITUDE = this.address.addressLongitude;
+    customer.telephone_NUMBER = this.address.telephoneNumber;
+    customer.telephone_ALTNUMBER = this.address.telephoneAltNumber;
+    customer.mobile_NUMBER = this.address.mobileNumber;
+    customer.email = this.address.email;
+    customer.web_ADDRESS = this.address.webAddress;
+
+    customer.isactive = "Y";
 
     this.customerservice.add(customer).subscribe(response => {
       if (response) {
@@ -376,8 +311,7 @@ export class CustomerComponent implements OnInit {
           this.toastrservice.warning("Message", " " + response.message);
         } else if (response.customer_ID) {
           this.toastrservice.success("Success", "New Customer Added");
-          this.customerGetAll();
-          this.setCustomer(response);
+          this.refresh.next();
           this.disabled = true;
         } else {
           this.toastrservice.error("Some thing went wrong");
@@ -389,47 +323,29 @@ export class CustomerComponent implements OnInit {
   }
 
   customerUpdate(customer) {
-    if(this.view == 5){}else{}
+    if (this.person != null) {
+      customer.person_ID = this.person.personID;
+    }
+
+    customer.location_ID = this.address.locationsearchfilter.locationID;
+    customer.address_POSTCODE = this.address.addressPostCode;
+    customer.address_LINE1 = this.address.addressLine1;
+    customer.address_LINE2 = this.address.addressLine2;
+    customer.address_LINE3 = this.address.addressLine3;
+    customer.address_LINE4 = this.address.addressLine4;
+    customer.address_LINE5 = this.address.addressLine5;
+    customer.address_LATITUDE = this.address.addressLatitude;
+    customer.address_LONGITUDE = this.address.addressLongitude;
+    customer.telephone_NUMBER = this.address.telephoneNumber;
+    customer.telephone_ALTNUMBER = this.address.telephoneAltNumber;
+    customer.mobile_NUMBER = this.address.mobileNumber;
+    customer.email = this.address.email;
+    customer.web_ADDRESS = this.address.webAddress;
 
     if (customer.isactive == true) {
       customer.isactive = "Y";
     } else {
       customer.isactive = "N";
-    }
-    if (customer.isfranchisee == true) {
-      customer.isfranchisee = "Y";
-    } else {
-      customer.isfranchisee = "N";
-    }
-    if (customer.isapplycustompricefirst == true) {
-      customer.isapplycustompricefirst = "Y";
-    } else {
-      customer.isapplycustompricefirst = "N";
-    }
-    if (customer.issellonlycustompriceitems == true) {
-      customer.issellonlycustompriceitems = "Y";
-    } else {
-      customer.issellonlycustompriceitems = "N";
-    }
-    if (customer.iscashonlineonly == "Y") {
-      customer.iscashonlineonly = true;
-    } else {
-      customer.iscashonlineonly = false;
-    }
-    if (customer.iscreditfacility == "Y") {
-      customer.iscreditfacility = true;
-    } else {
-      customer.iscreditfacility = false;
-    }
-    if (customer.istemporaryaccount == "Y") {
-      customer.istemporaryaccount = true;
-    } else {
-      customer.istemporaryaccount = false;
-    }
-    if (customer.iscashonly == "Y") {
-      customer.iscashonly = true;
-    } else {
-      customer.iscashonly = false;
     }
 
     this.customerservice.update(customer, customer.customer_ID).subscribe(response => {
@@ -438,13 +354,99 @@ export class CustomerComponent implements OnInit {
           this.toastrservice.warning("Message", " " + response.message);
         } else if (response.customer_ID) {
           this.toastrservice.success("Success", " Customer Updated");
-          if (this.disabled==true) {
-            this.setCustomer(response);
-          } else {
-            this.disabled = true;
-          }
+          this.refresh.next();
+          this.disabled = true;
         } else {
           this.toastrservice.error("Some thing went wrong");
+        }
+      }
+    }, error => {
+      this.onfailservice.onFail(error);
+    })
+  }
+
+  customerUpdateAll(customers) {
+    this.customerservice.updateAll(customers).subscribe(response => {
+      if (response) {
+        if (response.error && response.status) {
+          this.toastrservice.warning("Message", " " + response.message);
+        } else if (response.length > 0) {
+          this.toastrservice.success("Success", "Transport Route Updated");
+          this.refresh.next();
+        } else {
+          this.toastrservice.error("Some thing went wrong");
+        }
+      }
+    }, error => {
+      this.onfailservice.onFail(error);
+    })
+  }
+
+  customerSearch(str) {
+    var search = {
+      search: str
+    }
+    this.customerservice.search(search).subscribe(response => {
+      if (response) {
+        if (response.error && response.status) {
+          this.toastrservice.warning("Message", " " + response.message);
+        } else {
+          this.customers = this.setCustomers(this.customerservice.getAllDetail(response));
+          window.sessionStorage.setItem("customers", JSON.stringify(this.customers));
+        }
+      }
+    }, error => {
+      this.onfailservice.onFail(error);
+    })
+  }
+
+  customerSearchAll(str) {
+    var search = {
+      search: str
+    }
+    this.customerservice.searchAll(search).subscribe(response => {
+      if (response) {
+        if (response.error && response.status) {
+          this.toastrservice.warning("Message", " " + response.message);
+        } else {
+          this.customersAll = this.setCustomers(this.customerservice.getAllDetail(response));
+          window.sessionStorage.setItem("customersAll", JSON.stringify(this.customersAll));
+        }
+      }
+    }, error => {
+      this.onfailservice.onFail(error);
+    })
+  }
+
+  customerAdvancedSearch(search) {
+    this.personID = search.person_ID;
+    this.customerID = search.customer_ID;
+
+    this.customerservice.advancedSearch(search).subscribe(response => {
+      if (response) {
+        if (response.error && response.status) {
+          this.toastrservice.warning("Message", " " + response.message);
+        } else {
+          this.customers = this.setCustomers(this.customerservice.getAllDetail(response));
+          window.sessionStorage.setItem("customers", JSON.stringify(this.customers));
+        }
+      }
+    }, error => {
+      this.onfailservice.onFail(error);
+    })
+  }
+
+  customerAdvancedSearchAll(search) {
+    this.personID = search.person_ID;
+    this.customerID = search.customer_ID;
+
+    this.customerservice.advancedSearchAll(search).subscribe(response => {
+      if (response) {
+        if (response.error && response.status) {
+          this.toastrservice.warning("Message", " " + response.message);
+        } else {
+          this.customersAll = this.setCustomers(this.customerservice.getAllDetail(response));
+          window.sessionStorage.setItem("customersAll", JSON.stringify(this.customersAll));
         }
       }
     }, error => {

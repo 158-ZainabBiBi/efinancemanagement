@@ -1,26 +1,433 @@
 <div *ngIf="view==1" class="form-group">
-    <label class="custom-label form-label"> Customer
-        <span style="color: red;" [hidden]="disabled" *ngIf="iscompulsory==true">*</span>
-    </label>
-    <div class="row">
-        <div class="col-md-10" *ngIf="disabled==true">
-            <ng-select [(ngModel)]="customerID" [disabled]="disabled" name="customerID">
-                <ng-option *ngFor="let customer of customersAll" [value]="customer.customer_ID">
-                    {{ customer.customer_CODE }} - {{ customer.customer_NAME }}
-                </ng-option>
-            </ng-select>
-        </div>
-        <div class="col-md-10" *ngIf="disabled==false">
-            <ng-select [(ngModel)]="customerID" [disabled]="disabled" name="customerID">
-                <ng-option *ngFor="let customer of customers" [value]="customer.customer_ID">
-                    {{ customer.customer_CODE }} - {{ customer.customer_NAME }}
-                </ng-option>
-            </ng-select>
-        </div>
-        <div class="col-md-2">
-            <button type="button" class="btn btn-light ml-2" [hidden]="disabled" (click)="customerGet()">
-                <i class="fa fa-refresh" aria-hidden="true"></i>
-            </button>
-        </div>
+  <label class="custom-label form-label">Customer
+    <span style="color: red;" [hidden]="disabled" *ngIf="iscompulsory==true">*</span>
+  </label>
+  <div class="row" *ngIf="disabled==true">
+    <div class="col-md-12">
+      <ng-select [(ngModel)]="customerID" [disabled]="disabled" name="customerID" (change)="onChange($event)">
+        <ng-option *ngFor="let customer of customersAll" [value]="customer.customer_ID">
+          {{ customer.customer_CODE }} - {{ customer.customer_NAME }}
+        </ng-option>
+      </ng-select>
     </div>
+  </div>
+  <div class="row" *ngIf="disabled==false">
+    <div class="col-md-10">
+      <ng-select [(ngModel)]="customerID" name="customerID" (change)="onChange($event)">
+        <ng-option *ngFor="let customer of customers" [value]="customer.customer_ID" [disabled]="disabled">
+          {{ customer.customer_CODE }} - {{ customer.customer_NAME }}
+        </ng-option>
+      </ng-select>
+    </div>
+    <div class="col-md-2">
+      <button type="button" class="btn btn-light ml-2" (click)="load(true)">
+        <i class="fa fa-refresh" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="view==10" class="form-group">
+  <label class="custom-label form-label">Customer
+    <span style="color: red;" [hidden]="disabled" *ngIf="iscompulsory==true">*</span>
+  </label>
+  <div class="row" *ngIf="disabled==true">
+    <div class="col-md-12">
+      <ng-select [(ngModel)]="customerID" [disabled]="disabled" name="customerID" (change)="onChange($event)">
+        <ng-option *ngFor="let customer of customersAll" [value]="customer.customer_ID">
+          {{ customer.customer_CODE }} - {{ customer.customer_NAME }}
+        </ng-option>
+      </ng-select>
+    </div>
+  </div>
+  <div class="row" *ngIf="disabled==false">
+    <div class="col-md-10">
+      <ng-select [(ngModel)]="customerID" name="customerID" (change)="onChange($event)">
+        <ng-option *ngFor="let customer of customersAll" [value]="customer.customer_ID" [disabled]="disabled">
+          {{ customer.customer_CODE }} - {{ customer.customer_NAME }}
+        </ng-option>
+      </ng-select>
+    </div>
+    <div class="col-md-2">
+      <button type="button" class="btn btn-light ml-2" (click)="load(true)">
+        <i class="fa fa-refresh" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="view==11" class="form-group">
+  <label class="custom-label form-label">Customer
+    <span style="color: red;" [hidden]="disabled" *ngIf="iscompulsory==true">*</span>
+  </label>
+  <div class="row" *ngIf="disabled==true">
+    <div class="col-md-12">
+      <ng-select [(ngModel)]="customerID" [disabled]="disabled" name="customerID">
+        <ng-option *ngFor="let customer of customersAll" [value]="customer.customer_ID" [disabled]="disabled">
+          {{ customer.customer_CODE }} - {{ customer.customer_NAME }}
+        </ng-option>
+      </ng-select>
+    </div>
+  </div>
+  <div class="row" *ngIf="disabled==false">
+    <div class="col-md-10">
+      <ng-select [(ngModel)]="customerID" [disabled]="disabled" name="customerID" (change)="onChange($event)">
+        <ng-option *ngFor="let customer of customers" [value]="customer.customer_ID" [disabled]="disabled">
+          {{ customer.customer_CODE }} - {{ customer.customer_NAME }}
+        </ng-option>
+      </ng-select>
+    </div>
+    <div class="col-md-2">
+      <button type="button" class="btn btn-light ml-2" [hidden]="disabled" (click)="load(true)">
+        <i class="fa fa-refresh" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="view==19" class="form-group">
+  <label class="custom-label form-label">Customer
+    <span style="color: red;" [hidden]="disabled" *ngIf="iscompulsory==true">*</span>
+  </label>
+  <div class="row" *ngIf="disabled==true">
+    <div class="col-md-12">
+      <ng-select [(ngModel)]="customerID" [disabled]="disabled" name="customerID" (change)="onChange($event)">
+        <ng-option *ngFor="let customer of customersAll" [value]="customer.customer_ID" [disabled]="disabled">
+          {{ customer.customer_CODE }} - {{ customer.customer_NAME }}
+        </ng-option>
+      </ng-select>
+    </div>
+  </div>
+  <div class="row" *ngIf="disabled==false">
+    <div class="col-md-10">
+      <ng-select [(ngModel)]="customerID" [disabled]="disabled" name="customerID" (change)="onChange($event)">
+        <ng-option *ngFor="let customer of customersAll" [value]="customer.customer_ID" [disabled]="disabled">
+          {{ customer.customer_CODE }} - {{ customer.customer_NAME }}
+        </ng-option>
+      </ng-select>
+    </div>
+    <div class="col-md-2">
+      <button type="button" class="btn btn-light ml-2" [hidden]="disabled" (click)="load(true)">
+        <i class="fa fa-refresh" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="view==2" class="form-group">
+  <div class="outer-div">
+    <div class="grid-wrapper">
+      <dx-data-grid #grid id="gridContainer" [dataSource]="customersAll" keyExpr="customer_ID" [showColumnLines]="true"
+        [showRowLines]="true" [showBorders]="true" [rowAlternationEnabled]="true" [allowColumnResizing]="true"
+        [columnMinWidth]="30" [columnAutoWidth]="true" [remoteOperations]="true" height="600" width="100%"
+        (onToolbarPreparing)="onToolbarPreparing($event)">
+        <dxo-filter-row [visible]="true"></dxo-filter-row>
+        <dxo-header-filter [visible]="true"></dxo-header-filter>
+        <dxo-search-panel [visible]="true"></dxo-search-panel>
+        <dxo-group-panel [visible]="false"></dxo-group-panel>
+        <dxo-grouping #expand [autoExpandAll]="false"></dxo-grouping>
+        <dxo-scrolling mode="virtual"></dxo-scrolling>
+        <dxo-sorting mode="multiple"></dxo-sorting>
+        <dxo-selection mode="single"></dxo-selection>
+
+        <dxi-column [width]="75" [allowFiltering]="false" [allowSorting]="false" alignment="center"
+          cellTemplate="cellTemplate">
+        </dxi-column>
+        <dxi-column [width]="100" dataField="customer_CODE" caption="Code" cssClass="myClass" alignment="center">
+        </dxi-column>
+        <dxi-column [width]="400" dataField="customer_NAME" caption="Name" cssClass="myClass" alignment="left">
+        </dxi-column>
+        <dxi-column [width]="400" dataField="address" caption="Address" cssClass="myClass" alignment="left">
+        </dxi-column>
+        <dxi-column [width]="150" dataField="address_POSTCODE" caption="Post Code" cssClass="myClass"
+          alignment="center">
+        </dxi-column>
+        <dxi-column [width]="175" dataField="telephone" caption="Telephone" cssClass="myClass" alignment="center">
+        </dxi-column>
+        <dxi-column [width]="175" dataField="faxno" caption="Fax" cssClass="myClass" alignment="center">
+        </dxi-column>
+        <dxi-column dataField="email" caption="Email" cssClass="myClass" alignment="center">
+        </dxi-column>
+        <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass" alignment="center">
+        </dxi-column>
+
+        <div *dxTemplate="let data of 'cellTemplate'">
+          <a href="javascript:void" class="" (click)="update(data)">
+            <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+        </div>
+      </dx-data-grid>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="view==3" class="form-group">
+  <form action="" class="form" (ngSubmit)="f.form.valid && customerAdd(customer)" #f="ngForm" novalidate>
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">
+            <i class="fa fa-plus" aria-hidden="true"></i> Add New Customer
+          </h5>
+          <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+            <span aria-hidden="true"> ×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-12">
+              <app-person #person [view]="1" [personID]="customer.person_ID"></app-person>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">Name <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="customer_NAME" [(ngModel)]="customer.customer_NAME"
+                  maxlength="50" required>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">Code <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="customer_CODE" [(ngModel)]="customer.customer_CODE"
+                  maxlength="50" required>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">Web Address <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="web_ADDRESS" [(ngModel)]="customer.web_ADDRESS"
+                  maxlength="50" required>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">Email <span style="color:red">*</span></label>
+                <input type="email" class="form-control" name="email" [(ngModel)]="customer.email" maxlength="50"
+                  required>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">Telephone Alt Number <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="telephone_ALTNUMBER"
+                  [(ngModel)]="customer.telephone_ALTNUMBER" maxlength="50" required>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">Telephone Number <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="telephone_NUMBER" [(ngModel)]="customer.telephone_NUMBER"
+                  maxlength="50" required>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3">
+              <div class="form-group">
+                <label class="control-label">Address Line 1 <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="address_LINE1" [(ngModel)]="customer.address_LINE1"
+                  maxlength="50" required>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label class="control-label"> Address Line 2 <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="address_LINE2" [(ngModel)]="customer.address_LINE2"
+                  maxlength="50" required>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label class="control-label">Address Line 3 <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="address_LINE3" [(ngModel)]="customer.address_LINE3"
+                  maxlength="50" required>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label class="control-label"> Address Line 4 <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="address_LINE4" [(ngModel)]="customer.address_LINE4"
+                  maxlength="50" required>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3">
+              <div class="form-group">
+                <label class="control-label">Address Line 5 <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="address_LINE5" [(ngModel)]="customer.address_LINE5"
+                  maxlength="50" required>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label class="control-label"> Address Postcode <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="address_POSTCODE" [(ngModel)]="customer.address_POSTCODE"
+                  maxlength="50" required>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label class="control-label">Address Latitude <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="address_LATITUDE" [(ngModel)]="customer.address_LATITUDE"
+                  maxlength="50" required>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label class="control-label">Address Longitude<span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="address_LONGITUDE"
+                  [(ngModel)]="customer.address_LONGITUDE" maxlength="50" required>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary" [disabled]="f.invalid">
+            <i class="fa fa-plus" aria-hidden="true"></i> Add
+          </button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div *ngIf="view==4" class="form-group">
+  <form action="" class="form" (ngSubmit)="f.form.valid && customerUpdate(customer)" #f="ngForm" novalidate>
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">
+            <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit Customer
+          </h5>
+          <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+            <span aria-hidden="true"> ×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-12">
+              <app-person #person [view]="1" [personID]="customer.person_ID"></app-person>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">Name <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="customer_NAME" [(ngModel)]="customer.customer_NAME"
+                  maxlength="50" required>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">Code <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="customer_CODE" [(ngModel)]="customer.customer_CODE"
+                  maxlength="50" required>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">Web Address <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="web_ADDRESS" [(ngModel)]="customer.web_ADDRESS"
+                  maxlength="50" required>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">Email <span style="color:red">*</span></label>
+                <input type="email" class="form-control" name="email" [(ngModel)]="customer.email" maxlength="50"
+                  required>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">Telephone Alt Number <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="telephone_ALTNUMBER"
+                  [(ngModel)]="customer.telephone_ALTNUMBER" maxlength="50" required>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">Telephone Number <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="telephone_NUMBER" [(ngModel)]="customer.telephone_NUMBER"
+                  maxlength="50" required>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3">
+              <div class="form-group">
+                <label class="control-label">Address Line 1 <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="address_LINE1" [(ngModel)]="customer.address_LINE1"
+                  maxlength="50" required>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label class="control-label"> Address Line 2 <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="address_LINE2" [(ngModel)]="customer.address_LINE2"
+                  maxlength="50" required>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label class="control-label">Address Line 3 <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="address_LINE3" [(ngModel)]="customer.address_LINE3"
+                  maxlength="50" required>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label class="control-label"> Address Line 4 <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="address_LINE4" [(ngModel)]="customer.address_LINE4"
+                  maxlength="50" required>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3">
+              <div class="form-group">
+                <label class="control-label">Address Line 5 <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="address_LINE5" [(ngModel)]="customer.address_LINE5"
+                  maxlength="50" required>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label class="control-label"> Address Postcode <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="address_POSTCODE" [(ngModel)]="customer.address_POSTCODE"
+                  maxlength="50" required>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label class="control-label">Address Latitude <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="address_LATITUDE" [(ngModel)]="customer.address_LATITUDE"
+                  maxlength="50" required>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label class="control-label">Address Longitude<span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="address_LONGITUDE"
+                  [(ngModel)]="customer.address_LONGITUDE" maxlength="50" required>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary" [disabled]="f.invalid">
+            <i class="fa fa-plus" aria-hidden="true"></i> Update
+          </button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </form>
 </div>
