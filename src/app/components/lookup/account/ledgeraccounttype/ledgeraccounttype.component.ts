@@ -41,7 +41,7 @@ export class LedgeraccounttypeComponent implements OnInit {
   }
 
   ledgeraccounttypeGet() {
-    this.lookupservice.lookup("LEDGERACCOUNTTYPE").subscribe(response => {
+    this.lookupservice.lookup("ACCOUNTTYPE").subscribe(response => {
       if (response) {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
@@ -56,7 +56,7 @@ export class LedgeraccounttypeComponent implements OnInit {
   }
 
   ledgeraccounttypeGetAll() {
-    this.lookupservice.lookupAll("LEDGERACCOUNTTYPE").subscribe(response => {
+    this.lookupservice.lookupAll("ACCOUNTTYPE").subscribe(response => {
       if (response) {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);

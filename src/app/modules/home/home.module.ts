@@ -33,6 +33,7 @@ import { ServicesComponent } from '../home/dashboard/services/services.component
 import { LegalComponent } from './dashboard/legal/legal.component';
 import { PrivacyComponent } from './dashboard/privacy/privacy.component';
 import { TermsComponent } from './dashboard/terms/terms.component';
+import { FooterComponent } from 'src/app/partials/footer/footer.component';
 
 //lookup
 import { BankaccounttypeComponent } from 'src/app/components/lookup/account/bankaccounttype/bankaccounttype.component';
@@ -138,6 +139,7 @@ import { LedgerentryviewComponent } from 'src/app/modules/accounts/ledgerentries
     LegalComponent,
     PrivacyComponent,
     TermsComponent,
+    FooterComponent,
 
     AddressComponent,
 
