@@ -283,7 +283,7 @@ export class BankaccountComponent implements OnInit {
     bankaccount.account_ID = this.account.accountID;
     bankaccount.customer_ID = this.customer.customerID;
     bankaccount.paymentmethod_ID = this.paymentmethod.paymentmethodID;
-    bankaccount.location_ID = this.location.locationID;
+    // bankaccount.location_ID = this.location.locationID;
 
     this.bankaccountservice.add(bankaccount).subscribe(response => {
       if (response) {
@@ -309,7 +309,7 @@ export class BankaccountComponent implements OnInit {
     bankaccount.account_ID = this.account.accountID;
     bankaccount.customer_ID = this.customer.customerID;
     bankaccount.paymentmethod_ID = this.paymentmethod.paymentmethodID;
-    bankaccount.location_ID = this.location.locationID;
+    // bankaccount.location_ID = this.location.locationID;
 
     if (bankaccount.isactive == true) {
       bankaccount.isactive = "Y";
@@ -323,6 +323,7 @@ export class BankaccountComponent implements OnInit {
         } else if (response.bankaccount_ID) {
           this.toastrservice.success("Success", "Bank Account Updated");
           this.refresh.next();
+          this.disabled = true;
           this.bankaccountGetAll();
         } else {
           this.toastrservice.error("Some thing went wrong");
