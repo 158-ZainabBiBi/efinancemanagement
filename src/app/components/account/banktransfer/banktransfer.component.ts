@@ -266,6 +266,7 @@ export class BanktransferComponent implements OnInit {
           this.toastrservice.success("Success", "New Bank Transfer Added");
           this.refresh.next();
           this.disabled = true;
+          this.banktransferGetAll();
         } else {
           this.toastrservice.error("Some thing went wrong");
         }
@@ -293,6 +294,7 @@ export class BanktransferComponent implements OnInit {
           this.toastrservice.success("Success", "Bank Transfer Updated");
           this.refresh.next();
           this.disabled = true;
+          this.banktransferGetAll();
         } else {
           this.toastrservice.error("Some thing went wrong");
         }

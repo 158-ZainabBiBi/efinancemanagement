@@ -247,6 +247,7 @@ export class CoaaccountComponent implements OnInit {
           this.toastrservice.success("Success", "New Ledgeraccount Item Added");
           this.disabled = true;
           this.refresh.next();
+          this.coaaccountGetAll();
         } else {
           this.toastrservice.error("Some thing went wrong");
         }
@@ -272,6 +273,7 @@ export class CoaaccountComponent implements OnInit {
           this.toastrservice.success("Success", "Ledgeraccount Item Updated");
           this.disabled = true;
           this.refresh.next();
+          this.coaaccountGetAll();
         } else {
           this.toastrservice.error("Some thing went wrong");
         }

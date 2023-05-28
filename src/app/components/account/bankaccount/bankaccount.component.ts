@@ -293,6 +293,7 @@ export class BankaccountComponent implements OnInit {
           this.toastrservice.success("Success", "New Bank Account Added");
           this.refresh.next();
           this.disabled = true;
+          this.bankaccountGetAll();
         } else {
           this.toastrservice.error("Some thing went wrong");
         }
@@ -322,6 +323,7 @@ export class BankaccountComponent implements OnInit {
           this.toastrservice.success("Success", "Bank Account Updated");
           this.refresh.next();
           this.disabled = true;
+          this.bankaccountGetAll();
         } else {
           this.toastrservice.error("Some thing went wrong");
         }

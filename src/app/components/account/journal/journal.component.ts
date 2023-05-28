@@ -324,6 +324,7 @@ export class JournalComponent implements OnInit {
           this.toastrservice.success("Success", "New Journal Added");
           this.refresh.next();
           this.disabled = true;
+          this.journalGetAll();
         } else {
           this.toastrservice.error("Some thing went wrong");
         }
@@ -350,6 +351,7 @@ export class JournalComponent implements OnInit {
         } else if (response.journal_ID) {
           this.toastrservice.success("Success", "Journal Updated");
           this.refresh.next();
+          this.journalGetAll();
         } else {
           this.toastrservice.error("Some thing went wrong");
         }

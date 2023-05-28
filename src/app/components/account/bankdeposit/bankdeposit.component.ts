@@ -270,6 +270,7 @@ export class BankdepositComponent implements OnInit {
           this.toastrservice.success("Success", "New Bank Deposit Added");
           this.refresh.next();
           this.disabled = true;
+          this.bankdepositGetAll();
         } else {
           this.toastrservice.error("Some thing went wrong");
         }
@@ -297,6 +298,7 @@ export class BankdepositComponent implements OnInit {
           this.toastrservice.success("Success", "Bank Deposit Updated");
           this.refresh.next();
           this.disabled = true;
+          this.bankdepositGetAll();
         } else {
           this.toastrservice.error("Some thing went wrong");
         }
