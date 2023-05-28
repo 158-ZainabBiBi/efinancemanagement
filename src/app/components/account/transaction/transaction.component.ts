@@ -261,6 +261,7 @@ export class TransactionComponent implements OnInit {
           this.toastrservice.success("Success", "New Transaction Added");
           this.refresh.next();
           this.disabled = true;
+          this.transactionGetAll();
         } else {
           this.toastrservice.error("Some thing went wrong");
         }
@@ -292,6 +293,7 @@ export class TransactionComponent implements OnInit {
         } else if (response.transaction_ID) {
           this.toastrservice.success("Success", "Transaction Updated");
           this.refresh.next();
+          this.transactionGetAll();
         } else {
           this.toastrservice.error("Some thing went wrong");
         }
