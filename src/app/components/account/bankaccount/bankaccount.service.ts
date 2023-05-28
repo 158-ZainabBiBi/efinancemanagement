@@ -147,11 +147,6 @@ export class BankaccountService {
       response.account_DETAIL = null
     }
 
-    if (response.ledgeraccount_DETAIL != null) {
-      response.ledgeraccount = this.ledgeraccountservice.getDetail(JSON.parse(response.ledgeraccount_DETAIL));
-      response.ledgeraccount_DETAIL = null;
-    }
-
     if (response.customer_DETAIL != null) {
       response.customer = this.customerservice.getDetail(JSON.parse(response.customer_DETAIL));
       response.customer_DETAIL = null;

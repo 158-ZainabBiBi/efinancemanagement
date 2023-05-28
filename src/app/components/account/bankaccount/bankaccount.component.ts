@@ -2,12 +2,13 @@ import { Component, OnInit, Input, Output, ViewChild, EventEmitter } from '@angu
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { OnFailService } from '../../../services/on-fail.service';
+
 import { BankaccountService } from './bankaccount.service';
 import { AccountComponent } from '../account/account.component';
-import { PaymentmethodComponent } from '../../lookup/finance/paymentmethod/paymentmethod.component';
-import { BankaccounttypeComponent } from '../../lookup/account/bankaccounttype/bankaccounttype.component';
 import { CustomerComponent } from '../../customer/customer/customer.component';
 import { LocationComponent } from '../../location/location/location.component';
+import { BankaccounttypeComponent } from '../../lookup/account/bankaccounttype/bankaccounttype.component';
+import { PaymentmethodComponent } from '../../lookup/finance/paymentmethod/paymentmethod.component';
 
 declare var $: any;
 
@@ -52,7 +53,6 @@ export class BankaccountComponent implements OnInit {
   bankaccounttypeID = null;
   @Input()
   bankaccounttypeCode = null;
-
   @Output() edit = new EventEmitter();
   @Output() cancel = new EventEmitter();
   @Output() show = new EventEmitter();
@@ -88,7 +88,7 @@ export class BankaccountComponent implements OnInit {
     this.load(this.isreload);
   }
 
-  load(reload): void {
+  load(reload) {
     if (window.sessionStorage.getItem('bankaccounts') != null) {
       this.bankaccounts = JSON.parse(window.sessionStorage.getItem('bankaccounts'));
     }
@@ -142,7 +142,7 @@ export class BankaccountComponent implements OnInit {
           text: 'Refresh',
           onClick: this.load.bind(this, true),
         },
-      }
+      },
     );
   }
 
@@ -207,9 +207,9 @@ export class BankaccountComponent implements OnInit {
   }
 
   onChange(bankaccountID) {
-    for (var i = 0; i < this.bankaccounts.length; i++) {
-      if (this.bankaccounts[i].bankaccount_ID == bankaccountID) {
-        this.onBankAccountChange.next(this.bankaccounts[i]);
+    for (var i = 0; i < this.bankaccountsAll.length; i++) {
+      if (this.bankaccountsAll[i].bankaccount_ID == bankaccountID) {
+        this.onBankAccountChange.next(this.bankaccountsAll[i]);
         break;
       }
     }
@@ -277,8 +277,8 @@ export class BankaccountComponent implements OnInit {
   }
 
   bankaccountAdd(bankaccount) {
-
     bankaccount.isactive = "Y";
+
     bankaccount.bankaccounttype_ID = this.bankaccounttype.bankaccounttypeID;
     bankaccount.account_ID = this.account.accountID;
     bankaccount.customer_ID = this.customer.customerID;
@@ -304,6 +304,7 @@ export class BankaccountComponent implements OnInit {
   }
 
   bankaccountUpdate(bankaccount) {
+
     bankaccount.bankaccounttype_ID = this.bankaccounttype.bankaccounttypeID;
     bankaccount.account_ID = this.account.accountID;
     bankaccount.customer_ID = this.customer.customerID;
@@ -322,7 +323,6 @@ export class BankaccountComponent implements OnInit {
         } else if (response.bankaccount_ID) {
           this.toastrservice.success("Success", "Bank Account Updated");
           this.refresh.next();
-          this.disabled = true;
           this.bankaccountGetAll();
         } else {
           this.toastrservice.error("Some thing went wrong");
@@ -339,7 +339,7 @@ export class BankaccountComponent implements OnInit {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else if (response.length > 0) {
-          this.toastrservice.success("Success", "Bank Account Updated");
+          this.toastrservice.success("Success", "Bank Accounts Updated");
           this.refresh.next();
         } else {
           this.toastrservice.error("Some thing went wrong");
@@ -395,7 +395,6 @@ export class BankaccountComponent implements OnInit {
     this.paymentmethodCode = search.paymentmethod_CODE;
     this.bankaccounttypeID = search.bankaccounttype_ID;
     this.bankaccounttypeCode = search.bankaccounttype_CODE;
-
 
     this.bankaccountservice.advancedSearch(search).subscribe(response => {
       if (response) {

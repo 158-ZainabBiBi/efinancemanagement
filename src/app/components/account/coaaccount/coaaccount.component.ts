@@ -38,7 +38,7 @@ export class CoaaccountComponent implements OnInit {
   @Output() edit = new EventEmitter();
   @Output() cancel = new EventEmitter();
   @Output() refresh = new EventEmitter();
-  @Output() onLedgerAccountChange = new EventEmitter();
+  @Output() onCoaAccountChange = new EventEmitter();
 
   coaaccounts = [];
   coaaccountsAll = [];
@@ -118,7 +118,7 @@ export class CoaaccountComponent implements OnInit {
   onChange(coaaccountID) {
     for (var i = 0; i < this.coaaccountsAll.length; i++) {
       if (this.coaaccountsAll[i].coaaccount_ID == coaaccountID) {
-        this.onLedgerAccountChange.next(this.coaaccountsAll[i]);
+        this.onCoaAccountChange.next(this.coaaccountsAll[i]);
         break;
       }
     }
@@ -291,6 +291,7 @@ export class CoaaccountComponent implements OnInit {
         } else if (response.length > 0) {
           this.toastrservice.success("Success", "Ledgeraccount Items Updated");
           this.refresh.next();
+          this.coaaccountGetAll();
         } else {
           this.toastrservice.error("Some thing went wrong");
         }

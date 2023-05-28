@@ -125,14 +125,14 @@ export class JournalComponent implements OnInit {
           onClick: this.load.bind(this, true),
         },
       },
-      {
-        location: 'after',
-        text: `Total Credit: ${this.getTotalCredit()}`,
-      },
-      {
-        location: 'after',
-        text: `Total Debit: ${this.getTotalDebit()}`,
-      }
+      // {
+      //   location: 'after',
+      //   text: `Total Credit: ${this.getTotalCredit()}`,
+      // },
+      // {
+      //   location: 'after',
+      //   text: `Total Debit: ${this.getTotalDebit()}`,
+      // }
     );
   }
 

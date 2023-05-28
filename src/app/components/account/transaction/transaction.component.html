@@ -240,7 +240,7 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label class="control-label"> Total Amount <span style="color:red">*</span></label>
-                <input type="text" class="form-control" name="transaction_TOTAL"
+                <input type="number" class="form-control" name="transaction_TOTAL"
                   [(ngModel)]="transaction.transaction_TOTAL" maxlength="50" required>
               </div>
             </div>
@@ -264,7 +264,7 @@
               <div class="form-group">
                 <label class="control-label"> Description <span style="color:red">*</span></label>
                 <textarea type="text" class="form-control" name="transaction_DESC"
-                  [(ngModel)]="transaction.transaction_DESC" maxlength="50" required></textarea>
+                  [(ngModel)]="transaction.transaction_DESC" maxlength="50" ></textarea>
               </div>
             </div>
           </div>
@@ -320,7 +320,7 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label class="control-label"> Total Amount <span style="color:red">*</span></label>
-                <input type="text" class="form-control" name="transaction_TOTAL"
+                <input type="number" class="form-control" name="transaction_TOTAL"
                   [(ngModel)]="transaction.transaction_TOTAL" maxlength="50" required>
               </div>
             </div>
@@ -344,7 +344,7 @@
               <div class="form-group">
                 <label class="control-label"> Description <span style="color:red">*</span></label>
                 <textarea type="text" class="form-control" name="transaction_DESC"
-                  [(ngModel)]="transaction.transaction_DESC" maxlength="50" required></textarea>
+                  [(ngModel)]="transaction.transaction_DESC" maxlength="50" ></textarea>
               </div>
             </div>
           </div>
@@ -424,7 +424,7 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label class="control-label"> Total Amount <span style="color:red">*</span></label>
-                <input type="text" class="form-control" name="transaction_TOTAL" [disabled]="disabled"
+                <input type="number" class="form-control" name="transaction_TOTAL" [disabled]="disabled"
                   [(ngModel)]="transaction.transaction_TOTAL" maxlength="50" required>
               </div>
             </div>
@@ -449,7 +449,7 @@
               <div class="form-group">
                 <label class="control-label"> Description <span style="color:red">*</span></label>
                 <textarea type="text" class="form-control" name="transaction_DESC" [disabled]="disabled"
-                  [(ngModel)]="transaction.transaction_DESC" maxlength="50" required></textarea>
+                  [(ngModel)]="transaction.transaction_DESC" maxlength="50"></textarea>
               </div>
             </div>
           </div>

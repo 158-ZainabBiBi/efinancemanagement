@@ -221,6 +221,7 @@ export class AccountComponent implements OnInit {
           this.toastrservice.success("Success", "New Account Added");
           this.refresh.next();
           this.disabled = true;
+          this.accountGetAll();
         } else {
           this.toastrservice.error("Some thing went wrong");
         }
@@ -244,6 +245,7 @@ export class AccountComponent implements OnInit {
         } else if (response.account_ID) {
           this.toastrservice.success("Success", "Account Updated");
           this.refresh.next();
+          this.accountGetAll();
         } else {
           this.toastrservice.error("Some thing went wrong");
         }

@@ -185,9 +185,9 @@ export class BanktransferComponent implements OnInit {
   }
 
   onChange(banktransferID) {
-    for (var i = 0; i < this.banktransfers.length; i++) {
-      if (this.banktransfers[i].banktransfer_ID == banktransferID) {
-        this.onBankTransferChange.next(this.banktransfers[i]);
+    for (var i = 0; i < this.banktransfersAll.length; i++) {
+      if (this.banktransfersAll[i].banktransfer_ID == banktransferID) {
+        this.onBankTransferChange.next(this.banktransfersAll[i]);
         break;
       }
     }

@@ -334,6 +334,7 @@ export class LedgeraccountComponent implements OnInit {
         } else if (response.length > 0) {
           this.toastrservice.success("Success", "Ledger Accounts Updated");
           this.refresh.next();
+          this.ledgeraccountGetAll();
         } else {
           this.toastrservice.error("Some thing went wrong");
         }

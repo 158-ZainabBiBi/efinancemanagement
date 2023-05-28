@@ -120,14 +120,14 @@ export class JournallineComponent implements OnInit {
           onClick: this.load.bind(this, true),
         },
       },
-      {
-        location: 'after',
-        text: `Total Credit: ${this.getTotalCredit()}`,
-      },
-      {
-        location: 'after',
-        text: `Total Debit: ${this.getTotalDebit()}`,
-      }
+      // {
+      //   location: 'after',
+      //   text: `Total Credit: ${this.getTotalCredit()}`,
+      // },
+      // {
+      //   location: 'after',
+      //   text: `Total Debit: ${this.getTotalDebit()}`,
+      // }
     );
   }
 
@@ -326,6 +326,7 @@ export class JournallineComponent implements OnInit {
         } else if (response.journalline_ID) {
           this.toastrservice.success("Success", "Journal Line Updated");
           this.refresh.next();
+          this.journallineGetAll();
         } else {
           this.toastrservice.error("Some thing went wrong");
         }
@@ -343,6 +344,7 @@ export class JournallineComponent implements OnInit {
         } else if (response.length > 0) {
           this.toastrservice.success("Success", "Journal Lines Updated");
           this.refresh.next();
+          this.journallineGetAll();
         } else {
           this.toastrservice.error("Some thing went wrong");
         }

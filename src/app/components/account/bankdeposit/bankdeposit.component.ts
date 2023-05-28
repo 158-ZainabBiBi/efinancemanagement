@@ -189,9 +189,9 @@ export class BankdepositComponent implements OnInit {
   }
 
   onChange(bankdepositID) {
-    for (var i = 0; i < this.bankdeposits.length; i++) {
-      if (this.bankdeposits[i].bankdeposit_ID == bankdepositID) {
-        this.onBankDepositChange.next(this.bankdeposits[i]);
+    for (var i = 0; i < this.bankdepositsAll.length; i++) {
+      if (this.bankdepositsAll[i].bankdeposit_ID == bankdepositID) {
+        this.onBankDepositChange.next(this.bankdepositsAll[i]);
         break;
       }
     }

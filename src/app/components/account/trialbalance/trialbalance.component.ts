@@ -128,14 +128,14 @@ export class TrialbalanceComponent implements OnInit {
           onClick: this.load.bind(this, true),
         },
       },
-      {
-        location: 'after',
-        text: `Total Credit: ${this.getTotalCredit()}`,
-      },
-      {
-        location: 'after',
-        text: `Total Debit: ${this.getTotalDebit()}`,
-      }
+      // {
+      //   location: 'after',
+      //   text: `Total Credit: ${this.getTotalCredit()}`,
+      // },
+      // {
+      //   location: 'after',
+      //   text: `Total Debit: ${this.getTotalDebit()}`,
+      // }
     );
   }
 
@@ -314,6 +314,7 @@ export class TrialbalanceComponent implements OnInit {
           this.toastrservice.success("Success", "New Trial Balance Added");
           this.refresh.next();
           this.disabled = true;
+          this.trialbalanceGetAll();
         } else {
           this.toastrservice.error("Some thing went wrong");
         }
@@ -339,6 +340,7 @@ export class TrialbalanceComponent implements OnInit {
         } else if (response.trialbalance_ID) {
           this.toastrservice.success("Success", "Trial Balance Updated");
           this.refresh.next();
+          this.trialbalanceGetAll();
         } else {
           this.toastrservice.error("Some thing went wrong");
         }

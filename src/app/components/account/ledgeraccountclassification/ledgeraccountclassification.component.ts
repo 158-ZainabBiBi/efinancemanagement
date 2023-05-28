@@ -235,6 +235,7 @@ export class LedgeraccountclassificationComponent implements OnInit {
           this.toastrservice.success("Success", "New Ledger Account Classification Added");
           this.refresh.next();
           this.disabled = true;
+          this.ledgeraccountclassificationGetAll();
         } else {
           this.toastrservice.error("Some thing went wrong");
         }
@@ -260,6 +261,7 @@ export class LedgeraccountclassificationComponent implements OnInit {
           this.toastrservice.success("Success", "Ledger Account Classification Updated");
           this.refresh.next();
           this.disabled = true;
+          this.ledgeraccountclassificationGetAll();
         } else {
           this.toastrservice.error("Some thing went wrong");
         }

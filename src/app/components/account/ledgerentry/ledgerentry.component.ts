@@ -122,14 +122,14 @@ export class LedgerentryComponent implements OnInit {
           onClick: this.load.bind(this, true),
         },
       },
-      {
-        location: 'after',
-        text: `Total Credit: ${this.getTotalCredit()}`,
-      },
-      {
-        location: 'after',
-        text: `Total Debit: ${this.getTotalDebit()}`,
-      }
+      // {
+      //   location: 'after',
+      //   text: `Total Credit: ${this.getTotalCredit()}`,
+      // },
+      // {
+      //   location: 'after',
+      //   text: `Total Debit: ${this.getTotalDebit()}`,
+      // }
     );
   }
 
@@ -339,6 +339,7 @@ export class LedgerentryComponent implements OnInit {
           this.toastrservice.success("Success", "New Ledger Entry Added");
           this.refresh.next();
           this.disabled = true;
+          this.ledgerentryGetAll();
         } else {
           this.toastrservice.error("Some thing went wrong");
         }
@@ -364,6 +365,7 @@ export class LedgerentryComponent implements OnInit {
           this.toastrservice.success("Success", "Ledger Entry Updated");
           this.refresh.next();
           this.disabled = true;
+          this.ledgerentryGetAll();
         } else {
           this.toastrservice.error("Some thing went wrong");
         }

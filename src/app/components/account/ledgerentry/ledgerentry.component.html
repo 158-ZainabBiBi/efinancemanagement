@@ -241,14 +241,14 @@
               <div class="form-group">
                 <label class="control-label"> Credit <span style="color:red">*</span></label>
                 <input type="text" class="form-control" name="credit_AMOUNT" [(ngModel)]="ledgerentry.credit_AMOUNT"
-                  maxlength="50" required>
+                  (change)="onCreditChange()" [disabled]="debitdisabled" maxlength="50" required>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
                 <label class="control-label"> Debit <span style="color:red">*</span></label>
                 <input type="text" class="form-control" name="debit_AMOUNT" [(ngModel)]="ledgerentry.debit_AMOUNT"
-                  maxlength="50" required>
+                  (change)="onDebitChange()" [disabled]="creditdisabled" maxlength="50" required>
               </div>
             </div>
           </div>
@@ -303,14 +303,14 @@
               <div class="form-group">
                 <label class="control-label"> Credit <span style="color:red">*</span></label>
                 <input type="text" class="form-control" name="credit_AMOUNT" [(ngModel)]="ledgerentry.credit_AMOUNT"
-                  maxlength="50" required>
+                  (change)="onCreditChange()" [disabled]="debitdisabled" maxlength="50" required>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
                 <label class="control-label"> Debit <span style="color:red">*</span></label>
                 <input type="text" class="form-control" name="debit_AMOUNT" [(ngModel)]="ledgerentry.debit_AMOUNT"
-                  maxlength="50" required>
+                  (change)="onDebitChange()" [disabled]="creditdisabled" maxlength="50" required>
               </div>
             </div>
           </div>
@@ -396,15 +396,15 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label class="control-label"> Credit <span style="color:red">*</span></label>
-                <input type="text" class="form-control" name="credit_AMOUNT" [disabled]="disabled"
-                  [(ngModel)]="ledgerentry.credit_AMOUNT" maxlength="50" required>
+                <input type="text" class="form-control" name="credit_AMOUNT" [(ngModel)]="ledgerentry.credit_AMOUNT"
+                  (change)="onCreditChange()" [disabled]="debitdisabled" maxlength="50" required>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
                 <label class="control-label"> Debit <span style="color:red">*</span></label>
-                <input type="text" class="form-control" name="debit_AMOUNT" [disabled]="disabled"
-                  [(ngModel)]="ledgerentry.debit_AMOUNT" maxlength="50" required>
+                <input type="text" class="form-control" name="debit_AMOUNT" [(ngModel)]="ledgerentry.debit_AMOUNT"
+                  (change)="onDebitChange()" [disabled]="creditdisabled" maxlength="50" required>
               </div>
             </div>
           </div>
