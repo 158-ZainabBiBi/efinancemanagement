@@ -23,14 +23,14 @@ export const setting = {
 
 
   isHash: '/#',
-  // redirctPath: '',
-  redirctPath: '/efinance',
+  redirctPath: '',
+  // redirctPath: '/efinance',
 };
 
 // UOG
-// AppsStorePath: "http://uog.apps.cwiztech.com/#/",
-// LoginAppPath: "http://uog.accounts.cwiztech.com/#/",
-// application_ID: "CWIZTECHAccountManagement",
+// AppsStorePath: "http://uog.cwiztech.com/apps/#/",
+// LoginAppPath: "http://uog.cwiztech.com/accounts/#/",
+// application_ID: "UOGAccountManagement",
 
 // companyName: 'University of Gujrat',
 // companyShortName: 'UOG',

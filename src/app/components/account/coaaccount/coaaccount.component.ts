@@ -244,7 +244,7 @@ export class CoaaccountComponent implements OnInit {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else if (response.coaaccount_ID) {
-          this.toastrservice.success("Success", "New Ledgeraccount Item Added");
+          this.toastrservice.success("Success", "New Chart of Account Added");
           this.disabled = true;
           this.refresh.next();
           this.coaaccountGetAll();
@@ -270,7 +270,7 @@ export class CoaaccountComponent implements OnInit {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else if (response.coaaccount_ID) {
-          this.toastrservice.success("Success", "Ledgeraccount Item Updated");
+          this.toastrservice.success("Success", "Chart of Account Updated");
           this.disabled = true;
           this.refresh.next();
           this.coaaccountGetAll();
@@ -289,7 +289,7 @@ export class CoaaccountComponent implements OnInit {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else if (response.length > 0) {
-          this.toastrservice.success("Success", "Ledgeraccount Items Updated");
+          this.toastrservice.success("Success", "Chart of Accounts Updated");
           this.refresh.next();
           this.coaaccountGetAll();
         } else {

@@ -574,14 +574,14 @@
             <div class="col-md-4">
               <div class="form-group">
                 <label class="control-label"> Date <span style="color:red">*</span></label>
-                <input type="text" class="form-control" name="bankaccount_DATE" [disabled]="disabled"
+                <input type="date" class="form-control" name="bankaccount_DATE" [disabled]="disabled"
                   [(ngModel)]="bankaccount.bankaccount_DATE" maxlength="50" required>
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group">
                 <label class="control-label"> Balance <span style="color:red">*</span></label>
-                <input type="text" class="form-control" name="bankaccount_BALANCE" [disabled]="disabled"
+                <input type="number" class="form-control" name="bankaccount_BALANCE" [disabled]="disabled"
                   [(ngModel)]="bankaccount.bankaccount_BALANCE" maxlength="50" required>
               </div>
             </div>

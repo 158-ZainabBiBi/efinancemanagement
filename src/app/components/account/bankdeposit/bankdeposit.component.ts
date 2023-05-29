@@ -184,7 +184,7 @@ export class BankdepositComponent implements OnInit {
   bankdepositCancel() {
     this.disabled = true;
     if (this.bankdeposit.bankdeposit_ID == 0) {
-      this.router.navigate(["/home/bankdeposits "], {});
+      this.router.navigate(["/home/bankdeposits"], {});
     }
   }
 

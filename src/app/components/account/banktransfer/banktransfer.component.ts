@@ -180,7 +180,7 @@ export class BanktransferComponent implements OnInit {
   banktransferCancel() {
     this.disabled = true;
     if (this.banktransfer.banktransfer_ID == 0) {
-      this.router.navigate(["/home/banktransfer "], {});
+      this.router.navigate(["/home/banktransfer"], {});
     }
   }
 

@@ -355,11 +355,13 @@
           </div>
           <div class="row">
             <div class="col-md-8">
-              <app-ledgeraccount #ledgeraccount [view]="1" [disabled]='disabled'
-                [ledgeraccountID]=coaaccount.ledgeraccount_ID
-                (onLedgeraccountChange)="onLedgeraccountChange($event)"></app-ledgeraccount>
+              <div class="form-group">
+                <app-ledgeraccount #ledgeraccount [view]="1" [disabled]="disabled"
+                  (onLedgeraccountChange)="onLedgeraccountChange($event)"
+                  [ledgeraccountID]="coaaccount.ledgeraccount_ID"></app-ledgeraccount>
+              </div>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-4">
               <br />
               <button type="button" *ngIf="coaaccount.coaaccount_ID==0" (click)="ledgeraccountAddNew()"
                 class="btn btn-secondary btn-sm">

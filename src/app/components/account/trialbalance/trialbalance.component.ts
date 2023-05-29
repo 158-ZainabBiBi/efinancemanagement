@@ -340,6 +340,7 @@ export class TrialbalanceComponent implements OnInit {
         } else if (response.trialbalance_ID) {
           this.toastrservice.success("Success", "Trial Balance Updated");
           this.refresh.next();
+          this.disabled = true;
           this.trialbalanceGetAll();
         } else {
           this.toastrservice.error("Some thing went wrong");

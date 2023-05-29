@@ -138,7 +138,7 @@ export class AccountComponent implements OnInit {
   accountCancel() {
     this.disabled = true;
     if (this.account.account_ID == 0) {
-      this.router.navigate(["/home/accounts "], {});
+      this.router.navigate(["/home/accounts"], {});
     }
   }
 
@@ -245,6 +245,7 @@ export class AccountComponent implements OnInit {
         } else if (response.account_ID) {
           this.toastrservice.success("Success", "Account Updated");
           this.refresh.next();
+          this.disabled = true;
           this.accountGetAll();
         } else {
           this.toastrservice.error("Some thing went wrong");

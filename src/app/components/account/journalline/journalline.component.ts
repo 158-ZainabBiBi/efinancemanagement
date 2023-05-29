@@ -216,7 +216,7 @@ export class JournallineComponent implements OnInit {
   journallineCancel() {
     this.disabled = true;
     if (this.journalline.journalline_ID == 0) {
-      this.router.navigate(["/home/journallines "], {});
+      this.router.navigate(["/home/journallines"], {});
     }
   }
 
@@ -301,6 +301,7 @@ export class JournallineComponent implements OnInit {
           this.toastrservice.success("Success", "New Journal Line Added");
           this.refresh.next();
           this.disabled = true;
+          this.journallineGetAll();
         } else {
           this.toastrservice.error("Some thing went wrong");
         }
@@ -326,6 +327,7 @@ export class JournallineComponent implements OnInit {
         } else if (response.journalline_ID) {
           this.toastrservice.success("Success", "Journal Line Updated");
           this.refresh.next();
+          this.disabled = true;
           this.journallineGetAll();
         } else {
           this.toastrservice.error("Some thing went wrong");
