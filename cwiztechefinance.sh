@@ -19,7 +19,7 @@ echo "Copy new files of CWIZTECH EFinance from efinance to cwiztechproject/cwizt
 cp -r efinance/* /c/cwiztechproject/cwiztechwebapps/efinance
 
 echo "Push work for Live Server"
-cd /c/cwiztechproject/cwiztechwebapps/fyp
+cd /c/cwiztechproject/cwiztechwebapps
 git pull
 
 echo "Directory Changed"
