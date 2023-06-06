@@ -13,13 +13,13 @@ echo "ng build command start"
 ng build --prod --base-href ./
 
 echo "Remove old files of EFinance"
-rm -r /e/cwiztechproject/cwiztechwebapps/uog/efinance/*
+rm -r /c/cwiztechproject/cwiztechwebapps/uog/efinance/*
 
 echo "Copy new files of UOG EFinance from efinance to cwiztechproject/cwiztechwebapps/uog/efinance"
-cp -r efinance/* /e/cwiztechproject/cwiztechwebapps/uog/efinance
+cp -r efinance/* /c/cwiztechproject/cwiztechwebapps/uog/efinance
 
 echo "Push work for Live Server"
-cd /e/cwiztechproject/cwiztechwebapps/uog
+cd /c/cwiztechproject/cwiztechwebapps/uog
 git pull
 
 echo "Directory Changed"

@@ -36,63 +36,15 @@
       <div class="row" id="tabs">
         <div class="col-md-4">
           <ul>
-            <li><a (click)="showDiv(1)" style="color:white;">Account <i class="fa fa-angle-right"></i></a></li>
-            <li><a (click)="showDiv(2)" style="color:white;">Journal A/c<i class="fa fa-angle-right"></i></a></li>
-            <li><a (click)="showDiv(3)" style="color:white;">Ledger A/c<i class="fa fa-angle-right"></i></a></li>
-            <!-- <li><a (click)="showDiv(4)" style="color:white;">Trial Balance <i class="fa fa-angle-right"></i></a></li>
-            <li><a (click)="showDiv(5)" style="color:white;">Trading A/c <i class="fa fa-angle-right"></i></a></li>
-            <li><a (click)="showDiv(6)" style="color:white;">Profit & Loss A/c<i class="fa fa-angle-right"></i></a></li>
-            <li><a (click)="showDiv(7)" style="color:white;">Balance Sheet <i class="fa fa-angle-right"></i></a></li>
-            <li><a (click)="showDiv(8)" style="color:white;">Income Statement <i class="fa fa-angle-right"></i></a></li> -->
+            <li><a (click)="showDiv(1)" style="color:white;">Trial Balance <i class="fa fa-angle-right"></i></a></li>
+            <li><a (click)="showDiv(2)" style="color:white;">Income Statement <i class="fa fa-angle-right"></i></a></li>
+            <li><a (click)="showDiv(3)" style="color:white;">Profit & Loss <i class="fa fa-angle-right"></i></a></li>
+            <li><a (click)="showDiv(4)" style="color:white;">Balance Sheet <i class="fa fa-angle-right"></i></a></li>
           </ul>
         </div>
         <div class="col-md-8">
           <section class='tabs-content'>
             <div id='tab1' class="tab">
-              <img src="../../../../../assets/images/single_service_01.jpg" alt="">
-              <h4>Account</h4>
-              <p>Introducing EFinance, a cutting-edge accounting software designed to streamline your financial
-                operations. With our comprehensive suite of modules, we empower businesses of all sizes to efficiently
-                manage their finances with ease. The Account module is a crucial component, encompassing a wide range of
-                ledger accounts to meet your unique accounting needs.
-                <br><br>Our Account module provides a centralized hub for organizing and maintaining your ledger
-                accounts. Whether it's tracking income, expenses, assets, or liabilities, EFinance ensures accurate and
-                up-to-date financial data. Seamlessly navigate through various account categories, such as cash,
-                accounts receivable, accounts payable, and more. Simplify complex accounting processes and gain a clear
-                overview of your financial health with EFinance's Account module, revolutionizing the way you handle
-                your accounts.
-              </p>
-              <a (click)="showbankaccount()" class="filled-button">View Accounts</a>
-              <a (click)="showbanktransfer()" class="filled-button">View Transfers</a>
-              <a (click)="showbankdeposit()" class="filled-button">View Deposits</a>
-            </div>
-            <div id='tab2' class="tab">
-              <img src="../../../../../assets/images/single_service_02.jpg" alt="">
-              <h4>Journal A/c</h4>
-              <p>EFinance, our comprehensive accounting software, offers a powerful Journal module designed to
-                streamline your financial record-keeping process. With its user-friendly interface and advanced
-                features, managing your company's financial transactions has never been easier.
-                <br><br>The Journal module allows you to record, track, and organize all your journal entries
-                efficiently. Whether you're creating general entries, adjusting entries, or making accruals, EFinance
-                ensures accuracy and transparency in your accounting records. Simplify your journaling process and gain
-                valuable insights into your company's financial health with EFinance's Journal module.
-              </p>
-              <a (click)="showjournal()" class="filled-button">View Journal</a>
-            </div>
-            <div id='tab3' class="tab">
-              <img src="../../../../../assets/images/single_service_03.jpg" alt="">
-              <h4>Ledger A/c</h4>
-              <p>Our feature-rich software offers a wide range of modules, including the Ledger module, which serves as
-                the backbone of your financial transactions. With EFinance Ledger, you can effortlessly track and record
-                all your financial activities, ensuring accuracy and transparency in your accounts.
-                <br><br>Say goodbye to tedious manual bookkeeping and embrace a more efficient and reliable solution
-                with EFinance. Simplify your accounting tasks and gain better control over your finances with EFinance's
-                Ledger module.
-              </p>
-              <br><br>
-              <a (click)="showledgeraccount()" class="filled-button">View Ledger</a>
-            </div>
-            <div id='tab4' class="tab">
               <img src="../../../../../assets/images/single_service_04.jpg" alt="">
               <h4>Trial Balance</h4>
               <p>Our comprehensive accounting software, offers a versatile and efficient solution for managing your
@@ -104,25 +56,26 @@
                 accounting tasks and gain valuable insights with EFinance's Trial Balance module.
               </p>
               <br><br>
-              <a (click)="showtrialbalance()" class="filled-button">View Trial Balnace</a>
+              <a href="http://localhost:4200/#/home/trialbalances" target="_blank" class="filled-button">View Trial
+                Balnace</a>
             </div>
-            <div id='tab5' class="tab">
-              <img src="../../../../../assets/images/single_service_05.jpg" alt="">
-              <h4>Trading A/c</h4>
-              <p>Our innovative platform includes a versatile module called Trading Account, empowering businesses to
-                effectively manage their trading activities. With Trading Account, you can easily record and track your
-                purchases, sales, and inventory, enabling you to make informed decisions and optimize your trading
-                operations.
-                <br><br>EFinance provides a user-friendly interface, robust reporting capabilities, and seamless
-                integration with other modules, making it the ideal solution for businesses seeking efficient and
-                accurate accounting management. Experience the power of EFinance and revolutionize your financial
-                operations today.
+            <div id='tab2' class="tab">
+              <img src="../../../../../assets/images/single_service_08.jpg" alt="">
+              <h4>Income Statement</h4>
+              <p>With EFinance, you can effortlessly generate accurate and detailed income statements, allowing you to
+                gain valuable insights into your company's financial performance. Our user-friendly interface and
+                intuitive features make it easy to input and categorize revenue and expenses, calculate net income, and
+                track profitability.
+                <br><br>With EFinance's Income Statement module, you can effectively monitor your business's financial
+                health and make informed decisions to drive growth and success.
               </p>
-              <a (click)="showbankaccount()" class="filled-button">View Accounts</a>
+              <br><br>
+              <a href="http://localhost:4200/#/home/incomestatements" target="_blank" class="filled-button">View Income
+                Statement</a>
             </div>
-            <div id='tab6' class="tab">
+            <div id='tab3' class="tab">
               <img src="../../../../../assets/images/single_service_06.jpg" alt="">
-              <h4>Profit & Loss A/c</h4>
+              <h4>Profit & Loss </h4>
               <p>With our Profit & Loss Account module, you can easily track and analyze your company's financial
                 performance. Gain valuable insights into revenue, expenses, and overall profitability, allowing you to
                 make informed business decisions.
@@ -130,9 +83,10 @@
                 ensuring accuracy and efficiency in your financial operations. Simplify your accounting processes and
                 maximize your business's financial success with EFinance's Profit & Loss Account module.
               </p>
-              <a (click)="showjournal()" class="filled-button">View Journal</a>
+              <a href="http://localhost:4200/#/home/profitandlosses" target="_blank" class="filled-button">View Profit &
+                Loss</a>
             </div>
-            <div id='tab7' class="tab">
+            <div id='tab4' class="tab">
               <img src="../../../../../assets/images/single_service_07.jpg" alt="">
               <h4>Balance Sheet</h4>
               <p>Our Balance Sheet module is an integral part of this software, enabling businesses to accurately track
@@ -144,20 +98,8 @@
                 growth.
               </p>
               <br><br>
-              <a (click)="showtransaction()" class="filled-button">View Transactions</a>
-            </div>
-            <div id='tab8' class="tab">
-              <img src="../../../../../assets/images/single_service_08.jpg" alt="">
-              <h4>Income Statement</h4>
-              <p>With EFinance, you can effortlessly generate accurate and detailed income statements, allowing you to
-                gain valuable insights into your company's financial performance. Our user-friendly interface and
-                intuitive features make it easy to input and categorize revenue and expenses, calculate net income, and
-                track profitability.
-                <br><br>With EFinance's Income Statement module, you can effectively monitor your business's financial
-                health and make informed decisions to drive growth and success.
-              </p>
-              <br><br>
-              <a (click)="showtrialbalance()" class="filled-button">View Trial Balnace</a>
+              <a href="http://localhost:4200/#/home/balancesheets" target="_blank" class="filled-button">View Balance
+                Sheet</a>
             </div>
           </section>
         </div>
@@ -175,7 +117,7 @@
             <span>FEEL FREE TO CONTACT US!
             </span>
             <br>
-            <a (click)="showcontact()" class="filled-button">Contact US</a>
+            <a href="http://localhost:4200/#/home/contact" target="_blank" class="filled-button">Contact US</a>
           </div>
         </div>
       </div>
@@ -185,41 +127,6 @@
 
   <!-- App Route Footer -->
   <app-footer></app-footer>
-  <!-- <footer>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-5 footer-item">
-          <h4>EFinance</h4>
-          <p>Managing finances made easy with EFinance. <br> Get social with us and never miss a beat.</p>
-          <ul class="social-icons">
-            <li><a href="https://www.facebook.com/efinanceteam/" target="_blank"><i class="fa fa-facebook"></i></a></li>
-            <li><a href="https://www.instagram.com/e._.finance/" target="_blank"><i class="fa fa-instagram"></i></a>
-            </li>
-            <li><a href="https://twitter.com/E__Finance" target="_blank"><i class="fa fa-twitter"></i></a></li>
-            <li><a href="https://www.linkedin.com/in/e-finance-58261b274/" target="_blank"><i
-                  class="fa fa-linkedin"></i></a></li>
-          </ul>
-        </div>
-        <div class="col-md-3 footer-item">
-          <h4>Support</h4>
-          <ul class="menu-list">
-            <li><a (click)="showservices()">Our Services</a></li>
-            <li><a (click)="showabout()">About Us</a></li>
-            <li><a (click)="showcontact()">Contact Us</a></li>
-          </ul>
-        </div>
-        <div class="col-md-3 footer-item">
-          <h4>Policies</h4>
-          <ul class="menu-list">
-            <li><a (click)="showlegal()">Legal</a></li>
-            <li><a (click)="showprivacy()">Privacy Policy</a></li>
-            <li><a (click)="showterms()">Terms of Service</a></li>
-          </ul>
-        </div>
-
-      </div>
-    </div>
-  </footer> -->
 
 </body>
 

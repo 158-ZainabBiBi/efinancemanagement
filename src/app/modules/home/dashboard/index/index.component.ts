@@ -18,25 +18,6 @@ export class IndexComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // let slideIndex: number = 0;
-    // showSlides();
-
-    // function showSlides() {
-    //   let i: number;
-    //   let slides: HTMLCollectionOf<Element> = document.getElementsByClassName("mySlides");
-    //   let dots: HTMLCollectionOf<Element> = document.getElementsByClassName("dot");
-    //   for (i = 0; i < slides.length; i++) {
-    //     (slides[i] as HTMLElement).style.display = "none";
-    //   }
-    //   slideIndex++;
-    //   if (slideIndex > slides.length) { slideIndex = 1 }
-    //   for (i = 0; i < dots.length; i++) {
-    //     (dots[i] as HTMLElement).className = (dots[i] as HTMLElement).className.replace(" active", "");
-    //   }
-    //   (slides[slideIndex - 1] as HTMLElement).style.display = "block";
-    //   (dots[slideIndex - 1] as HTMLElement).className += " active";
-    //   setTimeout(showSlides, 2000); // Change image every 5 seconds
-    // }
   }
 
 }
