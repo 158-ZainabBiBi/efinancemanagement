@@ -1,12 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 
 import { LoginService } from '../../pages/login/login.service';
 import { OnFailService } from 'src/app/services/on-fail.service';
 import { SidebarService } from 'src/app/services/sidebar.service';
 import { setting } from "src/app/setting";
-
-import * as $ from 'jquery'
 
 @Component({
   selector: 'app-header',
@@ -30,7 +28,8 @@ export class HeaderComponent implements OnInit {
     private toastrservice: ToastrService,
     private _onFail_: OnFailService,
     private sidebarservice: SidebarService,
-    private loginservice: LoginService
+    private loginservice: LoginService,
+    private elementRef: ElementRef
   ) { }
 
   ngOnInit() {
@@ -82,26 +81,20 @@ export class HeaderComponent implements OnInit {
 
       this.smenu = this.menu[0].pri;
       setTimeout(() => {
-        $(".myinput").append("<strong>Added to the front</strong>.");
+        this.elementRef.nativeElement.querySelector('.myinput').innerHTML = "<strong>Added to the front</strong>";
       }, 1);
 
     }, err => {
       this._onFail_.onFail(err);
-    }
-    );
-    // TOGGEL
-    $("#btn-toggle").click(function () {
-      $(".navigation").slideToggle();
     });
-    $(document).ready(function () {
-      $(".search-suggestions .search-input")
-        .focus(function () {
-          $(".suggestions").fadeIn("slide");
-        })
-        .focusout(function () {
-          $(".suggestions").fadeOut("slide");
-        });
-    });
+  }
+
+  showSuggestions() {
+    this.elementRef.nativeElement.querySelector('.suggestions').style.display = 'block';
+  }
+
+  hideSuggestions() {
+    this.elementRef.nativeElement.querySelector('.suggestions').style.display = 'none';
   }
 
   isNotEmpty(m) {
