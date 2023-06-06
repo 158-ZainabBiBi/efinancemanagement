@@ -20,8 +20,8 @@ export const setting = {
 
 
   isHash: '/#',
-  // redirctPath: '',
-  redirctPath: '/efinance',
+  redirctPath: '',
+  // redirctPath: '/efinance',
 };
 
 // UOG
