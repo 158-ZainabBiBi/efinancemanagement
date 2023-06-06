@@ -21,7 +21,7 @@ export const setting = {
 
   isHash: '/#',
   // redirctPath: '',
-  redirctPath: '/fyp/efinance',
+  redirctPath: '/efinance',
 };
 
 // UOG
