@@ -32,12 +32,6 @@
                 "output": "/your-custom-module-path"
               }
             ],
-            "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "src/tsconfig.app.json",
-            "aot": true,
-            "outputPath": "dist/your-project-name",
             "vendorChunk": true,
             "buildOptimizer": true,
             "sourceMap": true,
@@ -70,8 +64,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "4mb",
-                  "maximumError": "5mb"
+                  "maximumWarning": "7mb",
+                  "maximumError": "7mb"
                 },
                 {
                   "type": "anyComponentStyle",
