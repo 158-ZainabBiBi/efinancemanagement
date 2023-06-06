@@ -104,43 +104,6 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  // getBonusScheme() {
-  //   var searchCode = String($(".search-input").val());
-  //   var cust = {
-  //     search: searchCode
-  //   };
-
-  //   clearTimeout(this.Timeout);
-  //   this.results = "Loading...";
-  //   this.anything = false;
-  //   if (searchCode == "") {
-  //     this.bonusschemeAll = [];
-  //     this.results = "No Record";
-  //     this.anything = false;
-  //   } else {
-  //     this.Timeout = setTimeout(() => {
-  //       this.orderservice.search(cust).subscribe(response => {
-  //         if (response) {
-  //           if (response.error && response.status) {
-  //             this.toastrservice.warning("Message", " " + response.message);
-  //             this.results = "No Record";
-  //             this.anything = false;
-  //           } else if (response.length == 0) {
-  //             this.results = "No Record";
-  //             this.anything = false;
-  //           } else {
-  //             this.bonusschemeAll = response;
-  //             $(".suggestions").fadeIn("slide");
-  //             this.anything = true;
-  //           }
-  //         }
-  //       }, error => {
-  //         this._onFail_.onFail(error);
-  //       })
-  //     }, 2000);
-  //   }
-  // }
-
   isNotEmpty(m) {
     if (JSON.stringify(m).length > 0) {
       return true;
@@ -155,9 +118,5 @@ export class HeaderComponent implements OnInit {
 
   ngAfterViewInit() {
     this.sideBar();
-  }
-
-  showindex() {
-    window.open('http://localhost:4200/#/home/indexes', '_blank');
   }
 }
