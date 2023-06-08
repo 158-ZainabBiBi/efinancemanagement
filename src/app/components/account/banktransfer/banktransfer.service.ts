@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpCallServieService } from '../../../services/http-call-servie.service';
-import { setting } from '../../../setting';
+import { HttpCallServieService } from 'src/app/services/http-call-servie.service';
+import { setting } from 'src/app/setting';
 import { BankaccountService } from '../bankaccount/bankaccount.service';
 import { TransactionService } from '../transaction/transaction.service';
 

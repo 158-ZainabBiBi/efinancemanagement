@@ -5,7 +5,7 @@ import { OnFailService } from '../../../services/on-fail.service';
 import { ValidatorFn, AbstractControl } from '@angular/forms';
 
 import { TrialbalanceService } from './trialbalance.service';
-import { LedgerentryComponent } from '../ledgerentry/ledgerentry.component';
+import { LedgerComponent } from '../ledger/ledger.component';
 
 declare var $: any;
 
@@ -15,9 +15,9 @@ declare var $: any;
   styleUrls: ['./trialbalance.component.css']
 })
 export class TrialbalanceComponent implements OnInit {
-  @ViewChild("ledgerentry") ledgerentry: LedgerentryComponent;
-  @ViewChild("addledgerentry") addledgerentry: LedgerentryComponent;
-  @ViewChild("editledgerentry") editledgerentry: LedgerentryComponent;
+  @ViewChild("ledger") ledger: LedgerComponent;
+  @ViewChild("addledger") addledger: LedgerComponent;
+  @ViewChild("editledger") editledger: LedgerComponent;
 
   @Input()
   view: number = 1;
@@ -38,7 +38,7 @@ export class TrialbalanceComponent implements OnInit {
   @Input()
   trialbalanceID = null;
   @Input()
-  ledgerentryID = null;
+  ledgerID = null;
 
   @Output() edit = new EventEmitter();
   @Output() cancel = new EventEmitter();
@@ -50,7 +50,7 @@ export class TrialbalanceComponent implements OnInit {
   trialbalancesAll = [];
   trialbalance = {
     trialbalance_ID: 0,
-    ledgerentry_ID: {
+    ledger_ID: {
       credit_AMOUNT: null,
       debit_AMOUNT: null,
     },
@@ -101,7 +101,7 @@ export class TrialbalanceComponent implements OnInit {
     }
 
     var search = {
-      ledgerentry_ID: this.ledgerentryID
+      ledger_ID: this.ledgerID
     }
 
     if (this.view >= 5 && this.view <= 6 && this.trialbalanceID) {
@@ -174,7 +174,7 @@ export class TrialbalanceComponent implements OnInit {
   add() {
     this.trialbalance = {
       trialbalance_ID: 0,
-      ledgerentry_ID: {
+      ledger_ID: {
         credit_AMOUNT: null,
         debit_AMOUNT: null,
       },
@@ -191,19 +191,19 @@ export class TrialbalanceComponent implements OnInit {
     };
   }
 
-  ledgerentryAddNew() {
-    this.addledgerentry.add();
-    $("#addledgerentry").modal("show");
-  }
+  // ledgerAddNew() {
+  //   this.addledger.add();
+  //   $("#addledger").modal("show");
+  // }
 
-  ledgerentryCancel() {
-    $("#addledgerentry").modal("hide");
-    $("#editledgerentry").modal("hide");
-    this.ledgerentry.ledgerentries = this.addledgerentry.ledgerentries;
-  }
+  // ledgerCancel() {
+  //   $("#addledger").modal("hide");
+  //   $("#editledger").modal("hide");
+  //   this.ledger.ledgers = this.addledger.ledgers;
+  // }
 
-  onLedgerentryChange(ledgerentry) {
-    this.trialbalance.trialbalance_NAME = ledgerentry.ledgerentry_NAME;
+  onLedgerChange(ledger) {
+    this.trialbalance.trialbalance_NAME = ledger.ledger_NAME;
   }
 
   update(row) {
@@ -304,7 +304,7 @@ export class TrialbalanceComponent implements OnInit {
   trialbalanceAdd(trialbalance) {
     trialbalance.isactive = "Y";
 
-    trialbalance.ledgerentry_ID = this.ledgerentry.ledgerentryID;
+    // trialbalance.ledger_ID = this.ledger.ledgerID;
 
     this.trialbalanceservice.add(trialbalance).subscribe(response => {
       if (response) {
@@ -326,7 +326,7 @@ export class TrialbalanceComponent implements OnInit {
 
   trialbalanceUpdate(trialbalance) {
 
-    trialbalance.ledgerentry_ID = this.ledgerentry.ledgerentryID;
+    // trialbalance.ledger_ID = this.ledger.ledgerID;
 
     if (trialbalance.isactive == true) {
       trialbalance.isactive = "Y";
@@ -405,7 +405,7 @@ export class TrialbalanceComponent implements OnInit {
   }
 
   trialbalanceAdvancedSearch(search) {
-    this.ledgerentryID = search.ledgerentry_ID;
+    this.ledgerID = search.ledger_ID;
 
     this.trialbalanceservice.advancedSearch(search).subscribe(response => {
       if (response) {
@@ -422,7 +422,7 @@ export class TrialbalanceComponent implements OnInit {
   }
 
   trialbalanceAdvancedSearchAll(search) {
-    this.ledgerentryID = search.ledgerentry_ID;
+    this.ledgerID = search.ledger_ID;
 
     this.trialbalanceservice.advancedSearchAll(search).subscribe(response => {
       if (response) {

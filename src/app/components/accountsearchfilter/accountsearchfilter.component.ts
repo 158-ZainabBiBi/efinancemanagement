@@ -5,11 +5,11 @@ import { BankaccounttypeComponent } from '../lookup/account/bankaccounttype/bank
 import { TransactiontypeComponent } from '../lookup/account/transactiontype/transactiontype.component';
 import { LedgeraccounttypeComponent } from '../lookup/account/ledgeraccounttype/ledgeraccounttype.component';
 import { BankaccountComponent } from '../account/bankaccount/bankaccount.component';
-import { CoaaccountComponent } from '../account/coaaccount/coaaccount.component';
+import { ChartofaccountComponent } from '../account/chartofaccount/chartofaccount.component';
 import { JournalComponent } from '../account/journal/journal.component';
 import { TransactionComponent } from '../account/transaction/transaction.component';
 import { CustomerComponent } from '../customer/customer/customer.component';
-import { LedgeraccountComponent } from '../account/ledgeraccount/ledgeraccount.component';
+import { LedgerComponent } from '../account/ledger/ledger.component';
 import { TrialbalanceComponent } from '../account/trialbalance/trialbalance.component';
 
 @Component({
@@ -22,8 +22,8 @@ export class AccountsearchfilterComponent implements OnInit {
   @ViewChild(CustomerComponent) customers;
   @ViewChild(BankaccountComponent) bankaccounts;
   @ViewChild(TransactionComponent) transactions;
-  @ViewChild(LedgeraccountComponent) ledgeraccounts;
-  @ViewChild(CoaaccountComponent) coaaccounts;
+  @ViewChild(LedgerComponent) ledgers;
+  @ViewChild(ChartofaccountComponent) chartofaccounts;
   @ViewChild(JournalComponent) journals;
   @ViewChild(TrialbalanceComponent) trialbalances;
 
@@ -46,11 +46,11 @@ export class AccountsearchfilterComponent implements OnInit {
   @Input()
   ledgeraccounttype = false;
   @Input()
-  coaaccount = false;
+  chartofaccount = false;
   @Input()
   transaction = false;
   @Input()
-  ledgeraccount = false;
+  ledger = false;
   @Input()
   bankaccount = false;
   @Input()
@@ -69,9 +69,9 @@ export class AccountsearchfilterComponent implements OnInit {
     bankaccount_ID: null,
     customer_ID: null,
     ledgeraccounttype_ID: null,
-    coaaccount_ID: null,
+    chartofaccount_ID: null,
     transaction_ID: null,
-    ledgeraccount_ID: null,
+    ledger_ID: null,
     journal_ID: null
   };
   isall = false;
@@ -96,10 +96,10 @@ export class AccountsearchfilterComponent implements OnInit {
       this.search.ledgeraccounttype_ID = this.ledgeraccounttypes.ledgeraccounttypeID;
     if (this.transactiontypes)
       this.transactiontypes.transactiontype_ID = this.transactiontypes.transactiontypeID;
-    if (this.coaaccounts)
-      this.coaaccounts.coaaccount_ID = this.coaaccounts.coaaccountID;
-    if (this.ledgeraccounts)
-      this.ledgeraccounts.ledgeraccount_ID = this.ledgeraccounts.ledgeraccountID;
+    if (this.chartofaccounts)
+      this.chartofaccounts.chartofaccount_ID = this.chartofaccounts.chartofaccountID;
+    if (this.ledgers)
+      this.ledgers.ledger_ID = this.ledgers.ledgerID;
     if (this.transactions)
       this.transactions.transaction_ID = this.transactions.transactionID;
     if (this.journals)
@@ -126,10 +126,10 @@ export class AccountsearchfilterComponent implements OnInit {
       this.customers.customerID = null;
     if (this.bankaccounts)
       this.bankaccounts.bankaccountID = null;
-    if (this.coaaccounts)
-      this.coaaccounts.coaaccountID = null;
-    if (this.ledgeraccounts)
-      this.ledgeraccounts.ledgeraccountID = null;
+    if (this.chartofaccounts)
+      this.chartofaccounts.chartofaccountID = null;
+    if (this.ledgers)
+      this.ledgers.ledgerID = null;
     if (this.transactions)
       this.transactions.transactionID = null;
     if (this.ledgeraccounttypes)

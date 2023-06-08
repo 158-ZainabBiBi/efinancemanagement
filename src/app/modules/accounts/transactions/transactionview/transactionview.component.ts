@@ -45,7 +45,6 @@ export class TransactionviewComponent implements OnInit {
   journaledit(row) {
     this.editjournal.journal = {
       journal_ID: row.data.journal_ID,
-      journalline_ID: row.data.journalline_ID,
       transaction_ID: row.data.transaction_ID,
 
       journal_CODE: row.data.journal_CODE,

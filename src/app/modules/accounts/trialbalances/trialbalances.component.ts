@@ -49,7 +49,7 @@ export class TrialbalancesComponent implements OnInit {
   edit(row) {
     this.edittrialbalance.trialbalance = {
       trialbalance_ID: row.data.trialbalance_ID,
-      ledgerentry_ID: row.data.ledgerentry_ID,
+      ledger_ID: row.data.ledger_ID,
 
       trialbalance_CODE: row.data.trialbalance_CODE,
       trialbalance_NAME: row.data.trialbalance_NAME,

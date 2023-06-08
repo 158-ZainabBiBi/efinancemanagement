@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpCallServieService } from '../../../services/http-call-servie.service';
-import { setting } from '../../../setting';
+import { HttpCallServieService } from 'src/app/services/http-call-servie.service';
+import { setting } from 'src/app/setting';
 import { AccountService } from '../account/account.service';
-import { LedgeraccountService } from '../ledgeraccount/ledgeraccount.service';
+import { LedgerService } from '../ledger/ledger.service';
 import { CustomerService } from '../../customer/customer/customer.service';
 import { LocationService } from '../../location/location/location.service';
 
@@ -14,7 +14,7 @@ export class BankaccountService {
   constructor(
     private _HttpCallServieService_: HttpCallServieService,
     private accountservice: AccountService,
-    private ledgeraccountservice: LedgeraccountService,
+    private ledgerservice: LedgerService,
     private customerservice: CustomerService,
     private locationservice: LocationService
   ) { }

@@ -6,8 +6,8 @@
     <div class="col-md-12">
       <ng-select [(ngModel)]="journalID" [disabled]="disabled" name="journalID" (change)="onChange($event)">
         <ng-option *ngFor="let journal of journalsAll" [value]="journal.journal_ID">
-          {{ journal.transaction.transaction_DATE }} - {{ journal.journalline.journalline_CODE }} - {{
-          journal.journalline.journalline_NAME }}
+          {{ journal.transaction.transaction_DATE }}
+
         </ng-option>
       </ng-select>
     </div>
@@ -16,8 +16,8 @@
     <div class="col-md-10">
       <ng-select [(ngModel)]="journalID" name="journalID" (change)="onChange($event)">
         <ng-option *ngFor="let journal of journals" [value]="journal.journal_ID" [disabled]="disabled">
-          {{ journal.transaction.transaction_DATE }} - {{ journal.journalline.journalline_CODE }} - {{
-          journal.journalline.journalline_NAME }}
+          {{ journal.transaction.transaction_DATE }}
+
         </ng-option>
       </ng-select>
     </div>
@@ -37,8 +37,8 @@
     <div class="col-md-12">
       <ng-select [(ngModel)]="journalID" [disabled]="disabled" name="journalID" (change)="onChange($event)">
         <ng-option *ngFor="let journal of journalsAll" [value]="journal.journal_ID">
-          {{ journal.transaction.transaction_DATE }} - {{ journal.journalline.journalline_CODE }} - {{
-          journal.journalline.journalline_NAME }}
+          {{ journal.transaction.transaction_DATE }}
+
         </ng-option>
       </ng-select>
     </div>
@@ -47,8 +47,8 @@
     <div class="col-md-10">
       <ng-select [(ngModel)]="journalID" name="journalID" (change)="onChange($event)">
         <ng-option *ngFor="let journal of journalsAll" [value]="journal.journal_ID" [disabled]="disabled">
-          {{ journal.transaction.transaction_DATE }} - {{ journal.journalline.journalline_CODE }} - {{
-          journal.journalline.journalline_NAME }}
+          {{ journal.transaction.transaction_DATE }}
+
         </ng-option>
       </ng-select>
     </div>
@@ -68,8 +68,8 @@
     <div class="col-md-12">
       <ng-select [(ngModel)]="journalID" [disabled]="disabled" name="journalID">
         <ng-option *ngFor="let journal of journalsAll" [value]="journal.journal_ID" [disabled]="disabled">
-          {{ journal.transaction.transaction_DATE }} - {{ journal.journalline.journalline_CODE }} - {{
-          journal.journalline.journalline_NAME }}
+          {{ journal.transaction.transaction_DATE }}
+
         </ng-option>
       </ng-select>
     </div>
@@ -78,8 +78,8 @@
     <div class="col-md-10">
       <ng-select [(ngModel)]="journalID" [disabled]="disabled" name="journalID" (change)="onChange($event)">
         <ng-option *ngFor="let journal of journals" [value]="journal.journal_ID" [disabled]="disabled">
-          {{ journal.transaction.transaction_DATE }} - {{ journal.journalline.journalline_CODE }} - {{
-          journal.journalline.journalline_NAME }}
+          {{ journal.transaction.transaction_DATE }}
+
         </ng-option>
       </ng-select>
     </div>
@@ -99,8 +99,8 @@
     <div class="col-md-12">
       <ng-select [(ngModel)]="journalID" [disabled]="disabled" name="journalID" (change)="onChange($event)">
         <ng-option *ngFor="let journal of journalsAll" [value]="journal.journal_ID" [disabled]="disabled">
-          {{ journal.transaction.transaction_DATE }} - {{ journal.journalline.journalline_CODE }} - {{
-          journal.journalline.journalline_NAME }}
+          {{ journal.transaction.transaction_DATE }}
+
         </ng-option>
       </ng-select>
     </div>
@@ -109,8 +109,8 @@
     <div class="col-md-10">
       <ng-select [(ngModel)]="journalID" [disabled]="disabled" name="journalID" (change)="onChange($event)">
         <ng-option *ngFor="let journal of journalsAll" [value]="journal.journal_ID" [disabled]="disabled">
-          {{ journal.transaction.transaction_DATE }} - {{ journal.journalline.journalline_CODE }} - {{
-          journal.journalline.journalline_NAME }}
+          {{ journal.transaction.transaction_DATE }}
+
         </ng-option>
       </ng-select>
     </div>
@@ -233,11 +233,6 @@
             <div class="col-md-6">
               <app-transaction #transaction [view]="1" [transactionID]=journal.transaction_ID></app-transaction>
             </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <app-journalline #journalline [view]="1" [journallineID]="journal.journalline_ID"></app-journalline>
-              </div>
-            </div>
           </div>
         </div>
         <div class="modal-footer">
@@ -283,11 +278,6 @@
           <div class="row">
             <div class="col-md-6">
               <app-transaction #transaction [view]="1" [transactionID]=journal.transaction_ID></app-transaction>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <app-journalline #journalline [view]="1" [journallineID]="journal.journalline_ID"></app-journalline>
-              </div>
             </div>
           </div>
           <div class="row">
@@ -368,21 +358,6 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-8">
-              <div class="form-group">
-                <app-journalline #journalline [view]="1" [disabled]="disabled"
-                  [journallineID]="journal.journalline_ID"></app-journalline>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <br />
-              <button type="button" *ngIf="journal.journal_ID==0" (click)="journallineAddNew()"
-                class="btn btn-secondary btn-sm">
-                <i class="fas fa-plus fa-fw"></i> Add New Line
-              </button>
-            </div>
-          </div>
-          <div class="row">
             <div class="col-md-12" *ngIf="journal.journal_ID!=0">
               <div class="form-group">
                 <div class="checkbox">
@@ -421,8 +396,4 @@
 
 <div aria-labelledby="exampleModalLabel" class="modal fade show" id="addtransaction" role="dialog" tabindex="-1">
   <app-transaction #addtransaction [view]=3 (cancel)="transactionCancel()"></app-transaction>
-</div>
-
-<div aria-labelledby="exampleModalLabel" class="modal fade show" id="addjournalline" role="dialog" tabindex="-1">
-  <app-journalline #addjournalline [view]=3 (cancel)="journallineCancel()"></app-journalline>
 </div>

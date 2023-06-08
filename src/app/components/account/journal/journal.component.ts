@@ -4,7 +4,6 @@ import { ToastrService } from 'ngx-toastr';
 import { OnFailService } from '../../../services/on-fail.service';
 
 import { JournalService } from './journal.service';
-import { JournallineComponent } from '../journalline/journalline.component';
 import { TransactionComponent } from '../transaction/transaction.component';
 
 declare var $: any;
@@ -15,9 +14,6 @@ declare var $: any;
   styleUrls: ['./journal.component.css']
 })
 export class JournalComponent implements OnInit {
-  @ViewChild("journalline") journalline: JournallineComponent;
-  @ViewChild("addjournalline") addjournalline: JournallineComponent;
-  @ViewChild("editjournalline") editjournalline: JournallineComponent;
 
   @ViewChild("transaction") transaction: TransactionComponent;
   @ViewChild("addtransaction") addtransaction: TransactionComponent;
@@ -40,8 +36,6 @@ export class JournalComponent implements OnInit {
   @Input()
   journalID = null;
   @Input()
-  journallineID = null;
-  @Input()
   transactionID = null;
 
   @Output() edit = new EventEmitter();
@@ -54,10 +48,6 @@ export class JournalComponent implements OnInit {
   journalsAll = [];
   journal = {
     journal_ID: 0,
-    journalline_ID: {
-      balance_CREDIT: null,
-      balance_DEBIT: null,
-    },
     transaction_ID: null,
 
     journal_CODE: null,
@@ -97,7 +87,6 @@ export class JournalComponent implements OnInit {
     }
 
     var search = {
-      journalline_ID: this.journallineID,
       transaction_ID: this.transactionID,
     }
 
@@ -136,67 +125,46 @@ export class JournalComponent implements OnInit {
     );
   }
 
-  getTotalCredit() {
-    let total = 0;
-    this.journalsAll.forEach(account => {
-      const credit = Number(account.journalline.balance_CREDIT);
-      if (!isNaN(credit)) {
-        total += credit;
-      }
-    });
-    return total;
-  }
+  // getTotalCredit() {
+  //   let total = 0;
+  //   this.journalsAll.forEach(account => {
+  //     const credit = Number(account.journalline.balance_CREDIT);
+  //     if (!isNaN(credit)) {
+  //       total += credit;
+  //     }
+  //   });
+  //   return total;
+  // }
 
-  getTotalDebit() {
-    let total = 0;
-    this.journalsAll.forEach(account => {
-      const debit = Number(account.journalline.balance_DEBIT);
-      if (!isNaN(debit)) {
-        total += debit;
-      }
-    });
-    return total;
-  }
+  // getTotalDebit() {
+  //   let total = 0;
+  //   this.journalsAll.forEach(account => {
+  //     const debit = Number(account.journalline.balance_DEBIT);
+  //     if (!isNaN(debit)) {
+  //       total += debit;
+  //     }
+  //   });
+  //   return total;
+  // }
 
   onCreditChange() {
-    this.journal.journalline_ID.balance_DEBIT = 0;
+    // this.journal.balance_DEBIT = 0;
     this.creditdisabled = true;
   }
 
   onDebitChange() {
-    this.journal.journalline_ID.balance_CREDIT = 0;
+    // this.journal.balance_CREDIT = 0;
     this.debitdisabled = true;
   }
 
   add() {
     this.journal = {
       journal_ID: 0,
-      journalline_ID: {
-        balance_CREDIT: null,
-        balance_DEBIT: null,
-      },
       transaction_ID: null,
-
       journal_CODE: null,
 
       isactive: true,
     };
-  }
-
-  journallineAddNew() {
-    this.addjournalline.add();
-    $("#addjournalline").modal("show");
-  }
-
-  journallineCancel() {
-    $("#addjournalline").modal("hide");
-    $("#editjournalline").modal("hide");
-    this.journalline.journallines = this.addjournalline.journallines;
-  }
-
-  onJournallineChange(journalline) {
-    // this.journal.journal_NAME = journalline.journalline_NAME;
-    // this.journal.journal_DESC = journalline.journalline_DESC;
   }
 
   transactionAddNew() {
@@ -313,7 +281,6 @@ export class JournalComponent implements OnInit {
   journalAdd(journal) {
     journal.isactive = "Y";
 
-    journal.journalline_ID = this.journalline.journallineID;
     journal.transaction_ID = this.transaction.transactionID;
 
     this.journalservice.add(journal).subscribe(response => {
@@ -336,7 +303,6 @@ export class JournalComponent implements OnInit {
 
   journalUpdate(journal) {
 
-    journal.journalline_ID = this.journalline.journallineID;
     journal.transaction_ID = this.transaction.transactionID;
 
     if (journal.isactive == true) {
@@ -416,7 +382,6 @@ export class JournalComponent implements OnInit {
   }
 
   journalAdvancedSearch(search) {
-    this.journallineID = search.journalline_ID;
     this.transactionID = search.transaction_ID;
 
     this.journalservice.advancedSearch(search).subscribe(response => {
@@ -434,7 +399,6 @@ export class JournalComponent implements OnInit {
   }
 
   journalAdvancedSearchAll(search) {
-    this.journallineID = search.journalline_ID;
     this.transactionID = search.transaction_ID;
 
     this.journalservice.advancedSearchAll(search).subscribe(response => {
