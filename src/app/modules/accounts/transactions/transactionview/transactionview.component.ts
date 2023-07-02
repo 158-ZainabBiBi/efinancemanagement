@@ -38,7 +38,7 @@ export class TransactionviewComponent implements OnInit {
   }
 
   refresh() {
-    this.transactions.ngOnInit();
+    this.transactions.load(true);
     this.journalcancel();
   }
 
@@ -46,8 +46,12 @@ export class TransactionviewComponent implements OnInit {
     this.editjournal.journal = {
       journal_ID: row.data.journal_ID,
       transaction_ID: row.data.transaction_ID,
+      account_ID: row.data.account_ID,
 
       journal_CODE: row.data.journal_CODE,
+      journal_NAME: row.data.journal_NAME,
+      journal_DEBIT: row.data.journal_DEBIT,
+      journal_CREDIT: row.data.journal_CREDIT,
 
       isactive: row.data.isactive
     };

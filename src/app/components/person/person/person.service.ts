@@ -127,6 +127,7 @@ export class PersonService {
   }
   
   getDetail(response) {
+  if (response.birthplace_DETAIL != null) {
     response.birthplaces = [];
     response.location = JSON.parse(response.birthplace_DETAIL);
     response.birthplace_DETAIL = null;
@@ -135,6 +136,7 @@ export class PersonService {
       response.location = response.location.locationparent_ID;
     }
     response.birthplaces.push(response.location);
-    return(response);
   }
+  return(response);
+}
 }

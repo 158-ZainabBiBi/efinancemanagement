@@ -4,13 +4,11 @@ import { ToastrService } from 'ngx-toastr';
 import { OnFailService } from '../../../services/on-fail.service';
 
 import { BankaccountService } from './bankaccount.service';
-import { AccountComponent } from '../account/account.component';
 import { CustomerComponent } from '../../customer/customer/customer.component';
 import { LocationComponent } from '../../location/location/location.component';
-import { BankaccounttypeComponent } from '../../lookup/account/bankaccounttype/bankaccounttype.component';
 import { PaymentmethodComponent } from '../../lookup/finance/paymentmethod/paymentmethod.component';
-
-declare var $: any;
+import { TaxcodeComponent } from '../../finance/taxcode/taxcode.component';
+import { BankaccounttypeComponent } from '../../lookup/account/bankaccounttype/bankaccounttype.component';
 
 @Component({
   selector: 'app-bankaccount',
@@ -22,10 +20,7 @@ export class BankaccountComponent implements OnInit {
   @ViewChild("paymentmethod") paymentmethod: PaymentmethodComponent;
   @ViewChild("location") location: LocationComponent;
   @ViewChild("customer") customer: CustomerComponent;
-
-  @ViewChild("account") account: AccountComponent;
-  @ViewChild("addaccount") addaccount: AccountComponent;
-  @ViewChild("editaccount") editaccount: AccountComponent;
+  @ViewChild("taxcode") taxcode: TaxcodeComponent;
 
   @Input()
   view: number = 1;
@@ -40,7 +35,7 @@ export class BankaccountComponent implements OnInit {
   @Input()
   bankaccountID = null;
   @Input()
-  accountID = null;
+  taxcodeID = null;
   @Input()
   customerID = null;
   @Input()
@@ -53,17 +48,18 @@ export class BankaccountComponent implements OnInit {
   bankaccounttypeID = null;
   @Input()
   bankaccounttypeCode = null;
+
   @Output() edit = new EventEmitter();
   @Output() cancel = new EventEmitter();
   @Output() show = new EventEmitter();
   @Output() refresh = new EventEmitter();
-  @Output() onBankAccountChange = new EventEmitter();
+  @Output() onBankTaxcodeChange = new EventEmitter();
 
   bankaccounts = [];
   bankaccountsAll = [];
   bankaccount = {
     bankaccount_ID: 0,
-    account_ID: null,
+    taxcode_ID: null,
     bankaccounttype_ID: null,
     paymentmethod_ID: null,
     customer_ID: null,
@@ -73,6 +69,11 @@ export class BankaccountComponent implements OnInit {
     bankaccount_CODE: null,
     bankaccount_DATE: null,
     bankaccount_BALANCE: null,
+    bankaccount_NAME: null,
+    bankaccount_DESC: null,
+    bankaccount_NUMBER: null,
+    bankaccount_BIC: null,
+    bankaccount_IBAN: null,
 
     isactive: true,
   }
@@ -109,7 +110,7 @@ export class BankaccountComponent implements OnInit {
     }
 
     var search = {
-      account_ID: this.accountID,
+      taxcode_ID: this.taxcodeID,
       customer_ID: this.customerID,
       location_ID: this.locationID,
 
@@ -149,7 +150,7 @@ export class BankaccountComponent implements OnInit {
   add() {
     this.bankaccount = {
       bankaccount_ID: 0,
-      account_ID: null,
+      taxcode_ID: null,
       bankaccounttype_ID: null,
       paymentmethod_ID: null,
       customer_ID: null,
@@ -159,24 +160,14 @@ export class BankaccountComponent implements OnInit {
       bankaccount_CODE: null,
       bankaccount_DATE: null,
       bankaccount_BALANCE: null,
+      bankaccount_NAME: null,
+      bankaccount_DESC: null,
+      bankaccount_NUMBER: null,
+      bankaccount_BIC: null,
+      bankaccount_IBAN: null,
 
       isactive: true,
     };
-  }
-
-  accountAddNew() {
-    this.addaccount.add();
-    $("#addaccount").modal("show");
-  }
-
-  accountCancel() {
-    $("#addaccount").modal("hide");
-    $("#editaccount").modal("hide");
-    this.account.accounts = this.addaccount.accounts;
-  }
-
-  onAccountChange(account) {
-    // this.bankaccount.bankaccount_CODE = account.account_CODE;
   }
 
   update(row) {
@@ -209,13 +200,20 @@ export class BankaccountComponent implements OnInit {
   onChange(bankaccountID) {
     for (var i = 0; i < this.bankaccountsAll.length; i++) {
       if (this.bankaccountsAll[i].bankaccount_ID == bankaccountID) {
-        this.onBankAccountChange.next(this.bankaccountsAll[i]);
+        this.onBankTaxcodeChange.next(this.bankaccountsAll[i]);
         break;
       }
     }
   }
 
   setBankaccount(response) {
+    this.taxcodeID = response.taxcode_ID;
+    this.bankaccounttypeID = response.bankaccounttype_ID;
+    this.paymentmethodID = response.paymentmethod_ID;
+    this.customerID = response.customer_ID;
+    this.locationID = response.location_ID;
+    this.bankaccountID = response.bankaccount_ID;
+
     if (response.isactive == "Y") {
       response.isactive = true;
     } else {
@@ -277,20 +275,20 @@ export class BankaccountComponent implements OnInit {
   }
 
   bankaccountAdd(bankaccount) {
-    bankaccount.isactive = "Y";
-
     bankaccount.bankaccounttype_ID = this.bankaccounttype.bankaccounttypeID;
-    bankaccount.account_ID = this.account.accountID;
+    bankaccount.taxcode_ID = this.taxcode.taxcodeID;
     bankaccount.customer_ID = this.customer.customerID;
     bankaccount.paymentmethod_ID = this.paymentmethod.paymentmethodID;
     bankaccount.location_ID = this.location.locationID;
 
+    bankaccount.isactive = "Y";
     this.bankaccountservice.add(bankaccount).subscribe(response => {
       if (response) {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else if (response.bankaccount_ID) {
-          this.toastrservice.success("Success", "New Bank Account Added");
+          this.toastrservice.success("Success", "New Bank Taxcode Added");
+          this.setBankaccount(this.bankaccountservice.getDetail(response));
           this.refresh.next();
           this.disabled = true;
           this.bankaccountGetAll();
@@ -306,7 +304,7 @@ export class BankaccountComponent implements OnInit {
   bankaccountUpdate(bankaccount) {
 
     bankaccount.bankaccounttype_ID = this.bankaccounttype.bankaccounttypeID;
-    bankaccount.account_ID = this.account.accountID;
+    bankaccount.taxcode_ID = this.taxcode.taxcodeID;
     bankaccount.customer_ID = this.customer.customerID;
     bankaccount.paymentmethod_ID = this.paymentmethod.paymentmethodID;
     bankaccount.location_ID = this.location.locationID;
@@ -321,7 +319,8 @@ export class BankaccountComponent implements OnInit {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else if (response.bankaccount_ID) {
-          this.toastrservice.success("Success", "Bank Account Updated");
+          this.toastrservice.success("Success", "Bank Taxcode Updated");
+          this.setBankaccount(this.bankaccountservice.getDetail(response));
           this.refresh.next();
           this.disabled = true;
           this.bankaccountGetAll();
@@ -340,8 +339,11 @@ export class BankaccountComponent implements OnInit {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else if (response.length > 0) {
-          this.toastrservice.success("Success", "Bank Accounts Updated");
+          this.toastrservice.success("Success", "Bank Taxcodes Updated");
+          this.setBankaccount(this.bankaccountservice.getDetail(response));
           this.refresh.next();
+          this.disabled = true;
+          this.bankaccountGetAll();
         } else {
           this.toastrservice.error("Some thing went wrong");
         }
@@ -388,7 +390,7 @@ export class BankaccountComponent implements OnInit {
   }
 
   bankaccountAdvancedSearch(search) {
-    this.accountID = search.account_ID;
+    this.taxcodeID = search.taxcode_ID;
     this.locationID = search.location_ID;
     this.customerID = search.customer_ID;
 
@@ -412,7 +414,7 @@ export class BankaccountComponent implements OnInit {
   }
 
   bankaccountAdvancedSearchAll(search) {
-    this.accountID = search.account_ID;
+    this.taxcodeID = search.taxcode_ID;
     this.locationID = search.location_ID;
     this.customerID = search.customer_ID;
 

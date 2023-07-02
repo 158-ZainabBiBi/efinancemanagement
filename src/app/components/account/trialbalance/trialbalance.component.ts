@@ -2,7 +2,6 @@ import { Component, OnInit, Input, Output, ViewChild, EventEmitter } from '@angu
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { OnFailService } from '../../../services/on-fail.service';
-import { ValidatorFn, AbstractControl } from '@angular/forms';
 
 import { TrialbalanceService } from './trialbalance.service';
 import { LedgerComponent } from '../ledger/ledger.component';
@@ -28,12 +27,6 @@ export class TrialbalanceComponent implements OnInit {
   @Input()
   disabled: boolean = false;
   @Input()
-  balancetypedisabled: boolean = false;
-  @Input()
-  debitdisabled: boolean = false;
-  @Input()
-  creditdisabled: boolean = false;
-  @Input()
   all: boolean = false;
   @Input()
   trialbalanceID = null;
@@ -44,26 +37,16 @@ export class TrialbalanceComponent implements OnInit {
   @Output() cancel = new EventEmitter();
   @Output() show = new EventEmitter();
   @Output() refresh = new EventEmitter();
-  @Output() onTrialBalanceChange = new EventEmitter();
+  @Output() onTrialbalanceChange = new EventEmitter();
 
   trialbalances = [];
   trialbalancesAll = [];
   trialbalance = {
     trialbalance_ID: 0,
-    ledger_ID: {
-      credit_AMOUNT: null,
-      debit_AMOUNT: null,
-    },
-
     trialbalance_CODE: null,
     trialbalance_NAME: null,
-
-    balance_FROMDATE: null,
-    balance_TODATE: null,
-    balance_CREDIT: null,
-    balance_DEBIT: null,
-
-    isactive: true,
+    ledger_ID: null,
+    isactive: true
   }
 
   constructor(
@@ -87,9 +70,6 @@ export class TrialbalanceComponent implements OnInit {
     if (this.trialbalanceID != 0 && !this.trialbalanceID && Number(window.sessionStorage.getItem('trialbalance')) > 0) {
       this.trialbalanceID = Number(window.sessionStorage.getItem('trialbalance'));
     }
-
-    this.getTotalDebit();
-    this.getTotalCredit();
 
     if (this.view >= 1 && this.view <= 2 && (this.trialbalances == null || this.trialbalances.length == 0 || reload == true)) {
       this.trialbalances == null;
@@ -127,80 +107,30 @@ export class TrialbalanceComponent implements OnInit {
           text: 'Refresh',
           onClick: this.load.bind(this, true),
         },
-      },
-      // {
-      //   location: 'after',
-      //   text: `Total Credit: ${this.getTotalCredit()}`,
-      // },
-      // {
-      //   location: 'after',
-      //   text: `Total Debit: ${this.getTotalDebit()}`,
-      // }
+      }
     );
-  }
-
-  getTotalCredit() {
-    let total = 0;
-    this.trialbalancesAll.forEach(account => {
-      const credit = Number(account.balance_CREDIT);
-      if (!isNaN(credit)) {
-        total += credit;
-      }
-    });
-    return total;
-  }
-
-  getTotalDebit() {
-    let total = 0;
-    this.trialbalancesAll.forEach(account => {
-      const debit = Number(account.balance_DEBIT);
-      if (!isNaN(debit)) {
-        total += debit;
-      }
-    });
-    return total;
-  }
-
-  onCreditChange() {
-    this.trialbalance.balance_DEBIT = 0;
-    this.creditdisabled = true;
-  }
-
-  onDebitChange() {
-    this.trialbalance.balance_CREDIT = 0;
-    this.debitdisabled = true;
   }
 
   add() {
     this.trialbalance = {
       trialbalance_ID: 0,
-      ledger_ID: {
-        credit_AMOUNT: null,
-        debit_AMOUNT: null,
-      },
-
       trialbalance_CODE: null,
       trialbalance_NAME: null,
-
-      balance_FROMDATE: null,
-      balance_TODATE: null,
-      balance_CREDIT: null,
-      balance_DEBIT: null,
-
-      isactive: true,
+      ledger_ID: null,
+      isactive: true
     };
   }
 
-  // ledgerAddNew() {
-  //   this.addledger.add();
-  //   $("#addledger").modal("show");
-  // }
+  ledgerAddNew() {
+    this.addledger.add();
+    $("#addledger").modal("show");
+  }
 
-  // ledgerCancel() {
-  //   $("#addledger").modal("hide");
-  //   $("#editledger").modal("hide");
-  //   this.ledger.ledgers = this.addledger.ledgers;
-  // }
+  ledgerCancel() {
+    $("#addledger").modal("hide");
+    $("#editledger").modal("hide");
+    this.ledger.ledgers = this.addledger.ledgers;
+  }
 
   onLedgerChange(ledger) {
     this.trialbalance.trialbalance_NAME = ledger.ledger_NAME;
@@ -236,13 +166,16 @@ export class TrialbalanceComponent implements OnInit {
   onChange(trialbalanceID) {
     for (var i = 0; i < this.trialbalancesAll.length; i++) {
       if (this.trialbalancesAll[i].trialbalance_ID == trialbalanceID) {
-        this.onTrialBalanceChange.next(this.trialbalancesAll[i]);
+        this.onTrialbalanceChange.next(this.trialbalancesAll[i]);
         break;
       }
     }
   }
 
   setTrialbalance(response) {
+    this.trialbalanceID = response.trialbalance_ID;
+    this.ledgerID = response.ledger_ID;
+
     if (response.isactive == "Y") {
       response.isactive = true;
     } else {
@@ -302,19 +235,19 @@ export class TrialbalanceComponent implements OnInit {
   }
 
   trialbalanceAdd(trialbalance) {
+    trialbalance.ledger_ID = this.ledger.ledgerID;
+
     trialbalance.isactive = "Y";
-
-    // trialbalance.ledger_ID = this.ledger.ledgerID;
-
     this.trialbalanceservice.add(trialbalance).subscribe(response => {
       if (response) {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else if (response.trialbalance_ID) {
           this.toastrservice.success("Success", "New Trial Balance Added");
+          this.setTrialbalance(this.trialbalanceservice.getDetail(response));
           this.refresh.next();
-          this.disabled = true;
           this.trialbalanceGetAll();
+          this.disabled = true;
         } else {
           this.toastrservice.error("Some thing went wrong");
         }
@@ -325,8 +258,7 @@ export class TrialbalanceComponent implements OnInit {
   }
 
   trialbalanceUpdate(trialbalance) {
-
-    // trialbalance.ledger_ID = this.ledger.ledgerID;
+    trialbalance.ledger_ID = this.ledger.ledgerID;
 
     if (trialbalance.isactive == true) {
       trialbalance.isactive = "Y";
@@ -339,9 +271,10 @@ export class TrialbalanceComponent implements OnInit {
           this.toastrservice.warning("Message", " " + response.message);
         } else if (response.trialbalance_ID) {
           this.toastrservice.success("Success", "Trial Balance Updated");
+          this.setTrialbalance(this.trialbalanceservice.getDetail(response));
           this.refresh.next();
-          this.disabled = true;
           this.trialbalanceGetAll();
+          this.disabled = true;
         } else {
           this.toastrservice.error("Some thing went wrong");
         }
@@ -358,6 +291,7 @@ export class TrialbalanceComponent implements OnInit {
           this.toastrservice.warning("Message", " " + response.message);
         } else if (response.length > 0) {
           this.toastrservice.success("Success", "Trial Balances Updated");
+          this.setTrialbalance(this.trialbalanceservice.getDetail(response));
           this.refresh.next();
         } else {
           this.toastrservice.error("Some thing went wrong");

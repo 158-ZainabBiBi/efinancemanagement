@@ -6,7 +6,7 @@
     <div class="col-md-12">
       <ng-select [(ngModel)]="accountID" [disabled]="disabled" name="accountID" (change)="onChange($event)">
         <ng-option *ngFor="let account of accountsAll" [value]="account.account_ID">
-          {{ account.account_NUMBER }} - {{ account.account_BIC }} - {{ account.account_IBAN }}
+          {{ account.account_CODE }} - {{ account.account_TITLE }}
         </ng-option>
       </ng-select>
     </div>
@@ -15,7 +15,7 @@
     <div class="col-md-10">
       <ng-select [(ngModel)]="accountID" name="accountID" (change)="onChange($event)">
         <ng-option *ngFor="let account of accounts" [value]="account.account_ID" [disabled]="disabled">
-          {{ account.account_NUMBER }} - {{ account.account_BIC }} - {{ account.account_IBAN }}
+          {{ account.account_CODE }} - {{ account.account_TITLE }}
         </ng-option>
       </ng-select>
     </div>
@@ -35,7 +35,7 @@
     <div class="col-md-12">
       <ng-select [(ngModel)]="accountID" [disabled]="disabled" name="accountID" (change)="onChange($event)">
         <ng-option *ngFor="let account of accountsAll" [value]="account.account_ID">
-          {{ account.account_NUMBER }} - {{ account.account_BIC }} - {{ account.account_IBAN }}
+          {{ account.account_CODE }} - {{ account.account_TITLE }}
         </ng-option>
       </ng-select>
     </div>
@@ -44,7 +44,7 @@
     <div class="col-md-10">
       <ng-select [(ngModel)]="accountID" name="accountID" (change)="onChange($event)">
         <ng-option *ngFor="let account of accountsAll" [value]="account.account_ID" [disabled]="disabled">
-          {{ account.account_NUMBER }} - {{ account.account_BIC }} - {{ account.account_IBAN }}
+          {{ account.account_CODE }} - {{ account.account_TITLE }}
         </ng-option>
       </ng-select>
     </div>
@@ -64,7 +64,7 @@
     <div class="col-md-12">
       <ng-select [(ngModel)]="accountID" [disabled]="disabled" name="accountID">
         <ng-option *ngFor="let account of accountsAll" [value]="account.account_ID" [disabled]="disabled">
-          {{ account.account_NUMBER }} - {{ account.account_BIC }} - {{ account.account_IBAN }}
+          {{ account.account_CODE }} - {{ account.account_TITLE }}
         </ng-option>
       </ng-select>
     </div>
@@ -73,7 +73,7 @@
     <div class="col-md-10">
       <ng-select [(ngModel)]="accountID" [disabled]="disabled" name="accountID" (change)="onChange($event)">
         <ng-option *ngFor="let account of accounts" [value]="account.account_ID" [disabled]="disabled">
-          {{ account.account_NUMBER }} - {{ account.account_BIC }} - {{ account.account_IBAN }}
+          {{ account.account_CODE }} - {{ account.account_TITLE }}
         </ng-option>
       </ng-select>
     </div>
@@ -93,7 +93,7 @@
     <div class="col-md-12">
       <ng-select [(ngModel)]="accountID" [disabled]="disabled" name="accountID" (change)="onChange($event)">
         <ng-option *ngFor="let account of accountsAll" [value]="account.account_ID" [disabled]="disabled">
-          {{ account.account_NUMBER }} - {{ account.account_BIC }} - {{ account.account_IBAN }}
+          {{ account.account_CODE }} - {{ account.account_TITLE }}
         </ng-option>
       </ng-select>
     </div>
@@ -102,7 +102,7 @@
     <div class="col-md-10">
       <ng-select [(ngModel)]="accountID" [disabled]="disabled" name="accountID" (change)="onChange($event)">
         <ng-option *ngFor="let account of accountsAll" [value]="account.account_ID" [disabled]="disabled">
-          {{ account.account_NUMBER }} - {{ account.account_BIC }} - {{ account.account_IBAN }}
+          {{ account.account_CODE }} - {{ account.account_TITLE }}
         </ng-option>
       </ng-select>
     </div>
@@ -133,10 +133,7 @@
           cellTemplate="cellTemplate"></dxi-column>
 
         <dxi-column dataField="account_CODE" caption="Code" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="account_NAME" caption="Name" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="account_NUMBER" caption="Number" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="account_BIC" caption="BIC" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="account_IBAN" caption="IBAN" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="account_TITLE" caption="Name" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass"
           alignment="center"></dxi-column>
 
@@ -168,10 +165,7 @@
           cellTemplate="cellTemplate"></dxi-column>
 
         <dxi-column dataField="account_CODE" caption="Code" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="account_NAME" caption="Name" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="account_NUMBER" caption="Number" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="account_BIC" caption="BIC" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="account_IBAN" caption="IBAN" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="account_TITLE" caption="Name" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass"
           alignment="center"></dxi-column>
 
@@ -198,7 +192,7 @@
         </div>
         <div class="modal-body">
           <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-6">
               <div class="form-group">
                 <label class="control-label">Code <span style="color:red">*</span></label>
                 <input type="text" class="form-control" name="account_CODE" [(ngModel)]="account.account_CODE"
@@ -210,52 +204,13 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-6">
               <div class="form-group">
                 <label class="control-label">Name <span style="color:red">*</span></label>
-                <input type="text" class="form-control" name="account_NAME" [(ngModel)]="account.account_NAME"
+                <input type="text" class="form-control" name="account_TITLE" [(ngModel)]="account.account_TITLE"
                   pattern="^[ A-Za-z0-9]+$" #nameInput="ngModel" maxlength="50" required>
                 <div *ngIf="nameInput.invalid && (nameInput.dirty || nameInput.touched)">
                   <div *ngIf="nameInput.errors.pattern">
-                    <span style="color:red">Only contain Alphnumeric.</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="form-group">
-                <label class="control-label">Number <span style="color:red">*</span></label>
-                <input type="text" class="form-control" name="account_NUMBER" [(ngModel)]="account.account_NUMBER"
-                  pattern="^[0-9]+$" #numberInput="ngModel" maxlength="50" required>
-                <div *ngIf="numberInput.invalid && (numberInput.dirty || numberInput.touched)">
-                  <div *ngIf="numberInput.errors.pattern">
-                    <span style="color:red">Only contain Numbers.</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <label class="control-label">IBAN (International Bank Account Number) <span
-                    style="color:red">*</span></label>
-                <input type="text" class="form-control" name="account_IBAN" [(ngModel)]="account.account_IBAN"
-                  pattern="^[A-Za-z0-9]+$" #ibanInput="ngModel" maxlength="50" required>
-                <div *ngIf="ibanInput.invalid && (ibanInput.dirty || ibanInput.touched)">
-                  <div *ngIf="ibanInput.errors.pattern">
-                    <span style="color:red">Only contain Alphnumeric.</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label class="control-label">BIC (Bank Identification Code) <span style="color:red">*</span></label>
-                <input type="text" class="form-control" name="account_BIC" [(ngModel)]="account.account_BIC"
-                  pattern="^[A-Za-z0-9]+$" #bicInput="ngModel" maxlength="50" required>
-                <div *ngIf="bicInput.invalid && (bicInput.dirty || bicInput.touched)">
-                  <div *ngIf="bicInput.errors.pattern">
                     <span style="color:red">Only contain Alphnumeric.</span>
                   </div>
                 </div>
@@ -288,7 +243,7 @@
         </div>
         <div class="modal-body">
           <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-6">
               <div class="form-group">
                 <label class="control-label">Code <span style="color:red">*</span></label>
                 <input type="text" class="form-control" name="account_CODE" [(ngModel)]="account.account_CODE"
@@ -300,52 +255,13 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-6">
               <div class="form-group">
                 <label class="control-label">Name <span style="color:red">*</span></label>
-                <input type="text" class="form-control" name="account_NAME" [(ngModel)]="account.account_NAME"
+                <input type="text" class="form-control" name="account_TITLE" [(ngModel)]="account.account_TITLE"
                   pattern="^[ A-Za-z0-9]+$" #nameInput="ngModel" maxlength="50" required>
                 <div *ngIf="nameInput.invalid && (nameInput.dirty || nameInput.touched)">
                   <div *ngIf="nameInput.errors.pattern">
-                    <span style="color:red">Only contain Alphnumeric.</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="form-group">
-                <label class="control-label">Number <span style="color:red">*</span></label>
-                <input type="text" class="form-control" name="account_NUMBER" [(ngModel)]="account.account_NUMBER"
-                  pattern="^[0-9]+$" #numberInput="ngModel" maxlength="50" required>
-                <div *ngIf="numberInput.invalid && (numberInput.dirty || numberInput.touched)">
-                  <div *ngIf="numberInput.errors.pattern">
-                    <span style="color:red">Only contain Numbers.</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <label class="control-label">IBAN (International Bank Account Number) <span
-                    style="color:red">*</span></label>
-                <input type="text" class="form-control" name="account_IBAN" [(ngModel)]="account.account_IBAN"
-                  pattern="^[A-Za-z0-9]+$" #ibanInput="ngModel" maxlength="50" required>
-                <div *ngIf="ibanInput.invalid && (ibanInput.dirty || ibanInput.touched)">
-                  <div *ngIf="ibanInput.errors.pattern">
-                    <span style="color:red">Only contain Alphnumeric.</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label class="control-label">BIC (Bank Identification Code) <span style="color:red">*</span></label>
-                <input type="text" class="form-control" name="account_BIC" [(ngModel)]="account.account_BIC"
-                  pattern="^[A-Za-z0-9]+$" #bicInput="ngModel" maxlength="50" required>
-                <div *ngIf="bicInput.invalid && (bicInput.dirty || bicInput.touched)">
-                  <div *ngIf="bicInput.errors.pattern">
                     <span style="color:red">Only contain Alphnumeric.</span>
                   </div>
                 </div>
@@ -401,7 +317,7 @@
       <div class="row">
         <div class="col-lg-12">
           <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-6">
               <div class="form-group">
                 <label class="control-label">Code <span style="color:red">*</span></label>
                 <input type="text" class="form-control" name="account_CODE" [(ngModel)]="account.account_CODE"
@@ -413,52 +329,13 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-6">
               <div class="form-group">
                 <label class="control-label">Name <span style="color:red">*</span></label>
-                <input type="text" class="form-control" name="account_NAME" [(ngModel)]="account.account_NAME"
+                <input type="text" class="form-control" name="account_TITLE" [(ngModel)]="account.account_TITLE"
                   [disabled]="disabled" pattern="^[ A-Za-z0-9]+$" #nameInput="ngModel" maxlength="50" required>
                 <div *ngIf="nameInput.invalid && (nameInput.dirty || nameInput.touched)">
                   <div *ngIf="nameInput.errors.pattern">
-                    <span style="color:red">Only contain Alphnumeric.</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="form-group">
-                <label class="control-label">Number <span style="color:red">*</span></label>
-                <input type="text" class="form-control" name="account_NUMBER" [(ngModel)]="account.account_NUMBER"
-                  [disabled]="disabled" pattern="^[0-9]+$" #numberInput="ngModel" maxlength="50" required>
-                <div *ngIf="numberInput.invalid && (numberInput.dirty || numberInput.touched)">
-                  <div *ngIf="numberInput.errors.pattern">
-                    <span style="color:red">Only contain Numbers.</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <label class="control-label">IBAN (International Bank Account Number) <span
-                    style="color:red">*</span></label>
-                <input type="text" class="form-control" name="account_IBAN" [(ngModel)]="account.account_IBAN"
-                  [disabled]="disabled" pattern="^[A-Za-z0-9]+$" #ibanInput="ngModel" maxlength="50" required>
-                <div *ngIf="ibanInput.invalid && (ibanInput.dirty || ibanInput.touched)">
-                  <div *ngIf="ibanInput.errors.pattern">
-                    <span style="color:red">Only contain Alphnumeric.</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label class="control-label">BIC (Bank Identification Code) <span style="color:red">*</span></label>
-                <input type="text" class="form-control" name="account_BIC" [(ngModel)]="account.account_BIC"
-                  [disabled]="disabled" pattern="^[A-Za-z0-9]+$" #bicInput="ngModel" maxlength="50" required>
-                <div *ngIf="bicInput.invalid && (bicInput.dirty || bicInput.touched)">
-                  <div *ngIf="bicInput.errors.pattern">
                     <span style="color:red">Only contain Alphnumeric.</span>
                   </div>
                 </div>

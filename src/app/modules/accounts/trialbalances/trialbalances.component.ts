@@ -29,7 +29,7 @@ export class TrialbalancesComponent implements OnInit {
   }
 
   refresh() {
-    this.trialbalances.ngOnInit();
+    this.trialbalances.load(true);
     this.cancel();
   }
 
@@ -53,11 +53,6 @@ export class TrialbalancesComponent implements OnInit {
 
       trialbalance_CODE: row.data.trialbalance_CODE,
       trialbalance_NAME: row.data.trialbalance_NAME,
-
-      balance_FROMDATE: row.data.balance_FROMDATE,
-      balance_TODATE: row.data.balance_TODATE,
-      balance_CREDIT: row.data.balance_CREDIT,
-      balance_DEBIT: row.data.balance_DEBIT,
 
       isactive: row.data.isactive
     };

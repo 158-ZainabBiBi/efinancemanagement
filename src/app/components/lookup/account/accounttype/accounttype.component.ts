@@ -4,11 +4,11 @@ import { LookupService } from 'src/app/services/lookup.service';
 import { OnFailService } from 'src/app/services/on-fail.service';
 
 @Component({
-  selector: 'app-ledgeraccounttype',
-  templateUrl: './ledgeraccounttype.component.html',
-  styleUrls: ['./ledgeraccounttype.component.css']
+  selector: 'app-accounttype',
+  templateUrl: './accounttype.component.html',
+  styleUrls: ['./accounttype.component.css']
 })
-export class LedgeraccounttypeComponent implements OnInit {
+export class AccounttypeComponent implements OnInit {
   @Input()
   iscompulsory: boolean = false;
   @Input()
@@ -16,10 +16,10 @@ export class LedgeraccounttypeComponent implements OnInit {
   @Input()
   all: boolean = false;
   @Input()
-  ledgeraccounttypeID = null;
+  accounttypeID = null;
 
-  ledgeraccounttypes = [];
-  ledgeraccounttypesAll = [];
+  accounttypes = [];
+  accounttypesAll = [];
 
   constructor(
     private lookupservice: LookupService,
@@ -28,26 +28,26 @@ export class LedgeraccounttypeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.ledgeraccounttypes = JSON.parse(window.sessionStorage.getItem('ledgeraccounttypes'));
-    this.ledgeraccounttypesAll = JSON.parse(window.sessionStorage.getItem('ledgeraccounttypesAll'));
+    this.accounttypes = JSON.parse(window.sessionStorage.getItem('accounttypes'));
+    this.accounttypesAll = JSON.parse(window.sessionStorage.getItem('accounttypesAll'));
 
-    if (this.ledgeraccounttypes == null) {
-      this.ledgeraccounttypeGet();
+    if (this.accounttypes == null) {
+      this.accounttypeGet();
     }
 
-    if (this.ledgeraccounttypesAll == null) {
-      this.ledgeraccounttypeGetAll();
+    if (this.accounttypesAll == null) {
+      this.accounttypeGetAll();
     }
   }
 
-  ledgeraccounttypeGet() {
+  accounttypeGet() {
     this.lookupservice.lookup("ACCOUNTTYPE").subscribe(response => {
       if (response) {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else {
-          this.ledgeraccounttypes = response;
-          window.sessionStorage.setItem("ledgeraccounttypes", JSON.stringify(this.ledgeraccounttypes));
+          this.accounttypes = response;
+          window.sessionStorage.setItem("accounttypes", JSON.stringify(this.accounttypes));
         }
       }
     }, error => {
@@ -55,14 +55,14 @@ export class LedgeraccounttypeComponent implements OnInit {
     })
   }
 
-  ledgeraccounttypeGetAll() {
+  accounttypeGetAll() {
     this.lookupservice.lookupAll("ACCOUNTTYPE").subscribe(response => {
       if (response) {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else {
-          this.ledgeraccounttypesAll = response;
-          window.sessionStorage.setItem("ledgeraccounttypesAll", JSON.stringify(this.ledgeraccounttypesAll));
+          this.accounttypesAll = response;
+          window.sessionStorage.setItem("accounttypesAll", JSON.stringify(this.accounttypesAll));
         }
       }
     }, error => {

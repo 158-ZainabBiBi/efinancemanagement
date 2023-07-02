@@ -6,7 +6,7 @@
     <div class="col-md-12">
       <ng-select [(ngModel)]="transactionID" [disabled]="disabled" name="transactionID" (change)="onChange($event)">
         <ng-option *ngFor="let transaction of transactionsAll" [value]="transaction.transaction_ID">
-          {{ transaction.transaction_CODE }} - {{ transaction.transaction_DATE }} - {{ transaction.transaction_TOTAL}}
+          {{ transaction.transaction_CODE }} - {{ transaction.transaction_DATE }} - {{ transaction.transaction_AMOUNT}}
         </ng-option>
       </ng-select>
     </div>
@@ -15,7 +15,7 @@
     <div class="col-md-10">
       <ng-select [(ngModel)]="transactionID" name="transactionID" (change)="onChange($event)">
         <ng-option *ngFor="let transaction of transactions" [value]="transaction.transaction_ID" [disabled]="disabled">
-          {{ transaction.transaction_CODE }} - {{ transaction.transaction_DATE }} - {{ transaction.transaction_TOTAL }}
+          {{ transaction.transaction_CODE }} - {{ transaction.transaction_DATE }} - {{ transaction.transaction_AMOUNT }}
         </ng-option>
       </ng-select>
     </div>
@@ -35,7 +35,7 @@
     <div class="col-md-12">
       <ng-select [(ngModel)]="transactionID" [disabled]="disabled" name="transactionID" (change)="onChange($event)">
         <ng-option *ngFor="let transaction of transactionsAll" [value]="transaction.transaction_ID">
-          {{ transaction.transaction_CODE }} - {{ transaction.transaction_DATE }} - {{ transaction.transaction_TOTAL }}
+          {{ transaction.transaction_CODE }} - {{ transaction.transaction_DATE }} - {{ transaction.transaction_AMOUNT }}
         </ng-option>
       </ng-select>
     </div>
@@ -45,7 +45,7 @@
       <ng-select [(ngModel)]="transactionID" name="transactionID" (change)="onChange($event)">
         <ng-option *ngFor="let transaction of transactionsAll" [value]="transaction.transaction_ID"
           [disabled]="disabled">
-          {{ transaction.transaction_CODE }} - {{ transaction.transaction_DATE }} - {{ transaction.transaction_TOTAL }}
+          {{ transaction.transaction_CODE }} - {{ transaction.transaction_DATE }} - {{ transaction.transaction_AMOUNT }}
         </ng-option>
       </ng-select>
     </div>
@@ -66,7 +66,7 @@
       <ng-select [(ngModel)]="transactionID" [disabled]="disabled" name="transactionID">
         <ng-option *ngFor="let transaction of transactionsAll" [value]="transaction.transaction_ID"
           [disabled]="disabled">
-          {{ transaction.transaction_CODE }} - {{ transaction.transaction_DATE }} - {{ transaction.transaction_TOTAL }}
+          {{ transaction.transaction_CODE }} - {{ transaction.transaction_DATE }} - {{ transaction.transaction_AMOUNT }}
         </ng-option>
       </ng-select>
     </div>
@@ -75,7 +75,7 @@
     <div class="col-md-10">
       <ng-select [(ngModel)]="transactionID" [disabled]="disabled" name="transactionID" (change)="onChange($event)">
         <ng-option *ngFor="let transaction of transactions" [value]="transaction.transaction_ID" [disabled]="disabled">
-          {{ transaction.transaction_CODE }} - {{ transaction.transaction_DATE }} - {{ transaction.transaction_TOTAL }}
+          {{ transaction.transaction_CODE }} - {{ transaction.transaction_DATE }} - {{ transaction.transaction_AMOUNT }}
         </ng-option>
       </ng-select>
     </div>
@@ -96,7 +96,7 @@
       <ng-select [(ngModel)]="transactionID" [disabled]="disabled" name="transactionID" (change)="onChange($event)">
         <ng-option *ngFor="let transaction of transactionsAll" [value]="transaction.transaction_ID"
           [disabled]="disabled">
-          {{ transaction.transaction_CODE }} - {{ transaction.transaction_DATE }} - {{ transaction.transaction_TOTAL }}
+          {{ transaction.transaction_CODE }} - {{ transaction.transaction_DATE }} - {{ transaction.transaction_AMOUNT }}
         </ng-option>
       </ng-select>
     </div>
@@ -106,7 +106,7 @@
       <ng-select [(ngModel)]="transactionID" [disabled]="disabled" name="transactionID" (change)="onChange($event)">
         <ng-option *ngFor="let transaction of transactionsAll" [value]="transaction.transaction_ID"
           [disabled]="disabled">
-          {{ transaction.transaction_CODE }} - {{ transaction.transaction_DATE }} - {{ transaction.transaction_TOTAL }}
+          {{ transaction.transaction_CODE }} - {{ transaction.transaction_DATE }} - {{ transaction.transaction_AMOUNT }}
         </ng-option>
       </ng-select>
     </div>
@@ -141,7 +141,7 @@
         <dxi-column dataField="transaction_NAME" caption="Name" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="transactiontype.description" caption="Type" cssClass="myClass"
           alignment="left"></dxi-column>
-        <dxi-column dataField="transaction_TOTAL" caption="Amount" cssClass="myClass" alignment="center"></dxi-column>
+        <dxi-column dataField="transaction_AMOUNT" caption="Amount" cssClass="myClass" alignment="center"></dxi-column>
         <dxi-column dataField="currency.description" caption="Currency" cssClass="myClass"
           alignment="left"></dxi-column>
         <dxi-column dataField="bankaccount.account.account_NAME" caption="Bank Account" cssClass="myClass"
@@ -182,7 +182,7 @@
         <dxi-column dataField="transaction_NAME" caption="Name" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="transactiontype.description" caption="Type" cssClass="myClass"
           alignment="left"></dxi-column>
-        <dxi-column dataField="transaction_TOTAL" caption="Amount" cssClass="myClass" alignment="center"></dxi-column>
+        <dxi-column dataField="transaction_AMOUNT" caption="Amount" cssClass="myClass" alignment="center"></dxi-column>
         <dxi-column dataField="currency.description" caption="Currency" cssClass="myClass"
           alignment="left"></dxi-column>
         <dxi-column dataField="bankaccount.account.account_NAME" caption="Bank Account" cssClass="myClass"
@@ -240,8 +240,8 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label class="control-label"> Total Amount <span style="color:red">*</span></label>
-                <input type="number" class="form-control" name="transaction_TOTAL"
-                  [(ngModel)]="transaction.transaction_TOTAL" maxlength="50" required>
+                <input type="number" class="form-control" name="transaction_AMOUNT"
+                  [(ngModel)]="transaction.transaction_AMOUNT" maxlength="50" required>
               </div>
             </div>
           </div>
@@ -320,8 +320,8 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label class="control-label"> Total Amount <span style="color:red">*</span></label>
-                <input type="number" class="form-control" name="transaction_TOTAL"
-                  [(ngModel)]="transaction.transaction_TOTAL" maxlength="50" required>
+                <input type="number" class="form-control" name="transaction_AMOUNT"
+                  [(ngModel)]="transaction.transaction_AMOUNT" maxlength="50" required>
               </div>
             </div>
           </div>
@@ -424,8 +424,8 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label class="control-label"> Total Amount <span style="color:red">*</span></label>
-                <input type="number" class="form-control" name="transaction_TOTAL" [disabled]="disabled"
-                  [(ngModel)]="transaction.transaction_TOTAL" maxlength="50" required>
+                <input type="number" class="form-control" name="transaction_AMOUNT" [disabled]="disabled"
+                  [(ngModel)]="transaction.transaction_AMOUNT" maxlength="50" required>
               </div>
             </div>
           </div>

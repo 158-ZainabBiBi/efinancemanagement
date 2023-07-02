@@ -22,21 +22,9 @@ import { RequestOptionsService } from './services/setting.headers';
 import { HttpErrorInterceptor } from './services/http-error.interceptor';
 import { DxiTotalItemModule } from 'devextreme-angular/ui/nested';
 import { DxDataGridModule } from "devextreme-angular";
-import { AccountclassificationsComponent } from './modules/accounts/accountclassifications/accountclassifications.component';
-import { AccountclassificationviewComponent } from './modules/accounts/accountclassifications/accountclassificationview/accountclassificationview.component';
-import { BalancesheetsComponent } from './modules/accounts/balancesheets/balancesheets.component';
-import { BalancesheetviewComponent } from './modules/accounts/balancesheets/balancesheetview/balancesheetview.component';
-import { ChartofaccountsComponent } from './modules/accounts/chartofaccounts/chartofaccounts.component';
-import { ChartofaccountviewComponent } from './modules/accounts/chartofaccounts/chartofaccountview/chartofaccountview.component';
-import { IncomestatementsComponent } from './modules/accounts/incomestatements/incomestatements.component';
-import { IncomestatementviewComponent } from './modules/accounts/incomestatements/incomestatementview/incomestatementview.component';
-import { LedgersComponent } from './modules/accounts/ledgers/ledgers.component';
-import { LedgerviewComponent } from './modules/accounts/ledgers/ledgerview/ledgerview.component';
-import { ProfitandlossesComponent } from './modules/accounts/profitandlosses/profitandlosses.component';
-import { ProfitandlossviewComponent } from './modules/accounts/profitandlosses/profitandlossview/profitandlossview.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, NotfoundComponent, AccountclassificationsComponent, AccountclassificationviewComponent, BalancesheetsComponent, BalancesheetviewComponent, ChartofaccountsComponent, ChartofaccountviewComponent, IncomestatementsComponent, IncomestatementviewComponent, LedgersComponent, LedgerviewComponent, ProfitandlossesComponent, ProfitandlossviewComponent],
+  declarations: [AppComponent, LoginComponent, NotfoundComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule, // required animations module

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, ViewChild, EventEmitter } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { OnFailService } from '../../../services/on-fail.service';
 import { LocationsearchfilterComponent } from '../../location/locationsearchfilter/locationsearchfilter.component';
@@ -15,7 +15,7 @@ export class PersonComponent implements OnInit {
   @ViewChild("locationsearchfilter") locationsearchfilter: LocationsearchfilterComponent;
 
   @Input()
-  view: number = 1;
+  view: number = 0;
   @Input()
   iscompulsory: boolean = false;
   @Input()
@@ -28,6 +28,8 @@ export class PersonComponent implements OnInit {
   personID = null;
   @Input()
   locationID = null;
+  @Input()
+  birthplaceID = null;
   @Input()
   locationsearchfilterID = null;
 
@@ -59,6 +61,7 @@ export class PersonComponent implements OnInit {
     private personservice: PersonService,
     private toastrservice: ToastrService,
     private onfailservice: OnFailService,
+    private route: ActivatedRoute,
     private router: Router,
   ) { }
 
@@ -77,6 +80,21 @@ export class PersonComponent implements OnInit {
       this.personID = Number(window.sessionStorage.getItem('person'));
     }
 
+    if (this.view == 0) {
+      this.person = JSON.parse(window.sessionStorage.getItem('personal'));
+      this.disabled = true;
+    }
+    this.persons = JSON.parse(window.sessionStorage.getItem('persons'));
+    this.personsAll = JSON.parse(window.sessionStorage.getItem('personsAll'));
+
+    this.route.queryParams.subscribe(params => {
+      this.personID = params.person;
+    });
+    if (this.personID != 0 && !this.personID && Number(window.sessionStorage.getItem('person')) > 0) {
+      this.personID = Number(window.sessionStorage.getItem('person'));
+    }
+
+
     if (this.view >= 1 && this.view <= 2 && (this.persons == null || this.persons.length == 0 || reload == true)) {
       this.persons == null;
       this.personGet();
@@ -89,6 +107,7 @@ export class PersonComponent implements OnInit {
     var search = {
       birthplace_ID: this.locationID,
     }
+
     if (this.view >= 5 && this.view <= 6 && this.personID) {
       window.sessionStorage.setItem("person", this.personID);
       this.personGetOne(this.personID);
@@ -157,7 +176,7 @@ export class PersonComponent implements OnInit {
   personCancel() {
     this.disabled = true;
     if (this.person.person_ID == 0) {
-      this.router.navigate(["/home/persons "], {});
+      this.router.navigate(["/home/persons"], {});
     }
   }
 
@@ -171,6 +190,9 @@ export class PersonComponent implements OnInit {
   }
 
   setPerson(response) {
+    this.personID = response.person_ID;
+    this.birthplaceID = response.birthplace_ID;
+
     if (response.isactive == "Y") {
       response.isactive = true;
     } else {
@@ -241,7 +263,9 @@ export class PersonComponent implements OnInit {
           this.toastrservice.warning("Message", " " + response.message);
         } else if (response.person_ID) {
           this.toastrservice.success("Success", "New Person Added");
+          this.setPerson(this.personservice.getDetail(response));
           this.refresh.next();
+          this.personGetAll();
           this.disabled = true;
         } else {
           this.toastrservice.error("Some thing went wrong");
@@ -265,7 +289,10 @@ export class PersonComponent implements OnInit {
           this.toastrservice.warning("Message", " " + response.message);
         } else if (response.person_ID) {
           this.toastrservice.success("Success", "Person Updated");
+          this.setPerson(this.personservice.getDetail(response));
           this.refresh.next();
+          this.personGetAll();
+          this.disabled = true;
         } else {
           this.toastrservice.error("Some thing went wrong");
         }
@@ -282,6 +309,7 @@ export class PersonComponent implements OnInit {
           this.toastrservice.warning("Message", " " + response.message);
         } else if (response.length > 0) {
           this.toastrservice.success("Success", "Persons Updated");
+          this.setPerson(this.personservice.getDetail(response));
           this.refresh.next();
         } else {
           this.toastrservice.error("Some thing went wrong");

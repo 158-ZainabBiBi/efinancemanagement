@@ -1,1 +1,8 @@
-<p>balancesheetview works!</p>
+<div class="collapse-card-h container">
+  <div class="row">
+    <div class="col-md-12">
+      <app-balancesheet [view]=5 [balancesheetID]="balancesheetID" (refresh)="refresh()"
+        (cancel)="cancel()"></app-balancesheet>
+    </div>
+  </div>
+</div>

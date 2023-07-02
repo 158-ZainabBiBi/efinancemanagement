@@ -30,13 +30,13 @@ export class AccountsComponent implements OnInit {
   view() {
   }
 
-  refresh() {
-    this.accounts.ngOnInit();
-    this.cancel();
-  }
-
   show(row) {
     this.router.navigate(["/home/account"], { queryParams: { account: row.data.account_ID } });
+  }
+
+  refresh() {
+    this.accounts.load(true);
+    this.cancel();
   }
 
   addNew() {
@@ -48,13 +48,9 @@ export class AccountsComponent implements OnInit {
     this.editaccount.account = {
       account_ID: row.data.account_ID,
       account_CODE: row.data.account_CODE,
-      account_NAME: row.data.account_NAME,
-      account_NUMBER: row.data.account_NUMBER,
-      account_BIC: row.data.account_BIC,
-      account_IBAN: row.data.account_IBAN,
+      account_TITLE: row.data.account_TITLE,
       isactive: row.data.isactive
     };
-
     if (row.data.isactive == "Y") {
       this.editaccount.account.isactive = true;
     } else {
@@ -62,7 +58,6 @@ export class AccountsComponent implements OnInit {
     }
     $("#edit").modal("show");
   }
-
   cancel() {
     $("#add").modal("hide");
     $("#edit").modal("hide");

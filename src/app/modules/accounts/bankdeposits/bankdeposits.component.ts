@@ -31,7 +31,7 @@ export class BankdepositsComponent implements OnInit {
   }
 
   refresh() {
-    this.bankdeposits.ngOnInit();
+    this.bankdeposits.load(true);
     this.cancel();
   }
 

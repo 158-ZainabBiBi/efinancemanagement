@@ -1,7 +1,8 @@
 <div class="collapse-card-h container">
   <div class="row">
     <div class="col-md-12">
-      <app-transaction [view]=5 [transactionID]="transactionID" (cancel)="cancel()"></app-transaction>
+      <app-transaction [view]=5 [transactionID]="transactionID" (refresh)="refresh()"
+        (cancel)="cancel()"></app-transaction>
     </div>
   </div>
 </div>

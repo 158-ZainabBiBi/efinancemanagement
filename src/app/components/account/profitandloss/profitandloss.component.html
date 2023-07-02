@@ -1,1 +1,443 @@
-<p>profitandloss works!</p>
+<div *ngIf="view==1" class="form-group">
+  <label class="custom-label form-label">Profit and Loss
+    <span style="color: red;" [hidden]="disabled" *ngIf="iscompulsory==true">*</span>
+  </label>
+  <div class="row" *ngIf="disabled==true">
+    <div class="col-md-12">
+      <ng-select [(ngModel)]="profitandlossID" [disabled]="disabled" name="profitandlossID" (change)="onChange($event)">
+        <ng-option *ngFor="let profitandloss of profitandlosssAll" [value]="profitandloss.profitandloss_ID">
+          {{ profitandloss.profitandloss_CODE }} - {{ profitandloss.profitandloss_NAME
+          }} - {{ profitandloss.ledger.ledger_NAME }} - {{ profitandloss.ledger.ledger_CREDIT }} - {{
+          profitandloss.ledger.ledger_DEBIT }}
+        </ng-option>
+      </ng-select>
+    </div>
+  </div>
+  <div class="row" *ngIf="disabled==false">
+    <div class="col-md-10">
+      <ng-select [(ngModel)]="profitandlossID" name="profitandlossID" (change)="onChange($event)">
+        <ng-option *ngFor="let profitandloss of profitandlosss" [value]="profitandloss.profitandloss_ID"
+          [disabled]="disabled">
+          {{ profitandloss.profitandloss_CODE }} - {{ profitandloss.profitandloss_NAME
+          }} - {{ profitandloss.ledger.ledger_NAME }} - {{ profitandloss.ledger.ledger_CREDIT }} - {{
+          profitandloss.ledger.ledger_DEBIT }}
+        </ng-option>
+      </ng-select>
+    </div>
+    <div class="col-md-2">
+      <button type="button" class="btn btn-light ml-2" (click)="load(true)">
+        <i class="fa fa-refresh" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="view==10" class="form-group">
+  <label class="custom-label form-label">Profit and Loss
+    <span style="color: red;" [hidden]="disabled" *ngIf="iscompulsory==true">*</span>
+  </label>
+  <div class="row" *ngIf="disabled==true">
+    <div class="col-md-12">
+      <ng-select [(ngModel)]="profitandlossID" [disabled]="disabled" name="profitandlossID" (change)="onChange($event)">
+        <ng-option *ngFor="let profitandloss of profitandlosssAll" [value]="profitandloss.profitandloss_ID">
+          {{ profitandloss.profitandloss_CODE }} - {{ profitandloss.profitandloss_NAME
+          }} - {{ profitandloss.ledger.ledger_NAME }} - {{ profitandloss.ledger.ledger_CREDIT }} - {{
+          profitandloss.ledger.ledger_DEBIT }}
+        </ng-option>
+      </ng-select>
+    </div>
+  </div>
+  <div class="row" *ngIf="disabled==false">
+    <div class="col-md-10">
+      <ng-select [(ngModel)]="profitandlossID" name="profitandlossID" (change)="onChange($event)">
+        <ng-option *ngFor="let profitandloss of profitandlosssAll" [value]="profitandloss.profitandloss_ID"
+          [disabled]="disabled">
+          {{ profitandloss.profitandloss_CODE }} - {{ profitandloss.profitandloss_NAME
+          }} - {{ profitandloss.ledger.ledger_NAME }} - {{ profitandloss.ledger.ledger_CREDIT }} - {{
+          profitandloss.ledger.ledger_DEBIT }}
+        </ng-option>
+      </ng-select>
+    </div>
+    <div class="col-md-2">
+      <button type="button" class="btn btn-light ml-2" (click)="load(true)">
+        <i class="fa fa-refresh" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="view==11" class="form-group">
+  <label class="custom-label form-label">Profit and Loss
+    <span style="color: red;" [hidden]="disabled" *ngIf="iscompulsory==true">*</span>
+  </label>
+  <div class="row" *ngIf="disabled==true">
+    <div class="col-md-12">
+      <ng-select [(ngModel)]="profitandlossID" [disabled]="disabled" name="profitandlossID">
+        <ng-option *ngFor="let profitandloss of profitandlosssAll" [value]="profitandloss.profitandloss_ID"
+          [disabled]="disabled">
+          {{ profitandloss.profitandloss_CODE }} - {{ profitandloss.profitandloss_NAME
+          }} - {{ profitandloss.ledger.ledger_NAME }} - {{ profitandloss.ledger.ledger_CREDIT }} - {{
+          profitandloss.ledger.ledger_DEBIT }}
+        </ng-option>
+      </ng-select>
+    </div>
+  </div>
+  <div class="row" *ngIf="disabled==false">
+    <div class="col-md-10">
+      <ng-select [(ngModel)]="profitandlossID" [disabled]="disabled" name="profitandlossID" (change)="onChange($event)">
+        <ng-option *ngFor="let profitandloss of profitandlosss" [value]="profitandloss.profitandloss_ID"
+          [disabled]="disabled">
+          {{ profitandloss.profitandloss_CODE }} - {{ profitandloss.profitandloss_NAME
+          }} - {{ profitandloss.ledger.ledger_NAME }} - {{ profitandloss.ledger.ledger_CREDIT }} - {{
+          profitandloss.ledger.ledger_DEBIT }}
+        </ng-option>
+      </ng-select>
+    </div>
+    <div class="col-md-2">
+      <button type="button" class="btn btn-light ml-2" [hidden]="disabled" (click)="load(true)">
+        <i class="fa fa-refresh" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="view==19" class="form-group">
+  <label class="custom-label form-label">Profit and Loss
+    <span style="color: red;" [hidden]="disabled" *ngIf="iscompulsory==true">*</span>
+  </label>
+  <div class="row" *ngIf="disabled==true">
+    <div class="col-md-12">
+      <ng-select [(ngModel)]="profitandlossID" [disabled]="disabled" name="profitandlossID" (change)="onChange($event)">
+        <ng-option *ngFor="let profitandloss of profitandlosssAll" [value]="profitandloss.profitandloss_ID"
+          [disabled]="disabled">
+          {{ profitandloss.profitandloss_CODE }} - {{ profitandloss.profitandloss_NAME
+          }} - {{ profitandloss.ledger.ledger_NAME }} - {{ profitandloss.ledger.ledger_CREDIT }} - {{
+          profitandloss.ledger.ledger_DEBIT }}
+        </ng-option>
+      </ng-select>
+    </div>
+  </div>
+  <div class="row" *ngIf="disabled==false">
+    <div class="col-md-10">
+      <ng-select [(ngModel)]="profitandlossID" [disabled]="disabled" name="profitandlossID" (change)="onChange($event)">
+        <ng-option *ngFor="let profitandloss of profitandlosssAll" [value]="profitandloss.profitandloss_ID"
+          [disabled]="disabled">
+          {{ profitandloss.profitandloss_CODE }} - {{ profitandloss.profitandloss_NAME
+          }} - {{ profitandloss.ledger.ledger_NAME }} - {{ profitandloss.ledger.ledger_CREDIT }} - {{
+          profitandloss.ledger.ledger_DEBIT }}
+        </ng-option>
+      </ng-select>
+    </div>
+    <div class="col-md-2">
+      <button type="button" class="btn btn-light ml-2" [hidden]="disabled" (click)="load(true)">
+        <i class="fa fa-refresh" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="view==2" class="form-group">
+  <div class="outer-div">
+    <div class="grid-wrapper">
+      <dx-data-grid #grid id="gridContainer" [dataSource]="profitandlosssAll" keyExpr="profitandloss_ID"
+        [showColumnLines]="true" [showRowLines]="true" [showBorders]="true" [rowAlternationEnabled]="true"
+        [allowColumnResizing]="true" [columnMinWidth]="30" [columnAutoWidth]="true" [remoteOperations]="true"
+        height="600" width="100%" (onToolbarPreparing)="onToolbarPreparing($event)">
+        <dxo-filter-row [visible]="true"></dxo-filter-row>
+        <dxo-header-filter [visible]="true"></dxo-header-filter>
+        <dxo-search-panel [visible]="true"></dxo-search-panel>
+        <dxo-group-panel [visible]="false"></dxo-group-panel>
+        <dxo-grouping #expand [autoExpandAll]="false"></dxo-grouping>
+        <dxo-scrolling mode="virtual"></dxo-scrolling>
+        <dxo-sorting mode="multiple"></dxo-sorting>
+        <dxo-selection mode="single"></dxo-selection>
+        <dxi-column [width]="75" [allowFiltering]="false" [allowSorting]="false" alignment="center"
+          cellTemplate="cellTemplate"></dxi-column>
+
+        <dxi-column dataField="profitandloss_CODE" caption="Code" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="profitandloss_NAME" caption="Name" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="ledger.ledger_NAME" caption="Ledger" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="ledger.ledger_CREDIT" caption="Debit" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="ledger.ledger_DEBIT" caption="Debit" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass"
+          alignment="center"></dxi-column>
+
+        <div *dxTemplate="let data of 'cellTemplate'">
+          <a href="javascript:void" class="" (click)="update(data)">
+            <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+        </div>
+      </dx-data-grid>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="view==22" class="form-group">
+  <div class="outer-div">
+    <div class="grid-wrapper">
+      <dx-data-grid #grid id="gridContainer" [dataSource]="profitandlosss" keyExpr="profitandloss_ID"
+        [showColumnLines]="true" [showRowLines]="true" [showBorders]="true" [rowAlternationEnabled]="true"
+        [allowColumnResizing]="true" [columnMinWidth]="30" [columnAutoWidth]="true" [remoteOperations]="true"
+        height="600" width="100%" (onToolbarPreparing)="onToolbarPreparing($event)">
+        <dxo-filter-row [visible]="true"></dxo-filter-row>
+        <dxo-header-filter [visible]="true"></dxo-header-filter>
+        <dxo-search-panel [visible]="true"></dxo-search-panel>
+        <dxo-group-panel [visible]="false"></dxo-group-panel>
+        <dxo-grouping #expand [autoExpandAll]="false"></dxo-grouping>
+        <dxo-scrolling mode="virtual"></dxo-scrolling>
+        <dxo-sorting mode="multiple"></dxo-sorting>
+        <dxo-selection mode="single"></dxo-selection>
+        <dxi-column [width]="75" [allowFiltering]="false" [allowSorting]="false" alignment="center"
+          cellTemplate="cellTemplate"></dxi-column>
+
+        <dxi-column dataField="profitandloss_CODE" caption="Code" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="profitandloss_NAME" caption="Name" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="ledger.ledger_NAME" caption="Ledger" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="ledger.ledger_CREDIT" caption="Debit" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="ledger.ledger_DEBIT" caption="Debit" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass"
+          alignment="center"></dxi-column>
+
+        <div *dxTemplate="let data of 'cellTemplate'">
+          <a href="javascript:void" class="" (click)="showView(data)">
+            <i class="fa fa-eye" aria-hidden="true"></i></a>
+        </div>
+      </dx-data-grid>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="view==3" class="form-group">
+  <form action="" class="form" (ngSubmit)="f.form.valid && profitandlossAdd(profitandloss)" #f="ngForm" novalidate>
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">
+            <i class="fa fa-plus" aria-hidden="true"></i> Add New Profit and Loss
+          </h5>
+          <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+            <span aria-hidden="true"> ×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="control-label">Code <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="profitandloss_CODE"
+                  [(ngModel)]="profitandloss.profitandloss_CODE" pattern="^[-A-Za-z0-9]+$" #codeInput="ngModel"
+                  maxlength="50" required>
+                <div *ngIf="codeInput.invalid && (codeInput.dirty || codeInput.touched)">
+                  <div *ngIf="codeInput.errors.pattern">
+                    <span style="color:red">Only contain Alphnumeric & Hyphen(-).</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="control-label">Name <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="profitandloss_NAME"
+                  [(ngModel)]="profitandloss.profitandloss_NAME" pattern="^[ A-Za-z0-9]+$" #nameInput="ngModel"
+                  maxlength="50" required>
+                <div *ngIf="nameInput.invalid && (nameInput.dirty || nameInput.touched)">
+                  <div *ngIf="nameInput.errors.pattern">
+                    <span style="color:red">Only contain Alphnumeric.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <app-ledger #ledger [view]="1" [ledgerID]="profitandloss.ledger_ID"></app-ledger>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary" [disabled]="f.invalid">
+            <i class="fa fa-plus" aria-hidden="true"></i> Add
+          </button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div *ngIf="view==4" class="form-group">
+  <form action="" class="form" (ngSubmit)="f.form.valid && profitandlossUpdate(profitandloss)" #f="ngForm" novalidate>
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">
+            <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit Profit and Loss
+          </h5>
+          <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+            <span aria-hidden="true"> ×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="control-label">Code <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="profitandloss_CODE"
+                  [(ngModel)]="profitandloss.profitandloss_CODE" pattern="^[-A-Za-z0-9]+$" #codeInput="ngModel"
+                  maxlength="50" required>
+                <div *ngIf="codeInput.invalid && (codeInput.dirty || codeInput.touched)">
+                  <div *ngIf="codeInput.errors.pattern">
+                    <span style="color:red">Only contain Alphnumeric & Hyphen(-).</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="control-label">Name <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="profitandloss_NAME"
+                  [(ngModel)]="profitandloss.profitandloss_NAME" pattern="^[ A-Za-z0-9]+$" #nameInput="ngModel"
+                  maxlength="50" required>
+                <div *ngIf="nameInput.invalid && (nameInput.dirty || nameInput.touched)">
+                  <div *ngIf="nameInput.errors.pattern">
+                    <span style="color:red">Only contain Alphnumeric.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <app-ledger #ledger [view]="1" [ledgerID]="profitandloss.ledger_ID"></app-ledger>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <div class="checkbox">
+                  <label class="control-label">
+                    <input type="checkbox" [checked]="profitandloss.isactive" [(ngModel)]="profitandloss.isactive"
+                      name="isactive">
+                    Active
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary" [disabled]="f.invalid">
+            <i class="fa fa-plus" aria-hidden="true"></i> Update
+          </button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div *ngIf="view==5" class="form-group">
+  <div class="card-primary card">
+    <div class="card-header">
+      <div class="align-items-center row">
+        <div class="col" *ngIf="profitandloss.profitandloss_ID==0">
+          <a href="javascript:void" aria-controls="collapse-profitandlossinfo1" aria-expanded="true" class="card-title">
+            Add New Profit and Loss
+          </a>
+        </div>
+        <div class="col" *ngIf="profitandloss.profitandloss_ID!=0 && disabled==false">
+          <a href="javascript:void" aria-controls="collapse-profitandlossinfo1" aria-expanded="true" class="card-title">
+            Edit Profit and Loss
+          </a>
+        </div>
+        <div class="col" *ngIf="profitandloss.profitandloss_ID!=0 && disabled==true">
+          <a href="javascript:void" aria-controls="collapse-profitandlossinfo1" aria-expanded="true"
+            class="card-title">Profit and Loss Detail
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="control-label">Code <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="profitandloss_CODE"
+                  [(ngModel)]="profitandloss.profitandloss_CODE" [disabled]="disabled" pattern="^[-A-Za-z0-9]+$"
+                  #codeInput="ngModel" maxlength="50" required>
+                <div *ngIf="codeInput.invalid && (codeInput.dirty || codeInput.touched)">
+                  <div *ngIf="codeInput.errors.pattern">
+                    <span style="color:red">Only contain Alphnumeric & Hyphen(-).</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="control-label">Name <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="profitandloss_NAME"
+                  [(ngModel)]="profitandloss.profitandloss_NAME" [disabled]="disabled" pattern="^[ A-Za-z0-9]+$"
+                  #nameInput="ngModel" maxlength="50" required>
+                <div *ngIf="nameInput.invalid && (nameInput.dirty || nameInput.touched)">
+                  <div *ngIf="nameInput.errors.pattern">
+                    <span style="color:red">Only contain Alphnumeric.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-8">
+              <app-ledger #ledger [view]="1" [disabled]="disabled" [ledgerID]=profitandloss.ledger_ID
+                (onLedgerChange)="onLedgerChange($event)"></app-ledger>
+            </div>
+            <div class="col-md-4">
+              <br />
+              <button type="button" *ngIf="profitandloss.profitandloss_ID==0" (click)="ledgerAddNew()"
+                class="btn btn-secondary btn-sm">
+                <i class="fas fa-plus fa-fw"></i> Add New Ledger
+              </button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12" *ngIf="profitandloss.profitandloss_ID!=0">
+              <div class="form-group">
+                <div class="checkbox">
+                  <label class="control-label">
+                    <input type="checkbox" [checked]="profitandloss.isactive" [(ngModel)]="profitandloss.isactive"
+                      [disabled]="disabled" name="isactive">
+                    Active
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <button *ngIf="profitandloss.profitandloss_ID!=0 && disabled==true" (click)="editView()" id="cancel"
+                class="btn btn-primary" style="float: right;"> Edit
+              </button>
+              <button *ngIf="disabled==false" type="button" (click)='profitandlossCancel()' style="float: right;"
+                class="btn btn-light" data-dismiss="modal"> Cancel
+              </button>
+              <button *ngIf="profitandloss.profitandloss_ID!=0 && disabled==false" type="button" data-dismiss="modal"
+                style=" margin-right: 10px; float: right;" (click)='profitandlossUpdate(profitandloss)'
+                class="btn btn-primary">
+                Update
+              </button>
+              <button *ngIf="profitandloss.profitandloss_ID==0" type="button" data-dismiss="modal"
+                style=" margin-right: 10px; float: right;" (click)='profitandlossAdd(profitandloss)'
+                class="btn btn-primary"> Save
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div aria-labelledby="exampleModalLabel" class="modal fade show" id="addledger" role="dialog" tabindex="-1">
+  <app-ledger #addledger [view]=3 (cancel)="ledgerCancel()"></app-ledger>
+</div>

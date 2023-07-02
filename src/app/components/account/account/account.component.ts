@@ -36,10 +36,7 @@ export class AccountComponent implements OnInit {
   account = {
     account_ID: 0,
     account_CODE: null,
-    account_NAME: null,
-    account_NUMBER: null,
-    account_BIC: null,
-    account_IBAN: null,
+    account_TITLE: null,
     isactive: true
   }
 
@@ -107,10 +104,7 @@ export class AccountComponent implements OnInit {
     this.account = {
       account_ID: 0,
       account_CODE: null,
-      account_NAME: null,
-      account_NUMBER: null,
-      account_BIC: null,
-      account_IBAN: null,
+      account_TITLE: null,
       isactive: true
     };
   }
@@ -152,6 +146,8 @@ export class AccountComponent implements OnInit {
   }
 
   setAccount(response) {
+    this.accountID = response.account_ID;
+
     if (response.isactive == "Y") {
       response.isactive = true;
     } else {
@@ -219,9 +215,10 @@ export class AccountComponent implements OnInit {
           this.toastrservice.warning("Message", " " + response.message);
         } else if (response.account_ID) {
           this.toastrservice.success("Success", "New Account Added");
+          this.setAccount(this.accountservice.getDetail(response));
           this.refresh.next();
-          this.disabled = true;
           this.accountGetAll();
+          this.disabled = true;
         } else {
           this.toastrservice.error("Some thing went wrong");
         }
@@ -244,9 +241,10 @@ export class AccountComponent implements OnInit {
           this.toastrservice.warning("Message", " " + response.message);
         } else if (response.account_ID) {
           this.toastrservice.success("Success", "Account Updated");
+          this.setAccount(this.accountservice.getDetail(response));
           this.refresh.next();
-          this.disabled = true;
           this.accountGetAll();
+          this.disabled = true;
         } else {
           this.toastrservice.error("Some thing went wrong");
         }
@@ -263,7 +261,10 @@ export class AccountComponent implements OnInit {
           this.toastrservice.warning("Message", " " + response.message);
         } else if (response.length > 0) {
           this.toastrservice.success("Success", "Accounts Updated");
+          this.setAccount(this.accountservice.getDetail(response));
           this.refresh.next();
+          this.accountGetAll();
+          this.disabled = true;
         } else {
           this.toastrservice.error("Some thing went wrong");
         }

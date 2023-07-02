@@ -1,17 +1,19 @@
 import { Injectable } from '@angular/core';
 import { HttpCallServieService } from 'src/app/services/http-call-servie.service';
 import { setting } from 'src/app/setting';
+import { AccountclassificationService } from '../accountclassification/accountclassification.service';
+import { JournalService } from '../journal/journal.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LedgerService {
 
-
   constructor(
-    private _HttpCallServieService_: HttpCallServieService
+    private _HttpCallServieService_: HttpCallServieService,
+    private accountclassificationservice: AccountclassificationService,
+    private journalservice: JournalService,
   ) { }
-
 
   get() {
     var postData = {
@@ -135,6 +137,15 @@ export class LedgerService {
   }
 
   getDetail(response) {
+    if (response.journal_DETAIL != null) {
+      response.journal = this.journalservice.getDetail(JSON.parse(response.journal_DETAIL));
+      response.journal_DETAIL = null;
+    }
+
+    if (response.accountclassification_DETAIL != null) {
+      response.accountclassification = this.accountclassificationservice.getDetail(JSON.parse(response.accountclassification_DETAIL));
+      response.accountclassification_DETAIL = null;
+    }
     return (response);
   }
 

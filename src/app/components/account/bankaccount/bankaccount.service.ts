@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpCallServieService } from 'src/app/services/http-call-servie.service';
 import { setting } from 'src/app/setting';
-import { AccountService } from '../account/account.service';
-import { LedgerService } from '../ledger/ledger.service';
 import { CustomerService } from '../../customer/customer/customer.service';
 import { LocationService } from '../../location/location/location.service';
+import { TaxcodeService } from '../../finance/taxcode/taxcode.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +12,7 @@ export class BankaccountService {
 
   constructor(
     private _HttpCallServieService_: HttpCallServieService,
-    private accountservice: AccountService,
-    private ledgerservice: LedgerService,
+    private taxcodeservice: TaxcodeService,
     private customerservice: CustomerService,
     private locationservice: LocationService
   ) { }
@@ -142,9 +140,9 @@ export class BankaccountService {
   }
 
   getDetail(response) {
-    if (response.account_DETAIL != null) {
-      response.account = this.accountservice.getDetail(JSON.parse(response.account_DETAIL));
-      response.account_DETAIL = null
+    if (response.taxcode_DETAIL != null) {
+      response.taxcode = this.taxcodeservice.getDetail(JSON.parse(response.taxcode_DETAIL));
+      response.taxcode_DETAIL = null
     }
 
     if (response.customer_DETAIL != null) {
@@ -166,12 +164,12 @@ export class BankaccountService {
 
     if (response.bankaccounttype_DETAIL != null) {
       response.bankaccounttype = JSON.parse(response.bankaccounttype_DETAIL);
-      response.bankaccounttype_DETAIL = response.bankaccounttype.description;
+      response.bankaccounttype_DETAIL = response.bankaccounttype.code + ' - ' + response.bankaccounttype.description;
     }
 
     if (response.paymentmethod_DETAIL != null) {
       response.paymentmethod = JSON.parse(response.paymentmethod_DETAIL);
-      response.paymentmethod_DETAIL = response.paymentmethod.description;
+      response.paymentmethod_DETAIL = response.paymentmethod.code + ' - ' + response.paymentmethod.description;
     }
 
     return (response);

@@ -198,6 +198,11 @@ export class BankdepositComponent implements OnInit {
   }
 
   setBankdeposit(response) {
+    this.bankdepositID = response.bankdeposit_ID;
+    this.bankdepositID = response.tobankdeposit_ID;
+    this.bankdepositID = response.frombankdeposit_ID;
+    this.transactionID = response.transaction_ID;
+
     if (response.isactive == "Y") {
       response.isactive = true;
     } else {
@@ -268,6 +273,7 @@ export class BankdepositComponent implements OnInit {
           this.toastrservice.warning("Message", " " + response.message);
         } else if (response.bankdeposit_ID) {
           this.toastrservice.success("Success", "New Bank Deposit Added");
+          this.setBankdeposit(this.bankdepositservice.getDetail(response));
           this.refresh.next();
           this.disabled = true;
           this.bankdepositGetAll();
@@ -296,6 +302,7 @@ export class BankdepositComponent implements OnInit {
           this.toastrservice.warning("Message", " " + response.message);
         } else if (response.bankdeposit_ID) {
           this.toastrservice.success("Success", "Bank Deposit Updated");
+          this.setBankdeposit(this.bankdepositservice.getDetail(response));
           this.refresh.next();
           this.disabled = true;
           this.bankdepositGetAll();
@@ -315,7 +322,10 @@ export class BankdepositComponent implements OnInit {
           this.toastrservice.warning("Message", " " + response.message);
         } else if (response.length > 0) {
           this.toastrservice.success("Success", "Bank Deposit Updated");
+          this.setBankdeposit(this.bankdepositservice.getDetail(response));
           this.refresh.next();
+          this.disabled = true;
+          this.bankdepositGetAll();
         } else {
           this.toastrservice.error("Some thing went wrong");
         }

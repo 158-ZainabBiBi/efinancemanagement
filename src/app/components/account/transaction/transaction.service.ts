@@ -13,7 +13,6 @@ export class TransactionService {
     private bankaccountservice: BankaccountService,
   ) { }
 
-
   get() {
     var postData = {
       service_NAME: setting.accountservice_NAME,

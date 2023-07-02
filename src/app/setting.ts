@@ -1,10 +1,10 @@
 export const setting = {
-  AppsStorePath: "http://uog.cwiztech.com/apps/#/",
-  LoginAppPath: "http://uog.cwiztech.com/accounts/#/",
-  companyName: 'University of Gujrat',
-  companyShortName: 'UOG',
+  AppsStorePath: "http://apps.cwiztech.com/#/",
+  LoginAppPath: "http://accounts.cwiztech.com/#/",
+  companyName: 'Compuwiz Technologies',
+  companyShortName: 'CWizTech',
+  application_ID: "CWIZTECHAccountManagementDev",
 
-  application_ID: "UOGAccountManagement",
   logo: 'assets/images/logo.png',
   icon: 'favicon.ico',
 
@@ -28,6 +28,7 @@ export const setting = {
 // LoginAppPath: "http://uog.cwiztech.com/accounts/#/",
 // companyName: 'University of Gujrat',
 // companyShortName: 'UOG',
+// application_ID: "UOGAccountManagement",
 
 // CWIZTCH
 // AppsStorePath: "http://apps.cwiztech.com/#/",

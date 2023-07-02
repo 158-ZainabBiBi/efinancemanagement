@@ -7,11 +7,9 @@ import { setting } from 'src/app/setting';
 })
 export class AccountclassificationService {
 
-
   constructor(
     private _HttpCallServieService_: HttpCallServieService
   ) { }
-
 
   get() {
     var postData = {
@@ -135,6 +133,10 @@ export class AccountclassificationService {
   }
 
   getDetail(response) {
+    if (response.accounttype_DETAIL != null) {
+      response.accounttype = JSON.parse(response.accounttype_DETAIL);
+      response.accounttype_DETAIL = response.accounttype.code + ' - ' + response.accounttype.description;
+    }
     return (response);
   }
 

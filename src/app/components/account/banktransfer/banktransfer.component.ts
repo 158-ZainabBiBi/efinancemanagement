@@ -194,6 +194,11 @@ export class BanktransferComponent implements OnInit {
   }
 
   setBanktransfer(response) {
+    this.banktransferID = response.banktransfer_ID;
+    this.banktransferID = response.tobanktransfer_ID;
+    this.banktransferID = response.frombanktransfer_ID;
+    this.transactionID = response.transaction_ID;
+
     if (response.isactive == "Y") {
       response.isactive = true;
     } else {
@@ -264,6 +269,7 @@ export class BanktransferComponent implements OnInit {
           this.toastrservice.warning("Message", " " + response.message);
         } else if (response.banktransfer_ID) {
           this.toastrservice.success("Success", "New Bank Transfer Added");
+          this.setBanktransfer(this.banktransferservice.getDetail(response));
           this.refresh.next();
           this.disabled = true;
           this.banktransferGetAll();
@@ -292,6 +298,7 @@ export class BanktransferComponent implements OnInit {
           this.toastrservice.warning("Message", " " + response.message);
         } else if (response.banktransfer_ID) {
           this.toastrservice.success("Success", "Bank Transfer Updated");
+          this.setBanktransfer(this.banktransferservice.getDetail(response));
           this.refresh.next();
           this.disabled = true;
           this.banktransferGetAll();
@@ -311,7 +318,10 @@ export class BanktransferComponent implements OnInit {
           this.toastrservice.warning("Message", " " + response.message);
         } else if (response.length > 0) {
           this.toastrservice.success("Success", "Bank Transfer Updated");
+          this.setBanktransfer(this.banktransferservice.getDetail(response));
           this.refresh.next();
+          this.disabled = true;
+          this.banktransferGetAll();
         } else {
           this.toastrservice.error("Some thing went wrong");
         }

@@ -5,6 +5,7 @@ import { OnFailService } from '../../../services/on-fail.service';
 
 import { JournalService } from './journal.service';
 import { TransactionComponent } from '../transaction/transaction.component';
+import { AccountComponent } from '../account/account.component';
 
 declare var $: any;
 
@@ -14,10 +15,13 @@ declare var $: any;
   styleUrls: ['./journal.component.css']
 })
 export class JournalComponent implements OnInit {
-
   @ViewChild("transaction") transaction: TransactionComponent;
   @ViewChild("addtransaction") addtransaction: TransactionComponent;
   @ViewChild("edittransaction") edittransaction: TransactionComponent;
+
+  @ViewChild("account") account: AccountComponent;
+  @ViewChild("addaccount") addaccount: AccountComponent;
+  @ViewChild("editaccount") editaccount: AccountComponent;
 
   @Input()
   view: number = 1;
@@ -37,6 +41,8 @@ export class JournalComponent implements OnInit {
   journalID = null;
   @Input()
   transactionID = null;
+  @Input()
+  accountID = null;
 
   @Output() edit = new EventEmitter();
   @Output() cancel = new EventEmitter();
@@ -49,8 +55,12 @@ export class JournalComponent implements OnInit {
   journal = {
     journal_ID: 0,
     transaction_ID: null,
+    account_ID: null,
 
     journal_CODE: null,
+    journal_NAME: null,
+    journal_DEBIT: null,
+    journal_CREDIT: null,
 
     isactive: true,
   }
@@ -88,6 +98,7 @@ export class JournalComponent implements OnInit {
 
     var search = {
       transaction_ID: this.transactionID,
+      account_ID: this.accountID,
     }
 
     if (this.view >= 5 && this.view <= 6 && this.journalID) {
@@ -114,46 +125,46 @@ export class JournalComponent implements OnInit {
           onClick: this.load.bind(this, true),
         },
       },
-      // {
-      //   location: 'after',
-      //   text: `Total Credit: ${this.getTotalCredit()}`,
-      // },
-      // {
-      //   location: 'after',
-      //   text: `Total Debit: ${this.getTotalDebit()}`,
-      // }
+      {
+        location: 'after',
+        text: `Total Credit: ${this.getTotalCredit()}`,
+      },
+      {
+        location: 'after',
+        text: `Total Debit: ${this.getTotalDebit()}`,
+      }
     );
   }
 
-  // getTotalCredit() {
-  //   let total = 0;
-  //   this.journalsAll.forEach(account => {
-  //     const credit = Number(account.journalline.balance_CREDIT);
-  //     if (!isNaN(credit)) {
-  //       total += credit;
-  //     }
-  //   });
-  //   return total;
-  // }
+  getTotalCredit() {
+    let total = 0;
+    this.journalsAll.forEach(account => {
+      const credit = Number(account.journal_CREDIT);
+      if (!isNaN(credit)) {
+        total += credit;
+      }
+    });
+    return total;
+  }
 
-  // getTotalDebit() {
-  //   let total = 0;
-  //   this.journalsAll.forEach(account => {
-  //     const debit = Number(account.journalline.balance_DEBIT);
-  //     if (!isNaN(debit)) {
-  //       total += debit;
-  //     }
-  //   });
-  //   return total;
-  // }
+  getTotalDebit() {
+    let total = 0;
+    this.journalsAll.forEach(account => {
+      const debit = Number(account.journal_DEBIT);
+      if (!isNaN(debit)) {
+        total += debit;
+      }
+    });
+    return total;
+  }
 
   onCreditChange() {
-    // this.journal.balance_DEBIT = 0;
+    this.journal.journal_DEBIT = 0;
     this.creditdisabled = true;
   }
 
   onDebitChange() {
-    // this.journal.balance_CREDIT = 0;
+    this.journal.journal_CREDIT = 0;
     this.debitdisabled = true;
   }
 
@@ -161,7 +172,12 @@ export class JournalComponent implements OnInit {
     this.journal = {
       journal_ID: 0,
       transaction_ID: null,
+      account_ID: null,
+
       journal_CODE: null,
+      journal_NAME: null,
+      journal_DEBIT: null,
+      journal_CREDIT: null,
 
       isactive: true,
     };
@@ -179,8 +195,22 @@ export class JournalComponent implements OnInit {
   }
 
   onTransactionChange(transaction) {
-    // this.journal.journal_NAME = transaction.transaction_NAME;
-    // this.journal.journal_DESC = transaction.transaction_DESC;
+    this.journal.journal_NAME = transaction.transaction_NAME;
+  }
+
+  accountAddNew() {
+    this.addaccount.add();
+    $("#addaccount").modal("show");
+  }
+
+  accountCancel() {
+    $("#addaccount").modal("hide");
+    $("#editaccount").modal("hide");
+    this.account.accounts = this.addaccount.accounts;
+  }
+
+  onAccountChange(account) {
+    // this.journal.journal_NAME = account.account_NAME;
   }
 
   update(row) {
@@ -220,6 +250,10 @@ export class JournalComponent implements OnInit {
   }
 
   setJournal(response) {
+    this.transactionID = response.transaction_ID;
+    this.journalID = response.journal_ID;
+    this.accountID = response.account_ID;
+
     if (response.isactive == "Y") {
       response.isactive = true;
     } else {
@@ -279,16 +313,17 @@ export class JournalComponent implements OnInit {
   }
 
   journalAdd(journal) {
-    journal.isactive = "Y";
-
     journal.transaction_ID = this.transaction.transactionID;
+    journal.account_ID = this.account.accountID;
 
+    journal.isactive = "Y";
     this.journalservice.add(journal).subscribe(response => {
       if (response) {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else if (response.journal_ID) {
           this.toastrservice.success("Success", "New Journal Added");
+          this.setJournal(this.journalservice.getDetail(response));
           this.refresh.next();
           this.disabled = true;
           this.journalGetAll();
@@ -304,6 +339,7 @@ export class JournalComponent implements OnInit {
   journalUpdate(journal) {
 
     journal.transaction_ID = this.transaction.transactionID;
+    journal.account_ID = this.account.accountID;
 
     if (journal.isactive == true) {
       journal.isactive = "Y";
@@ -316,6 +352,7 @@ export class JournalComponent implements OnInit {
           this.toastrservice.warning("Message", " " + response.message);
         } else if (response.journal_ID) {
           this.toastrservice.success("Success", "Journal Updated");
+          this.setJournal(this.journalservice.getDetail(response));
           this.refresh.next();
           this.disabled = true;
           this.journalGetAll();
@@ -335,6 +372,7 @@ export class JournalComponent implements OnInit {
           this.toastrservice.warning("Message", " " + response.message);
         } else if (response.length > 0) {
           this.toastrservice.success("Success", "Journals Updated");
+          this.setJournal(this.journalservice.getDetail(response));
           this.refresh.next();
         } else {
           this.toastrservice.error("Some thing went wrong");
@@ -383,6 +421,7 @@ export class JournalComponent implements OnInit {
 
   journalAdvancedSearch(search) {
     this.transactionID = search.transaction_ID;
+    this.accountID = search.account_ID;
 
     this.journalservice.advancedSearch(search).subscribe(response => {
       if (response) {
@@ -400,6 +439,7 @@ export class JournalComponent implements OnInit {
 
   journalAdvancedSearchAll(search) {
     this.transactionID = search.transaction_ID;
+    this.accountID = search.account_ID;
 
     this.journalservice.advancedSearchAll(search).subscribe(response => {
       if (response) {

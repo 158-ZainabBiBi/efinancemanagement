@@ -38,9 +38,9 @@ import { FooterComponent } from 'src/app/partials/footer/footer.component';
 //lookup
 import { BankaccounttypeComponent } from 'src/app/components/lookup/account/bankaccounttype/bankaccounttype.component';
 import { CurrencyComponent } from 'src/app/components/lookup/finance/currency/currency.component';
-import { LedgeraccounttypeComponent } from 'src/app/components/lookup/account/ledgeraccounttype/ledgeraccounttype.component';
+import { AccounttypeComponent } from 'src/app/components/lookup/account/accounttype/accounttype.component';
 import { TransactiontypeComponent } from 'src/app/components/lookup/account/transactiontype/transactiontype.component';
-import { PersontitleComponent } from 'src/app/components/lookup/person/persontitle/persontitle.component';
+import { PersontitleComponent } from 'src/app/components/person/persontitle/persontitle.component';
 import { PaymentmethodComponent } from 'src/app/components/lookup/finance/paymentmethod/paymentmethod.component';
 
 //common
@@ -97,6 +97,19 @@ import { AccountviewComponent } from 'src/app/modules/accounts/accounts/accountv
 import { BankdepositviewComponent } from 'src/app/modules/accounts/bankdeposits/bankdepositview/bankdepositview.component';
 import { BanktransferviewComponent } from 'src/app/modules/accounts/banktransfers/banktransferview/banktransferview.component';
 
+import { AccountclassificationsComponent } from 'src/app/modules/accounts/accountclassifications/accountclassifications.component';
+import { AccountclassificationviewComponent } from 'src/app/modules/accounts/accountclassifications/accountclassificationview/accountclassificationview.component';
+import { BalancesheetsComponent } from 'src/app/modules/accounts/balancesheets/balancesheets.component';
+import { BalancesheetviewComponent } from 'src/app/modules/accounts/balancesheets/balancesheetview/balancesheetview.component';
+import { ChartofaccountsComponent } from 'src/app/modules/accounts/chartofaccounts/chartofaccounts.component';
+import { ChartofaccountviewComponent } from 'src/app/modules/accounts/chartofaccounts/chartofaccountview/chartofaccountview.component';
+import { IncomestatementsComponent } from 'src/app/modules/accounts/incomestatements/incomestatements.component';
+import { IncomestatementviewComponent } from 'src/app/modules/accounts/incomestatements/incomestatementview/incomestatementview.component';
+import { LedgersComponent } from 'src/app/modules/accounts/ledgers/ledgers.component';
+import { LedgerviewComponent } from 'src/app/modules/accounts/ledgers/ledgerview/ledgerview.component';
+import { ProfitandlossesComponent } from 'src/app/modules/accounts/profitandlosses/profitandlosses.component';
+import { ProfitandlossviewComponent } from 'src/app/modules/accounts/profitandlosses/profitandlossview/profitandlossview.component';
+
 @NgModule({
   imports: [
     HomeRoutingModule,
@@ -151,7 +164,7 @@ import { BanktransferviewComponent } from 'src/app/modules/accounts/banktransfer
     BankdepositComponent,
     BanktransferComponent,
     JournalComponent,
-    LedgeraccounttypeComponent,
+    AccounttypeComponent,
     TransactionComponent,
     TrialbalanceComponent,
     TaxcodeComponent,
@@ -182,7 +195,17 @@ import { BanktransferviewComponent } from 'src/app/modules/accounts/banktransfer
     AccountviewComponent,
     BankdepositviewComponent,
     BanktransferviewComponent,
-
+    AccountclassificationsComponent,
+    AccountclassificationviewComponent,
+    BalancesheetsComponent,
+    BalancesheetviewComponent,
+    ChartofaccountsComponent,
+    ChartofaccountviewComponent,
+    IncomestatementsComponent,
+    IncomestatementviewComponent,
+    LedgersComponent,
+    LedgerviewComponent,
+    ProfitandlossesComponent, ProfitandlossviewComponent
   ]
 })
 

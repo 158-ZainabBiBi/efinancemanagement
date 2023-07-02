@@ -3,7 +3,7 @@ import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angu
 import { AccountComponent } from '../account/account/account.component';
 import { BankaccounttypeComponent } from '../lookup/account/bankaccounttype/bankaccounttype.component';
 import { TransactiontypeComponent } from '../lookup/account/transactiontype/transactiontype.component';
-import { LedgeraccounttypeComponent } from '../lookup/account/ledgeraccounttype/ledgeraccounttype.component';
+import { AccounttypeComponent } from '../lookup/account/accounttype/accounttype.component';
 import { BankaccountComponent } from '../account/bankaccount/bankaccount.component';
 import { ChartofaccountComponent } from '../account/chartofaccount/chartofaccount.component';
 import { JournalComponent } from '../account/journal/journal.component';
@@ -29,7 +29,7 @@ export class AccountsearchfilterComponent implements OnInit {
 
   @ViewChild(BankaccounttypeComponent) bankaccounttypes;
   @ViewChild(TransactiontypeComponent) transactiontypes;
-  @ViewChild(LedgeraccounttypeComponent) ledgeraccounttypes;
+  @ViewChild(AccounttypeComponent) accounttypes;
 
   @Input()
   account: boolean = false;
@@ -44,7 +44,7 @@ export class AccountsearchfilterComponent implements OnInit {
   @Input()
   journal = false;
   @Input()
-  ledgeraccounttype = false;
+  accounttype = false;
   @Input()
   chartofaccount = false;
   @Input()
@@ -68,7 +68,7 @@ export class AccountsearchfilterComponent implements OnInit {
     transactiontype_ID: null,
     bankaccount_ID: null,
     customer_ID: null,
-    ledgeraccounttype_ID: null,
+    accounttype_ID: null,
     chartofaccount_ID: null,
     transaction_ID: null,
     ledger_ID: null,
@@ -92,8 +92,8 @@ export class AccountsearchfilterComponent implements OnInit {
       this.search.customer_ID = this.customers.customerID;
     if (this.bankaccounts)
       this.search.bankaccount_ID = this.bankaccounts.bankaccountID;
-    if (this.ledgeraccounttypes)
-      this.search.ledgeraccounttype_ID = this.ledgeraccounttypes.ledgeraccounttypeID;
+    if (this.accounttypes)
+      this.search.accounttype_ID = this.accounttypes.accounttypeID;
     if (this.transactiontypes)
       this.transactiontypes.transactiontype_ID = this.transactiontypes.transactiontypeID;
     if (this.chartofaccounts)
@@ -132,8 +132,8 @@ export class AccountsearchfilterComponent implements OnInit {
       this.ledgers.ledgerID = null;
     if (this.transactions)
       this.transactions.transactionID = null;
-    if (this.ledgeraccounttypes)
-      this.ledgeraccounttypes.ledgeraccounttypeID = null;
+    if (this.accounttypes)
+      this.accounttypes.accounttypeID = null;
     if (this.journals)
       this.journals.journalID = null;
     if (this.trialbalances)

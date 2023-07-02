@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { AccountComponent } from 'src/app/components/account/account/account.component';
 
 declare var $: any;
 
@@ -9,6 +10,7 @@ declare var $: any;
   styleUrls: ['./accountview.component.css']
 })
 export class AccountviewComponent implements OnInit {
+  @ViewChild("accounts") accounts: AccountComponent;
 
   accountID = 0;
 
@@ -30,6 +32,7 @@ export class AccountviewComponent implements OnInit {
   }
 
   refresh() {
+    this.accounts.load(true);
     this.cancel();
   }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { TrialbalanceComponent } from 'src/app/components/account/trialbalance/trialbalance.component';
 
 declare var $: any;
 
@@ -9,6 +10,7 @@ declare var $: any;
   styleUrls: ['./trialbalanceview.component.css']
 })
 export class TrialbalanceviewComponent implements OnInit {
+  @ViewChild("trialbalances") trialbalances: TrialbalanceComponent;
 
   trialbalanceID = 0;
 
@@ -30,6 +32,7 @@ export class TrialbalanceviewComponent implements OnInit {
   }
 
   refresh() {
+    this.trialbalances.load(true);
     this.cancel();
   }
 }

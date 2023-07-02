@@ -31,7 +31,7 @@ export class BanktransfersComponent implements OnInit {
   }
 
   refresh() {
-    this.banktransfers.ngOnInit();
+    this.banktransfers.load(true);
     this.cancel();
   }
 

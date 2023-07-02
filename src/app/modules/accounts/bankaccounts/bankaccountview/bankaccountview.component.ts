@@ -43,7 +43,7 @@ export class BankaccountviewComponent implements OnInit {
   }
 
   refresh() {
-    this.bankaccounts.ngOnInit();
+    this.bankaccounts.load(true);
     // this.bankdepositcancel();
     // this.banktransfercancel();
   }

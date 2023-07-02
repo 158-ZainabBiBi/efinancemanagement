@@ -57,7 +57,7 @@ export class TransactionComponent implements OnInit {
 
     transaction_CODE: null,
     transaction_DATE: null,
-    transaction_TOTAL: null,
+    transaction_AMOUNT: null,
     transaction_NAME: null,
     transaction_DESC: null,
 
@@ -139,7 +139,7 @@ export class TransactionComponent implements OnInit {
 
       transaction_CODE: null,
       transaction_DATE: null,
-      transaction_TOTAL: null,
+      transaction_AMOUNT: null,
       transaction_NAME: null,
       transaction_DESC: null,
 
@@ -184,11 +184,11 @@ export class TransactionComponent implements OnInit {
   }
 
   setTransaction(response) {
-    if (response.isapproved == "Y") {
-      response.isapproved = true;
-    } else {
-      response.isapproved = false;
-    }
+    this.transactionID = response.transaction_ID;
+    this.bankaccountID = response.bankaccount_ID;
+    this.currencyID = response.currency_ID;
+    this.transactiontypeID = response.transactiontype_ID;
+
     if (response.isactive == "Y") {
       response.isactive = true;
     } else {
@@ -248,17 +248,18 @@ export class TransactionComponent implements OnInit {
   }
 
   transactionAdd(transaction) {
-    transaction.isactive = "Y";
     transaction.bankaccount_ID = this.bankaccount.bankaccountID;
     transaction.currency_ID = this.currency.currencyID;
     transaction.transactiontype_ID = this.transactiontype.transactiontypeID;
 
+    transaction.isactive = "Y";
     this.transactionservice.add(transaction).subscribe(response => {
       if (response) {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else if (response.transaction_ID) {
           this.toastrservice.success("Success", "New Transaction Added");
+          this.setTransaction(this.transactionservice.getDetail(response));
           this.refresh.next();
           this.disabled = true;
           this.transactionGetAll();
@@ -276,11 +277,6 @@ export class TransactionComponent implements OnInit {
     transaction.currency_ID = this.currency.currencyID;
     transaction.transactiontype_ID = this.transactiontype.transactiontypeID;
 
-    if (transaction.isapproved == true) {
-      transaction.isapproved = "Y";
-    } else {
-      transaction.isapproved = "N";
-    }
     if (transaction.isactive == true) {
       transaction.isactive = "Y";
     } else {
@@ -292,6 +288,7 @@ export class TransactionComponent implements OnInit {
           this.toastrservice.warning("Message", " " + response.message);
         } else if (response.transaction_ID) {
           this.toastrservice.success("Success", "Transaction Updated");
+          this.setTransaction(this.transactionservice.getDetail(response));
           this.refresh.next();
           this.disabled = true;
           this.transactionGetAll();
@@ -311,6 +308,7 @@ export class TransactionComponent implements OnInit {
           this.toastrservice.warning("Message", " " + response.message);
         } else if (response.length > 0) {
           this.toastrservice.success("Success", "Transactions Updated");
+          this.setTransaction(this.transactionservice.getDetail(response));
           this.refresh.next();
         } else {
           this.toastrservice.error("Some thing went wrong");

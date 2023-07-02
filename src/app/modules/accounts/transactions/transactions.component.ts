@@ -29,7 +29,7 @@ export class TransactionsComponent implements OnInit {
   }
 
   refresh() {
-    this.transactions.ngOnInit();
+    this.transactions.load(true);
     this.cancel();
   }
 
@@ -55,7 +55,7 @@ export class TransactionsComponent implements OnInit {
 
       transaction_CODE: row.data.transaction_CODE,
       transaction_DATE: row.data.transaction_DATE,
-      transaction_TOTAL: row.data.transaction_TOTAL,
+      transaction_AMOUNT: row.data.transaction_AMOUNT,
       transaction_NAME: row.data.transaction_NAME,
       transaction_DESC: row.data.transaction_DESC,
 

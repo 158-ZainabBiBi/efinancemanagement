@@ -13,7 +13,6 @@ export class TrialbalanceService {
     private ledgerservice: LedgerService
   ) { }
 
-
   get() {
     var postData = {
       service_NAME: setting.accountservice_NAME,

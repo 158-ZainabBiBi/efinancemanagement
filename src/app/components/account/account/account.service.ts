@@ -7,11 +7,9 @@ import { setting } from 'src/app/setting';
 })
 export class AccountService {
 
-
   constructor(
     private _HttpCallServieService_: HttpCallServieService
   ) { }
-
 
   get() {
     var postData = {

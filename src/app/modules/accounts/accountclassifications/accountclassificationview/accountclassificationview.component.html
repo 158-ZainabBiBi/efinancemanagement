@@ -1,1 +1,8 @@
-<p>accountclassificationview works!</p>
+<div class="collapse-card-h container">
+  <div class="row">
+    <div class="col-md-12">
+      <app-accountclassification [view]=5 [accountclassificationID]="accountclassificationID" (refresh)="refresh()"
+        (cancel)="cancel()"></app-accountclassification>
+    </div>
+  </div>
+</div>

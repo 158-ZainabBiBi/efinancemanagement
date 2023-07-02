@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { BanktransferComponent } from 'src/app/components/account/banktransfer/banktransfer.component';
 
 declare var $: any;
 
@@ -9,6 +10,7 @@ declare var $: any;
   styleUrls: ['./banktransferview.component.css']
 })
 export class BanktransferviewComponent implements OnInit {
+  @ViewChild("banktransfers") banktransfers: BanktransferComponent;
 
   banktransferID = 0;
 
@@ -30,6 +32,7 @@ export class BanktransferviewComponent implements OnInit {
   }
 
   refresh() {
+    this.banktransfers.load(true);
     this.cancel();
   }
 }
