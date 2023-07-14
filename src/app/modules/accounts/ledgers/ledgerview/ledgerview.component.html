@@ -1,1 +1,8 @@
-<p>ledgerview works!</p>
+<div class="collapse-card-h container">
+    <div class="row">
+      <div class="col-md-12">
+        <app-ledger [view]=5 [ledgerID]="ledgerID" (refresh)="refresh()" (cancel)="cancel()"></app-ledger>
+      </div>
+    </div>
+  </div>
+  

@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { IncomestatementComponent } from 'src/app/components/account/incomestatement/incomestatement.component';
+
+declare var $: any;
 
 @Component({
   selector: 'app-incomestatementview',
@@ -6,10 +10,29 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./incomestatementview.component.css']
 })
 export class IncomestatementviewComponent implements OnInit {
+  @ViewChild("incomestatements") incomestatements: IncomestatementComponent;
 
-  constructor() { }
+  incomestatementID = 0;
+
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+  ) { }
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      if (params.incomestatement) {
+        this.incomestatementID = params.incomestatement;
+      }
+    });
   }
 
+  cancel() {
+    this.router.navigate(["/home/incomestatements"], { queryParams: {} });
+  }
+
+  refresh() {
+    this.incomestatements.load(true);
+    this.cancel();
+  }
 }

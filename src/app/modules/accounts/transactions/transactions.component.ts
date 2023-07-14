@@ -1,10 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { OnFailService } from '../../../services/on-fail.service';
-
-import { TransactionComponent } from '../../../components/account/transaction/transaction.component'
-import { TransactionService } from '../../../components/account/transaction/transaction.service';
-import { Router, RouterLinkWithHref } from '@angular/router';
+import { TransactionComponent } from 'src/app/components/account/transaction/transaction.component';
+import { TransactionService } from 'src/app/components/account/transaction/transaction.service';
+import { Router } from '@angular/router';
 
 declare var $: any;
 
@@ -28,6 +27,9 @@ export class TransactionsComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  view() {
+  }
+
   refresh() {
     this.transactions.load(true);
     this.cancel();
@@ -37,40 +39,37 @@ export class TransactionsComponent implements OnInit {
     this.router.navigate(["/home/transaction"], { queryParams: { transaction: row.data.transaction_ID } });
   }
 
-  view() {
-  }
-
   addNew() {
-    // this.router.navigate(["/home/transaction"], {});
-    this.addtransaction.add();
-    $("#addtransaction").modal("show");
+    this.router.navigate(["/home/transaction"], {});
+    // this.addtransaction.add();
+    // $("#add").modal("show");
   }
 
   edit(row) {
     this.edittransaction.transaction = {
       transaction_ID: row.data.transaction_ID,
       bankaccount_ID: row.data.bankaccount_ID,
-      currency_ID: row.data.currency_ID,
       transactiontype_ID: row.data.transactiontype_ID,
-
+      currency_ID: row.data.currency_ID,
       transaction_CODE: row.data.transaction_CODE,
       transaction_DATE: row.data.transaction_DATE,
-      transaction_AMOUNT: row.data.transaction_AMOUNT,
       transaction_NAME: row.data.transaction_NAME,
+      transaction_AMOUNT: row.data.transaction_AMOUNT,
       transaction_DESC: row.data.transaction_DESC,
-
       isactive: row.data.isactive
     };
+
     if (row.data.isactive == "Y") {
       this.edittransaction.transaction.isactive = true;
     } else {
       this.edittransaction.transaction.isactive = false;
     }
-    $("#edittransaction").modal("show");
+    $("#edit").modal("show");
   }
+
   cancel() {
-    $("#addtransaction").modal("hide");
-    $("#edittransaction").modal("hide");
+    $("#add").modal("hide");
+    $("#edit").modal("hide");
   }
 
 }
