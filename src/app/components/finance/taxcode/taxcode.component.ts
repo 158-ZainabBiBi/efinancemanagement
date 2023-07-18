@@ -74,9 +74,7 @@ export class TaxcodeComponent implements OnInit {
       this.taxcodeGetAll();
     }
 
-    var search = {
-
-    }
+    var search = {}
 
     if (this.view >= 5 && this.view <= 6 && this.taxcodeID) {
       window.sessionStorage.setItem("taxcode", this.taxcodeID);

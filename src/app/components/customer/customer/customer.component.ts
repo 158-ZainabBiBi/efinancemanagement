@@ -275,8 +275,10 @@ export class CustomerComponent implements OnInit {
           this.toastrservice.warning("Message", " " + response.message);
         } else {
           this.setCustomer(this.customerservice.getDetail(response));
-          if (this.address != null)
-            this.address.locationsearchfilter.setLocation(this.customer.locations);
+          // if (this.address != null)
+          //   this.address.locationsearchfilter.setLocation(this.customer.locations);
+          // if (this.locationsearchfilter != null)
+          //   this.locationsearchfilter.setLocation(this.customer.locations);
         }
       }
     }, error => {

@@ -5,14 +5,14 @@ import { ProfitandlossComponent } from 'src/app/components/account/profitandloss
 declare var $: any;
 
 @Component({
-  selector: 'app-journalview',
-  templateUrl: './journalview.component.html',
-  styleUrls: ['./journalview.component.css']
+  selector: 'app-profitandlossview',
+  templateUrl: './profitandlossview.component.html',
+  styleUrls: ['./profitandlossview.component.css']
 })
 export class ProfitandlossviewComponent implements OnInit {
   @ViewChild("profitandlosses") profitandlosses: ProfitandlossComponent;
 
-  journalID = 0;
+  profitandlossID = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -22,7 +22,7 @@ export class ProfitandlossviewComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       if (params.profitandloss) {
-        this.journalID = params.profitandloss;
+        this.profitandlossID = params.profitandloss;
       }
     });
   }

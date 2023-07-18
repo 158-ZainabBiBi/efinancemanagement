@@ -19,6 +19,11 @@ import { BankaccountsComponent } from 'src/app/modules/accounts/bankaccounts/ban
 import { AccountsComponent } from 'src/app/modules/accounts/accounts/accounts.component';
 import { BankdepositsComponent } from 'src/app/modules/accounts/bankdeposits/bankdeposits.component';
 import { BanktransfersComponent } from 'src/app/modules/accounts/banktransfers/banktransfers.component';
+import { AccountclassificationsComponent } from '../accounts/accountclassifications/accountclassifications.component';
+import { ChartofaccountsComponent } from '../accounts/chartofaccounts/chartofaccounts.component';
+import { IncomestatementsComponent } from '../accounts/incomestatements/incomestatements.component';
+import { LedgersComponent } from '../accounts/ledgers/ledgers.component';
+import { ProfitandlossesComponent } from '../accounts/profitandlosses/profitandlosses.component';
 
 //accountview
 import { BankaccountviewComponent } from 'src/app/modules/accounts/bankaccounts/bankaccountview/bankaccountview.component';
@@ -28,6 +33,11 @@ import { TrialbalanceviewComponent } from 'src/app/modules/accounts/trialbalance
 import { AccountviewComponent } from 'src/app/modules/accounts/accounts/accountview/accountview.component';
 import { BankdepositviewComponent } from 'src/app/modules/accounts/bankdeposits/bankdepositview/bankdepositview.component';
 import { BanktransferviewComponent } from 'src/app/modules/accounts/banktransfers/banktransferview/banktransferview.component';
+import { LedgerviewComponent } from '../accounts/ledgers/ledgerview/ledgerview.component';
+import { AccountclassificationviewComponent } from '../accounts/accountclassifications/accountclassificationview/accountclassificationview.component';
+import { ChartofaccountviewComponent } from '../accounts/chartofaccounts/chartofaccountview/chartofaccountview.component';
+import { IncomestatementviewComponent } from '../accounts/incomestatements/incomestatementview/incomestatementview.component';
+import { ProfitandlossviewComponent } from '../accounts/profitandlosses/profitandlossview/profitandlossview.component';
 
 //customer
 import { CustomersComponent } from '../customers/customers/customers.component';
@@ -44,11 +54,19 @@ const routes: Routes = [{
     { path: 'privacy', component: PrivacyComponent },
     { path: 'terms', component: TermsComponent },
 
-    { path: 'bankaccounts', component: BankaccountsComponent },
-    { path: 'bankaccount', component: BankaccountviewComponent },
+    { path: 'customers', component: CustomersComponent },
 
     { path: 'accounts', component: AccountsComponent },
     { path: 'account', component: AccountviewComponent },
+
+    { path: 'accountclassifications', component: AccountclassificationsComponent },
+    { path: 'accountclassification', component: AccountclassificationviewComponent },
+
+    { path: 'bankaccounts', component: BankaccountsComponent },
+    { path: 'bankaccount', component: BankaccountviewComponent },
+
+    { path: 'transactions', component: TransactionsComponent },
+    { path: 'transaction', component: TransactionviewComponent },
 
     { path: 'banktransfers', component: BanktransfersComponent },
     { path: 'banktransfer', component: BanktransferviewComponent },
@@ -56,30 +74,23 @@ const routes: Routes = [{
     { path: 'bankdeposits', component: BankdepositsComponent },
     { path: 'bankdeposit', component: BankdepositviewComponent },
 
-    // { path: 'journallines', component: JournallinesComponent },
-    // { path: 'journalline', component: JournallineviewComponent },
-
-    // { path: 'ledgeraccounts', component: LedgeraccountsComponent },
-    // { path: 'ledgeraccount', component: LedgeraccountviewComponent },
-
-    // { path: 'ledgerentries', component: LedgerentriesComponent },
-    // { path: 'ledgerentry', component: LedgerentryviewComponent },
-
-    // { path: 'ledgeraccountclassifications', component: LedgeraccountclassificationsComponent },
-
-    { path: 'transactions', component: TransactionsComponent },
-    { path: 'transaction', component: TransactionviewComponent },
-
-    // { path: 'chartofaccounts', component: CoaaccountsComponent },
-    // { path: 'chartofaccount', component: CoaaccountviewComponent },
-
     { path: 'journals', component: JournalsComponent },
     { path: 'journal', component: JournalviewComponent },
+
+    { path: 'ledgers', component: LedgersComponent },
+    { path: 'ledger', component: LedgerviewComponent },
 
     { path: 'trialbalances', component: TrialbalancesComponent },
     { path: 'trialbalance', component: TrialbalanceviewComponent },
 
-    { path: 'customers', component: CustomersComponent },
+    { path: 'chartofaccounts', component: ChartofaccountsComponent },
+    { path: 'chartofaccount', component: ChartofaccountviewComponent },
+
+    { path: 'incomestatements', component: IncomestatementsComponent },
+    { path: 'incomestatement', component: IncomestatementviewComponent },
+
+    { path: 'profitandlosses', component: ProfitandlossesComponent },
+    { path: 'profitandloss', component: ProfitandlossviewComponent },
 
     { path: '', redirectTo: 'dashboard' },
     { path: '**', component: NotfoundComponent }

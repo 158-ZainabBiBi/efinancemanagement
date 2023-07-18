@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpCallServieService } from '../../../services/http-call-servie.service';
 import { setting } from '../../../setting';
 import { LocationService } from '../../location/location/location.service';
+import { PersonService } from '../../person/person/person.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,7 @@ import { LocationService } from '../../location/location/location.service';
 export class CustomerService {
   constructor(
     private _HttpCallServieService_: HttpCallServieService,
+    private personservice: PersonService,
     private locationservice: LocationService
   ) { }
 
@@ -144,6 +146,10 @@ export class CustomerService {
   }
 
   getDetail(response) {
+    if (response.person_DETAIL != null) {
+      response.person = this.personservice.getDetail(JSON.parse(response.person_DETAIL));
+      response.person_DETAIL = response.person.title + " " + response.person.forenames + " " + response.person.surname;
+    }
 
     if (response.location_DETAIL != null) {
       response.location = this.locationservice.getDetail(JSON.parse(response.location_DETAIL));

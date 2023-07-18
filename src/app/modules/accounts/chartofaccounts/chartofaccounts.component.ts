@@ -12,7 +12,7 @@ declare var $: any;
   templateUrl: './chartofaccounts.component.html',
   styleUrls: ['./chartofaccounts.component.css']
 })
-export class chartofaccountsComponent implements OnInit {
+export class ChartofaccountsComponent implements OnInit {
   @ViewChild("chartofaccounts") chartofaccounts: ChartofaccountComponent;
   @ViewChild("addchartofaccount") addchartofaccount: ChartofaccountComponent;
   @ViewChild("editchartofaccount") editchartofaccount: ChartofaccountComponent;

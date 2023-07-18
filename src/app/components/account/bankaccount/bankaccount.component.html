@@ -196,15 +196,17 @@
 
         <dxi-column dataField="bankaccount_CODE" caption="Code" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="bankaccount_DATE" caption="Date" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="customer.customer_NAME" caption="Customer" cssClass="myClass"
-          alignment="left"></dxi-column>
-        <dxi-column dataField="taxcode.taxcode_NUMBER" caption="Account Number" cssClass="myClass"
-          alignment="left"></dxi-column>
-        <dxi-column dataField="bankaccounttype.description" caption="Account Type" cssClass="myClass"
-          alignment="left"></dxi-column>
+        <dxi-column dataField="bankaccount_NAME" caption="Name" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="bankaccount_DESC" caption="Description" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="bankaccount_NUMBER" caption="Number" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="bankaccount_BIC" caption="BIC" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="bankaccount_IBAN" caption="IBAN" cssClass="myClass" alignment="center"></dxi-column>
+        <dxi-column dataField="customer_DETAIL" caption="Customer" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="taxcode_DETAIL" caption="Taxcode" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="bankaccounttype_DETAIL" caption="Type" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="bankaccount_BALANCE" caption="Balance" cssClass="myClass"
           alignment="center"></dxi-column>
-        <dxi-column dataField="paymentmethod.description" caption="Payment Method" cssClass="myClass"
+        <dxi-column dataField="paymentmethod_DETAIL" caption="Payment Method" cssClass="myClass"
           alignment="left"></dxi-column>
         <dxi-column dataField="location.location_NAME" caption="Location" cssClass="myClass"
           alignment="left"></dxi-column>
@@ -240,15 +242,17 @@
 
         <dxi-column dataField="bankaccount_CODE" caption="Code" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="bankaccount_DATE" caption="Date" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="customer.customer_NAME" caption="Customer" cssClass="myClass"
-          alignment="left"></dxi-column>
-        <dxi-column dataField="taxcode.taxcode_NUMBER" caption="Account Number" cssClass="myClass"
-          alignment="left"></dxi-column>
-        <dxi-column dataField="bankaccounttype.description" caption="Account Type" cssClass="myClass"
-          alignment="left"></dxi-column>
+        <dxi-column dataField="bankaccount_NAME" caption="Name" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="bankaccount_DESC" caption="Description" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="bankaccount_NUMBER" caption="Number" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="bankaccount_BIC" caption="BIC" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="bankaccount_IBAN" caption="IBAN" cssClass="myClass" alignment="center"></dxi-column>
+        <dxi-column dataField="customer_DETAIL" caption="Customer" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="taxcode_DETAIL" caption="Taxcode" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="bankaccounttype_DETAIL" caption="Type" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="bankaccount_BALANCE" caption="Balance" cssClass="myClass"
           alignment="center"></dxi-column>
-        <dxi-column dataField="paymentmethod.description" caption="Payment Method" cssClass="myClass"
+        <dxi-column dataField="paymentmethod_DETAIL" caption="Payment Method" cssClass="myClass"
           alignment="left"></dxi-column>
         <dxi-column dataField="location.location_NAME" caption="Location" cssClass="myClass"
           alignment="left"></dxi-column>
@@ -294,23 +298,51 @@
             </div>
             <div class="col-md-4">
               <div class="form-group">
+                <label class="control-label">Name <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="bankaccount_NAME" pattern="[a-zA-Z0-9-]+"
+                  [(ngModel)]="bankaccount.bankaccount_NAME" maxlength="50" required>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3">
+              <div class="form-group">
                 <label class="control-label">Balance<span style="color:red">*</span></label>
                 <input type="number" class="form-control" name="bankaccount_BALANCE"
                   [(ngModel)]="bankaccount.bankaccount_BALANCE" maxlength="50" required>
               </div>
             </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label class="control-label">Number<span style="color:red">*</span></label>
+                <input type="number" class="form-control" name="bankaccount_NUMBER"
+                  [(ngModel)]="bankaccount.bankaccount_NUMBER" maxlength="50" required>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label class="control-label">BIC<span style="color:red">*</span></label>
+                <input type="number" class="form-control" name="bankaccount_BIC"
+                  [(ngModel)]="bankaccount.bankaccount_BIC" maxlength="50" required>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label class="control-label">IBAN<span style="color:red">*</span></label>
+                <input type="number" class="form-control" name="bankaccount_IBAN"
+                  [(ngModel)]="bankaccount.bankaccount_IBAN" maxlength="50" required>
+              </div>
+            </div>
           </div>
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
               <app-bankaccounttype #bankaccounttype
                 [bankaccounttypeID]="bankaccount.bankaccounttype_ID"></app-bankaccounttype>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
               <app-paymentmethod #paymentmethod [paymentmethodID]="bankaccount.paymentmethod_ID"></app-paymentmethod>
             </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-4">
               <app-taxcode #taxcode [view]="1" [taxcodeID]="bankaccount.taxcode_ID"></app-taxcode>
             </div>
           </div>
@@ -364,24 +396,52 @@
             </div>
             <div class="col-md-4">
               <div class="form-group">
+                <label class="control-label">Name <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="bankaccount_NAME" pattern="[a-zA-Z0-9-]+"
+                  [(ngModel)]="bankaccount.bankaccount_NAME" maxlength="50" required>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3">
+              <div class="form-group">
                 <label class="control-label">Balance<span style="color:red">*</span></label>
                 <input type="number" class="form-control" name="bankaccount_BALANCE"
                   [(ngModel)]="bankaccount.bankaccount_BALANCE" maxlength="50" required>
               </div>
             </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <app-taxcode #taxcode [view]="1" [taxcodeID]="bankaccount.taxcode_ID"></app-taxcode>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label class="control-label">Number<span style="color:red">*</span></label>
+                <input type="number" class="form-control" name="bankaccount_NUMBER"
+                  [(ngModel)]="bankaccount.bankaccount_NUMBER" maxlength="50" required>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label class="control-label">BIC<span style="color:red">*</span></label>
+                <input type="number" class="form-control" name="bankaccount_BIC"
+                  [(ngModel)]="bankaccount.bankaccount_BIC" maxlength="50" required>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label class="control-label">IBAN<span style="color:red">*</span></label>
+                <input type="number" class="form-control" name="bankaccount_IBAN"
+                  [(ngModel)]="bankaccount.bankaccount_IBAN" maxlength="50" required>
+              </div>
             </div>
           </div>
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
               <app-bankaccounttype #bankaccounttype
                 [bankaccounttypeID]="bankaccount.bankaccounttype_ID"></app-bankaccounttype>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
               <app-paymentmethod #paymentmethod [paymentmethodID]="bankaccount.paymentmethod_ID"></app-paymentmethod>
+            </div>
+            <div class="col-md-4">
+              <app-taxcode #taxcode [view]="1" [taxcodeID]="bankaccount.taxcode_ID"></app-taxcode>
             </div>
           </div>
           <div class="row">
@@ -445,48 +505,76 @@
             <div class="col-md-4">
               <div class="form-group">
                 <label class="control-label">Code <span style="color:red">*</span></label>
-                <input type="text" class="form-control" name="bankaccount_CODE"
-                  [(ngModel)]="bankaccount.bankaccount_CODE" [disabled]="disabled" pattern="^[A-Za-z0-9]+$"
-                  #codeInput="ngModel" maxlength="50" required>
-                <div *ngIf="codeInput.invalid && (codeInput.dirty || codeInput.touched)">
-                  <div *ngIf="codeInput.errors.pattern">
-                    <span style="color:red">Only contain Alphnumeric.</span>
-                  </div>
-                </div>
+                <input type="text" class="form-control" name="bankaccount_CODE" pattern="[a-zA-Z0-9-]+"
+                  [disabled]="disabled" [(ngModel)]="bankaccount.bankaccount_CODE" maxlength="50" required>
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group">
-                <label class="control-label"> Date <span style="color:red">*</span></label>
+                <label class="control-label">Date<span style="color:red">*</span></label>
                 <input type="date" class="form-control" name="bankaccount_DATE" [disabled]="disabled"
                   [(ngModel)]="bankaccount.bankaccount_DATE" maxlength="50" required>
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group">
-                <label class="control-label"> Balance <span style="color:red">*</span></label>
-                <input type="number" class="form-control" name="bankaccount_BALANCE" [disabled]="disabled"
-                  [(ngModel)]="bankaccount.bankaccount_BALANCE" maxlength="50" required>
+                <label class="control-label">Name <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="bankaccount_NAME" pattern="[a-zA-Z0-9-]+"
+                  [disabled]="disabled" [(ngModel)]="bankaccount.bankaccount_NAME" maxlength="50" required>
               </div>
             </div>
           </div>
           <div class="row">
-            <div class="col-md-6">
-              <app-customer #customer [view]="1" [disabled]="disabled"
-                [customerID]="bankaccount.customer_ID"></app-customer>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label class="control-label">Balance<span style="color:red">*</span></label>
+                <input type="number" class="form-control" name="bankaccount_BALANCE" [disabled]="disabled"
+                  [(ngModel)]="bankaccount.bankaccount_BALANCE" maxlength="50" required>
+              </div>
             </div>
-            <div class="col-md-6">
-              <app-taxcode #taxcode [view]="1" [disabled]="disabled" [taxcodeID]="bankaccount.taxcode_ID"></app-taxcode>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label class="control-label">Number<span style="color:red">*</span></label>
+                <input type="number" class="form-control" name="bankaccount_NUMBER" [disabled]="disabled"
+                  [(ngModel)]="bankaccount.bankaccount_NUMBER" maxlength="50" required>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label class="control-label">BIC<span style="color:red">*</span></label>
+                <input type="number" class="form-control" name="bankaccount_BIC" [disabled]="disabled"
+                  [(ngModel)]="bankaccount.bankaccount_BIC" maxlength="50" required>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label class="control-label">IBAN<span style="color:red">*</span></label>
+                <input type="number" class="form-control" name="bankaccount_IBAN" [disabled]="disabled"
+                  [(ngModel)]="bankaccount.bankaccount_IBAN" maxlength="50" required>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <app-bankaccounttype #bankaccounttype [disabled]="disabled"
+                [bankaccounttypeID]="bankaccount.bankaccounttype_ID"></app-bankaccounttype>
+            </div>
+            <div class="col-md-4">
+              <app-paymentmethod #paymentmethod [paymentmethodID]="bankaccount.paymentmethod_ID"
+                [disabled]="disabled"></app-paymentmethod>
+            </div>
+            <div class="col-md-4">
+              <app-taxcode #taxcode [view]="1" [taxcodeID]="bankaccount.taxcode_ID" [disabled]="disabled"></app-taxcode>
             </div>
           </div>
           <div class="row">
             <div class="col-md-6">
-              <app-bankaccounttype #bankaccounttype [disabled]="disabled"
-                [bankaccounttypeID]="bankaccount.bankaccounttype_ID"></app-bankaccounttype>
+              <app-customer #customer [view]="1" [customerID]="bankaccount.customer_ID"
+                [disabled]="disabled"></app-customer>
             </div>
             <div class="col-md-6">
-              <app-paymentmethod #paymentmethod [disabled]="disabled"
-                [paymentmethodID]="bankaccount.paymentmethod_ID"></app-paymentmethod>
+              <app-location #location [view]="1" [locationID]="bankaccount.location_ID"
+                [disabled]="disabled"></app-location>
             </div>
           </div>
           <div class="row">
