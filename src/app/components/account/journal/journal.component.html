@@ -6,8 +6,7 @@
     <div class="col-md-12">
       <ng-select [(ngModel)]="journalID" [disabled]="disabled" name="journalID" (change)="onChange($event)">
         <ng-option *ngFor="let journal of journalsAll" [value]="journal.journal_ID">
-          {{ journal.transaction.transaction_DATE }} - {{ journal.account.account_TITLE}} - {{ journal.journal_DEBIT }}
-          - {{ journal.journal_CREDIT }}
+          {{ journal.transaction_DETAIL }} - {{ journal.account_DETAIL}} - {{ journal.journal_NAME }}
         </ng-option>
       </ng-select>
     </div>
@@ -16,8 +15,7 @@
     <div class="col-md-10">
       <ng-select [(ngModel)]="journalID" name="journalID" (change)="onChange($event)">
         <ng-option *ngFor="let journal of journals" [value]="journal.journal_ID" [disabled]="disabled">
-          {{ journal.transaction.transaction_DATE }} - {{ journal.account.account_TITLE}} - {{ journal.journal_DEBIT }}
-          - {{ journal.journal_CREDIT }}
+          {{ journal.transaction_DETAIL }} - {{ journal.account_DETAIL}} - {{ journal.journal_NAME }}
         </ng-option>
       </ng-select>
     </div>
@@ -37,8 +35,7 @@
     <div class="col-md-12">
       <ng-select [(ngModel)]="journalID" [disabled]="disabled" name="journalID" (change)="onChange($event)">
         <ng-option *ngFor="let journal of journalsAll" [value]="journal.journal_ID">
-          {{ journal.transaction.transaction_DATE }} - {{ journal.account.account_TITLE}} - {{ journal.journal_DEBIT }}
-          - {{ journal.journal_CREDIT }}
+          {{ journal.transaction_DETAIL }} - {{ journal.account_DETAIL}} - {{ journal.journal_NAME }}
         </ng-option>
       </ng-select>
     </div>
@@ -47,8 +44,7 @@
     <div class="col-md-10">
       <ng-select [(ngModel)]="journalID" name="journalID" (change)="onChange($event)">
         <ng-option *ngFor="let journal of journalsAll" [value]="journal.journal_ID" [disabled]="disabled">
-          {{ journal.transaction.transaction_DATE }} - {{ journal.account.account_TITLE}} - {{ journal.journal_DEBIT }}
-          - {{ journal.journal_CREDIT }}
+          {{ journal.transaction_DETAIL }} - {{ journal.account_DETAIL}} - {{ journal.journal_NAME }}
         </ng-option>
       </ng-select>
     </div>
@@ -68,8 +64,7 @@
     <div class="col-md-12">
       <ng-select [(ngModel)]="journalID" [disabled]="disabled" name="journalID">
         <ng-option *ngFor="let journal of journalsAll" [value]="journal.journal_ID" [disabled]="disabled">
-          {{ journal.transaction.transaction_DATE }} - {{ journal.account.account_TITLE}} - {{ journal.journal_DEBIT }}
-          - {{ journal.journal_CREDIT }}
+          {{ journal.transaction_DETAIL }} - {{ journal.account_DETAIL}} - {{ journal.journal_NAME }}
         </ng-option>
       </ng-select>
     </div>
@@ -78,8 +73,7 @@
     <div class="col-md-10">
       <ng-select [(ngModel)]="journalID" [disabled]="disabled" name="journalID" (change)="onChange($event)">
         <ng-option *ngFor="let journal of journals" [value]="journal.journal_ID" [disabled]="disabled">
-          {{ journal.transaction.transaction_DATE }} - {{ journal.account.account_TITLE}} - {{ journal.journal_DEBIT }}
-          - {{ journal.journal_CREDIT }}
+          {{ journal.transaction_DETAIL }} - {{ journal.account_DETAIL}} - {{ journal.journal_NAME }}
         </ng-option>
       </ng-select>
     </div>
@@ -99,8 +93,7 @@
     <div class="col-md-12">
       <ng-select [(ngModel)]="journalID" [disabled]="disabled" name="journalID" (change)="onChange($event)">
         <ng-option *ngFor="let journal of journalsAll" [value]="journal.journal_ID" [disabled]="disabled">
-          {{ journal.transaction.transaction_DATE }} - {{ journal.account.account_TITLE}} - {{ journal.journal_DEBIT }}
-          - {{ journal.journal_CREDIT }}
+          {{ journal.transaction_DETAIL }} - {{ journal.account_DETAIL}} - {{ journal.journal_NAME }}
         </ng-option>
       </ng-select>
     </div>
@@ -109,8 +102,7 @@
     <div class="col-md-10">
       <ng-select [(ngModel)]="journalID" [disabled]="disabled" name="journalID" (change)="onChange($event)">
         <ng-option *ngFor="let journal of journalsAll" [value]="journal.journal_ID" [disabled]="disabled">
-          {{ journal.transaction.transaction_DATE }} - {{ journal.account.account_TITLE}} - {{ journal.journal_DEBIT }}
-          - {{ journal.journal_CREDIT }}
+          {{ journal.transaction_DETAIL }} - {{ journal.account_DETAIL}} - {{ journal.journal_NAME }}
         </ng-option>
       </ng-select>
     </div>
@@ -142,10 +134,8 @@
 
         <dxi-column dataField="journal_CODE" caption="Code" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="journal_NAME" caption="Name" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="transaction.transaction_DATE" caption="Date" cssClass="myClass"
-          alignment="left"></dxi-column>
-        <dxi-column dataField="account.account_TITLE" caption="Account" cssClass="myClass"
-          alignment="left"></dxi-column>
+        <dxi-column dataField="transaction_DETAIL" caption="Date" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="account_DETAIL" caption="Account" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="journal_DEBIT" caption="Debit" cssClass="myClass" alignment="center"></dxi-column>
         <dxi-column dataField="journal_CREDIT" caption="Credit" cssClass="myClass" alignment="center"></dxi-column>
         <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass" alignment="center">
@@ -180,10 +170,8 @@
 
         <dxi-column dataField="journal_CODE" caption="Code" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="journal_NAME" caption="Name" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="transaction.transaction_DATE" caption="Date" cssClass="myClass"
-          alignment="left"></dxi-column>
-        <dxi-column dataField="account.account_TITLE" caption="Account" cssClass="myClass"
-          alignment="left"></dxi-column>
+        <dxi-column dataField="transaction_DETAIL" caption="Date" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="account_DETAIL" caption="Account" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="journal_DEBIT" caption="Debit" cssClass="myClass" alignment="center"></dxi-column>
         <dxi-column dataField="journal_CREDIT" caption="Credit" cssClass="myClass" alignment="center"></dxi-column>
         <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass" alignment="center">

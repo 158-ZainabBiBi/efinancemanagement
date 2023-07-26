@@ -138,7 +138,7 @@ export class ChartofaccountService {
   getDetail(response) {
     if (response.ledger_DETAIL != null) {
       response.ledger = this.ledgerservice.getDetail(JSON.parse(response.ledger_DETAIL));
-      response.ledger_DETAIL = null;
+      response.ledger_DETAIL = response.ledger.ledger_NAME + ' - ' + response.ledger.accountclassification_DETAIL;
     }
     return (response);
   }

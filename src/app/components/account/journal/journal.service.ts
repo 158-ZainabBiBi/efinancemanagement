@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpCallServieService } from 'src/app/services/http-call-servie.service';
 import { setting } from 'src/app/setting';
 import { TransactionService } from '../transaction/transaction.service';
+import { AccountService } from '../account/account.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +12,8 @@ export class JournalService {
   constructor(
     private _HttpCallServieService_: HttpCallServieService,
     private transactionservice: TransactionService,
+    private accountservice: AccountService
   ) { }
-
 
   get() {
     var postData = {
@@ -138,7 +139,12 @@ export class JournalService {
   getDetail(response) {
     if (response.transaction_DETAIL != null) {
       response.transaction = this.transactionservice.getDetail(JSON.parse(response.transaction_DETAIL));
-      response.transaction_DETAIL = null;
+      response.transaction_DETAIL = response.transaction.transaction_DATE;
+    }
+
+    if (response.account_DETAIL != null) {
+      response.account = this.accountservice.getDetail(JSON.parse(response.account_DETAIL));
+      response.account_DETAIL = response.account.account_CODE + ' - ' + response.account.account_TITLE;
     }
 
     return (response);

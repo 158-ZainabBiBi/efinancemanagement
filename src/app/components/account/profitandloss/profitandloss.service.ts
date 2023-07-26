@@ -138,7 +138,7 @@ export class ProfitandlossService {
   getDetail(response) {
     if (response.ledger_DETAIL != null) {
       response.ledger = this.ledgerservice.getDetail(JSON.parse(response.ledger_DETAIL));
-      response.ledger_DETAIL = null;
+      response.ledger_DETAIL = response.ledger.ledger_NAME + ' - ' + response.ledger.ledger_DEBIT + ' - ' + response.ledger.ledger_CREDIT;
     }
     return (response);
   }

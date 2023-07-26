@@ -16,7 +16,6 @@ export class CustomerComponent implements OnInit {
   @ViewChild("address") address: AddressComponent;
   @ViewChild("person") person: PersonComponent;
 
-
   @Input()
   view: number = 1;
   @Input()
@@ -81,12 +80,7 @@ export class CustomerComponent implements OnInit {
     this.load(this.isreload);
   }
 
-  load(reload): void {
-    if (this.view == 0) {
-      this.customer = JSON.parse(window.sessionStorage.getItem('customerdetail'));
-      this.disabled = true;
-    }
-
+  load(reload) {
     if (window.sessionStorage.getItem('customers') != null) {
       this.customers = JSON.parse(window.sessionStorage.getItem('customers'));
     }
@@ -110,22 +104,17 @@ export class CustomerComponent implements OnInit {
       person_ID: this.personID,
       address_ID: this.addressID,
     }
+
     if (this.view >= 5 && this.view <= 6 && this.customerID) {
       window.sessionStorage.setItem("customer", this.customerID);
       this.customerGetOne(this.customerID);
       this.disabled = true;
-    } else if ((this.view >= 11 && this.view <= 29) && this.disabled == false && (this.customers == null ||
-      this.customers.length == 0 || reload == true)) {
+    } else if ((this.view >= 11 && this.view <= 29) && this.disabled == false && (this.customers == null || this.customers.length == 0 || reload == true)) {
       this.customers == null;
       this.customerAdvancedSearch(search);
-    } else if ((this.view >= 11 && this.view <= 29) && this.disabled == true && (this.customersAll == null ||
-      this.customers.length == 0 || reload == true)) {
+    } else if ((this.view >= 11 && this.view <= 29) && this.disabled == true && (this.customersAll == null || this.customersAll.length == 0 || reload == true)) {
       this.customersAll == null;
       this.customerAdvancedSearchAll(search);
-    } else if (this.view == 7 || (this.view >= 11 && this.view <= 29)) {
-      this.customerID = null;
-      this.customersAll = null;
-      this.customers = null;
     }
   }
 

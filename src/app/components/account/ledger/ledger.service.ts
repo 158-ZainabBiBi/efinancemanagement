@@ -139,12 +139,12 @@ export class LedgerService {
   getDetail(response) {
     if (response.journal_DETAIL != null) {
       response.journal = this.journalservice.getDetail(JSON.parse(response.journal_DETAIL));
-      response.journal_DETAIL = null;
+      response.journal_DETAIL = response.journal.transaction_DETAIL + ' - ' + response.journal.account_DETAIL;
     }
 
     if (response.accountclassification_DETAIL != null) {
       response.accountclassification = this.accountclassificationservice.getDetail(JSON.parse(response.accountclassification_DETAIL));
-      response.accountclassification_DETAIL = null;
+      response.accountclassification_DETAIL = response.accountclassification.accountclassification_NAME + ' - ' + response.accountclassification.accounttype_DETAIL;
     }
     return (response);
   }

@@ -6,9 +6,7 @@
     <div class="col-md-12">
       <ng-select [(ngModel)]="trialbalanceID" [disabled]="disabled" name="trialbalanceID" (change)="onChange($event)">
         <ng-option *ngFor="let trialbalance of trialbalancesAll" [value]="trialbalance.trialbalance_ID">
-          {{ trialbalance.trialbalance_CODE }} - {{ trialbalance.trialbalance_NAME
-          }} - {{ trialbalance.ledger.ledger_NAME }} - {{ trialbalance.ledger.ledger_CREDIT }} - {{
-          trialbalance.ledger.ledger_DEBIT }}
+          {{ trialbalance.trialbalance_CODE }} - {{ trialbalance.ledger_DETAIL }}
         </ng-option>
       </ng-select>
     </div>
@@ -18,9 +16,7 @@
       <ng-select [(ngModel)]="trialbalanceID" name="trialbalanceID" (change)="onChange($event)">
         <ng-option *ngFor="let trialbalance of trialbalances" [value]="trialbalance.trialbalance_ID"
           [disabled]="disabled">
-          {{ trialbalance.trialbalance_CODE }} - {{ trialbalance.trialbalance_NAME
-          }} - {{ trialbalance.ledger.ledger_NAME }} - {{ trialbalance.ledger.ledger_CREDIT }} - {{
-          trialbalance.ledger.ledger_DEBIT }}
+          {{ trialbalance.trialbalance_CODE }} - {{ trialbalance.ledger_DETAIL }}
         </ng-option>
       </ng-select>
     </div>
@@ -40,9 +36,7 @@
     <div class="col-md-12">
       <ng-select [(ngModel)]="trialbalanceID" [disabled]="disabled" name="trialbalanceID" (change)="onChange($event)">
         <ng-option *ngFor="let trialbalance of trialbalancesAll" [value]="trialbalance.trialbalance_ID">
-          {{ trialbalance.trialbalance_CODE }} - {{ trialbalance.trialbalance_NAME
-          }} - {{ trialbalance.ledger.ledger_NAME }} - {{ trialbalance.ledger.ledger_CREDIT }} - {{
-          trialbalance.ledger.ledger_DEBIT }}
+          {{ trialbalance.trialbalance_CODE }} - {{ trialbalance.ledger_DETAIL }}
         </ng-option>
       </ng-select>
     </div>
@@ -52,9 +46,7 @@
       <ng-select [(ngModel)]="trialbalanceID" name="trialbalanceID" (change)="onChange($event)">
         <ng-option *ngFor="let trialbalance of trialbalancesAll" [value]="trialbalance.trialbalance_ID"
           [disabled]="disabled">
-          {{ trialbalance.trialbalance_CODE }} - {{ trialbalance.trialbalance_NAME
-          }} - {{ trialbalance.ledger.ledger_NAME }} - {{ trialbalance.ledger.ledger_CREDIT }} - {{
-          trialbalance.ledger.ledger_DEBIT }}
+          {{ trialbalance.trialbalance_CODE }} - {{ trialbalance.ledger_DETAIL }}
         </ng-option>
       </ng-select>
     </div>
@@ -75,9 +67,7 @@
       <ng-select [(ngModel)]="trialbalanceID" [disabled]="disabled" name="trialbalanceID">
         <ng-option *ngFor="let trialbalance of trialbalancesAll" [value]="trialbalance.trialbalance_ID"
           [disabled]="disabled">
-          {{ trialbalance.trialbalance_CODE }} - {{ trialbalance.trialbalance_NAME
-          }} - {{ trialbalance.ledger.ledger_NAME }} - {{ trialbalance.ledger.ledger_CREDIT }} - {{
-          trialbalance.ledger.ledger_DEBIT }}
+          {{ trialbalance.trialbalance_CODE }} - {{ trialbalance.ledger_DETAIL }}
         </ng-option>
       </ng-select>
     </div>
@@ -87,9 +77,7 @@
       <ng-select [(ngModel)]="trialbalanceID" [disabled]="disabled" name="trialbalanceID" (change)="onChange($event)">
         <ng-option *ngFor="let trialbalance of trialbalances" [value]="trialbalance.trialbalance_ID"
           [disabled]="disabled">
-          {{ trialbalance.trialbalance_CODE }} - {{ trialbalance.trialbalance_NAME
-          }} - {{ trialbalance.ledger.ledger_NAME }} - {{ trialbalance.ledger.ledger_CREDIT }} - {{
-          trialbalance.ledger.ledger_DEBIT }}
+          {{ trialbalance.trialbalance_CODE }} - {{ trialbalance.ledger_DETAIL }}
         </ng-option>
       </ng-select>
     </div>
@@ -110,9 +98,7 @@
       <ng-select [(ngModel)]="trialbalanceID" [disabled]="disabled" name="trialbalanceID" (change)="onChange($event)">
         <ng-option *ngFor="let trialbalance of trialbalancesAll" [value]="trialbalance.trialbalance_ID"
           [disabled]="disabled">
-          {{ trialbalance.trialbalance_CODE }} - {{ trialbalance.trialbalance_NAME
-          }} - {{ trialbalance.ledger.ledger_NAME }} - {{ trialbalance.ledger.ledger_CREDIT }} - {{
-          trialbalance.ledger.ledger_DEBIT }}
+          {{ trialbalance.trialbalance_CODE }} - {{ trialbalance.ledger_DETAIL }}
         </ng-option>
       </ng-select>
     </div>
@@ -122,9 +108,7 @@
       <ng-select [(ngModel)]="trialbalanceID" [disabled]="disabled" name="trialbalanceID" (change)="onChange($event)">
         <ng-option *ngFor="let trialbalance of trialbalancesAll" [value]="trialbalance.trialbalance_ID"
           [disabled]="disabled">
-          {{ trialbalance.trialbalance_CODE }} - {{ trialbalance.trialbalance_NAME
-          }} - {{ trialbalance.ledger.ledger_NAME }} - {{ trialbalance.ledger.ledger_CREDIT }} - {{
-          trialbalance.ledger.ledger_DEBIT }}
+          {{ trialbalance.trialbalance_CODE }} - {{ trialbalance.ledger_DETAIL }}
         </ng-option>
       </ng-select>
     </div>
@@ -156,9 +140,10 @@
 
         <dxi-column dataField="trialbalance_CODE" caption="Code" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="trialbalance_NAME" caption="Name" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="ledger.ledger_NAME" caption="Ledger" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="ledger.ledger_CREDIT" caption="Debit" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="ledger.ledger_NAME" caption="Ledger A/c" cssClass="myClass"
+          alignment="left"></dxi-column>
         <dxi-column dataField="ledger.ledger_DEBIT" caption="Debit" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="ledger.ledger_CREDIT" caption="Credit" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass"
           alignment="center"></dxi-column>
 
@@ -191,9 +176,10 @@
 
         <dxi-column dataField="trialbalance_CODE" caption="Code" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="trialbalance_NAME" caption="Name" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="ledger.ledger_NAME" caption="Ledger" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="ledger.ledger_CREDIT" caption="Debit" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="ledger.ledger_NAME" caption="Ledger A/c" cssClass="myClass"
+          alignment="left"></dxi-column>
         <dxi-column dataField="ledger.ledger_DEBIT" caption="Debit" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="ledger.ledger_CREDIT" caption="Credit" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass"
           alignment="center"></dxi-column>
 

@@ -8,8 +8,7 @@
         (change)="onChange($event)">
         <ng-option *ngFor="let accountclassification of accountclassificationsAll"
           [value]="accountclassification.accountclassification_ID">
-          {{ accountclassification.accountclassification_CODE }} - {{ accountclassification.accountclassification_NAME
-          }} - {{ accountclassification.accounttype.description }}
+          {{ accountclassification.accountclassification_NAME}} - {{ accountclassification.accounttype_DETAIL }}
         </ng-option>
       </ng-select>
     </div>
@@ -19,8 +18,7 @@
       <ng-select [(ngModel)]="accountclassificationID" name="accountclassificationID" (change)="onChange($event)">
         <ng-option *ngFor="let accountclassification of accountclassifications"
           [value]="accountclassification.accountclassification_ID" [disabled]="disabled">
-          {{ accountclassification.accountclassification_CODE }} - {{ accountclassification.accountclassification_NAME
-          }} - {{ accountclassification.accounttype.description }}
+          {{ accountclassification.accountclassification_NAME}} - {{ accountclassification.accounttype_DETAIL }}
         </ng-option>
       </ng-select>
     </div>
@@ -42,8 +40,7 @@
         (change)="onChange($event)">
         <ng-option *ngFor="let accountclassification of accountclassificationsAll"
           [value]="accountclassification.accountclassification_ID">
-          {{ accountclassification.accountclassification_CODE }} - {{ accountclassification.accountclassification_NAME
-          }} - {{ accountclassification.accounttype.description }}
+          {{ accountclassification.accountclassification_NAME}} - {{ accountclassification.accounttype_DETAIL }}
         </ng-option>
       </ng-select>
     </div>
@@ -53,8 +50,7 @@
       <ng-select [(ngModel)]="accountclassificationID" name="accountclassificationID" (change)="onChange($event)">
         <ng-option *ngFor="let accountclassification of accountclassificationsAll"
           [value]="accountclassification.accountclassification_ID" [disabled]="disabled">
-          {{ accountclassification.accountclassification_CODE }} - {{ accountclassification.accountclassification_NAME
-          }} - {{ accountclassification.accounttype.description }}
+          {{ accountclassification.accountclassification_NAME}} - {{ accountclassification.accounttype_DETAIL }}
         </ng-option>
       </ng-select>
     </div>
@@ -75,8 +71,7 @@
       <ng-select [(ngModel)]="accountclassificationID" [disabled]="disabled" name="accountclassificationID">
         <ng-option *ngFor="let accountclassification of accountclassificationsAll"
           [value]="accountclassification.accountclassification_ID" [disabled]="disabled">
-          {{ accountclassification.accountclassification_CODE }} - {{ accountclassification.accountclassification_NAME
-          }} - {{ accountclassification.accounttype.description }}
+          {{ accountclassification.accountclassification_NAME}} - {{ accountclassification.accounttype_DETAIL }}
         </ng-option>
       </ng-select>
     </div>
@@ -87,8 +82,7 @@
         (change)="onChange($event)">
         <ng-option *ngFor="let accountclassification of accountclassifications"
           [value]="accountclassification.accountclassification_ID" [disabled]="disabled">
-          {{ accountclassification.accountclassification_CODE }} - {{ accountclassification.accountclassification_NAME
-          }} - {{ accountclassification.accounttype.description }}
+          {{ accountclassification.accountclassification_NAME}} - {{ accountclassification.accounttype_DETAIL }}
         </ng-option>
       </ng-select>
     </div>
@@ -110,8 +104,7 @@
         (change)="onChange($event)">
         <ng-option *ngFor="let accountclassification of accountclassificationsAll"
           [value]="accountclassification.accountclassification_ID" [disabled]="disabled">
-          {{ accountclassification.accountclassification_CODE }} - {{ accountclassification.accountclassification_NAME
-          }} - {{ accountclassification.accounttype.description }}
+          {{ accountclassification.accountclassification_NAME}} - {{ accountclassification.accounttype_DETAIL }}
         </ng-option>
       </ng-select>
     </div>
@@ -122,8 +115,7 @@
         (change)="onChange($event)">
         <ng-option *ngFor="let accountclassification of accountclassificationsAll"
           [value]="accountclassification.accountclassification_ID" [disabled]="disabled">
-          {{ accountclassification.accountclassification_CODE }} - {{ accountclassification.accountclassification_NAME
-          }} - {{ accountclassification.accounttype.description }}
+          {{ accountclassification.accountclassification_NAME}} - {{ accountclassification.accounttype_DETAIL }}
         </ng-option>
       </ng-select>
     </div>
@@ -195,7 +187,7 @@
           alignment="left"></dxi-column>
         <dxi-column dataField="accountclassification_NAME" caption="Name" cssClass="myClass"
           alignment="left"></dxi-column>
-        <dxi-column dataField="accounttype.description" caption="Account Type" cssClass="myClass"
+        <dxi-column dataField="accounttype_DETAIL" caption="Account Type" cssClass="myClass"
           alignment="left"></dxi-column>
         <dxi-column dataField="accountclassification_DESC" caption="Description" cssClass="myClass"
           alignment="left"></dxi-column>

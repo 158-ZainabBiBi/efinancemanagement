@@ -6,7 +6,7 @@
     <div class="col-md-12">
       <ng-select [(ngModel)]="transactionID" [disabled]="disabled" name="transactionID" (change)="onChange($event)">
         <ng-option *ngFor="let transaction of transactionsAll" [value]="transaction.transaction_ID">
-          {{ transaction.transaction_CODE }} - {{ transaction.transaction_DATE }} - {{ transaction.transaction_AMOUNT}}
+          {{ transaction.transaction_DATE }} - {{ transaction.transaction_AMOUNT}}
         </ng-option>
       </ng-select>
     </div>
@@ -15,7 +15,7 @@
     <div class="col-md-10">
       <ng-select [(ngModel)]="transactionID" name="transactionID" (change)="onChange($event)">
         <ng-option *ngFor="let transaction of transactions" [value]="transaction.transaction_ID" [disabled]="disabled">
-          {{ transaction.transaction_CODE }} - {{ transaction.transaction_DATE }} - {{ transaction.transaction_AMOUNT }}
+          {{ transaction.transaction_DATE }} - {{ transaction.transaction_AMOUNT }}
         </ng-option>
       </ng-select>
     </div>
@@ -35,7 +35,7 @@
     <div class="col-md-12">
       <ng-select [(ngModel)]="transactionID" [disabled]="disabled" name="transactionID" (change)="onChange($event)">
         <ng-option *ngFor="let transaction of transactionsAll" [value]="transaction.transaction_ID">
-          {{ transaction.transaction_CODE }} - {{ transaction.transaction_DATE }} - {{ transaction.transaction_AMOUNT }}
+          {{ transaction.transaction_DATE }} - {{ transaction.transaction_AMOUNT }}
         </ng-option>
       </ng-select>
     </div>
@@ -45,7 +45,7 @@
       <ng-select [(ngModel)]="transactionID" name="transactionID" (change)="onChange($event)">
         <ng-option *ngFor="let transaction of transactionsAll" [value]="transaction.transaction_ID"
           [disabled]="disabled">
-          {{ transaction.transaction_CODE }} - {{ transaction.transaction_DATE }} - {{ transaction.transaction_AMOUNT }}
+          {{ transaction.transaction_DATE }} - {{ transaction.transaction_AMOUNT }}
         </ng-option>
       </ng-select>
     </div>
@@ -66,7 +66,7 @@
       <ng-select [(ngModel)]="transactionID" [disabled]="disabled" name="transactionID">
         <ng-option *ngFor="let transaction of transactionsAll" [value]="transaction.transaction_ID"
           [disabled]="disabled">
-          {{ transaction.transaction_CODE }} - {{ transaction.transaction_DATE }} - {{ transaction.transaction_AMOUNT }}
+          {{ transaction.transaction_DATE }} - {{ transaction.transaction_AMOUNT }}
         </ng-option>
       </ng-select>
     </div>
@@ -75,7 +75,7 @@
     <div class="col-md-10">
       <ng-select [(ngModel)]="transactionID" [disabled]="disabled" name="transactionID" (change)="onChange($event)">
         <ng-option *ngFor="let transaction of transactions" [value]="transaction.transaction_ID" [disabled]="disabled">
-          {{ transaction.transaction_CODE }} - {{ transaction.transaction_DATE }} - {{ transaction.transaction_AMOUNT }}
+          {{ transaction.transaction_DATE }} - {{ transaction.transaction_AMOUNT }}
         </ng-option>
       </ng-select>
     </div>
@@ -96,7 +96,7 @@
       <ng-select [(ngModel)]="transactionID" [disabled]="disabled" name="transactionID" (change)="onChange($event)">
         <ng-option *ngFor="let transaction of transactionsAll" [value]="transaction.transaction_ID"
           [disabled]="disabled">
-          {{ transaction.transaction_CODE }} - {{ transaction.transaction_DATE }} - {{ transaction.transaction_AMOUNT }}
+          {{ transaction.transaction_DATE }} - {{ transaction.transaction_AMOUNT }}
         </ng-option>
       </ng-select>
     </div>
@@ -106,7 +106,7 @@
       <ng-select [(ngModel)]="transactionID" [disabled]="disabled" name="transactionID" (change)="onChange($event)">
         <ng-option *ngFor="let transaction of transactionsAll" [value]="transaction.transaction_ID"
           [disabled]="disabled">
-          {{ transaction.transaction_CODE }} - {{ transaction.transaction_DATE }} - {{ transaction.transaction_AMOUNT }}
+          {{ transaction.transaction_DATE }} - {{ transaction.transaction_AMOUNT }}
         </ng-option>
       </ng-select>
     </div>
@@ -138,15 +138,15 @@
 
         <dxi-column dataField="transaction_CODE" caption="Code" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="transaction_DATE" caption="Date" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="transaction_NAME" caption="Name" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="transactiontype.description" caption="Type" cssClass="myClass"
+        <dxi-column [width]="200" dataField="transaction_NAME" caption="Name" cssClass="myClass"
           alignment="left"></dxi-column>
+        <dxi-column dataField="transactiontype_DETAIL" caption="Type" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="transaction_AMOUNT" caption="Amount" cssClass="myClass" alignment="center"></dxi-column>
-        <dxi-column dataField="currency.description" caption="Currency" cssClass="myClass"
+        <dxi-column dataField="currency_DETAIL" caption="Currency" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="bankaccount_DETAIL" caption="Bank Account" cssClass="myClass"
           alignment="left"></dxi-column>
-        <dxi-column dataField="bankaccount.account.account_NAME" caption="Bank Account" cssClass="myClass"
+        <dxi-column [width]="150" dataField="transaction_DESC" caption="Description" cssClass="myClass"
           alignment="left"></dxi-column>
-        <dxi-column dataField="transaction_DESC" caption="Description" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass" alignment="center">
         </dxi-column>
 
@@ -179,15 +179,15 @@
 
         <dxi-column dataField="transaction_CODE" caption="Code" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="transaction_DATE" caption="Date" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="transaction_NAME" caption="Name" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="transactiontype.description" caption="Type" cssClass="myClass"
+        <dxi-column [width]="200" dataField="transaction_NAME" caption="Name" cssClass="myClass"
           alignment="left"></dxi-column>
+        <dxi-column dataField="transactiontype_DETAIL" caption="Type" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="transaction_AMOUNT" caption="Amount" cssClass="myClass" alignment="center"></dxi-column>
-        <dxi-column dataField="currency.description" caption="Currency" cssClass="myClass"
+        <dxi-column dataField="currency_DETAIL" caption="Currency" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="bankaccount_DETAIL" caption="Bank Account" cssClass="myClass"
           alignment="left"></dxi-column>
-        <dxi-column dataField="bankaccount.account.account_NAME" caption="Bank Account" cssClass="myClass"
+        <dxi-column [width]="150" dataField="transaction_DESC" caption="Description" cssClass="myClass"
           alignment="left"></dxi-column>
-        <dxi-column dataField="transaction_DESC" caption="Description" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass" alignment="center">
         </dxi-column>
 
@@ -264,7 +264,7 @@
               <div class="form-group">
                 <label class="control-label"> Description <span style="color:red">*</span></label>
                 <textarea type="text" class="form-control" name="transaction_DESC"
-                  [(ngModel)]="transaction.transaction_DESC" maxlength="50" ></textarea>
+                  [(ngModel)]="transaction.transaction_DESC" maxlength="50"></textarea>
               </div>
             </div>
           </div>
@@ -344,7 +344,7 @@
               <div class="form-group">
                 <label class="control-label"> Description <span style="color:red">*</span></label>
                 <textarea type="text" class="form-control" name="transaction_DESC"
-                  [(ngModel)]="transaction.transaction_DESC" maxlength="50" ></textarea>
+                  [(ngModel)]="transaction.transaction_DESC" maxlength="50"></textarea>
               </div>
             </div>
           </div>

@@ -7,9 +7,7 @@
       <ng-select [(ngModel)]="incomestatementID" [disabled]="disabled" name="incomestatementID"
         (change)="onChange($event)">
         <ng-option *ngFor="let incomestatement of incomestatementsAll" [value]="incomestatement.incomestatement_ID">
-          {{ incomestatement.incomestatement_CODE }} - {{ incomestatement.incomestatement_NAME
-          }} - {{ incomestatement.ledger.ledger_NAME }} - {{ incomestatement.ledger.ledger_CREDIT }} - {{
-          incomestatement.ledger.ledger_DEBIT }}
+          {{ incomestatement.incomestatement_CODE }} - {{ incomestatement.ledger_DETAIL }}
         </ng-option>
       </ng-select>
     </div>
@@ -19,9 +17,7 @@
       <ng-select [(ngModel)]="incomestatementID" name="incomestatementID" (change)="onChange($event)">
         <ng-option *ngFor="let incomestatement of incomestatements" [value]="incomestatement.incomestatement_ID"
           [disabled]="disabled">
-          {{ incomestatement.incomestatement_CODE }} - {{ incomestatement.incomestatement_NAME
-          }} - {{ incomestatement.ledger.ledger_NAME }} - {{ incomestatement.ledger.ledger_CREDIT }} - {{
-          incomestatement.ledger.ledger_DEBIT }}
+          {{ incomestatement.incomestatement_CODE }} - {{ incomestatement.ledger_DETAIL }}
         </ng-option>
       </ng-select>
     </div>
@@ -42,9 +38,7 @@
       <ng-select [(ngModel)]="incomestatementID" [disabled]="disabled" name="incomestatementID"
         (change)="onChange($event)">
         <ng-option *ngFor="let incomestatement of incomestatementsAll" [value]="incomestatement.incomestatement_ID">
-          {{ incomestatement.incomestatement_CODE }} - {{ incomestatement.incomestatement_NAME
-          }} - {{ incomestatement.ledger.ledger_NAME }} - {{ incomestatement.ledger.ledger_CREDIT }} - {{
-          incomestatement.ledger.ledger_DEBIT }}
+          {{ incomestatement.incomestatement_CODE }} - {{ incomestatement.ledger_DETAIL }}
         </ng-option>
       </ng-select>
     </div>
@@ -54,9 +48,7 @@
       <ng-select [(ngModel)]="incomestatementID" name="incomestatementID" (change)="onChange($event)">
         <ng-option *ngFor="let incomestatement of incomestatementsAll" [value]="incomestatement.incomestatement_ID"
           [disabled]="disabled">
-          {{ incomestatement.incomestatement_CODE }} - {{ incomestatement.incomestatement_NAME
-          }} - {{ incomestatement.ledger.ledger_NAME }} - {{ incomestatement.ledger.ledger_CREDIT }} - {{
-          incomestatement.ledger.ledger_DEBIT }}
+          {{ incomestatement.incomestatement_CODE }} - {{ incomestatement.ledger_DETAIL }}
         </ng-option>
       </ng-select>
     </div>
@@ -77,9 +69,7 @@
       <ng-select [(ngModel)]="incomestatementID" [disabled]="disabled" name="incomestatementID">
         <ng-option *ngFor="let incomestatement of incomestatementsAll" [value]="incomestatement.incomestatement_ID"
           [disabled]="disabled">
-          {{ incomestatement.incomestatement_CODE }} - {{ incomestatement.incomestatement_NAME
-          }} - {{ incomestatement.ledger.ledger_NAME }} - {{ incomestatement.ledger.ledger_CREDIT }} - {{
-          incomestatement.ledger.ledger_DEBIT }}
+          {{ incomestatement.incomestatement_CODE }} - {{ incomestatement.ledger_DETAIL }}
         </ng-option>
       </ng-select>
     </div>
@@ -90,9 +80,7 @@
         (change)="onChange($event)">
         <ng-option *ngFor="let incomestatement of incomestatements" [value]="incomestatement.incomestatement_ID"
           [disabled]="disabled">
-          {{ incomestatement.incomestatement_CODE }} - {{ incomestatement.incomestatement_NAME
-          }} - {{ incomestatement.ledger.ledger_NAME }} - {{ incomestatement.ledger.ledger_CREDIT }} - {{
-          incomestatement.ledger.ledger_DEBIT }}
+          {{ incomestatement.incomestatement_CODE }} - {{ incomestatement.ledger_DETAIL }}
         </ng-option>
       </ng-select>
     </div>
@@ -114,9 +102,7 @@
         (change)="onChange($event)">
         <ng-option *ngFor="let incomestatement of incomestatementsAll" [value]="incomestatement.incomestatement_ID"
           [disabled]="disabled">
-          {{ incomestatement.incomestatement_CODE }} - {{ incomestatement.incomestatement_NAME
-          }} - {{ incomestatement.ledger.ledger_NAME }} - {{ incomestatement.ledger.ledger_CREDIT }} - {{
-          incomestatement.ledger.ledger_DEBIT }}
+          {{ incomestatement.incomestatement_CODE }} - {{ incomestatement.ledger_DETAIL }}
         </ng-option>
       </ng-select>
     </div>
@@ -127,9 +113,7 @@
         (change)="onChange($event)">
         <ng-option *ngFor="let incomestatement of incomestatementsAll" [value]="incomestatement.incomestatement_ID"
           [disabled]="disabled">
-          {{ incomestatement.incomestatement_CODE }} - {{ incomestatement.incomestatement_NAME
-          }} - {{ incomestatement.ledger.ledger_NAME }} - {{ incomestatement.ledger.ledger_CREDIT }} - {{
-          incomestatement.ledger.ledger_DEBIT }}
+          {{ incomestatement.incomestatement_CODE }} - {{ incomestatement.ledger_DETAIL }}
         </ng-option>
       </ng-select>
     </div>
@@ -161,9 +145,10 @@
 
         <dxi-column dataField="incomestatement_CODE" caption="Code" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="incomestatement_NAME" caption="Name" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="ledger.ledger_NAME" caption="Ledger" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="ledger.ledger_CREDIT" caption="Debit" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="ledger.ledger_NAME" caption="Ledger A/c" cssClass="myClass"
+          alignment="left"></dxi-column>
         <dxi-column dataField="ledger.ledger_DEBIT" caption="Debit" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="ledger.ledger_CREDIT" caption="Credit" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass"
           alignment="center"></dxi-column>
 
@@ -196,9 +181,10 @@
 
         <dxi-column dataField="incomestatement_CODE" caption="Code" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="incomestatement_NAME" caption="Name" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="ledger.ledger_NAME" caption="Ledger" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="ledger.ledger_CREDIT" caption="Debit" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="ledger.ledger_NAME" caption="Ledger A/c" cssClass="myClass"
+          alignment="left"></dxi-column>
         <dxi-column dataField="ledger.ledger_DEBIT" caption="Debit" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="ledger.ledger_CREDIT" caption="Credit" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass"
           alignment="center"></dxi-column>
 

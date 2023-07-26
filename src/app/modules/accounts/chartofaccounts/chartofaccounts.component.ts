@@ -40,9 +40,9 @@ export class ChartofaccountsComponent implements OnInit {
   }
 
   addNew() {
-    this.router.navigate(["/home/chartofaccount"], {});
-    // this.addchartofaccount.add();
-    // $("#add").modal("show");
+    // this.router.navigate(["/home/chartofaccount"], {});
+    this.addchartofaccount.add();
+    $("#add").modal("show");
   }
 
   edit(row) {

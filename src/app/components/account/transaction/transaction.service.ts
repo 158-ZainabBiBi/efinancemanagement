@@ -142,12 +142,12 @@ export class TransactionService {
 
     if (response.currency_DETAIL != null) {
       response.currency = JSON.parse(response.currency_DETAIL);
-      response.currency_DETAIL = response.currency.description;
+      response.currency_DETAIL = response.currency.code;
     }
 
     if (response.bankaccount_DETAIL != null) {
       response.bankaccount = this.bankaccountservice.getDetail(JSON.parse(response.bankaccount_DETAIL));
-      response.bankaccount_DETAIL = null;
+      response.bankaccount_DETAIL = response.bankaccount.bankaccount_NUMBER + ' - ' + response.bankaccount.bankaccount_NAME;
     }
 
     return (response);

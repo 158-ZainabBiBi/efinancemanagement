@@ -142,12 +142,12 @@ export class BankaccountService {
   getDetail(response) {
     if (response.taxcode_DETAIL != null) {
       response.taxcode = this.taxcodeservice.getDetail(JSON.parse(response.taxcode_DETAIL));
-      response.taxcode_DETAIL = response.taxcode.taxcode_CODE + ' - ' + response.taxcode.taxcode_TITLE;
+      response.taxcode_DETAIL = response.taxcode.taxcode_TITLE;
     }
 
     if (response.customer_DETAIL != null) {
       response.customer = this.customerservice.getDetail(JSON.parse(response.customer_DETAIL));
-      response.customer_DETAIL = response.customer.customer_CODE + ' - ' + response.customer.person_DETAIL;
+      response.customer_DETAIL = response.customer.customer_CODE + ' - ' + response.customer.customer_NAME;
     }
 
     if (response.location_DETAIL != null) {

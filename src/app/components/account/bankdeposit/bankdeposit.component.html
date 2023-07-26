@@ -6,7 +6,7 @@
     <div class="col-md-12">
       <ng-select [(ngModel)]="bankdepositID" [disabled]="disabled" name="bankdepositID" (change)="onChange($event)">
         <ng-option *ngFor="let bankdeposit of bankdepositsAll" [value]="bankdeposit.bankdeposit_ID">
-          {{ bankdeposit.bankdeposit_DATE }} - {{ bankdeposit.bankdeposit_CODE }} - {{ bankdeposit.total_AMOUNT }}
+          {{ bankdeposit.bankdeposit_DATE }} - {{ bankdeposit.total_AMOUNT }}
         </ng-option>
       </ng-select>
     </div>
@@ -15,7 +15,7 @@
     <div class="col-md-10">
       <ng-select [(ngModel)]="bankdepositID" name="bankdepositID" (change)="onChange($event)">
         <ng-option *ngFor="let bankdeposit of bankdeposits" [value]="bankdeposit.bankdeposit_ID" [disabled]="disabled">
-          {{ bankdeposit.bankdeposit_DATE }} - {{ bankdeposit.bankdeposit_CODE }} - {{ bankdeposit.total_AMOUNT }}
+          {{ bankdeposit.bankdeposit_DATE }} - {{ bankdeposit.total_AMOUNT }}
         </ng-option>
       </ng-select>
     </div>
@@ -35,7 +35,7 @@
     <div class="col-md-12">
       <ng-select [(ngModel)]="bankdepositID" [disabled]="disabled" name="bankdepositID" (change)="onChange($event)">
         <ng-option *ngFor="let bankdeposit of bankdepositsAll" [value]="bankdeposit.bankdeposit_ID">
-          {{ bankdeposit.bankdeposit_DATE }} - {{ bankdeposit.bankdeposit_CODE }} - {{ bankdeposit.total_AMOUNT }}
+          {{ bankdeposit.bankdeposit_DATE }} - {{ bankdeposit.total_AMOUNT }}
         </ng-option>
       </ng-select>
     </div>
@@ -45,7 +45,7 @@
       <ng-select [(ngModel)]="bankdepositID" name="bankdepositID" (change)="onChange($event)">
         <ng-option *ngFor="let bankdeposit of bankdepositsAll" [value]="bankdeposit.bankdeposit_ID"
           [disabled]="disabled">
-          {{ bankdeposit.bankdeposit_DATE }} - {{ bankdeposit.bankdeposit_CODE }} - {{ bankdeposit.total_AMOUNT }}
+          {{ bankdeposit.bankdeposit_DATE }} - {{ bankdeposit.total_AMOUNT }}
         </ng-option>
       </ng-select>
     </div>
@@ -66,7 +66,7 @@
       <ng-select [(ngModel)]="bankdepositID" [disabled]="disabled" name="bankdepositID">
         <ng-option *ngFor="let bankdeposit of bankdepositsAll" [value]="bankdeposit.bankdeposit_ID"
           [disabled]="disabled">
-          {{ bankdeposit.bankdeposit_DATE }} - {{ bankdeposit.bankdeposit_CODE }} - {{ bankdeposit.total_AMOUNT }}
+          {{ bankdeposit.bankdeposit_DATE }} - {{ bankdeposit.total_AMOUNT }}
         </ng-option>
       </ng-select>
     </div>
@@ -75,7 +75,7 @@
     <div class="col-md-10">
       <ng-select [(ngModel)]="bankdepositID" [disabled]="disabled" name="bankdepositID" (change)="onChange($event)">
         <ng-option *ngFor="let bankdeposit of bankdeposits" [value]="bankdeposit.bankdeposit_ID" [disabled]="disabled">
-          {{ bankdeposit.bankdeposit_DATE }} - {{ bankdeposit.bankdeposit_CODE }} - {{ bankdeposit.total_AMOUNT }}
+          {{ bankdeposit.bankdeposit_DATE }} - {{ bankdeposit.total_AMOUNT }}
         </ng-option>
       </ng-select>
     </div>
@@ -96,7 +96,7 @@
       <ng-select [(ngModel)]="bankdepositID" [disabled]="disabled" name="bankdepositID" (change)="onChange($event)">
         <ng-option *ngFor="let bankdeposit of bankdepositsAll" [value]="bankdeposit.bankdeposit_ID"
           [disabled]="disabled">
-          {{ bankdeposit.bankdeposit_DATE }} - {{ bankdeposit.bankdeposit_CODE }} - {{ bankdeposit.total_AMOUNT }}
+          {{ bankdeposit.bankdeposit_DATE }} - {{ bankdeposit.total_AMOUNT }}
         </ng-option>
       </ng-select>
     </div>
@@ -106,7 +106,7 @@
       <ng-select [(ngModel)]="bankdepositID" [disabled]="disabled" name="bankdepositID" (change)="onChange($event)">
         <ng-option *ngFor="let bankdeposit of bankdepositsAll" [value]="bankdeposit.bankdeposit_ID"
           [disabled]="disabled">
-          {{ bankdeposit.bankdeposit_DATE }} - {{ bankdeposit.bankdeposit_CODE }} - {{ bankdeposit.total_AMOUNT }}
+          {{ bankdeposit.bankdeposit_DATE }} - {{ bankdeposit.total_AMOUNT }}
         </ng-option>
       </ng-select>
     </div>
@@ -138,16 +138,15 @@
 
         <dxi-column dataField="bankdeposit_CODE" caption="Code" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="bankdeposit_DATE" caption="Date" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="frombankaccount.account.account_NAME" caption="From Account" cssClass="myClass"
+        <dxi-column dataField="frombankaccount_DETAIL" caption="From Account" cssClass="myClass"
           alignment="left"></dxi-column>
-        <dxi-column dataField="tobankaccount.account.account_NAME" caption="To Account" cssClass="myClass"
+        <dxi-column dataField="tobankaccount_DETAIL" caption="To Account" cssClass="myClass"
           alignment="left"></dxi-column>
         <dxi-column dataField="cash_AMOUNT" caption="Cash Amount" cssClass="myClass" alignment="center"></dxi-column>
         <dxi-column dataField="cheque_AMOUNT" caption="Cheque Amount" cssClass="myClass"
           alignment="center"></dxi-column>
         <dxi-column dataField="total_AMOUNT" caption="Total Amount" cssClass="myClass" alignment="center"></dxi-column>
-        <dxi-column dataField="transaction.transaction_DATE" caption="Date" cssClass="myClass"
-          alignment="left"></dxi-column>
+        <dxi-column dataField="transaction_DETAIL" caption="Date" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass"
           alignment="center"></dxi-column>
 
@@ -180,16 +179,15 @@
 
         <dxi-column dataField="bankdeposit_CODE" caption="Code" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="bankdeposit_DATE" caption="Date" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="frombankaccount.account.account_NAME" caption="From Account" cssClass="myClass"
+        <dxi-column dataField="frombankaccount_DETAIL" caption="From Account" cssClass="myClass"
           alignment="left"></dxi-column>
-        <dxi-column dataField="tobankaccount.account.account_NAME" caption="To Account" cssClass="myClass"
+        <dxi-column dataField="tobankaccount_DETAIL" caption="To Account" cssClass="myClass"
           alignment="left"></dxi-column>
         <dxi-column dataField="cash_AMOUNT" caption="Cash Amount" cssClass="myClass" alignment="center"></dxi-column>
         <dxi-column dataField="cheque_AMOUNT" caption="Cheque Amount" cssClass="myClass"
           alignment="center"></dxi-column>
         <dxi-column dataField="total_AMOUNT" caption="Total Amount" cssClass="myClass" alignment="center"></dxi-column>
-        <dxi-column dataField="transaction.transaction_DATE" caption="Date" cssClass="myClass"
-          alignment="left"></dxi-column>
+        <dxi-column dataField="transaction_DETAIL" caption="Date" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass"
           alignment="center"></dxi-column>
 
