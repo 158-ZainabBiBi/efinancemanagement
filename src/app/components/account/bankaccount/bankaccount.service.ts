@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpCallServieService } from 'src/app/services/http-call-servie.service';
 import { setting } from 'src/app/setting';
 import { CustomerService } from '../../customer/customer/customer.service';
-import { LocationService } from '../../location/location/location.service';
 import { TaxcodeService } from '../../finance/taxcode/taxcode.service';
 
 @Injectable({
@@ -14,7 +13,6 @@ export class BankaccountService {
     private _HttpCallServieService_: HttpCallServieService,
     private taxcodeservice: TaxcodeService,
     private customerservice: CustomerService,
-    private locationservice: LocationService
   ) { }
 
 
@@ -140,26 +138,9 @@ export class BankaccountService {
   }
 
   getDetail(response) {
-    if (response.taxcode_DETAIL != null) {
-      response.taxcode = this.taxcodeservice.getDetail(JSON.parse(response.taxcode_DETAIL));
-      response.taxcode_DETAIL = response.taxcode.taxcode_TITLE;
-    }
-
     if (response.customer_DETAIL != null) {
       response.customer = this.customerservice.getDetail(JSON.parse(response.customer_DETAIL));
       response.customer_DETAIL = response.customer.customer_CODE + ' - ' + response.customer.customer_NAME;
-    }
-
-    if (response.location_DETAIL != null) {
-      response.location = this.locationservice.getDetail(JSON.parse(response.location_DETAIL));
-      response.locations = [];
-      response.location_DETAIL = null;
-      while (response.location.locationparent_ID != null) {
-        response.address = response.address + ", " + response.location.location_NAME;
-        response.locations.push(response.location);
-        response.location = response.location.locationparent_ID;
-      }
-      response.locations.push(response.location);
     }
 
     if (response.bankaccounttype_DETAIL != null) {

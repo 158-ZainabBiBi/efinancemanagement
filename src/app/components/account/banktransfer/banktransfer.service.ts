@@ -139,17 +139,17 @@ export class BanktransferService {
   getDetail(response) {
     if (response.frombankaccount_DETAIL != null) {
       response.frombankaccount = this.bankaccountservice.getDetail(JSON.parse(response.frombankaccount_DETAIL));
-      response.frombankaccount_DETAIL = response.frombankaccount.bankaccount_NUMBER + ' - ' + response.frombankaccount.bankaccount_NAME;
+      response.frombankaccount_DETAIL = response.frombankaccount.bankaccount_NUMBER;
     }
 
     if (response.tobankaccount_DETAIL != null) {
       response.tobankaccount = this.bankaccountservice.getDetail(JSON.parse(response.tobankaccount_DETAIL));
-      response.tobankaccount_DETAIL = response.tobankaccount.bankaccount_NUMBER + ' - ' + response.tobankaccount.bankaccount_NAME;
+      response.tobankaccount_DETAIL = response.tobankaccount.bankaccount_NUMBER;
     }
 
     if (response.transaction_DETAIL != null) {
       response.transaction = this.transactionservice.getDetail(JSON.parse(response.transaction_DETAIL));
-      response.transaction_DETAIL = response.transaction.transaction_DATE + ' - ' + response.transaction.transaction_AMOUNT;
+      response.transaction_DETAIL = response.transaction.transaction_DATE;
     }
 
     return (response);

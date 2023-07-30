@@ -32,7 +32,7 @@ import { IndexComponent } from '../home/dashboard/index/index.component';
 import { ServicesComponent } from '../home/dashboard/services/services.component';
 import { LegalComponent } from './dashboard/legal/legal.component';
 import { PrivacyComponent } from './dashboard/privacy/privacy.component';
-import { TermsComponent } from './dashboard/terms/terms.component';
+import { TermComponent } from './dashboard/term/term.component';
 import { FooterComponent } from 'src/app/partials/footer/footer.component';
 
 //lookup
@@ -43,15 +43,33 @@ import { TransactiontypeComponent } from 'src/app/components/lookup/account/tran
 import { PersontitleComponent } from 'src/app/components/person/persontitle/persontitle.component';
 import { PaymentmethodComponent } from 'src/app/components/lookup/finance/paymentmethod/paymentmethod.component';
 
+//lookup//customer
+import { CustomerstatusComponent } from 'src/app/components/lookup/customer/customerstatus/customerstatus.component';
+import { CredittermsComponent } from 'src/app/components/lookup/customer/creditterms/creditterms.component';
+import { HoldComponent } from 'src/app/components/lookup/customer/hold/hold.component';
+import { CustomercategoryComponent } from 'src/app/components/lookup/customer/customercategory/customercategory.component';
+import { BusinesstypeComponent } from 'src/app/components/lookup/customer/businesstype/businesstype.component';
+import { BusinessmarketnicheComponent } from 'src/app/components/lookup/customer/businessmarketniche/businessmarketniche.component';
+import { CallacationstatusComponent } from 'src/app/components/lookup/customer/callacationstatus/callacationstatus.component';
+import { WeekdayComponent } from 'src/app/components/lookup/customer/weekday/weekday.component';
+import { TermsComponent } from 'src/app/components/lookup/customer/terms/terms.component';
+import { RegulatorybodyComponent } from 'src/app/components/lookup/customer/regulatorybody/regulatorybody.component';
+import { InvoicetypeComponent } from 'src/app/components/lookup/customer/invoicetype/invoicetype.component';
+import { PricelevelComponent } from 'src/app/components/lookup/customer/pricelevel/pricelevel.component';
+
 //common
 import { AddressComponent } from 'src/app/components/common/address/address.component';
 
 //customer
 import { CustomerComponent } from 'src/app/components/customer/customer/customer.component';
-import { CustomersComponent } from '../customers/customers/customers.component';
+import { CustomersComponent } from 'src/app/modules/customers/customers/customers.component';
+import { CustomerviewComponent } from 'src/app/modules/customers/customers/customerview/customerview.component';
 
 //person
 import { PersonComponent } from 'src/app/components/person/person/person.component';
+import { EmployeeComponent } from 'src/app/components/employee/employee/employee.component';
+import { CompanyComponent } from 'src/app/components/company/company/company.component';
+
 
 //location
 import { LocationComponent } from 'src/app/components/location/location/location.component';
@@ -87,8 +105,6 @@ import { BankaccountsComponent } from 'src/app/modules/accounts/bankaccounts/ban
 import { AccountsComponent } from 'src/app/modules/accounts/accounts/accounts.component';
 import { BankdepositsComponent } from 'src/app/modules/accounts/bankdeposits/bankdeposits.component';
 import { BanktransfersComponent } from 'src/app/modules/accounts/banktransfers/banktransfers.component';
-
-//accountview
 import { BankaccountviewComponent } from 'src/app/modules/accounts/bankaccounts/bankaccountview/bankaccountview.component';
 import { JournalviewComponent } from 'src/app/modules/accounts/journals/journalview/journalview.component';
 import { TransactionviewComponent } from 'src/app/modules/accounts/transactions/transactionview/transactionview.component';
@@ -96,7 +112,6 @@ import { TrialbalanceviewComponent } from 'src/app/modules/accounts/trialbalance
 import { AccountviewComponent } from 'src/app/modules/accounts/accounts/accountview/accountview.component';
 import { BankdepositviewComponent } from 'src/app/modules/accounts/bankdeposits/bankdepositview/bankdepositview.component';
 import { BanktransferviewComponent } from 'src/app/modules/accounts/banktransfers/banktransferview/banktransferview.component';
-
 import { AccountclassificationsComponent } from 'src/app/modules/accounts/accountclassifications/accountclassifications.component';
 import { AccountclassificationviewComponent } from 'src/app/modules/accounts/accountclassifications/accountclassificationview/accountclassificationview.component';
 import { BalancesheetsComponent } from 'src/app/modules/accounts/balancesheets/balancesheets.component';
@@ -143,13 +158,31 @@ import { ProfitandlossviewComponent } from 'src/app/modules/accounts/profitandlo
     ServicesComponent,
     LegalComponent,
     PrivacyComponent,
-    TermsComponent,
+    TermComponent,
     FooterComponent,
+
+    //lookup//customer
+    CustomerstatusComponent,
+    CredittermsComponent,
+    HoldComponent,
+    CustomercategoryComponent,
+    BusinesstypeComponent,
+    BusinessmarketnicheComponent,
+    CallacationstatusComponent,
+    WeekdayComponent,
+    TermsComponent,
+    RegulatorybodyComponent,
+    InvoicetypeComponent,
+    PricelevelComponent,
 
     AddressComponent,
 
     CustomerComponent,
     CustomersComponent,
+    CustomerviewComponent,
+
+    EmployeeComponent,
+    CompanyComponent,
     PersonComponent,
 
     LocationComponent,

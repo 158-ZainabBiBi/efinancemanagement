@@ -6,6 +6,18 @@ import { OnFailService } from '../../../services/on-fail.service';
 import { PersonComponent } from '../../person/person/person.component';
 import { AddressComponent } from '../../common/address/address.component';
 import { CustomerService } from './customer.service';
+import { TaxcodeComponent } from '../../finance/taxcode/taxcode.component';
+import { CurrencyComponent } from '../../lookup/finance/currency/currency.component';
+import { BusinessmarketnicheComponent } from '../../lookup/customer/businessmarketniche/businessmarketniche.component';
+import { BusinesstypeComponent } from '../../lookup/customer/businesstype/businesstype.component';
+import { CredittermsComponent } from '../../lookup/customer/creditterms/creditterms.component';
+import { CustomercategoryComponent } from '../../lookup/customer/customercategory/customercategory.component';
+import { CustomerstatusComponent } from '../../lookup/customer/customerstatus/customerstatus.component';
+import { HoldComponent } from '../../lookup/customer/hold/hold.component';
+import { TermsComponent } from '../../lookup/customer/terms/terms.component';
+import { EmployeeComponent } from '../../employee/employee/employee.component';
+import { InvoicetypeComponent } from '../../lookup/customer/invoicetype/invoicetype.component';
+import { PricelevelComponent } from '../../lookup/customer/pricelevel/pricelevel.component';
 
 @Component({
   selector: 'app-customer',
@@ -15,6 +27,19 @@ import { CustomerService } from './customer.service';
 export class CustomerComponent implements OnInit {
   @ViewChild("address") address: AddressComponent;
   @ViewChild("person") person: PersonComponent;
+  @ViewChild("employee") employee: EmployeeComponent;
+  @ViewChild("taxcode") taxcode: TaxcodeComponent;
+
+  @ViewChild("currency") currency: CurrencyComponent;
+  @ViewChild("hold") hold: HoldComponent;
+  @ViewChild("invoicetype") invoicetype: InvoicetypeComponent;
+  @ViewChild("customerstatus") customerstatus: CustomerstatusComponent;
+  @ViewChild("pricelevel") pricelevel: PricelevelComponent;
+  @ViewChild("terms") terms: TermsComponent;
+  @ViewChild("customercategory") customercategory: CustomercategoryComponent;
+  @ViewChild("businesstype") businesstype: BusinesstypeComponent;
+  @ViewChild("businessmarketniche") businessmarketniche: BusinessmarketnicheComponent;
+  @ViewChild("creditterms") creditterms: CredittermsComponent;
 
   @Input()
   view: number = 1;
@@ -29,9 +54,53 @@ export class CustomerComponent implements OnInit {
   @Input()
   customerID = null;
   @Input()
+  addressID = null;
+  @Input()
   personID = null;
   @Input()
-  addressID = null;
+  employeeID = null;
+  @Input()
+  taxcodeID = null;
+  @Input()
+  currencyID = null;
+  @Input()
+  currencyCode = null;
+  @Input()
+  holdID = null;
+  @Input()
+  holdCode = null;
+  @Input()
+  invoicetypeID = null;
+  @Input()
+  invoicetypeCode = null;
+  @Input()
+  customerstatusID = null;
+  @Input()
+  customerstatusCode = null;
+  @Input()
+  pricelevelID = null;
+  @Input()
+  pricelevelCode = null;
+  @Input()
+  termsID = null;
+  @Input()
+  termsCode = null;
+  @Input()
+  customercategoryID = null;
+  @Input()
+  customercategoryCode = null;
+  @Input()
+  businesstypeID = null;
+  @Input()
+  businesstypeCode = null;
+  @Input()
+  businessmarketnicheID = null;
+  @Input()
+  businessmarketnicheCode = null;
+  @Input()
+  credittermsID = null;
+  @Input()
+  credittermsCode = null;
 
   @Output() edit = new EventEmitter();
   @Output() cancel = new EventEmitter();
@@ -43,10 +112,52 @@ export class CustomerComponent implements OnInit {
   customersAll = [];
   customer = {
     customer_ID: 0,
+    netsuite_ID: null,
+    quickbook_ID: null,
+    sage_ID: null,
 
     customer_NAME: null,
     customer_CODE: null,
+    customer_NEWCODE: null,
+    origin_CODE: null,
+    comments: null,
+
     person_ID: null,
+    salesrepemployee_ID: null,
+    invoicetype_ID: null,
+    customerstatus_ID: null,
+
+    taxreg_NUMBER: null,
+    resale_NUMBER: null,
+
+    taxcode_ID: null,
+    currency_ID: null,
+    pricelevel_ID: null,
+    terms_ID: null,
+    creditterms_ID: null,
+    hold_ID: null,
+    hold_REASON: null,
+
+    customercategory_ID: null,
+    businesstype_ID: null,
+    businessmarketniche_ID: null,
+    defaultreceivablesaccout_ID: null,
+
+    start_DATE: null,
+    end_DATE: null,
+    opening_HOURS: null,
+    closing_HOURS: null,
+
+    defaultorder_PRIORITY: null,
+    delivery_INSTRUCTIONS: null,
+    account: null,
+
+    overdue_BALANCE: null,
+    unbilled_ORDERS: null,
+    days_OVERDUE: null,
+    credit_LIMIT: null,
+    balance: null,
+    deposit_BALANCE: null,
 
     address_LINE1: null,
     address_LINE2: null,
@@ -58,14 +169,21 @@ export class CustomerComponent implements OnInit {
     address_LONGITUDE: null,
     location_ID: null,
     locations: [],
-
     telephone_NUMBER: null,
     telephone_ALTNUMBER: null,
     mobile_NUMBER: null,
     email: null,
     web_ADDRESS: null,
 
-    isactive: true
+    iscashonlineonly: true,
+    iscreditfacility: true,
+    istemporaryaccount: true,
+    issellonlycustompriceitems: true,
+    isapplycustompricefirst: true,
+    isfranchisee: true,
+    iscashonly: true,
+    isonlinepaymentonly: true,
+    isactive: true,
   }
 
   constructor(
@@ -101,8 +219,30 @@ export class CustomerComponent implements OnInit {
     }
 
     var search = {
-      person_ID: this.personID,
       address_ID: this.addressID,
+      person_ID: this.personID,
+      employee_ID: this.employeeID,
+      taxcode_ID: this.taxcodeID,
+      currency_ID: this.currencyID,
+      currency_CODE: this.currencyCode,
+      hold_ID: this.holdID,
+      hold_CODE: this.holdCode,
+      invoicetype_ID: this.invoicetypeID,
+      invoicetype_CODE: this.invoicetypeCode,
+      customerstatus_ID: this.customerstatusID,
+      customerstatus_CODE: this.customerstatusCode,
+      pricelevel_ID: this.pricelevelID,
+      pricelevel_CODE: this.pricelevelCode,
+      terms_ID: this.termsID,
+      terms_CODE: this.termsCode,
+      customercategory_ID: this.customercategoryID,
+      customercategory_CODE: this.customercategoryCode,
+      businesstype_ID: this.businesstypeID,
+      businesstype_CODE: this.businesstypeCode,
+      businessmarketniche_ID: this.businessmarketnicheID,
+      businessmarketniche_CODE: this.businessmarketnicheCode,
+      creditterms_ID: this.credittermsID,
+      creditterms_CODE: this.credittermsCode,
     }
 
     if (this.view >= 5 && this.view <= 6 && this.customerID) {
@@ -135,10 +275,52 @@ export class CustomerComponent implements OnInit {
   add() {
     this.customer = {
       customer_ID: 0,
+      netsuite_ID: null,
+      quickbook_ID: null,
+      sage_ID: null,
 
       customer_NAME: null,
       customer_CODE: null,
+      customer_NEWCODE: null,
+      origin_CODE: null,
+      comments: null,
+
       person_ID: null,
+      salesrepemployee_ID: null,
+      invoicetype_ID: null,
+      customerstatus_ID: null,
+
+      taxreg_NUMBER: null,
+      resale_NUMBER: null,
+
+      taxcode_ID: null,
+      currency_ID: null,
+      pricelevel_ID: null,
+      terms_ID: null,
+      creditterms_ID: null,
+      hold_ID: null,
+      hold_REASON: null,
+
+      customercategory_ID: null,
+      businesstype_ID: null,
+      businessmarketniche_ID: null,
+      defaultreceivablesaccout_ID: null,
+
+      start_DATE: null,
+      end_DATE: null,
+      opening_HOURS: null,
+      closing_HOURS: null,
+
+      defaultorder_PRIORITY: null,
+      delivery_INSTRUCTIONS: null,
+      account: null,
+
+      overdue_BALANCE: null,
+      unbilled_ORDERS: null,
+      days_OVERDUE: null,
+      credit_LIMIT: null,
+      balance: null,
+      deposit_BALANCE: null,
 
       address_LINE1: null,
       address_LINE2: null,
@@ -150,14 +332,21 @@ export class CustomerComponent implements OnInit {
       address_LONGITUDE: null,
       location_ID: null,
       locations: [],
-
       telephone_NUMBER: null,
       telephone_ALTNUMBER: null,
       mobile_NUMBER: null,
       email: null,
       web_ADDRESS: null,
 
-      isactive: true
+      iscashonlineonly: true,
+      iscreditfacility: true,
+      istemporaryaccount: true,
+      issellonlycustompriceitems: true,
+      isapplycustompricefirst: true,
+      isfranchisee: true,
+      iscashonly: true,
+      isonlinepaymentonly: true,
+      isactive: true,
     };
   }
 
@@ -188,29 +377,60 @@ export class CustomerComponent implements OnInit {
     }
   }
 
-  reset() {
-    this.add();
-  }
-
-  onChange(customer) {
-    this.onCustomerChange.next(customer);
-  }
-
-  // onChange(customerID) {
-  //   for (var i = 0; i < this.customersAll.length; i++) {
-  //     if (this.customersAll[i].customer_ID == customerID) {
-  //       this.onCustomerChange.next(this.customersAll[i]);
-  //       break;
-  //     }
-  //   }
-  // }
-
-  addShop() {
-    this.router.navigate(["/home/customershop"], {});
+  onChange(customerID) {
+    for (var i = 0; i < this.customersAll.length; i++) {
+      if (this.customersAll[i].customer_ID == customerID) {
+        this.onCustomerChange.next(this.customersAll[i]);
+        break;
+      }
+    }
   }
 
   setCustomer(response) {
-    this.disabled = true;
+    this.customerID = response.customer_ID;
+
+    if (response.isapplycustompricefirst == "Y") {
+      response.isapplycustompricefirst = true;
+    } else {
+      response.isapplycustompricefirst = false;
+    }
+
+    if (response.isfranchisee == "Y") {
+      response.isfranchisee = true;
+    } else {
+      response.isfranchisee = false;
+    }
+
+    if (response.iscashonlineonly == "Y") {
+      response.iscashonlineonly = true;
+    } else {
+      response.iscashonlineonly = false;
+    }
+
+    if (response.iscreditfacility == "Y") {
+      response.iscreditfacility = true;
+    } else {
+      response.iscreditfacility = false;
+    }
+
+    if (response.istemporaryaccount == "Y") {
+      response.istemporaryaccount = true;
+    } else {
+      response.istemporaryaccount = false;
+    }
+
+    if (response.iscashonly == "Y") {
+      response.iscashonly = true;
+    } else {
+      response.iscashonly = false;
+    }
+
+    if (response.isonlinepaymentonly == "Y") {
+      response.isonlinepaymentonly = true;
+    } else {
+      response.isonlinepaymentonly = false;
+    }
+
     if (response.isactive == "Y") {
       response.isactive = true;
     } else {
@@ -218,8 +438,6 @@ export class CustomerComponent implements OnInit {
     }
 
     this.customer = response;
-    window.sessionStorage.setItem("customer", this.customerID);
-    window.sessionStorage.setItem("customerdetail", JSON.stringify(this.customer));
   }
 
   setCustomers(response) {
@@ -264,19 +482,54 @@ export class CustomerComponent implements OnInit {
           this.toastrservice.warning("Message", " " + response.message);
         } else {
           this.setCustomer(this.customerservice.getDetail(response));
-          // if (this.address != null)
-          //   this.address.locationsearchfilter.setLocation(this.customer.locations);
-          // if (this.locationsearchfilter != null)
-          //   this.locationsearchfilter.setLocation(this.customer.locations);
+          if (this.address != null)
+            this.address.locationsearchfilter.setLocation(this.customer.locations);
         }
       }
     }, error => {
       this.onfailservice.onFail(error);
     })
   }
+
   customerAdd(customer) {
     if (this.person != null) {
       customer.person_ID = this.person.personID;
+    }
+    if (this.employee != null) {
+      customer.salesrepemployee_ID = this.employee.employeeID;
+    }
+    if (this.taxcode != null) {
+      customer.taxcode_ID = this.taxcode.taxcodeID;
+    }
+    if (this.currency != null) {
+      customer.currency_ID = this.currency.currencyID;
+    }
+    if (this.hold != null) {
+      customer.hold_ID = this.hold.holdID;
+    }
+    if (this.invoicetype != null) {
+      customer.invoicetype_ID = this.invoicetype.invoicetypeID;
+    }
+    if (this.customerstatus != null) {
+      customer.customerstatus_ID = this.customerstatus.customerstatusID;
+    }
+    if (this.pricelevel != null) {
+      customer.pricelevel_ID = this.pricelevel.pricelevelID;
+    }
+    if (this.terms != null) {
+      customer.terms_ID = this.terms.termsID;
+    }
+    if (this.customercategory != null) {
+      customer.customercategory_ID = this.customercategory.customercategoryID;
+    }
+    if (this.businesstype != null) {
+      customer.businesstype_ID = this.businesstype.businesstypeID;
+    }
+    if (this.businessmarketniche != null) {
+      customer.businessmarketniche_ID = this.businessmarketniche.businessmarketnicheID;
+    }
+    if (this.creditterms != null) {
+      customer.creditterms_ID = this.creditterms.credittermsID;
     }
 
     customer.location_ID = this.address.locationsearchfilter.locationID;
@@ -295,6 +548,46 @@ export class CustomerComponent implements OnInit {
     customer.web_ADDRESS = this.address.webAddress;
 
     customer.isactive = "Y";
+    if (customer.isfranchisee == true) {
+      customer.isfranchisee = "Y";
+    } else {
+      customer.isfranchisee = "N";
+    }
+    if (customer.isapplycustompricefirst == true) {
+      customer.isapplycustompricefirst = "Y";
+    } else {
+      customer.isapplycustompricefirst = "N";
+    }
+    if (customer.issellonlycustompriceitems == true) {
+      customer.issellonlycustompriceitems = "Y";
+    } else {
+      customer.issellonlycustompriceitems = "N";
+    }
+    if (customer.iscashonlineonly == true) {
+      customer.iscashonlineonly = "Y";
+    } else {
+      customer.iscashonlineonly = "N";
+    }
+    if (customer.iscreditfacility == true) {
+      customer.iscreditfacility = "Y";
+    } else {
+      customer.iscreditfacility = "N";
+    }
+    if (customer.istemporaryaccount == true) {
+      customer.istemporaryaccount = "Y";
+    } else {
+      customer.istemporaryaccount = "N";
+    }
+    if (customer.iscashonly == true) {
+      customer.iscashonly = "Y";
+    } else {
+      customer.iscashonly = "N";
+    }
+    if (customer.isonlinepaymentonly == true) {
+      customer.isonlinepaymentonly = "Y";
+    } else {
+      customer.isonlinepaymentonly = "N";
+    }
 
     this.customerservice.add(customer).subscribe(response => {
       if (response) {
@@ -317,6 +610,42 @@ export class CustomerComponent implements OnInit {
     if (this.person != null) {
       customer.person_ID = this.person.personID;
     }
+    if (this.employee != null) {
+      customer.salesrepemployee_ID = this.employee.employeeID;
+    }
+    if (this.taxcode != null) {
+      customer.taxcode_ID = this.taxcode.taxcodeID;
+    }
+    if (this.currency != null) {
+      customer.currency_ID = this.currency.currencyID;
+    }
+    if (this.hold != null) {
+      customer.hold_ID = this.hold.holdID;
+    }
+    if (this.invoicetype != null) {
+      customer.invoicetype_ID = this.invoicetype.invoicetypeID;
+    }
+    if (this.customerstatus != null) {
+      customer.customerstatus_ID = this.customerstatus.customerstatusID;
+    }
+    if (this.pricelevel != null) {
+      customer.pricelevel_ID = this.pricelevel.pricelevelID;
+    }
+    if (this.terms != null) {
+      customer.terms_ID = this.terms.termsID;
+    }
+    if (this.customercategory != null) {
+      customer.customercategory_ID = this.customercategory.customercategoryID;
+    }
+    if (this.businesstype != null) {
+      customer.businesstype_ID = this.businesstype.businesstypeID;
+    }
+    if (this.businessmarketniche != null) {
+      customer.businessmarketniche_ID = this.businessmarketniche.businessmarketnicheID;
+    }
+    if (this.creditterms != null) {
+      customer.creditterms_ID = this.creditterms.credittermsID;
+    }
 
     customer.location_ID = this.address.locationsearchfilter.locationID;
     customer.address_POSTCODE = this.address.addressPostCode;
@@ -333,10 +662,46 @@ export class CustomerComponent implements OnInit {
     customer.email = this.address.email;
     customer.web_ADDRESS = this.address.webAddress;
 
-    if (customer.isactive == true) {
-      customer.isactive = "Y";
+    customer.isactive = "Y";
+    if (customer.isfranchisee == true) {
+      customer.isfranchisee = "Y";
     } else {
-      customer.isactive = "N";
+      customer.isfranchisee = "N";
+    }
+    if (customer.isapplycustompricefirst == true) {
+      customer.isapplycustompricefirst = "Y";
+    } else {
+      customer.isapplycustompricefirst = "N";
+    }
+    if (customer.issellonlycustompriceitems == true) {
+      customer.issellonlycustompriceitems = "Y";
+    } else {
+      customer.issellonlycustompriceitems = "N";
+    }
+    if (customer.iscashonlineonly == true) {
+      customer.iscashonlineonly = "Y";
+    } else {
+      customer.iscashonlineonly = "N";
+    }
+    if (customer.iscreditfacility == true) {
+      customer.iscreditfacility = "Y";
+    } else {
+      customer.iscreditfacility = "N";
+    }
+    if (customer.istemporaryaccount == true) {
+      customer.istemporaryaccount = "Y";
+    } else {
+      customer.istemporaryaccount = "N";
+    }
+    if (customer.iscashonly == true) {
+      customer.iscashonly = "Y";
+    } else {
+      customer.iscashonly = "N";
+    }
+    if (customer.isonlinepaymentonly == true) {
+      customer.isonlinepaymentonly = "Y";
+    } else {
+      customer.isonlinepaymentonly = "N";
     }
 
     this.customerservice.update(customer, customer.customer_ID).subscribe(response => {
@@ -412,6 +777,29 @@ export class CustomerComponent implements OnInit {
   customerAdvancedSearch(search) {
     this.personID = search.person_ID;
     this.customerID = search.customer_ID;
+    this.taxcodeID = search.taxcode_ID;
+    this.employeeID = search.employee_ID;
+
+    this.currencyID = search.currency_ID;
+    this.currencyCode = search.currency_CODE;
+    this.holdID = search.holder_ID;
+    this.holdCode = search.holder_CODE;
+    this.invoicetypeID = search.invoicetype_ID;
+    this.invoicetypeCode = search.invoicetype_CODE;
+    this.customerstatusID = search.customerstatus_ID;
+    this.customerstatusCode = search.customerstatus_CODE;
+    this.pricelevelID = search.pricelevel_ID;
+    this.pricelevelCode = search.pricelevel_CODE;
+    this.termsID = search.terms_ID;
+    this.termsCode = search.terms_CODE;
+    this.customercategoryID = search.customercategory_ID;
+    this.customercategoryCode = search.customercategory_CODE;
+    this.businesstypeID = search.businesstype_ID;
+    this.businesstypeCode = search.businesstype_CODE;
+    this.businessmarketnicheID = search.businessmarketniche_ID;
+    this.businessmarketnicheCode = search.businessmarketniche_CODE;
+    this.credittermsID = search.creditterms_ID;
+    this.credittermsCode = search.creditterms_CODE;
 
     this.customerservice.advancedSearch(search).subscribe(response => {
       if (response) {
@@ -430,6 +818,28 @@ export class CustomerComponent implements OnInit {
   customerAdvancedSearchAll(search) {
     this.personID = search.person_ID;
     this.customerID = search.customer_ID;
+    this.taxcodeID = search.taxcode_ID;
+    this.employeeID = search.employee_ID;
+    this.currencyID = search.currency_ID;
+    this.currencyCode = search.currency_CODE;
+    this.holdID = search.holder_ID;
+    this.holdCode = search.holder_CODE;
+    this.invoicetypeID = search.invoicetype_ID;
+    this.invoicetypeCode = search.invoicetype_CODE;
+    this.customerstatusID = search.customerstatus_ID;
+    this.customerstatusCode = search.customerstatus_CODE;
+    this.pricelevelID = search.pricelevel_ID;
+    this.pricelevelCode = search.pricelevel_CODE;
+    this.termsID = search.terms_ID;
+    this.termsCode = search.terms_CODE;
+    this.customercategoryID = search.customercategory_ID;
+    this.customercategoryCode = search.customercategory_CODE;
+    this.businesstypeID = search.businesstype_ID;
+    this.businesstypeCode = search.businesstype_CODE;
+    this.businessmarketnicheID = search.businessmarketniche_ID;
+    this.businessmarketnicheCode = search.businessmarketniche_CODE;
+    this.credittermsID = search.creditterms_ID;
+    this.credittermsCode = search.creditterms_CODE;
 
     this.customerservice.advancedSearchAll(search).subscribe(response => {
       if (response) {

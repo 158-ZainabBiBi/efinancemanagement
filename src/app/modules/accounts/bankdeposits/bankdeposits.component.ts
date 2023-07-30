@@ -52,10 +52,9 @@ export class BankdepositsComponent implements OnInit {
       tobankaccount_ID: row.data.tobankaccount_ID,
       transaction_ID: row.data.transaction_ID,
       bankdeposit_CODE: row.data.bankdeposit_CODE,
-      bankdeposit_DATE: row.data.bankdeposit_DATE,
-      cash_AMOUNT: row.data.cash_AMOUNT,
-      cheque_AMOUNT: row.data.cheque_AMOUNT,
-      total_AMOUNT: row.data.total_AMOUNT,
+      bankdeposit_NAME: row.data.bankdeposit_NAME,
+      bankdeposit_AMOUNT: row.data.bankdeposit_AMOUNT,
+      bankdeposit_DESC: row.data.bankdeposit_DESC,
       isactive: row.data.isactive
     };
 

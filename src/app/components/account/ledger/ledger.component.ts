@@ -32,6 +32,10 @@ export class LedgerComponent implements OnInit {
   @Input()
   disabled: boolean = false;
   @Input()
+  debitdisabled: boolean = false;
+  @Input()
+  creditdisabled: boolean = false;
+  @Input()
   all: boolean = false;
   @Input()
   ledgerID = null;
@@ -139,6 +143,16 @@ export class LedgerComponent implements OnInit {
     };
   }
 
+  onCreditChange() {
+    this.ledger.ledger_DEBIT = 0;
+    this.creditdisabled = true;
+  }
+
+  onDebitChange() {
+    this.ledger.ledger_CREDIT = 0;
+    this.debitdisabled = true;
+  }
+
   journalAddNew() {
     this.addjournal.add();
     $("#addjournal").modal("show");
@@ -152,21 +166,6 @@ export class LedgerComponent implements OnInit {
 
   onJournalChange(journal) {
     this.ledger.ledger_NAME = journal.journal_NAME;
-  }
-
-  accountclassificationAddNew() {
-    this.addaccountclassification.add();
-    $("#addaccountclassification").modal("show")
-  }
-
-  accountclassificationCancel() {
-    $("#addaccountclassification").modal("hide");
-    $("#editaccountclassification").modal("hide");
-    this.accountclassification.accountclassifications = this.addaccountclassification.accountclassifications;
-  }
-
-  onAccountclassificationChange(accountclassification) {
-    // this.journal.journal_NAME = accountclassification.accountclassification_NAME;
   }
 
   update(row) {

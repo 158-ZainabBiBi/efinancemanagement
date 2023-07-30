@@ -221,7 +221,8 @@
           </div>
           <div class="row">
             <div class="col-md-6">
-              <app-journal #journal [view]="1" [journalID]=ledger.journal_ID></app-journal>
+              <app-journal #journal [view]="1" [journalID]=ledger.journal_ID
+                (onJournalChange)="onJournalChange($event)"></app-journal>
             </div>
             <div class="col-md-6">
               <app-accountclassification #accountclassification [view]="1"
@@ -233,14 +234,14 @@
               <div class="form-group">
                 <label class="control-label"> Debit <span style="color:red">*</span></label>
                 <input type="number" class="form-control" name="ledger_DEBIT" [(ngModel)]="ledger.ledger_DEBIT"
-                  maxlength="50" required>
+                  (change)="onDebitChange()" [disabled]="creditdisabled" maxlength="50" required>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
                 <label class="control-label"> Credit <span style="color:red">*</span></label>
                 <input type="number" class="form-control" name="ledger_CREDIT" [(ngModel)]="ledger.ledger_CREDIT"
-                  maxlength="50" required>
+                  (change)="onCreditChange()" [disabled]="debitdisabled" maxlength="50" required>
               </div>
             </div>
           </div>
@@ -287,7 +288,8 @@
           </div>
           <div class="row">
             <div class="col-md-6">
-              <app-journal #journal [view]="1" [journalID]=ledger.journal_ID></app-journal>
+              <app-journal #journal [view]="1" [journalID]=ledger.journal_ID
+                (onJournalChange)="onJournalChange($event)"></app-journal>
             </div>
             <div class="col-md-6">
               <app-accountclassification #accountclassification [view]="1"
@@ -299,14 +301,14 @@
               <div class="form-group">
                 <label class="control-label"> Debit <span style="color:red">*</span></label>
                 <input type="number" class="form-control" name="ledger_DEBIT" [(ngModel)]="ledger.ledger_DEBIT"
-                  maxlength="50" required>
+                  (change)="onDebitChange()" [disabled]="creditdisabled" maxlength="50" required>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
                 <label class="control-label"> Credit <span style="color:red">*</span></label>
                 <input type="number" class="form-control" name="ledger_CREDIT" [(ngModel)]="ledger.ledger_CREDIT"
-                  maxlength="50" required>
+                  (change)="onCreditChange()" [disabled]="debitdisabled" maxlength="50" required>
               </div>
             </div>
           </div>
@@ -388,32 +390,22 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-8">
-              <app-accountclassification #accountclassification [view]="1" [disabled]="disabled"
-                [accountclassificationID]=ledger.accountclassification_ID
-                (onAccountclassificationChange)="onAccountclassificationChange($event)"></app-accountclassification>
-            </div>
-            <div class="col-md-4">
-              <br />
-              <button type="button" *ngIf="ledger.ledger_ID==0" (click)="accountclassificationAddNew()"
-                class="btn btn-secondary btn-sm">
-                <i class="fas fa-plus fa-fw"></i> Add New Accountclassification
-              </button>
-            </div>
-          </div>
-          <div class="row">
             <div class="col-md-6">
+              <app-accountclassification #accountclassification [view]="1"
+                [accountclassificationID]=ledger.accountclassification_ID></app-accountclassification>
+            </div>
+            <div class="col-md-3">
               <div class="form-group">
                 <label class="control-label"> Debit <span style="color:red">*</span></label>
                 <input type="number" class="form-control" name="ledger_DEBIT" [(ngModel)]="ledger.ledger_DEBIT"
-                  maxlength="50" required>
+                  (change)="onDebitChange()" [disabled]="creditdisabled" maxlength="50" required>
               </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-3">
               <div class="form-group">
                 <label class="control-label"> Credit <span style="color:red">*</span></label>
                 <input type="number" class="form-control" name="ledger_CREDIT" [(ngModel)]="ledger.ledger_CREDIT"
-                  maxlength="50" required>
+                  (change)="onCreditChange()" [disabled]="debitdisabled" maxlength="50" required>
               </div>
             </div>
           </div>
@@ -456,10 +448,4 @@
 
 <div aria-labelledby="exampleModalLabel" class="modal fade show" id="addjournal" role="dialog" tabindex="-1">
   <app-journal #addjournal [view]=3 (cancel)="journalCancel()"></app-journal>
-</div>
-
-<div aria-labelledby="exampleModalLabel" class="modal fade show" id="addaccountclassification" role="dialog"
-  tabindex="-1">
-  <app-accountclassification #addaccountclassification [view]=3
-    (cancel)="accountclassificationCancel()"></app-accountclassification>
 </div>

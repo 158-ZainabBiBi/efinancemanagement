@@ -40,9 +40,9 @@ export class ProfitandlossesComponent implements OnInit {
   }
 
   addNew() {
-    this.router.navigate(["/home/profitandloss"], {});
-    // this.addprofitandloss.add();
-    // $("#add").modal("show");
+    // this.router.navigate(["/home/profitandloss"], {});
+    this.addprofitandloss.add();
+    $("#add").modal("show");
   }
 
   edit(row) {

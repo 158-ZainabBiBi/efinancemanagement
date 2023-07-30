@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpCallServieService } from '../../../services/http-call-servie.service';
 import { setting } from '../../../setting';
-import { LocationService } from '../../location/location/location.service';
+import { CompanyService } from '../../company/company/company.service';
+import { TaxcodeService } from '../../finance/taxcode/taxcode.service';
 import { PersonService } from '../../person/person/person.service';
+import { LocationService } from '../../location/location/location.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +12,8 @@ import { PersonService } from '../../person/person/person.service';
 export class CustomerService {
   constructor(
     private _HttpCallServieService_: HttpCallServieService,
+    private taxcodeservice: TaxcodeService,
+    private companyservice: CompanyService,
     private personservice: PersonService,
     private locationservice: LocationService
   ) { }
@@ -146,9 +150,75 @@ export class CustomerService {
   }
 
   getDetail(response) {
+
+    if (response.taxcode_DETAIL != null) {
+      response.taxcode = this.taxcodeservice.getDetail(JSON.parse(response.taxcode_DETAIL));
+      response.taxcode_DETAIL = null
+    }
+
+    if (response.company_DETAIL != null) {
+      response.company = this.companyservice.getDetail(JSON.parse(response.company_DETAIL));
+      response.company_DETAIL = null
+    }
+
     if (response.person_DETAIL != null) {
       response.person = this.personservice.getDetail(JSON.parse(response.person_DETAIL));
       response.person_DETAIL = response.person.title + " " + response.person.forenames + " " + response.person.surname;
+    }
+
+    if (response.salesrepemployee_DETAIL != null) {
+      response.salesrepemployee = JSON.parse(response.salesrepemployee_DETAIL);
+      response.salesrepemployee_DETAIL = null;
+    }
+
+    if (response.customercategory_DETAIL != null) {
+      response.customercategory = JSON.parse(response.customercategory_DETAIL);
+      response.customercategory_DETAIL = null;
+    }
+
+    if (response.customerstatus_DETAIL != null) {
+      response.customerstatus = JSON.parse(response.customerstatus_DETAIL);
+      response.customerstatus_DETAIL = null;
+    }
+
+    if (response.currency_DETAIL != null) {
+      response.currency = JSON.parse(response.currency_DETAIL);
+      response.currency_DETAIL = null;
+    }
+
+    if (response.businesstype_DETAIL != null) {
+      response.businesstype = JSON.parse(response.businesstype_DETAIL);
+      response.businesstype_DETAIL = null;
+    }
+
+    if (response.businessmarketniche_DETAIL != null) {
+      response.businessmarketniche = JSON.parse(response.businessmarketniche_DETAIL);
+      response.businessmarketniche_DETAIL = null;
+    }
+
+    if (response.invoicetype_DETAIL != null) {
+      response.invoicetype = JSON.parse(response.invoicetype_DETAIL);
+      response.invoicetype_DETAIL = null;
+    }
+
+    if (response.pricelevel_DETAIL != null) {
+      response.pricelevel = JSON.parse(response.pricelevel_DETAIL);
+      response.pricelevel_DETAIL = null;
+    }
+
+    if (response.terms_DETAIL != null) {
+      response.terms = JSON.parse(response.terms_DETAIL);
+      response.terms_DETAIL = null;
+    }
+
+    if (response.creditterms_DETAIL != null) {
+      response.creditterms = JSON.parse(response.creditterms_DETAIL);
+      response.creditterms_DETAIL = null;
+    }
+
+    if (response.hold_DETAIL != null) {
+      response.hold = JSON.parse(response.hold_DETAIL);
+      response.hold_DETAIL = null;
     }
 
     if (response.location_DETAIL != null) {

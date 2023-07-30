@@ -5,11 +5,11 @@ import { OnFailService } from 'src/app/services/on-fail.service';
 import 'owl.carousel';
 
 @Component({
-  selector: 'app-terms',
-  templateUrl: './terms.component.html',
-  styleUrls: ['./terms.component.css']
+  selector: 'app-term',
+  templateUrl: './term.component.html',
+  styleUrls: ['./term.component.css']
 })
-export class TermsComponent implements OnInit {
+export class TermComponent implements OnInit {
 
   constructor(
     private toastrservice: ToastrService,

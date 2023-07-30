@@ -40,9 +40,9 @@ export class IncomestatementsComponent implements OnInit {
   }
 
   addNew() {
-    this.router.navigate(["/home/incomestatement"], {});
-    // this.addincomestatement.add();
-    // $("#add").modal("show");
+    // this.router.navigate(["/home/incomestatement"], {});
+    this.addincomestatement.add();
+    $("#add").modal("show");
   }
 
   edit(row) {

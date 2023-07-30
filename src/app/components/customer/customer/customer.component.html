@@ -129,10 +129,9 @@
         <dxo-scrolling mode="virtual"></dxo-scrolling>
         <dxo-sorting mode="multiple"></dxo-sorting>
         <dxo-selection mode="single"></dxo-selection>
-
         <dxi-column [width]="75" [allowFiltering]="false" [allowSorting]="false" alignment="center"
-          cellTemplate="cellTemplate">
-        </dxi-column>
+          cellTemplate="cellTemplate"></dxi-column>
+
         <dxi-column [width]="100" dataField="customer_CODE" caption="Code" cssClass="myClass" alignment="center">
         </dxi-column>
         <dxi-column [width]="400" dataField="customer_NAME" caption="Name" cssClass="myClass" alignment="left">
@@ -141,6 +140,8 @@
         </dxi-column>
         <dxi-column [width]="150" dataField="address_POSTCODE" caption="Post Code" cssClass="myClass"
           alignment="center">
+        </dxi-column>
+        <dxi-column [width]="150" dataField="balance" caption="Balance" cssClass="myClass" alignment="right">
         </dxi-column>
         <dxi-column [width]="175" dataField="telephone" caption="Telephone" cssClass="myClass" alignment="center">
         </dxi-column>
@@ -152,8 +153,8 @@
         </dxi-column>
 
         <div *dxTemplate="let data of 'cellTemplate'">
-          <a href="javascript:void" class="" (click)="update(data)">
-            <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+          <a href="javascript:void" class="" (click)="showView(data)">
+            <i class="fa fa-eye" aria-hidden="true"></i></a>
         </div>
       </dx-data-grid>
     </div>
@@ -173,11 +174,56 @@
           </button>
         </div>
         <div class="modal-body">
-          <!-- <div class="row">
-            <div class="col-md-12">
+          <div class="row">
+            <div class="col-md-6">
               <app-person #person [view]="1" [personID]="customer.person_ID"></app-person>
             </div>
-          </div> -->
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <app-currency #currency [currencyID]="customer.currency_ID"></app-currency>
+            </div>
+            <div class="col-md-6">
+              <app-hold #hold [holdID]="customer.hold_ID"></app-hold>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <!-- <app-addresscountry #addresscountry [addresscountryID]="customer.addresscountry_ID"></app-addresscountry> -->
+            </div>
+            <div class="col-md-6">
+              <app-invoicetype #invoicetype [invoicetypeID]="customer.invoicetype_ID">
+              </app-invoicetype>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <app-customerstatus #customerstatus [customerstatusID]="customer.customerstatus_ID">
+              </app-customerstatus>
+            </div>
+            <div class="col-md-6">
+              <app-terms #terms [termsID]="customer.terms_ID"></app-terms>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <app-customercategory #customercategory
+                [customercategoryID]="customer.customercategory_ID"></app-customercategory>
+            </div>
+            <div class="col-md-6">
+              <app-businesstype #businesstype [businesstypeID]="customer.businesstype_ID">
+              </app-businesstype>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <app-creditterms #creditterms [credittermsID]="customer.creditterms_ID">
+              </app-creditterms>
+            </div>
+            <div class="col-md-6">
+              <app-taxcode #taxcode [view]="1" [taxcodeID]="customer.taxcode_ID"></app-taxcode>
+            </div>
+          </div>
           <div class="row">
             <div class="col-md-4">
               <div class="form-group">
@@ -195,8 +241,8 @@
             </div>
             <div class="col-md-4">
               <div class="form-group">
-                <label class="control-label">Web Address <span style="color:red">*</span></label>
-                <input type="text" class="form-control" name="web_ADDRESS" [(ngModel)]="customer.web_ADDRESS"
+                <label class="control-label">New Code <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="customer_NEWCODE" [(ngModel)]="customer.customer_NEWCODE"
                   maxlength="50" required>
               </div>
             </div>
@@ -205,7 +251,7 @@
             <div class="col-md-4">
               <div class="form-group">
                 <label class="control-label">Email <span style="color:red">*</span></label>
-                <input type="email" class="form-control" name="email" [(ngModel)]="customer.email" maxlength="50"
+                <input type="text" class="form-control" name="email" [(ngModel)]="customer.email" maxlength="50"
                   required>
               </div>
             </div>
@@ -225,31 +271,70 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-4">
               <div class="form-group">
                 <label class="control-label">Address Line 1 <span style="color:red">*</span></label>
                 <input type="text" class="form-control" name="address_LINE1" [(ngModel)]="customer.address_LINE1"
                   maxlength="50" required>
               </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
               <div class="form-group">
                 <label class="control-label"> Address Line 2 <span style="color:red">*</span></label>
                 <input type="text" class="form-control" name="address_LINE2" [(ngModel)]="customer.address_LINE2"
                   maxlength="50" required>
               </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
               <div class="form-group">
                 <label class="control-label">Address Line 3 <span style="color:red">*</span></label>
                 <input type="text" class="form-control" name="address_LINE3" [(ngModel)]="customer.address_LINE3"
                   maxlength="50" required>
               </div>
             </div>
-            <div class="col-md-3">
+          </div>
+          <div class="row">
+            <div class="col-md-4">
               <div class="form-group">
                 <label class="control-label"> Address Line 4 <span style="color:red">*</span></label>
                 <input type="text" class="form-control" name="address_LINE4" [(ngModel)]="customer.address_LINE4"
+                  maxlength="50" required>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">Address Line 5 <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="address_LINE5" [(ngModel)]="customer.address_LINE5"
+                  maxlength="50" required>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label"> Address Postcode <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="address_POSTCODE" [(ngModel)]="customer.address_POSTCODE"
+                  maxlength="50" required>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">Address Latitude <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="address_LATITUDE" [(ngModel)]="customer.address_LATITUDE"
+                  maxlength="50" required>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">Address Longitude<span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="address_LONGITUDE"
+                  [(ngModel)]="customer.address_LONGITUDE" maxlength="50" required>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">Origin Code <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="origin_CODE" [(ngModel)]="customer.origin_CODE"
                   maxlength="50" required>
               </div>
             </div>
@@ -257,30 +342,53 @@
           <div class="row">
             <div class="col-md-3">
               <div class="form-group">
-                <label class="control-label">Address Line 5 <span style="color:red">*</span></label>
-                <input type="text" class="form-control" name="address_LINE5" [(ngModel)]="customer.address_LINE5"
+                <label class="control-label">Start Date<span style="color:red">*</span></label>
+                <input type="date" class="form-control" name="start_DATE" [(ngModel)]="customer.start_DATE"
                   maxlength="50" required>
               </div>
             </div>
             <div class="col-md-3">
               <div class="form-group">
-                <label class="control-label"> Address Postcode <span style="color:red">*</span></label>
-                <input type="text" class="form-control" name="address_POSTCODE" [(ngModel)]="customer.address_POSTCODE"
+                <label class="control-label">End Date <span style="color:red">*</span></label>
+                <input type="date" class="form-control" name="end_DATE" [(ngModel)]="customer.end_DATE" maxlength="50"
+                  required>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label class="control-label">Opening Hours <span style="color:red">*</span></label>
+                <input type="time" class="form-control" name="opening_HOURS" [(ngModel)]="customer.opening_HOURS"
                   maxlength="50" required>
               </div>
             </div>
             <div class="col-md-3">
               <div class="form-group">
-                <label class="control-label">Address Latitude <span style="color:red">*</span></label>
-                <input type="text" class="form-control" name="address_LATITUDE" [(ngModel)]="customer.address_LATITUDE"
+                <label class="control-label">Closing Hours <span style="color:red">*</span></label>
+                <input type="time" class="form-control" name="closing_HOURS" [(ngModel)]="customer.closing_HOURS"
                   maxlength="50" required>
               </div>
             </div>
-            <div class="col-md-3">
+          </div>
+          <div class="row">
+            <div class="col-md-4">
               <div class="form-group">
-                <label class="control-label">Address Longitude<span style="color:red">*</span></label>
-                <input type="text" class="form-control" name="address_LONGITUDE"
-                  [(ngModel)]="customer.address_LONGITUDE" maxlength="50" required>
+                <label class="control-label">Balance<span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="balance" [(ngModel)]="customer.balance" maxlength="50"
+                  required>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">Deposit Balance <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="deposit_BALANCE" [(ngModel)]="customer.deposit_BALANCE"
+                  maxlength="50" required>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">Credit Limit <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="credit_LIMIT" [(ngModel)]="customer.credit_LIMIT"
+                  maxlength="50" required>
               </div>
             </div>
           </div>
@@ -309,11 +417,56 @@
           </button>
         </div>
         <div class="modal-body">
-          <!-- <div class="row">
-            <div class="col-md-12">
+          <div class="row">
+            <div class="col-md-6">
               <app-person #person [view]="1" [personID]="customer.person_ID"></app-person>
             </div>
-          </div> -->
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <app-currency #currency [currencyID]="customer.currency_ID"></app-currency>
+            </div>
+            <div class="col-md-6">
+              <app-hold #hold [holdID]="customer.hold_ID"></app-hold>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <!-- <app-addresscountry #addresscountry ></app-addresscountry> -->
+            </div>
+            <div class="col-md-6">
+              <app-invoicetype #invoicetype [invoicetypeID]="customer.invoicetype_ID">
+              </app-invoicetype>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <app-customerstatus #customerstatus [customerstatusID]="customer.customerstatus_ID">
+              </app-customerstatus>
+            </div>
+            <div class="col-md-6">
+              <app-terms #terms [termsID]="customer.terms_ID"></app-terms>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <app-customercategory #customercategory
+                [customercategoryID]="customer.customercategory_ID"></app-customercategory>
+            </div>
+            <div class="col-md-6">
+              <app-businesstype #businesstype [businesstypeID]="customer.businesstype_ID">
+              </app-businesstype>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <app-creditterms #creditterms [credittermsID]="customer.creditterms_ID">
+              </app-creditterms>
+            </div>
+            <div class="col-md-6">
+              <app-taxcode #taxcode [view]="1" [taxcodeID]="customer.taxcode_ID"></app-taxcode>
+            </div>
+          </div>
           <div class="row">
             <div class="col-md-4">
               <div class="form-group">
@@ -331,8 +484,8 @@
             </div>
             <div class="col-md-4">
               <div class="form-group">
-                <label class="control-label">Web Address <span style="color:red">*</span></label>
-                <input type="text" class="form-control" name="web_ADDRESS" [(ngModel)]="customer.web_ADDRESS"
+                <label class="control-label">New Code <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="customer_NEWCODE" [(ngModel)]="customer.customer_NEWCODE"
                   maxlength="50" required>
               </div>
             </div>
@@ -341,15 +494,8 @@
             <div class="col-md-4">
               <div class="form-group">
                 <label class="control-label">Email <span style="color:red">*</span></label>
-                <input type="email" class="form-control" name="email" [(ngModel)]="customer.email" maxlength="50"
+                <input type="text" class="form-control" name="email" [(ngModel)]="customer.email" maxlength="50"
                   required>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="form-group">
-                <label class="control-label">Telephone Alt Number <span style="color:red">*</span></label>
-                <input type="text" class="form-control" name="telephone_ALTNUMBER"
-                  [(ngModel)]="customer.telephone_ALTNUMBER" maxlength="50" required>
               </div>
             </div>
             <div class="col-md-4">
@@ -359,33 +505,79 @@
                   maxlength="50" required>
               </div>
             </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">Telephone Alt Number <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="telephone_ALTNUMBER"
+                  [(ngModel)]="customer.telephone_ALTNUMBER" maxlength="50" required>
+              </div>
+            </div>
           </div>
           <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-4">
               <div class="form-group">
                 <label class="control-label">Address Line 1 <span style="color:red">*</span></label>
                 <input type="text" class="form-control" name="address_LINE1" [(ngModel)]="customer.address_LINE1"
                   maxlength="50" required>
               </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
               <div class="form-group">
                 <label class="control-label"> Address Line 2 <span style="color:red">*</span></label>
                 <input type="text" class="form-control" name="address_LINE2" [(ngModel)]="customer.address_LINE2"
                   maxlength="50" required>
               </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
               <div class="form-group">
                 <label class="control-label">Address Line 3 <span style="color:red">*</span></label>
                 <input type="text" class="form-control" name="address_LINE3" [(ngModel)]="customer.address_LINE3"
                   maxlength="50" required>
               </div>
             </div>
-            <div class="col-md-3">
+          </div>
+          <div class="row">
+            <div class="col-md-4">
               <div class="form-group">
                 <label class="control-label"> Address Line 4 <span style="color:red">*</span></label>
                 <input type="text" class="form-control" name="address_LINE4" [(ngModel)]="customer.address_LINE4"
+                  maxlength="50" required>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">Address Line 5 <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="address_LINE5" [(ngModel)]="customer.address_LINE5"
+                  maxlength="50" required>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label"> Address Postcode <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="address_POSTCODE" [(ngModel)]="customer.address_POSTCODE"
+                  maxlength="50" required>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">Address Latitude <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="address_LATITUDE" [(ngModel)]="customer.address_LATITUDE"
+                  maxlength="50" required>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">Address Longitude<span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="address_LONGITUDE"
+                  [(ngModel)]="customer.address_LONGITUDE" maxlength="50" required>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">Origin Code <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="origin_CODE" [(ngModel)]="customer.origin_CODE"
                   maxlength="50" required>
               </div>
             </div>
@@ -393,30 +585,66 @@
           <div class="row">
             <div class="col-md-3">
               <div class="form-group">
-                <label class="control-label">Address Line 5 <span style="color:red">*</span></label>
-                <input type="text" class="form-control" name="address_LINE5" [(ngModel)]="customer.address_LINE5"
+                <label class="control-label">Start Date<span style="color:red">*</span></label>
+                <input type="date" class="form-control" name="start_DATE" [(ngModel)]="customer.start_DATE"
                   maxlength="50" required>
               </div>
             </div>
             <div class="col-md-3">
               <div class="form-group">
-                <label class="control-label"> Address Postcode <span style="color:red">*</span></label>
-                <input type="text" class="form-control" name="address_POSTCODE" [(ngModel)]="customer.address_POSTCODE"
+                <label class="control-label">End Date <span style="color:red">*</span></label>
+                <input type="date" class="form-control" name="end_DATE" [(ngModel)]="customer.end_DATE" maxlength="50"
+                  required>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label class="control-label">Opening Hours <span style="color:red">*</span></label>
+                <input type="time" class="form-control" name="opening_HOURS" [(ngModel)]="customer.opening_HOURS"
                   maxlength="50" required>
               </div>
             </div>
             <div class="col-md-3">
               <div class="form-group">
-                <label class="control-label">Address Latitude <span style="color:red">*</span></label>
-                <input type="text" class="form-control" name="address_LATITUDE" [(ngModel)]="customer.address_LATITUDE"
+                <label class="control-label">Closing Hours <span style="color:red">*</span></label>
+                <input type="time" class="form-control" name="closing_HOURS" [(ngModel)]="customer.closing_HOURS"
                   maxlength="50" required>
               </div>
             </div>
-            <div class="col-md-3">
+          </div>
+          <div class="row">
+            <div class="col-md-4">
               <div class="form-group">
-                <label class="control-label">Address Longitude<span style="color:red">*</span></label>
-                <input type="text" class="form-control" name="address_LONGITUDE"
-                  [(ngModel)]="customer.address_LONGITUDE" maxlength="50" required>
+                <label class="control-label">Balance<span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="balance" [(ngModel)]="customer.balance" maxlength="50"
+                  required>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">Deposit Balance <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="deposit_BALANCE" [(ngModel)]="customer.deposit_BALANCE"
+                  maxlength="50" required>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label">Credit Limit <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="credit_LIMIT" [(ngModel)]="customer.credit_LIMIT"
+                  maxlength="50" required>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <div class="checkbox">
+                  <label class="control-label">
+                    <input type="checkbox" [checked]="customer.isactive" [(ngModel)]="customer.isactive"
+                      name="isactive">
+                    Active
+                  </label>
+                </div>
               </div>
             </div>
           </div>
@@ -430,4 +658,404 @@
       </div>
     </div>
   </form>
+</div>
+
+<div *ngIf="view==5" class="form-group">
+  <div class="card-primary card">
+    <div class="card-header">
+      <div class="align-items-center row">
+        <div class="col" *ngIf="customer.customer_ID==0">
+          <a href="javascript:void" aria-controls="collapse-customerinfo1" aria-expanded="true" class="card-title">Add
+            New Customer
+          </a>
+        </div>
+        <div class="col" *ngIf="customer.customer_ID!=0 && disabled==false">
+          <a href="javascript:void" aria-controls="collapse-customerinfo1" aria-expanded="true" class="card-title">Edit
+            Customer
+          </a>
+        </div>
+        <div class="col" *ngIf="customer.customer_ID!=0 && disabled==true">
+          <a href="javascript:void" aria-controls="collapse-customerinfo1" aria-expanded="true"
+            class="card-title">Customer Detail
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="custom-label form-label">Customer Code
+                  <span style="color: red;" [hidden]="disabled">*</span>
+                </label>
+                <input type="text" [(ngModel)]="customer.customer_CODE" class="form-control" name="customer_CODE"
+                  maxlength="50" [disabled]=true>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="custom-label form-label">Customer Name
+                  <span style="color: red;" [hidden]="disabled">*</span>
+                </label>
+                <input type="text" [(ngModel)]="customer.customer_NAME" class="form-control" name="customer_NAME"
+                  maxlength="50" [disabled]='disabled'>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <app-employee #employee [iscompulsory]="true" [disabled]="disabled"
+                [employeeID]="customer.salesrepemployee_ID"></app-employee>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label class="control-label form-label">Description</label>
+                <textarea class="form-control" rows="3" name="comment" [disabled]="disabled"
+                  [(ngModel)]="customer.comments"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <app-address #address [disabled]="disabled" [locationID]="customer.location_ID"
+                [addressPostCode]="customer.address_POSTCODE" [addressLine1]="customer.address_LINE1"
+                [addressLine2]="customer.address_LINE2" [addressLine3]="customer.address_LINE3"
+                [addressLine4]="customer.address_LINE4" [addressLine5]="customer.address_LINE5"
+                [addressLatitude]="customer.address_LATITUDE" [addressLongitude]="customer.address_LONGITUDE"
+                [telephoneNumber]="customer.telephone_NUMBER" [telephoneAltNumber]="customer.telephone_ALTNUMBER"
+                [mobileNumber]="customer.mobile_NUMBER" [email]="customer.email"
+                [webAddress]="customer.web_ADDRESS"></app-address>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <app-customerstatus #customerstatus [customerstatusID]="customer.customerstatus_ID"
+                [disabled]='disabled'></app-customerstatus>
+            </div>
+            <div class="col-md-4">
+              <app-businessmarketniche #businessmarketniche [businessmarketnicheID]="customer.businessmarketniche_ID"
+                [disabled]='disabled'>
+              </app-businessmarketniche>
+            </div>
+            <div class="col-md-4">
+              <app-businesstype #businesstype [businesstypeID]="customer.businesstype_ID"
+                [disabled]='disabled'></app-businesstype>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <app-customercategory #customercategory [customercategoryID]="customer.customercategory_ID"
+                [disabled]='disabled'></app-customercategory>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group">
+                <label class="custom-label form-label">Customer New Code</label>
+                <input type="text" class="form-control" [disabled]="disabled" name="customer_NEWCODE" maxlength="50"
+                  [(ngModel)]="customer.customer_NEWCODE">
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group">
+                <label class="custom-label form-label">Origin Code</label>
+                <input type="text" class="form-control" [disabled]="disabled" name="origin_CODE" maxlength="50"
+                  [(ngModel)]="customer.origin_CODE">
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="custom-label form-label">Customer Account</label>
+                <input type="text" class="form-control" [disabled]="disabled" name="account" maxlength="50"
+                  [(ngModel)]="customer.account">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="custom-label form-label">Start Date</label>
+                    <input type="date" class="form-control" [disabled]="disabled" name="start_DATE" maxlength="50"
+                      [(ngModel)]="customer.start_DATE">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="custom-label form-label">End Date</label>
+                    <input type="date" class="form-control" [disabled]="disabled" name="end_DATE" maxlength="50"
+                      [(ngModel)]="customer.end_DATE">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="custom-label form-label">Opening Hours</label>
+                    <input type="time" class="form-control" [disabled]="disabled" name="opening_HOURS" maxlength="50"
+                      [(ngModel)]="customer.opening_HOURS">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="custom-label form-label">Closing Hours</label>
+                    <input type="time" class="form-control" [disabled]="disabled" name="closing_HOURS" maxlength="50"
+                      [(ngModel)]="customer.closing_HOURS">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-8">
+              <div class="form-group">
+                <label class="custom-label form-label">Delivery Instructions</label>
+                <textarea class="form-control" rows="3" name="delivery_INSTRUCTIONS" [disabled]="disabled"
+                  [(ngModel)]="customer.delivery_INSTRUCTIONS"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <app-pricelevel #pricelevel [pricelevelID]="customer.pricelevel_ID"
+                [disabled]='disabled'></app-pricelevel>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group">
+                <label class="control-label form-label">Balance<span style="color: red;"
+                    [hidden]="disabled">*</span></label>
+                <input type="text" [(ngModel)]="customer.balance" class="form-control" name="balance" maxlength="50"
+                  [disabled]=true>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group">
+                <label class="control-label form-label">Deposit Balance<span style="color: red;"
+                    [hidden]="disabled">*</span></label>
+                <input type="text" [(ngModel)]="customer.deposit_BALANCE" class="form-control" name="deposit_BALANCE"
+                  maxlength="50" [disabled]=true>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group">
+                <label class="control-label form-label">OverDue Balance<span style="color: red;"
+                    [hidden]="disabled">*</span></label>
+                <input type="text" [(ngModel)]="customer.overdue_BALANCE" class="form-control" name="overdue_BALANCE"
+                  maxlength="50" [disabled]=true>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group">
+                <label class="control-label form-label">Overdue Days<span style="color: red;"
+                    [hidden]="disabled">*</span></label>
+                <input type="text" [(ngModel)]="customer.days_OVERDUE" class="form-control" name="days_OVERDUE"
+                  maxlength="50" [disabled]=true>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <app-terms #terms [termsID]="customer.terms_ID" [disabled]='disabled'></app-terms>
+            </div>
+            <div class="col-md-4">
+              <app-creditterms #creditterms [credittermsID]="customer.creditterms_ID"
+                [disabled]='disabled'></app-creditterms>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label form-label">Credit Limit<span style="color: red;"
+                    [hidden]="disabled">*</span></label>
+                <input type="text" [(ngModel)]="customer.credit_LIMIT" class="form-control" name="credit_LIMIT"
+                  maxlength="50" [disabled]='disabled'>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <app-taxcode #taxcode [taxcodeID]="customer.taxcode_ID" [disabled]='disabled'></app-taxcode>
+            </div>
+            <div class="col-md-4">
+              <app-hold #hold [holdID]="customer.hold_ID" [disabled]='disabled'></app-hold>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label form-label">Hold Reason<span style="color: red;"
+                    [hidden]="disabled">*</span></label>
+                <input type="text" [(ngModel)]="customer.hold_REASON" class="form-control" name="hold_REASON"
+                  maxlength="50" [disabled]='disabled'>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <app-currency #currency [currencyID]="customer.currency_ID" [disabled]='disabled'></app-currency>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label form-label">Default Receivables Account<span style="color: red;"
+                    [hidden]="disabled">*</span></label>
+                <input type="text" [(ngModel)]="customer.defaultreceivablesaccout_ID" class="form-control"
+                  name="defaultreceivablesaccout_ID" maxlength="50" [disabled]='disabled'>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label form-label">Default order Priority<span style="color: red;"
+                    [hidden]="disabled">*</span></label>
+                <input type="text" [(ngModel)]="customer.defaultorder_PRIORITY" class="form-control"
+                  name="defaultorder_PRIORITY" maxlength="50" [disabled]='disabled'>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-2">
+              <div class="form-group">
+                <label class="control-label form-label">TaxReg Number<span style="color: red;"
+                    [hidden]="disabled">*</span></label>
+                <input type="text" [(ngModel)]="customer.taxreg_NUMBER" class="form-control" name="taxreg_NUMBER"
+                  maxlength="50" [disabled]='disabled'>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group">
+                <label class="control-label form-label">Resale Number<span style="color: red;"
+                    [hidden]="disabled">*</span></label>
+                <input type="text" [(ngModel)]="customer.resale_NUMBER" class="form-control" name="resale_NUMBER"
+                  maxlength="50" [disabled]='disabled'>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="control-label form-label">Unbilled Orders<span style="color: red;"
+                    [hidden]="disabled">*</span></label>
+                <input type="text" [(ngModel)]="customer.unbilled_ORDERS" class="form-control" name="unbilled_ORDERS"
+                  maxlength="50" [disabled]=true>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <app-invoicetype #invoicetype [invoicetypeID]="customer.invoicetype_ID"
+                [disabled]='disabled'></app-invoicetype>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="form-group">
+                <label class="custom-label form-label"></label>
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class="control-label">
+                        <input type="checkbox" [checked]="customer.issellonlycustompriceitems"
+                          [(ngModel)]="customer.issellonlycustompriceitems" [disabled]="disabled"
+                          name="issellonlycustompriceitems">
+                        Is Sell Only Custom Price Items
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class="control-label">
+                        <input type="checkbox" [checked]="customer.iscreditfacility"
+                          [(ngModel)]="customer.iscreditfacility" [disabled]="disabled" name="iscreditfacility">
+                        Is Credit Facility
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class="control-label">
+                        <input type="checkbox" [checked]="customer.iscashonlineonly"
+                          [(ngModel)]="customer.iscashonlineonly" [disabled]="disabled" name="iscashonlineonly">
+                        Is Cash Online Only
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class="control-label">
+                        <input type="checkbox" [checked]="customer.istemporaryaccount"
+                          [(ngModel)]="customer.istemporaryaccount" [disabled]="disabled" name="istemporaryaccount">
+                        Is Temporary Account
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class="control-label">
+                        <input type="checkbox" [checked]="customer.isonlinepaymentonly"
+                          [(ngModel)]="customer.isonlinepaymentonly" [disabled]="disabled" name="isonlinepaymentonly">
+                        Is Online Payment Only
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class="control-label">
+                        <input type="checkbox" [checked]="customer.iscashonly" [(ngModel)]="customer.iscashonly"
+                          [disabled]="disabled" name="iscashonly">
+                        Is Cash Only
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class="control-label">
+                        <input type="checkbox" [checked]="customer.isapplycustompricefirst"
+                          [(ngModel)]="customer.isapplycustompricefirst" [disabled]="disabled"
+                          name="isapplycustompricefirst">
+                        Is Apply Custom Price First
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class="control-label">
+                        <input type="checkbox" [checked]="customer.isfranchisee" [(ngModel)]="customer.isfranchisee"
+                          [disabled]="disabled" name="isfranchisee">
+                        Is Franchisee
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row" *ngIf="customer.customer_ID!=0">
+            <div class="col-md-12">
+              <div class="form-group">
+                <div class="checkbox">
+                  <label class="control-label">
+                    <input type="checkbox" [checked]="customer.isactive" [(ngModel)]="customer.isactive"
+                      [disabled]="disabled" name="isactive">
+                    Active
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <button *ngIf="customer.customer_ID!=0 && disabled==true" (click)="editView()" id="cancel"
+                class="btn btn-primary" style="float: right;"> Edit
+              </button>
+              <button *ngIf="disabled==false" type="button" (click)='customerCancel()' style="float: right;"
+                class="btn btn-light" data-dismiss="modal"> Cancel
+              </button>
+              <button *ngIf="customer.customer_ID!=0 && disabled==false" type="button" data-dismiss="modal"
+                style=" margin-right: 10px; float: right;" (click)='customerUpdate(customer)' class="btn btn-primary">
+                Update
+              </button>
+              <button *ngIf="customer.customer_ID==0" type="button" data-dismiss="modal"
+                style=" margin-right: 10px; float: right;" (click)='customerAdd(customer)' class="btn btn-primary">
+                Save
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

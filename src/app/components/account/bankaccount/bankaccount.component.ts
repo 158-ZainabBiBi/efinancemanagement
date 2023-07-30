@@ -5,9 +5,7 @@ import { OnFailService } from '../../../services/on-fail.service';
 
 import { BankaccountService } from './bankaccount.service';
 import { CustomerComponent } from '../../customer/customer/customer.component';
-import { LocationComponent } from '../../location/location/location.component';
 import { PaymentmethodComponent } from '../../lookup/finance/paymentmethod/paymentmethod.component';
-import { TaxcodeComponent } from '../../finance/taxcode/taxcode.component';
 import { BankaccounttypeComponent } from '../../lookup/account/bankaccounttype/bankaccounttype.component';
 
 @Component({
@@ -18,9 +16,7 @@ import { BankaccounttypeComponent } from '../../lookup/account/bankaccounttype/b
 export class BankaccountComponent implements OnInit {
   @ViewChild("bankaccounttype") bankaccounttype: BankaccounttypeComponent;
   @ViewChild("paymentmethod") paymentmethod: PaymentmethodComponent;
-  @ViewChild("location") location: LocationComponent;
   @ViewChild("customer") customer: CustomerComponent;
-  @ViewChild("taxcode") taxcode: TaxcodeComponent;
 
   @Input()
   view: number = 1;
@@ -35,11 +31,7 @@ export class BankaccountComponent implements OnInit {
   @Input()
   bankaccountID = null;
   @Input()
-  taxcodeID = null;
-  @Input()
   customerID = null;
-  @Input()
-  locationID = null;
   @Input()
   paymentmethodID = null;
   @Input()
@@ -53,18 +45,15 @@ export class BankaccountComponent implements OnInit {
   @Output() cancel = new EventEmitter();
   @Output() show = new EventEmitter();
   @Output() refresh = new EventEmitter();
-  @Output() onBankTaxcodeChange = new EventEmitter();
+  @Output() onBankAccountChange = new EventEmitter();
 
   bankaccounts = [];
   bankaccountsAll = [];
   bankaccount = {
     bankaccount_ID: 0,
-    taxcode_ID: null,
     bankaccounttype_ID: null,
     paymentmethod_ID: null,
     customer_ID: null,
-    location_ID: null,
-    locations: [],
 
     bankaccount_CODE: null,
     bankaccount_DATE: null,
@@ -110,9 +99,7 @@ export class BankaccountComponent implements OnInit {
     }
 
     var search = {
-      taxcode_ID: this.taxcodeID,
       customer_ID: this.customerID,
-      location_ID: this.locationID,
 
       paymentmethod_ID: this.paymentmethodID,
       paymentmethod_CODE: this.paymentmethodCode,
@@ -150,12 +137,9 @@ export class BankaccountComponent implements OnInit {
   add() {
     this.bankaccount = {
       bankaccount_ID: 0,
-      taxcode_ID: null,
       bankaccounttype_ID: null,
       paymentmethod_ID: null,
       customer_ID: null,
-      location_ID: null,
-      locations: [],
 
       bankaccount_CODE: null,
       bankaccount_DATE: null,
@@ -200,18 +184,16 @@ export class BankaccountComponent implements OnInit {
   onChange(bankaccountID) {
     for (var i = 0; i < this.bankaccountsAll.length; i++) {
       if (this.bankaccountsAll[i].bankaccount_ID == bankaccountID) {
-        this.onBankTaxcodeChange.next(this.bankaccountsAll[i]);
+        this.onBankAccountChange.next(this.bankaccountsAll[i]);
         break;
       }
     }
   }
 
   setBankaccount(response) {
-    this.taxcodeID = response.taxcode_ID;
     this.bankaccounttypeID = response.bankaccounttype_ID;
     this.paymentmethodID = response.paymentmethod_ID;
     this.customerID = response.customer_ID;
-    this.locationID = response.location_ID;
     this.bankaccountID = response.bankaccount_ID;
 
     if (response.isactive == "Y") {
@@ -265,8 +247,6 @@ export class BankaccountComponent implements OnInit {
           this.toastrservice.warning("Message", " " + response.message);
         } else {
           this.setBankaccount(this.bankaccountservice.getDetail(response));
-          // if (this.location != null)
-          //   this.location.setLocation(this.bankaccount.locations);
         }
       }
     }, error => {
@@ -276,10 +256,8 @@ export class BankaccountComponent implements OnInit {
 
   bankaccountAdd(bankaccount) {
     bankaccount.bankaccounttype_ID = this.bankaccounttype.bankaccounttypeID;
-    bankaccount.taxcode_ID = this.taxcode.taxcodeID;
     bankaccount.customer_ID = this.customer.customerID;
     bankaccount.paymentmethod_ID = this.paymentmethod.paymentmethodID;
-    bankaccount.location_ID = this.location.locationID;
 
     bankaccount.isactive = "Y";
     this.bankaccountservice.add(bankaccount).subscribe(response => {
@@ -287,7 +265,7 @@ export class BankaccountComponent implements OnInit {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else if (response.bankaccount_ID) {
-          this.toastrservice.success("Success", "New Bank Taxcode Added");
+          this.toastrservice.success("Success", "New Bank Account Added");
           this.setBankaccount(this.bankaccountservice.getDetail(response));
           this.refresh.next();
           this.disabled = true;
@@ -304,10 +282,8 @@ export class BankaccountComponent implements OnInit {
   bankaccountUpdate(bankaccount) {
 
     bankaccount.bankaccounttype_ID = this.bankaccounttype.bankaccounttypeID;
-    bankaccount.taxcode_ID = this.taxcode.taxcodeID;
     bankaccount.customer_ID = this.customer.customerID;
     bankaccount.paymentmethod_ID = this.paymentmethod.paymentmethodID;
-    bankaccount.location_ID = this.location.locationID;
 
     if (bankaccount.isactive == true) {
       bankaccount.isactive = "Y";
@@ -319,7 +295,7 @@ export class BankaccountComponent implements OnInit {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else if (response.bankaccount_ID) {
-          this.toastrservice.success("Success", "Bank Taxcode Updated");
+          this.toastrservice.success("Success", "Bank Account Updated");
           this.setBankaccount(this.bankaccountservice.getDetail(response));
           this.refresh.next();
           this.disabled = true;
@@ -339,7 +315,7 @@ export class BankaccountComponent implements OnInit {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else if (response.length > 0) {
-          this.toastrservice.success("Success", "Bank Taxcodes Updated");
+          this.toastrservice.success("Success", "Bank Accounts Updated");
           this.setBankaccount(this.bankaccountservice.getDetail(response));
           this.refresh.next();
           this.disabled = true;
@@ -390,8 +366,6 @@ export class BankaccountComponent implements OnInit {
   }
 
   bankaccountAdvancedSearch(search) {
-    this.taxcodeID = search.taxcode_ID;
-    this.locationID = search.location_ID;
     this.customerID = search.customer_ID;
 
     this.paymentmethodID = search.paymentmethod_ID;
@@ -414,8 +388,6 @@ export class BankaccountComponent implements OnInit {
   }
 
   bankaccountAdvancedSearchAll(search) {
-    this.taxcodeID = search.taxcode_ID;
-    this.locationID = search.location_ID;
     this.customerID = search.customer_ID;
 
     this.paymentmethodID = search.paymentmethod_ID;

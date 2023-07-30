@@ -240,7 +240,8 @@
           </div>
           <div class="row">
             <div class="col-md-12">
-              <app-ledger #ledger [view]="1" [ledgerID]="incomestatement.ledger_ID"></app-ledger>
+              <app-ledger #ledger [view]="1" [ledgerID]="incomestatement.ledger_ID"
+                (onLedgerChange)="onLedgerChange($event)"></app-ledger>
             </div>
           </div>
         </div>
@@ -299,7 +300,8 @@
           </div>
           <div class="row">
             <div class="col-md-12">
-              <app-ledger #ledger [view]="1" [ledgerID]="incomestatement.ledger_ID"></app-ledger>
+              <app-ledger #ledger [view]="1" [ledgerID]="incomestatement.ledger_ID"
+                (onLedgerChange)="onLedgerChange($event)"></app-ledger>
             </div>
           </div>
           <div class="row">
@@ -433,5 +435,5 @@
 </div>
 
 <div aria-labelledby="exampleModalLabel" class="modal fade show" id="addledger" role="dialog" tabindex="-1">
-  <app-ledger #addledger [view]=3 (cancel)="ledgerCancel()"></app-ledger>
+  <app-ledger #addledger [view]=3 (refresh)="ledgerrefresh()" (cancel)="ledgerCancel()"></app-ledger>
 </div>

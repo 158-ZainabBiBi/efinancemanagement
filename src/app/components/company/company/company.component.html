@@ -1,0 +1,26 @@
+<div *ngIf="view==1" class="form-group">
+    <label class="custom-label form-label"> Company
+        <span style="color: red;" [hidden]="disabled" *ngIf="iscompulsory==true">*</span>
+    </label>
+    <div class="row">
+        <div class="col-md-10" *ngIf="disabled==true">
+            <ng-select [(ngModel)]="companyID" [disabled]="disabled" name="companyID">
+                <ng-option *ngFor="let company of companiesAll" [value]="company.company_ID">
+                    {{ company.company_ID }}
+                </ng-option>
+            </ng-select>
+        </div>
+        <div class="col-md-10" *ngIf="disabled==false">
+            <ng-select [(ngModel)]="companyID" [disabled]="disabled" name="companyID">
+                <ng-option *ngFor="let company of companies" [value]="company.company_ID">
+                    {{ company.company_ID }}
+                </ng-option>
+            </ng-select>
+        </div>
+        <div class="col-md-2">
+            <button type="button" class="btn btn-light ml-2" [hidden]="disabled" (click)="companyGet()">
+                <i class="fa fa-refresh" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+</div>

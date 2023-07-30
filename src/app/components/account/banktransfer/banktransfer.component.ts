@@ -53,10 +53,8 @@ export class BanktransferComponent implements OnInit {
 
     banktransfer_NAME: null,
     banktransfer_CODE: null,
-    banktransfer_DATE: null,
     banktransfer_AMOUNT: null,
     banktransfer_DESC: null,
-
     isactive: true,
   }
 
@@ -133,10 +131,8 @@ export class BanktransferComponent implements OnInit {
 
       banktransfer_NAME: null,
       banktransfer_CODE: null,
-      banktransfer_DATE: null,
       banktransfer_AMOUNT: null,
       banktransfer_DESC: null,
-
       isactive: true,
     };
   }
@@ -146,6 +142,11 @@ export class BanktransferComponent implements OnInit {
     $("#addtransaction").modal("show");
   }
 
+  transactionrefresh() {
+    this.transaction.load(true);
+    this.transactionCancel();
+  }
+
   transactionCancel() {
     $("#addtransaction").modal("hide");
     $("#edittransaction").modal("hide");
@@ -153,8 +154,9 @@ export class BanktransferComponent implements OnInit {
   }
 
   onTransactionChange(transaction) {
-    // this.journal.journal_NAME = transaction.transaction_NAME;
-    // this.journal.journal_DESC = transaction.transaction_DESC;
+    this.banktransfer.banktransfer_NAME = transaction.transaction_NAME;
+    this.banktransfer.banktransfer_AMOUNT = transaction.transaction_AMOUNT;
+    this.banktransfer.banktransfer_DESC = transaction.transaction_DESC;
   }
 
   update(row) {

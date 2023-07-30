@@ -48,12 +48,9 @@ export class BankaccountsComponent implements OnInit {
   edit(row) {
     this.editbankaccount.bankaccount = {
       bankaccount_ID: row.data.bankaccount_ID,
-      taxcode_ID: row.data.taxcode_ID,
       bankaccounttype_ID: row.data.bankaccounttype_ID,
       paymentmethod_ID: row.data.paymentmethod_ID,
       customer_ID: row.data.customer_ID,
-      location_ID: row.data.location_ID,
-      locations: [],
 
       bankaccount_CODE: row.data.bankaccount_CODE,
       bankaccount_DATE: row.data.bankaccount_DATE,

@@ -220,20 +220,21 @@
               <div class="form-group">
                 <label class="control-label"> Debit <span style="color:red">*</span></label>
                 <input type="number" class="form-control" name="journal_DEBIT" [(ngModel)]="journal.journal_DEBIT"
-                  maxlength="50" required>
+                  (change)="onDebitChange()" [disabled]="creditdisabled" maxlength="50" required>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
                 <label class="control-label"> Credit <span style="color:red">*</span></label>
                 <input type="number" class="form-control" name="journal_CREDIT" [(ngModel)]="journal.journal_CREDIT"
-                  maxlength="50" required>
+                  (change)="onCreditChange()" [disabled]="debitdisabled" maxlength="50" required>
               </div>
             </div>
           </div>
           <div class="row">
             <div class="col-md-6">
-              <app-transaction #transaction [view]="1" [transactionID]=journal.transaction_ID></app-transaction>
+              <app-transaction #transaction [view]="1" [transactionID]=journal.transaction_ID
+                (onTransactionChange)="onTransactionChange($event)"></app-transaction>
             </div>
             <div class="col-md-6">
               <app-account #account [view]="1" [accountID]=journal.account_ID></app-account>
@@ -285,20 +286,21 @@
               <div class="form-group">
                 <label class="control-label"> Debit <span style="color:red">*</span></label>
                 <input type="number" class="form-control" name="journal_DEBIT" [(ngModel)]="journal.journal_DEBIT"
-                  maxlength="50" required>
+                  (change)="onDebitChange()" [disabled]="creditdisabled" maxlength="50" required>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
                 <label class="control-label"> Credit <span style="color:red">*</span></label>
                 <input type="number" class="form-control" name="journal_CREDIT" [(ngModel)]="journal.journal_CREDIT"
-                  maxlength="50" required>
+                  (change)="onCreditChange()" [disabled]="debitdisabled" maxlength="50" required>
               </div>
             </div>
           </div>
           <div class="row">
             <div class="col-md-6">
-              <app-transaction #transaction [view]="1" [transactionID]=journal.transaction_ID></app-transaction>
+              <app-transaction #transaction [view]="1" [transactionID]=journal.transaction_ID
+                (onTransactionChange)="onTransactionChange($event)"></app-transaction>
             </div>
             <div class="col-md-6">
               <app-account #account [view]="1" [accountID]=journal.account_ID></app-account>
@@ -382,31 +384,21 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-8">
-              <app-account #account [view]="1" [disabled]="disabled" [accountID]=journal.account_ID
-                (onAccountChange)="onAccountChange($event)"></app-account>
-            </div>
-            <div class="col-md-4">
-              <br />
-              <button type="button" *ngIf="journal.journal_ID==0" (click)="accountAddNew()"
-                class="btn btn-secondary btn-sm">
-                <i class="fas fa-plus fa-fw"></i> Add New Account
-              </button>
-            </div>
-          </div>
-          <div class="row">
             <div class="col-md-6">
+              <app-account #account [view]="1" [accountID]=journal.account_ID></app-account>
+            </div>
+            <div class="col-md-3">
               <div class="form-group">
                 <label class="control-label"> Debit <span style="color:red">*</span></label>
                 <input type="number" class="form-control" name="journal_DEBIT" [(ngModel)]="journal.journal_DEBIT"
-                  maxlength="50" required>
+                  (change)="onDebitChange()" [disabled]="creditdisabled" maxlength="50" required>
               </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-3">
               <div class="form-group">
                 <label class="control-label"> Credit <span style="color:red">*</span></label>
                 <input type="number" class="form-control" name="journal_CREDIT" [(ngModel)]="journal.journal_CREDIT"
-                  maxlength="50" required>
+                  (change)="onCreditChange()" [disabled]="debitdisabled" maxlength="50" required>
               </div>
             </div>
           </div>
@@ -448,9 +440,5 @@
 </div>
 
 <div aria-labelledby="exampleModalLabel" class="modal fade show" id="addtransaction" role="dialog" tabindex="-1">
-  <app-transaction #addtransaction [view]=3 (cancel)="transactionCancel()"></app-transaction>
-</div>
-
-<div aria-labelledby="exampleModalLabel" class="modal fade show" id="addaccount" role="dialog" tabindex="-1">
-  <app-account #addaccount [view]=3 (cancel)="accountCancel()"></app-account>
+  <app-transaction #addtransaction [view]=3 (refresh)="transactionrefresh()" (cancel)="transactionCancel()"></app-transaction>
 </div>

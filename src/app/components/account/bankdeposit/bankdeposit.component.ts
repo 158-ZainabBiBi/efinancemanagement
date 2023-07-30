@@ -20,7 +20,6 @@ export class BankdepositComponent implements OnInit {
   @ViewChild("addtransaction") addtransaction: TransactionComponent;
   @ViewChild("edittransaction") edittransaction: TransactionComponent;
 
-
   @Input()
   view: number = 1;
   @Input()
@@ -53,12 +52,9 @@ export class BankdepositComponent implements OnInit {
     transaction_ID: null,
 
     bankdeposit_CODE: null,
-    bankdeposit_DATE: null,
-
-    cash_AMOUNT: null,
-    cheque_AMOUNT: null,
-    total_AMOUNT: null,
-
+    bankdeposit_NAME: null,
+    bankdeposit_AMOUNT: null,
+    bankdeposit_DESC: null,
     isactive: true,
   }
 
@@ -134,12 +130,9 @@ export class BankdepositComponent implements OnInit {
       transaction_ID: null,
 
       bankdeposit_CODE: null,
-      bankdeposit_DATE: null,
-
-      cash_AMOUNT: null,
-      cheque_AMOUNT: null,
-      total_AMOUNT: null,
-
+      bankdeposit_NAME: null,
+      bankdeposit_AMOUNT: null,
+      bankdeposit_DESC: null,
       isactive: true,
     };
   }
@@ -149,6 +142,11 @@ export class BankdepositComponent implements OnInit {
     $("#addtransaction").modal("show");
   }
 
+  transactionrefresh() {
+    this.transaction.load(true);
+    this.transactionCancel();
+  }
+
   transactionCancel() {
     $("#addtransaction").modal("hide");
     $("#edittransaction").modal("hide");
@@ -156,10 +154,10 @@ export class BankdepositComponent implements OnInit {
   }
 
   onTransactionChange(transaction) {
-    // this.journal.journal_NAME = transaction.transaction_NAME;
-    // this.journal.journal_DESC = transaction.transaction_DESC;
+    this.bankdeposit.bankdeposit_NAME = transaction.transaction_NAME;
+    this.bankdeposit.bankdeposit_AMOUNT = transaction.transaction_AMOUNT;
+    this.bankdeposit.bankdeposit_DESC = transaction.transaction_DESC;
   }
-
 
   update(row) {
     this.edit.next(row);

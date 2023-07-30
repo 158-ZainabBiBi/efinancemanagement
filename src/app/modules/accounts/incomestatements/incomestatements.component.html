@@ -1,38 +1,37 @@
 <div class="collapse-card-h container">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="card-primary card">
-          <div class="card-header">
-            <div class="align-items-center row">
-              <div class="col">
-                <a href="javascript:void" aria-controls="collapse-customerinfo1" aria-expanded="true"
-                  class="card-title">Income Statement
-                </a>
-              </div>
-              <div class="col-auto">
-                <button (click)="addNew()" class="btn btn-secondary btn-sm">
-                  <i class="fas fa-plus fa-fw"></i> Add New
-                </button>
-              </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card-primary card">
+        <div class="card-header">
+          <div class="align-items-center row">
+            <div class="col">
+              <a href="javascript:void" aria-controls="collapse-customerinfo1" aria-expanded="true"
+                class="card-title">Income Statement
+              </a>
+            </div>
+            <div class="col-auto">
+              <button (click)="addNew()" class="btn btn-secondary btn-sm">
+                <i class="fas fa-plus fa-fw"></i> Add New
+              </button>
             </div>
           </div>
-          <div class="card-body">
-            <div class="row">
-              <div class="col-lg-12">
-                <app-incomestatement #incomestatements [view]=2 (show)="show($event)"></app-incomestatement>
-              </div>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-lg-12">
+              <app-incomestatement #incomestatements [view]=2 (edit)="edit($event)"></app-incomestatement>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  
-  <div aria-labelledby="exampleModalLabel" class="modal fade show" id="add" role="dialog" tabindex="-1">
-    <app-incomestatement #addincomestatement [view]=3 (refresh)="refresh()" (cancel)="cancel()"></app-incomestatement>
-  </div>
-  
-  <div aria-labelledby="exampleModalLabel" class="modal fade show" id="edit" role="dialog" tabindex="-1">
-    <app-incomestatement #editincomestatement [view]=4 (refresh)="refresh()" (cancel)="cancel()"></app-incomestatement>
-  </div>
-  
+</div>
+
+<div aria-labelledby="exampleModalLabel" class="modal fade show" id="add" role="dialog" tabindex="-1">
+  <app-incomestatement #addincomestatement [view]=3 (refresh)="refresh()" (cancel)="cancel()"></app-incomestatement>
+</div>
+
+<div aria-labelledby="exampleModalLabel" class="modal fade show" id="edit" role="dialog" tabindex="-1">
+  <app-incomestatement #editincomestatement [view]=4 (refresh)="refresh()" (cancel)="cancel()"></app-incomestatement>
+</div>

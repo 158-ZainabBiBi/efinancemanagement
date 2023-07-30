@@ -6,7 +6,7 @@
             <div class="align-items-center row">
               <div class="col">
                 <a href="javascript:void" aria-controls="collapse-customerinfo1" aria-expanded="true"
-                  class="card-title">Ledge 
+                  class="card-title">Ledger
                 </a>
               </div>
               <div class="col-auto">
@@ -27,12 +27,11 @@
       </div>
     </div>
   </div>
-  
+
   <div aria-labelledby="exampleModalLabel" class="modal fade show" id="add" role="dialog" tabindex="-1">
     <app-ledger #addledger [view]=3 (refresh)="refresh()" (cancel)="cancel()"></app-ledger>
   </div>
-  
+
   <div aria-labelledby="exampleModalLabel" class="modal fade show" id="edit" role="dialog" tabindex="-1">
     <app-ledger #editledger [view]=4 (refresh)="refresh()" (cancel)="cancel()"></app-ledger>
   </div>
-  

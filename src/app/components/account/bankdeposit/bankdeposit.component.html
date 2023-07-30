@@ -6,7 +6,7 @@
     <div class="col-md-12">
       <ng-select [(ngModel)]="bankdepositID" [disabled]="disabled" name="bankdepositID" (change)="onChange($event)">
         <ng-option *ngFor="let bankdeposit of bankdepositsAll" [value]="bankdeposit.bankdeposit_ID">
-          {{ bankdeposit.bankdeposit_DATE }} - {{ bankdeposit.total_AMOUNT }}
+          {{ bankdeposit.bankdeposit_NAME }}- {{ bankdeposit.bankdeposit_AMOUNT }}
         </ng-option>
       </ng-select>
     </div>
@@ -15,7 +15,7 @@
     <div class="col-md-10">
       <ng-select [(ngModel)]="bankdepositID" name="bankdepositID" (change)="onChange($event)">
         <ng-option *ngFor="let bankdeposit of bankdeposits" [value]="bankdeposit.bankdeposit_ID" [disabled]="disabled">
-          {{ bankdeposit.bankdeposit_DATE }} - {{ bankdeposit.total_AMOUNT }}
+          {{ bankdeposit.bankdeposit_NAME }}- {{ bankdeposit.bankdeposit_AMOUNT }}
         </ng-option>
       </ng-select>
     </div>
@@ -35,7 +35,7 @@
     <div class="col-md-12">
       <ng-select [(ngModel)]="bankdepositID" [disabled]="disabled" name="bankdepositID" (change)="onChange($event)">
         <ng-option *ngFor="let bankdeposit of bankdepositsAll" [value]="bankdeposit.bankdeposit_ID">
-          {{ bankdeposit.bankdeposit_DATE }} - {{ bankdeposit.total_AMOUNT }}
+          {{ bankdeposit.bankdeposit_NAME }}- {{ bankdeposit.bankdeposit_AMOUNT }}
         </ng-option>
       </ng-select>
     </div>
@@ -45,7 +45,7 @@
       <ng-select [(ngModel)]="bankdepositID" name="bankdepositID" (change)="onChange($event)">
         <ng-option *ngFor="let bankdeposit of bankdepositsAll" [value]="bankdeposit.bankdeposit_ID"
           [disabled]="disabled">
-          {{ bankdeposit.bankdeposit_DATE }} - {{ bankdeposit.total_AMOUNT }}
+          {{ bankdeposit.bankdeposit_NAME }}- {{ bankdeposit.bankdeposit_AMOUNT }}
         </ng-option>
       </ng-select>
     </div>
@@ -66,7 +66,7 @@
       <ng-select [(ngModel)]="bankdepositID" [disabled]="disabled" name="bankdepositID">
         <ng-option *ngFor="let bankdeposit of bankdepositsAll" [value]="bankdeposit.bankdeposit_ID"
           [disabled]="disabled">
-          {{ bankdeposit.bankdeposit_DATE }} - {{ bankdeposit.total_AMOUNT }}
+          {{ bankdeposit.bankdeposit_NAME }}- {{ bankdeposit.bankdeposit_AMOUNT }}
         </ng-option>
       </ng-select>
     </div>
@@ -75,7 +75,7 @@
     <div class="col-md-10">
       <ng-select [(ngModel)]="bankdepositID" [disabled]="disabled" name="bankdepositID" (change)="onChange($event)">
         <ng-option *ngFor="let bankdeposit of bankdeposits" [value]="bankdeposit.bankdeposit_ID" [disabled]="disabled">
-          {{ bankdeposit.bankdeposit_DATE }} - {{ bankdeposit.total_AMOUNT }}
+          {{ bankdeposit.bankdeposit_NAME }}- {{ bankdeposit.bankdeposit_AMOUNT }}
         </ng-option>
       </ng-select>
     </div>
@@ -96,7 +96,7 @@
       <ng-select [(ngModel)]="bankdepositID" [disabled]="disabled" name="bankdepositID" (change)="onChange($event)">
         <ng-option *ngFor="let bankdeposit of bankdepositsAll" [value]="bankdeposit.bankdeposit_ID"
           [disabled]="disabled">
-          {{ bankdeposit.bankdeposit_DATE }} - {{ bankdeposit.total_AMOUNT }}
+          {{ bankdeposit.bankdeposit_NAME }}- {{ bankdeposit.bankdeposit_AMOUNT }}
         </ng-option>
       </ng-select>
     </div>
@@ -106,7 +106,7 @@
       <ng-select [(ngModel)]="bankdepositID" [disabled]="disabled" name="bankdepositID" (change)="onChange($event)">
         <ng-option *ngFor="let bankdeposit of bankdepositsAll" [value]="bankdeposit.bankdeposit_ID"
           [disabled]="disabled">
-          {{ bankdeposit.bankdeposit_DATE }} - {{ bankdeposit.total_AMOUNT }}
+          {{ bankdeposit.bankdeposit_NAME }}- {{ bankdeposit.bankdeposit_AMOUNT }}
         </ng-option>
       </ng-select>
     </div>
@@ -137,16 +137,14 @@
           cellTemplate="cellTemplate"></dxi-column>
 
         <dxi-column dataField="bankdeposit_CODE" caption="Code" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="bankdeposit_DATE" caption="Date" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="transaction_DETAIL" caption="Date" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="bankdeposit_NAME" caption="Name" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="frombankaccount_DETAIL" caption="From Account" cssClass="myClass"
           alignment="left"></dxi-column>
         <dxi-column dataField="tobankaccount_DETAIL" caption="To Account" cssClass="myClass"
           alignment="left"></dxi-column>
-        <dxi-column dataField="cash_AMOUNT" caption="Cash Amount" cssClass="myClass" alignment="center"></dxi-column>
-        <dxi-column dataField="cheque_AMOUNT" caption="Cheque Amount" cssClass="myClass"
-          alignment="center"></dxi-column>
-        <dxi-column dataField="total_AMOUNT" caption="Total Amount" cssClass="myClass" alignment="center"></dxi-column>
-        <dxi-column dataField="transaction_DETAIL" caption="Date" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="bankdeposit_AMOUNT" caption="Amount" cssClass="myClass" alignment="center"></dxi-column>
+        <dxi-column dataField="bankdeposit_DESC" caption="Description" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass"
           alignment="center"></dxi-column>
 
@@ -178,16 +176,14 @@
           cellTemplate="cellTemplate"></dxi-column>
 
         <dxi-column dataField="bankdeposit_CODE" caption="Code" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="bankdeposit_DATE" caption="Date" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="transaction_DETAIL" caption="Date" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="bankdeposit_NAME" caption="Name" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="frombankaccount_DETAIL" caption="From Account" cssClass="myClass"
           alignment="left"></dxi-column>
         <dxi-column dataField="tobankaccount_DETAIL" caption="To Account" cssClass="myClass"
           alignment="left"></dxi-column>
-        <dxi-column dataField="cash_AMOUNT" caption="Cash Amount" cssClass="myClass" alignment="center"></dxi-column>
-        <dxi-column dataField="cheque_AMOUNT" caption="Cheque Amount" cssClass="myClass"
-          alignment="center"></dxi-column>
-        <dxi-column dataField="total_AMOUNT" caption="Total Amount" cssClass="myClass" alignment="center"></dxi-column>
-        <dxi-column dataField="transaction_DETAIL" caption="Date" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="bankdeposit_AMOUNT" caption="Amount" cssClass="myClass" alignment="center"></dxi-column>
+        <dxi-column dataField="bankdeposit_DESC" caption="Description" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass"
           alignment="center"></dxi-column>
 
@@ -206,7 +202,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">
-            <i class="fa fa-plus" aria-hidden="true"></i> Add New Bank Deposit
+            <i class="fa fa-plus" aria-hidden="true"></i> Add New Bankdeposit
           </h5>
           <button aria-label="Close" class="close" data-dismiss="modal" type="button">
             <span aria-hidden="true"> ×</span>
@@ -222,11 +218,8 @@
               </div>
             </div>
             <div class="col-md-6">
-              <div class="form-group">
-                <label class="control-label">Date<span style="color:red">*</span></label>
-                <input type="date" class="form-control" name="bankdeposit_DATE"
-                  [(ngModel)]="bankdeposit.bankdeposit_DATE" maxlength="50" required>
-              </div>
+              <app-transaction #transaction [view]="1" [transactionID]=bankdeposit.transaction_ID
+                (onTransactionChange)="onTransactionChange($event)"></app-transaction>
             </div>
           </div>
           <div class="row">
@@ -244,31 +237,28 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-6">
               <div class="form-group">
-                <label class="control-label"> Cash Amount<span style="color:red">*</span></label>
-                <input type="text" class="form-control" name="cash_AMOUNT" [(ngModel)]="bankdeposit.cash_AMOUNT"
-                  maxlength="50" required>
+                <label class="control-label">Name<span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="bankdeposit_NAME"
+                  [(ngModel)]="bankdeposit.bankdeposit_NAME" maxlength="50" required>
               </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-6">
               <div class="form-group">
-                <label class="control-label">Cheque Amount<span style="color:red">*</span></label>
-                <input type="text" class="form-control" name="cheque_AMOUNT" [(ngModel)]="bankdeposit.cheque_AMOUNT"
-                  maxlength="50" required>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="form-group">
-                <label class="control-label">Total Amount<span style="color:red">*</span></label>
-                <input type="text" class="form-control" name="total_AMOUNT" [(ngModel)]="bankdeposit.total_AMOUNT"
-                  maxlength="50" required>
+                <label class="control-label">Amount<span style="color:red">*</span></label>
+                <input type="number" class="form-control" name="bankdeposit_AMOUNT"
+                  [(ngModel)]="bankdeposit.bankdeposit_AMOUNT" maxlength="50" required>
               </div>
             </div>
           </div>
           <div class="row">
             <div class="col-md-12">
-              <app-transaction #transaction [view]="1" [transactionID]=bankdeposit.transaction_ID></app-transaction>
+              <div class="form-group">
+                <label class="control-label">Description <span style="color:red">*</span></label>
+                <textarea type="text" class="form-control" name="bankdeposit_DESC"
+                  [(ngModel)]="bankdeposit.bankdeposit_DESC" maxlength="50" required></textarea>
+              </div>
             </div>
           </div>
         </div>
@@ -289,7 +279,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">
-            <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit Bank Deposit
+            <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit Bankdeposit
           </h5>
           <button aria-label="Close" class="close" data-dismiss="modal" type="button">
             <span aria-hidden="true"> ×</span>
@@ -305,11 +295,8 @@
               </div>
             </div>
             <div class="col-md-6">
-              <div class="form-group">
-                <label class="control-label">Date<span style="color:red">*</span></label>
-                <input type="date" class="form-control" name="bankdeposit_DATE"
-                  [(ngModel)]="bankdeposit.bankdeposit_DATE" maxlength="50" required>
-              </div>
+              <app-transaction #transaction [view]="1" [transactionID]=bankdeposit.transaction_ID
+                (onTransactionChange)="onTransactionChange($event)"></app-transaction>
             </div>
           </div>
           <div class="row">
@@ -327,31 +314,28 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-6">
               <div class="form-group">
-                <label class="control-label"> Cash Amount<span style="color:red">*</span></label>
-                <input type="text" class="form-control" name="cash_AMOUNT" [(ngModel)]="bankdeposit.cash_AMOUNT"
-                  maxlength="50" required>
+                <label class="control-label">Name<span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="bankdeposit_NAME"
+                  [(ngModel)]="bankdeposit.bankdeposit_NAME" maxlength="50" required>
               </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-6">
               <div class="form-group">
-                <label class="control-label">Cheque Amount<span style="color:red">*</span></label>
-                <input type="text" class="form-control" name="cheque_AMOUNT" [(ngModel)]="bankdeposit.cheque_AMOUNT"
-                  maxlength="50" required>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="form-group">
-                <label class="control-label">Total Amount<span style="color:red">*</span></label>
-                <input type="text" class="form-control" name="total_AMOUNT" [(ngModel)]="bankdeposit.total_AMOUNT"
-                  maxlength="50" required>
+                <label class="control-label">Amount<span style="color:red">*</span></label>
+                <input type="number" class="form-control" name="bankdeposit_AMOUNT"
+                  [(ngModel)]="bankdeposit.bankdeposit_AMOUNT" maxlength="50" required>
               </div>
             </div>
           </div>
           <div class="row">
             <div class="col-md-12">
-              <app-transaction #transaction [view]="1" [transactionID]=bankdeposit.transaction_ID></app-transaction>
+              <div class="form-group">
+                <label class="control-label">Description <span style="color:red">*</span></label>
+                <textarea type="text" class="form-control" name="bankdeposit_DESC"
+                  [(ngModel)]="bankdeposit.bankdeposit_DESC" maxlength="50" required></textarea>
+              </div>
             </div>
           </div>
           <div class="row">
@@ -404,19 +388,23 @@
       <div class="row">
         <div class="col-lg-12">
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
               <div class="form-group">
                 <label class="control-label">Code <span style="color:red">*</span></label>
                 <input type="text" class="form-control" name="bankdeposit_CODE" [disabled]="disabled"
                   [(ngModel)]="bankdeposit.bankdeposit_CODE" maxlength="50" required>
               </div>
             </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label class="control-label">Date<span style="color:red">*</span></label>
-                <input type="date" class="form-control" name="bankdeposit_DATE" [disabled]="disabled"
-                  [(ngModel)]="bankdeposit.bankdeposit_DATE" maxlength="50" required>
-              </div>
+            <div class="col-md-5">
+              <app-transaction #transaction [view]="1" [transactionID]=bankdeposit.transaction_ID [disabled]="disabled"
+                (onTransactionChange)="onTransactionChange($event)"></app-transaction>
+            </div>
+            <div class="col-md-3">
+              <br />
+              <button type="button" *ngIf="bankdeposit.bankdeposit_ID==0" (click)="transactionAddNew()"
+                class="btn btn-secondary btn-sm">
+                <i class="fas fa-plus fa-fw"></i> Add New Transaction
+              </button>
             </div>
           </div>
           <div class="row">
@@ -434,39 +422,28 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-6">
               <div class="form-group">
-                <label class="control-label"> Cash Amount<span style="color:red">*</span></label>
-                <input type="text" class="form-control" name="cash_AMOUNT" [(ngModel)]="bankdeposit.cash_AMOUNT"
-                  maxlength="50" [disabled]="disabled" required>
+                <label class="control-label">Name<span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="bankdeposit_NAME" [disabled]="disabled"
+                  [(ngModel)]="bankdeposit.bankdeposit_NAME" maxlength="50" required>
               </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-6">
               <div class="form-group">
-                <label class="control-label">Cheque Amount<span style="color:red">*</span></label>
-                <input type="text" class="form-control" name="cheque_AMOUNT" [(ngModel)]="bankdeposit.cheque_AMOUNT"
-                  maxlength="50" [disabled]="disabled" required>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="form-group">
-                <label class="control-label">Total Amount<span style="color:red">*</span></label>
-                <input type="text" class="form-control" name="total_AMOUNT" [(ngModel)]="bankdeposit.total_AMOUNT"
-                  maxlength="50" [disabled]="disabled" required>
+                <label class="control-label">Amount<span style="color:red">*</span></label>
+                <input type="number" class="form-control" name="bankdeposit_AMOUNT" [disabled]="disabled"
+                  [(ngModel)]="bankdeposit.bankdeposit_AMOUNT" maxlength="50" required>
               </div>
             </div>
           </div>
           <div class="row">
-            <div class="col-md-8">
-              <app-transaction #transaction [view]="1" [transactionID]=bankdeposit.transaction_ID [disabled]="disabled"
-                (onTransactionChange)="onTransactionChange($event)"></app-transaction>
-            </div>
-            <div class="col-md-4">
-              <br />
-              <button type="button" *ngIf="bankdeposit.bankdeposit_ID==0" (click)="transactionAddNew()"
-                class="btn btn-secondary btn-sm">
-                <i class="fas fa-plus fa-fw"></i> Add New Transaction
-              </button>
+            <div class="col-md-12">
+              <div class="form-group">
+                <label class="control-label">Description <span style="color:red">*</span></label>
+                <textarea type="text" class="form-control" name="bankdeposit_DESC" [disabled]="disabled"
+                  [(ngModel)]="bankdeposit.bankdeposit_DESC" maxlength="50" required></textarea>
+              </div>
             </div>
           </div>
           <div class="row">
@@ -508,5 +485,5 @@
 </div>
 
 <div aria-labelledby="exampleModalLabel" class="modal fade show" id="addtransaction" role="dialog" tabindex="-1">
-  <app-transaction #addtransaction [view]=3 (cancel)="transactionCancel()"></app-transaction>
+  <app-transaction #addtransaction [view]=3 (refresh)="transactionrefresh()" (cancel)="transactionCancel()"></app-transaction>
 </div>

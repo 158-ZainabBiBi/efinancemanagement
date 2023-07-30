@@ -126,6 +126,11 @@ export class TrialbalanceComponent implements OnInit {
     $("#addledger").modal("show");
   }
 
+  ledgerrefresh() {
+    this.ledger.load(true);
+    this.ledgerCancel();
+  }
+
   ledgerCancel() {
     $("#addledger").modal("hide");
     $("#editledger").modal("hide");

@@ -11,12 +11,14 @@ export const setting = {
   service_NAME: "LOOKUP",
   locationservice_NAME: 'LOCATION',
   personservice_NAME: 'PERSON',
+  companyservice_NAME: 'COMPANY',
+  employeeservice_NAME: 'EMPLOYEE',
+
   accountservice_NAME: 'CWIZTECHACCOUNT',
   customerservice_NAME: 'CWIZTECHCUSTOMER',
   financeservice_NAME: 'CWIZTECHERPFINANCE',
   // customerservice_NAME: 'KBFSCUSTOMER',
   // financeservice_NAME: 'KBFSERPFINANCE',
-
 
   isHash: '/#',
   // redirctPath: '',

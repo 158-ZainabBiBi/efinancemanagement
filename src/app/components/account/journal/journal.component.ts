@@ -188,6 +188,11 @@ export class JournalComponent implements OnInit {
     $("#addtransaction").modal("show");
   }
 
+  transactionrefresh() {
+    this.transaction.load(true);
+    this.transactionCancel();
+  }
+
   transactionCancel() {
     $("#addtransaction").modal("hide");
     $("#edittransaction").modal("hide");
@@ -196,21 +201,6 @@ export class JournalComponent implements OnInit {
 
   onTransactionChange(transaction) {
     this.journal.journal_NAME = transaction.transaction_NAME;
-  }
-
-  accountAddNew() {
-    this.addaccount.add();
-    $("#addaccount").modal("show");
-  }
-
-  accountCancel() {
-    $("#addaccount").modal("hide");
-    $("#editaccount").modal("hide");
-    this.account.accounts = this.addaccount.accounts;
-  }
-
-  onAccountChange(account) {
-    // this.journal.journal_NAME = account.account_NAME;
   }
 
   update(row) {
