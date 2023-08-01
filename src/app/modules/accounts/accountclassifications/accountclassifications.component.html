@@ -1,4 +1,10 @@
 <div class="collapse-card-h container">
+  <app-accountsearchfilter [account]=false [accounttype]=true [accountclassification]=false [bankaccount]=false
+    [bankaccounttype]=false [transaction]=false [transactiontype]=false [transactiondatefrom]=false
+    [transactiondateto]=false [banktransfer]=false [bankdeposit]=false [journal]=false [ledger]=false
+    [chartofaccount]=false [trialbalance]=false [incomestatement]=false [profitandloss]=false [balancesheet]=false
+    (advancedSearch)="advancedSearch($event)"></app-accountsearchfilter>
+
   <div class="row">
     <div class="col-md-12">
       <div class="card-primary card">

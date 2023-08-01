@@ -140,13 +140,14 @@
 
         <dxi-column dataField="banktransfer_CODE" caption="Code" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="transaction_DETAIL" caption="Date" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="banktransfer_NAME" caption="Name" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column [width]="200" dataField="banktransfer_NAME" caption="Name" cssClass="myClass"
+          alignment="left"></dxi-column>
         <dxi-column dataField="frombankaccount_DETAIL" caption="From Account" cssClass="myClass"
           alignment="left"></dxi-column>
         <dxi-column dataField="tobankaccount_DETAIL" caption="To Account" cssClass="myClass"
           alignment="left"></dxi-column>
         <dxi-column dataField="banktransfer_AMOUNT" caption="Amount" cssClass="myClass" alignment="center"></dxi-column>
-        <dxi-column dataField="banktransfer_DESC" caption="Description" cssClass="myClass"
+        <dxi-column [width]="200" dataField="banktransfer_DESC" caption="Description" cssClass="myClass"
           alignment="left"></dxi-column>
         <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass"
           alignment="center"></dxi-column>
@@ -180,13 +181,14 @@
 
         <dxi-column dataField="banktransfer_CODE" caption="Code" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="transaction_DETAIL" caption="Date" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="banktransfer_NAME" caption="Name" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column [width]="200" dataField="banktransfer_NAME" caption="Name" cssClass="myClass"
+          alignment="left"></dxi-column>
         <dxi-column dataField="frombankaccount_DETAIL" caption="From Account" cssClass="myClass"
           alignment="left"></dxi-column>
         <dxi-column dataField="tobankaccount_DETAIL" caption="To Account" cssClass="myClass"
           alignment="left"></dxi-column>
         <dxi-column dataField="banktransfer_AMOUNT" caption="Amount" cssClass="myClass" alignment="center"></dxi-column>
-        <dxi-column dataField="banktransfer_DESC" caption="Description" cssClass="myClass"
+        <dxi-column [width]="200" dataField="banktransfer_DESC" caption="Description" cssClass="myClass"
           alignment="left"></dxi-column>
         <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass"
           alignment="center"></dxi-column>
@@ -222,7 +224,7 @@
               </div>
             </div>
             <div class="col-md-6">
-              <app-transaction #transaction [view]="1" [transactionID]=banktransfer.transaction_ID
+              <app-transaction #transaction [view]="7" [transactionID]=banktransfer.transaction_ID
                 (onTransactionChange)="onTransactionChange($event)"></app-transaction>
             </div>
           </div>
@@ -299,7 +301,7 @@
               </div>
             </div>
             <div class="col-md-6">
-              <app-transaction #transaction [view]="1" [transactionID]=banktransfer.transaction_ID
+              <app-transaction #transaction [view]="7" [transactionID]=banktransfer.transaction_ID
                 (onTransactionChange)="onTransactionChange($event)"></app-transaction>
             </div>
           </div>
@@ -400,7 +402,7 @@
               </div>
             </div>
             <div class="col-md-5">
-              <app-transaction #transaction [view]="1" [transactionID]=banktransfer.transaction_ID [disabled]="disabled"
+              <app-transaction #transaction [view]="7" [transactionID]=banktransfer.transaction_ID [disabled]="disabled"
                 (onTransactionChange)="onTransactionChange($event)"></app-transaction>
             </div>
             <div class="col-md-3">
@@ -489,5 +491,6 @@
 </div>
 
 <div aria-labelledby="exampleModalLabel" class="modal fade show" id="addtransaction" role="dialog" tabindex="-1">
-  <app-transaction #addtransaction [view]=3 (refresh)="transactionrefresh()" (cancel)="transactionCancel()"></app-transaction>
+  <app-transaction #addtransaction [view]=3 (refresh)="transactionrefresh()"
+    (cancel)="transactionCancel()"></app-transaction>
 </div>

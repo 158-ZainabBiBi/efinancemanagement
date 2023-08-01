@@ -27,6 +27,64 @@
   </div>
 </div>
 
+<div *ngIf="view==6" class="form-group">
+  <label class="custom-label form-label">Deposit Transaction
+    <span style="color: red;" [hidden]="disabled" *ngIf="iscompulsory==true">*</span>
+  </label>
+  <div class="row" *ngIf="disabled==true">
+    <div class="col-md-12">
+      <ng-select [(ngModel)]="transactionID" [disabled]="disabled" name="transactionID" (change)="onChange($event)">
+        <ng-option *ngFor="let transaction of transactionsAll" [value]="transaction.transaction_ID">
+          {{ transaction.transaction_DATE }} - {{ transaction.transaction_NAME}}
+        </ng-option>
+      </ng-select>
+    </div>
+  </div>
+  <div class="row" *ngIf="disabled==false">
+    <div class="col-md-10">
+      <ng-select [(ngModel)]="transactionID" name="transactionID" (change)="onChange($event)">
+        <ng-option *ngFor="let transaction of transactions" [value]="transaction.transaction_ID" [disabled]="disabled">
+          {{ transaction.transaction_DATE }} - {{ transaction.transaction_NAME}}
+        </ng-option>
+      </ng-select>
+    </div>
+    <div class="col-md-2">
+      <button type="button" class="btn btn-light ml-2" (click)="load(true)">
+        <i class="fa fa-refresh" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="view==7" class="form-group">
+  <label class="custom-label form-label">Transfer Transaction
+    <span style="color: red;" [hidden]="disabled" *ngIf="iscompulsory==true">*</span>
+  </label>
+  <div class="row" *ngIf="disabled==true">
+    <div class="col-md-12">
+      <ng-select [(ngModel)]="transactionID" [disabled]="disabled" name="transactionID" (change)="onChange($event)">
+        <ng-option *ngFor="let transaction of transactionsAll" [value]="transaction.transaction_ID">
+          {{ transaction.transaction_DATE }} - {{ transaction.transaction_NAME}}
+        </ng-option>
+      </ng-select>
+    </div>
+  </div>
+  <div class="row" *ngIf="disabled==false">
+    <div class="col-md-10">
+      <ng-select [(ngModel)]="transactionID" name="transactionID" (change)="onChange($event)">
+        <ng-option *ngFor="let transaction of transactions" [value]="transaction.transaction_ID" [disabled]="disabled">
+          {{ transaction.transaction_DATE }} - {{ transaction.transaction_NAME}}
+        </ng-option>
+      </ng-select>
+    </div>
+    <div class="col-md-2">
+      <button type="button" class="btn btn-light ml-2" (click)="load(true)">
+        <i class="fa fa-refresh" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
 <div *ngIf="view==10" class="form-group">
   <label class="custom-label form-label">Transaction
     <span style="color: red;" [hidden]="disabled" *ngIf="iscompulsory==true">*</span>

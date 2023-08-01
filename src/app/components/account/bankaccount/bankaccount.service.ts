@@ -140,7 +140,7 @@ export class BankaccountService {
   getDetail(response) {
     if (response.customer_DETAIL != null) {
       response.customer = this.customerservice.getDetail(JSON.parse(response.customer_DETAIL));
-      response.customer_DETAIL = response.customer.customer_CODE + ' - ' + response.customer.customer_NAME;
+      response.customer_DETAIL = response.customer.customer_NAME;
     }
 
     if (response.bankaccounttype_DETAIL != null) {

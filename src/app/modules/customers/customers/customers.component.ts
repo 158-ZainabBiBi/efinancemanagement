@@ -125,4 +125,7 @@ export class CustomersComponent implements OnInit {
     $("#edit").modal("hide");
   }
 
+  advancedSearch(search) {
+    this.customers.customerAdvancedSearch(search);
+  }
 }

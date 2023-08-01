@@ -66,4 +66,7 @@ export class BalancesheetsComponent implements OnInit {
     $("#edit").modal("hide");
   }
 
+  advancedSearch(search) {
+    this.balancesheets.balancesheetAdvancedSearch(search);
+  }
 }

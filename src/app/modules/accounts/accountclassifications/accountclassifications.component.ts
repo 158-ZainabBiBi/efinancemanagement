@@ -67,4 +67,8 @@ export class AccountclassificationsComponent implements OnInit {
     $("#edit").modal("hide");
   }
 
+  advancedSearch(search) {
+    this.accountclassifications.accountclassificationAdvancedSearch(search);
+  }
+
 }

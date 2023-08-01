@@ -12,6 +12,22 @@
       </div>
       <div class="card-body">
         <div class="row">
+          <div class="col-md-2" *ngIf="transactiondatefrom==true">
+            <div class="form-group">
+              <label class="control-label" *ngIf="transactiondateto==true">Transaction Date From</label>
+              <label class="control-label" *ngIf="transactiondateto==false">Transaction Date</label>
+              <input type="date" class="form-control" name="saleorder_DATEFROM" maxlength="50"
+                [(ngModel)]="search.transaction_DATEFROM" />
+            </div>
+          </div>
+          <div class="col-md-2" *ngIf="transactiondateto==true">
+            <div class="form-group">
+              <label class="control-label" *ngIf="transactiondatefrom==true">Transaction Date To</label>
+              <label class="control-label" *ngIf="transactiondatefrom==false">Transaction Date</label>
+              <input type="date" class="form-control" name="saleorder_DATETO" maxlength="50"
+                [(ngModel)]="search.transaction_DATETO" />
+            </div>
+          </div>
           <div class="col-md-4" *ngIf="customer==true">
             <app-customer></app-customer>
           </div>
@@ -21,19 +37,18 @@
           <div class="col-md-4" *ngIf="account==true">
             <app-account></app-account>
           </div>
+          <div class="col-md-4" *ngIf="accountclassification==true">
+            <app-accountclassification></app-accountclassification>
+          </div>
           <div class="col-md-4" *ngIf="bankaccounttype==true">
             <app-bankaccounttype></app-bankaccounttype>
           </div>
-        </div>
-        <div class="row">
           <div class="col-md-4" *ngIf="transaction==true">
             <app-transaction></app-transaction>
           </div>
           <div class="col-md-4" *ngIf="transactiontype==true">
             <app-transactiontype></app-transactiontype>
           </div>
-        </div>
-        <div class="row">
           <div class="col-md-4" *ngIf="journal==true">
             <app-journal></app-journal>
           </div>
@@ -43,13 +58,32 @@
           <div class="col-md-4" *ngIf="trialbalance==true">
             <app-trialbalance></app-trialbalance>
           </div>
-        </div>
-        <div class="row">
           <div class="col-md-4" *ngIf="chartofaccount==true">
             <app-chartofaccount></app-chartofaccount>
           </div>
           <div class="col-md-4" *ngIf="accounttype==true">
             <app-accounttype></app-accounttype>
+          </div>
+          <div class="col-md-4" *ngIf="balancesheet==true">
+            <app-balancesheet></app-balancesheet>
+          </div>
+          <div class="col-md-4" *ngIf="banktransfer==true">
+            <app-banktransfer></app-banktransfer>
+          </div>
+          <div class="col-md-4" *ngIf="bankdeposit==true">
+            <app-bankdeposit></app-bankdeposit>
+          </div>
+          <div class="col-md-4" *ngIf="incomestatement==true">
+            <app-incomestatement></app-incomestatement>
+          </div>
+          <div class="col-md-4" *ngIf="businesstype==true">
+            <app-businesstype></app-businesstype>
+          </div>
+          <div class="col-md-4" *ngIf="profitandloss==true">
+            <app-profitandloss></app-profitandloss>
+          </div>
+          <div class="col-md-4" *ngIf="transactiontype==true">
+            <app-transactiontype></app-transactiontype>
           </div>
         </div>
         <div class="row">
