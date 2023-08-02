@@ -6,7 +6,8 @@
     <div class="col-md-12">
       <ng-select [(ngModel)]="ledgerID" [disabled]="disabled" name="ledgerID" (change)="onChange($event)">
         <ng-option *ngFor="let ledger of ledgersAll" [value]="ledger.ledger_ID">
-          {{ ledger.journal.transaction_DETAIL }} - {{ ledger.journal.account_DETAIL}}
+          {{ ledger.journal_DETAIL }} - {{ ledger.ledger_NAME}} - Dr.{{ ledger.ledger_DEBIT }} - Cr.{{
+          ledger.ledger_CREDIT }}
         </ng-option>
       </ng-select>
     </div>
@@ -15,7 +16,8 @@
     <div class="col-md-10">
       <ng-select [(ngModel)]="ledgerID" name="ledgerID" (change)="onChange($event)">
         <ng-option *ngFor="let ledger of ledgers" [value]="ledger.ledger_ID" [disabled]="disabled">
-          {{ ledger.journal.transaction_DETAIL }} - {{ ledger.journal.account_DETAIL}}
+          {{ ledger.journal_DETAIL }} - {{ ledger.ledger_NAME}} - Dr.{{ ledger.ledger_DEBIT }} - Cr.{{
+          ledger.ledger_CREDIT }}
         </ng-option>
       </ng-select>
     </div>
@@ -35,7 +37,8 @@
     <div class="col-md-12">
       <ng-select [(ngModel)]="ledgerID" [disabled]="disabled" name="ledgerID" (change)="onChange($event)">
         <ng-option *ngFor="let ledger of ledgersAll" [value]="ledger.ledger_ID">
-          {{ ledger.journal.transaction_DETAIL }} - {{ ledger.journal.account_DETAIL}}
+          {{ ledger.journal_DETAIL }} - {{ ledger.ledger_NAME}} - Dr.{{ ledger.ledger_DEBIT }} - Cr.{{
+          ledger.ledger_CREDIT }}
         </ng-option>
       </ng-select>
     </div>
@@ -44,7 +47,8 @@
     <div class="col-md-10">
       <ng-select [(ngModel)]="ledgerID" name="ledgerID" (change)="onChange($event)">
         <ng-option *ngFor="let ledger of ledgersAll" [value]="ledger.ledger_ID" [disabled]="disabled">
-          {{ ledger.journal.transaction_DETAIL }} - {{ ledger.journal.account_DETAIL}}
+          {{ ledger.journal_DETAIL }} - {{ ledger.ledger_NAME}} - Dr.{{ ledger.ledger_DEBIT }} - Cr.{{
+          ledger.ledger_CREDIT }}
         </ng-option>
       </ng-select>
     </div>
@@ -64,7 +68,8 @@
     <div class="col-md-12">
       <ng-select [(ngModel)]="ledgerID" [disabled]="disabled" name="ledgerID">
         <ng-option *ngFor="let ledger of ledgersAll" [value]="ledger.ledger_ID" [disabled]="disabled">
-          {{ ledger.journal.transaction_DETAIL }} - {{ ledger.journal.account_DETAIL}}
+          {{ ledger.journal_DETAIL }} - {{ ledger.ledger_NAME}} - Dr.{{ ledger.ledger_DEBIT }} - Cr.{{
+          ledger.ledger_CREDIT }}
         </ng-option>
       </ng-select>
     </div>
@@ -73,7 +78,8 @@
     <div class="col-md-10">
       <ng-select [(ngModel)]="ledgerID" [disabled]="disabled" name="ledgerID" (change)="onChange($event)">
         <ng-option *ngFor="let ledger of ledgers" [value]="ledger.ledger_ID" [disabled]="disabled">
-          {{ ledger.journal.transaction_DETAIL }} - {{ ledger.journal.account_DETAIL}}
+          {{ ledger.journal_DETAIL }} - {{ ledger.ledger_NAME}} - Dr.{{ ledger.ledger_DEBIT }} - Cr.{{
+          ledger.ledger_CREDIT }}
         </ng-option>
       </ng-select>
     </div>
@@ -93,7 +99,8 @@
     <div class="col-md-12">
       <ng-select [(ngModel)]="ledgerID" [disabled]="disabled" name="ledgerID" (change)="onChange($event)">
         <ng-option *ngFor="let ledger of ledgersAll" [value]="ledger.ledger_ID" [disabled]="disabled">
-          {{ ledger.journal.transaction_DETAIL }} - {{ ledger.journal.account_DETAIL}}
+          {{ ledger.journal_DETAIL }} - {{ ledger.ledger_NAME}} - Dr.{{ ledger.ledger_DEBIT }} - Cr.{{
+          ledger.ledger_CREDIT }}
         </ng-option>
       </ng-select>
     </div>
@@ -102,7 +109,8 @@
     <div class="col-md-10">
       <ng-select [(ngModel)]="ledgerID" [disabled]="disabled" name="ledgerID" (change)="onChange($event)">
         <ng-option *ngFor="let ledger of ledgersAll" [value]="ledger.ledger_ID" [disabled]="disabled">
-          {{ ledger.journal.transaction_DETAIL }} - {{ ledger.journal.account_DETAIL}}
+          {{ ledger.journal_DETAIL }} - {{ ledger.ledger_NAME}} - Dr.{{ ledger.ledger_DEBIT }} - Cr.{{
+          ledger.ledger_CREDIT }}
         </ng-option>
       </ng-select>
     </div>
@@ -133,10 +141,11 @@
           cellTemplate="cellTemplate"></dxi-column>
 
         <dxi-column dataField="ledger_CODE" caption="Code" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="journal_DETAIL" caption="Date" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="ledger_NAME" caption="Name" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="journal.transaction_DETAIL" caption="Date" cssClass="myClass"
+        <dxi-column dataField="accountclassification_DETAIL" caption="Classification" cssClass="myClass"
           alignment="left"></dxi-column>
-        <dxi-column dataField="journal.account_DETAIL" caption="Account" cssClass="myClass"
+        <dxi-column dataField="accountclassification.accounttype_DETAIL" caption="Type" cssClass="myClass"
           alignment="left"></dxi-column>
         <dxi-column dataField="ledger_DEBIT" caption="Debit" cssClass="myClass" alignment="center"></dxi-column>
         <dxi-column dataField="ledger_CREDIT" caption="Credit" cssClass="myClass" alignment="center"></dxi-column>
@@ -172,8 +181,7 @@
 
         <dxi-column dataField="ledger_CODE" caption="Code" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="ledger_NAME" caption="Name" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="journal.transaction_DETAIL" caption="Date" cssClass="myClass"
-          alignment="left"></dxi-column>
+        <dxi-column dataField="journal_DETAIL" caption="Date" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="journal.account_DETAIL" caption="Account" cssClass="myClass"
           alignment="left"></dxi-column>
         <dxi-column dataField="ledger_DEBIT" caption="Debit" cssClass="myClass" alignment="center"></dxi-column>

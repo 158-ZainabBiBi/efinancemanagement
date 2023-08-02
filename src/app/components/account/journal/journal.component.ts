@@ -138,8 +138,8 @@ export class JournalComponent implements OnInit {
 
   getTotalCredit() {
     let total = 0;
-    this.journalsAll.forEach(account => {
-      const credit = Number(account.journal_CREDIT);
+    this.journalsAll.forEach(totals => {
+      const credit = Number(totals.journal_CREDIT);
       if (!isNaN(credit)) {
         total += credit;
       }
@@ -149,8 +149,8 @@ export class JournalComponent implements OnInit {
 
   getTotalDebit() {
     let total = 0;
-    this.journalsAll.forEach(account => {
-      const debit = Number(account.journal_DEBIT);
+    this.journalsAll.forEach(totals => {
+      const debit = Number(totals.journal_DEBIT);
       if (!isNaN(debit)) {
         total += debit;
       }
@@ -199,8 +199,10 @@ export class JournalComponent implements OnInit {
     this.transaction.transactions = this.addtransaction.transactions;
   }
 
-  onTransactionChange(transaction) {
-    this.journal.journal_NAME = transaction.transaction_NAME;
+  onTransactionChange(transaction) { }
+
+  onAccountChange(account) {
+    this.journal.journal_NAME = account.account_TITLE;
   }
 
   update(row) {

@@ -124,8 +124,38 @@ export class LedgerComponent implements OnInit {
           text: 'Refresh',
           onClick: this.load.bind(this, true),
         },
+      },
+      {
+        location: 'after',
+        text: `Total Credit: ${this.getTotalCredit()}`,
+      },
+      {
+        location: 'after',
+        text: `Total Debit: ${this.getTotalDebit()}`,
       }
     );
+  }
+
+  getTotalCredit() {
+    let total = 0;
+    this.ledgersAll.forEach(totals => {
+      const credit = Number(totals.ledger_CREDIT);
+      if (!isNaN(credit)) {
+        total += credit;
+      }
+    });
+    return total;
+  }
+
+  getTotalDebit() {
+    let total = 0;
+    this.ledgersAll.forEach(totals => {
+      const debit = Number(totals.ledger_DEBIT);
+      if (!isNaN(debit)) {
+        total += debit;
+      }
+    });
+    return total;
   }
 
   add() {
