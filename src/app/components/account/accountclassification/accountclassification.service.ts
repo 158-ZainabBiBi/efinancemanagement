@@ -135,7 +135,7 @@ export class AccountclassificationService {
   getDetail(response) {
     if (response.accounttype_DETAIL != null) {
       response.accounttype = JSON.parse(response.accounttype_DETAIL);
-      response.accounttype_DETAIL = response.accounttype.code + ' - ' + response.accounttype.description;
+      response.accounttype_DETAIL = response.accounttype.description;
     }
     return (response);
   }

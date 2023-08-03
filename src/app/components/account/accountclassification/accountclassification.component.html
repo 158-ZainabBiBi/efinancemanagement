@@ -1,5 +1,5 @@
 <div *ngIf="view==1" class="form-group">
-  <label class="custom-label form-label">Account Classification
+  <label class="custom-label form-label">Classification
     <span style="color: red;" [hidden]="disabled" *ngIf="iscompulsory==true">*</span>
   </label>
   <div class="row" *ngIf="disabled==true">
@@ -31,7 +31,7 @@
 </div>
 
 <div *ngIf="view==10" class="form-group">
-  <label class="custom-label form-label">Account Classification
+  <label class="custom-label form-label">Classification
     <span style="color: red;" [hidden]="disabled" *ngIf="iscompulsory==true">*</span>
   </label>
   <div class="row" *ngIf="disabled==true">
@@ -63,7 +63,7 @@
 </div>
 
 <div *ngIf="view==11" class="form-group">
-  <label class="custom-label form-label">Account Classification
+  <label class="custom-label form-label">Classification
     <span style="color: red;" [hidden]="disabled" *ngIf="iscompulsory==true">*</span>
   </label>
   <div class="row" *ngIf="disabled==true">
@@ -95,7 +95,7 @@
 </div>
 
 <div *ngIf="view==19" class="form-group">
-  <label class="custom-label form-label">Account Classification
+  <label class="custom-label form-label">Classification
     <span style="color: red;" [hidden]="disabled" *ngIf="iscompulsory==true">*</span>
   </label>
   <div class="row" *ngIf="disabled==true">
@@ -210,7 +210,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">
-            <i class="fa fa-plus" aria-hidden="true"></i> Add New Account Classification
+            <i class="fa fa-plus" aria-hidden="true"></i> Add New Classification
           </h5>
           <button aria-label="Close" class="close" data-dismiss="modal" type="button">
             <span aria-hidden="true"> ×</span>
@@ -282,7 +282,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">
-            <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit Account Classification
+            <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit Classification
           </h5>
           <button aria-label="Close" class="close" data-dismiss="modal" type="button">
             <span aria-hidden="true"> ×</span>
@@ -367,18 +367,18 @@
         <div class="col" *ngIf="accountclassification.accountclassification_ID==0">
           <a href="javascript:void" aria-controls="collapse-accountclassificationinfo1" aria-expanded="true"
             class="card-title">
-            Add New Account Classification
+            Add New Classification
           </a>
         </div>
         <div class="col" *ngIf="accountclassification.accountclassification_ID!=0 && disabled==false">
           <a href="javascript:void" aria-controls="collapse-accountclassificationinfo1" aria-expanded="true"
             class="card-title">
-            Edit Account Classification
+            Edit Classification
           </a>
         </div>
         <div class="col" *ngIf="accountclassification.accountclassification_ID!=0 && disabled==true">
           <a href="javascript:void" aria-controls="collapse-accountclassificationinfo1" aria-expanded="true"
-            class="card-title">Account Classification Detail
+            class="card-title">Classification Detail
           </a>
         </div>
       </div>

@@ -144,7 +144,7 @@ export class JournalService {
 
     if (response.account_DETAIL != null) {
       response.account = this.accountservice.getDetail(JSON.parse(response.account_DETAIL));
-      response.account_DETAIL = response.account.account_CODE + ' - ' + response.account.account_TITLE;
+      response.account_DETAIL = response.account.account_TITLE;
     }
 
     return (response);
