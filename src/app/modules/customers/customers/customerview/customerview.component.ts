@@ -41,6 +41,7 @@ export class CustomerviewComponent implements OnInit {
   cancel() {
     this.router.navigate(["/home/customers"], { queryParams: {} });
   }
+
   addNewbankaccount() {
     this.addbankaccount.add();
     $("#addbankaccount").modal("show");

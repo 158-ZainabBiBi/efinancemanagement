@@ -2,7 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { BankaccountComponent } from 'src/app/components/account/bankaccount/bankaccount.component';
-import { TransactionComponent } from 'src/app/components/account/transaction/transaction.component';
+import { BankdepositComponent } from 'src/app/components/account/bankdeposit/bankdeposit.component';
+import { BanktransferComponent } from 'src/app/components/account/banktransfer/banktransfer.component';
 
 declare var $: any;
 
@@ -14,9 +15,13 @@ declare var $: any;
 export class BankaccountviewComponent implements OnInit {
   @ViewChild("bankaccounts") bankaccounts: BankaccountComponent;
 
-  @ViewChild("transaction") transaction: TransactionComponent;
-  @ViewChild("addtransaction") addtransaction: TransactionComponent;
-  @ViewChild("edittransaction") edittransaction: TransactionComponent;
+  @ViewChild("banktransfer") banktransfer: BanktransferComponent;
+  @ViewChild("addbanktransfer") addbanktransfer: BanktransferComponent;
+  @ViewChild("editbanktransfer") editbanktransfer: BanktransferComponent;
+
+  @ViewChild("bankdeposit") bankdeposit: BankdepositComponent;
+  @ViewChild("addbankdeposit") addbankdeposit: BankdepositComponent;
+  @ViewChild("editbankdeposit") editbankdeposit: BankdepositComponent;
 
   bankaccountID = 0;
 
@@ -42,34 +47,64 @@ export class BankaccountviewComponent implements OnInit {
     this.router.navigate(["/home/bankaccounts"], { queryParams: {} });
   }
 
-  addNewtransaction() {
-    this.addtransaction.add();
-    $("#addtransaction").modal("show");
+  addNewbanktransfer() {
+    this.addbanktransfer.add();
+    $("#addbanktransfer").modal("show");
   }
 
-  editTransaction(row) {
-    this.edittransaction.transaction = {
+  editBanktransfer(row) {
+    this.editbanktransfer.banktransfer = {
+      banktransfer_ID: row.data.banktransfer_ID,
+      frombankaccount_ID: row.data.frombankaccount_ID,
+      tobankaccount_ID: row.data.tobankaccount_ID,
       transaction_ID: row.data.transaction_ID,
-      bankaccount_ID: row.data.bankaccount_ID,
-      transactiontype_ID: row.data.transactiontype_ID,
-      currency_ID: row.data.currency_ID,
-      transaction_CODE: row.data.transaction_CODE,
-      transaction_DATE: row.data.transaction_DATE,
-      transaction_NAME: row.data.transaction_NAME,
-      transaction_AMOUNT: row.data.transaction_AMOUNT,
-      transaction_DESC: row.data.transaction_DESC,
+      banktransfer_CODE: row.data.banktransfer_CODE,
+      banktransfer_NAME: row.data.banktransfer_NAME,
+      banktransfer_AMOUNT: row.data.banktransfer_AMOUNT,
+      banktransfer_DESC: row.data.banktransfer_DESC,
       isactive: row.data.isactive
     };
     if (row.data.isactive == "Y") {
-      this.edittransaction.transaction.isactive = true;
+      this.editbanktransfer.banktransfer.isactive = true;
     } else {
-      this.edittransaction.transaction.isactive = false;
+      this.editbanktransfer.banktransfer.isactive = false;
     }
-    $("#edittransaction").modal("show");
+    $("#editbanktransfer").modal("show");
   }
 
-  canceltransaction() {
-    $("#addtransaction").modal("hide");
-    $("#edittransaction").modal("hide");
+  cancelbanktransfer() {
+    $("#addbanktransfer").modal("hide");
+    $("#editbanktransfer").modal("hide");
   }
+
+  addNewbankdeposit() {
+    this.addbankdeposit.add();
+    $("#addbankdeposit").modal("show");
+  }
+
+  editBankdeposit(row) {
+    this.editbankdeposit.bankdeposit = {
+      bankdeposit_ID: row.data.bankdeposit_ID,
+      frombankaccount_ID: row.data.frombankaccount_ID,
+      tobankaccount_ID: row.data.tobankaccount_ID,
+      transaction_ID: row.data.transaction_ID,
+      bankdeposit_CODE: row.data.bankdeposit_CODE,
+      bankdeposit_NAME: row.data.bankdeposit_NAME,
+      bankdeposit_AMOUNT: row.data.bankdeposit_AMOUNT,
+      bankdeposit_DESC: row.data.bankdeposit_DESC,
+      isactive: row.data.isactive
+    };
+    if (row.data.isactive == "Y") {
+      this.editbankdeposit.bankdeposit.isactive = true;
+    } else {
+      this.editbankdeposit.bankdeposit.isactive = false;
+    }
+    $("#editbankdeposit").modal("show");
+  }
+
+  cancelbankdeposit() {
+    $("#addbankdeposit").modal("hide");
+    $("#editbankdeposit").modal("hide");
+  }
+
 }

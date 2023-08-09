@@ -9,32 +9,38 @@ export const setting = {
   icon: 'favicon.ico',
 
   service_NAME: "LOOKUP",
-  locationservice_NAME: 'LOCATION',
   personservice_NAME: 'PERSON',
   companyservice_NAME: 'COMPANY',
+  locationservice_NAME: 'LOCATION',
   employeeservice_NAME: 'EMPLOYEE',
-
   accountservice_NAME: 'CWIZTECHACCOUNT',
   customerservice_NAME: 'CWIZTECHCUSTOMER',
   financeservice_NAME: 'CWIZTECHERPFINANCE',
-  // customerservice_NAME: 'KBFSCUSTOMER',
-  // financeservice_NAME: 'KBFSERPFINANCE',
 
   isHash: '/#',
-  // redirctPath: '',
   redirctPath: '/efinance',
 };
 
-// UOG
+////////////////////////UOG////////////////////////////////
 // AppsStorePath: "http://uog.cwiztech.com/apps/#/",
 // LoginAppPath: "http://uog.cwiztech.com/accounts/#/",
 // companyName: 'University of Gujrat',
 // companyShortName: 'UOG',
 // application_ID: "UOGAccountManagement",
 
-// CWIZTCH
+// redirctPath: '/fyp/efinance',
+
+// AccountAppPath: "http://uog.cwiztech.com/fyp/efinance/#/",
+
+//////////////////////CWIZTECH////////////////////////////////
 // AppsStorePath: "http://apps.cwiztech.com/#/",
 // LoginAppPath: "http://accounts.cwiztech.com/#/",
 // companyName: 'Compuwiz Technologies',
 // companyShortName: 'CWizTech',
 // application_ID: "CWIZTECHAccountManagement",
+
+// redirctPath: '/efinance',
+
+// AccountAppPath: "http://fyp.cwiztech.com/efinance/#/",
+
+//////////////////////////////////////////////////////////////

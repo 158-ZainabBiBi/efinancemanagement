@@ -39,41 +39,7 @@ export class TransactionviewComponent implements OnInit {
 
   refresh() {
     this.transactions.load(true);
-    this.journalcancel();
-  }
-
-  journaledit(row) {
-    this.editjournal.journal = {
-      journal_ID: row.data.journal_ID,
-      transaction_ID: row.data.transaction_ID,
-      account_ID: row.data.account_ID,
-
-      journal_CODE: row.data.journal_CODE,
-      journal_NAME: row.data.journal_NAME,
-      journal_DEBIT: row.data.journal_DEBIT,
-      journal_CREDIT: row.data.journal_CREDIT,
-
-      isactive: row.data.isactive
-    };
-    if (row.data.isactive == "Y") {
-      this.editjournal.journal.isactive = true;
-    } else {
-      this.editjournal.journal.isactive = false;
-    }
-    $("#edit").modal("show");
-  }
-
-  journalshow(row) {
-    this.router.navigate(["/home/journal"], { queryParams: { journal: row.data.journal_ID } });
-  }
-
-  journalcancel() {
-    $("#addjournal").modal("hide");
-    $("#editjournal").modal("hide");
-  }
-
-  journaladdNew() {
-    this.router.navigate(["/home/journal"], {});
+    this.cancel();
   }
 
 }

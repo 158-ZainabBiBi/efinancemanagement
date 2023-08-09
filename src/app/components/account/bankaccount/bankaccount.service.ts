@@ -145,12 +145,12 @@ export class BankaccountService {
 
     if (response.bankaccounttype_DETAIL != null) {
       response.bankaccounttype = JSON.parse(response.bankaccounttype_DETAIL);
-      response.bankaccounttype_DETAIL = response.bankaccounttype.code + ' - ' + response.bankaccounttype.description;
+      response.bankaccounttype_DETAIL = response.bankaccounttype.description;
     }
 
     if (response.paymentmethod_DETAIL != null) {
       response.paymentmethod = JSON.parse(response.paymentmethod_DETAIL);
-      response.paymentmethod_DETAIL = response.paymentmethod.code + ' - ' + response.paymentmethod.description;
+      response.paymentmethod_DETAIL = response.paymentmethod.description;
     }
 
     return (response);

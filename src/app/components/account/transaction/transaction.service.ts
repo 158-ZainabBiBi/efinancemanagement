@@ -147,7 +147,7 @@ export class TransactionService {
 
     if (response.bankaccount_DETAIL != null) {
       response.bankaccount = this.bankaccountservice.getDetail(JSON.parse(response.bankaccount_DETAIL));
-      response.bankaccount_DETAIL = response.bankaccount.bankaccount_NUMBER + ' - ' + response.bankaccount.bankaccount_NAME;
+      response.bankaccount_DETAIL = response.bankaccount.bankaccount_NUMBER;
     }
 
     return (response);

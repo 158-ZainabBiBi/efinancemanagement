@@ -131,7 +131,7 @@
         <dxo-header-filter [visible]="true"></dxo-header-filter>
         <dxo-search-panel [visible]="true"></dxo-search-panel>
         <dxo-group-panel [visible]="false"></dxo-group-panel>
-        <dxo-grouping #expand [autoExpandAll]="false"></dxo-grouping>
+        <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
         <dxo-scrolling mode="virtual"></dxo-scrolling>
         <dxo-sorting mode="multiple"></dxo-sorting>
         <dxo-selection mode="single"></dxo-selection>
@@ -139,9 +139,9 @@
           cellTemplate="cellTemplate"></dxi-column>
 
         <dxi-column dataField="banktransfer_CODE" caption="Code" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="transaction_DETAIL" caption="Date" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column [width]="200" dataField="banktransfer_NAME" caption="Name" cssClass="myClass"
-          alignment="left"></dxi-column>
+        <dxi-column dataField="transaction_DETAIL" caption="Date" cssClass="myClass" alignment="left"
+          [groupIndex]="0"></dxi-column>
+        <dxi-column dataField="banktransfer_NAME" caption="Name" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="frombankaccount_DETAIL" caption="From Account" cssClass="myClass"
           alignment="left"></dxi-column>
         <dxi-column dataField="tobankaccount_DETAIL" caption="To Account" cssClass="myClass"
@@ -172,7 +172,7 @@
         <dxo-header-filter [visible]="true"></dxo-header-filter>
         <dxo-search-panel [visible]="true"></dxo-search-panel>
         <dxo-group-panel [visible]="false"></dxo-group-panel>
-        <dxo-grouping #expand [autoExpandAll]="false"></dxo-grouping>
+        <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
         <dxo-scrolling mode="virtual"></dxo-scrolling>
         <dxo-sorting mode="multiple"></dxo-sorting>
         <dxo-selection mode="single"></dxo-selection>
@@ -180,9 +180,9 @@
           cellTemplate="cellTemplate"></dxi-column>
 
         <dxi-column dataField="banktransfer_CODE" caption="Code" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="transaction_DETAIL" caption="Date" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column [width]="200" dataField="banktransfer_NAME" caption="Name" cssClass="myClass"
-          alignment="left"></dxi-column>
+        <dxi-column dataField="transaction_DETAIL" caption="Date" cssClass="myClass" alignment="left"
+          [groupIndex]="0"></dxi-column>
+        <dxi-column dataField="banktransfer_NAME" caption="Name" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="frombankaccount_DETAIL" caption="From Account" cssClass="myClass"
           alignment="left"></dxi-column>
         <dxi-column dataField="tobankaccount_DETAIL" caption="To Account" cssClass="myClass"
