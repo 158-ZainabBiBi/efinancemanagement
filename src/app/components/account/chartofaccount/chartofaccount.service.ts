@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpCallServieService } from 'src/app/services/http-call-servie.service';
 import { setting } from 'src/app/setting';
-import { LedgerService } from '../ledger/ledger.service';
+
+import { AccountclassificationService } from '../accountclassification/accountclassification.service';
+import { JournalService } from '../journal/journal.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,15 +12,15 @@ export class ChartofaccountService {
 
   constructor(
     private _HttpCallServieService_: HttpCallServieService,
-    private ledgerservice: LedgerService
+    private accountclassificationservice: AccountclassificationService,
+    private journalservice: JournalService,
   ) { }
-
 
   get() {
     var postData = {
       service_NAME: setting.accountservice_NAME,
       request_TYPE: "GET",
-      request_URI: "chartofaccount",
+      request_URI: "ledger",
       request_BODY: ""
     }
     return this._HttpCallServieService_.api(postData);
@@ -28,7 +30,7 @@ export class ChartofaccountService {
     var postData = {
       service_NAME: setting.accountservice_NAME,
       request_TYPE: "GET",
-      request_URI: "chartofaccount/all",
+      request_URI: "ledger/all",
       request_BODY: ""
     }
     return this._HttpCallServieService_.api(postData);
@@ -39,7 +41,7 @@ export class ChartofaccountService {
     var postData = {
       service_NAME: setting.accountservice_NAME,
       request_TYPE: "GET",
-      request_URI: "chartofaccount/" + id,
+      request_URI: "ledger/" + id,
       request_BODY: ""
     }
     return this._HttpCallServieService_.api(postData);
@@ -49,7 +51,7 @@ export class ChartofaccountService {
     var postData = {
       service_NAME: setting.accountservice_NAME,
       request_TYPE: "POST",
-      request_URI: "chartofaccount",
+      request_URI: "ledger",
       request_BODY: JSON.stringify(data)
     }
     return this._HttpCallServieService_.api(postData);
@@ -59,7 +61,7 @@ export class ChartofaccountService {
     var postData = {
       service_NAME: setting.accountservice_NAME,
       request_TYPE: "PUT",
-      request_URI: "chartofaccount/" + id,
+      request_URI: "ledger/" + id,
       request_BODY: JSON.stringify(data)
 
     }
@@ -70,7 +72,7 @@ export class ChartofaccountService {
     var postData = {
       service_NAME: setting.accountservice_NAME,
       request_TYPE: "PUT",
-      request_URI: "chartofaccount",
+      request_URI: "ledger",
       request_BODY: JSON.stringify(data)
 
     }
@@ -81,7 +83,7 @@ export class ChartofaccountService {
     var postData = {
       service_NAME: setting.accountservice_NAME,
       request_TYPE: "DELETE",
-      request_URI: "chartofaccount/" + id,
+      request_URI: "ledger/" + id,
       request_BODY: ""
     }
     return this._HttpCallServieService_.api(postData);
@@ -91,7 +93,7 @@ export class ChartofaccountService {
     var postData = {
       service_NAME: setting.accountservice_NAME,
       request_TYPE: "POST",
-      request_URI: "chartofaccount/search",
+      request_URI: "ledger/search",
       request_BODY: JSON.stringify(data)
 
     }
@@ -102,7 +104,7 @@ export class ChartofaccountService {
     var postData = {
       service_NAME: setting.accountservice_NAME,
       request_TYPE: "POST",
-      request_URI: "chartofaccount/search/all",
+      request_URI: "ledger/search/all",
       request_BODY: JSON.stringify(data)
     }
     return this._HttpCallServieService_.api(postData);
@@ -112,7 +114,7 @@ export class ChartofaccountService {
     var postData = {
       service_NAME: setting.accountservice_NAME,
       request_TYPE: "POST",
-      request_URI: "chartofaccount/advancedsearch",
+      request_URI: "ledger/advancedsearch",
       request_BODY: JSON.stringify(data)
     }
     return this._HttpCallServieService_.api(postData);
@@ -122,7 +124,7 @@ export class ChartofaccountService {
     var postData = {
       service_NAME: setting.accountservice_NAME,
       request_TYPE: "POST",
-      request_URI: "chartofaccount/advancedsearch/all",
+      request_URI: "ledger/advancedsearch/all",
       request_BODY: JSON.stringify(data)
     }
     return this._HttpCallServieService_.api(postData);
@@ -136,9 +138,14 @@ export class ChartofaccountService {
   }
 
   getDetail(response) {
-    if (response.ledger_DETAIL != null) {
-      response.ledger = this.ledgerservice.getDetail(JSON.parse(response.ledger_DETAIL));
-      response.ledger_DETAIL = response.ledger.ledger_NAME + ' - ' + response.ledger.accountclassification_DETAIL;
+    if (response.journal_DETAIL != null) {
+      response.journal = this.journalservice.getDetail(JSON.parse(response.journal_DETAIL));
+      response.journal_DETAIL = response.journal.transaction_DETAIL;
+    }
+
+    if (response.accountclassification_DETAIL != null) {
+      response.accountclassification = this.accountclassificationservice.getDetail(JSON.parse(response.accountclassification_DETAIL));
+      response.accountclassification_DETAIL = response.accountclassification.accountclassification_NAME;
     }
     return (response);
   }

@@ -1,134 +1,7 @@
-<div *ngIf="view==1" class="form-group">
-  <label class="custom-label form-label">Chart of Account
-    <span style="color: red;" [hidden]="disabled" *ngIf="iscompulsory==true">*</span>
-  </label>
-  <div class="row" *ngIf="disabled==true">
-    <div class="col-md-12">
-      <ng-select [(ngModel)]="chartofaccountID" [disabled]="disabled" name="chartofaccountID"
-        (change)="onChange($event)">
-        <ng-option *ngFor="let chartofaccount of chartofaccountsAll" [value]="chartofaccount.chartofaccount_ID">
-          {{ chartofaccount.chartofaccount_CODE }} - {{ chartofaccount.ledger_DETAIL }}
-        </ng-option>
-      </ng-select>
-    </div>
-  </div>
-  <div class="row" *ngIf="disabled==false">
-    <div class="col-md-10">
-      <ng-select [(ngModel)]="chartofaccountID" name="chartofaccountID" (change)="onChange($event)">
-        <ng-option *ngFor="let chartofaccount of chartofaccounts" [value]="chartofaccount.chartofaccount_ID"
-          [disabled]="disabled">
-          {{ chartofaccount.chartofaccount_CODE }} - {{ chartofaccount.ledger_DETAIL }}
-        </ng-option>
-      </ng-select>
-    </div>
-    <div class="col-md-2">
-      <button type="button" class="btn btn-light ml-2" (click)="load(true)">
-        <i class="fa fa-refresh" aria-hidden="true"></i>
-      </button>
-    </div>
-  </div>
-</div>
-
-<div *ngIf="view==10" class="form-group">
-  <label class="custom-label form-label">Chart of Account
-    <span style="color: red;" [hidden]="disabled" *ngIf="iscompulsory==true">*</span>
-  </label>
-  <div class="row" *ngIf="disabled==true">
-    <div class="col-md-12">
-      <ng-select [(ngModel)]="chartofaccountID" [disabled]="disabled" name="chartofaccountID"
-        (change)="onChange($event)">
-        <ng-option *ngFor="let chartofaccount of chartofaccountsAll" [value]="chartofaccount.chartofaccount_ID">
-          {{ chartofaccount.chartofaccount_CODE }} - {{ chartofaccount.ledger_DETAIL }}
-        </ng-option>
-      </ng-select>
-    </div>
-  </div>
-  <div class="row" *ngIf="disabled==false">
-    <div class="col-md-10">
-      <ng-select [(ngModel)]="chartofaccountID" name="chartofaccountID" (change)="onChange($event)">
-        <ng-option *ngFor="let chartofaccount of chartofaccountsAll" [value]="chartofaccount.chartofaccount_ID"
-          [disabled]="disabled">
-          {{ chartofaccount.chartofaccount_CODE }} - {{ chartofaccount.ledger_DETAIL }}
-        </ng-option>
-      </ng-select>
-    </div>
-    <div class="col-md-2">
-      <button type="button" class="btn btn-light ml-2" (click)="load(true)">
-        <i class="fa fa-refresh" aria-hidden="true"></i>
-      </button>
-    </div>
-  </div>
-</div>
-
-<div *ngIf="view==11" class="form-group">
-  <label class="custom-label form-label">Chart of Account
-    <span style="color: red;" [hidden]="disabled" *ngIf="iscompulsory==true">*</span>
-  </label>
-  <div class="row" *ngIf="disabled==true">
-    <div class="col-md-12">
-      <ng-select [(ngModel)]="chartofaccountID" [disabled]="disabled" name="chartofaccountID">
-        <ng-option *ngFor="let chartofaccount of chartofaccountsAll" [value]="chartofaccount.chartofaccount_ID"
-          [disabled]="disabled">
-          {{ chartofaccount.chartofaccount_CODE }} - {{ chartofaccount.ledger_DETAIL }}
-        </ng-option>
-      </ng-select>
-    </div>
-  </div>
-  <div class="row" *ngIf="disabled==false">
-    <div class="col-md-10">
-      <ng-select [(ngModel)]="chartofaccountID" [disabled]="disabled" name="chartofaccountID"
-        (change)="onChange($event)">
-        <ng-option *ngFor="let chartofaccount of chartofaccounts" [value]="chartofaccount.chartofaccount_ID"
-          [disabled]="disabled">
-          {{ chartofaccount.chartofaccount_CODE }} - {{ chartofaccount.ledger_DETAIL }}
-        </ng-option>
-      </ng-select>
-    </div>
-    <div class="col-md-2">
-      <button type="button" class="btn btn-light ml-2" [hidden]="disabled" (click)="load(true)">
-        <i class="fa fa-refresh" aria-hidden="true"></i>
-      </button>
-    </div>
-  </div>
-</div>
-
-<div *ngIf="view==19" class="form-group">
-  <label class="custom-label form-label">Chart of Account
-    <span style="color: red;" [hidden]="disabled" *ngIf="iscompulsory==true">*</span>
-  </label>
-  <div class="row" *ngIf="disabled==true">
-    <div class="col-md-12">
-      <ng-select [(ngModel)]="chartofaccountID" [disabled]="disabled" name="chartofaccountID"
-        (change)="onChange($event)">
-        <ng-option *ngFor="let chartofaccount of chartofaccountsAll" [value]="chartofaccount.chartofaccount_ID"
-          [disabled]="disabled">
-          {{ chartofaccount.chartofaccount_CODE }} - {{ chartofaccount.ledger_DETAIL }}
-        </ng-option>
-      </ng-select>
-    </div>
-  </div>
-  <div class="row" *ngIf="disabled==false">
-    <div class="col-md-10">
-      <ng-select [(ngModel)]="chartofaccountID" [disabled]="disabled" name="chartofaccountID"
-        (change)="onChange($event)">
-        <ng-option *ngFor="let chartofaccount of chartofaccountsAll" [value]="chartofaccount.chartofaccount_ID"
-          [disabled]="disabled">
-          {{ chartofaccount.chartofaccount_CODE }} - {{ chartofaccount.ledger_DETAIL }}
-        </ng-option>
-      </ng-select>
-    </div>
-    <div class="col-md-2">
-      <button type="button" class="btn btn-light ml-2" [hidden]="disabled" (click)="load(true)">
-        <i class="fa fa-refresh" aria-hidden="true"></i>
-      </button>
-    </div>
-  </div>
-</div>
-
 <div *ngIf="view==2" class="form-group">
   <div class="outer-div">
     <div class="grid-wrapper">
-      <dx-data-grid #grid id="gridContainer" [dataSource]="chartofaccountsAll" keyExpr="chartofaccount_ID"
+      <dx-data-grid #grid id="gridContainer" [dataSource]="chartofaccountsAll" keyExpr="ledger_ID"
         [showColumnLines]="true" [showRowLines]="true" [showBorders]="true" [rowAlternationEnabled]="true"
         [allowColumnResizing]="true" [columnMinWidth]="30" [columnAutoWidth]="true" [remoteOperations]="true"
         height="600" width="100%" (onToolbarPreparing)="onToolbarPreparing($event)">
@@ -136,21 +9,17 @@
         <dxo-header-filter [visible]="true"></dxo-header-filter>
         <dxo-search-panel [visible]="true"></dxo-search-panel>
         <dxo-group-panel [visible]="false"></dxo-group-panel>
-        <dxo-grouping #expand [autoExpandAll]="false"></dxo-grouping>
+        <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
         <dxo-scrolling mode="virtual"></dxo-scrolling>
         <dxo-sorting mode="multiple"></dxo-sorting>
         <dxo-selection mode="single"></dxo-selection>
-        <dxi-column [width]="75" [allowFiltering]="false" [allowSorting]="false" alignment="center"
-          cellTemplate="cellTemplate"></dxi-column>
 
-        <dxi-column dataField="chartofaccount_CODE" caption="Code" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="chartofaccount_NAME" caption="Name" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="ledger.ledger_NAME" caption="Ledger A/c" cssClass="myClass"
-          alignment="left"></dxi-column>
-        <dxi-column dataField="ledger.accountclassification_DETAIL" caption="Classification" cssClass="myClass"
-          alignment="left"></dxi-column>
-        <dxi-column dataField="ledger.accountclassification.accounttype_DETAIL" caption="Type" cssClass="myClass"
-          alignment="left"></dxi-column>
+        <dxi-column dataField="ledger_CODE" caption="Code" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="ledger_NAME" caption="Name" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="accountclassification_DETAIL" caption="Classification" cssClass="myClass"
+          alignment="left" [groupIndex]="1"></dxi-column>
+        <dxi-column dataField="accountclassification.accounttype_DETAIL" caption="Type" cssClass="myClass"
+          alignment="left" [groupIndex]="0"></dxi-column>
         <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass"
           alignment="center"></dxi-column>
 
@@ -166,29 +35,25 @@
 <div *ngIf="view==22" class="form-group">
   <div class="outer-div">
     <div class="grid-wrapper">
-      <dx-data-grid #grid id="gridContainer" [dataSource]="chartofaccounts" keyExpr="chartofaccount_ID"
-        [showColumnLines]="true" [showRowLines]="true" [showBorders]="true" [rowAlternationEnabled]="true"
-        [allowColumnResizing]="true" [columnMinWidth]="30" [columnAutoWidth]="true" [remoteOperations]="true"
-        height="600" width="100%" (onToolbarPreparing)="onToolbarPreparing($event)">
+      <dx-data-grid #grid id="gridContainer" [dataSource]="chartofaccounts" keyExpr="ledger_ID" [showColumnLines]="true"
+        [showRowLines]="true" [showBorders]="true" [rowAlternationEnabled]="true" [allowColumnResizing]="true"
+        [columnMinWidth]="30" [columnAutoWidth]="true" [remoteOperations]="true" height="600" width="100%"
+        (onToolbarPreparing)="onToolbarPreparing($event)">
         <dxo-filter-row [visible]="true"></dxo-filter-row>
         <dxo-header-filter [visible]="true"></dxo-header-filter>
         <dxo-search-panel [visible]="true"></dxo-search-panel>
         <dxo-group-panel [visible]="false"></dxo-group-panel>
-        <dxo-grouping #expand [autoExpandAll]="false"></dxo-grouping>
+        <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
         <dxo-scrolling mode="virtual"></dxo-scrolling>
         <dxo-sorting mode="multiple"></dxo-sorting>
         <dxo-selection mode="single"></dxo-selection>
-        <dxi-column [width]="75" [allowFiltering]="false" [allowSorting]="false" alignment="center"
-          cellTemplate="cellTemplate"></dxi-column>
 
-        <dxi-column dataField="chartofaccount_CODE" caption="Code" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="chartofaccount_NAME" caption="Name" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="ledger.ledger_NAME" caption="Ledger A/c" cssClass="myClass"
+        <dxi-column dataField="ledger_CODE" caption="Code" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="ledger_NAME" caption="Name" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="accountclassification_DETAIL" caption="Classification" cssClass="myClass"
           alignment="left"></dxi-column>
-        <dxi-column dataField="ledger.accountclassification_DETAIL" caption="Classification" cssClass="myClass"
-          alignment="left"></dxi-column>
-        <dxi-column dataField="ledger.accountclassification.accounttype_DETAIL" caption="Type" cssClass="myClass"
-          alignment="left"></dxi-column>
+        <dxi-column dataField="accountclassification.accounttype_DETAIL" caption="Type" cssClass="myClass"
+          alignment="left" [groupIndex]="0"></dxi-column>
         <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass"
           alignment="center"></dxi-column>
 
@@ -199,244 +64,4 @@
       </dx-data-grid>
     </div>
   </div>
-</div>
-
-<div *ngIf="view==3" class="form-group">
-  <form action="" class="form" (ngSubmit)="f.form.valid && chartofaccountAdd(chartofaccount)" #f="ngForm" novalidate>
-    <div class="modal-dialog modal-xl" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">
-            <i class="fa fa-plus" aria-hidden="true"></i> Add New Chart of Account
-          </h5>
-          <button aria-label="Close" class="close" data-dismiss="modal" type="button">
-            <span aria-hidden="true"> ×</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <label class="control-label">Code <span style="color:red">*</span></label>
-                <input type="text" class="form-control" name="chartofaccount_CODE"
-                  [(ngModel)]="chartofaccount.chartofaccount_CODE" pattern="^[-A-Za-z0-9]+$" #codeInput="ngModel"
-                  maxlength="50" required>
-                <div *ngIf="codeInput.invalid && (codeInput.dirty || codeInput.touched)">
-                  <div *ngIf="codeInput.errors.pattern">
-                    <span style="color:red">Only contain Alphnumeric & Hyphen(-).</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label class="control-label">Name <span style="color:red">*</span></label>
-                <input type="text" class="form-control" name="chartofaccount_NAME"
-                  [(ngModel)]="chartofaccount.chartofaccount_NAME" pattern="^[ A-Za-z0-9]+$" #nameInput="ngModel"
-                  maxlength="50" required>
-                <div *ngIf="nameInput.invalid && (nameInput.dirty || nameInput.touched)">
-                  <div *ngIf="nameInput.errors.pattern">
-                    <span style="color:red">Only contain Alphnumeric.</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <app-ledger #ledger [view]="1" [ledgerID]="chartofaccount.ledger_ID"
-                (onLedgerChange)="onLedgerChange($event)"></app-ledger>
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-primary" [disabled]="f.invalid">
-            <i class="fa fa-plus" aria-hidden="true"></i> Add
-          </button>
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-        </div>
-      </div>
-    </div>
-  </form>
-</div>
-
-<div *ngIf="view==4" class="form-group">
-  <form action="" class="form" (ngSubmit)="f.form.valid && chartofaccountUpdate(chartofaccount)" #f="ngForm" novalidate>
-    <div class="modal-dialog modal-xl" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">
-            <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit Chart of Account
-          </h5>
-          <button aria-label="Close" class="close" data-dismiss="modal" type="button">
-            <span aria-hidden="true"> ×</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <label class="control-label">Code <span style="color:red">*</span></label>
-                <input type="text" class="form-control" name="chartofaccount_CODE"
-                  [(ngModel)]="chartofaccount.chartofaccount_CODE" pattern="^[-A-Za-z0-9]+$" #codeInput="ngModel"
-                  maxlength="50" required>
-                <div *ngIf="codeInput.invalid && (codeInput.dirty || codeInput.touched)">
-                  <div *ngIf="codeInput.errors.pattern">
-                    <span style="color:red">Only contain Alphnumeric & Hyphen(-).</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label class="control-label">Name <span style="color:red">*</span></label>
-                <input type="text" class="form-control" name="chartofaccount_NAME"
-                  [(ngModel)]="chartofaccount.chartofaccount_NAME" pattern="^[ A-Za-z0-9]+$" #nameInput="ngModel"
-                  maxlength="50" required>
-                <div *ngIf="nameInput.invalid && (nameInput.dirty || nameInput.touched)">
-                  <div *ngIf="nameInput.errors.pattern">
-                    <span style="color:red">Only contain Alphnumeric.</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <app-ledger #ledger [view]="1" [ledgerID]="chartofaccount.ledger_ID"
-                (onLedgerChange)="onLedgerChange($event)"></app-ledger>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <div class="form-group">
-                <div class="checkbox">
-                  <label class="control-label">
-                    <input type="checkbox" [checked]="chartofaccount.isactive" [(ngModel)]="chartofaccount.isactive"
-                      name="isactive">
-                    Active
-                  </label>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-primary" [disabled]="f.invalid">
-            <i class="fa fa-plus" aria-hidden="true"></i> Update
-          </button>
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-        </div>
-      </div>
-    </div>
-  </form>
-</div>
-
-<div *ngIf="view==5" class="form-group">
-  <div class="card-primary card">
-    <div class="card-header">
-      <div class="align-items-center row">
-        <div class="col" *ngIf="chartofaccount.chartofaccount_ID==0">
-          <a href="javascript:void" aria-controls="collapse-chartofaccountinfo1" aria-expanded="true"
-            class="card-title">
-            Add New Chart of Account
-          </a>
-        </div>
-        <div class="col" *ngIf="chartofaccount.chartofaccount_ID!=0 && disabled==false">
-          <a href="javascript:void" aria-controls="collapse-chartofaccountinfo1" aria-expanded="true"
-            class="card-title">
-            Edit Chart of Account
-          </a>
-        </div>
-        <div class="col" *ngIf="chartofaccount.chartofaccount_ID!=0 && disabled==true">
-          <a href="javascript:void" aria-controls="collapse-chartofaccountinfo1" aria-expanded="true"
-            class="card-title">Chart of Account Detail
-          </a>
-        </div>
-      </div>
-    </div>
-    <div class="card-body">
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <label class="control-label">Code <span style="color:red">*</span></label>
-                <input type="text" class="form-control" name="chartofaccount_CODE"
-                  [(ngModel)]="chartofaccount.chartofaccount_CODE" [disabled]="disabled" pattern="^[-A-Za-z0-9]+$"
-                  #codeInput="ngModel" maxlength="50" required>
-                <div *ngIf="codeInput.invalid && (codeInput.dirty || codeInput.touched)">
-                  <div *ngIf="codeInput.errors.pattern">
-                    <span style="color:red">Only contain Alphnumeric & Hyphen(-).</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label class="control-label">Name <span style="color:red">*</span></label>
-                <input type="text" class="form-control" name="chartofaccount_NAME"
-                  [(ngModel)]="chartofaccount.chartofaccount_NAME" [disabled]="disabled" pattern="^[ A-Za-z0-9]+$"
-                  #nameInput="ngModel" maxlength="50" required>
-                <div *ngIf="nameInput.invalid && (nameInput.dirty || nameInput.touched)">
-                  <div *ngIf="nameInput.errors.pattern">
-                    <span style="color:red">Only contain Alphnumeric.</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-8">
-              <app-ledger #ledger [view]="1" [disabled]="disabled" [ledgerID]=chartofaccount.ledger_ID
-                (onLedgerChange)="onLedgerChange($event)"></app-ledger>
-            </div>
-            <div class="col-md-4">
-              <br />
-              <button type="button" *ngIf="chartofaccount.chartofaccount_ID==0" (click)="ledgerAddNew()"
-                class="btn btn-secondary btn-sm">
-                <i class="fas fa-plus fa-fw"></i> Add New Ledger
-              </button>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12" *ngIf="chartofaccount.chartofaccount_ID!=0">
-              <div class="form-group">
-                <div class="checkbox">
-                  <label class="control-label">
-                    <input type="checkbox" [checked]="chartofaccount.isactive" [(ngModel)]="chartofaccount.isactive"
-                      [disabled]="disabled" name="isactive">
-                    Active
-                  </label>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <button *ngIf="chartofaccount.chartofaccount_ID!=0 && disabled==true" (click)="editView()" id="cancel"
-                class="btn btn-primary" style="float: right;"> Edit
-              </button>
-              <button *ngIf="disabled==false" type="button" (click)='chartofaccountCancel()' style="float: right;"
-                class="btn btn-light" data-dismiss="modal"> Cancel
-              </button>
-              <button *ngIf="chartofaccount.chartofaccount_ID!=0 && disabled==false" type="button" data-dismiss="modal"
-                style=" margin-right: 10px; float: right;" (click)='chartofaccountUpdate(chartofaccount)'
-                class="btn btn-primary">
-                Update
-              </button>
-              <button *ngIf="chartofaccount.chartofaccount_ID==0" type="button" data-dismiss="modal"
-                style=" margin-right: 10px; float: right;" (click)='chartofaccountAdd(chartofaccount)'
-                class="btn btn-primary"> Save
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div aria-labelledby="exampleModalLabel" class="modal fade show" id="addledger" role="dialog" tabindex="-1">
-  <app-ledger #addledger [view]=3 (refresh)="ledgerrefresh()" (cancel)="ledgerCancel()"></app-ledger>
 </div>

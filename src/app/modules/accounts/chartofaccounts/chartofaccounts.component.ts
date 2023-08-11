@@ -36,7 +36,7 @@ export class ChartofaccountsComponent implements OnInit {
   }
 
   show(row) {
-    this.router.navigate(["/home/chartofaccount"], { queryParams: { chartofaccount: row.data.chartofaccount_ID } });
+    this.router.navigate(["/home/chartofaccount"], { queryParams: { chartofaccount: row.data.ledger_ID } });
   }
 
   addNew() {
@@ -47,10 +47,13 @@ export class ChartofaccountsComponent implements OnInit {
 
   edit(row) {
     this.editchartofaccount.chartofaccount = {
-      chartofaccount_ID: row.data.chartofaccount_ID,
-      chartofaccount_CODE: row.data.chartofaccount_CODE,
-      chartofaccount_NAME: row.data.chartofaccount_NAME,
       ledger_ID: row.data.ledger_ID,
+      journal_ID: row.data.journal_ID,
+      ledger_CODE: row.data.ledger_CODE,
+      ledger_NAME: row.data.ledger_NAME,
+      accountclassification_ID: row.data.accountclassification_ID,
+      ledger_DEBIT: row.data.ledger_DEBIT,
+      ledger_CREDIT: row.data.ledger_CREDIT,
       isactive: row.data.isactive
     };
 

@@ -5,6 +5,8 @@ import { OnFailService } from '../../../services/on-fail.service';
 
 import { ChartofaccountService } from './chartofaccount.service';
 import { LedgerComponent } from '../ledger/ledger.component';
+import { AccountclassificationComponent } from '../accountclassification/accountclassification.component';
+import { JournalComponent } from '../journal/journal.component';
 
 declare var $: any;
 
@@ -14,9 +16,13 @@ declare var $: any;
   styleUrls: ['./chartofaccount.component.css']
 })
 export class ChartofaccountComponent implements OnInit {
-  @ViewChild("ledger") ledger: LedgerComponent;
-  @ViewChild("addledger") addledger: LedgerComponent;
-  @ViewChild("editledger") editledger: LedgerComponent;
+  @ViewChild("journal") journal: JournalComponent;
+  @ViewChild("addjournal") addjournal: JournalComponent;
+  @ViewChild("editjournal") editjournal: JournalComponent;
+
+  @ViewChild("accountclassification") accountclassification: AccountclassificationComponent;
+  @ViewChild("addaccountclassification") addaccountclassification: AccountclassificationComponent;
+  @ViewChild("editaccountclassification") editaccountclassification: AccountclassificationComponent;
 
   @Input()
   view: number = 1;
@@ -30,8 +36,6 @@ export class ChartofaccountComponent implements OnInit {
   all: boolean = false;
   @Input()
   chartofaccountID = null;
-  @Input()
-  ledgerID = null;
 
   @Output() edit = new EventEmitter();
   @Output() cancel = new EventEmitter();
@@ -42,11 +46,16 @@ export class ChartofaccountComponent implements OnInit {
   chartofaccounts = [];
   chartofaccountsAll = [];
   chartofaccount = {
-    chartofaccount_ID: 0,
-    chartofaccount_CODE: null,
-    chartofaccount_NAME: null,
-    ledger_ID: null,
-    isactive: true
+    ledger_ID: 0,
+    journal_ID: null,
+    accountclassification_ID: null,
+
+    ledger_CODE: null,
+    ledger_CREDIT: null,
+    ledger_DEBIT: null,
+    ledger_NAME: null,
+
+    isactive: true,
   }
 
   constructor(
@@ -81,7 +90,7 @@ export class ChartofaccountComponent implements OnInit {
     }
 
     var search = {
-      ledger_ID: this.ledgerID
+      ledger_ID: this.chartofaccountID
     }
 
     if (this.view >= 5 && this.view <= 6 && this.chartofaccountID) {
@@ -113,32 +122,17 @@ export class ChartofaccountComponent implements OnInit {
 
   add() {
     this.chartofaccount = {
-      chartofaccount_ID: 0,
-      chartofaccount_CODE: null,
-      chartofaccount_NAME: null,
-      ledger_ID: null,
-      isactive: true
+      ledger_ID: 0,
+      journal_ID: null,
+      accountclassification_ID: null,
+
+      ledger_CODE: null,
+      ledger_CREDIT: null,
+      ledger_DEBIT: null,
+      ledger_NAME: null,
+
+      isactive: true,
     };
-  }
-
-  ledgerAddNew() {
-    this.addledger.add();
-    $("#addledger").modal("show");
-  }
-
-  ledgerrefresh() {
-    this.ledger.load(true);
-    this.ledgerCancel();
-  }
-
-  ledgerCancel() {
-    $("#addledger").modal("hide");
-    $("#editledger").modal("hide");
-    this.ledger.ledgers = this.addledger.ledgers;
-  }
-
-  onLedgerChange(ledger) {
-    this.chartofaccount.chartofaccount_NAME = ledger.ledger_NAME;
   }
 
   update(row) {
@@ -163,14 +157,14 @@ export class ChartofaccountComponent implements OnInit {
 
   chartofaccountCancel() {
     this.disabled = true;
-    if (this.chartofaccount.chartofaccount_ID == 0) {
+    if (this.chartofaccount.ledger_ID == 0) {
       this.router.navigate(["/home/chartofaccounts"], {});
     }
   }
 
   onChange(chartofaccountID) {
     for (var i = 0; i < this.chartofaccountsAll.length; i++) {
-      if (this.chartofaccountsAll[i].chartofaccount_ID == chartofaccountID) {
+      if (this.chartofaccountsAll[i].ledger_ID == chartofaccountID) {
         this.onChartofaccountChange.next(this.chartofaccountsAll[i]);
         break;
       }
@@ -178,8 +172,7 @@ export class ChartofaccountComponent implements OnInit {
   }
 
   setChartofaccount(response) {
-    this.chartofaccountID = response.chartofaccount_ID;
-    this.ledgerID = response.ledger_ID;
+    this.chartofaccountID = response.ledger_ID;
 
     if (response.isactive == "Y") {
       response.isactive = true;
@@ -240,14 +233,13 @@ export class ChartofaccountComponent implements OnInit {
   }
 
   chartofaccountAdd(chartofaccount) {
-    chartofaccount.ledger_ID = this.ledger.ledgerID;
 
     chartofaccount.isactive = "Y";
     this.chartofaccountservice.add(chartofaccount).subscribe(response => {
       if (response) {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
-        } else if (response.chartofaccount_ID) {
+        } else if (response.ledger_ID) {
           this.toastrservice.success("Success", "New Chart of Account Added");
           this.setChartofaccount(this.chartofaccountservice.getDetail(response));
           this.refresh.next();
@@ -263,18 +255,17 @@ export class ChartofaccountComponent implements OnInit {
   }
 
   chartofaccountUpdate(chartofaccount) {
-    chartofaccount.ledger_ID = this.ledger.ledgerID;
 
     if (chartofaccount.isactive == true) {
       chartofaccount.isactive = "Y";
     } else {
       chartofaccount.isactive = "N";
     }
-    this.chartofaccountservice.update(chartofaccount, chartofaccount.chartofaccount_ID).subscribe(response => {
+    this.chartofaccountservice.update(chartofaccount, chartofaccount.ledger_ID).subscribe(response => {
       if (response) {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
-        } else if (response.chartofaccount_ID) {
+        } else if (response.ledger_ID) {
           this.toastrservice.success("Success", "Chart of Account Updated");
           this.setChartofaccount(this.chartofaccountservice.getDetail(response));
           this.refresh.next();
@@ -344,7 +335,6 @@ export class ChartofaccountComponent implements OnInit {
   }
 
   chartofaccountAdvancedSearch(search) {
-    this.ledgerID = search.ledger_ID;
 
     this.chartofaccountservice.advancedSearch(search).subscribe(response => {
       if (response) {
@@ -361,7 +351,6 @@ export class ChartofaccountComponent implements OnInit {
   }
 
   chartofaccountAdvancedSearchAll(search) {
-    this.ledgerID = search.ledger_ID;
 
     this.chartofaccountservice.advancedSearchAll(search).subscribe(response => {
       if (response) {
