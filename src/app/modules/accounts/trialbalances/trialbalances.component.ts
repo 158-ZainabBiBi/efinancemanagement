@@ -68,4 +68,8 @@ export class TrialbalancesComponent implements OnInit {
     $("#edit").modal("hide");
   }
 
+  advancedSearch(search) {
+    this.trialbalances.trialbalanceAdvancedSearch(search);
+  }
+
 }

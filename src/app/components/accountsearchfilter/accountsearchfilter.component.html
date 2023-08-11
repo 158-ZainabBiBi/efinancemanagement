@@ -12,7 +12,7 @@
       </div>
       <div class="card-body">
         <div class="row">
-          <div class="col-md-2" *ngIf="transactiondatefrom==true">
+          <div class="col-md-4" *ngIf="transactiondatefrom==true">
             <div class="form-group">
               <label class="control-label" *ngIf="transactiondateto==true">Transaction Date From</label>
               <label class="control-label" *ngIf="transactiondateto==false">Transaction Date</label>
@@ -20,7 +20,7 @@
                 [(ngModel)]="search.transaction_DATEFROM" />
             </div>
           </div>
-          <div class="col-md-2" *ngIf="transactiondateto==true">
+          <div class="col-md-4" *ngIf="transactiondateto==true">
             <div class="form-group">
               <label class="control-label" *ngIf="transactiondatefrom==true">Transaction Date To</label>
               <label class="control-label" *ngIf="transactiondatefrom==false">Transaction Date</label>

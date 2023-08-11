@@ -230,7 +230,7 @@
         <dxo-header-filter [visible]="true"></dxo-header-filter>
         <dxo-search-panel [visible]="true"></dxo-search-panel>
         <dxo-group-panel [visible]="false"></dxo-group-panel>
-        <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
+        <dxo-grouping #expand [autoExpandAll]="false"></dxo-grouping>
         <dxo-scrolling mode="virtual"></dxo-scrolling>
         <dxo-sorting mode="multiple"></dxo-sorting>
         <dxo-selection mode="single"></dxo-selection>
@@ -243,8 +243,7 @@
         <dxi-column dataField="bankaccount_NUMBER" caption="Number" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="bankaccount_BIC" caption="BIC" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="bankaccount_IBAN" caption="IBAN" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="customer_DETAIL" caption="Customer" cssClass="myClass" alignment="left"
-          [groupIndex]="0"></dxi-column>
+        <dxi-column dataField="customer_DETAIL" caption="Customer" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="bankaccounttype_DETAIL" caption="Type" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="bankaccount_BALANCE" caption="Balance" cssClass="myClass"
           alignment="center"></dxi-column>

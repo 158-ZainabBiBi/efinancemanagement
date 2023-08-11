@@ -76,3 +76,7 @@ footer .footer-item {
   margin-bottom: 30px;
   padding-bottom: 30px
 }
+
+.center-text {
+  text-align: center;
+}

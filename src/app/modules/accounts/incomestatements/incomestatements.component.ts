@@ -67,4 +67,8 @@ export class IncomestatementsComponent implements OnInit {
     $("#edit").modal("hide");
   }
 
+  advancedSearch(search) {
+    this.incomestatements.incomestatementAdvancedSearch(search);
+  }
+
 }

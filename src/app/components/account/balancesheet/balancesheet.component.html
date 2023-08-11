@@ -139,9 +139,10 @@
           cellTemplate="cellTemplate"></dxi-column>
 
         <dxi-column dataField="balancesheet_CODE" caption="Code" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="ledger_DETAIL" caption="Date" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="balancesheet_NAME" caption="Name" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="ledger.ledger_NAME" caption="Ledger A/c" cssClass="myClass"
-          alignment="left"></dxi-column>
+        <!-- <dxi-column dataField="ledger.ledger_NAME" caption="Ledger A/c" cssClass="myClass"
+          alignment="left"></dxi-column> -->
         <dxi-column dataField="ledger.ledger_DEBIT" caption="Debit" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="ledger.ledger_CREDIT" caption="Credit" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="ledger.accountclassification_DETAIL" caption="Classification" cssClass="myClass"
@@ -171,17 +172,19 @@
         <dxo-header-filter [visible]="true"></dxo-header-filter>
         <dxo-search-panel [visible]="true"></dxo-search-panel>
         <dxo-group-panel [visible]="false"></dxo-group-panel>
-        <dxo-grouping #expand [autoExpandAll]="false"></dxo-grouping>
+        <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
         <dxo-scrolling mode="virtual"></dxo-scrolling>
         <dxo-sorting mode="multiple"></dxo-sorting>
         <dxo-selection mode="single"></dxo-selection>
         <dxi-column [width]="75" [allowFiltering]="false" [allowSorting]="false" alignment="center"
           cellTemplate="cellTemplate"></dxi-column>
 
+
         <dxi-column dataField="balancesheet_CODE" caption="Code" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="ledger_DETAIL" caption="Date" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="balancesheet_NAME" caption="Name" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="ledger.ledger_NAME" caption="Ledger A/c" cssClass="myClass"
-          alignment="left"></dxi-column>
+        <!-- <dxi-column dataField="ledger.ledger_NAME" caption="Ledger A/c" cssClass="myClass"
+            alignment="left"></dxi-column> -->
         <dxi-column dataField="ledger.ledger_DEBIT" caption="Debit" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="ledger.ledger_CREDIT" caption="Credit" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="ledger.accountclassification_DETAIL" caption="Classification" cssClass="myClass"

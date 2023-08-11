@@ -67,4 +67,8 @@ export class ProfitandlossesComponent implements OnInit {
     $("#edit").modal("hide");
   }
 
+  advancedSearch(search) {
+    this.profitandlosses.profitandlossAdvancedSearch(search);
+  }
+
 }

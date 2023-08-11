@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     if (this.loginservice.logged() == true) {
-      setTimeout(() => this.toastr.success("Sucessfully loged in!"));
+      setTimeout(() => this.toastr.success("Sucessfully logged in!"));
       this.offSpinner();
       redirectByHref(setting.redirctPath+"/#/home/indexes");
       return;
@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
           if (statusdetail && statusToken) {
             if (this.loginservice.logged()) {
               setTimeout(() =>
-                this.toastr.success("Sucessfully loged in!")
+                this.toastr.success("Sucessfully logged in!")
               );
               this.offSpinner();
               redirectByHref(setting.redirctPath+"/#/home/indexes")
