@@ -197,7 +197,7 @@ header {
 
 .fun-facts {
   margin-top: 140px;
-  background-image: url(src/assets/images/fun-facts-bg.jpg);
+  background-image: url(src/assets/images/fun-facts-bg.jpeg);
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -459,7 +459,7 @@ footer ul.menu-list li a:hover {
 
 .page-heading {
   text-align: center;
-  background-image: url(src/assets/images/page-heading-bg.jpg);
+  background-image: url(src/assets/images/page-heading-bg.jpeg);
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
