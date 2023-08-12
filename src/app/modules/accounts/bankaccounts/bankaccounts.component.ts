@@ -76,4 +76,8 @@ export class BankaccountsComponent implements OnInit {
     $("#editbankaccount").modal("hide");
   }
 
+  advancedSearch(search) {
+    this.bankaccounts.bankaccountAdvancedSearch(search);
+  }
+
 }

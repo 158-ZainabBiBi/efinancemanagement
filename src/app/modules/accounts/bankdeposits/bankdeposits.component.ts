@@ -71,4 +71,8 @@ export class BankdepositsComponent implements OnInit {
     $("#edit").modal("hide");
   }
 
+  advancedSearch(search) {
+    this.bankdeposits.bankdepositAdvancedSearch(search);
+  }
+
 }

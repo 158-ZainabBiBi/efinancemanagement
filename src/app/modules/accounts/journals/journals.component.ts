@@ -70,4 +70,8 @@ export class JournalsComponent implements OnInit {
     $("#edit").modal("hide");
   }
 
+  advancedSearch(search) {
+    this.journals.journalAdvancedSearch(search);
+  }
+
 }

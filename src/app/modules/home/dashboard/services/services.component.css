@@ -6,6 +6,11 @@ body {
   -moz-osx-font-smoothing: grayscale
 }
 
+.tab {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
 p {
   margin-bottom: 0;
   font-size: 14px;
@@ -151,11 +156,6 @@ header {
   margin-top: 140px
 }
 
-.service-item img {
-  width: 100%;
-  overflow: hidden
-}
-
 .callback-services {
   border-top: 1px solid #eee;
   padding-top: 140px
@@ -242,10 +242,6 @@ footer {
   color: #fff
 }
 
-footer .footer-item {
-  width: 300px
-}
-
 footer h4 {
   color: #fff;
   font-size: 20px;
@@ -256,53 +252,6 @@ footer h4 {
 
 footer p {
   color: #fff
-}
-
-footer ul.social-icons {
-  margin-top: 25px
-}
-
-footer ul.social-icons li {
-  display: inline-block;
-  margin-right: 5px
-}
-
-footer ul.social-icons li:last-child {
-  margin-right: 0
-}
-
-footer ul.social-icons li a {
-  width: 34px;
-  height: 34px;
-  display: inline-block;
-  line-height: 34px;
-  text-align: center;
-  background-color: #fff;
-  color: #232323;
-  border-radius: 50%;
-  transition: all .3s
-}
-
-footer ul.social-icons li a:hover {
-  background-color: #a4c639
-}
-
-footer ul.menu-list li {
-  margin-bottom: 13px
-}
-
-footer ul.menu-list li:last-child {
-  margin-bottom: 0
-}
-
-footer ul.menu-list li a {
-  font-size: 14px;
-  color: #fff;
-  transition: all .3s
-}
-
-footer ul.menu-list li a:hover {
-  color: #a4c639
 }
 
 .page-heading {
@@ -399,27 +348,13 @@ footer ul.menu-list li a:hover {
     text-align: center
   }
 
-  .services .service-item {
-    margin-bottom: 30px
-  }
-
   footer {
     padding: 80px 0 20px 0
-  }
-
-  footer .footer-item {
-    border-bottom: 1px solid #343434;
-    margin-bottom: 30px;
-    padding-bottom: 30px
   }
 
   .tabs-content {
     margin-left: 0;
     margin-top: 30px
-  }
-
-  .contact-item {
-    margin-bottom: 30px
   }
 }
 

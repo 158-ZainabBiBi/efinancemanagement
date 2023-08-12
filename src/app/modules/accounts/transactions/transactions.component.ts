@@ -72,4 +72,8 @@ export class TransactionsComponent implements OnInit {
     $("#edit").modal("hide");
   }
 
+  advancedSearch(search) {
+    this.transactions.transactionAdvancedSearch(search);
+  }
+
 }

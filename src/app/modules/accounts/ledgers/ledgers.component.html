@@ -1,37 +1,44 @@
 <div class="collapse-card-h container">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="card-primary card">
-          <div class="card-header">
-            <div class="align-items-center row">
-              <div class="col">
-                <a href="javascript:void" aria-controls="collapse-customerinfo1" aria-expanded="true"
-                  class="card-title">Ledger
-                </a>
-              </div>
-              <div class="col-auto">
-                <button (click)="addNew()" class="btn btn-secondary btn-sm">
-                  <i class="fas fa-plus fa-fw"></i> Add New
-                </button>
-              </div>
+  <app-accountsearchfilter [account]=false [accounttype]=false [accountclassification]=true [bankaccount]=false
+    [bankaccounttype]=false [transaction]=false [transactiontype]=false [transactiondatefrom]=false
+    [transactiondateto]=false [banktransfer]=false [bankdeposit]=false [journal]=true [ledger]=false
+    [chartofaccount]=false [trialbalance]=false [incomestatement]=false [profitandloss]=false [balancesheet]=false
+    [paymentmethod]=false [customer]=false [currency]=false
+    (advancedSearch)="advancedSearch($event)"></app-accountsearchfilter>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card-primary card">
+        <div class="card-header">
+          <div class="align-items-center row">
+            <div class="col">
+              <a href="javascript:void" aria-controls="collapse-customerinfo1" aria-expanded="true"
+                class="card-title">Ledger
+              </a>
+            </div>
+            <div class="col-auto">
+              <button (click)="addNew()" class="btn btn-secondary btn-sm">
+                <i class="fas fa-plus fa-fw"></i> Add New
+              </button>
             </div>
           </div>
-          <div class="card-body">
-            <div class="row">
-              <div class="col-lg-12">
-                <app-ledger #ledgers [view]=2 (show)="show($event)"></app-ledger>
-              </div>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-lg-12">
+              <app-ledger #ledgers [view]=22 (show)="show($event)"></app-ledger>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
 
-  <div aria-labelledby="exampleModalLabel" class="modal fade show" id="add" role="dialog" tabindex="-1">
-    <app-ledger #addledger [view]=3 (refresh)="refresh()" (cancel)="cancel()"></app-ledger>
-  </div>
+<div aria-labelledby="exampleModalLabel" class="modal fade show" id="add" role="dialog" tabindex="-1">
+  <app-ledger #addledger [view]=3 (refresh)="refresh()" (cancel)="cancel()"></app-ledger>
+</div>
 
-  <div aria-labelledby="exampleModalLabel" class="modal fade show" id="edit" role="dialog" tabindex="-1">
-    <app-ledger #editledger [view]=4 (refresh)="refresh()" (cancel)="cancel()"></app-ledger>
-  </div>
+<div aria-labelledby="exampleModalLabel" class="modal fade show" id="edit" role="dialog" tabindex="-1">
+  <app-ledger #editledger [view]=4 (refresh)="refresh()" (cancel)="cancel()"></app-ledger>
+</div>

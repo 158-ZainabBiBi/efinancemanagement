@@ -18,6 +18,8 @@ import { IncomestatementComponent } from '../account/incomestatement/incomestate
 import { ProfitandlossComponent } from '../account/profitandloss/profitandloss.component';
 import { BusinesstypeComponent } from '../lookup/customer/businesstype/businesstype.component';
 import { AccountclassificationComponent } from '../account/accountclassification/accountclassification.component';
+import { PaymentmethodComponent } from '../lookup/finance/paymentmethod/paymentmethod.component';
+import { CurrencyComponent } from '../lookup/finance/currency/currency.component';
 
 @Component({
   selector: 'app-accountsearchfilter',
@@ -43,6 +45,8 @@ export class AccountsearchfilterComponent implements OnInit {
   @ViewChild(ProfitandlossComponent) profitandlosses;
   @ViewChild(BusinesstypeComponent) businesstypes;
   @ViewChild(AccountclassificationComponent) accountclassifications;
+  @ViewChild(PaymentmethodComponent) paymentmethods;
+  @ViewChild(CurrencyComponent) currencies;
 
   @Input()
   account: boolean = false;
@@ -90,6 +94,10 @@ export class AccountsearchfilterComponent implements OnInit {
   balancesheet = false;
   @Input()
   accountclassification = false;
+  @Input()
+  paymentmethod = false;
+  @Input()
+  currency = false;
 
   @Output() advancedSearch = new EventEmitter();
   @Output() advancedSearchAll = new EventEmitter();
@@ -116,6 +124,8 @@ export class AccountsearchfilterComponent implements OnInit {
     profitandloss_ID: null,
     businesstype_ID: null,
     accountclassification_ID: null,
+    currency_ID: null,
+    paymentmethod_ID: null,
 
     transaction_DATEFROM: null,
     transaction_DATETO: null,
@@ -167,6 +177,10 @@ export class AccountsearchfilterComponent implements OnInit {
       this.search.trialbalance_ID = this.trialbalances.trialbalanceID;
     if (this.accountclassifications)
       this.search.accountclassification_ID = this.accountclassifications.accountclassificationID;
+    if (this.paymentmethods)
+      this.search.paymentmethod_ID = this.paymentmethods.paymentmethodID;
+    if (this.currencies)
+      this.search.currency_ID = this.currencies.currencyID;
 
     if (this.isall == true)
       this.advancedSearchAll.next(this.search);
@@ -215,6 +229,10 @@ export class AccountsearchfilterComponent implements OnInit {
       this.trialbalances.trialbalanceID = null;
     if (this.accountclassifications)
       this.accountclassifications.accountclassificationID = null;
+    if (this.paymentmethods)
+      this.paymentmethods.paymentmethodID = null;
+    if (this.currencies)
+      this.currencies.currencyID = null;
 
     this.search.transaction_DATEFROM = null;
     this.search.transaction_DATETO = null;

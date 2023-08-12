@@ -70,4 +70,8 @@ export class LedgersComponent implements OnInit {
     $("#edit").modal("hide");
   }
 
+  advancedSearch(search) {
+    this.ledgers.ledgerAdvancedSearch(search);
+  }
+
 }

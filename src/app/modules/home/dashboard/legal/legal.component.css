@@ -10,7 +10,7 @@ body {
   text-align: justify;
   text-justify: inter-word;
   padding-right: 80px;
-  padding-left: 80px;
+  padding-left: 80px
 }
 
 h2 {
@@ -47,12 +47,6 @@ p {
 
 a {
   text-decoration: none !important
-}
-
-ul {
-  padding: 0;
-  margin: 0;
-  list-style: none
 }
 
 h1,
@@ -117,10 +111,6 @@ header {
   -moz-osx-font-smoothing: grayscale
 }
 
-.services {
-  margin-top: 140px
-}
-
 .contact-us {
   background-color: #f7f7f7;
   padding: 140px 0
@@ -130,10 +120,6 @@ footer {
   background-color: #232323;
   padding: 80px 0;
   color: #fff
-}
-
-footer .footer-item {
-  width: 300px
 }
 
 footer h4 {
@@ -146,53 +132,6 @@ footer h4 {
 
 footer p {
   color: #fff
-}
-
-footer ul.social-icons {
-  margin-top: 25px
-}
-
-footer ul.social-icons li {
-  display: inline-block;
-  margin-right: 5px
-}
-
-footer ul.social-icons li:last-child {
-  margin-right: 0
-}
-
-footer ul.social-icons li a {
-  width: 34px;
-  height: 34px;
-  display: inline-block;
-  line-height: 34px;
-  text-align: center;
-  background-color: #fff;
-  color: #232323;
-  border-radius: 50%;
-  transition: all .3s
-}
-
-footer ul.social-icons li a:hover {
-  background-color: #a4c639
-}
-
-footer ul.menu-list li {
-  margin-bottom: 13px
-}
-
-footer ul.menu-list li:last-child {
-  margin-bottom: 0
-}
-
-footer ul.menu-list li a {
-  font-size: 14px;
-  color: #fff;
-  transition: all .3s
-}
-
-footer ul.menu-list li a:hover {
-  color: #a4c639
 }
 
 .page-heading {
@@ -225,51 +164,8 @@ footer ul.menu-list li a:hover {
   margin-top: 140px
 }
 
-.contact-information .contact-item {
-  padding: 60px 30px;
-  background-color: #f7f7f7;
-  text-align: center
-}
-
-.contact-information .contact-item i {
-  color: #a4c639;
-  font-size: 48px;
-  margin-bottom: 40px
-}
-
-.contact-information .contact-item h4 {
-  font-size: 20px;
-  font-weight: 700;
-  letter-spacing: .25px;
-  margin-bottom: 15px
-}
-
-.contact-information .contact-item p {
-  margin-bottom: 20px
-}
-
-.contact-information .contact-item a {
-  font-weight: 600;
-  color: #a4c639;
-  font-size: 15px
-}
-
 @media (max-width:768px) {
-  .services .service-item {
-    margin-bottom: 30px
-  }
-
   footer {
     padding: 80px 0 20px 0
-  }
-
-  footer .footer-item {
-    border-bottom: 1px solid #343434;
-    margin-bottom: 30px;
-    padding-bottom: 30px
-  }
-
-  .contact-item {
-    margin-bottom: 30px
   }
 }

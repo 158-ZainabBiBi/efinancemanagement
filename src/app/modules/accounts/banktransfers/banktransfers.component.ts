@@ -71,4 +71,8 @@ export class BanktransfersComponent implements OnInit {
     $("#edit").modal("hide");
   }
 
+  advancedSearch(search) {
+    this.banktransfers.banktransferAdvancedSearch(search);
+  }
+
 }

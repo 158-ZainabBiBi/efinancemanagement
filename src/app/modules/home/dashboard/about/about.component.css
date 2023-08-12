@@ -19,7 +19,7 @@ a {
 
 .right-content {
   text-align: justify;
-  text-justify: inter-word;
+  text-justify: inter-word
 }
 
 h1,
@@ -117,13 +117,6 @@ header {
   -moz-transition: all .3s ease-in-out 0s;
   -o-transition: all .3s ease-in-out 0s;
   transition: all .3s ease-in-out 0s
-}
-
-.background-header {
-  top: 0;
-  position: fixed;
-  background-color: #fff !important;
-  box-shadow: 0 1px 10px rgba(0, 0, 0, .1)
 }
 
 .services {

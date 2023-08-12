@@ -1,54 +1,23 @@
-/* save button*/
 .btn-primary {
   background-color: #007437 !important;
-  border-color: #007437 !important;
+  border-color: #007437 !important
 }
 
-/* add button */
 .card .card-header .btn {
-  background-color: white !important;
-  color: #007437;
-
+  background-color: #fff !important;
+  color: #007437
 }
 
-/* edit/eye icon */
-.dx-datagrid-content .dx-datagrid-table a {
-  color: #007437 !important;
-}
-
-/*refresh button*/
-.dx-button-content {
-  color: #007437;
-}
-
-/* refresh button hover */
-.dx-button-content:hover {
-  background-color: #007437 !important;
-  color: white !important;
-  transition-duration: 0.5s;
-}
-
-/* filter icon */
-.dx-datagrid .dx-column-indicators .dx-header-filter.dx-header-filter,
-.dx-datagrid .dx-column-indicators .dx-header-filter.dx-sort,
-.dx-datagrid .dx-column-indicators .dx-sort.dx-header-filter,
-.dx-datagrid .dx-column-indicators .dx-sort.dx-sort {
-  color: #007437;
-}
-
-/* Module heading*/
 .card .card-header .card-title,
 .card-primary .card-header .card-title,
 .modal-primary .modal-header .card-title {
-  color: white;
+  color: #fff;
   font-weight: 700;
-  font-size: 15px;
+  font-size: 15px
 }
 
-/* module  heading container color*/
-.form-control-sm,
 .card .card-header,
 .card-primary .card-header,
 .modal-primary .modal-header {
-  background: #007437;
+  background: #007437
 }

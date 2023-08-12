@@ -1,8 +1,9 @@
 <div class="collapse-card-h container">
   <app-accountsearchfilter [account]=false [accounttype]=false [accountclassification]=false [bankaccount]=false
     [bankaccounttype]=false [transaction]=false [transactiontype]=false [transactiondatefrom]=true
-    [transactiondateto]=true [banktransfer]=false [bankdeposit]=false [journal]=false [ledger]=false
+    [transactiondateto]=true [banktransfer]=false [bankdeposit]=false [journal]=false [ledger]=true
     [chartofaccount]=false [trialbalance]=false [incomestatement]=false [profitandloss]=false [balancesheet]=false
+    [paymentmethod]=false [customer]=false [currency]=false
     (advancedSearch)="advancedSearch($event)"></app-accountsearchfilter>
   <div class="row">
     <div class="col-md-12">
@@ -24,7 +25,7 @@
         <div class="card-body">
           <div class="row">
             <div class="col-lg-12">
-              <app-incomestatement #incomestatements [view]=2 (edit)="edit($event)"></app-incomestatement>
+              <app-incomestatement #incomestatements [view]=22 (edit)="edit($event)"></app-incomestatement>
             </div>
           </div>
         </div>
