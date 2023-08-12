@@ -1,0 +1,22 @@
+/* nav bar content */
+.sm, .sm a {
+  /* font-family: var(--font-1) !important; */
+  color: white;
+}
+
+/* privileges background color  */
+.navigation ,.sm ,.sm a {
+   background:  #007437;
+}
+
+/* privileges hover */
+.sm a:hover{
+  color: rgb(209, 203, 203);
+  background-color:  #007437;
+
+}
+
+/* privileges-border */
+.sm > li {
+  border: none;
+}

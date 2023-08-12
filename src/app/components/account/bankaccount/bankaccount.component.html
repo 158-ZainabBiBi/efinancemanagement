@@ -282,14 +282,23 @@
                   [(ngModel)]="bankaccount.bankaccount_CODE" maxlength="50" required>
               </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-8">
               <div class="form-group">
                 <label class="control-label">Date<span style="color:red">*</span></label>
                 <input type="date" class="form-control" name="bankaccount_DATE"
                   [(ngModel)]="bankaccount.bankaccount_DATE" maxlength="50" required>
               </div>
             </div>
-            <div class="col-md-4">
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="control-label">Number<span style="color:red">*</span></label>
+                <input type="number" class="form-control" name="bankaccount_NUMBER"
+                  [(ngModel)]="bankaccount.bankaccount_NUMBER" maxlength="50" required>
+              </div>
+            </div>
+            <div class="col-md-6">
               <div class="form-group">
                 <label class="control-label">Name <span style="color:red">*</span></label>
                 <input type="text" class="form-control" name="bankaccount_NAME"
@@ -298,28 +307,21 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-4">
               <div class="form-group">
                 <label class="control-label">Balance<span style="color:red">*</span></label>
                 <input type="number" class="form-control" name="bankaccount_BALANCE"
                   [(ngModel)]="bankaccount.bankaccount_BALANCE" maxlength="50" required>
               </div>
             </div>
-            <div class="col-md-3">
-              <div class="form-group">
-                <label class="control-label">Number<span style="color:red">*</span></label>
-                <input type="number" class="form-control" name="bankaccount_NUMBER"
-                  [(ngModel)]="bankaccount.bankaccount_NUMBER" maxlength="50" required>
-              </div>
-            </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
               <div class="form-group">
                 <label class="control-label">BIC<span style="color:red">*</span></label>
                 <input type="text" class="form-control" name="bankaccount_BIC" [(ngModel)]="bankaccount.bankaccount_BIC"
                   maxlength="50" required>
               </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
               <div class="form-group">
                 <label class="control-label">IBAN<span style="color:red">*</span></label>
                 <input type="text" class="form-control" name="bankaccount_IBAN"
@@ -328,14 +330,18 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-12">
+              <app-customer #customer [view]="1" [customerID]="bankaccount.customer_ID"></app-customer>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
               <app-bankaccounttype #bankaccounttype
                 [bankaccounttypeID]="bankaccount.bankaccounttype_ID"></app-bankaccounttype>
             </div>
-            <div class="col-md-4">
-              <app-customer #customer [view]="1" [customerID]="bankaccount.customer_ID"></app-customer>
-            </div>
-            <div class="col-md-4">
+          </div>
+          <div class="row">
+            <div class="col-md-12">
               <app-paymentmethod #paymentmethod [paymentmethodID]="bankaccount.paymentmethod_ID"></app-paymentmethod>
             </div>
           </div>
@@ -381,14 +387,23 @@
                   [(ngModel)]="bankaccount.bankaccount_CODE" maxlength="50" required>
               </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-8">
               <div class="form-group">
                 <label class="control-label">Date<span style="color:red">*</span></label>
                 <input type="date" class="form-control" name="bankaccount_DATE"
                   [(ngModel)]="bankaccount.bankaccount_DATE" maxlength="50" required>
               </div>
             </div>
-            <div class="col-md-4">
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="control-label">Number<span style="color:red">*</span></label>
+                <input type="number" class="form-control" name="bankaccount_NUMBER"
+                  [(ngModel)]="bankaccount.bankaccount_NUMBER" maxlength="50" required>
+              </div>
+            </div>
+            <div class="col-md-6">
               <div class="form-group">
                 <label class="control-label">Name <span style="color:red">*</span></label>
                 <input type="text" class="form-control" name="bankaccount_NAME"
@@ -397,28 +412,21 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-4">
               <div class="form-group">
                 <label class="control-label">Balance<span style="color:red">*</span></label>
                 <input type="number" class="form-control" name="bankaccount_BALANCE"
                   [(ngModel)]="bankaccount.bankaccount_BALANCE" maxlength="50" required>
               </div>
             </div>
-            <div class="col-md-3">
-              <div class="form-group">
-                <label class="control-label">Number<span style="color:red">*</span></label>
-                <input type="number" class="form-control" name="bankaccount_NUMBER"
-                  [(ngModel)]="bankaccount.bankaccount_NUMBER" maxlength="50" required>
-              </div>
-            </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
               <div class="form-group">
                 <label class="control-label">BIC<span style="color:red">*</span></label>
                 <input type="text" class="form-control" name="bankaccount_BIC" [(ngModel)]="bankaccount.bankaccount_BIC"
                   maxlength="50" required>
               </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
               <div class="form-group">
                 <label class="control-label">IBAN<span style="color:red">*</span></label>
                 <input type="text" class="form-control" name="bankaccount_IBAN"
@@ -427,14 +435,18 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-12">
+              <app-customer #customer [view]="1" [customerID]="bankaccount.customer_ID"></app-customer>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
               <app-bankaccounttype #bankaccounttype
                 [bankaccounttypeID]="bankaccount.bankaccounttype_ID"></app-bankaccounttype>
             </div>
-            <div class="col-md-4">
-              <app-customer #customer [view]="1" [customerID]="bankaccount.customer_ID"></app-customer>
-            </div>
-            <div class="col-md-4">
+          </div>
+          <div class="row">
+            <div class="col-md-12">
               <app-paymentmethod #paymentmethod [paymentmethodID]="bankaccount.paymentmethod_ID"></app-paymentmethod>
             </div>
           </div>

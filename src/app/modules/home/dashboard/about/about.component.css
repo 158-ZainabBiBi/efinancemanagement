@@ -17,6 +17,11 @@ a {
   text-decoration: none !important
 }
 
+.right-content {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
 h1,
 h2,
 h3,

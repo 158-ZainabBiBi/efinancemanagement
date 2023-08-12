@@ -39,7 +39,7 @@
           <span>Get in touch with us to simplify your finances with EFinance!</span>
         </div>
         <div class="col-md-4">
-          <a href="http://fyp.cwiztech.com/efinance/#/home/contact" class="border-button">Contact Us</a>
+          <a (click)="showcontact()" class="border-button">Contact Us</a>
         </div>
       </div>
     </div>
@@ -57,35 +57,34 @@
         </div>
         <div class="col-md-4">
           <div class="service-item">
-            <img src="../../../../../assets/images/service_01.jpeg" alt="">
+            <img src="assets/images/service_01.jpeg" alt="">
             <div class="down-content">
               <h4>Banking</h4>
               <p>EFinance offers comprehensive banking services with real-time updates and secure transactions,
                 providing a hassle-free banking experience.</p>
-              <a href="http://fyp.cwiztech.com/efinance/#/home/bankaccounts" class="filled-button">View Banks</a>
+              <a (click)="showbankaccount()" class="filled-button">View Banks</a>
             </div>
           </div>
         </div>
         <div class="col-md-4">
           <div class="service-item">
-            <img src="../../../../../assets/images/service_02.jpeg" alt="">
+            <img src="assets/images/service_02.jpeg" alt="">
             <div class="down-content">
               <h4>Transactions</h4>
               <p>Transactions module streamlines financial tracking, offers custom reports, and provides
                 secure protection for businesses of all sizes.</p>
-              <a href="http://fyp.cwiztech.com/efinance/#/home/transactions" class="filled-button">View
-                Transactions</a>
+              <a (click)="showtransaction()" class="filled-button">View Transactions</a>
             </div>
           </div>
         </div>
         <div class="col-md-4">
           <div class="service-item">
-            <img src="../../../../../assets/images/service_03.jpeg" alt="">
+            <img src="assets/images/service_03.jpeg" alt="">
             <div class="down-content">
               <h4>Finance</h4>
               <p>Finance module is an essential tool for maintaining financial records, analyzing data, and making
                 informed decisions to support business growth and success.</p>
-              <a href="http://fyp.cwiztech.com/efinance/#/home/journals" class="filled-button">View Records</a>
+              <a (click)="showservices()" class="filled-button">View Records</a>
             </div>
           </div>
         </div>
@@ -106,7 +105,7 @@
               <br><br>With features such as automated bookkeeping, real-time financial reporting, and customizable
               dashboards, EFinance can help your business achieve greater growth and success.
             </p>
-            <a href="http://fyp.cwiztech.com/efinance/#/home/legal" class="filled-button">Our Services</a>
+            <a (click)="showlegal" class="filled-button">Our Services</a>
           </div>
         </div>
         <div class="col-md-6 align-self-center">
@@ -162,7 +161,7 @@
             <div class="row">
               <div class="col-md-6">
                 <div class="left-image">
-                  <img src="../../../../../assets/images/more-info.jpeg" alt="">
+                  <img src="assets/images/more-info.jpeg" alt="">
                 </div>
               </div>
               <div class="col-md-6 align-self-center">
@@ -173,7 +172,7 @@
                     businesses to efficiently manage their finances.<br><br>With a focus on user-friendly interfaces and
                     advanced features, EFinance offers a comprehensive suite of tools to help customers streamline their
                     financial processes and make informed decisions.</p>
-                  <a href="http://fyp.cwiztech.com/efinance/#/home/about" class="filled-button">Read More</a>
+                  <a (click)="showabout" class="filled-button">Read More</a>
                 </div>
               </div>
             </div>
@@ -193,7 +192,7 @@
             <span>FEEL FREE TO CONTACT US!
             </span>
             <br>
-            <a href="http://fyp.cwiztech.com/efinance/#/home/contact" class="filled-button">Contact US</a>
+            <a (click)="showcontact" class="filled-button">Contact US</a>
           </div>
         </div>
       </div>

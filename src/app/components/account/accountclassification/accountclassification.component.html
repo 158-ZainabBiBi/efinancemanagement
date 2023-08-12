@@ -218,7 +218,7 @@
         </div>
         <div class="modal-body">
           <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-6">
               <div class="form-group">
                 <label class="control-label">Code <span style="color:red">*</span></label>
                 <input type="text" class="form-control" name="accountclassification_CODE"
@@ -231,7 +231,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-6">
               <div class="form-group">
                 <label class="control-label">Name <span style="color:red">*</span></label>
                 <input type="text" class="form-control" name="accountclassification_NAME"
@@ -244,12 +244,14 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-4">
+          </div>
+          <div class="row">
+            <div class="col-md-12">
               <div class="form-group">
                 <label class="control-label">Description <span style="color:red">*</span></label>
-                <input type="text" class="form-control" name="accountclassification_DESC"
+                <textarea type="text" class="form-control" name="accountclassification_DESC"
                   [(ngModel)]="accountclassification.accountclassification_DESC" pattern="^[ A-Za-z0-9]+$"
-                  #descriptionInput="ngModel" maxlength="50" required>
+                  #descriptionInput="ngModel" maxlength="50"></textarea>
                 <div *ngIf="descriptionInput.invalid && (descriptionInput.dirty || descriptionInput.touched)">
                   <div *ngIf="descriptionInput.errors.pattern">
                     <span style="color:red">Only contain Alphnumeric.</span>
@@ -290,7 +292,7 @@
         </div>
         <div class="modal-body">
           <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-6">
               <div class="form-group">
                 <label class="control-label">Code <span style="color:red">*</span></label>
                 <input type="text" class="form-control" name="accountclassification_CODE"
@@ -303,7 +305,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-6">
               <div class="form-group">
                 <label class="control-label">Name <span style="color:red">*</span></label>
                 <input type="text" class="form-control" name="accountclassification_NAME"
@@ -316,12 +318,14 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-4">
+          </div>
+          <div class="row">
+            <div class="col-md-12">
               <div class="form-group">
                 <label class="control-label">Description <span style="color:red">*</span></label>
-                <input type="text" class="form-control" name="accountclassification_DESC"
+                <textarea type="text" class="form-control" name="accountclassification_DESC"
                   [(ngModel)]="accountclassification.accountclassification_DESC" pattern="^[ A-Za-z0-9]+$"
-                  #descriptionInput="ngModel" maxlength="50" required>
+                  #descriptionInput="ngModel" maxlength="50"></textarea>
                 <div *ngIf="descriptionInput.invalid && (descriptionInput.dirty || descriptionInput.touched)">
                   <div *ngIf="descriptionInput.errors.pattern">
                     <span style="color:red">Only contain Alphnumeric.</span>

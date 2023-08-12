@@ -40,9 +40,9 @@ export class TransactionsComponent implements OnInit {
   }
 
   addNew() {
-    // this.router.navigate(["/home/transaction"], {});
-    this.addtransaction.add();
-    $("#add").modal("show");
+    this.router.navigate(["/home/transaction"], {});
+    // this.addtransaction.add();
+    // $("#add").modal("show");
   }
 
   edit(row) {

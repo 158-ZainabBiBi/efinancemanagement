@@ -207,8 +207,8 @@
         </dxi-column>
 
         <div *dxTemplate="let data of 'cellTemplate'">
-          <a href="javascript:void" class="" (click)="update(data)">
-            <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+          <a href="javascript:void" class="" (click)="showView(data)">
+            <i class="fa fa-eye" aria-hidden="true"></i></a>
         </div>
       </dx-data-grid>
     </div>
@@ -305,11 +305,13 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-12">
               <app-transactiontype #transactiontype
                 [transactiontypeID]="transaction.transactiontype_ID"></app-transactiontype>
             </div>
-            <div class="col-md-6">
+          </div>
+          <div class="row">
+            <div class="col-md-12">
               <app-currency #currency [currencyID]="transaction.currency_ID"></app-currency>
             </div>
           </div>
@@ -385,11 +387,13 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-12">
               <app-transactiontype #transactiontype
                 [transactiontypeID]="transaction.transactiontype_ID"></app-transactiontype>
             </div>
-            <div class="col-md-6">
+          </div>
+          <div class="row">
+            <div class="col-md-12">
               <app-currency #currency [currencyID]="transaction.currency_ID"></app-currency>
             </div>
           </div>

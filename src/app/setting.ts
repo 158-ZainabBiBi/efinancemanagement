@@ -3,7 +3,7 @@ export const setting = {
   LoginAppPath: "http://accounts.cwiztech.com/#/",
   companyName: 'Compuwiz Technologies',
   companyShortName: 'CWizTech',
-  application_ID: "CWIZTECHAccountManagement",
+  application_ID: "CWIZTECHAccountManagementDev",
 
   logo: 'assets/images/logo.png',
   icon: 'favicon.ico',

@@ -20,4 +20,43 @@ export class AboutComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  showindex() {
+    this.router.navigate(["/home/indexes"], {});
+  }
+
+  showcontact() {
+    this.router.navigate(["/home/contact"], {});
+  }
+
+  showabout() {
+    this.router.navigate(["/home/about"], {});
+  }
+
+  showservices() {
+    this.router.navigate(["/home/services"], {});
+  }
+
+  showlegal() {
+    this.router.navigate(["/home/legal"], {});
+  }
+
+  showprivacy() {
+    this.router.navigate(["/home/privacy"], {});
+  }
+
+  showterms() {
+    this.router.navigate(["/home/terms"], {});
+  }
+
+  showbankaccount() {
+    this.router.navigate(["/home/bankaccounts"], {});
+  }
+
+  showtransaction() {
+    this.router.navigate(["/home/transactions"], {});
+  }
+
+  showjournal() {
+    this.router.navigate(["/home/journals"], {});
+  }
 }
