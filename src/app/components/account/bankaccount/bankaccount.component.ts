@@ -367,7 +367,6 @@ export class BankaccountComponent implements OnInit {
 
   bankaccountAdvancedSearch(search) {
     this.customerID = search.customer_ID;
-
     this.paymentmethodID = search.paymentmethod_ID;
     this.paymentmethodCode = search.paymentmethod_CODE;
     this.bankaccounttypeID = search.bankaccounttype_ID;
@@ -389,7 +388,6 @@ export class BankaccountComponent implements OnInit {
 
   bankaccountAdvancedSearchAll(search) {
     this.customerID = search.customer_ID;
-
     this.paymentmethodID = search.paymentmethod_ID;
     this.paymentmethodCode = search.paymentmethod_CODE;
     this.bankaccounttypeID = search.bankaccounttype_ID;

@@ -55,8 +55,6 @@ export class AccountsearchfilterComponent implements OnInit {
   @Input()
   trialbalance = false;
   @Input()
-  customerrefund = false;
-  @Input()
   transactiontype = false;
   @Input()
   journal = false;
@@ -78,8 +76,6 @@ export class AccountsearchfilterComponent implements OnInit {
   customer = false;
   @Input()
   bankdeposit = false;
-  @Input()
-  balancesheetrefund = false;
   @Input()
   Chartofaccount = false;
   @Input()
@@ -106,7 +102,6 @@ export class AccountsearchfilterComponent implements OnInit {
     account_ID: null,
     bankaccounttype_ID: null,
     trialbalance_ID: null,
-    customerrefund_ID: null,
     transactiontype_ID: null,
     bankaccount_ID: null,
     customer_ID: null,

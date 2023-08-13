@@ -53,13 +53,13 @@
         <dxi-column dataField="accountclassification_DETAIL" caption="Classification" cssClass="myClass"
           alignment="left"></dxi-column>
         <dxi-column dataField="accountclassification.accounttype_DETAIL" caption="Type" cssClass="myClass"
-          alignment="left" [groupIndex]="0"></dxi-column>
+          alignment="left"></dxi-column>
         <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass"
           alignment="center"></dxi-column>
 
         <div *dxTemplate="let data of 'cellTemplate'">
-          <a href="javascript:void" class="" (click)="showView(data)">
-            <i class="fa fa-eye" aria-hidden="true"></i></a>
+          <a href="javascript:void" class="" (click)="update(data)">
+            <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
         </div>
       </dx-data-grid>
     </div>

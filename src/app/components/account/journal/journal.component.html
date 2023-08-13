@@ -170,8 +170,7 @@
           cellTemplate="cellTemplate"></dxi-column>
 
         <dxi-column dataField="journal_CODE" caption="Code" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="transaction_DETAIL" caption="Date" cssClass="myClass" alignment="left"
-          [groupIndex]="0"></dxi-column>
+        <dxi-column dataField="transaction_DETAIL" caption="Date" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="journal_NAME" caption="Name" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="journal_DEBIT" caption="Debit" cssClass="myClass" alignment="center"></dxi-column>
         <dxi-column dataField="journal_CREDIT" caption="Credit" cssClass="myClass" alignment="center"></dxi-column>
@@ -179,8 +178,8 @@
         </dxi-column>
 
         <div *dxTemplate="let data of 'cellTemplate'">
-          <a href="javascript:void" class="" (click)="showView(data)">
-            <i class="fa fa-eye" aria-hidden="true"></i></a>
+          <a href="javascript:void" class="" (click)="update(data)">
+            <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
         </div>
       </dx-data-grid>
     </div>
@@ -381,9 +380,9 @@
             <div class="col-md-4">
               <br />
               <button type="button" *ngIf="journal.journal_ID==0" (click)="transactionAddNew()"
-              class="btn btn-secondary btn-sm" class="btn btn-primary">
-              <i class="fas fa-plus fa-fw"></i> Add New Transaction
-            </button>
+                class="btn btn-secondary btn-sm" class="btn btn-primary">
+                <i class="fas fa-plus fa-fw"></i> Add New Transaction
+              </button>
             </div>
           </div>
           <div class="row">
