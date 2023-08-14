@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, ViewChild, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, ViewChild, EventEmitter, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { OnFailService } from '../../../services/on-fail.service';
@@ -13,7 +13,7 @@ declare var $: any;
   templateUrl: './trialbalance.component.html',
   styleUrls: ['./trialbalance.component.css']
 })
-export class TrialbalanceComponent implements OnInit {
+export class TrialbalanceComponent implements OnInit, AfterViewInit {
   @ViewChild("ledger") ledger: LedgerComponent;
   @ViewChild("addledger") addledger: LedgerComponent;
   @ViewChild("editledger") editledger: LedgerComponent;
@@ -32,12 +32,16 @@ export class TrialbalanceComponent implements OnInit {
   trialbalanceID = null;
   @Input()
   ledgerID = null;
+  @Input()
+  totalcredit: number = 0;
+  @Input()
+  totaldebit: number = 0;
 
   @Output() edit = new EventEmitter();
   @Output() cancel = new EventEmitter();
   @Output() show = new EventEmitter();
   @Output() refresh = new EventEmitter();
-  @Output() onTrialbalanceChange = new EventEmitter();
+  @Output() onTrialBalanceChange = new EventEmitter();
 
   trialbalances = [];
   trialbalancesAll = [];
@@ -54,10 +58,17 @@ export class TrialbalanceComponent implements OnInit {
     private toastrservice: ToastrService,
     private onfailservice: OnFailService,
     private router: Router,
+    private cdr: ChangeDetectorRef
   ) { }
 
   ngOnInit(): void {
     this.load(this.isreload);
+  }
+
+  ngAfterViewInit(): void {
+    this.totalcredit = this.getTotalCredit();
+    this.totaldebit = this.getTotalDebit();
+    this.cdr.detectChanges();
   }
 
   load(reload) {
@@ -108,36 +119,32 @@ export class TrialbalanceComponent implements OnInit {
           onClick: this.load.bind(this, true),
         },
       },
-      {
-        location: 'after',
-        text: `Total Credit: ${this.getTotalCredit()}`,
-      },
-      {
-        location: 'after',
-        text: `Total Debit: ${this.getTotalDebit()}`,
-      }
     );
   }
 
   getTotalCredit() {
     let total = 0;
-    this.trialbalancesAll.forEach(totals => {
-      const credit = Number(totals.ledger.ledger_CREDIT);
-      if (!isNaN(credit)) {
-        total += credit;
-      }
-    });
+    if (this.trialbalancesAll) {
+      this.trialbalancesAll.forEach(totals => {
+        const credit = Number(totals.ledger.ledger_CREDIT);
+        if (!isNaN(credit)) {
+          total += credit;
+        }
+      });
+    }
     return total;
   }
 
   getTotalDebit() {
     let total = 0;
-    this.trialbalancesAll.forEach(totals => {
-      const debit = Number(totals.ledger.ledger_DEBIT);
-      if (!isNaN(debit)) {
-        total += debit;
-      }
-    });
+    if (this.trialbalancesAll) {
+      this.trialbalancesAll.forEach(totals => {
+        const debit = Number(totals.ledger.ledger_DEBIT);
+        if (!isNaN(debit)) {
+          total += debit;
+        }
+      });
+    }
     return total;
   }
 
@@ -201,15 +208,15 @@ export class TrialbalanceComponent implements OnInit {
   onChange(trialbalanceID) {
     for (var i = 0; i < this.trialbalancesAll.length; i++) {
       if (this.trialbalancesAll[i].trialbalance_ID == trialbalanceID) {
-        this.onTrialbalanceChange.next(this.trialbalancesAll[i]);
+        this.onTrialBalanceChange.next(this.trialbalancesAll[i]);
         break;
       }
     }
   }
 
   setTrialbalance(response) {
-    this.trialbalanceID = response.trialbalance_ID;
     this.ledgerID = response.ledger_ID;
+    this.trialbalanceID = response.trialbalance_ID;
 
     if (response.isactive == "Y") {
       response.isactive = true;
@@ -281,8 +288,8 @@ export class TrialbalanceComponent implements OnInit {
           this.toastrservice.success("Success", "New Trial Balance Added");
           this.setTrialbalance(this.trialbalanceservice.getDetail(response));
           this.refresh.next();
-          this.trialbalanceGetAll();
           this.disabled = true;
+          this.trialbalanceGetAll();
         } else {
           this.toastrservice.error("Some thing went wrong");
         }
@@ -293,6 +300,7 @@ export class TrialbalanceComponent implements OnInit {
   }
 
   trialbalanceUpdate(trialbalance) {
+
     trialbalance.ledger_ID = this.ledger.ledgerID;
 
     if (trialbalance.isactive == true) {
@@ -308,8 +316,8 @@ export class TrialbalanceComponent implements OnInit {
           this.toastrservice.success("Success", "Trial Balance Updated");
           this.setTrialbalance(this.trialbalanceservice.getDetail(response));
           this.refresh.next();
-          this.trialbalanceGetAll();
           this.disabled = true;
+          this.trialbalanceGetAll();
         } else {
           this.toastrservice.error("Some thing went wrong");
         }

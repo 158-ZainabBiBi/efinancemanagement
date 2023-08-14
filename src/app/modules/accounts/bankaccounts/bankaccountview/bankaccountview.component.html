@@ -1,107 +1,85 @@
-<html lang="en">
-
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="TemplateMo">
-
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/fontawesome.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
-
-<body>
-  <div class="collapse-card-h container">
-    <div class="row">
-      <div class="col-md-12">
-        <app-bankaccount [view]=5 [bankaccountID]="bankaccountID" (refresh)="refresh()"
-          (cancel)="cancel()"></app-bankaccount>
-      </div>
+<div class="collapse-card-h container">
+  <div class="row">
+    <div class="col-md-12">
+      <app-bankaccount [view]=5 [bankaccountID]="bankaccountID" (cancel)="cancel()"></app-bankaccount>
     </div>
   </div>
+</div>
 
-  <div class="collapse-card-h container" *ngIf="bankaccountID!=0">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="card-primary card">
-          <div class="card-header">
-            <div class="align-items-center row">
-              <div class="col">
-                <a href="javascript:void" aria-controls="collapse-customerinfo1" aria-expanded="true"
-                  class="card-title">Transfer
-                </a>
-              </div>
-              <div class="col-auto">
-                <button (click)="addNewbanktransfer()" class="btn btn-secondary btn-sm">
-                  <i class="fas fa-plus fa-fw"></i> Add New
-                </button>
-              </div>
+<div class="collapse-card-h container" *ngIf="bankaccountID!=0">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card-primary card">
+        <div class="card-header">
+          <div class="align-items-center row">
+            <div class="col">
+              <a href="javascript:void" aria-controls="collapse-customerinfo1" aria-expanded="true"
+                class="card-title">Transfer
+              </a>
+            </div>
+            <div class="col-auto">
+              <button (click)="addNewbanktransfer()" class="btn btn-secondary btn-sm">
+                <i class="fas fa-plus fa-fw"></i> Add New
+              </button>
             </div>
           </div>
-          <div class="card-body">
-            <div class="row">
-              <div class="col-lg-12">
-                <app-banktransfer #banktransfers [view]=22 (edit)="editBanktransfer($event)"
-                  [bankaccountID]="bankaccountID"></app-banktransfer>
-              </div>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-lg-12">
+              <app-banktransfer #banktransfers [view]=22 (edit)="editBanktransfer($event)"
+                [bankaccountID]="bankaccountID"></app-banktransfer>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
 
-  <div aria-labelledby="exampleModalLabel" class="modal fade show" id="addbanktransfer" role="dialog" tabindex="-1">
-    <app-banktransfer #addbanktransfer [view]=3 (refresh)="refresh()"
-      (cancel)="cancelbanktransfer()"></app-banktransfer>
-  </div>
+<div aria-labelledby="exampleModalLabel" class="modal fade show" id="addbanktransfer" role="dialog" tabindex="-1">
+  <app-banktransfer #addbanktransfer [view]=3 (refresh)="refresh()" (cancel)="cancelbanktransfer()"></app-banktransfer>
+</div>
 
-  <div aria-labelledby="exampleModalLabel" class="modal fade show" id="editbanktransfer" role="dialog" tabindex="-1">
-    <app-banktransfer #editbanktransfer [view]=4 (refresh)="refresh()"
-      (cancel)="cancelbanktransfer()"></app-banktransfer>
-  </div>
+<div aria-labelledby="exampleModalLabel" class="modal fade show" id="editbanktransfer" role="dialog" tabindex="-1">
+  <app-banktransfer #editbanktransfer [view]=4 (refresh)="refresh()" (cancel)="cancelbanktransfer()"></app-banktransfer>
+</div>
 
-  <div class="collapse-card-h container" *ngIf="bankaccountID!=0">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="card-primary card">
-          <div class="card-header">
-            <div class="align-items-center row">
-              <div class="col">
-                <a href="javascript:void" aria-controls="collapse-customerinfo1" aria-expanded="true"
-                  class="card-title">Deposit
-                </a>
-              </div>
-              <div class="col-auto">
-                <button (click)="addNewbankdeposit()" class="btn btn-secondary btn-sm">
-                  <i class="fas fa-plus fa-fw"></i> Add New
-                </button>
-              </div>
+<div class="collapse-card-h container" *ngIf="bankaccountID!=0">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card-primary card">
+        <div class="card-header">
+          <div class="align-items-center row">
+            <div class="col">
+              <a href="javascript:void" aria-controls="collapse-customerinfo1" aria-expanded="true"
+                class="card-title">Deposit
+              </a>
+            </div>
+            <div class="col-auto">
+              <button (click)="addNewbankdeposit()" class="btn btn-secondary btn-sm">
+                <i class="fas fa-plus fa-fw"></i> Add New
+              </button>
             </div>
           </div>
-          <div class="card-body">
-            <div class="row">
-              <div class="col-lg-12">
-                <app-bankdeposit #bankdeposits [view]=22 (edit)="editBankdeposit($event)"
-                  [bankaccountID]="bankaccountID"></app-bankdeposit>
-              </div>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-lg-12">
+              <app-bankdeposit #bankdeposits [view]=22 (edit)="editBankdeposit($event)"
+                [bankaccountID]="bankaccountID"></app-bankdeposit>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
 
-  <div aria-labelledby="exampleModalLabel" class="modal fade show" id="addbankdeposit" role="dialog" tabindex="-1">
-    <app-bankdeposit #addbankdeposit [view]=3 (refresh)="refresh()" (cancel)="cancelbankdeposit()"></app-bankdeposit>
-  </div>
+<div aria-labelledby="exampleModalLabel" class="modal fade show" id="addbankdeposit" role="dialog" tabindex="-1">
+  <app-bankdeposit #addbankdeposit [view]=3 (refresh)="refresh()" (cancel)="cancelbankdeposit()"></app-bankdeposit>
+</div>
 
-  <div aria-labelledby="exampleModalLabel" class="modal fade show" id="editbankdeposit" role="dialog" tabindex="-1">
-    <app-bankdeposit #editbankdeposit [view]=4 (refresh)="refresh()" (cancel)="cancelbankdeposit()"></app-bankdeposit>
-  </div>
-</body>
-
-</html>
+<div aria-labelledby="exampleModalLabel" class="modal fade show" id="editbankdeposit" role="dialog" tabindex="-1">
+  <app-bankdeposit #editbankdeposit [view]=4 (refresh)="refresh()" (cancel)="cancelbankdeposit()"></app-bankdeposit>
+</div>

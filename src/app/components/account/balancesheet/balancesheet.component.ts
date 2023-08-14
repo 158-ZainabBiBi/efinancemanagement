@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, ViewChild, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, ViewChild, EventEmitter, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { OnFailService } from '../../../services/on-fail.service';
@@ -13,7 +13,7 @@ declare var $: any;
   templateUrl: './balancesheet.component.html',
   styleUrls: ['./balancesheet.component.css']
 })
-export class BalancesheetComponent implements OnInit {
+export class BalancesheetComponent implements OnInit, AfterViewInit {
   @ViewChild("ledger") ledger: LedgerComponent;
   @ViewChild("addledger") addledger: LedgerComponent;
   @ViewChild("editledger") editledger: LedgerComponent;
@@ -32,12 +32,16 @@ export class BalancesheetComponent implements OnInit {
   balancesheetID = null;
   @Input()
   ledgerID = null;
+  @Input()
+  totalcredit: number = 0;
+  @Input()
+  totaldebit: number = 0;
 
   @Output() edit = new EventEmitter();
   @Output() cancel = new EventEmitter();
   @Output() show = new EventEmitter();
   @Output() refresh = new EventEmitter();
-  @Output() onBalancesheetChange = new EventEmitter();
+  @Output() onBalanceSheetChange = new EventEmitter();
 
   balancesheets = [];
   balancesheetsAll = [];
@@ -54,10 +58,17 @@ export class BalancesheetComponent implements OnInit {
     private toastrservice: ToastrService,
     private onfailservice: OnFailService,
     private router: Router,
+    private cdr: ChangeDetectorRef
   ) { }
 
   ngOnInit(): void {
     this.load(this.isreload);
+  }
+
+  ngAfterViewInit(): void {
+    this.totalcredit = this.getTotalCredit();
+    this.totaldebit = this.getTotalDebit();
+    this.cdr.detectChanges();
   }
 
   load(reload) {
@@ -108,36 +119,32 @@ export class BalancesheetComponent implements OnInit {
           onClick: this.load.bind(this, true),
         },
       },
-      {
-        location: 'after',
-        text: `Total Credit: ${this.getTotalCredit()}`,
-      },
-      {
-        location: 'after',
-        text: `Total Debit: ${this.getTotalDebit()}`,
-      }
     );
   }
 
   getTotalCredit() {
     let total = 0;
-    this.balancesheetsAll.forEach(totals => {
-      const credit = Number(totals.ledger.ledger_CREDIT);
-      if (!isNaN(credit)) {
-        total += credit;
-      }
-    });
+    if (this.balancesheetsAll) {
+      this.balancesheetsAll.forEach(totals => {
+        const credit = Number(totals.ledger.ledger_CREDIT);
+        if (!isNaN(credit)) {
+          total += credit;
+        }
+      });
+    }
     return total;
   }
 
   getTotalDebit() {
     let total = 0;
-    this.balancesheetsAll.forEach(totals => {
-      const debit = Number(totals.ledger.ledger_DEBIT);
-      if (!isNaN(debit)) {
-        total += debit;
-      }
-    });
+    if (this.balancesheetsAll) {
+      this.balancesheetsAll.forEach(totals => {
+        const debit = Number(totals.ledger.ledger_DEBIT);
+        if (!isNaN(debit)) {
+          total += debit;
+        }
+      });
+    }
     return total;
   }
 
@@ -201,15 +208,15 @@ export class BalancesheetComponent implements OnInit {
   onChange(balancesheetID) {
     for (var i = 0; i < this.balancesheetsAll.length; i++) {
       if (this.balancesheetsAll[i].balancesheet_ID == balancesheetID) {
-        this.onBalancesheetChange.next(this.balancesheetsAll[i]);
+        this.onBalanceSheetChange.next(this.balancesheetsAll[i]);
         break;
       }
     }
   }
 
   setBalancesheet(response) {
-    this.balancesheetID = response.balancesheet_ID;
     this.ledgerID = response.ledger_ID;
+    this.balancesheetID = response.balancesheet_ID;
 
     if (response.isactive == "Y") {
       response.isactive = true;
@@ -281,8 +288,8 @@ export class BalancesheetComponent implements OnInit {
           this.toastrservice.success("Success", "New Balance Sheet Added");
           this.setBalancesheet(this.balancesheetservice.getDetail(response));
           this.refresh.next();
-          this.balancesheetGetAll();
           this.disabled = true;
+          this.balancesheetGetAll();
         } else {
           this.toastrservice.error("Some thing went wrong");
         }
@@ -293,6 +300,7 @@ export class BalancesheetComponent implements OnInit {
   }
 
   balancesheetUpdate(balancesheet) {
+
     balancesheet.ledger_ID = this.ledger.ledgerID;
 
     if (balancesheet.isactive == true) {
@@ -308,8 +316,8 @@ export class BalancesheetComponent implements OnInit {
           this.toastrservice.success("Success", "Balance Sheet Updated");
           this.setBalancesheet(this.balancesheetservice.getDetail(response));
           this.refresh.next();
-          this.balancesheetGetAll();
           this.disabled = true;
+          this.balancesheetGetAll();
         } else {
           this.toastrservice.error("Some thing went wrong");
         }
@@ -328,8 +336,6 @@ export class BalancesheetComponent implements OnInit {
           this.toastrservice.success("Success", "Balance Sheets Updated");
           this.setBalancesheet(this.balancesheetservice.getDetail(response));
           this.refresh.next();
-          this.balancesheetGetAll();
-          this.disabled = true;
         } else {
           this.toastrservice.error("Some thing went wrong");
         }

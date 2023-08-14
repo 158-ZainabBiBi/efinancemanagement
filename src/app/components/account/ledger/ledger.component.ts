@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, ViewChild, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, ViewChild, EventEmitter, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { OnFailService } from '../../../services/on-fail.service';
@@ -14,7 +14,7 @@ declare var $: any;
   templateUrl: './ledger.component.html',
   styleUrls: ['./ledger.component.css']
 })
-export class LedgerComponent implements OnInit {
+export class LedgerComponent implements OnInit, AfterViewInit {
   @ViewChild("journal") journal: JournalComponent;
   @ViewChild("addjournal") addjournal: JournalComponent;
   @ViewChild("editjournal") editjournal: JournalComponent;
@@ -43,6 +43,10 @@ export class LedgerComponent implements OnInit {
   journalID = null;
   @Input()
   accountclassificationID = null;
+  @Input()
+  totalcredit: number = 0;
+  @Input()
+  totaldebit: number = 0;
 
   @Output() edit = new EventEmitter();
   @Output() cancel = new EventEmitter();
@@ -70,10 +74,17 @@ export class LedgerComponent implements OnInit {
     private toastrservice: ToastrService,
     private onfailservice: OnFailService,
     private router: Router,
+    private cdr: ChangeDetectorRef
   ) { }
 
   ngOnInit(): void {
     this.load(this.isreload);
+  }
+
+  ngAfterViewInit(): void {
+    this.totalcredit = this.getTotalCredit();
+    this.totaldebit = this.getTotalDebit();
+    this.cdr.detectChanges();
   }
 
   load(reload) {
@@ -125,37 +136,43 @@ export class LedgerComponent implements OnInit {
           onClick: this.load.bind(this, true),
         },
       },
-      {
-        location: 'after',
-        text: `Total Credit: ${this.getTotalCredit()}`,
-      },
-      {
-        location: 'after',
-        text: `Total Debit: ${this.getTotalDebit()}`,
-      }
     );
   }
 
   getTotalCredit() {
     let total = 0;
-    this.ledgersAll.forEach(totals => {
-      const credit = Number(totals.ledger_CREDIT);
-      if (!isNaN(credit)) {
-        total += credit;
-      }
-    });
+    if (this.ledgersAll) {
+      this.ledgersAll.forEach(totals => {
+        const credit = Number(totals.ledger_CREDIT);
+        if (!isNaN(credit)) {
+          total += credit;
+        }
+      });
+    }
     return total;
   }
 
   getTotalDebit() {
     let total = 0;
-    this.ledgersAll.forEach(totals => {
-      const debit = Number(totals.ledger_DEBIT);
-      if (!isNaN(debit)) {
-        total += debit;
-      }
-    });
+    if (this.ledgersAll) {
+      this.ledgersAll.forEach(totals => {
+        const debit = Number(totals.ledger_DEBIT);
+        if (!isNaN(debit)) {
+          total += debit;
+        }
+      });
+    }
     return total;
+  }
+
+  onCreditChange() {
+    this.ledger.ledger_DEBIT = 0;
+    this.creditdisabled = true;
+  }
+
+  onDebitChange() {
+    this.ledger.ledger_CREDIT = 0;
+    this.debitdisabled = true;
   }
 
   add() {
@@ -173,19 +190,14 @@ export class LedgerComponent implements OnInit {
     };
   }
 
-  onCreditChange() {
-    this.ledger.ledger_DEBIT = 0;
-    this.creditdisabled = true;
-  }
-
-  onDebitChange() {
-    this.ledger.ledger_CREDIT = 0;
-    this.debitdisabled = true;
-  }
-
   journalAddNew() {
     this.addjournal.add();
     $("#addjournal").modal("show");
+  }
+
+  journalrefresh() {
+    this.journal.load(true);
+    this.journalCancel();
   }
 
   journalCancel() {
@@ -197,6 +209,8 @@ export class LedgerComponent implements OnInit {
   onJournalChange(journal) {
     this.ledger.ledger_NAME = journal.journal_NAME;
   }
+
+  onAccountclassificationChange(accountclassification) { }
 
   update(row) {
     this.edit.next(row);
@@ -235,8 +249,8 @@ export class LedgerComponent implements OnInit {
   }
 
   setLedger(response) {
-    this.ledgerID = response.ledger_ID;
     this.journalID = response.journal_ID;
+    this.ledgerID = response.ledger_ID;
     this.accountclassificationID = response.accountclassification_ID;
 
     if (response.isactive == "Y") {
@@ -322,6 +336,7 @@ export class LedgerComponent implements OnInit {
   }
 
   ledgerUpdate(ledger) {
+
     ledger.journal_ID = this.journal.journalID;
     ledger.accountclassification_ID = this.accountclassification.accountclassificationID;
 

@@ -9,8 +9,8 @@ body {
 .contents {
   text-align: justify;
   text-justify: inter-word;
-  padding-right: 80px;
-  padding-left: 80px
+  padding-right: auto;
+  padding-left: auto
 }
 
 h2 {

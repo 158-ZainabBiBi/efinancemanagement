@@ -138,7 +138,7 @@
         <dxo-header-filter [visible]="true"></dxo-header-filter>
         <dxo-search-panel [visible]="true"></dxo-search-panel>
         <dxo-group-panel [visible]="false"></dxo-group-panel>
-        <dxo-grouping #expand [autoExpandAll]="false"></dxo-grouping>
+        <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
         <dxo-scrolling mode="virtual"></dxo-scrolling>
         <dxo-sorting mode="multiple"></dxo-sorting>
         <dxo-selection mode="single"></dxo-selection>
@@ -149,8 +149,8 @@
           alignment="left"></dxi-column>
         <dxi-column dataField="accountclassification_NAME" caption="Name" cssClass="myClass"
           alignment="left"></dxi-column>
-        <dxi-column [width]="300" dataField="accounttype_DETAIL" caption="Account Type" cssClass="myClass"
-          alignment="left"></dxi-column>
+        <dxi-column dataField="accounttype_DETAIL" caption="Account Type" cssClass="myClass" alignment="left"
+          [groupIndex]="0"></dxi-column>
         <dxi-column dataField="accountclassification_DESC" caption="Description" cssClass="myClass"
           alignment="left"></dxi-column>
         <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass"

@@ -121,42 +121,73 @@
 </div>
 
 <div *ngIf="view==2" class="form-group">
-  <div class="outer-div">
-    <div class="grid-wrapper">
-      <dx-data-grid #grid id="gridContainer" [dataSource]="balancesheetsAll" keyExpr="balancesheet_ID"
-        [showColumnLines]="true" [showRowLines]="true" [showBorders]="true" [rowAlternationEnabled]="true"
-        [allowColumnResizing]="true" [columnMinWidth]="30" [columnAutoWidth]="true" [remoteOperations]="true"
-        height="600" width="100%" (onToolbarPreparing)="onToolbarPreparing($event)">
-        <dxo-filter-row [visible]="true"></dxo-filter-row>
-        <dxo-header-filter [visible]="true"></dxo-header-filter>
-        <dxo-search-panel [visible]="true"></dxo-search-panel>
-        <dxo-group-panel [visible]="false"></dxo-group-panel>
-        <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
-        <dxo-scrolling mode="virtual"></dxo-scrolling>
-        <dxo-sorting mode="multiple"></dxo-sorting>
-        <dxo-selection mode="single"></dxo-selection>
-        <dxi-column [width]="75" [allowFiltering]="false" [allowSorting]="false" alignment="center"
-          cellTemplate="cellTemplate"></dxi-column>
-
-        <dxi-column dataField="balancesheet_CODE" caption="Code" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="ledger_DETAIL" caption="Date" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="balancesheet_NAME" caption="Name" cssClass="myClass" alignment="left"></dxi-column>
-        <!-- <dxi-column dataField="ledger.ledger_NAME" caption="Ledger A/c" cssClass="myClass"
-          alignment="left"></dxi-column> -->
-        <dxi-column dataField="ledger.ledger_DEBIT" caption="Debit" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="ledger.ledger_CREDIT" caption="Credit" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="ledger.accountclassification_DETAIL" caption="Classification" cssClass="myClass"
-          alignment="left"></dxi-column>
-        <dxi-column dataField="ledger.accountclassification.accounttype_DETAIL" caption="Type" cssClass="myClass"
-          alignment="left" [groupIndex]="0"></dxi-column>
-        <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass"
-          alignment="center"></dxi-column>
-
-        <div *dxTemplate="let data of 'cellTemplate'">
-          <a href="javascript:void" class="" (click)="update(data)">
-            <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-md-3">
         </div>
-      </dx-data-grid>
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label class="control-label">Total Debit</label>
+            <input type="text" class="form-control" name="totaldebit" [(ngModel)]="totaldebit" [disabled]="disabled" />
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label class="control-label">Total Credit</label>
+            <input type="text" class="form-control" name="totalcredit" [(ngModel)]="totalcredit"
+              [disabled]="disabled" />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="outer-div">
+            <div class="grid-wrapper">
+              <dx-data-grid #grid id="gridContainer" [dataSource]="balancesheetsAll" keyExpr="balancesheet_ID"
+                [showColumnLines]="true" [showRowLines]="true" [showBorders]="true" [rowAlternationEnabled]="true"
+                [allowColumnResizing]="true" [columnMinWidth]="30" [columnAutoWidth]="true" [remoteOperations]="true"
+                height="600" width="100%" (onToolbarPreparing)="onToolbarPreparing($event)">
+                <dxo-filter-row [visible]="true"></dxo-filter-row>
+                <dxo-header-filter [visible]="true"></dxo-header-filter>
+                <dxo-search-panel [visible]="true"></dxo-search-panel>
+                <dxo-group-panel [visible]="false"></dxo-group-panel>
+                <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
+                <dxo-scrolling mode="virtual"></dxo-scrolling>
+                <dxo-sorting mode="multiple"></dxo-sorting>
+                <dxo-selection mode="single"></dxo-selection>
+                <dxi-column [width]="75" [allowFiltering]="false" [allowSorting]="false" alignment="center"
+                  cellTemplate="cellTemplate"></dxi-column>
+
+                <dxi-column dataField="balancesheet_CODE" caption="Code" cssClass="myClass"
+                  alignment="left"></dxi-column>
+                <dxi-column dataField="ledger_DETAIL" caption="Date" cssClass="myClass" alignment="left"></dxi-column>
+                <dxi-column dataField="balancesheet_NAME" caption="Name" cssClass="myClass"
+                  alignment="left"></dxi-column>
+                <!-- <dxi-column dataField="ledger.ledger_NAME" caption="Ledger A/c" cssClass="myClass"
+                    alignment="left"></dxi-column> -->
+                <dxi-column dataField="ledger.ledger_DEBIT" caption="Debit" cssClass="myClass"
+                  alignment="left"></dxi-column>
+                <dxi-column dataField="ledger.ledger_CREDIT" caption="Credit" cssClass="myClass"
+                  alignment="left"></dxi-column>
+                <dxi-column dataField="ledger.accountclassification_DETAIL" caption="Classification" cssClass="myClass"
+                  alignment="left"></dxi-column>
+                <dxi-column dataField="ledger.accountclassification.accounttype_DETAIL" caption="Type"
+                  cssClass="myClass" alignment="left" [groupIndex]="0"></dxi-column>
+                <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass"
+                  alignment="center"></dxi-column>
+
+                <div *dxTemplate="let data of 'cellTemplate'">
+                  <a href="javascript:void" class="" (click)="update(data)">
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                </div>
+              </dx-data-grid>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

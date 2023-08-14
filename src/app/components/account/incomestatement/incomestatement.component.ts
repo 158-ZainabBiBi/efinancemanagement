@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, ViewChild, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, ViewChild, EventEmitter, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { OnFailService } from '../../../services/on-fail.service';
@@ -13,7 +13,7 @@ declare var $: any;
   templateUrl: './incomestatement.component.html',
   styleUrls: ['./incomestatement.component.css']
 })
-export class IncomestatementComponent implements OnInit {
+export class IncomestatementComponent implements OnInit, AfterViewInit {
   @ViewChild("ledger") ledger: LedgerComponent;
   @ViewChild("addledger") addledger: LedgerComponent;
   @ViewChild("editledger") editledger: LedgerComponent;
@@ -32,12 +32,16 @@ export class IncomestatementComponent implements OnInit {
   incomestatementID = null;
   @Input()
   ledgerID = null;
+  @Input()
+  totalcredit: number = 0;
+  @Input()
+  totaldebit: number = 0;
 
   @Output() edit = new EventEmitter();
   @Output() cancel = new EventEmitter();
   @Output() show = new EventEmitter();
   @Output() refresh = new EventEmitter();
-  @Output() onIncomestatementChange = new EventEmitter();
+  @Output() onIncomeStatementChange = new EventEmitter();
 
   incomestatements = [];
   incomestatementsAll = [];
@@ -54,10 +58,17 @@ export class IncomestatementComponent implements OnInit {
     private toastrservice: ToastrService,
     private onfailservice: OnFailService,
     private router: Router,
+    private cdr: ChangeDetectorRef
   ) { }
 
   ngOnInit(): void {
     this.load(this.isreload);
+  }
+
+  ngAfterViewInit(): void {
+    this.totalcredit = this.getTotalCredit();
+    this.totaldebit = this.getTotalDebit();
+    this.cdr.detectChanges();
   }
 
   load(reload) {
@@ -108,36 +119,32 @@ export class IncomestatementComponent implements OnInit {
           onClick: this.load.bind(this, true),
         },
       },
-      {
-        location: 'after',
-        text: `Total Credit: ${this.getTotalCredit()}`,
-      },
-      {
-        location: 'after',
-        text: `Total Debit: ${this.getTotalDebit()}`,
-      }
     );
   }
 
   getTotalCredit() {
     let total = 0;
-    this.incomestatementsAll.forEach(totals => {
-      const credit = Number(totals.ledger.ledger_CREDIT);
-      if (!isNaN(credit)) {
-        total += credit;
-      }
-    });
+    if (this.incomestatementsAll) {
+      this.incomestatementsAll.forEach(totals => {
+        const credit = Number(totals.ledger.ledger_CREDIT);
+        if (!isNaN(credit)) {
+          total += credit;
+        }
+      });
+    }
     return total;
   }
 
   getTotalDebit() {
     let total = 0;
-    this.incomestatementsAll.forEach(totals => {
-      const debit = Number(totals.ledger.ledger_DEBIT);
-      if (!isNaN(debit)) {
-        total += debit;
-      }
-    });
+    if (this.incomestatementsAll) {
+      this.incomestatementsAll.forEach(totals => {
+        const debit = Number(totals.ledger.ledger_DEBIT);
+        if (!isNaN(debit)) {
+          total += debit;
+        }
+      });
+    }
     return total;
   }
 
@@ -201,15 +208,15 @@ export class IncomestatementComponent implements OnInit {
   onChange(incomestatementID) {
     for (var i = 0; i < this.incomestatementsAll.length; i++) {
       if (this.incomestatementsAll[i].incomestatement_ID == incomestatementID) {
-        this.onIncomestatementChange.next(this.incomestatementsAll[i]);
+        this.onIncomeStatementChange.next(this.incomestatementsAll[i]);
         break;
       }
     }
   }
 
   setIncomestatement(response) {
-    this.incomestatementID = response.incomestatement_ID;
     this.ledgerID = response.ledger_ID;
+    this.incomestatementID = response.incomestatement_ID;
 
     if (response.isactive == "Y") {
       response.isactive = true;
@@ -281,8 +288,8 @@ export class IncomestatementComponent implements OnInit {
           this.toastrservice.success("Success", "New Income Statement Added");
           this.setIncomestatement(this.incomestatementservice.getDetail(response));
           this.refresh.next();
-          this.incomestatementGetAll();
           this.disabled = true;
+          this.incomestatementGetAll();
         } else {
           this.toastrservice.error("Some thing went wrong");
         }
@@ -293,6 +300,7 @@ export class IncomestatementComponent implements OnInit {
   }
 
   incomestatementUpdate(incomestatement) {
+
     incomestatement.ledger_ID = this.ledger.ledgerID;
 
     if (incomestatement.isactive == true) {
@@ -308,8 +316,8 @@ export class IncomestatementComponent implements OnInit {
           this.toastrservice.success("Success", "Income Statement Updated");
           this.setIncomestatement(this.incomestatementservice.getDetail(response));
           this.refresh.next();
-          this.incomestatementGetAll();
           this.disabled = true;
+          this.incomestatementGetAll();
         } else {
           this.toastrservice.error("Some thing went wrong");
         }

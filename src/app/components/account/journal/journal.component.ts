@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, ViewChild, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, ViewChild, EventEmitter, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { OnFailService } from '../../../services/on-fail.service';
@@ -14,7 +14,7 @@ declare var $: any;
   templateUrl: './journal.component.html',
   styleUrls: ['./journal.component.css']
 })
-export class JournalComponent implements OnInit {
+export class JournalComponent implements OnInit, AfterViewInit {
   @ViewChild("transaction") transaction: TransactionComponent;
   @ViewChild("addtransaction") addtransaction: TransactionComponent;
   @ViewChild("edittransaction") edittransaction: TransactionComponent;
@@ -43,6 +43,10 @@ export class JournalComponent implements OnInit {
   transactionID = null;
   @Input()
   accountID = null;
+  @Input()
+  totalcredit: number = 0;
+  @Input()
+  totaldebit: number = 0;
 
   @Output() edit = new EventEmitter();
   @Output() cancel = new EventEmitter();
@@ -70,10 +74,17 @@ export class JournalComponent implements OnInit {
     private toastrservice: ToastrService,
     private onfailservice: OnFailService,
     private router: Router,
+    private cdr: ChangeDetectorRef
   ) { }
 
   ngOnInit(): void {
     this.load(this.isreload);
+  }
+
+  ngAfterViewInit(): void {
+    this.totalcredit = this.getTotalCredit();
+    this.totaldebit = this.getTotalDebit();
+    this.cdr.detectChanges();
   }
 
   load(reload) {
@@ -125,36 +136,32 @@ export class JournalComponent implements OnInit {
           onClick: this.load.bind(this, true),
         },
       },
-      {
-        location: 'after',
-        text: `Total Credit: ${this.getTotalCredit()}`,
-      },
-      {
-        location: 'after',
-        text: `Total Debit: ${this.getTotalDebit()}`,
-      }
     );
   }
 
   getTotalCredit() {
     let total = 0;
-    this.journalsAll.forEach(totals => {
-      const credit = Number(totals.journal_CREDIT);
-      if (!isNaN(credit)) {
-        total += credit;
-      }
-    });
+    if (this.journalsAll) {
+      this.journalsAll.forEach(totals => {
+        const credit = Number(totals.journal_CREDIT);
+        if (!isNaN(credit)) {
+          total += credit;
+        }
+      });
+    }
     return total;
   }
 
   getTotalDebit() {
     let total = 0;
-    this.journalsAll.forEach(totals => {
-      const debit = Number(totals.journal_DEBIT);
-      if (!isNaN(debit)) {
-        total += debit;
-      }
-    });
+    if (this.journalsAll) {
+      this.journalsAll.forEach(totals => {
+        const debit = Number(totals.journal_DEBIT);
+        if (!isNaN(debit)) {
+          total += debit;
+        }
+      });
+    }
     return total;
   }
 

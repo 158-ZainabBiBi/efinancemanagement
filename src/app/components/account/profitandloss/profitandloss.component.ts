@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, ViewChild, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, ViewChild, EventEmitter, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { OnFailService } from '../../../services/on-fail.service';
@@ -13,7 +13,7 @@ declare var $: any;
   templateUrl: './profitandloss.component.html',
   styleUrls: ['./profitandloss.component.css']
 })
-export class ProfitandlossComponent implements OnInit {
+export class ProfitandlossComponent implements OnInit, AfterViewInit {
   @ViewChild("ledger") ledger: LedgerComponent;
   @ViewChild("addledger") addledger: LedgerComponent;
   @ViewChild("editledger") editledger: LedgerComponent;
@@ -32,15 +32,19 @@ export class ProfitandlossComponent implements OnInit {
   profitandlossID = null;
   @Input()
   ledgerID = null;
+  @Input()
+  totalcredit: number = 0;
+  @Input()
+  totaldebit: number = 0;
 
   @Output() edit = new EventEmitter();
   @Output() cancel = new EventEmitter();
   @Output() show = new EventEmitter();
   @Output() refresh = new EventEmitter();
-  @Output() onProfitandlossChange = new EventEmitter();
+  @Output() onProfitandLossChange = new EventEmitter();
 
-  profitandlosss = [];
-  profitandlosssAll = [];
+  profitandlosses = [];
+  profitandlossesAll = [];
   profitandloss = {
     profitandloss_ID: 0,
     profitandloss_CODE: null,
@@ -54,29 +58,36 @@ export class ProfitandlossComponent implements OnInit {
     private toastrservice: ToastrService,
     private onfailservice: OnFailService,
     private router: Router,
+    private cdr: ChangeDetectorRef
   ) { }
 
   ngOnInit(): void {
     this.load(this.isreload);
   }
 
+  ngAfterViewInit(): void {
+    this.totalcredit = this.getTotalCredit();
+    this.totaldebit = this.getTotalDebit();
+    this.cdr.detectChanges();
+  }
+
   load(reload) {
-    if (window.sessionStorage.getItem('profitandlosss') != null) {
-      this.profitandlosss = JSON.parse(window.sessionStorage.getItem('profitandlosss'));
+    if (window.sessionStorage.getItem('profitandlosses') != null) {
+      this.profitandlosses = JSON.parse(window.sessionStorage.getItem('profitandlosses'));
     }
-    if (window.sessionStorage.getItem('profitandlosssAll') != null) {
-      this.profitandlosssAll = JSON.parse(window.sessionStorage.getItem('profitandlosssAll'));
+    if (window.sessionStorage.getItem('profitandlossesAll') != null) {
+      this.profitandlossesAll = JSON.parse(window.sessionStorage.getItem('profitandlossesAll'));
     }
     if (this.profitandlossID != 0 && !this.profitandlossID && Number(window.sessionStorage.getItem('profitandloss')) > 0) {
       this.profitandlossID = Number(window.sessionStorage.getItem('profitandloss'));
     }
 
-    if (this.view >= 1 && this.view <= 2 && (this.profitandlosss == null || this.profitandlosss.length == 0 || reload == true)) {
-      this.profitandlosss == null;
+    if (this.view >= 1 && this.view <= 2 && (this.profitandlosses == null || this.profitandlosses.length == 0 || reload == true)) {
+      this.profitandlosses == null;
       this.profitandlossGet();
     }
-    if (((this.view >= 1 && this.view <= 2) || this.view == 10) && (this.profitandlosssAll == null || this.profitandlosssAll.length == 0 || reload == true)) {
-      this.profitandlosssAll == null;
+    if (((this.view >= 1 && this.view <= 2) || this.view == 10) && (this.profitandlossesAll == null || this.profitandlossesAll.length == 0 || reload == true)) {
+      this.profitandlossesAll == null;
       this.profitandlossGetAll();
     }
 
@@ -88,11 +99,11 @@ export class ProfitandlossComponent implements OnInit {
       window.sessionStorage.setItem("profitandloss", this.profitandlossID);
       this.profitandlossGetOne(this.profitandlossID);
       this.disabled = true;
-    } else if ((this.view >= 11 && this.view <= 29) && this.disabled == false && (this.profitandlosss == null || this.profitandlosss.length == 0 || reload == true)) {
-      this.profitandlosss == null;
+    } else if ((this.view >= 11 && this.view <= 29) && this.disabled == false && (this.profitandlosses == null || this.profitandlosses.length == 0 || reload == true)) {
+      this.profitandlosses == null;
       this.profitandlossAdvancedSearch(search);
-    } else if ((this.view >= 11 && this.view <= 29) && this.disabled == true && (this.profitandlosssAll == null || this.profitandlosssAll.length == 0 || reload == true)) {
-      this.profitandlosssAll == null;
+    } else if ((this.view >= 11 && this.view <= 29) && this.disabled == true && (this.profitandlossesAll == null || this.profitandlossesAll.length == 0 || reload == true)) {
+      this.profitandlossesAll == null;
       this.profitandlossAdvancedSearchAll(search);
     }
   }
@@ -108,36 +119,32 @@ export class ProfitandlossComponent implements OnInit {
           onClick: this.load.bind(this, true),
         },
       },
-      {
-        location: 'after',
-        text: `Total Credit: ${this.getTotalCredit()}`,
-      },
-      {
-        location: 'after',
-        text: `Total Debit: ${this.getTotalDebit()}`,
-      }
     );
   }
 
   getTotalCredit() {
     let total = 0;
-    this.profitandlosssAll.forEach(totals => {
-      const credit = Number(totals.ledger.ledger_CREDIT);
-      if (!isNaN(credit)) {
-        total += credit;
-      }
-    });
+    if (this.profitandlossesAll) {
+      this.profitandlossesAll.forEach(totals => {
+        const credit = Number(totals.ledger.ledger_CREDIT);
+        if (!isNaN(credit)) {
+          total += credit;
+        }
+      });
+    }
     return total;
   }
 
   getTotalDebit() {
     let total = 0;
-    this.profitandlosssAll.forEach(totals => {
-      const debit = Number(totals.ledger.ledger_DEBIT);
-      if (!isNaN(debit)) {
-        total += debit;
-      }
-    });
+    if (this.profitandlossesAll) {
+      this.profitandlossesAll.forEach(totals => {
+        const debit = Number(totals.ledger.ledger_DEBIT);
+        if (!isNaN(debit)) {
+          total += debit;
+        }
+      });
+    }
     return total;
   }
 
@@ -194,22 +201,22 @@ export class ProfitandlossComponent implements OnInit {
   profitandlossCancel() {
     this.disabled = true;
     if (this.profitandloss.profitandloss_ID == 0) {
-      this.router.navigate(["/home/profitandlosss"], {});
+      this.router.navigate(["/home/profitandlosses"], {});
     }
   }
 
   onChange(profitandlossID) {
-    for (var i = 0; i < this.profitandlosssAll.length; i++) {
-      if (this.profitandlosssAll[i].profitandloss_ID == profitandlossID) {
-        this.onProfitandlossChange.next(this.profitandlosssAll[i]);
+    for (var i = 0; i < this.profitandlossesAll.length; i++) {
+      if (this.profitandlossesAll[i].profitandloss_ID == profitandlossID) {
+        this.onProfitandLossChange.next(this.profitandlossesAll[i]);
         break;
       }
     }
   }
 
   setProfitandloss(response) {
-    this.profitandlossID = response.profitandloss_ID;
     this.ledgerID = response.ledger_ID;
+    this.profitandlossID = response.profitandloss_ID;
 
     if (response.isactive == "Y") {
       response.isactive = true;
@@ -219,7 +226,7 @@ export class ProfitandlossComponent implements OnInit {
     this.profitandloss = response;
   }
 
-  setProfitandlosss(response) {
+  setProfitandlosses(response) {
     this.cancel.next();
     return response;
   }
@@ -230,8 +237,8 @@ export class ProfitandlossComponent implements OnInit {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else {
-          this.profitandlosss = this.setProfitandlosss(this.profitandlossservice.getAllDetail(response));
-          window.sessionStorage.setItem("profitandlosss", JSON.stringify(this.profitandlosss));
+          this.profitandlosses = this.setProfitandlosses(this.profitandlossservice.getAllDetail(response));
+          window.sessionStorage.setItem("profitandlosses", JSON.stringify(this.profitandlosses));
         }
       }
     }, error => {
@@ -245,8 +252,8 @@ export class ProfitandlossComponent implements OnInit {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else {
-          this.profitandlosssAll = this.setProfitandlosss(this.profitandlossservice.getAllDetail(response));
-          window.sessionStorage.setItem("profitandlosssAll", JSON.stringify(this.profitandlosssAll));
+          this.profitandlossesAll = this.setProfitandlosses(this.profitandlossservice.getAllDetail(response));
+          window.sessionStorage.setItem("profitandlossesAll", JSON.stringify(this.profitandlossesAll));
         }
       }
     }, error => {
@@ -281,8 +288,8 @@ export class ProfitandlossComponent implements OnInit {
           this.toastrservice.success("Success", "New Profit and Loss Added");
           this.setProfitandloss(this.profitandlossservice.getDetail(response));
           this.refresh.next();
-          this.profitandlossGetAll();
           this.disabled = true;
+          this.profitandlossGetAll();
         } else {
           this.toastrservice.error("Some thing went wrong");
         }
@@ -293,6 +300,7 @@ export class ProfitandlossComponent implements OnInit {
   }
 
   profitandlossUpdate(profitandloss) {
+
     profitandloss.ledger_ID = this.ledger.ledgerID;
 
     if (profitandloss.isactive == true) {
@@ -308,8 +316,8 @@ export class ProfitandlossComponent implements OnInit {
           this.toastrservice.success("Success", "Profit and Loss Updated");
           this.setProfitandloss(this.profitandlossservice.getDetail(response));
           this.refresh.next();
-          this.profitandlossGetAll();
           this.disabled = true;
+          this.profitandlossGetAll();
         } else {
           this.toastrservice.error("Some thing went wrong");
         }
@@ -319,13 +327,13 @@ export class ProfitandlossComponent implements OnInit {
     })
   }
 
-  profitandlossUpdateAll(profitandlosss) {
-    this.profitandlossservice.updateAll(profitandlosss).subscribe(response => {
+  profitandlossUpdateAll(profitandlosses) {
+    this.profitandlossservice.updateAll(profitandlosses).subscribe(response => {
       if (response) {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else if (response.length > 0) {
-          this.toastrservice.success("Success", "Profit and Losses Updated");
+          this.toastrservice.success("Success", "Profit and Losss Updated");
           this.setProfitandloss(this.profitandlossservice.getDetail(response));
           this.refresh.next();
         } else {
@@ -346,8 +354,8 @@ export class ProfitandlossComponent implements OnInit {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else {
-          this.profitandlosss = this.setProfitandlosss(this.profitandlossservice.getAllDetail(response));
-          window.sessionStorage.setItem("profitandlosss", JSON.stringify(this.profitandlosss));
+          this.profitandlosses = this.setProfitandlosses(this.profitandlossservice.getAllDetail(response));
+          window.sessionStorage.setItem("profitandlosses", JSON.stringify(this.profitandlosses));
         }
       }
     }, error => {
@@ -364,8 +372,8 @@ export class ProfitandlossComponent implements OnInit {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else {
-          this.profitandlosssAll = this.setProfitandlosss(this.profitandlossservice.getAllDetail(response));
-          window.sessionStorage.setItem("profitandlosssAll", JSON.stringify(this.profitandlosssAll));
+          this.profitandlossesAll = this.setProfitandlosses(this.profitandlossservice.getAllDetail(response));
+          window.sessionStorage.setItem("profitandlossesAll", JSON.stringify(this.profitandlossesAll));
         }
       }
     }, error => {
@@ -381,8 +389,8 @@ export class ProfitandlossComponent implements OnInit {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else {
-          this.profitandlosss = this.setProfitandlosss(this.profitandlossservice.getAllDetail(response));
-          window.sessionStorage.setItem("profitandlosss", JSON.stringify(this.profitandlosss));
+          this.profitandlosses = this.setProfitandlosses(this.profitandlossservice.getAllDetail(response));
+          window.sessionStorage.setItem("profitandlosses", JSON.stringify(this.profitandlosses));
         }
       }
     }, error => {
@@ -398,8 +406,8 @@ export class ProfitandlossComponent implements OnInit {
         if (response.error && response.status) {
           this.toastrservice.warning("Message", " " + response.message);
         } else {
-          this.profitandlosssAll = this.setProfitandlosss(this.profitandlossservice.getAllDetail(response));
-          window.sessionStorage.setItem("profitandlosssAll", JSON.stringify(this.profitandlosssAll));
+          this.profitandlossesAll = this.setProfitandlosses(this.profitandlossservice.getAllDetail(response));
+          window.sessionStorage.setItem("profitandlossesAll", JSON.stringify(this.profitandlossesAll));
         }
       }
     }, error => {
