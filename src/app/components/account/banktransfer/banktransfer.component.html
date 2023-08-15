@@ -147,7 +147,7 @@
         <dxi-column dataField="tobankaccount_DETAIL" caption="To Account" cssClass="myClass"
           alignment="left"></dxi-column>
         <dxi-column dataField="banktransfer_AMOUNT" caption="Amount" cssClass="myClass" alignment="center"></dxi-column>
-        <dxi-column [width]="200" dataField="banktransfer_DESC" caption="Description" cssClass="myClass"
+        <dxi-column dataField="banktransfer_DESC" caption="Description" cssClass="myClass"
           alignment="left"></dxi-column>
         <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass"
           alignment="center"></dxi-column>
@@ -223,7 +223,7 @@
               </div>
             </div>
             <div class="col-md-9">
-              <app-transaction #transaction [view]="6" [transactionID]=banktransfer.transaction_ID
+              <app-transaction #transaction [view]="7" [transactionID]=banktransfer.transaction_ID
                 (onTransactionChange)="onTransactionChange($event)"></app-transaction>
             </div>
           </div>
@@ -302,7 +302,7 @@
               </div>
             </div>
             <div class="col-md-9">
-              <app-transaction #transaction [view]="6" [transactionID]=banktransfer.transaction_ID
+              <app-transaction #transaction [view]="7" [transactionID]=banktransfer.transaction_ID
                 (onTransactionChange)="onTransactionChange($event)"></app-transaction>
             </div>
           </div>

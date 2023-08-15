@@ -6,7 +6,7 @@
   </div>
 </div>
 
-<div class="collapse-card-h container" *ngIf="bankaccountID!=0">
+<div class="collapse-card-h container" *ngIf="frombankaccountID!=0">
   <div class="row">
     <div class="col-md-12">
       <div class="card-primary card">
@@ -28,7 +28,7 @@
           <div class="row">
             <div class="col-lg-12">
               <app-banktransfer #banktransfers [view]=22 (edit)="editBanktransfer($event)"
-                [bankaccountID]="bankaccountID"></app-banktransfer>
+                [frombankaccountID]="frombankaccountID"></app-banktransfer>
             </div>
           </div>
         </div>
@@ -45,7 +45,7 @@
   <app-banktransfer #editbanktransfer [view]=4 (refresh)="refresh()" (cancel)="cancelbanktransfer()"></app-banktransfer>
 </div>
 
-<div class="collapse-card-h container" *ngIf="bankaccountID!=0">
+<div class="collapse-card-h container" *ngIf="frombankaccountID!=0">
   <div class="row">
     <div class="col-md-12">
       <div class="card-primary card">
@@ -67,7 +67,7 @@
           <div class="row">
             <div class="col-lg-12">
               <app-bankdeposit #bankdeposits [view]=22 (edit)="editBankdeposit($event)"
-                [bankaccountID]="bankaccountID"></app-bankdeposit>
+                [frombankaccountID]="frombankaccountID"></app-bankdeposit>
             </div>
           </div>
         </div>

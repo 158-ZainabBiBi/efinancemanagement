@@ -24,6 +24,8 @@ export class BankaccountviewComponent implements OnInit {
   @ViewChild("editbankdeposit") editbankdeposit: BankdepositComponent;
 
   bankaccountID = 0;
+  frombankaccountID = 0;
+  tobankaccountID = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -34,6 +36,8 @@ export class BankaccountviewComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       if (params.bankaccount) {
         this.bankaccountID = params.bankaccount;
+        this.frombankaccountID = params.bankaccount;
+        this.tobankaccountID = params.bankaccount;
       }
     });
   }

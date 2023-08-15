@@ -35,6 +35,10 @@ export class BanktransferComponent implements OnInit {
   @Input()
   bankaccountID = null;
   @Input()
+  frombankaccountID = null;
+  @Input()
+  tobankaccountID = null;
+  @Input()
   transactionID = null;
 
   @Output() edit = new EventEmitter();
@@ -90,8 +94,8 @@ export class BanktransferComponent implements OnInit {
     }
 
     var search = {
-      frombankaccount_ID: this.bankaccountID,
-      tobankaccount_ID: this.bankaccountID,
+      frombankaccount_ID: this.frombankaccountID,
+      tobankaccount_ID: this.tobankaccountID,
       transaction_ID: this.transactionID,
     }
 
@@ -370,8 +374,8 @@ export class BanktransferComponent implements OnInit {
   }
 
   banktransferAdvancedSearch(search) {
-    this.bankaccountID = search.tobankaccount_ID;
-    this.bankaccountID = search.frombankaccount_ID;
+    this.tobankaccountID = search.tobankaccount_ID;
+    this.frombankaccountID = search.frombankaccount_ID;
     this.transactionID = search.transaction_ID;
 
     this.banktransferservice.advancedSearch(search).subscribe(response => {
@@ -389,8 +393,8 @@ export class BanktransferComponent implements OnInit {
   }
 
   banktransferAdvancedSearchAll(search) {
-    this.bankaccountID = search.tobankaccount_ID;
-    this.bankaccountID = search.frombankaccount_ID;
+    this.tobankaccountID = search.tobankaccount_ID;
+    this.frombankaccountID = search.frombankaccount_ID;
     this.transactionID = search.transaction_ID;
 
     this.banktransferservice.advancedSearchAll(search).subscribe(response => {

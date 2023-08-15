@@ -35,6 +35,10 @@ export class BankdepositComponent implements OnInit {
   @Input()
   bankaccountID = null;
   @Input()
+  frombankaccountID = null;
+  @Input()
+  tobankaccountID = null;
+  @Input()
   transactionID = null;
 
   @Output() edit = new EventEmitter();
@@ -90,8 +94,8 @@ export class BankdepositComponent implements OnInit {
     }
 
     var search = {
-      frombankaccount_ID: this.bankaccountID,
-      tobankaccount_ID: this.bankaccountID,
+      frombankaccount_ID: this.frombankaccountID,
+      tobankaccount_ID: this.tobankaccountID,
       transaction_ID: this.transactionID,
     }
 
@@ -197,8 +201,8 @@ export class BankdepositComponent implements OnInit {
 
   setBankdeposit(response) {
     this.bankdepositID = response.bankdeposit_ID;
-    this.bankdepositID = response.tobankdeposit_ID;
-    this.bankdepositID = response.frombankdeposit_ID;
+    this.bankaccountID = response.tobankaccount_ID;
+    this.bankaccountID = response.frombankaccount_ID;
     this.transactionID = response.transaction_ID;
 
     if (response.isactive == "Y") {
@@ -260,10 +264,10 @@ export class BankdepositComponent implements OnInit {
   }
 
   bankdepositAdd(bankdeposit) {
-    bankdeposit.isactive = "Y";
     bankdeposit.transaction_ID = this.transaction.transactionID;
     bankdeposit.frombankaccount_ID = this.frombankaccount.bankaccountID;
     bankdeposit.tobankaccount_ID = this.tobankaccount.bankaccountID;
+    bankdeposit.isactive = "Y";
 
     this.bankdepositservice.add(bankdeposit).subscribe(response => {
       if (response) {
@@ -370,8 +374,8 @@ export class BankdepositComponent implements OnInit {
   }
 
   bankdepositAdvancedSearch(search) {
-    this.bankaccountID = search.tobankaccount_ID;
-    this.bankaccountID = search.frombankaccount_ID;
+    this.tobankaccountID = search.tobankaccount_ID;
+    this.frombankaccountID = search.frombankaccount_ID;
     this.transactionID = search.transaction_ID;
 
     this.bankdepositservice.advancedSearch(search).subscribe(response => {
@@ -389,10 +393,9 @@ export class BankdepositComponent implements OnInit {
   }
 
   bankdepositAdvancedSearchAll(search) {
-    this.bankaccountID = search.tobankaccount_ID;
-    this.bankaccountID = search.frombankaccount_ID;
+    this.tobankaccountID = search.tobankaccount_ID;
+    this.frombankaccountID = search.frombankaccount_ID;
     this.transactionID = search.transaction_ID;
-
 
     this.bankdepositservice.advancedSearchAll(search).subscribe(response => {
       if (response) {
