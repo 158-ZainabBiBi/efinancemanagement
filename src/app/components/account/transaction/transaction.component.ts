@@ -1,12 +1,12 @@
-import { Component, OnInit, Input, Output, ViewChild, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { OnFailService } from '../../../services/on-fail.service';
 
-import { CurrencyComponent } from '../../lookup/finance/currency/currency.component';
 import { TransactiontypeComponent } from '../../lookup/account/transactiontype/transactiontype.component';
-import { TransactionService } from './transaction.service';
+import { CurrencyComponent } from '../../lookup/finance/currency/currency.component';
 import { BankaccountComponent } from '../bankaccount/bankaccount.component';
+import { TransactionService } from './transaction.service';
 
 @Component({
   selector: 'app-transaction',
@@ -358,6 +358,7 @@ export class TransactionComponent implements OnInit {
   transactionAdvancedSearch(search) {
     this.bankaccountID = search.bankaccount_ID;
     this.transactiontypeID = search.transactiontype_ID;
+    this.transactiontypeCode = search.transactiontype_CODE;
     this.transactiontypeCode = search.transactiontype_CODE;
     this.currencyID = search.currency_ID;
     this.currencyCode = search.currency_CODE;

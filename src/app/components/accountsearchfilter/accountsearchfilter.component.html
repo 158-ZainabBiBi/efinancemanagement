@@ -16,7 +16,7 @@
             <div class="form-group">
               <label class="control-label" *ngIf="transactiondateto==true">Transaction Date From</label>
               <label class="control-label" *ngIf="transactiondateto==false">Transaction Date</label>
-              <input type="date" class="form-control" name="saleorder_DATEFROM" maxlength="50"
+              <input type="date" class="form-control" name="transaction_DATEFROM" maxlength="50"
                 [(ngModel)]="search.transaction_DATEFROM" />
             </div>
           </div>
@@ -24,7 +24,7 @@
             <div class="form-group">
               <label class="control-label" *ngIf="transactiondatefrom==true">Transaction Date To</label>
               <label class="control-label" *ngIf="transactiondatefrom==false">Transaction Date</label>
-              <input type="date" class="form-control" name="saleorder_DATETO" maxlength="50"
+              <input type="date" class="form-control" name="transaction_DATETO" maxlength="50"
                 [(ngModel)]="search.transaction_DATETO" />
             </div>
           </div>
@@ -61,9 +61,6 @@
           </div>
           <div class="col-md-4" *ngIf="businesstype==true">
             <app-businesstype></app-businesstype>
-          </div>
-          <div class="col-md-4" *ngIf="currency==true">
-            <app-currency></app-currency>
           </div>
           <div class="col-md-4" *ngIf="paymentmethod==true">
             <app-paymentmethod></app-paymentmethod>

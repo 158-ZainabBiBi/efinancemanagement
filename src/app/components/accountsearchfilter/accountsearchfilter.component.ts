@@ -1,19 +1,18 @@
-import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 
 import { AccountComponent } from '../account/account/account.component';
+import { AccountclassificationComponent } from '../account/accountclassification/accountclassification.component';
 import { BankaccountComponent } from '../account/bankaccount/bankaccount.component';
 import { JournalComponent } from '../account/journal/journal.component';
+import { LedgerComponent } from '../account/ledger/ledger.component';
 import { TransactionComponent } from '../account/transaction/transaction.component';
 import { CustomerComponent } from '../customer/customer/customer.component';
-import { LedgerComponent } from '../account/ledger/ledger.component';
-import { AccountclassificationComponent } from '../account/accountclassification/accountclassification.component';
 
+import { AccounttypeComponent } from '../lookup/account/accounttype/accounttype.component';
 import { BankaccounttypeComponent } from '../lookup/account/bankaccounttype/bankaccounttype.component';
 import { TransactiontypeComponent } from '../lookup/account/transactiontype/transactiontype.component';
-import { AccounttypeComponent } from '../lookup/account/accounttype/accounttype.component';
 import { BusinesstypeComponent } from '../lookup/customer/businesstype/businesstype.component';
 import { PaymentmethodComponent } from '../lookup/finance/paymentmethod/paymentmethod.component';
-import { CurrencyComponent } from '../lookup/finance/currency/currency.component';
 
 @Component({
   selector: 'app-accountsearchfilter',
@@ -34,7 +33,6 @@ export class AccountsearchfilterComponent implements OnInit {
   @ViewChild(AccounttypeComponent) accounttypes;
   @ViewChild(BusinesstypeComponent) businesstypes;
   @ViewChild(PaymentmethodComponent) paymentmethods;
-  @ViewChild(CurrencyComponent) currencies;
 
   @Input()
   account: boolean = false;
@@ -53,8 +51,6 @@ export class AccountsearchfilterComponent implements OnInit {
 
   @Input()
   paymentmethod = false;
-  @Input()
-  currency = false;
   @Input()
   bankaccounttype = false;
   @Input()
@@ -84,7 +80,6 @@ export class AccountsearchfilterComponent implements OnInit {
     transactiontype_ID: null,
     accounttype_ID: null,
     businesstype_ID: null,
-    currency_ID: null,
     paymentmethod_ID: null,
     bankaccounttype_ID: null,
 
@@ -125,8 +120,6 @@ export class AccountsearchfilterComponent implements OnInit {
       this.search.accounttype_ID = this.accounttypes.accounttypeID;
     if (this.paymentmethods)
       this.search.paymentmethod_ID = this.paymentmethods.paymentmethodID;
-    if (this.currencies)
-      this.search.currency_ID = this.currencies.currencyID;
 
     if (this.isall == true)
       this.advancedSearchAll.next(this.search);
@@ -162,8 +155,6 @@ export class AccountsearchfilterComponent implements OnInit {
       this.accounttypes.accounttypeID = null;
     if (this.paymentmethods)
       this.paymentmethods.paymentmethodID = null;
-    if (this.currencies)
-      this.currencies.currencyID = null;
 
     this.search.transaction_DATEFROM = null;
     this.search.transaction_DATETO = null;
