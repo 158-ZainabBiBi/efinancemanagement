@@ -1,10 +1,10 @@
-import { Component, OnInit, Input, Output, ViewChild, EventEmitter, AfterViewInit, ChangeDetectorRef } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { OnFailService } from '../../../services/on-fail.service';
 
+import { TrialbalanceComponent } from '../trialbalance/trialbalance.component';
 import { BalancesheetService } from './balancesheet.service';
-import { LedgerComponent } from '../ledger/ledger.component';
 
 declare var $: any;
 
@@ -14,9 +14,9 @@ declare var $: any;
   styleUrls: ['./balancesheet.component.css']
 })
 export class BalancesheetComponent implements OnInit, AfterViewInit {
-  @ViewChild("ledger") ledger: LedgerComponent;
-  @ViewChild("addledger") addledger: LedgerComponent;
-  @ViewChild("editledger") editledger: LedgerComponent;
+  @ViewChild("trialbalance") trialbalance: TrialbalanceComponent;
+  @ViewChild("addtrialbalance") addtrialbalance: TrialbalanceComponent;
+  @ViewChild("edittrialbalance") edittrialbalance: TrialbalanceComponent;
 
   @Input()
   view: number = 1;
@@ -31,7 +31,7 @@ export class BalancesheetComponent implements OnInit, AfterViewInit {
   @Input()
   balancesheetID = null;
   @Input()
-  ledgerID = null;
+  trialbalanceID = null;
   @Input()
   totalcredit: number = 0;
   @Input()
@@ -49,7 +49,7 @@ export class BalancesheetComponent implements OnInit, AfterViewInit {
     balancesheet_ID: 0,
     balancesheet_CODE: null,
     balancesheet_NAME: null,
-    ledger_ID: null,
+    trialbalance_ID: null,
     isactive: true
   }
 
@@ -92,7 +92,7 @@ export class BalancesheetComponent implements OnInit, AfterViewInit {
     }
 
     var search = {
-      ledger_ID: this.ledgerID
+      trialbalance_ID: this.trialbalanceID
     }
 
     if (this.view >= 5 && this.view <= 6 && this.balancesheetID) {
@@ -126,7 +126,7 @@ export class BalancesheetComponent implements OnInit, AfterViewInit {
     let total = 0;
     if (this.balancesheetsAll) {
       this.balancesheetsAll.forEach(totals => {
-        const credit = Number(totals.ledger.ledger_CREDIT);
+        const credit = Number(totals.trialbalance.ledger.ledger_CREDIT);
         if (!isNaN(credit)) {
           total += credit;
         }
@@ -139,7 +139,7 @@ export class BalancesheetComponent implements OnInit, AfterViewInit {
     let total = 0;
     if (this.balancesheetsAll) {
       this.balancesheetsAll.forEach(totals => {
-        const debit = Number(totals.ledger.ledger_DEBIT);
+        const debit = Number(totals.trialbalance.ledger.ledger_DEBIT);
         if (!isNaN(debit)) {
           total += debit;
         }
@@ -153,29 +153,29 @@ export class BalancesheetComponent implements OnInit, AfterViewInit {
       balancesheet_ID: 0,
       balancesheet_CODE: null,
       balancesheet_NAME: null,
-      ledger_ID: null,
+      trialbalance_ID: null,
       isactive: true
     };
   }
 
-  ledgerAddNew() {
-    this.addledger.add();
-    $("#addledger").modal("show");
+  trialbalanceAddNew() {
+    this.addtrialbalance.add();
+    $("#addtrialbalance").modal("show");
   }
 
-  ledgerrefresh() {
-    this.ledger.load(true);
-    this.ledgerCancel();
+  trialbalancerefresh() {
+    this.trialbalance.load(true);
+    this.trialbalanceCancel();
   }
 
-  ledgerCancel() {
-    $("#addledger").modal("hide");
-    $("#editledger").modal("hide");
-    this.ledger.ledgers = this.addledger.ledgers;
+  trialbalanceCancel() {
+    $("#addtrialbalance").modal("hide");
+    $("#edittrialbalance").modal("hide");
+    this.trialbalance.trialbalances = this.addtrialbalance.trialbalances;
   }
 
-  onLedgerChange(ledger) {
-    this.balancesheet.balancesheet_NAME = ledger.ledger_NAME;
+  onTrialbalanceChange(trialbalance) {
+    this.balancesheet.balancesheet_NAME = trialbalance.trialbalance_NAME;
   }
 
   update(row) {
@@ -215,7 +215,7 @@ export class BalancesheetComponent implements OnInit, AfterViewInit {
   }
 
   setBalancesheet(response) {
-    this.ledgerID = response.ledger_ID;
+    this.trialbalanceID = response.trialbalance_ID;
     this.balancesheetID = response.balancesheet_ID;
 
     if (response.isactive == "Y") {
@@ -277,7 +277,7 @@ export class BalancesheetComponent implements OnInit, AfterViewInit {
   }
 
   balancesheetAdd(balancesheet) {
-    balancesheet.ledger_ID = this.ledger.ledgerID;
+    balancesheet.trialbalance_ID = this.trialbalance.trialbalanceID;
 
     balancesheet.isactive = "Y";
     this.balancesheetservice.add(balancesheet).subscribe(response => {
@@ -301,7 +301,7 @@ export class BalancesheetComponent implements OnInit, AfterViewInit {
 
   balancesheetUpdate(balancesheet) {
 
-    balancesheet.ledger_ID = this.ledger.ledgerID;
+    balancesheet.trialbalance_ID = this.trialbalance.trialbalanceID;
 
     if (balancesheet.isactive == true) {
       balancesheet.isactive = "Y";
@@ -382,7 +382,7 @@ export class BalancesheetComponent implements OnInit, AfterViewInit {
   }
 
   balancesheetAdvancedSearch(search) {
-    this.ledgerID = search.ledger_ID;
+    this.trialbalanceID = search.trialbalance_ID;
 
     this.balancesheetservice.advancedSearch(search).subscribe(response => {
       if (response) {
@@ -399,7 +399,7 @@ export class BalancesheetComponent implements OnInit, AfterViewInit {
   }
 
   balancesheetAdvancedSearchAll(search) {
-    this.ledgerID = search.ledger_ID;
+    this.trialbalanceID = search.trialbalance_ID;
 
     this.balancesheetservice.advancedSearchAll(search).subscribe(response => {
       if (response) {

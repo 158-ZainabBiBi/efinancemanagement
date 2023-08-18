@@ -15,6 +15,7 @@
         <dxo-selection mode="single"></dxo-selection>
 
         <dxi-column dataField="ledger_CODE" caption="Code" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="journal_DETAIL" caption="Date" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="ledger_NAME" caption="Name" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="accountclassification_DETAIL" caption="Classification" cssClass="myClass"
           alignment="left" [groupIndex]="1"></dxi-column>
@@ -25,7 +26,7 @@
 
         <div *dxTemplate="let data of 'cellTemplate'">
           <a href="javascript:void" class="" (click)="update(data)">
-            <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+            <i class="fa fa-pencil-square-o eye" aria-hidden="true"></i></a>
         </div>
       </dx-data-grid>
     </div>
@@ -49,6 +50,7 @@
         <dxo-selection mode="single"></dxo-selection>
 
         <dxi-column dataField="ledger_CODE" caption="Code" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="journal_DETAIL" caption="Date" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="ledger_NAME" caption="Name" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="accountclassification_DETAIL" caption="Classification" cssClass="myClass"
           alignment="left"></dxi-column>
@@ -59,7 +61,7 @@
 
         <div *dxTemplate="let data of 'cellTemplate'">
           <a href="javascript:void" class="" (click)="update(data)">
-            <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+            <i class="fa fa-pencil-square-o eye" aria-hidden="true"></i></a>
         </div>
       </dx-data-grid>
     </div>

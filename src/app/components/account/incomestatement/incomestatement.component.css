@@ -8,7 +8,10 @@
 .card .card-header .btn {
   background-color: white !important;
   color: #007437;
+}
 
+.eye {
+  color: green;
 }
 
 /* edit/eye icon */

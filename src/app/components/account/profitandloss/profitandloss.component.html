@@ -6,7 +6,7 @@
     <div class="col-md-12">
       <ng-select [(ngModel)]="profitandlossID" [disabled]="disabled" name="profitandlossID" (change)="onChange($event)">
         <ng-option *ngFor="let profitandloss of profitandlossesAll" [value]="profitandloss.profitandloss_ID">
-          {{ profitandloss.profitandloss_CODE }} - {{ profitandloss.ledger_DETAIL }}
+          {{ profitandloss.profitandloss_CODE }} - {{ profitandloss.trialbalance_DETAIL }}
         </ng-option>
       </ng-select>
     </div>
@@ -16,7 +16,7 @@
       <ng-select [(ngModel)]="profitandlossID" name="profitandlossID" (change)="onChange($event)">
         <ng-option *ngFor="let profitandloss of profitandlosses" [value]="profitandloss.profitandloss_ID"
           [disabled]="disabled">
-          {{ profitandloss.profitandloss_CODE }} - {{ profitandloss.ledger_DETAIL }}
+          {{ profitandloss.profitandloss_CODE }} - {{ profitandloss.trialbalance_DETAIL }}
         </ng-option>
       </ng-select>
     </div>
@@ -36,7 +36,7 @@
     <div class="col-md-12">
       <ng-select [(ngModel)]="profitandlossID" [disabled]="disabled" name="profitandlossID" (change)="onChange($event)">
         <ng-option *ngFor="let profitandloss of profitandlossesAll" [value]="profitandloss.profitandloss_ID">
-          {{ profitandloss.profitandloss_CODE }} - {{ profitandloss.ledger_DETAIL }}
+          {{ profitandloss.profitandloss_CODE }} - {{ profitandloss.trialbalance_DETAIL }}
         </ng-option>
       </ng-select>
     </div>
@@ -46,7 +46,7 @@
       <ng-select [(ngModel)]="profitandlossID" name="profitandlossID" (change)="onChange($event)">
         <ng-option *ngFor="let profitandloss of profitandlossesAll" [value]="profitandloss.profitandloss_ID"
           [disabled]="disabled">
-          {{ profitandloss.profitandloss_CODE }} - {{ profitandloss.ledger_DETAIL }}
+          {{ profitandloss.profitandloss_CODE }} - {{ profitandloss.trialbalance_DETAIL }}
         </ng-option>
       </ng-select>
     </div>
@@ -67,7 +67,7 @@
       <ng-select [(ngModel)]="profitandlossID" [disabled]="disabled" name="profitandlossID">
         <ng-option *ngFor="let profitandloss of profitandlossesAll" [value]="profitandloss.profitandloss_ID"
           [disabled]="disabled">
-          {{ profitandloss.profitandloss_CODE }} - {{ profitandloss.ledger_DETAIL }}
+          {{ profitandloss.profitandloss_CODE }} - {{ profitandloss.trialbalance_DETAIL }}
         </ng-option>
       </ng-select>
     </div>
@@ -77,7 +77,7 @@
       <ng-select [(ngModel)]="profitandlossID" [disabled]="disabled" name="profitandlossID" (change)="onChange($event)">
         <ng-option *ngFor="let profitandloss of profitandlosses" [value]="profitandloss.profitandloss_ID"
           [disabled]="disabled">
-          {{ profitandloss.profitandloss_CODE }} - {{ profitandloss.ledger_DETAIL }}
+          {{ profitandloss.profitandloss_CODE }} - {{ profitandloss.trialbalance_DETAIL }}
         </ng-option>
       </ng-select>
     </div>
@@ -98,7 +98,7 @@
       <ng-select [(ngModel)]="profitandlossID" [disabled]="disabled" name="profitandlossID" (change)="onChange($event)">
         <ng-option *ngFor="let profitandloss of profitandlossesAll" [value]="profitandloss.profitandloss_ID"
           [disabled]="disabled">
-          {{ profitandloss.profitandloss_CODE }} - {{ profitandloss.ledger_DETAIL }}
+          {{ profitandloss.profitandloss_CODE }} - {{ profitandloss.trialbalance_DETAIL }}
         </ng-option>
       </ng-select>
     </div>
@@ -108,7 +108,7 @@
       <ng-select [(ngModel)]="profitandlossID" [disabled]="disabled" name="profitandlossID" (change)="onChange($event)">
         <ng-option *ngFor="let profitandloss of profitandlossesAll" [value]="profitandloss.profitandloss_ID"
           [disabled]="disabled">
-          {{ profitandloss.profitandloss_CODE }} - {{ profitandloss.ledger_DETAIL }}
+          {{ profitandloss.profitandloss_CODE }} - {{ profitandloss.trialbalance_DETAIL }}
         </ng-option>
       </ng-select>
     </div>
@@ -130,13 +130,13 @@
         </div>
         <div class="col-md-3">
           <div class="form-group">
-            <label class="control-label">Total Debit</label>
+            <label class="control-label">Total Expense</label>
             <input type="text" class="form-control" name="totaldebit" [(ngModel)]="totaldebit" [disabled]="disabled" />
           </div>
         </div>
         <div class="col-md-3">
           <div class="form-group">
-            <label class="control-label">Total Credit</label>
+            <label class="control-label">Total Liability</label>
             <input type="text" class="form-control" name="totalcredit" [(ngModel)]="totalcredit"
               [disabled]="disabled" />
           </div>
@@ -163,25 +163,26 @@
 
                 <dxi-column dataField="profitandloss_CODE" caption="Code" cssClass="myClass"
                   alignment="left"></dxi-column>
-                <dxi-column dataField="ledger_DETAIL" caption="Date" cssClass="myClass" alignment="left"></dxi-column>
+                <dxi-column dataField="trialbalance_DETAIL" caption="Date" cssClass="myClass"
+                  alignment="left"></dxi-column>
                 <dxi-column dataField="profitandloss_NAME" caption="Name" cssClass="myClass"
                   alignment="left"></dxi-column>
-                <!-- <dxi-column dataField="ledger.ledger_NAME" caption="Ledger A/c" cssClass="myClass"
+                <!-- <dxi-column dataField="trialbalance.ledger.ledger_NAME" caption="Trialbalance A/c" cssClass="myClass"
                     alignment="left"></dxi-column> -->
-                <dxi-column dataField="ledger.ledger_DEBIT" caption="Debit" cssClass="myClass"
-                  alignment="left"></dxi-column>
-                <dxi-column dataField="ledger.ledger_CREDIT" caption="Credit" cssClass="myClass"
-                  alignment="left"></dxi-column>
-                <dxi-column dataField="ledger.accountclassification_DETAIL" caption="Classification" cssClass="myClass"
-                  alignment="left"></dxi-column>
-                <dxi-column dataField="ledger.accountclassification.accounttype_DETAIL" caption="Type"
+                <dxi-column dataField="trialbalance.ledger.ledger_DEBIT" caption="Debit" cssClass="myClass"
+                  alignment="center"></dxi-column>
+                <dxi-column dataField="trialbalance.ledger.ledger_CREDIT" caption="Credit" cssClass="myClass"
+                  alignment="center"></dxi-column>
+                <dxi-column dataField="trialbalance.ledger.accountclassification_DETAIL" caption="Classification"
+                  cssClass="myClass" alignment="left"></dxi-column>
+                <dxi-column dataField="trialbalance.ledger.accountclassification.accounttype_DETAIL" caption="Type"
                   cssClass="myClass" alignment="left" [groupIndex]="0"></dxi-column>
                 <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass"
                   alignment="center"></dxi-column>
 
                 <div *dxTemplate="let data of 'cellTemplate'">
                   <a href="javascript:void" class="" (click)="update(data)">
-                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                    <i class="fa fa-pencil-square-o eye" aria-hidden="true"></i></a>
                 </div>
               </dx-data-grid>
             </div>
@@ -211,22 +212,24 @@
           cellTemplate="cellTemplate"></dxi-column>
 
         <dxi-column dataField="profitandloss_CODE" caption="Code" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="ledger_DETAIL" caption="Date" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="trialbalance_DETAIL" caption="Date" cssClass="myClass" alignment="left"></dxi-column>
         <dxi-column dataField="profitandloss_NAME" caption="Name" cssClass="myClass" alignment="left"></dxi-column>
-        <!-- <dxi-column dataField="ledger.ledger_NAME" caption="Ledger A/c" cssClass="myClass"
-            alignment="left"></dxi-column> -->
-        <dxi-column dataField="ledger.ledger_DEBIT" caption="Debit" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="ledger.ledger_CREDIT" caption="Credit" cssClass="myClass" alignment="left"></dxi-column>
-        <dxi-column dataField="ledger.accountclassification_DETAIL" caption="Classification" cssClass="myClass"
-          alignment="left"></dxi-column>
-        <dxi-column dataField="ledger.accountclassification.accounttype_DETAIL" caption="Type" cssClass="myClass"
-          alignment="left"></dxi-column>
+        <!-- <dxi-column dataField="trialbalance.ledger.ledger_NAME" caption="Trialbalance A/c" cssClass="myClass"
+                    alignment="left"></dxi-column> -->
+        <dxi-column dataField="trialbalance.ledger.ledger_DEBIT" caption="Debit" cssClass="myClass"
+          alignment="center"></dxi-column>
+        <dxi-column dataField="trialbalance.ledger.ledger_CREDIT" caption="Credit" cssClass="myClass"
+          alignment="center"></dxi-column>
+        <dxi-column dataField="trialbalance.ledger.accountclassification_DETAIL" caption="Classification"
+          cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column dataField="trialbalance.ledger.accountclassification.accounttype_DETAIL" caption="Type"
+          cssClass="myClass" alignment="left" [groupIndex]="0"></dxi-column>
         <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass"
           alignment="center"></dxi-column>
 
         <div *dxTemplate="let data of 'cellTemplate'">
           <a href="javascript:void" class="" (click)="update(data)">
-            <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+            <i class="fa fa-pencil-square-o eye" aria-hidden="true"></i></a>
         </div>
       </dx-data-grid>
     </div>
@@ -276,8 +279,8 @@
           </div>
           <div class="row">
             <div class="col-md-12">
-              <app-ledger #ledger [view]="1" [ledgerID]="profitandloss.ledger_ID"
-                (onLedgerChange)="onLedgerChange($event)"></app-ledger>
+              <app-trialbalance #trialbalance [view]="1" [trialbalanceID]="profitandloss.trialbalance_ID"
+                (onTrialbalanceChange)="onTrialbalanceChange($event)"></app-trialbalance>
             </div>
           </div>
         </div>
@@ -335,8 +338,8 @@
           </div>
           <div class="row">
             <div class="col-md-12">
-              <app-ledger #ledger [view]="1" [ledgerID]="profitandloss.ledger_ID"
-                (onLedgerChange)="onLedgerChange($event)"></app-ledger>
+              <app-trialbalance #trialbalance [view]="1" [trialbalanceID]="profitandloss.trialbalance_ID"
+                (onTrialbalanceChange)="onTrialbalanceChange($event)"></app-trialbalance>
             </div>
           </div>
           <div class="row">
@@ -418,14 +421,15 @@
           </div>
           <div class="row">
             <div class="col-md-8">
-              <app-ledger #ledger [view]="1" [disabled]="disabled" [ledgerID]=profitandloss.ledger_ID
-                (onLedgerChange)="onLedgerChange($event)"></app-ledger>
+              <app-trialbalance #trialbalance [view]="1" [disabled]="disabled"
+                [trialbalanceID]=profitandloss.trialbalance_ID
+                (onTrialbalanceChange)="onTrialbalanceChange($event)"></app-trialbalance>
             </div>
             <div class="col-md-4">
               <br />
-              <button type="button" *ngIf="profitandloss.profitandloss_ID==0" (click)="ledgerAddNew()"
+              <button type="button" *ngIf="profitandloss.profitandloss_ID==0" (click)="trialbalanceAddNew()"
                 class="btn btn-secondary btn-sm">
-                <i class="fas fa-plus fa-fw"></i> Add New Ledger
+                <i class="fas fa-plus fa-fw"></i> Add New Trial Balance
               </button>
             </div>
           </div>
@@ -467,6 +471,7 @@
   </div>
 </div>
 
-<div aria-labelledby="exampleModalLabel" class="modal fade show" id="addledger" role="dialog" tabindex="-1">
-  <app-ledger #addledger [view]=3 (refresh)="ledgerrefresh()" (cancel)="ledgerCancel()"></app-ledger>
+<div aria-labelledby="exampleModalLabel" class="modal fade show" id="addtrialbalance" role="dialog" tabindex="-1">
+  <app-trialbalance #addtrialbalance [view]=3 (refresh)="trialbalancerefresh()"
+    (cancel)="trialbalanceCancel()"></app-trialbalance>
 </div>

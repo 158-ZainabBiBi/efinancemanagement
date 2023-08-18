@@ -11,8 +11,12 @@
 
 }
 
+.eye {
+  color: green;
+}
+
 /* edit/eye icon */
-.dx-datagrid-content .dx-datagrid-table a {
+.dx-datagrid-content .dx-datagrid-table a{
   color: #007437 !important;
 }
 

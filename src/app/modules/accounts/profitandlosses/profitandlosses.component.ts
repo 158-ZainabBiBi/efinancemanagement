@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { OnFailService } from '../../../services/on-fail.service';
 import { ProfitandlossComponent } from 'src/app/components/account/profitandloss/profitandloss.component';
 import { ProfitandlossService } from 'src/app/components/account/profitandloss/profitandloss.service';
-import { Router } from '@angular/router';
+import { OnFailService } from '../../../services/on-fail.service';
 
 declare var $: any;
 
@@ -50,7 +50,7 @@ export class ProfitandlossesComponent implements OnInit {
       profitandloss_ID: row.data.profitandloss_ID,
       profitandloss_CODE: row.data.profitandloss_CODE,
       profitandloss_NAME: row.data.profitandloss_NAME,
-      ledger_ID: row.data.ledger_ID,
+      trialbalance_ID: row.data.trialbalance_ID,
       isactive: row.data.isactive
     };
 

@@ -147,14 +147,14 @@
         <dxi-column dataField="tobankaccount_DETAIL" caption="To Account" cssClass="myClass"
           alignment="left"></dxi-column>
         <dxi-column dataField="banktransfer_AMOUNT" caption="Amount" cssClass="myClass" alignment="center"></dxi-column>
-        <dxi-column dataField="banktransfer_DESC" caption="Description" cssClass="myClass"
+        <dxi-column [width]="200" dataField="banktransfer_DESC" caption="Description" cssClass="myClass"
           alignment="left"></dxi-column>
         <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass"
           alignment="center"></dxi-column>
 
         <div *dxTemplate="let data of 'cellTemplate'">
           <a href="javascript:void" class="" (click)="showView(data)">
-            <i class="fa fa-eye" aria-hidden="true"></i></a>
+            <i class="fa fa-eye eye" aria-hidden="true"></i></a>
         </div>
       </dx-data-grid>
     </div>
@@ -194,7 +194,7 @@
 
         <div *dxTemplate="let data of 'cellTemplate'">
           <a href="javascript:void" class="" (click)="update(data)">
-            <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+            <i class="fa fa-pencil-square-o eye" aria-hidden="true"></i></a>
         </div>
       </dx-data-grid>
     </div>

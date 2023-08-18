@@ -1,10 +1,10 @@
-import { Component, OnInit, Input, Output, ViewChild, EventEmitter, AfterViewInit, ChangeDetectorRef } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { OnFailService } from '../../../services/on-fail.service';
 
+import { TrialbalanceComponent } from '../trialbalance/trialbalance.component';
 import { IncomestatementService } from './incomestatement.service';
-import { LedgerComponent } from '../ledger/ledger.component';
 
 declare var $: any;
 
@@ -14,9 +14,9 @@ declare var $: any;
   styleUrls: ['./incomestatement.component.css']
 })
 export class IncomestatementComponent implements OnInit, AfterViewInit {
-  @ViewChild("ledger") ledger: LedgerComponent;
-  @ViewChild("addledger") addledger: LedgerComponent;
-  @ViewChild("editledger") editledger: LedgerComponent;
+  @ViewChild("trialbalance") trialbalance: TrialbalanceComponent;
+  @ViewChild("addtrialbalance") addtrialbalance: TrialbalanceComponent;
+  @ViewChild("edittrialbalance") edittrialbalance: TrialbalanceComponent;
 
   @Input()
   view: number = 1;
@@ -31,7 +31,7 @@ export class IncomestatementComponent implements OnInit, AfterViewInit {
   @Input()
   incomestatementID = null;
   @Input()
-  ledgerID = null;
+  trialbalanceID = null;
   @Input()
   totalcredit: number = 0;
   @Input()
@@ -49,7 +49,7 @@ export class IncomestatementComponent implements OnInit, AfterViewInit {
     incomestatement_ID: 0,
     incomestatement_CODE: null,
     incomestatement_NAME: null,
-    ledger_ID: null,
+    trialbalance_ID: null,
     isactive: true
   }
 
@@ -92,7 +92,7 @@ export class IncomestatementComponent implements OnInit, AfterViewInit {
     }
 
     var search = {
-      ledger_ID: this.ledgerID
+      trialbalance_ID: this.trialbalanceID
     }
 
     if (this.view >= 5 && this.view <= 6 && this.incomestatementID) {
@@ -126,7 +126,7 @@ export class IncomestatementComponent implements OnInit, AfterViewInit {
     let total = 0;
     if (this.incomestatementsAll) {
       this.incomestatementsAll.forEach(totals => {
-        const credit = Number(totals.ledger.ledger_CREDIT);
+        const credit = Number(totals.trialbalance.ledger.ledger_CREDIT);
         if (!isNaN(credit)) {
           total += credit;
         }
@@ -139,7 +139,7 @@ export class IncomestatementComponent implements OnInit, AfterViewInit {
     let total = 0;
     if (this.incomestatementsAll) {
       this.incomestatementsAll.forEach(totals => {
-        const debit = Number(totals.ledger.ledger_DEBIT);
+        const debit = Number(totals.trialbalance.ledger.ledger_DEBIT);
         if (!isNaN(debit)) {
           total += debit;
         }
@@ -153,29 +153,29 @@ export class IncomestatementComponent implements OnInit, AfterViewInit {
       incomestatement_ID: 0,
       incomestatement_CODE: null,
       incomestatement_NAME: null,
-      ledger_ID: null,
+      trialbalance_ID: null,
       isactive: true
     };
   }
 
-  ledgerAddNew() {
-    this.addledger.add();
-    $("#addledger").modal("show");
+  trialbalanceAddNew() {
+    this.addtrialbalance.add();
+    $("#addtrialbalance").modal("show");
   }
 
-  ledgerrefresh() {
-    this.ledger.load(true);
-    this.ledgerCancel();
+  trialbalancerefresh() {
+    this.trialbalance.load(true);
+    this.trialbalanceCancel();
   }
 
-  ledgerCancel() {
-    $("#addledger").modal("hide");
-    $("#editledger").modal("hide");
-    this.ledger.ledgers = this.addledger.ledgers;
+  trialbalanceCancel() {
+    $("#addtrialbalance").modal("hide");
+    $("#edittrialbalance").modal("hide");
+    this.trialbalance.trialbalances = this.addtrialbalance.trialbalances;
   }
 
-  onLedgerChange(ledger) {
-    this.incomestatement.incomestatement_NAME = ledger.ledger_NAME;
+  onTrialbalanceChange(trialbalance) {
+    this.incomestatement.incomestatement_NAME = trialbalance.trialbalance_NAME;
   }
 
   update(row) {
@@ -215,7 +215,7 @@ export class IncomestatementComponent implements OnInit, AfterViewInit {
   }
 
   setIncomestatement(response) {
-    this.ledgerID = response.ledger_ID;
+    this.trialbalanceID = response.trialbalance_ID;
     this.incomestatementID = response.incomestatement_ID;
 
     if (response.isactive == "Y") {
@@ -277,7 +277,7 @@ export class IncomestatementComponent implements OnInit, AfterViewInit {
   }
 
   incomestatementAdd(incomestatement) {
-    incomestatement.ledger_ID = this.ledger.ledgerID;
+    incomestatement.trialbalance_ID = this.trialbalance.trialbalanceID;
 
     incomestatement.isactive = "Y";
     this.incomestatementservice.add(incomestatement).subscribe(response => {
@@ -301,7 +301,7 @@ export class IncomestatementComponent implements OnInit, AfterViewInit {
 
   incomestatementUpdate(incomestatement) {
 
-    incomestatement.ledger_ID = this.ledger.ledgerID;
+    incomestatement.trialbalance_ID = this.trialbalance.trialbalanceID;
 
     if (incomestatement.isactive == true) {
       incomestatement.isactive = "Y";
@@ -382,7 +382,7 @@ export class IncomestatementComponent implements OnInit, AfterViewInit {
   }
 
   incomestatementAdvancedSearch(search) {
-    this.ledgerID = search.ledger_ID;
+    this.trialbalanceID = search.trialbalance_ID;
 
     this.incomestatementservice.advancedSearch(search).subscribe(response => {
       if (response) {
@@ -399,7 +399,7 @@ export class IncomestatementComponent implements OnInit, AfterViewInit {
   }
 
   incomestatementAdvancedSearchAll(search) {
-    this.ledgerID = search.ledger_ID;
+    this.trialbalanceID = search.trialbalance_ID;
 
     this.incomestatementservice.advancedSearchAll(search).subscribe(response => {
       if (response) {
