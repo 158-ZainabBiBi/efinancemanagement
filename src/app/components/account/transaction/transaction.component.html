@@ -488,17 +488,15 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-4">
               <app-bankaccount #bankaccount [view]="1" [disabled]="disabled"
                 [bankaccountID]="transaction.bankaccount_ID"></app-bankaccount>
             </div>
-          </div>
-          <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
               <app-transactiontype #transactiontype [disabled]="disabled"
                 [transactiontypeID]="transaction.transactiontype_ID"></app-transactiontype>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
               <app-currency #currency [disabled]="disabled" [currencyID]="transaction.currency_ID"></app-currency>
             </div>
           </div>
