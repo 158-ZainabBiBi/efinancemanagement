@@ -158,6 +158,8 @@
                 <dxi-column dataField="journal_CODE" caption="Code" cssClass="myClass" alignment="left"></dxi-column>
                 <dxi-column dataField="transaction_DETAIL" caption="Date" cssClass="myClass" alignment="left"
                   [groupIndex]="0"></dxi-column>
+                <dxi-column dataField="transaction.transaction_AMOUNT" caption="Amount" cssClass="myClass"
+                  alignment="left" [groupIndex]="1"></dxi-column>
 
                 <dxi-column dataField="journal_NAME" caption="Name" cssClass="myClass" alignment="left"></dxi-column>
                 <!-- <dxi-column dataField="account.account_TITLE" caption="Account" cssClass="myClass" alignment="left"></dxi-column> -->
@@ -418,16 +420,28 @@
             </div>
             <div class="col-md-3">
               <div class="form-group">
-                <label class="control-label"> Debit <span style="color:red">*</span></label>
-                <input type="number" class="form-control" name="journal_DEBIT" [(ngModel)]="journal.journal_DEBIT"
+                <label class="control-label">Debit <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="journal_DEBIT" [(ngModel)]="journal.journal_DEBIT"
+                  pattern="^[0-9]*$" #nameInput="ngModel" maxlength="50" [disabled]="disabled"
                   (change)="onDebitChange()" [disabled]="creditdisabled" required>
+                <div *ngIf="nameInput.invalid && (nameInput.dirty || nameInput.touched)">
+                  <div *ngIf="nameInput.errors.pattern">
+                    <span style="color:red">Only contain Numbers.</span>
+                  </div>
+                </div>
               </div>
             </div>
             <div class="col-md-3">
               <div class="form-group">
-                <label class="control-label"> Credit <span style="color:red">*</span></label>
-                <input type="number" class="form-control" name="journal_CREDIT" [(ngModel)]="journal.journal_CREDIT"
+                <label class="control-label">Credit <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="journal_CREDIT" [(ngModel)]="journal.journal_CREDIT"
+                  pattern="^[0-9]*$" #codeInput="ngModel" maxlength="50" [disabled]="disabled"
                   (change)="onCreditChange()" [disabled]="debitdisabled" required>
+                <div *ngIf="codeInput.invalid && (codeInput.dirty || codeInput.touched)">
+                  <div *ngIf="codeInput.errors.pattern">
+                    <span style="color:red">Only contain Numbers.</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

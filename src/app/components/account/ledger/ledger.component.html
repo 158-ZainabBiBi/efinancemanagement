@@ -436,16 +436,28 @@
             </div>
             <div class="col-md-3">
               <div class="form-group">
-                <label class="control-label"> Debit <span style="color:red">*</span></label>
-                <input type="number" class="form-control" name="ledger_DEBIT" [(ngModel)]="ledger.ledger_DEBIT"
+                <label class="control-label">Debit <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="ledger_DEBIT" [(ngModel)]="ledger.ledger_DEBIT"
+                  pattern="^[0-9]*$" #nameInput="ngModel" maxlength="50" [disabled]="disabled"
                   (change)="onDebitChange()" [disabled]="creditdisabled" required>
+                <div *ngIf="nameInput.invalid && (nameInput.dirty || nameInput.touched)">
+                  <div *ngIf="nameInput.errors.pattern">
+                    <span style="color:red">Only contain Numbers.</span>
+                  </div>
+                </div>
               </div>
             </div>
             <div class="col-md-3">
               <div class="form-group">
-                <label class="control-label"> Credit <span style="color:red">*</span></label>
-                <input type="number" class="form-control" name="ledger_CREDIT" [(ngModel)]="ledger.ledger_CREDIT"
+                <label class="control-label">Credit <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="ledger_CREDIT" [(ngModel)]="ledger.ledger_CREDIT"
+                  pattern="^[0-9]*$" #codeInput="ngModel" maxlength="50" [disabled]="disabled"
                   (change)="onCreditChange()" [disabled]="debitdisabled" required>
+                <div *ngIf="codeInput.invalid && (codeInput.dirty || codeInput.touched)">
+                  <div *ngIf="codeInput.errors.pattern">
+                    <span style="color:red">Only contain Numbers.</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

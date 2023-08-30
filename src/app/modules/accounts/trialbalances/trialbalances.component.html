@@ -1,8 +1,8 @@
 <div class="collapse-card-h container">
-  <app-accountsearchfilter [account]=false [accounttype]=false [accountclassification]=false [bankaccount]=false
+  <!-- <app-accountsearchfilter [account]=false [accounttype]=false [accountclassification]=false [bankaccount]=false
     [bankaccounttype]=false [transaction]=false [transactiontype]=false [transactiondatefrom]=true
     [transactiondateto]=true [journal]=false [ledger]=false [paymentmethod]=false [customer]=false
-    (advancedSearch)="advancedSearch($event)"></app-accountsearchfilter>
+    (advancedSearch)="advancedSearch($event)"></app-accountsearchfilter> -->
   <div class="row">
     <div class="col-md-12">
       <div class="card-primary card">
@@ -13,6 +13,16 @@
                 class="card-title">Trial Balances
               </a>
             </div>
+            <div class="col-auto">
+              <button (click)="exportToPDF()" class="btn btn-secondary btn-sm">
+                <i class="fas fa-plus fa-fw"></i> Download
+              </button>
+            </div>
+            <!-- <div class="col-auto">
+              <button (click)="emailPDF()" class="btn btn-secondary btn-sm">
+                <i class="fas fa-plus fa-fw"></i> Email
+              </button>
+            </div> -->
             <div class="col-auto">
               <button (click)="addNew()" class="btn btn-secondary btn-sm">
                 <i class="fas fa-plus fa-fw"></i> Add New

@@ -2,9 +2,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { OnFailService } from '../../../services/on-fail.service';
 
-import { TrialbalanceComponent } from '../../../components/account/trialbalance/trialbalance.component'
+import { Router } from '@angular/router';
+import { TrialbalanceComponent } from '../../../components/account/trialbalance/trialbalance.component';
 import { TrialbalanceService } from '../../../components/account/trialbalance/trialbalance.service';
-import { Router, RouterLinkWithHref } from '@angular/router';
 
 declare var $: any;
 
@@ -70,6 +70,14 @@ export class TrialbalancesComponent implements OnInit {
 
   advancedSearch(search) {
     this.trialbalances.trialbalanceAdvancedSearch(search);
+  }
+
+  exportToPDF() {
+    this.trialbalances.exportToPDF();
+  }
+
+  emailPDF() {
+    this.trialbalances.emailPDF();
   }
 
 }

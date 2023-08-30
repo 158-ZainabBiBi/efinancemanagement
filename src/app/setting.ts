@@ -6,7 +6,7 @@ export const setting = {
   application_ID: "CWIZTECHAccountManagementDev",
 
   logo: 'assets/images/logo.png',
-  icon: 'favicon.ico',
+  icon: 'assets/images/favicon.png',
 
   service_NAME: "LOOKUP",
   personservice_NAME: 'PERSON',

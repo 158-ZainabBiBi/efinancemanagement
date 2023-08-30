@@ -140,8 +140,6 @@
         </dxi-column>
         <dxi-column dataField="address_POSTCODE" caption="Post Code" cssClass="myClass" alignment="left">
         </dxi-column>
-        <dxi-column dataField="balance" caption="Balance" cssClass="myClass" alignment="left">
-        </dxi-column>
         <dxi-column dataField="email" caption="Email" cssClass="myClass" alignment="left">
         </dxi-column>
         <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass" alignment="center">
@@ -682,11 +680,9 @@
           <div class="row">
             <div class="col-md-4">
               <div class="form-group">
-                <label class="custom-label form-label">Customer Code
-                  <span style="color: red;" [hidden]="disabled">*</span>
-                </label>
-                <input type="text" [(ngModel)]="customer.customer_CODE" class="form-control" name="customer_CODE"
-                  maxlength="50" [disabled]=true>
+                <label class="custom-label form-label">Customer Code</label>
+                <input type="text" class="form-control" [disabled]="disabled" name="customer_NEWCODE" maxlength="50"
+                  [(ngModel)]="customer.customer_NEWCODE">
               </div>
             </div>
             <div class="col-md-4">
@@ -744,14 +740,7 @@
               <app-customercategory #customercategory [customercategoryID]="customer.customercategory_ID"
                 [disabled]='disabled'></app-customercategory>
             </div>
-            <div class="col-md-2">
-              <div class="form-group">
-                <label class="custom-label form-label">Customer New Code</label>
-                <input type="text" class="form-control" [disabled]="disabled" name="customer_NEWCODE" maxlength="50"
-                  [(ngModel)]="customer.customer_NEWCODE">
-              </div>
-            </div>
-            <div class="col-md-2">
+            <div class="col-md-4">
               <div class="form-group">
                 <label class="custom-label form-label">Origin Code</label>
                 <input type="text" class="form-control" [disabled]="disabled" name="origin_CODE" maxlength="50"
@@ -804,46 +793,8 @@
             <div class="col-md-8">
               <div class="form-group">
                 <label class="custom-label form-label">Delivery Instructions</label>
-                <textarea class="form-control" rows="3" name="delivery_INSTRUCTIONS" [disabled]="disabled"
+                <textarea class="form-control" rows="5" name="delivery_INSTRUCTIONS" [disabled]="disabled"
                   [(ngModel)]="customer.delivery_INSTRUCTIONS"></textarea>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-4">
-              <app-pricelevel #pricelevel [pricelevelID]="customer.pricelevel_ID"
-                [disabled]='disabled'></app-pricelevel>
-            </div>
-            <div class="col-md-2">
-              <div class="form-group">
-                <label class="control-label form-label">Balance<span style="color: red;"
-                    [hidden]="disabled">*</span></label>
-                <input type="text" [(ngModel)]="customer.balance" class="form-control" name="balance" maxlength="50"
-                  [disabled]=true>
-              </div>
-            </div>
-            <div class="col-md-2">
-              <div class="form-group">
-                <label class="control-label form-label">Deposit Balance<span style="color: red;"
-                    [hidden]="disabled">*</span></label>
-                <input type="text" [(ngModel)]="customer.deposit_BALANCE" class="form-control" name="deposit_BALANCE"
-                  maxlength="50" [disabled]=true>
-              </div>
-            </div>
-            <div class="col-md-2">
-              <div class="form-group">
-                <label class="control-label form-label">OverDue Balance<span style="color: red;"
-                    [hidden]="disabled">*</span></label>
-                <input type="text" [(ngModel)]="customer.overdue_BALANCE" class="form-control" name="overdue_BALANCE"
-                  maxlength="50" [disabled]=true>
-              </div>
-            </div>
-            <div class="col-md-2">
-              <div class="form-group">
-                <label class="control-label form-label">Overdue Days<span style="color: red;"
-                    [hidden]="disabled">*</span></label>
-                <input type="text" [(ngModel)]="customer.days_OVERDUE" class="form-control" name="days_OVERDUE"
-                  maxlength="50" [disabled]=true>
               </div>
             </div>
           </div>
@@ -919,12 +870,8 @@
               </div>
             </div>
             <div class="col-md-4">
-              <div class="form-group">
-                <label class="control-label form-label">Unbilled Orders<span style="color: red;"
-                    [hidden]="disabled">*</span></label>
-                <input type="text" [(ngModel)]="customer.unbilled_ORDERS" class="form-control" name="unbilled_ORDERS"
-                  maxlength="50" [disabled]=true>
-              </div>
+              <app-pricelevel #pricelevel [pricelevelID]="customer.pricelevel_ID"
+                [disabled]='disabled'></app-pricelevel>
             </div>
             <div class="col-md-4">
               <app-invoicetype #invoicetype [invoicetypeID]="customer.invoicetype_ID"

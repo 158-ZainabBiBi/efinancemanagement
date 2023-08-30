@@ -1,11 +1,13 @@
-import { Component, OnInit, Input, Output, ViewChild, EventEmitter, AfterViewInit, ChangeDetectorRef } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { AfterViewInit, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { OnFailService } from '../../../services/on-fail.service';
 
-import { TrialbalanceService } from './trialbalance.service';
 import { LedgerComponent } from '../ledger/ledger.component';
+import { TrialbalanceService } from './trialbalance.service';
 
+declare var jsPDF: any;
 declare var $: any;
 
 @Component({
@@ -57,6 +59,7 @@ export class TrialbalanceComponent implements OnInit, AfterViewInit {
     private trialbalanceservice: TrialbalanceService,
     private toastrservice: ToastrService,
     private onfailservice: OnFailService,
+    private http: HttpClient,
     private router: Router,
     private cdr: ChangeDetectorRef
   ) { }
@@ -414,5 +417,81 @@ export class TrialbalanceComponent implements OnInit, AfterViewInit {
       this.onfailservice.onFail(error);
     })
   }
+
+  TrialbalanceReport(trialbalances) {
+    let col = ['Code', 'Date', 'Name', 'Debit', 'Credit'];
+    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    let title = "Trialbalance";
+
+    let currentdate = new Date();
+    let pdf = new jsPDF('l', 'pt', 'A4');
+    var startrow = 20, startleft = 25;
+    var totalDebit = this.getTotalDebit();
+    var totalCredit = this.getTotalCredit();
+
+    let row: any[] = []
+    let rowD: any[] = []
+    trialbalances.forEach(obj => {
+      var code = obj.trialbalance_CODE;
+      var transactiondate = obj.ledger_DETAIL;
+      var name = obj.trialbalance_NAME;
+      var debit = obj.ledger.ledger_DEBIT;
+      var credit = obj.ledger.ledger_CREDIT;
+      row.push(code);
+      row.push(transactiondate);
+      row.push(name);
+      row.push(debit);
+      row.push(credit);
+      rowD.push(row);
+      row = [];
+    })
+
+    var pageContent = function (data) {
+      var pageHeight = pdf.internal.pageSize.height || pdf.internal.pageSize.getHeight();
+      // HEADER
+      var img = new Image();
+      img.src = 'assets/images/mylogo.jpeg';
+      img.style.width = '200px';
+      img.style.height = '44px';
+      pdf.addImage(img, startleft, startrow, 80, startrow + 20);
+      pdf.setFontSize(12);
+      pdf.text("Total Debit: " + totalDebit + "      Total Credit: " + totalCredit, startleft + 500, startrow + 30);
+    };
+
+    pdf.autoTable(col, rowD,
+      {
+        addPageContent: pageContent,
+        margin: {
+          top: startrow + 50,
+          left: 20,
+          bottom: startrow,
+          down: startrow + 790
+        },
+        styles: {
+          fontSize: 10,
+          valign: 'middle',
+          fontStyle: 'bold',
+          halign: 'center',
+          align: 'center'
+        },
+        pageBreak: 'always',
+        columnStyles: {
+          0: { columnWidth: 100, fontSize: 10 },
+          1: { columnWidth: 150, fontSize: 10 },
+          2: { columnWidth: 250, fontSize: 10, halign: 'left' },
+          3: { columnWidth: 150, fontSize: 10 },
+          4: { columnWidth: 150, fontSize: 10 },
+        }
+      });
+    pdf.save(title + '.pdf');
+
+    return pdf;
+  }
+
+  exportToPDF() {
+    this.TrialbalanceReport(this.trialbalances); // Call the PDF export function with trialbalances data
+  }
+
+  emailPDF() { }
 
 }

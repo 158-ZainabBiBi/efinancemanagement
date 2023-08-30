@@ -440,9 +440,15 @@
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <label class="control-label">Amount<span style="color:red">*</span></label>
-                <input type="number" class="form-control" name="banktransfer_AMOUNT" [disabled]="disabled"
-                  [(ngModel)]="banktransfer.banktransfer_AMOUNT" maxlength="50" required>
+                <label class="control-label">Amount <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="bankaccount_BALANCE"
+                  [(ngModel)]="banktransfer.banktransfer_AMOUNT" pattern="^[0-9]*$" #nameInput="ngModel" maxlength="50"
+                  [disabled]="disabled" required>
+                <div *ngIf="nameInput.invalid && (nameInput.dirty || nameInput.touched)">
+                  <div *ngIf="nameInput.errors.pattern">
+                    <span style="color:red">Only contain Numbers.</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

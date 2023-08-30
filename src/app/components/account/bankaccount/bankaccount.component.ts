@@ -1,12 +1,13 @@
-import { Component, OnInit, Input, Output, ViewChild, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { OnFailService } from '../../../services/on-fail.service';
 
-import { BankaccountService } from './bankaccount.service';
+
 import { CustomerComponent } from '../../customer/customer/customer.component';
-import { PaymentmethodComponent } from '../../lookup/finance/paymentmethod/paymentmethod.component';
 import { BankaccounttypeComponent } from '../../lookup/account/bankaccounttype/bankaccounttype.component';
+import { PaymentmethodComponent } from '../../lookup/finance/paymentmethod/paymentmethod.component';
+import { BankaccountService } from './bankaccount.service';
 
 @Component({
   selector: 'app-bankaccount',

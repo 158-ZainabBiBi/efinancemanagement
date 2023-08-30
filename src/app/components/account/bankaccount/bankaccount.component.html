@@ -6,7 +6,7 @@
     <div class="col-md-12">
       <ng-select [(ngModel)]="bankaccountID" [disabled]="disabled" name="bankaccountID" (change)="onChange($event)">
         <ng-option *ngFor="let bankaccount of bankaccountsAll" [value]="bankaccount.bankaccount_ID">
-          {{ bankaccount.bankaccount_NUMBER }}
+          {{ bankaccount.bankaccount_NUMBER }} - {{ bankaccount.customer_DETAIL }}
         </ng-option>
       </ng-select>
     </div>
@@ -15,7 +15,7 @@
     <div class="col-md-10">
       <ng-select [(ngModel)]="bankaccountID" name="bankaccountID" (change)="onChange($event)">
         <ng-option *ngFor="let bankaccount of bankaccounts" [value]="bankaccount.bankaccount_ID" [disabled]="disabled">
-          {{ bankaccount.bankaccount_NUMBER }}
+          {{ bankaccount.bankaccount_NUMBER }} - {{ bankaccount.customer_DETAIL }}
         </ng-option>
       </ng-select>
     </div>
@@ -35,7 +35,7 @@
     <div class="col-md-12">
       <ng-select [(ngModel)]="bankaccountID" [disabled]="disabled" name="bankaccountID" (change)="onChange($event)">
         <ng-option *ngFor="let bankaccount of bankaccountsAll" [value]="bankaccount.bankaccount_ID">
-          {{ bankaccount.bankaccount_NUMBER }}
+          {{ bankaccount.bankaccount_NUMBER }} - {{ bankaccount.customer_DETAIL }}
         </ng-option>
       </ng-select>
     </div>
@@ -44,7 +44,7 @@
     <div class="col-md-10">
       <ng-select [(ngModel)]="bankaccountID" name="bankaccountID" (change)="onChange($event)">
         <ng-option *ngFor="let bankaccount of bankaccounts" [value]="bankaccount.bankaccount_ID" [disabled]="disabled">
-          {{ bankaccount.bankaccount_NUMBER }}
+          {{ bankaccount.bankaccount_NUMBER }} - {{ bankaccount.customer_DETAIL }}
         </ng-option>
       </ng-select>
     </div>
@@ -64,7 +64,7 @@
     <div class="col-md-12">
       <ng-select [(ngModel)]="bankaccountID" [disabled]="disabled" name="bankaccountID" (change)="onChange($event)">
         <ng-option *ngFor="let bankaccount of bankaccountsAll" [value]="bankaccount.bankaccount_ID">
-          {{ bankaccount.bankaccount_NUMBER }}
+          {{ bankaccount.bankaccount_NUMBER }} - {{ bankaccount.customer_DETAIL }}
         </ng-option>
       </ng-select>
     </div>
@@ -73,7 +73,7 @@
     <div class="col-md-10">
       <ng-select [(ngModel)]="bankaccountID" name="bankaccountID" (change)="onChange($event)">
         <ng-option *ngFor="let bankaccount of bankaccounts" [value]="bankaccount.bankaccount_ID" [disabled]="disabled">
-          {{ bankaccount.bankaccount_NUMBER }}
+          {{ bankaccount.bankaccount_NUMBER }} - {{ bankaccount.customer_DETAIL }}
         </ng-option>
       </ng-select>
     </div>
@@ -93,7 +93,7 @@
     <div class="col-md-12">
       <ng-select [(ngModel)]="bankaccountID" [disabled]="disabled" name="bankaccountID" (change)="onChange($event)">
         <ng-option *ngFor="let bankaccount of bankaccountsAll" [value]="bankaccount.bankaccount_ID">
-          {{ bankaccount.bankaccount_NUMBER }}
+          {{ bankaccount.bankaccount_NUMBER }} - {{ bankaccount.customer_DETAIL }}
         </ng-option>
       </ng-select>
     </div>
@@ -103,7 +103,7 @@
       <ng-select [(ngModel)]="bankaccountID" name="bankaccountID" (change)="onChange($event)">
         <ng-option *ngFor="let bankaccount of bankaccountsAll" [value]="bankaccount.bankaccount_ID"
           [disabled]="disabled">
-          {{ bankaccount.bankaccount_NUMBER }}
+          {{ bankaccount.bankaccount_NUMBER }} - {{ bankaccount.customer_DETAIL }}
         </ng-option>
       </ng-select>
     </div>
@@ -124,7 +124,7 @@
       <ng-select [(ngModel)]="bankaccountID" [disabled]="disabled" name="bankaccountID">
         <ng-option *ngFor="let bankaccount of bankaccountsAll" [value]="bankaccount.bankaccount_ID"
           [disabled]="disabled">
-          {{ bankaccount.bankaccount_NUMBER }}
+          {{ bankaccount.bankaccount_NUMBER }} - {{ bankaccount.customer_DETAIL }}
         </ng-option>
       </ng-select>
     </div>
@@ -133,7 +133,7 @@
     <div class="col-md-10">
       <ng-select [(ngModel)]="bankaccountID" [disabled]="disabled" name="bankaccountID" (change)="onChange($event)">
         <ng-option *ngFor="let bankaccount of bankaccounts" [value]="bankaccount.bankaccount_ID" [disabled]="disabled">
-          {{ bankaccount.bankaccount_NUMBER }}
+          {{ bankaccount.bankaccount_NUMBER }} - {{ bankaccount.customer_DETAIL }}
         </ng-option>
       </ng-select>
     </div>
@@ -154,7 +154,7 @@
       <ng-select [(ngModel)]="bankaccountID" [disabled]="disabled" name="bankaccountID" (change)="onChange($event)">
         <ng-option *ngFor="let bankaccount of bankaccountsAll" [value]="bankaccount.bankaccount_ID"
           [disabled]="disabled">
-          {{ bankaccount.bankaccount_NUMBER }}
+          {{ bankaccount.bankaccount_NUMBER }} - {{ bankaccount.customer_DETAIL }}
         </ng-option>
       </ng-select>
     </div>
@@ -164,7 +164,7 @@
       <ng-select [(ngModel)]="bankaccountID" [disabled]="disabled" name="bankaccountID" (change)="onChange($event)">
         <ng-option *ngFor="let bankaccount of bankaccountsAll" [value]="bankaccount.bankaccount_ID"
           [disabled]="disabled">
-          {{ bankaccount.bankaccount_NUMBER }}
+          {{ bankaccount.bankaccount_NUMBER }} - {{ bankaccount.customer_DETAIL }}
         </ng-option>
       </ng-select>
     </div>
@@ -535,16 +535,28 @@
           <div class="row">
             <div class="col-md-3">
               <div class="form-group">
-                <label class="control-label">Balance<span style="color:red">*</span></label>
-                <input type="number" class="form-control" name="bankaccount_BALANCE" [disabled]="disabled"
-                  [(ngModel)]="bankaccount.bankaccount_BALANCE" maxlength="50" required>
+                <label class="control-label">Balance <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="bankaccount_BALANCE"
+                  [(ngModel)]="bankaccount.bankaccount_BALANCE" pattern="^[0-9]*$" #nameInput="ngModel" maxlength="50"
+                  [disabled]="disabled" required>
+                <div *ngIf="nameInput.invalid && (nameInput.dirty || nameInput.touched)">
+                  <div *ngIf="nameInput.errors.pattern">
+                    <span style="color:red">Only contain Numbers.</span>
+                  </div>
+                </div>
               </div>
             </div>
             <div class="col-md-3">
               <div class="form-group">
-                <label class="control-label">Number<span style="color:red">*</span></label>
-                <input type="number" class="form-control" name="bankaccount_NUMBER" [disabled]="disabled"
-                  [(ngModel)]="bankaccount.bankaccount_NUMBER" maxlength="50" required>
+                <label class="control-label">Number <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="bankaccount_NUMBER"
+                  [(ngModel)]="bankaccount.bankaccount_NUMBER" pattern="^[0-9]*$" #codeInput="ngModel" maxlength="50"
+                  [disabled]="disabled" required>
+                <div *ngIf="codeInput.invalid && (codeInput.dirty || codeInput.touched)">
+                  <div *ngIf="codeInput.errors.pattern">
+                    <span style="color:red">Only contain Numbers.</span>
+                  </div>
+                </div>
               </div>
             </div>
             <div class="col-md-3">

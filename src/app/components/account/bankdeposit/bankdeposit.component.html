@@ -145,7 +145,8 @@
         <dxi-column dataField="tobankaccount_DETAIL" caption="To Account" cssClass="myClass"
           alignment="left"></dxi-column>
         <dxi-column dataField="bankdeposit_AMOUNT" caption="Amount" cssClass="myClass" alignment="center"></dxi-column>
-        <dxi-column [width]="200" dataField="bankdeposit_DESC" caption="Description" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column [width]="200" dataField="bankdeposit_DESC" caption="Description" cssClass="myClass"
+          alignment="left"></dxi-column>
         <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass"
           alignment="center"></dxi-column>
 
@@ -184,7 +185,8 @@
         <dxi-column dataField="tobankaccount_DETAIL" caption="To Account" cssClass="myClass"
           alignment="left"></dxi-column>
         <dxi-column dataField="bankdeposit_AMOUNT" caption="Amount" cssClass="myClass" alignment="center"></dxi-column>
-        <dxi-column [width]="200" dataField="bankdeposit_DESC" caption="Description" cssClass="myClass" alignment="left"></dxi-column>
+        <dxi-column [width]="200" dataField="bankdeposit_DESC" caption="Description" cssClass="myClass"
+          alignment="left"></dxi-column>
         <dxi-column [width]="100" dataField="isactive" caption="Active" cssClass="myClass"
           alignment="center"></dxi-column>
 
@@ -436,9 +438,15 @@
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <label class="control-label">Amount<span style="color:red">*</span></label>
-                <input type="number" class="form-control" name="bankdeposit_AMOUNT" [disabled]="disabled"
-                  [(ngModel)]="bankdeposit.bankdeposit_AMOUNT" maxlength="50" required>
+                <label class="control-label">Amount <span style="color:red">*</span></label>
+                <input type="text" class="form-control" name="bankaccount_BALANCE"
+                  [(ngModel)]="bankdeposit.bankdeposit_AMOUNT" pattern="^[0-9]*$" #nameInput="ngModel" maxlength="50"
+                  [disabled]="disabled" required>
+                <div *ngIf="nameInput.invalid && (nameInput.dirty || nameInput.touched)">
+                  <div *ngIf="nameInput.errors.pattern">
+                    <span style="color:red">Only contain Numbers.</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

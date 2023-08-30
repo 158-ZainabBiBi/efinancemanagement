@@ -1,16 +1,20 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { HttpCallServieService } from 'src/app/services/http-call-servie.service';
 import { setting } from 'src/app/setting';
+
 import { LedgerService } from '../ledger/ledger.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TrialbalanceService {
+  private sendEmailUrl = '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';
 
   constructor(
     private _HttpCallServieService_: HttpCallServieService,
-    private ledgerservice: LedgerService
+    private ledgerservice: LedgerService,
+    private http: HttpClient,
   ) { }
 
   get() {
@@ -125,6 +129,16 @@ export class TrialbalanceService {
       request_BODY: JSON.stringify(data)
     }
     return this._HttpCallServieService_.api(postData);
+  }
+
+  sendEmail(pdfBlob: Blob) {
+    const formData = new FormData();
+    formData.append('file', pdfBlob, 'sample.pdf');
+    formData.append('to', 'recipient@example.com');
+    formData.append('subject', 'Email Subject');
+    formData.append('text', 'Email Text');
+
+    return this.http.post(this.sendEmailUrl, formData);
   }
 
   getAllDetail(response) {

@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Http } from "@angular/http";
-import { map, catchError } from "rxjs/operators";
+import { map } from "rxjs/operators";
 
 import { LoginService } from "../pages/login/login.service";
 

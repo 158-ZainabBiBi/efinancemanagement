@@ -1,11 +1,11 @@
-import { Component, OnInit, Input, Output, ViewChild, EventEmitter, AfterViewInit, ChangeDetectorRef } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { OnFailService } from '../../../services/on-fail.service';
 
-import { JournalService } from './journal.service';
-import { TransactionComponent } from '../transaction/transaction.component';
 import { AccountComponent } from '../account/account.component';
+import { TransactionComponent } from '../transaction/transaction.component';
+import { JournalService } from './journal.service';
 
 declare var $: any;
 
