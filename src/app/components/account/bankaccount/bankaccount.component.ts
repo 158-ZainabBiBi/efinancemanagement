@@ -41,6 +41,8 @@ export class BankaccountComponent implements OnInit {
   bankaccounttypeID = null;
   @Input()
   bankaccounttypeCode = null;
+  @Input()
+  customerDisabled: boolean = true;
 
   @Output() edit = new EventEmitter();
   @Output() cancel = new EventEmitter();

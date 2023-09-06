@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { BankaccountComponent } from 'src/app/components/account/bankaccount/bankaccount.component';
 import { BankdepositComponent } from 'src/app/components/account/bankdeposit/bankdeposit.component';
@@ -25,7 +25,6 @@ export class BankaccountviewComponent implements OnInit {
 
   bankaccountID = 0;
   frombankaccountID = 0;
-  tobankaccountID = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -37,7 +36,6 @@ export class BankaccountviewComponent implements OnInit {
       if (params.bankaccount) {
         this.bankaccountID = params.bankaccount;
         this.frombankaccountID = params.bankaccount;
-        this.tobankaccountID = params.bankaccount;
       }
     });
   }
